@@ -1,0 +1,1 @@
+Pagina par ver os candidatos que foram inscritos
