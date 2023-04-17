@@ -16,3 +16,35 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+/* Essas rotas sao apenas para conseguirem visualizar cada pagina*/
+
+Route::get('/inicio', function () {
+    return view('pagina-inicial');
+});
+
+Route::get('/login', function () {
+    return view('autenticacao/login');
+});
+
+Route::get('/lembrar', function () {
+    return view('autenticacao/recuperar-senha');
+});
+
+Route::get('/registrar', function () {
+    return view('autenticacao/registrar');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
