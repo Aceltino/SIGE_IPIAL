@@ -19,12 +19,13 @@
 
     <!-- /	Link do Css main do projecto -->
   	<link href="css/estilo.css" rel="stylesheet">
+    <link href="css/tudo.css" rel="stylesheet">
 
 </head>
 <body>
     @include('layouts.menu')
 
-    @yield('sidebar')
+    @include('layouts.sidebar')
 
     @yield('conteudo')
 
@@ -42,5 +43,6 @@
 
   <!-- /	Link do js main do projeto -->
   <script src="js/script.js"></script>
+  <script src="js/form.js"></script>
 </body>
 </html>
