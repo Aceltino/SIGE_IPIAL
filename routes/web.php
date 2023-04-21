@@ -35,7 +35,17 @@ Route::get('/registrar', function () {
     return view('autenticacao/registrar');
 });
 
+Route::get('/inscricoes', function () {
+    return view('inscricao/inscricoes');
+});
 
+Route::get('/inscrever', function () {
+    return view('inscricao/inscr-candidato');
+});
+
+Route::get('/conf-inscricao', function () {
+    return view('inscricao/conf-inscricao');
+});
 
 
 

@@ -38,10 +38,7 @@
         
         <div class="row" style="padding-top: 5px;">
           <div class="col">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
-              <label class="form-check-label" for="rememberMe">Lembrar-me</label>
-            </div>  
+             
           </div>
           
           <div class="col">

@@ -1,0 +1,242 @@
+/*#regForm {
+  background-color: #ffffff;
+  margin: 100px auto;
+  padding: 40px;
+  width: 70%;
+  min-width: 300px;
+}
+*/
+
+
+.form-group{
+    margin-bottom: 15px;
+  }
+  
+  /* Style the input fields */
+   input[type="text"], input[type="date"], select {
+  /*  padding: 10px;
+    width: 100%;
+    font-size: 17px;
+    font-family: Raleway;
+    border: 1px solid #aaaaaa;
+  */
+    display: block;
+    width: 100%;
+    padding: 10px 10px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  input:focus, select:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  }
+  
+  /* Mark input boxes that gets an error on validation: */
+  input.invalid {
+    background-color: #ffdddd;
+  }
+  
+  /* Hide all steps by default: */
+  .tab {
+    display: none;
+  }
+  
+  /* Make circles that indicate the steps of the form: */
+  .step {
+    height: 15px;
+    width: 100px;
+    margin: 0 2px;
+    background-color: #174183;
+    border: none;
+    border-radius: 15px;
+    display: inline-block;
+    opacity: 0.5;
+  }
+  
+  /* Mark the active step: */
+  .step.active {
+    opacity: 1;
+  }
+  
+  /* Mark the steps that are finished and valid: */
+  .step.finish {
+    background-color: green;
+  }
+  
+  h2 {
+    font-size: 35px;
+    margin-bottom: 0;
+    font-weight: 600;
+    color: #012970;
+  }
+  
+  .btn-sel{
+    background-color: #174183;
+    color: #fff;
+  }
+  
+  .btn-sel:focus {
+    background-color: #174183;
+    color: #fff;
+    border-color: #86b7fe;
+    outline: none;
+    box-shadow: none;
+  }
+  
+  .procurar{
+     min-width: 360px;
+    padding: 0px;
+    margin-top: 20px;
+  }
+  
+  .proc-form{
+    width: 100%;
+  }
+  
+  .proc-form input {
+    border: 0;
+    font-size: 14px;
+    color: #012970;
+    border: 1px solid rgba(1, 41, 112, 0.2);
+    padding: 7px 38px 7px 8px;
+    border-radius: 3px;
+    transition: 0.3s;
+    width: 100%;
+  }
+  
+  .proc-form input:focus,
+  .proc-form input:hover {
+    outline: none;
+    box-shadow: 0 0 10px 0 rgba(1, 41, 112, 0.15);
+    border: 1px solid rgba(1, 41, 112, 0.3);
+  }
+  
+  .proc-form button {
+    border: 0;
+    padding: 7px;
+    padding-left: 15px;
+    border-radius: 0px 10px 10px 0px;
+    margin-left: 0px;
+    background-color: #174183;
+  }
+  
+  .proc-form button i {
+    color: #fff;
+  }
+  
+  /*********************************************************
+  Da pagina inscricoes
+  *********************************************************/
+  .btn-imprimir{
+    margin-top: 10px;
+    width: 160px;
+      display: block;
+  
+    padding: 10px 10px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    background-color: #174183;
+    color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  .table i{
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .bi-eye-fill{
+    color: #174183;
+  }
+  
+  .bi-pencil{
+    color: #a7a706;
+  }
+  
+  .bi-trash-fill{
+    color: red;
+  }
+  
+  .bi-check-square-fill{
+    color: green;
+  }
+  
+  /*********************************************************
+  Da página confirmar inscricao 
+  **********************************************************/
+  
+  i.voltar{
+   font-size: 45px; 
+   color: #174183;
+   cursor: pointer;
+  }
+  
+  .area-info-insc{
+    background-color: #e9e6e6;
+    padding: 20px;
+    border-radius: 7px;
+  }
+  
+  .area-info-insc ul{
+    padding: 0;
+    list-style: none;
+  }
+  
+  .area-info-insc span.titulo{
+    color: #000;
+    font-weight: 700;
+    font-size: 18px;
+  }
+  
+  .area-info-insc span.conteudo{
+    color: #a1a1a1;
+    font-size: 18px;
+  }
+  
+  .area-foto-confirm img{
+    width: 100%;
+    border-radius: 15px;
+  }
+  
+  
+  /******************************************************
+  Confirmar inscricao
+  ******************************************************/
+  .bi-select{
+    background-color: #174183;
+    color: #fff;
+    width: 250px;
+  }
+  
+  .bi-select:focus {
+    background-color: #174183;
+    color: #fff;
+    border-color: #86b7fe;
+    outline: none;
+    box-shadow: none;
+  }
+  
+  
+  
+  
