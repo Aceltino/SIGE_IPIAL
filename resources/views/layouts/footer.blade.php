@@ -2,9 +2,7 @@
 <footer id="footer" class="footer">
     <div class="copyright">
       &copy; 2022 - 2023. Todos os direitos reservados <strong><span>SIGE - IPIAL</span></strong>
-    </div>
-    <div class="creditos">
-      Desenvolvido por <a href="#">PIAL's Devs</a>
+      Desenvolvido por <a href="#">IPIAL's Devs</a>
     </div>
 </footer><!-- Termina Footer -->
 
