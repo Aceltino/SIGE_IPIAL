@@ -32,7 +32,7 @@ function nextPrev(n) {
   
   if (currentTab >= x.length) {
   
-    document.getElementById("regFormas").submit();
+    document.getElementById("regForm").submit();
     return false;
   }
   

@@ -21,13 +21,13 @@
 
 	          <a class="nav-link nav-perfil d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
 	            <img src="img/foto.jpg" alt="perfil" class="mini-foto-perf">
-	            <span class="d-none d-md-block dropdown-toggle ps-2">Nome Dealguma Pessoa Com Nomegrande <br> <small>Subdiretor pedagógico</small></span>
+	            <span class="d-none d-md-block dropdown-toggle ps-2">Nome De Alguma Pessoa Com Nome Grande <br> <small>Subdiretor pedagógico</small></span>
 	          </a>
 
 	          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow perfil">
 	            <li class="dropdown-header">
-	              <h6>Nome Dealguma Pessoa</h6>
-	              <span>Cargo dapessoa</span>
+	              <h6>Nome De Alguma Pessoa</h6>
+	              <span>Cargo Da Pessoa</span>
 	            </li>
 	            <li>
 	              <hr class="dropdown-divider">
@@ -36,7 +36,7 @@
 	            <li>
 	              <a class="dropdown-item d-flex align-items-center" href="#">
 	                <i class="bi bi-person"></i>
-	                <span>My perfil</span>
+	                <span>Meu perfil</span>
 	              </a>
 	            </li>
 	            <li>
@@ -72,7 +72,7 @@
           	<!-- /	Lista de notificacoes-->
         	<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
 	            <li class="dropdown-header">
-	              Chegou novas notificações
+	              Chegaram novas notificações
 	              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Mostrar tudo</span></a>
 	            </li>
 	            <li>
@@ -95,7 +95,7 @@
 	            <li class="notification-item">
 	              <i class="bi bi-x-circle text-danger"></i>
 	              <div>
-	                <h4>Atque rerum nesciunt</h4>
+	                <h4>Alunos reprovados no processo selectivo</h4>
 	                <p>Quae dolorem earum veritatis oditseno</p>
 	                <p>1 hr. ago</p>
 	              </div>

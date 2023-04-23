@@ -30,7 +30,7 @@
         
         <div class="input-group has-validation">
           <span class="input-group-addon" id="inputGroupPrepend"><i class="bi bi-person"></i></span>
-          <input type="text" name="username" autocomplete="off" placeholder="Inserir E-mail" class="form-control" required>
+          <input type="text" name="username" autocomplete="off" placeholder="Inserir nome de usuário" class="form-control" required>
           <div class="invalid-feedback">Por favor insere o e-mail!</div>
         </div>
       </div>
@@ -53,7 +53,7 @@
           
           <div class="col">
 
-            <a href="#">Esqueceu a senha?</a>
+            <a href="#" class="forgot-password">Esqueceu a senha?</a>
           </div>
         </div>
       </div>
