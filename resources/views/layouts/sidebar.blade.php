@@ -27,6 +27,17 @@
               <i class="bi bi-circle"></i><span>Inscrições</span>
             </a>
           </li>
+          <li>
+            <a href="/inscritos-online">
+              <i class="bi bi-circle"></i><span>Inscritos Online</span>
+            </a>
+          </li>
+          <li>
+            <a href="/inscritos-rejeitados">
+              <i class="bi bi-circle"></i><span>Inscritos Rejeitados</span>
+            </a>
+          </li>
+          
 
         </ul>
       </li>

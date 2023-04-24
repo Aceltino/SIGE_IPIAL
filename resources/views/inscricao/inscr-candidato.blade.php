@@ -4,7 +4,7 @@
 
 @section('conteudo')
 <main id="main" class="main">
-      <form id="regFormh" action="" class="formulario-layout">
+      <form id="regFormh" action="" class="form-nscricao">
         <div style="text-align:center;margin-top:40px;">
           <span class="step"></span>
           <span class="step"></span>
