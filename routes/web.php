@@ -47,6 +47,15 @@ Route::get('/conf-inscricao', function () {
     return view('inscricao/conf-inscricao');
 });
 
+/* Essas são as rotas das matriculas */
+
+Route::get('/matriculas', function () {
+    return view('matricula/matriculas');
+});
+
+Route::get('/matricular-aluno', function () {
+    return view('matricula/matricular-aluno');
+});
 
 
 
