@@ -13,19 +13,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+//Routas para Autenticação no Sistema
+
+Route::prefix('autenticacao')->group(function(){
+    
+    //Rota de Login
+    Route::get('login', function () {
+        return view('autenticacao/login');
+    })->name('login');
+    
+    //Rota de Cadastro
+    Route::get('/registrar', function () {
+        return view('autenticacao/registrar');
+    });
+    
 });
+
+//Rotas do Painel
+Route::get('/', function () {
+    return view('pagina-inicial');
+})->name('inicio')->middleware('auth');
+
 
 /* Essas rotas sao apenas para conseguirem visualizar cada pagina*/
-
-Route::get('/inicio', function () {
-    return view('pagina-inicial');
-});
-
-Route::get('/login', function () {
-    return view('autenticacao/login');
-});
 
 Route::get('/lembrar', function () {
     return view('autenticacao/recuperar-senha');

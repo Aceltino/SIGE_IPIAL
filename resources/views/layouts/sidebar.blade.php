@@ -5,7 +5,7 @@
 
     	<!-- /	Nav Pagina inicial-->
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link " href={{route('inicio')}}>
           <i class="bi bi-ui-radios"></i>
           <span>Página inicial</span>
         </a>
