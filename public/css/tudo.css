@@ -7,6 +7,13 @@
 }
 */
 
+.our-green-bg{
+  background-color: var(--green);
+}
+
+.our-green{
+  color: var(--green);
+}
 
 .form-group{
     margin-bottom: 15px;
@@ -81,16 +88,16 @@
     font-size: 35px;
     margin-bottom: 0;
     font-weight: 600;
-    color: #012970;
+    color: var(--darkest-blue);
   }
   
   .btn-sel{
-    background-color: #174183;
+    background-color: var(--darkest-blue);
     color: #fff;
   }
   
   .btn-sel:focus {
-    background-color: #174183;
+    background-color: var(--darkest-blue);
     color: #fff;
     border-color: #86b7fe;
     outline: none;
@@ -131,7 +138,7 @@
     padding-left: 15px;
     border-radius: 0px 10px 10px 0px;
     margin-left: 0px;
-    background-color: #174183;
+    background-color: var(--darkest-blue);
   }
   
   .proc-form button i {
@@ -144,13 +151,12 @@
   .btn-imprimir{
     margin-top: 10px;
     width: 160px;
-      display: block;
-  
+    display: block;
     padding: 10px 10px;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    background-color: #174183;
+    background-color: var(--darkest-blue);
     color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;

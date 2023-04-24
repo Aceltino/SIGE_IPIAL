@@ -1,12 +1,25 @@
 /*Arquivo de estilizacao com css*/
+
+/*Fonte Chakra Petch*/
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap');
+
 :root {
     scroll-behavior: smooth;
+    --darkest-blue: #070B17;
+    --red: #C31919;
+    --green: #259330;
+    --yellowish-green: #C1BB20;
+  }
+
+  *{
+    font-family: 'Chakra Petch', sans-serif !important;
   }
   
   body {
-    font-family: "Open Sans", sans-serif;
-    background: #f6f9ff;
+    background: white;
     color: #444444;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
   
   a {
@@ -32,9 +45,10 @@
   # Main
   --------------------------------------------------------------*/
   #main {
-    margin-top: 60px;
-    padding: 30px 30px;
+    margin-top: 70px;
+    padding: 10px 30px;
     transition: all 0.3s;
+    height: 80vh;
   }
   
   @media (max-width: 1199px) {
@@ -47,14 +61,14 @@
   # Word waves
   --------------------------------------------------------------*/
   .pagetitle {
-    margin-bottom: 10px;
+    margin-bottom: -40px;
   }
   
   .pagetitle h1 {
     font-size: 28px;
     margin-bottom: 0;
     font-weight: 600;
-    color: #012970;
+    color: var(--darkest-blue);
   }
   
   /*--------------------------------------------------------------
@@ -65,7 +79,7 @@
     visibility: hidden;
     opacity: 0;
     right: 15px;
-    bottom: 15px;
+    bottom: 65px;
     z-index: 99999;
     background: #4154f1;
     width: 40px;
@@ -185,10 +199,14 @@
   .header {
     transition: all 0.5s;
     z-index: 997;
+    top: 10px;
+    left: 10px;
+    right: 10px;
     height: 60px;
     box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
-    background-color: #174183;
+    background-color: var(--darkest-blue);
     padding-left: 20px;
+    border-radius: 10px;
     /* Toggle Sidebar Button */
     /* Search Bar */
   }
@@ -314,9 +332,9 @@
   --------------------------------------------------------------*/
   .sidebar {
     position: fixed;
-    top: 60px;
-    left: 0;
-    bottom: 0;
+    top: 80px;
+    left: 10px;
+    bottom: 65px;
     width: 300px;
     z-index: 996;
     transition: all 0.3s;
@@ -325,7 +343,9 @@
     scrollbar-width: thin;
     scrollbar-color: #aab7cf transparent;
     box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
-    background-color: #174183;
+    background-color: var(--darkest-blue);
+    border-radius: 10px;
+    
   }
   
   @media (max-width: 1199px) {
@@ -350,22 +370,21 @@
   
   @media (min-width: 1200px) {
   
-    #main,
-    #footer {
+    #main {
       margin-left: 300px;
     }
   }
   
   @media (max-width: 1199px) {
     .toggle-sidebar .sidebar {
-      left: 0;
+      left: 10px;
     }
   }
   
   @media (min-width: 1200px) {
   
     .toggle-sidebar #main,
-    .toggle-sidebar #footer {
+    .toggle-sidebar {
       margin-left: 0;
     }
   
@@ -483,38 +502,33 @@
   }
   
   .counts .count-box {
-    padding: 30px 30px 25px 30px;
+    padding: 50px 30px 15px 30px;
     width: 100%;
     position: relative;
     text-align: center;
-    background: #ffffff;
+    background: var(--darkest-blue);
     border-radius: 10px;
-    box-shadow: inset 0 0 25px #174183;
   }
   
   .counts .count-box i {
     position: absolute;
-    top: -25px;
+    top: -15px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 20px;
-    background: #174183;
+    font-size: 40px;
     padding: 25px;
     color: #fff;
-    border-radius: 50px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    line-height: 0;
-    width: 48px;
-    height: 48px;
+
   }
   
   .counts .count-box span {
     font-size: 36px;
     display: block;
     font-weight: 600;
-    color: #173b6c;
+    color: white;
   }
   
   .counts .count-box p {
@@ -522,6 +536,7 @@
     margin: 0;
     font-family: "Montserrat", sans-serif;
     font-size: 14px;
+    color: white
   }
   
   
@@ -530,7 +545,15 @@
   # Footer
   --------------------------------------------------------------*/
   .footer {
-    padding: 20px 0;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    height: 45px;
+    border-radius: 10px;
+    background-color: var(--darkest-blue);
+    z-index: 996;
     font-size: 14px;
     transition: all 0.3s;
     border-top: 1px solid #cddfff;
@@ -538,12 +561,6 @@
   
   .footer .copyright {
     text-align: center;
-    color: #012970;
+    color: #fff;
   }
   
-  .footer .creditos {
-    padding-top: 5px;
-    text-align: center;
-    font-size: 13px;
-    color: #012970;
-  }

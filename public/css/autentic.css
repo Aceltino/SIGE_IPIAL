@@ -1,3 +1,10 @@
+/*Fonte Chakra Petch*/
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap');
+
+*{
+    font-family: 'Chakra Petch', sans-serif !important;
+  }
+
 body{
 	background: url("../img/bg.jpg");
 	background-size: cover;
@@ -19,7 +26,6 @@ body{
 	font-size: 26px;
 	font-weight: 700;
 	color: #174183;
-	font-family: "Nunito", sans-serif;
 }
 
 .login-form{
@@ -71,6 +77,9 @@ body{
 	border: none;
 }
 
+.forgot-password{
+	font-size: 15px;
+}
 
 .footer{
     position: fixed; 

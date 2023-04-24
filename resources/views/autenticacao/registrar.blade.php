@@ -57,7 +57,7 @@
         Data de Nascimento
       </span>
       <div class="input-group has-validation" style="margin-top: 10px;">
-        <div class="row">
+        <div class="row w-100">
           <div class="col">
             <select class="form-select">
               <option value="1" selected>01</option>
@@ -70,7 +70,7 @@
               <option value="2">02</option>
             </select>
           </div>
-          <div class="col">
+          <div class="col px-0">
             <select class="form-select">
               <option value="1" selected>1998</option>
               <option value="2">1999</option>
