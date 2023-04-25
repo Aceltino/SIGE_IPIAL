@@ -81,7 +81,7 @@
   
   /* Mark the steps that are finished and valid: */
   .step.finish {
-    background-color: green;
+    background-color: var(--green);
   }
   
   h2 {
