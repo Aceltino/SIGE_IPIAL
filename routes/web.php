@@ -78,6 +78,11 @@ Route::get('/conf-inscricao', function () {
     return view('inscricao/conf-inscricao');
 });
 
+Route::get('/cadastrar-professor', function () {
+    return view('professor/cadastrar-prof');
+});
+
+
 Route::get('/rej-inscricao', function () {
     return view('inscricao/rejeitar-inscricao');
 });
