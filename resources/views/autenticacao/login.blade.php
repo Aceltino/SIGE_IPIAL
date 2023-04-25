@@ -8,21 +8,21 @@
 
   <!-- /  Link dos Css do Bootstrap -->
 
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="vendor/quill/quill.snow.css" rel="stylesheet">
-    <link href="vendor/quill/quill.bubble.css" rel="stylesheet">
-    <link href="vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="vendor/simple-datatables/style.css" rel="stylesheet">
+    <link href={{URL::asset("vendor/bootstrap/css/bootstrap.min.css")}} rel="stylesheet">
+    <link href={{URL::asset("vendor/bootstrap-icons/bootstrap-icons.css")}} rel="stylesheet">
+    <link href={{URL::asset("vendor/boxicons/css/boxicons.min.css")}} rel="stylesheet">
+    <link href={{URL::asset("vendor/quill/quill.snow.css")}} rel="stylesheet">
+    <link href={{URL::asset("vendor/quill/quill.bubble.css")}} rel="stylesheet">
+    <link href={{URL::asset("vendor/remixicon/remixicon.css")}} rel="stylesheet">
+    <link href={{{URL::asset("vendor/simple-datatables/style.css")}}} rel="stylesheet">
 
   <!-- /  Link do Css main do projecto -->
-    <link href="css/autentic.css" rel="stylesheet">
+    <link href={{URL::asset("css/autentic.css")}} rel="stylesheet">
 </head>
 <body>
   <div class="login-form">
     <div class="area-logo">
-      <img src="img/logo.png"><br>
+      <img src={{URL::asset("img/logo.png")}}><br>
       <span>SIGE - IPIAL</span>
     </div>
     <form class="row g-3 needs-validation" novalidate>
@@ -30,7 +30,7 @@
         
         <div class="input-group has-validation">
           <span class="input-group-addon" id="inputGroupPrepend"><i class="bi bi-person"></i></span>
-          <input type="text" name="username" autocomplete="off" placeholder="Inserir E-mail" class="form-control" required>
+          <input type="text" name="username" autocomplete="off" placeholder="Inserir nome de usuário" class="form-control" required>
           <div class="invalid-feedback">Por favor insere o e-mail!</div>
         </div>
       </div>
@@ -53,7 +53,7 @@
           
           <div class="col">
 
-            <a href="#">Esqueceu a senha?</a>
+            <a href="#" class="forgot-password">Esqueceu a senha?</a>
           </div>
         </div>
       </div>

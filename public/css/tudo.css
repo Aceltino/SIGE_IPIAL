@@ -21,8 +21,6 @@
 
 
 
-
-
 .form-group{
   margin-bottom: 15px;
 }
@@ -377,3 +375,9 @@ Estilo da tabela colorida
   --bs-table-accent-bg: var(--bs-table-striped-bg);
   color: #fff;
 }
+
+.form-group{
+    margin-bottom: 15px;
+  }
+  
+  
