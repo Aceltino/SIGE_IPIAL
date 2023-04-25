@@ -1,8 +1,4 @@
 /*Arquivo de estilizacao com css*/
-
-/*Fonte Chakra Petch*/
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap');
-
 :root {
     scroll-behavior: smooth;
     --darkest-blue: #174183;
@@ -11,326 +7,348 @@
     --yellowish-green: #C1BB20;
   }
 
-  *{
-    font-family: 'Chakra Petch', sans-serif !important;
-  }
-  
-  body {
-    background: white;
-    color: #444444;
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
-  
-  a {
-    color: #4154f1;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    color: #717ff5;
-    text-decoration: none;
-  }
-  
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: "Nunito", sans-serif;
-  }
-  
-  /*--------------------------------------------------------------
-  # Main
-  --------------------------------------------------------------*/
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  background: #fff;
+  color: #444444;
+}
+
+body::-webkit-scrollbar {
+  width: 20px;
+  height: 100px;
+  border: 1px solid #000;
+  border-radius: 20px;
+  background-color: #fff;
+}
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 35px;
+  margin: 10px;
+  background-color: var(--bs-cor-principal);
+}
+
+a {
+  color: #4154f1;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #717ff5;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Nunito", sans-serif;
+}
+
+/*--------------------------------------------------------------
+# Main
+--------------------------------------------------------------*/
+#main {
+  margin-top: 60px;
+  padding: 30px 30px;
+  padding-bottom: 100px;
+  transition: all 0.3s;
+}
+
+@media (max-width: 1199px) {
   #main {
-    margin-top: 70px;
-    padding: 10px 30px;
-    transition: all 0.3s;
-    height: 80vh;
-  }
-  
-  @media (max-width: 1199px) {
-    #main {
-      padding: 20px;
-    }
-  }
-  
-  /*--------------------------------------------------------------
-  # Word waves
-  --------------------------------------------------------------*/
-  .pagetitle {
-    margin-bottom: -40px;
-  }
-  
-  .pagetitle h1 {
-    font-size: 28px;
-    margin-bottom: 0;
-    font-weight: 600;
-    color: var(--darkest-blue);
-  }
-  
-  /*--------------------------------------------------------------
-  # Back to top button
-  --------------------------------------------------------------*/
-  .back-to-top {
-    position: fixed;
-    visibility: hidden;
-    opacity: 0;
-    right: 15px;
-    bottom: 65px;
-    z-index: 99999;
-    background: #4154f1;
-    width: 40px;
-    height: 40px;
-    border-radius: 4px;
-    transition: all 0.4s;
-  }
-  
-  .back-to-top i {
-    font-size: 24px;
-    color: #fff;
-    line-height: 0;
-  }
-  
-  .back-to-top:hover {
-    background: #6776f4;
-    color: #fff;
-  }
-  
-  .back-to-top.active {
-    visibility: visible;
-    opacity: 1;
-  }
-  
-  /* Dropdown menus */
-  .dropdown-menu {
-    border-radius: 4px;
-    padding: 10px 0;
-    -webkit-animation-name: dropdown-animate;
-    animation-name: dropdown-animate;
-    -webkit-animation-duration: 0.2s;
-    animation-duration: 0.2s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-    border: 0;
-    box-shadow: 0 5px 30px 0 rgba(82, 63, 105, 0.2);
-  }
-  
-  .dropdown-menu .dropdown-header,
-  .dropdown-menu .dropdown-footer {
-    text-align: center;
-    font-size: 15px;
-    padding: 10px 25px;
-  }
-  
-  .dropdown-menu .dropdown-footer a {
-    color: #444444;
-    text-decoration: underline;
-  }
-  
-  .dropdown-menu .dropdown-footer a:hover {
-    text-decoration: none;
-  }
-  
-  .dropdown-menu .dropdown-divider {
-    color: #a5c5fe;
-    margin: 0;
-  }
-  
-  .dropdown-menu .dropdown-item {
-    font-size: 14px;
-    padding: 10px 15px;
-    transition: 0.3s;
-  }
-  
-  .dropdown-menu .dropdown-item i {
-    margin-right: 10px;
-    font-size: 18px;
-    line-height: 0;
-  }
-  
-  .dropdown-menu .dropdown-item:hover {
-    background-color: #f6f9ff;
-  }
-  
-  @media (min-width: 768px) {
-    .dropdown-menu-arrow::before {
-      content: "";
-      width: 13px;
-      height: 13px;
-      background: #fff;
-      position: absolute;
-      top: -7px;
-      right: 20px;
-      transform: rotate(45deg);
-      border-top: 1px solid #eaedf1;
-      border-left: 1px solid #eaedf1;
-    }
-  }
-  
-  
-  /*--------------------------------------------------------------
-  # Header
-  --------------------------------------------------------------*/
-  .logo {
-    line-height: 1;
-  }
-  
-  @media (min-width: 1200px) {
-    .logo {
-      width: 280px;
-    }
-  }
-  
-  .logo img {
-    max-height: 28px;
-    margin-right: 6px;
-  }
-  
-  .logo span {
-    font-size: 26px;
-    font-weight: 700;
-    color: #fff;
-    font-family: "Nunito", sans-serif;
-  }
-  
-  .header {
-    transition: all 0.5s;
-    z-index: 997;
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    height: 60px;
-    box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
-    background-color: var(--darkest-blue);
-    padding-left: 20px;
-    border-radius: 10px;
-    /* Toggle Sidebar Button */
-    /* Search Bar */
-  }
-  
-  .header .toggle-sidebar-btn {
-    font-size: 32px;
-    padding-left: 10px;
-    cursor: pointer;
-    color: #fff;
-  }
-  
-  
-  /*--------------------------------------------------------------
-  # Header Nav
-  --------------------------------------------------------------*/
-  .header-nav ul {
-    list-style: none;
-  }
-  
-  .header-nav>ul {
-    margin: 0;
-    padding: 0;
-  }
-  
-  .header-nav .nav-icon {
-    font-size: 22px;
-    color: #fff;
-    margin-right: 25px;
-    position: relative;
-  }
-  
-  .header-nav .nav-perfil {
-    color: #fff;
-  }
-  
-  .mini-foto-perf{
-    width: 36px;
-    height: 36px;
-    border-radius: 100%;
-  }
-  
-  .header-nav .nav-perfil span {
-    font-size: 14px;
-    font-weight: 600;
-  }
-  
-  .header-nav .badge-number {
+    padding: 20px;
+
+/*--------------------------------------------------------------
+# Word waves
+--------------------------------------------------------------*/
+.pagetitle {
+  margin-bottom: 10px;
+}
+
+.pagetitle h1 {
+  font-size: 30px;
+  margin-bottom: 0;
+  font-weight: 700;
+  color: var(--bs-cor-principal);
+}
+
+/*--------------------------------------------------------------
+# Back to top button
+--------------------------------------------------------------*/
+.back-to-top {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: 60px;
+  z-index: 99999;
+  background: var(--bs-cor-principal);
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  transition: all 0.4s;
+}
+
+.back-to-top i {
+  font-size: 24px;
+  color: #fff;
+  line-height: 0;
+}
+
+.back-to-top:hover {
+  background: #6776f4;
+  color: #fff;
+}
+
+.back-to-top.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Dropdown menus */
+.dropdown-menu {
+  border-radius: 4px;
+  padding: 10px 0;
+  -webkit-animation-name: dropdown-animate;
+  animation-name: dropdown-animate;
+  -webkit-animation-duration: 0.2s;
+  animation-duration: 0.2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  border: 0;
+  box-shadow: 0 5px 30px 0 rgba(82, 63, 105, 0.2);
+}
+
+.dropdown-menu .dropdown-header,
+.dropdown-menu .dropdown-footer {
+  text-align: center;
+  font-size: 15px;
+  padding: 10px 25px;
+}
+
+.dropdown-menu .dropdown-footer a {
+  color: #444444;
+  text-decoration: underline;
+}
+
+.dropdown-menu .dropdown-footer a:hover {
+  text-decoration: none;
+}
+
+.dropdown-menu .dropdown-divider {
+  color: #a5c5fe;
+  margin: 0;
+}
+
+.dropdown-menu .dropdown-item {
+  font-size: 14px;
+  padding: 10px 15px;
+  transition: 0.3s;
+}
+
+.dropdown-menu .dropdown-item i {
+  margin-right: 10px;
+  font-size: 18px;
+  line-height: 0;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #f6f9ff;
+}
+
+@media (min-width: 768px) {
+  .dropdown-menu-arrow::before {
+    content: "";
+    width: 13px;
+    height: 13px;
+    background: #fff;
     position: absolute;
-    inset: -2px -5px auto auto;
-    font-weight: normal;
-    font-size: 12px;
-    padding: 3px 6px;
+    top: -7px;
+    right: 20px;
+    transform: rotate(45deg);
+    border-top: 1px solid #eaedf1;
+    border-left: 1px solid #eaedf1;
   }
-  
-  .header-nav .notifications {
-    inset: 8px -15px auto auto !important;
+}
+
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+.logo {
+  line-height: 1;
+}
+
+@media (min-width: 1200px) {
+  .logo {
+    width: 360px;
   }
-  
-  .header-nav .notifications .notification-item {
-    display: flex;
-    align-items: center;
-    padding: 15px 10px;
-    transition: 0.3s;
-  }
-  
-  .header-nav .notifications .notification-item i {
-    margin: 0 20px 0 10px;
-    font-size: 24px;
-  }
-  
-  .header-nav .notifications .notification-item h4 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 5px;
-  }
-  
-  .header-nav .notifications .notification-item p {
-    font-size: 13px;
-    margin-bottom: 3px;
-    color: #919191;
-  }
-  
-  .header-nav .notifications .notification-item:hover {
-    background-color: #f6f9ff;
-  }
-  
-  .header-nav .perfil {
-    min-width: 240px;
-    padding-bottom: 0;
-    top: 8px !important;
-  }
-  
-  .header-nav .perfil .dropdown-header h6 {
-    font-size: 18px;
-    margin-bottom: 0;
-    font-weight: 600;
-    color: #444444;
-  }
-  
-  .header-nav .perfil .dropdown-header span {
-    font-size: 14px;
-  }
-  
-  .header-nav .perfil .dropdown-item {
-    font-size: 14px;
-    padding: 10px 15px;
-    transition: 0.3s;
-  }
-  
-  .header-nav .perfil .dropdown-item i {
-    margin-right: 10px;
-    font-size: 18px;
-    line-height: 0;
-  }
-  
-  .header-nav .perfil .dropdown-item:hover {
-    background-color: #f6f9ff;
-  }
-  
-  
-  /*--------------------------------------------------------------
-  # Sidebar
-  --------------------------------------------------------------*/
-  .sidebar {
+}
+
+.logo img {
+  max-height: 28px;
+  margin-right: 6px;
+}
+
+.logo span {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--bs-cor-principal);
+  font-family: "Nunito", sans-serif;
+}
+
+.header {
+  background-color: #fff;
+  border: none;
+  padding: 10px 10px 10px 10px;
+/*  transition: all 0.5s;
+  z-index: 997;
+  height: 60px;
+  box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
+  background-color: var(--bs-cor-principal);
+  padding-left: 20px;*/
+
+  /* Toggle Sidebar Button */
+  /* Search Bar */
+}
+
+.topo{
+  width: 100%;
+  transition: all 0.5s;
+  z-index: 997;
+  height: 46px;
+  background-color: var(--bs-cor-principal);
+  color: #fff;
+  border-radius: 10px;
+}
+
+.header .toggle-sidebar-btn {
+  font-size: 32px;
+  padding-left: 10px;
+  cursor: pointer;
+  color: var(--bs-cor-principal);
+}
+
+
+/*--------------------------------------------------------------
+# Header Nav
+--------------------------------------------------------------*/
+.header-nav ul {
+  list-style: none;
+}
+
+.header-nav>ul {
+  margin: 0;
+  padding: 0;
+}
+
+.header-nav .nav-icon {
+  font-size: 22px;
+  color: #fff;
+  margin-right: 25px;
+  position: relative;
+}
+
+.header-nav .nav-perfil {
+  color: #fff;
+}
+
+.mini-foto-perf{
+  width: 60px;
+  height: 60px;
+  margin-left: -85px;
+  border: 2px solid #fff;
+  border-radius: 100%;
+  position: absolute;
+}
+
+.header-nav .nav-perfil span {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.header-nav .badge-number {
+  position: absolute;
+  inset: -2px -5px auto auto;
+  font-weight: normal;
+  font-size: 12px;
+  padding: 3px 6px;
+}
+
+.header-nav .notifications {
+  inset: 8px -15px auto auto !important;
+}
+
+.header-nav .notifications .notification-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 10px;
+  transition: 0.3s;
+}
+
+.header-nav .notifications .notification-item i {
+  margin: 0 20px 0 10px;
+  font-size: 24px;
+}
+
+.header-nav .notifications .notification-item h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.header-nav .notifications .notification-item p {
+  font-size: 13px;
+  margin-bottom: 3px;
+  color: #919191;
+}
+
+.header-nav .notifications .notification-item:hover {
+  background-color: #f6f9ff;
+}
+
+.header-nav .perfil {
+  min-width: 240px;
+  padding-bottom: 0;
+  top: 8px !important;
+}
+
+.header-nav .perfil .dropdown-header h6 {
+  font-size: 18px;
+  margin-bottom: 0;
+  font-weight: 600;
+  color: #444444;
+}
+
+.header-nav .perfil .dropdown-header span {
+  font-size: 14px;
+}
+
+.header-nav .perfil .dropdown-item {
+  font-size: 14px;
+  padding: 10px 15px;
+  transition: 0.3s;
+}
+
+.header-nav .perfil .dropdown-item i {
+  margin-right: 10px;
+  font-size: 18px;
+  line-height: 0;
+}
+
+.header-nav .perfil .dropdown-item:hover {
+  background-color: #f6f9ff;
+}
+
+
+/*--------------------------------------------------------------
+# Sidebar
+--------------------------------------------------------------*/
+.sidebar{
     position: fixed;
     top: 80px;
     left: 10px;
@@ -563,4 +581,4 @@
     text-align: center;
     color: #fff;
   }
-  
+

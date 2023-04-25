@@ -7,13 +7,19 @@
 }
 */
 
-.our-green-bg{
-  background-color: var(--green);
+.btn-cor-sg-a, .btn-cor-sg-a:hover{
+  background-color: var(--bs-cor-principal); 
+  color: #fff; 
+  padding: 1px;
 }
 
-.our-green{
-  color: var(--green);
+.btn-cor-sg-b, .btn-cor-sg-b:hover{
+  background-color: #fff; 
+  color: var(--bs-cor-principal); 
+  padding: 1px;
 }
+
+
 
 .form-group{
     margin-bottom: 15px;
@@ -81,7 +87,7 @@
   
   /* Mark the steps that are finished and valid: */
   .step.finish {
-    background-color: var(--green);
+    background-color: green;
   }
   
   h2 {
@@ -242,7 +248,6 @@
     outline: none;
     box-shadow: none;
   }
-  
   
   
   

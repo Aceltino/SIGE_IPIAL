@@ -6,13 +6,25 @@
 
 @section('conteudo')
 <main id="main" class="main">
-   	<!-- /	Titulo-->  	
-  	<div class="pagetitle">
-      <h1>Dashboard</h1>
-      <span class="breadcrumb">12-02-2023</span>
+  <!-- /	Titulo-->  	
+  <div class="pagetitle">
+    <div class="row">
+      <div class="col">
+        <h1>DASHBOARD</h1>      
+      </div>
+      
+      <div class="col-lg-2">
+        <span class="breadcrumb">
+          <select class="btn-sel form-select">
+            <option selected>2022 - 2023</option>
+            <option value="2021-2022">2021 - 2022</option>
+          </select>
+        </span>      
+      </div>
     </div>
+  </div>
 
-	<!-- /	seccao do dashboard-->
+<!-- /	seccao do dashboard-->
     <section id="counts" class="counts">
       <div class="container">
 
@@ -112,7 +124,7 @@
 	  	</script>
     </div><!-- Termina Area do grafico -->
   
-  </main>
+</main>
 @endsection
 
 

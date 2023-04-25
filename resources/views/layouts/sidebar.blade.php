@@ -5,7 +5,7 @@
 
     	<!-- /	Nav Pagina inicial-->
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link " href={{route('inicio')}}>
           <i class="bi bi-ui-radios"></i>
           <span>Página inicial</span>
         </a>
@@ -27,6 +27,17 @@
               <i class="bi bi-circle"></i><span>Inscrições</span>
             </a>
           </li>
+          <li>
+            <a href="/inscritos-online">
+              <i class="bi bi-circle"></i><span>Inscritos Online</span>
+            </a>
+          </li>
+          <li>
+            <a href="/inscritos-rejeitados">
+              <i class="bi bi-circle"></i><span>Inscritos Rejeitados</span>
+            </a>
+          </li>
+          
 
         </ul>
       </li>
