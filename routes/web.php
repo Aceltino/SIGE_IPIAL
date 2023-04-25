@@ -54,9 +54,6 @@ Route::get('/inscrever', function () {
     return view('inscricao/inscr-candidato');
 });
 
-Route::get('/conf-inscricao', function () {
-    return view('inscricao/conf-inscricao');
-});
 
 /* Essas são as rotas das matriculas */
 
@@ -68,9 +65,22 @@ Route::get('/matricular-aluno', function () {
     return view('matricula/matricular-aluno');
 });
 
+Route::get('/inscritos-online', function () {
+    return view('inscricao/inscritos-online');
+});
 
+Route::get('/inscritos-rejeitados', function () {
+    return view('inscricao/inscritos-rejeitados');
+});
 
+/******Algumas paginas que nao estarao no menu*****/
+Route::get('/conf-inscricao', function () {
+    return view('inscricao/conf-inscricao');
+});
 
+Route::get('/rej-inscricao', function () {
+    return view('inscricao/rejeitar-inscricao');
+});
 
 
 

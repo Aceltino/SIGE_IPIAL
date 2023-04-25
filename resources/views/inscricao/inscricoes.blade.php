@@ -4,9 +4,10 @@
 
 @section('conteudo')
 <main id="main" class="main">
+    <div class="pagetitle">
       <div class="row">
         <div class="col">
-          <h2>Inscritos</h2>      
+          <h1>INSCRITOS</h1>      
         </div>
       
          <div class="col-lg-2">
@@ -26,19 +27,20 @@
          </div>
       
       </div>
+    </div>
 
       <div class="procurar">
         <form class="proc-form d-flex align-items-center">
-          <input type="text" name="" class="campo-pesq">
+          <input type="text" placeholder="Digite o código da inscrição ou o número do B.I do Candidato" name="" class="campo-pesq">
           <button type="submit" title="Search"><i class="bi bi-search"></i></button>   
         </form>
       </div>
 
       <div style="display: flex; justify-content: flex-end; align-items: center;">
-        <button class="btn-imprimir">Imprimir <i class="bi bi-file-earmark-pdf-fill"></i></button>
+        <button class="btn-imprimir">Imprimir <i class="bi bi-file-earmark-pdf"></i></button>
       </div>
       <!-- /  Inicio da tabela de inscritos -->
-      <table class="table table-striped">
+      <table class="table table-striped" style="margin-top: 10px;">
         <thead>
           <tr>
             <th scope="col">Número do BI</th>
