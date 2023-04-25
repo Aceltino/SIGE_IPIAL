@@ -1,12 +1,10 @@
 /*Arquivo de estilizacao com css*/
 :root {
-    scroll-behavior: smooth;
-    --darkest-blue: #174183;
-    --red: #C31919;
-    --green: #259330;
-    --yellowish-green: #C1BB20;
-  }
-
+  scroll-behavior: smooth;
+  --darkest-blue: #174183;
+  --red: #C31919;
+  --green: #259330;
+  --yellowish-green: #C1BB20;
 }
 
 body {
@@ -61,6 +59,7 @@ h6 {
 @media (max-width: 1199px) {
   #main {
     padding: 20px;
+  }
 
 /*--------------------------------------------------------------
 # Word waves
@@ -349,22 +348,21 @@ h6 {
 # Sidebar
 --------------------------------------------------------------*/
 .sidebar{
-    position: fixed;
-    top: 80px;
-    left: 10px;
-    bottom: 65px;
-    width: 300px;
-    z-index: 996;
-    transition: all 0.3s;
-    padding: 20px;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: #aab7cf transparent;
-    box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
-    background-color: var(--darkest-blue);
-    border-radius: 10px;
-    
-  }
+  position: fixed;
+  top: 80px;
+  left: 10px;
+  bottom: 65px;
+  width: 300px;
+  z-index: 996;
+  transition: all 0.3s;
+  padding: 20px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #aab7cf transparent;
+  box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
+  background-color: var(--darkest-blue);
+  border-radius: 10px; 
+}
   
   @media (max-width: 1199px) {
     .sidebar {
@@ -581,4 +579,3 @@ h6 {
     text-align: center;
     color: #fff;
   }
-
