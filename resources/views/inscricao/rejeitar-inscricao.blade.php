@@ -5,7 +5,9 @@
 @section('conteudo')
 <main id="main" class="main">
     <form>
-    <i class="voltar bi bi-arrow-left-circle-fill"></i>
+        <a href={{route('conf-inscricao')}}>
+            <i class="voltar bi bi-arrow-left-circle-fill"></i>
+        </a>
     <div class="row decidir-insc">
         <div class="col-lg-6">
             <div class="area-info-insc info-rej-insc">
@@ -65,7 +67,8 @@
             </div>
             <div class="row" style="margin-top: 25px;">
             <div class="col-lg-6">
-                <button class="btn" style="background-color: #070b17; color: #fff;">Cancelar rejeição</button>
+                <a href={{route('inscricoes')}} class="btn" style="background-color: #112255; color: #fff;">Cancelar rejeição</a>
+                {{-- <button  class="btn" style="background-color: #112255; color: #fff;">Cancelar rejeição</button> --}}
             </div>
             <div class="col-lg-6" style="display: flex; justify-content: flex-end; align-items: center;">
                 <button class="btn btn-danger">Confirmar rejeição</button>                

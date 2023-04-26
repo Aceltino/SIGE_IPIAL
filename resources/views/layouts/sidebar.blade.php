@@ -7,33 +7,33 @@
       <li class="nav-item">
         <a class="nav-link " href={{route('inicio')}}>
           <i class="bi bi-ui-radios"></i>
-          <span>Página inicial</span>
+          <span >Página inicial</span>
         </a>
       </li>
 
         <!-- /	Nav Inscricoes-->
-      <li class="nav-item">
+      <li class="nav-item" >
         <a class="nav-link collapsed" data-bs-target="#inscriacao-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-pen"></i><span>Inscrição</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-pen"></i><span >Inscrição</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="inscriacao-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="/inscrever">
+            <a href={{route('inscrever')}} >
               <i class="bi bi-circle"></i><span>Inscrever candidato</span>
             </a>
           </li>
           <li>
-            <a href="/inscricoes">
-              <i class="bi bi-circle"></i><span>Inscrições</span>
+            <a  href={{route('inscricoes')}}>
+              <i class="bi bi-circle"></i><span>Lista dos Candidatos Inscritos</span>
             </a>
           </li>
           <li>
-            <a href="/inscritos-online">
+            <a href={{route('inscritos-online')}}>
               <i class="bi bi-circle"></i><span>Inscritos Online</span>
             </a>
           </li>
           <li>
-            <a href="/inscritos-rejeitados">
+            <a href={{route('inscritos-rejeitados')}}>
               <i class="bi bi-circle"></i><span>Inscritos Rejeitados</span>
             </a>
           </li>
@@ -49,13 +49,13 @@
         </a>
         <ul id="matricula-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="#">
+            <a href={{route('matricular-aluno')}}>
               <i class="bi bi-circle"></i><span>Matricular aluno</span>
             </a>
           </li>
           <li>
-            <a href="#">
-              <i class="bi bi-circle"></i><span>Matriculas</span>
+            <a href={{route('matriculas')}}>
+              <i class="bi bi-circle"></i><span >Matriculas</span>
             </a>
           </li>
  
@@ -64,12 +64,12 @@
 
     	<!-- /	Nav Professor-->      
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#professor-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-person-lines-fill"></i><span>Professor</span><i class="bi bi-chevron-down ms-auto"></i>
+        <a  class="nav-link collapsed" data-bs-target="#professor-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-person-lines-fill"></i><span >Professor</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="professor-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="#">
+            <a href={{route('cadastrar-prof')}}>
               <i class="bi bi-circle"></i><span>Cadastrar Professores</span>
             </a>
           </li>
@@ -102,7 +102,7 @@
 
     	<!-- /	Nav Curso-->
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#curso-nav" data-bs-toggle="collapse" href="#">
+        <a  class="nav-link collapsed" data-bs-target="#curso-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-book"></i><span>Curso</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="curso-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
@@ -140,7 +140,7 @@
 
     	<!-- /	Nav Ano lectivo-->
 	    <li class="nav-item">
-	        <a class="nav-link collapsed" data-bs-target="#ano-nav" data-bs-toggle="collapse" href="#">
+	        <a  class="nav-link collapsed" data-bs-target="#ano-nav" data-bs-toggle="collapse" href="#">
 	          <i class="bi bi-calendar-event"></i><span>Ano lectivo</span><i class="bi bi-chevron-down ms-auto"></i>
 	        </a>
 	        <ul id="ano-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,10 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-//Routas para Autenticação no Sistema
+//Rotas do Painel
 
+
+Route::get('/', [HomeController::class,'index'])->name('inicio')->middleware('auth');
+
+//Routas para Autenticação no Sistema
 Route::prefix('autenticacao')->group(function(){
-    
+
     //Rota de Login
     Route::get('login', function () {
         return view('autenticacao/login');
@@ -27,68 +32,62 @@ Route::prefix('autenticacao')->group(function(){
     Route::get('/registrar', function () {
         return view('autenticacao/registrar');
     });
+
+    Route::get('/lembrar', function () {
+        return view('autenticacao/recuperar-senha');
+    });
     
 });
 
-//Rotas do Painel
-Route::get('/', function () {
-    return view('pagina-inicial');
-})->name('inicio')->middleware('auth');
+//Routas de Formulario de inscrição
+Route::prefix('inscricao')->middleware('auth')->group(function(){
 
+    Route::get('inscricoes', function () {
+        return view('inscricao/inscricoes');
+    })->name('inscricoes');
 
-/* Essas rotas sao apenas para conseguirem visualizar cada pagina*/
+    Route::get('inscrever', function () {
+        return view('inscricao/inscr-candidato');
+    })->name('inscrever');
 
-Route::get('/lembrar', function () {
-    return view('autenticacao/recuperar-senha');
+    Route::get('/inscritos-online', function () {
+        return view('inscricao/inscritos-online');
+    })->name('inscritos-online');
+    
+    Route::get('/inscritos-rejeitados', function () {
+        return view('inscricao/inscritos-rejeitados');
+    })->name('inscritos-rejeitados');
+
+    Route::get('/conf-inscricao', function () {
+        return view('inscricao/conf-inscricao');
+    })->name('conf-inscricao');
+
+    Route::get('/rej-inscricao', function () {
+        return view('inscricao/rejeitar-inscricao');
+    })->name('rejeitar-inscricao');
+    
 });
 
-Route::get('/registrar', function () {
-    return view('autenticacao/registrar');
+//Routas de Formulario da Matricula
+Route::prefix('matricula')->middleware('auth')->group(function(){
+
+    Route::get('matriculas', function () {
+        return view('matricula/matriculas');
+    })->name('matriculas');
+
+    Route::get('matricular-aluno', function () {
+        return view('matricula/matricular-aluno');
+    })->name('matricular-aluno');
+
 });
 
-Route::get('/inscricoes', function () {
-    return view('inscricao/inscricoes');
-});
-
-Route::get('/inscrever', function () {
-    return view('inscricao/inscr-candidato');
-});
-
-
-/* Essas são as rotas das matriculas */
-
-Route::get('/matriculas', function () {
-    return view('matricula/matriculas');
-});
-
-Route::get('/matricular-aluno', function () {
-    return view('matricula/matricular-aluno');
-});
-
-Route::get('/inscritos-online', function () {
-    return view('inscricao/inscritos-online');
-});
-
-Route::get('/inscritos-rejeitados', function () {
-    return view('inscricao/inscritos-rejeitados');
-});
 
 /******Algumas paginas que nao estarao no menu*****/
-Route::get('/conf-inscricao', function () {
-    return view('inscricao/conf-inscricao');
-});
+
 
 Route::get('/cadastrar-professor', function () {
     return view('professor/cadastrar-prof');
-});
-
-
-Route::get('/rej-inscricao', function () {
-    return view('inscricao/rejeitar-inscricao');
-});
-
-
-
+})->name('cadastrar-prof');
 
 
 

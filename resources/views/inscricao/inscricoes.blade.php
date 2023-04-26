@@ -63,7 +63,9 @@
             <td>Informática</td>
             <td>Manhã</td>
             <td>
-              <i class="bi bi-eye-fill"></i>
+              <a href={{route('conf-inscricao')}}>
+                <i class="bi bi-eye-fill"></i>
+              </a>
               <i class="bi bi-pencil"></i>
               <i class="bi bi-trash-fill"></i>
               <i class="bi bi-check-square-fill"></i>
@@ -79,7 +81,9 @@
             <td>Informática</td>
             <td>Manhã</td>
             <td>
-              <i class="bi bi-eye-fill"></i>
+              <a href={{route('conf-inscricao')}}>
+                <i class="bi bi-eye-fill"></i>
+              </a>
               <i class="bi bi-pencil"></i>
               <i class="bi bi-trash-fill"></i>
               <i class="bi bi-check-square-fill"></i>
