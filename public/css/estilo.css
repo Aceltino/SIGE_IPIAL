@@ -1,14 +1,20 @@
+/*Fonte*/
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap');
+
 /*Arquivo de estilizacao com css*/
 :root {
   scroll-behavior: smooth;
-  --darkest-blue: #174183;
+  --bs-cor-principal: #174183;
   --red: #C31919;
   --green: #259330;
   --yellowish-green: #C1BB20;
 }
 
+*{
+  font-family: 'Chakra Petch', sans-serif;
+}
+
 body {
-  font-family: "Open Sans", sans-serif;
   background: #fff;
   color: #444444;
 }
@@ -37,15 +43,6 @@ a:hover {
   text-decoration: none;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Nunito", sans-serif;
-}
-
 /*--------------------------------------------------------------
 # Main
 --------------------------------------------------------------*/
@@ -60,7 +57,7 @@ h6 {
   #main {
     padding: 20px;
   }
-
+}
 /*--------------------------------------------------------------
 # Word waves
 --------------------------------------------------------------*/
@@ -197,7 +194,6 @@ h6 {
   font-size: 28px;
   font-weight: 700;
   color: var(--bs-cor-principal);
-  font-family: "Nunito", sans-serif;
 }
 
 .header {
@@ -360,7 +356,7 @@ h6 {
   scrollbar-width: thin;
   scrollbar-color: #aab7cf transparent;
   box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
-  background-color: var(--darkest-blue);
+  background-color: var(--bs-cor-principal);
   border-radius: 10px; 
 }
   
@@ -568,7 +564,7 @@ h6 {
     right: 10px;
     height: 45px;
     border-radius: 10px;
-    background-color: var(--darkest-blue);
+    background-color: var(--bs-cor-principal);
     z-index: 996;
     font-size: 14px;
     transition: all 0.3s;
