@@ -14,10 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 //Rotas do Painel
-
-
 Route::get('/', [HomeController::class,'index'])->name('inicio')->middleware('auth');
 
 //Routas para Autenticação no Sistema
