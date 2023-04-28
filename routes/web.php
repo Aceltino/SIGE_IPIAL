@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
+| 
 |
 */
 
@@ -21,9 +22,9 @@ Route::get('/', [HomeController::class,'index'])->name('inicio')->middleware('au
 //Routas para Autenticação no Sistema
 Route::prefix('autenticacao')->group(function(){
 
-    Route::get('login', [AuthController::class,'formLogin'])->name('login');//Rota de Login
+    Route::get('login',  [AuthController::class,'formLogin'])->name('login');//Rota de Login
     Route::post('login', [AuthController::class,'checkLogin'])->name('checkLogin');//Rota metodo para consultar Login   
-    Route::get('logout',[AuthController::class, 'logout'])->name('logout')->middleware('auth');//Rota do metodo de Logout
+    Route::get('logout', [AuthController::class,'logout'])->name('logout')->middleware('auth');//Rota do metodo de Logout
 
     //Rota de Cadastro
     Route::get('registrar', function () {
@@ -79,7 +80,6 @@ Route::prefix('matricula')->group(function(){
 
 
 /******Algumas paginas que nao estarao no menu*****/
-
 
 Route::get('/cadastrar-professor', function () {
     return view('professor/cadastrar-prof');
