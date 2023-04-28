@@ -16,5 +16,3 @@ use Illuminate\Support\Facades\Route;
 */
 
     Route::get('/user', [ApiRestFul::class,'index']);
-
-

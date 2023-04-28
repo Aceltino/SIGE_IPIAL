@@ -20,7 +20,7 @@
 
     	   <a class="nav-link nav-perfil d-flex align-items-center pe-0" href="#">
             <img src={{URL::asset("img/foto.jpg")}} alt="perfil" class="mini-foto-perf">
-            <span class="d-none d-md-block ps-2">Nome Dealguma Pessoa Com Nomegrande <br> <small>Subdiretor pedagógico</small></span>
+            <span class="d-none d-md-block ps-2">{{session('username')}}<br> <small>{{session('cargo')}}</small></span>
           </a>
           
         </div>
@@ -83,7 +83,7 @@
           </li><!-- Termina Nav Notificacao -->
 
           <li class="nav-item">
-          	<a class="nav-link nav-icon" href="#">
+          	<a class="nav-link nav-icon" href={{route('logout')}}>
           		<i class="bi bi-box-arrow-right"></i>
           	</a>
           </li>

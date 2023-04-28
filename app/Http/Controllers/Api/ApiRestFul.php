@@ -33,7 +33,6 @@ class ApiRestFul extends Controller
         //
     }
 
-
     public function destroy($id)
     {
         //

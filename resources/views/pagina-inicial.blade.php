@@ -2,9 +2,8 @@
 
 @section('title', 'Página inicial')
 
-
-
 @section('conteudo')
+
 <main id="main" class="main">
   <!-- /	Titulo-->  	
   <div class="pagetitle">
@@ -99,8 +98,6 @@
 
       </div>
     </section><!-- Termina seccao do dashboard -->
-
-
 	    
     <!-- /	Area do grafico-->
 	<div id="barChart" style="min-height: 400px;" class="echart"></div>

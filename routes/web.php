@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,24 +16,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Rotas do Painel
-Route::get('/', [HomeController::class,'index'])->name('inicio')->middleware('auth');
+Route::get('/', [HomeController::class,'index'])->name('inicio')->middleware('auth'); 
 
 //Routas para Autenticação no Sistema
 Route::prefix('autenticacao')->group(function(){
 
-    //Rota de Login
-    Route::get('login', function () {
-        return view('autenticacao/login');
-    })->name('login');
-    
+    Route::get('login', [AuthController::class,'formLogin'])->name('login');//Rota de Login
+    Route::post('login', [AuthController::class,'checkLogin'])->name('checkLogin');//Rota metodo para consultar Login   
+    Route::get('logout',[AuthController::class, 'logout'])->name('logout')->middleware('auth');//Rota do metodo de Logout
+
     //Rota de Cadastro
-    Route::get('/registrar', function () {
+    Route::get('registrar', function () {
         return view('autenticacao/registrar');
     });
 
-    Route::get('/lembrar', function () {
-        return view('autenticacao/recuperar-senha');
-    });
+    //Rota do formulario de recuperação de senha. 
+    Route::get('lembrar',[AuthController::class, 'recuperarPassword'])->name('recuperarPassword');
     
 });
 
@@ -66,7 +65,7 @@ Route::prefix('inscricao')->middleware('auth')->group(function(){
 });
 
 //Routas de Formulario da Matricula
-Route::prefix('matricula')->middleware('auth')->group(function(){
+Route::prefix('matricula')->group(function(){
 
     Route::get('matriculas', function () {
         return view('matricula/matriculas');

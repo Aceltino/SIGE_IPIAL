@@ -20,7 +20,7 @@
     <!-- /	Link do Css main do projecto -->
   	<link href={{URL::asset("css/estilo.css")}} rel="stylesheet">
     <link href={{URL::asset("css/tudo.css")}} rel="stylesheet">
-    <link rel="stylesheet" href="css/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href={{URL::asset("css/fonts/fontawesome-all.min.css")}}>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
 
