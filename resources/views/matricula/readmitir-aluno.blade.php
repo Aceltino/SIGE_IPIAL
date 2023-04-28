@@ -38,7 +38,7 @@
 
                 <div class="col">
                 <div class="form-group">
-                    <input type="text" placeholder="Turno do Aluno" >
+                    <input type="text" placeholder="Turma do Aluno" >
                 </div> 
                 </div>
 

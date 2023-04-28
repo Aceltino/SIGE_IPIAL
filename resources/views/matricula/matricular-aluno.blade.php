@@ -51,7 +51,7 @@
 
                 <div class="col">
                 <div class="form-group">
-                    <input type="text" placeholder="Turno do Aluno" oninput="this.className = ''">
+                    <input type="text" placeholder="Turma do Aluno" oninput="this.className = ''">
                 </div> 
                 </div>
 
