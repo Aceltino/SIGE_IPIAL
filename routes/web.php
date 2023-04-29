@@ -65,6 +65,10 @@ Route::get('/matricular-aluno', function () {
     return view('matricula/matricular-aluno');
 });
 
+Route::get('/readmitir-aluno', function () {
+    return view('matricula/readmitir-aluno');
+});
+
 Route::get('/inscritos-online', function () {
     return view('inscricao/inscritos-online');
 });
