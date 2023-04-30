@@ -9,16 +9,16 @@
                 <img src="img/foto.jpg" alt="perfil" class="mini-foto-perf mini-foto-perfil-2">
                 <span class="d-flex align-items-center ps-2">
                     <div class="col-lg-3">
-                        <a class="color-white" href="#">Disciplina(s)</a>
+                        <a class="color-white" href="/editar-dados-professor">Disciplina(s)</a>
                     </div>
                     <div class="col-lg-3">
                         <a class="color-white" href="#">Horário</a>
                     </div>
                     <div class="col-lg-3">
-                        <a class="color-white" href="#">Avaliação</a>
+                        <a class="color-white" href="/avaliacao-professor">Avaliação</a>
                     </div>
                     <div class="col-lg-3">
-                        <a class="color-white" href="#"><strong>Dados pessoais</strong></a>
+                        <a class="color-white" href="/editar-dados-pessoais-professor"><strong>Dados pessoais</strong></a>
                     </div>
                 </span>
             </a>
