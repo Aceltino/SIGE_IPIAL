@@ -100,6 +100,10 @@ Route::get('/editar-dados-professor', function () {
     return view('professor/editar-dados-prof');
 });
 
+Route::get('/avaliacao-professor', function () {
+    return view('professor/avaliacao-prof');
+});
+
 Route::get('/editar-dados-pessoais-professor', function () {
     return view('professor/editar-dados-pessoais-prof');
 });
