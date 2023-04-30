@@ -70,21 +70,23 @@
           <h2 class="text-uppercase text-center my-3 color-blue-principal">disciplinas a lecionar</h2>
           <div class="form-group">
             <select oninput="this.className = ''" class="form-select">
-              <option selected>Curso</option>
-              <option value="D.P">Desenhador projectista - D.P</option>
-              <option value="T.E.I.E">Técnico de Energia e Instalações Eléctricas - T.E.I.E</option>
-              <option value="T.I">Técnico de Informática - T.I</option>
-              <option value="E.T">Electrônica e Telecomunicação - E.T</option>
+              <optgroup label="Curso">
+                <option value="D.P">Desenhador projectista - D.P</option>
+                <option value="T.E.I.E">Técnico de Energia e Instalações Eléctricas - T.E.I.E</option>
+                <option value="T.I">Técnico de Informática - T.I</option>
+                <option value="E.T">Electrônica e Telecomunicação - E.T</option>
+              </optgroup>
             </select>
           </div>
 
           <div class="row">
             <div class="form-group col">
               <select oninput="this.className = ''" class="form-select">
-                <option selected>Turno</option>
-                <option>Manhã</option>
-                <option>Tarde</option>
-                <option>Noite</option>
+                <optgroup label="Turno">
+                  <option>Manhã</option>
+                  <option>Tarde</option>
+                  <option>Noite</option>
+                </optgroup>
               </select>
             </div>
           </div>
@@ -92,25 +94,26 @@
           <div class="row">
             <div class="form-group col">
             <select oninput="this.className = ''" class="form-select">
-              <option selected>Disciplinas</option>
-              <option>Educação Física</option>
-              <option>Electrotecnia</option>
-              <option>Empreendedorismo</option>
-              <option>Física</option>
-              <option>Formação de Atitudes Integradoras</option>
-              <option>Língua Portuguesa</option>
-              <option>Língua Estrangeira</option>
-              <option>Geometria Descritiva</option>
-              <option>Matemática</option>
-              <option>Máquinas Eléctricas</option>
-              <option>Organização e Gestão Industrial</option>
-              <option>Práticas Oficinais</option>
-              <option>Projecto Tecnológico</option>
-              <option>Química</option>
-              <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-              <option>Técnicas e Linguagens de Programação</option>
-              <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-              <option>Tecnologias de Informação e Comunicação</option>
+              <optgroup label="Disciplina">
+                <option>Educação Física</option>
+                <option>Electrotecnia</option>
+                <option>Empreendedorismo</option>
+                <option>Física</option>
+                <option>Formação de Atitudes Integradoras</option>
+                <option>Língua Portuguesa</option>
+                <option>Língua Estrangeira</option>
+                <option>Geometria Descritiva</option>
+                <option>Matemática</option>
+                <option>Máquinas Eléctricas</option>
+                <option>Organização e Gestão Industrial</option>
+                <option>Práticas Oficinais</option>
+                <option>Projecto Tecnológico</option>
+                <option>Química</option>
+                <option>Sistemas de Exploração e Arquitectura de Computadores</option>
+                <option>Técnicas e Linguagens de Programação</option>
+                <option>Técnicas de Reparação de Equipamentos Informáticos</option>
+                <option>Tecnologias de Informação e Comunicação</option>
+              </optgroup>
             </select>
             </div>
           </div>
