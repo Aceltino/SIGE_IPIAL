@@ -26,8 +26,16 @@
 
         <div class="tab">
           <div class="row">
-            <div class="col-sm-2">
-                <button class="btn bg-green color-white my-3 w-100" title="Professor em actividade">Activo</button>
+            <div class="col-sm-8">
+                <button class="btn bg-green color-white my-3 w-25" title="Professor em actividade">Activo</button>
+            </div>
+            <div class="col-sm-4 d-flex">
+                <select class="form-select bg-blue-principal color-white my-3 w-50 ms-auto" title="Professor em actividade">
+                    <optgroup label="Ano lectivo">
+                        <option>2022 - 2023</option>
+                        <option>2023 - 2024</option>
+                    </optgroup>
+                </select>
             </div>
           </div>
           
