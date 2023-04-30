@@ -54,6 +54,20 @@
           <div class="form-group">
             <input type="text" placeholder="Ano lectivo" value="Ano lectivo: Terminado" name="" oninput="this.className = ''">
           </div>
+
+          <div class="form-group d-flex align-items-center">
+            <input type="text" placeholder="Disciplina 1" value="TLP - 11ª, 12ª" name="" oninput="this.className = ''">
+            <button class="btn">
+                <i class="bi bi-dash-circle h2"></i>
+            </button>
+          </div>
+
+          <div class="form-group d-flex align-items-center">
+            <input type="text" placeholder="Disciplina 2" value="TIC - 10ª" name="" oninput="this.className = ''">
+            <button class="btn">
+                <i class="bi bi-plus-circle h2"></i>
+            </button>
+          </div>
         </div>
 
         <div style="text-align:center;margin-top:40px;">
