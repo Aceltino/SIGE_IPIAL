@@ -7,6 +7,19 @@
 }
 */
 
+
+/*Classes para largura*/
+.w-48{
+  min-width: 48%;
+}
+
+/*Botões juntos à um input[type="search"]*/
+.btn-search{
+  padding: 8px 12px;
+  border-radius: 0 5px 5px 0;
+}
+
+
 .btn-cor-sg-a, .btn-cor-sg-a:hover{
   background-color: var(--bs-cor-principal); 
   color: #fff; 
@@ -98,12 +111,12 @@
   }
   
   .btn-sel{
-    background-color: var(--darkest-blue);
+    background-color: var(--bs-cor-principal);
     color: #fff;
   }
   
   .btn-sel:focus {
-    background-color: var(--darkest-blue);
+    background-color: var(--bs-cor-principal);
     color: #fff;
     border-color: #86b7fe;
     outline: none;
@@ -126,7 +139,7 @@
     color: #012970;
     border: 1px solid rgba(1, 41, 112, 0.2);
     padding: 7px 38px 7px 8px;
-    border-radius: 3px;
+    border-radius: 3px 0 0 3px;
     transition: 0.3s;
     width: 100%;
   }
@@ -140,8 +153,7 @@
   
   .proc-form button {
     border: 0;
-    padding: 7px;
-    padding-left: 15px;
+    padding: 0;
     border-radius: 0px 10px 10px 0px;
     margin-left: 0px;
     background-color: var(--darkest-blue);

@@ -12,11 +12,35 @@
 
 /*Classes para cores personalizadas*/
 .color-blue-principal{
-  color: var(--bs-cor-principal);
+  color: var(--bs-cor-principal) !important;
 }
 
 .bg-blue-principal{
-  background-color: var(--bs-cor-principal);
+  background-color: var(--bs-cor-principal) !important;
+}
+
+.color-red{
+  color: var(--red) !important;
+}
+
+.bg-red{
+  background-color: var(--red) !important;
+}
+
+.color-green{
+  color: var(--green) !important;
+}
+
+.bg-green{
+  background-color: var(--green) !important;
+}
+
+.color-yellowish-green{
+  color: var(--yellowish-green) !important;
+}
+
+.bg-yellowish-green{
+  background-color: var(--yellowish-green) !important;
 }
 /*Fim das classes para cores personalizadas*/
 
