@@ -10,6 +10,16 @@
   --yellowish-green: #C1BB20;
 }
 
+/*Classes para cores personalizadas*/
+.color-blue-principal{
+  color: var(--bs-cor-principal);
+}
+
+.bg-blue-principal{
+  background-color: var(--bs-cor-principal);
+}
+/*Fim das classes para cores personalizadas*/
+
 *{
   font-family: 'Chakra Petch', sans-serif;
 }
@@ -20,7 +30,7 @@ body {
 }
 
 body::-webkit-scrollbar {
-  width: 20px;
+  width: 10px;
   height: 100px;
   border: 1px solid #000;
   border-radius: 20px;

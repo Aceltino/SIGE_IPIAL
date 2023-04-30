@@ -26,7 +26,7 @@
   }
   
   /* Style the input fields */
-   input[type="text"], input[type="date"], select {
+   input[type="text"], input[type="date"], input[type="number"], input[type="email"], input[type="password"], select {
   /*  padding: 10px;
     width: 100%;
     font-size: 17px;
