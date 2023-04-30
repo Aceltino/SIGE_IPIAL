@@ -69,13 +69,13 @@
         </a>
         <ul id="professor-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="#">
+            <a href="/cadastrar-professor">
               <i class="bi bi-circle"></i><span>Cadastrar Professores</span>
             </a>
           </li>
           <li>
-            <a href="#">
-              <i class="bi bi-circle"></i><span>Professores</span>
+            <a href="consultar-professor">
+              <i class="bi bi-circle"></i><span>Consultar Professores</span>
             </a>
           </li>
         </ul>

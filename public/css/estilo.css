@@ -42,6 +42,14 @@
 .bg-yellowish-green{
   background-color: var(--yellowish-green) !important;
 }
+
+.color-white{
+  color: white !important;
+}
+
+.bg-white{
+  background-color: white !important;
+}
 /*Fim das classes para cores personalizadas*/
 
 *{
@@ -77,6 +85,9 @@ a:hover {
   text-decoration: none;
 }
 
+a.color-white{
+  color: white;
+}
 /*--------------------------------------------------------------
 # Main
 --------------------------------------------------------------*/
@@ -293,6 +304,15 @@ a:hover {
   border: 2px solid #fff;
   border-radius: 100%;
   position: absolute;
+}
+
+.mini-foto-perfil-2{
+  width: 45px;
+  height: 45px;
+}
+
+.border-radius-right{
+  border-radius: 0 5px 5px 0;
 }
 
 .header-nav .nav-perfil span {

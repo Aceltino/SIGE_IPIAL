@@ -82,6 +82,11 @@ Route::get('/conf-inscricao', function () {
     return view('inscricao/conf-inscricao');
 });
 
+Route::get('/rej-inscricao', function () {
+    return view('inscricao/rejeitar-inscricao');
+});
+
+
 /*Professores*/
 Route::get('/cadastrar-professor', function () {
     return view('professor/cadastrar-prof');
@@ -91,14 +96,7 @@ Route::get('/consultar-professor', function () {
     return view('professor/consultar-prof');
 });
 
-
-Route::get('/rej-inscricao', function () {
-    return view('inscricao/rejeitar-inscricao');
+Route::get('/editar-dados-professor', function () {
+    return view('professor/editar-dados-prof');
 });
-
-
-
-
-
-
 
