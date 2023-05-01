@@ -12,7 +12,7 @@
                         <a class="color-white" href="/editar-dados-professor"><strong>Disciplina(s)</strong></a>
                     </div>
                     <div class="col-lg-3">
-                        <a class="color-white" href="#">Horário</a>
+                        <a class="color-white" href="/horario-professor">Horário</a>
                     </div>
                     <div class="col-lg-3">
                         <a class="color-white" href="/avaliacao-professor">Avaliação</a>
