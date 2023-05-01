@@ -41,8 +41,8 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th scope="col">Número do BI</th>
-            <th scope="col">Nome do Candidato</th>
+            <th scope="col">N do Processo</th>
+            <th scope="col">Nome do Aluno</th>
             <th scope="col">Genero</th>
             <th scope="col">Média</th>
             <th scope="col">Idade</th>
@@ -53,7 +53,7 @@
         </thead>
         <tbody>
           <tr>
-            <th scope="row">0000000KJ000098</th>
+            <th scope="row">393839</th>
             <td>Fernando Exemplo</td>
             <td>Masculino</td>
             <td>16</td>
@@ -62,14 +62,14 @@
             <td>Manhã</td>
             <td>
               <i class="bi bi-eye-fill"></i>
-              <i class="bi bi-pencil"></i>
+              <a href="/editar-registro"><i class="bi bi-pencil"></i></a>
               <i class="bi bi-trash-fill"></i>
               <i class="bi bi-check-square-fill"></i>
             </td>
           </tr>
           
           <tr>
-            <th scope="row">0000000KJ000098</th>
+            <th scope="row">38373839</th>
             <td>Fernando Exemplo</td>
             <td>Masculino</td>
             <td>16</td>
@@ -78,7 +78,7 @@
             <td>Manhã</td>
             <td>
               <i class="bi bi-eye-fill"></i>
-              <i class="bi bi-pencil"></i>
+              <a href="/editar-matricula"><i class="bi bi-pencil"></i></a>
               <i class="bi bi-trash-fill"></i>
               <i class="bi bi-check-square-fill"></i>
             </td>

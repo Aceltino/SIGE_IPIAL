@@ -25,26 +25,26 @@
     <form id="regFormh" action="" class="formulario-layout">
 
         <div class="form-group">
-            <input type="text" placeholder="Nome Completo do Aluno" name="" >
+            <input type="text" value= "Márcio Celestino" placeholder="Nome Completo do Aluno" name="" >
         </div>
 
             <div class="row">
                 
                 <div class="col">
                 <div class="form-group">
-                    <input type="text" placeholder="Turno do Aluno" >
+                    <input type="text" value= "Manhã" placeholder="Turno do Aluno" >
                 </div>
                 </div>
 
                 <div class="col">
                 <div class="form-group">
-                    <input type="text" placeholder="Turma do Aluno" >
+                    <input type="text" value= "I11AM" placeholder="Turma do Aluno" >
                 </div> 
                 </div>
 
                 <div class="col">
                 <div class="form-group">
-                    <input type="text" placeholder="Nº do Aluno" >
+                    <input type="text" value= "33" placeholder="Nº do Aluno" >
                 </div> 
                 </div>
           </div>
@@ -53,13 +53,13 @@
 
                 <div class="col">
                   <div class="form-group">
-                <input type="text" placeholder="Número de processo" >
+                <input type="text" value= "9383474" placeholder="Número de processo" >
                   </div> 
                 </div>
 
                 <div class="col">
                  <div class="form-group">
-                <input type="text" placeholder="Ano lectivo" >
+                <input type="text" value= "2020/2029" placeholder="Ano lectivo" >
                  </div> 
                 </div>
             </div>
@@ -68,24 +68,49 @@
 
                 <div class="col">
                   <div class="form-group">
-                <input type="text" placeholder="Sala do Aluno" >
+                <input type="text" value= "44" placeholder="Sala do Aluno" >
                   </div> 
                 </div>
 
                 <div class="col">
                  <div class="form-group">
-                <input type="text" placeholder="Classe do aluno" >
+                <input type="text" value= "I13AM" placeholder="Classe do aluno" >
                  </div> 
                 </div>
             </div>
 
+            <div class="form-group">
+            <select oninput="this.className = ''" class="form-select">
+                <option selected>Turno</option>
+                <option>Manhã</option>
+                <option>Tarde</option>
+                <option>Noite</option>
+            </select>
+        </div>
+
         <div class="form-group">
-            <input type="text" placeholder="Curso do aluno" name="" >
+            <input type="text" value= "exame 1" placeholder="Curso do aluno" name="" >
          </div>
+
+         <div class="form-group">
+            <input type="text" value= "exame 2" placeholder="Curso do aluno" name="" >
+         </div>
+
+         <div class="form-group">
+            <input type="text" value= "Exame 3" placeholder="Curso do aluno" name="" >
+         </div>
+
+         <div class="form-group">
+            <input type="text" style=" text-align: center; "value= "Informática" placeholder="Curso do aluno" name="" >
+         </div>
+
+         
 
             
             </div>
             </div>
+            
+
         
     </form>
 </div>
