@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Inscritos via online')
+@section('title', 'Consultar Professores')
 
 @section('conteudo')
 <main id="main" class="main">
@@ -88,7 +88,7 @@
                     <td>Tarde</td>
                     <td>TLP</td>
                     <td>
-                        <a href="#" class="btn btn-cor-sg-a w-48">Visualizar</a>
+                        <a href="/editar-dados-professor" class="btn btn-cor-sg-a w-48">Visualizar</a>
                         <a href="#" class="btn btn-cor-sg-a w-48 bg-red">Inactivar</a>
                     </td>
                 </tr>
