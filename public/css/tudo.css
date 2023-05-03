@@ -7,6 +7,19 @@
 }
 */
 
+
+/*Classes para largura*/
+.w-48{
+  min-width: 48%;
+}
+
+/*Botões juntos à um input[type="search"]*/
+.btn-search{
+  padding: 8px 12px;
+  border-radius: 0 5px 5px 0;
+}
+
+
 .btn-cor-sg-a, .btn-cor-sg-a:hover{
   background-color: var(--bs-cor-principal); 
   color: #fff; 
@@ -26,7 +39,7 @@
   }
   
   /* Style the input fields */
-   input[type="text"], input[type="date"], select {
+   input[type="text"], input[type="date"], input[type="number"], input[type="email"], input[type="password"], select {
   /*  padding: 10px;
     width: 100%;
     font-size: 17px;
@@ -98,12 +111,12 @@
   }
   
   .btn-sel{
-    background-color: var(--darkest-blue);
+    background-color: var(--bs-cor-principal);
     color: #fff;
   }
   
   .btn-sel:focus {
-    background-color: var(--darkest-blue);
+    background-color: var(--bs-cor-principal);
     color: #fff;
     border-color: #86b7fe;
     outline: none;
@@ -122,11 +135,12 @@
   
   .proc-form input {
     border: 0;
+    height: 40px;
     font-size: 14px;
     color: #012970;
     border: 1px solid rgba(1, 41, 112, 0.2);
     padding: 7px 38px 7px 8px;
-    border-radius: 3px;
+    border-radius: 3px 0 0 3px;
     transition: 0.3s;
     width: 100%;
   }
@@ -139,12 +153,13 @@
   }
   
   .proc-form button {
+    height: 40px;
     border: 0;
     padding: 7px;
     padding-left: 15px;
     border-radius: 0px 10px 10px 0px;
     margin-left: 0px;
-    background-color: var(--darkest-blue);
+    background-color: var(--bs-cor-principal);
   }
   
   .proc-form button i {
@@ -162,7 +177,7 @@
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    background-color: var(--darkest-blue);
+    background-color: var(--bs-cor-principal);
     color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
@@ -204,31 +219,43 @@
    cursor: pointer;
   }
   
-  .area-info-insc{
+  .area-info-insc-conf{
     background-color: #e9e6e6;
     padding: 20px;
     border-radius: 7px;
   }
   
-  .area-info-insc ul{
+  .decidir-insc ul{
     padding: 0;
     list-style: none;
   }
   
-  .area-info-insc span.titulo{
+  .decidir-insc li{
+    margin-top: 7px;
+  }
+  
+  .decidir-insc span.titulo{
     color: #000;
     font-weight: 700;
     font-size: 18px;
   }
   
-  .area-info-insc span.conteudo{
-    color: #a1a1a1;
+  .decidir-insc span.conteudo{
+    color: #777;
     font-size: 18px;
   }
   
-  .area-foto-confirm img{
+  .decidir-insc img{
     width: 100%;
     border-radius: 15px;
+  }
+  
+  
+  /*-(((((((Area de rejeitar as inscricoes)))))))*/
+  .info-rej-insc{
+    background-color: #bebee9;
+    padding: 20px;
+    border-radius: 7px;
   }
   
   
@@ -236,18 +263,378 @@
   Confirmar inscricao
   ******************************************************/
   .bi-select{
-    background-color: #174183;
+    background-color: var(--bs-cor-principal);
     color: #fff;
     width: 250px;
   }
   
   .bi-select:focus {
-    background-color: #174183;
+    background-color: var(--bs-cor-principal);
     color: #fff;
     border-color: #86b7fe;
     outline: none;
     box-shadow: none;
   }
   
+
+  .area-mini-info1{
+    display: flex; 
+    justify-content: flex-start; 
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .area-mini-info2{
+    display: flex; 
+    justify-content: flex-end; 
+    align-items: center;
+    gap: 10px;
+  }
+  .mini-info, .mini-info:hover{
+    background-color: var(--bs-cor-principal);
+    color: #fff;
+  } 
   
   
+  /*******************************************
+  Estilizando a pagina do inativo
+  *****************************************/
+  .form-inativo{
+    margin-top: 20px;
+  }
+  
+  .form-inativo .area-input{
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    display: flex;
+    font-size: 15px;
+    background-color: #fff;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  .area-input-l{
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 15px;
+    background-color: #fff;
+   }
+  
+  .form-inativo label{
+    color: #000;
+    font-weight: 600;
+  }
+  
+  .form-inativo input{
+    border: none;
+    width: 65%;
+    font-size: 17px;
+    outline: none;
+    color: #777;
+    margin-left: 5px;
+  }
+  
+  
+  /*****************************
+  Header da pag ficha biografica
+  ***********************************/
+  .header-ficha{
+    background-color: var(--bs-cor-principal);
+    margin-bottom: 15px;
+    border-radius: 15px;
+    padding-left: 50px;
+    color: #fff;
+    font-size: 17px;
+    align-items: center;
+  }
+  
+  .header-ficha img{
+    width: 50px;
+    height: 50px;
+    margin-top: -14px;
+    border-radius: 100%;
+    position: absolute;
+    left: 316px;
+  }
+  
+  .select-fch-bio{
+    border: none;
+  }
+  
+  /**********************************
+  Area das divs com bordas a esquerda 
+  ***********************************/
+  .bordado{
+    padding: 0px;
+    padding-left: 5px;
+    border-radius: 5px;
+    border: none;
+    font-size: 17px;
+    border-left: 5px solid var(--bs-cor-principal);
+  }
+  
+  .bordado .t-negrito{
+    color: #000;
+    font-weight: 700;
+  }
+  
+  .bordado .t-normal{
+    color: #777;
+  }
+  
+  
+  /********************************
+  Estilo da tabela colorida ###01
+  *********************************/
+  .tabela-c {
+    color: #fff;
+    --bs-table-color: var(--bs-body-color);
+    --bs-table-bg: #174183;
+    --bs-table-border-color: var(--bs-border-color);
+    --bs-table-accent-bg: #174183;
+    --bs-table-striped-color: var(--bs-body-color);
+    --bs-table-striped-bg: rgb(7, 11, 23);
+    --bs-table-active-color: var(--bs-body-color);
+    --bs-table-active-bg: rgba(7, 11, 23, 0.1);
+    --bs-table-hover-color: var(--bs-body-color);
+    --bs-table-hover-bg: rgba(7, 11, 23, 0.075);
+    width: 100%;
+    margin-bottom: 1rem;
+    vertical-align: top;
+    border-color: var(--bs-table-border-color);
+    text-align: center;
+  }
+  
+  
+  .tabela-c > :not(caption) > * > * {
+    padding: 0.5rem 0.5rem;
+    background-color: var(--bs-table-bg);
+    border-bottom-width: 4px;
+    border-collapse: collapse;
+    box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+  }
+  .tabela-c > tbody {
+    vertical-align: inherit;
+  }
+  .tabela-c > thead {
+    vertical-align: bottom;
+  }
+  
+  
+  
+  .tabela-c-striped > tbody > tr:nth-of-type(odd) > * {
+    --bs-table-accent-bg: var(--bs-table-striped-bg);
+    color: #fff;
+  }
+  
+  
+  /******************************
+  
+  
+  ******************************/
+  /********************************
+Estilo da tabela colorida
+*********************************/
+.tabelassd {
+  color: #070b17;
+  width: 100%;
+  margin-bottom: 1rem;
+  vertical-align: top;
+  border-color: var(--bs-cor-principal);
+  text-align: center;
+}
+
+.tabelassd th, tr, td{
+  background-color: #fff;
+
+}
+
+
+.tabelassd > :not(caption) > * > * {
+  padding: 0.5rem 0.5rem;
+  background-color: var(--bs-table-bg);
+  border-bottom-width: 5px;
+  border-collapse: collapse;
+  box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+}
+.tabelassd > tbody {
+  vertical-align: inherit;
+}
+.tabelassd > thead {
+  vertical-align: bottom;
+}
+
+span.sim{
+  color: red;
+}
+
+span.nao{
+  color: #00ff22;
+  font-weight: bolder;
+}
+
+span.f-normal{
+  color: #919b01;
+}
+
+.titulo-dassd{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.bt-acord{
+  background-color: transparent;
+}
+
+.assidd-diciplina{
+  background-color: var(--bs-cor-principal);
+  padding: 0px;
+  padding-right: 3px;
+  padding-left: 3px;
+  margin-top: 5px;
+}
+
+
+.tb-negrito{
+  color: #000;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.tb-vermelho{
+  color: #b90707;
+}
+
+.tb-verde{
+  color: #11ad2b;
+  font-weight: bold;
+}
+
+.tb-azul{
+  color: #4b3ae4;
+  font-weight: bold;
+}
+
+.form-ficha{
+  padding-top: 5px;
+}
+
+.form-ficha .area-input-fb{
+  width: 100%;
+  padding: 2px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  display: flex;
+  font-size: 15px;
+  background-color: #fff;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.form-ficha label{
+  color: #000;
+  font-weight: 600;
+}
+
+.form-ficha .area-input-fb input{
+  border: none;
+  width: 100%;
+  background-color: #fff;
+  font-size: 17px;
+  outline: none;
+  color: #777;
+  margin-left: 5px;
+}
+
+.form-ficha .tabelassd input{
+  width: 30px;
+  outline: none;
+  outline: none;
+  border: 1px solid #bbb9b9;
+  border-radius: 8px;
+}
+
+.form-ficha .tabelassd input:is(:focus,:hover){
+  outline: none;
+  box-shadow: 0 0 10px 0 rgba(1, 41, 112, 0.15);
+  border: 1px solid #777;
+}
+
+.accordion-button:is(:focus,:hover){
+  outline-color: red;
+  border: none;
+  transition: none;
+}
+
+/*--------------------------------------------------------------
+# Modal ver inscrito
+--------------------------------------------------------------*/
+.modal{
+  padding-top: 0px;
+  background-color: rgb(0, 0, 0, 0.4);
+}
+
+.modal-content{
+  border: none;
+  padding: 0px;
+}
+
+.cabecalho-modal{
+  padding: 20px;
+}
+
+.cabecalho-modal .card-icon-modal {
+  font-size: 20px;
+  line-height: 0;
+  padding: 20px;
+  width: 30px;
+  height: 30px;
+  flex-grow: 0;
+  color: #a020a0;
+  background: #f5e6f8;
+  cursor: pointer;
+  width: 100%; 
+  background-color: #4945; 
+  display: flex; 
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.corpo-modal{
+  padding: 20px;
+}
+
+.footer-modal .jnt{
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.provisorio{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.card-icon-modal i{
+  width: 60px;
+  height: 60px;
+  padding: 5px;
+  margin-top: -20px;
+  margin-right: -20px;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  background-color: var(--bs-cor-principal);
+  color: #fff;
+  font-size: 22px;
+}

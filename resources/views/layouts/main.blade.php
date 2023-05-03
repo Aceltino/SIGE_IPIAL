@@ -46,8 +46,13 @@
   <script src={{URL::asset("vendor/php-email-form/validate.js")}}></script>
 
   <!-- /	Link do js main do projeto -->
+
   <script src={{URL::asset("js/script.js")}}></script>
   <script src={{URL::asset("js/form.js")}}></script>
+
+  <script src="js/script.js"></script>
+  <script src="js/form.js"></script>
+ 
 
 </body>
 </html>

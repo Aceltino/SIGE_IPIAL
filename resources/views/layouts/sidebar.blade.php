@@ -49,13 +49,29 @@
         </a>
         <ul id="matricula-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
+
             <a href={{route('matricular-aluno')}}>
+
+            <a href="/matricular-aluno">
+
               <i class="bi bi-circle"></i><span>Matricular aluno</span>
             </a>
           </li>
+
           <li>
+
             <a href={{route('matriculas')}}>
               <i class="bi bi-circle"></i><span >Matriculas</span>
+
+            <a href="/matriculas">
+              <i class="bi bi-circle"></i><span>Matriculas</span>
+
+            </a>
+          </li>
+
+          <li>
+            <a href="/registrar-aluno">
+              <i class="bi bi-circle"></i><span>Registrar Aluno</span>
             </a>
           </li>
  
@@ -69,13 +85,17 @@
         </a>
         <ul id="professor-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
+
             <a href={{route('cadastrar-prof')}}>
+
+            <a href="/cadastrar-professor">
+
               <i class="bi bi-circle"></i><span>Cadastrar Professores</span>
             </a>
           </li>
           <li>
-            <a href="#">
-              <i class="bi bi-circle"></i><span>Professores</span>
+            <a href="consultar-professor">
+              <i class="bi bi-circle"></i><span>Consultar Professores</span>
             </a>
           </li>
         </ul>
@@ -88,12 +108,12 @@
         </a>
         <ul id="turma-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="#">
+            <a href="/criar-turma">
               <i class="bi bi-circle"></i><span>Criar turma</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="turmas">
               <i class="bi bi-circle"></i><span>Turmas</span>
             </a>
           </li>
@@ -107,12 +127,12 @@
         </a>
         <ul id="curso-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="#">
+            <a href="criar-curso">
               <i class="bi bi-circle"></i><span>Criar curso</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="cursos">
               <i class="bi bi-circle"></i><span>Cursos</span>
             </a>
           </li>
@@ -145,12 +165,12 @@
 	        </a>
 	        <ul id="ano-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 	          <li>
-	            <a href="#">
+	            <a href="criar-ano-letivo">
 	              <i class="bi bi-circle"></i><span>Criar ano lectivo</span>
 	            </a>
 	          </li>
 	          <li>
-	            <a href="#">
+	            <a href="ano-letivo">
 	              <i class="bi bi-circle"></i><span>Ano lectivo</span>
 	            </a>
 	          </li>

@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Criar Curso')
+@section('title', 'Editar Curso')
 
 @section('conteudo')
 <main id="main" class="main" >
@@ -17,7 +17,7 @@
                 <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
 
                     <div style="  text-align: center;">
-                        <h2>CRIAR CURSO</h2>
+                        <h2>ATUALIZAR DADOS DO CURSO</h2>
                     </div>
 
                 </div>
@@ -25,14 +25,14 @@
         <form id="regFormh" action="" class="formulario-layout">
 
             <div class="form-group">
-                <input type="text" style=" text-align: center;" placeholder="Nome do Curso" name="" oninput="this.className = ''">
+                <input type="text" style=" text-align: center;" value="Contrução civil" placeholder="Nome do Curso" name="" oninput="this.className = ''">
             </div>
                     
                     <div class="form-group">
                             <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
-                                <option selected disabled>Area de Formação:</option>
+                                <option disabled>Area de Formação:</option>
                                 <option value="Informática">Informática</option>
-                                <option value="Contrução civil">Contrução civil</option>
+                                <option value="Contrução civil" selected >Contrução civil</option>
                                 <option value="Eletronica">Eletronica</option>
                                 <option value="Contrução civil">Contrução civil</option>
                             </select>
@@ -40,34 +40,16 @@
 
                     <div class="form-group">
                             <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
-                                <option selected disabled>Coordenador:</option>
+                                <option disabled>Coordenador:</option>
                                 <option value="Tom Brauny">Tom Brauny</option>
-                                <option value="João Miguel">João Miguel</option>
-                                <option value="Braga Santos">Braga Santos</option>
+                                <option value="João Miguel" selected >João Miguel</option>
+                                <option value="Noite">Noite</option>
                             </select>
                     </div>
-
-                <div class="row">
-
-                    <div class="form-group col-4">
-                            <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
-                                <option selected disabled>Disciplina:</option>
-                                <option value="Tom Brauny">Matemática</option>
-                                <option value="João Miguel">Português</option>
-                                <option value="Braga Santos">Fisíca</option>
-                            </select>
-                    </div>
-
-                    <div class="col">
-
-                    <i class="bi bi-plus-circle" style=" font-size: 30px; cursor: pointer;"></i> 
-
-                    </div>
-                </div>
                 
             <div style="text-align:center;margin-top:10px;">
                       <div>
-                        <button type="button" class="btn btn-success">Criar Curso</button>
+                        <button type="button" class="btn btn-success">Atualizar Turma</button>
                       </div>
             </div>
         </form>     
