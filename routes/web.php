@@ -180,6 +180,15 @@ Route::get('/rej-inscricao', function () {
     return view('inscricao/rejeitar-inscricao');
 });
 
+/* Rotas do comunicado*/
+
+Route::get('/criar-comunicado', function(){
+
+    return view('/comunicado/criar-comunicado');
+});
+
+/* Fim*/
+
 
 
 

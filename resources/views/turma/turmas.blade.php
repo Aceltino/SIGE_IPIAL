@@ -4,261 +4,261 @@
 
 @section('conteudo')
 <main id="main" class="main">
-      <div class="row">
-        <div class="col">
-          <h2>TURMAS</h2>      
-        </div>
-      
-         <div class="col-lg-2">
-           <select class="btn-sel form-select">
-              <option selected>curso</option>
-              <option value="D.P">Desenhador projetista - D.P</option>
-              <option value="T.E.I.E">Técnico de Energia e Instalações Electricas - T.E.I.E</option>
-              <option value="T.I">Técnico de Informática - T.I</option>
-              <option value="E.T">Electronica e Telecomunicação - E.T</option>
-           </select>
-         </div> 
+  <div class="row">
+    <div class="col">
+      <h2>TURMAS</h2>      
+    </div>
+  
+      <div class="col-lg-2">
+        <select class="btn-sel form-select">
+          <option selected>curso</option>
+          <option value="D.P">Desenhador projetista - D.P</option>
+          <option value="T.E.I.E">Técnico de Energia e Instalações Electricas - T.E.I.E</option>
+          <option value="T.I">Técnico de Informática - T.I</option>
+          <option value="E.T">Electronica e Telecomunicação - E.T</option>
+        </select>
+      </div> 
 
-         <div class="col-lg-2">
-           <select class="btn-sel form-select">
-             <option selected>Ano</option>
-           </select>
-         </div>
-      
+      <div class="col-lg-2">
+        <select class="btn-sel form-select">
+          <option selected>Ano</option>
+        </select>
       </div>
+  
+  </div>
 
-      <div class="procurar">
-        <form class="proc-form d-flex align-items-center">
-          <input type="text" name="" class="campo-pesq">
-          <button type="submit" title="Search"><i class="bi bi-search"></i></button>   
-        </form>
-      </div>
+  <div class="procurar">
+    <form class="proc-form d-flex align-items-center">
+      <input type="text" name="" class="campo-pesq">
+      <button type="submit" title="Search"><i class="bi bi-search"></i></button>   
+    </form>
+  </div>
 
-      <!-- /  Inicio da tabela de inscritos -->
-      <table class="table table-striped">
-        <thead>
-          <tr style=" text-align: center;">
-            <th scope="col">Nome da Turma</th>
-            <th scope="col">Classe</th>
-            <th scope="col">Turno</th>
-            <th scope="col">Vagas</th>
-            <th scope="col">Curso</th>
-            <th scope="col">Sala</th>
-            <th scope="col">Ano</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style=" text-align: center;">
-            <th scope="row">I10AM</th>
-            <td>10ª</td>
-            <td>Tarde</td>
-            <td>16</td>
-            <td>Informática</td>
-            <td>100</td>
-            <td>2020/2029</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-turma"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
+  <!-- /  Inicio da tabela de inscritos -->
+  <table class="table table-striped">
+    <thead>
+      <tr style=" text-align: center;">
+        <th scope="col">Nome da Turma</th>
+        <th scope="col">Classe</th>
+        <th scope="col">Turno</th>
+        <th scope="col">Vagas</th>
+        <th scope="col">Curso</th>
+        <th scope="col">Sala</th>
+        <th scope="col">Ano</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style=" text-align: center;">
+        <th scope="row">I10AM</th>
+        <td>10ª</td>
+        <td>Tarde</td>
+        <td>16</td>
+        <td>Informática</td>
+        <td>100</td>
+        <td>2020/2029</td>
+        <td>
+          <i class="bi bi-eye-fill"></i>
+          <a href="/editar-turma"><i class="bi bi-pencil"></i></a>
+          <i class="bi bi-trash-fill"></i>
+          <i class="bi bi-check-square-fill"></i>
+        </td>
+      </tr>
 
-          <tr style=" text-align: center;">
-            <th scope="row">I13AT</th>
-            <td>12ª</td>
-            <td>Tarde</td>
-            <td>50</td>
-            <td>Telecomunicação</td>
-            <td>100</td>
-            <td>2020/2024</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-turma"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
+      <tr style=" text-align: center;">
+        <th scope="row">I13AT</th>
+        <td>12ª</td>
+        <td>Tarde</td>
+        <td>50</td>
+        <td>Telecomunicação</td>
+        <td>100</td>
+        <td>2020/2024</td>
+        <td>
+          <i class="bi bi-eye-fill"></i>
+          <a href="/editar-turma"><i class="bi bi-pencil"></i></a>
+          <i class="bi bi-trash-fill"></i>
+          <i class="bi bi-check-square-fill"></i>
+        </td>
+      </tr>
 
-          <tr style=" text-align: center;">
-            <th scope="row">I13AT</th>
-            <td>12ª</td>
-            <td>Tarde</td>
-            <td>50</td>
-            <td>Telecomunicação</td>
-            <td>100</td>
-            <td>2020/2024</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-turma"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
+      <tr style=" text-align: center;">
+        <th scope="row">I13AT</th>
+        <td>12ª</td>
+        <td>Tarde</td>
+        <td>50</td>
+        <td>Telecomunicação</td>
+        <td>100</td>
+        <td>2020/2024</td>
+        <td>
+          <i class="bi bi-eye-fill"></i>
+          <a href="/editar-turma"><i class="bi bi-pencil"></i></a>
+          <i class="bi bi-trash-fill"></i>
+          <i class="bi bi-check-square-fill"></i>
+        </td>
+      </tr>
 
-          <tr style=" text-align: center;">
-            <th scope="row">I13AT</th>
-            <td>12ª</td>
-            <td>Tarde</td>
-            <td>50</td>
-            <td>Telecomunicação</td>
-            <td>100</td>
-            <td>2020/2024</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-turma"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
+      <tr style=" text-align: center;">
+        <th scope="row">I13AT</th>
+        <td>12ª</td>
+        <td>Tarde</td>
+        <td>50</td>
+        <td>Telecomunicação</td>
+        <td>100</td>
+        <td>2020/2024</td>
+        <td>
+          <i class="bi bi-eye-fill"></i>
+          <a href="/editar-turma"><i class="bi bi-pencil"></i></a>
+          <i class="bi bi-trash-fill"></i>
+          <i class="bi bi-check-square-fill"></i>
+        </td>
+      </tr>
 
-          <tr style=" text-align: center;">
-            <th scope="row">I13AT</th>
-            <td>12ª</td>
-            <td>Tarde</td>
-            <td>50</td>
-            <td>Telecomunicação</td>
-            <td>100</td>
-            <td>2020/2024</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-turma"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
+      <tr style=" text-align: center;">
+        <th scope="row">I13AT</th>
+        <td>12ª</td>
+        <td>Tarde</td>
+        <td>50</td>
+        <td>Telecomunicação</td>
+        <td>100</td>
+        <td>2020/2024</td>
+        <td>
+          <i class="bi bi-eye-fill"></i>
+          <a href="/editar-turma"><i class="bi bi-pencil"></i></a>
+          <i class="bi bi-trash-fill"></i>
+          <i class="bi bi-check-square-fill"></i>
+        </td>
+      </tr>
 
-          <tr style=" text-align: center;">
-            <th scope="row">I13AT</th>
-            <td>12ª</td>
-            <td>Tarde</td>
-            <td>50</td>
-            <td>Telecomunicação</td>
-            <td>100</td>
-            <td>2020/2024</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-turma"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
+      <tr style=" text-align: center;">
+        <th scope="row">I13AT</th>
+        <td>12ª</td>
+        <td>Tarde</td>
+        <td>50</td>
+        <td>Telecomunicação</td>
+        <td>100</td>
+        <td>2020/2024</td>
+        <td>
+          <i class="bi bi-eye-fill"></i>
+          <a href="/editar-turma"><i class="bi bi-pencil"></i></a>
+          <i class="bi bi-trash-fill"></i>
+          <i class="bi bi-check-square-fill"></i>
+        </td>
+      </tr>
 
-          <tr style=" text-align: center;">
-            <th scope="row">I13AT</th>
-            <td>12ª</td>
-            <td>Tarde</td>
-            <td>50</td>
-            <td>Telecomunicação</td>
-            <td>100</td>
-            <td>2020/2024</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-turma"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
+      <tr style=" text-align: center;">
+        <th scope="row">I13AT</th>
+        <td>12ª</td>
+        <td>Tarde</td>
+        <td>50</td>
+        <td>Telecomunicação</td>
+        <td>100</td>
+        <td>2020/2024</td>
+        <td>
+          <i class="bi bi-eye-fill"></i>
+          <a href="/editar-turma"><i class="bi bi-pencil"></i></a>
+          <i class="bi bi-trash-fill"></i>
+          <i class="bi bi-check-square-fill"></i>
+        </td>
+      </tr>
 
-          <tr style=" text-align: center;">
-            <th scope="row">I13AT</th>
-            <td>12ª</td>
-            <td>Tarde</td>
-            <td>50</td>
-            <td>Telecomunicação</td>
-            <td>100</td>
-            <td>2020/2024</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-turma"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
+      <tr style=" text-align: center;">
+        <th scope="row">I13AT</th>
+        <td>12ª</td>
+        <td>Tarde</td>
+        <td>50</td>
+        <td>Telecomunicação</td>
+        <td>100</td>
+        <td>2020/2024</td>
+        <td>
+          <i class="bi bi-eye-fill"></i>
+          <a href="/editar-turma"><i class="bi bi-pencil"></i></a>
+          <i class="bi bi-trash-fill"></i>
+          <i class="bi bi-check-square-fill"></i>
+        </td>
+      </tr>
 
-          <tr style=" text-align: center;">
-            <th scope="row">I13AT</th>
-            <td>12ª</td>
-            <td>Tarde</td>
-            <td>50</td>
-            <td>Telecomunicação</td>
-            <td>100</td>
-            <td>2020/2024</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-turma"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
+      <tr style=" text-align: center;">
+        <th scope="row">I13AT</th>
+        <td>12ª</td>
+        <td>Tarde</td>
+        <td>50</td>
+        <td>Telecomunicação</td>
+        <td>100</td>
+        <td>2020/2024</td>
+        <td>
+          <i class="bi bi-eye-fill"></i>
+          <a href="/editar-turma"><i class="bi bi-pencil"></i></a>
+          <i class="bi bi-trash-fill"></i>
+          <i class="bi bi-check-square-fill"></i>
+        </td>
+      </tr>
 
-          <tr style=" text-align: center;">
-            <th scope="row">I13AT</th>
-            <td>12ª</td>
-            <td>Tarde</td>
-            <td>50</td>
-            <td>Telecomunicação</td>
-            <td>100</td>
-            <td>2020/2024</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-turma"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
+      <tr style=" text-align: center;">
+        <th scope="row">I13AT</th>
+        <td>12ª</td>
+        <td>Tarde</td>
+        <td>50</td>
+        <td>Telecomunicação</td>
+        <td>100</td>
+        <td>2020/2024</td>
+        <td>
+          <i class="bi bi-eye-fill"></i>
+          <a href="/editar-turma"><i class="bi bi-pencil"></i></a>
+          <i class="bi bi-trash-fill"></i>
+          <i class="bi bi-check-square-fill"></i>
+        </td>
+      </tr>
 
-          <tr style=" text-align: center;">
-            <th scope="row">I13AT</th>
-            <td>12ª</td>
-            <td>Tarde</td>
-            <td>50</td>
-            <td>Telecomunicação</td>
-            <td>100</td>
-            <td>2020/2024</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-turma"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
+      <tr style=" text-align: center;">
+        <th scope="row">I13AT</th>
+        <td>12ª</td>
+        <td>Tarde</td>
+        <td>50</td>
+        <td>Telecomunicação</td>
+        <td>100</td>
+        <td>2020/2024</td>
+        <td>
+          <i class="bi bi-eye-fill"></i>
+          <a href="/editar-turma"><i class="bi bi-pencil"></i></a>
+          <i class="bi bi-trash-fill"></i>
+          <i class="bi bi-check-square-fill"></i>
+        </td>
+      </tr>
 
-          <tr style=" text-align: center;">
-            <th scope="row">I13AT</th>
-            <td>12ª</td>
-            <td>Tarde</td>
-            <td>50</td>
-            <td>Telecomunicação</td>
-            <td>100</td>
-            <td>2020/2024</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-turma"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
+      <tr style=" text-align: center;">
+        <th scope="row">I13AT</th>
+        <td>12ª</td>
+        <td>Tarde</td>
+        <td>50</td>
+        <td>Telecomunicação</td>
+        <td>100</td>
+        <td>2020/2024</td>
+        <td>
+          <i class="bi bi-eye-fill"></i>
+          <a href="/editar-turma"><i class="bi bi-pencil"></i></a>
+          <i class="bi bi-trash-fill"></i>
+          <i class="bi bi-check-square-fill"></i>
+        </td>
+      </tr>
 
-          <tr style=" text-align: center;">
-            <th scope="row">I13AT</th>
-            <td>12ª</td>
-            <td>Tarde</td>
-            <td>50</td>
-            <td>Telecomunicação</td>
-            <td>100</td>
-            <td>2020/2024</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-turma"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <!-- Termina a tabela de matriculas -->
+      <tr style=" text-align: center;">
+        <th scope="row">I13AT</th>
+        <td>12ª</td>
+        <td>Tarde</td>
+        <td>50</td>
+        <td>Telecomunicação</td>
+        <td>100</td>
+        <td>2020/2024</td>
+        <td>
+          <i class="bi bi-eye-fill"></i>
+          <a href="/editar-turma"><i class="bi bi-pencil"></i></a>
+          <i class="bi bi-trash-fill"></i>
+          <i class="bi bi-check-square-fill"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- Termina a tabela de matriculas -->
 
 
     </main>
