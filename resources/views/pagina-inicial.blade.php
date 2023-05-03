@@ -2,9 +2,8 @@
 
 @section('title', 'Página inicial')
 
-
-
 @section('conteudo')
+
 <main id="main" class="main">
    	<!-- /	Titulo-->  	
      <div class="pagetitle">

@@ -57,6 +57,17 @@
 }
 
 body {
+
+  font-family: "Open Sans", sans-serif;
+  background: hwb(0 100% 0%);
+  color: #444444;
+}
+
+/*Scroll da pagina completa*/
+
+/* body::-webkit-scrollbar {
+  width: 20px;
+=======
   background: #fff;
   color: #444444;
 }
@@ -64,11 +75,12 @@ body {
 /*
 body::-webkit-scrollbar {
   width: 15px;
+
   height: 100px;
   border: 1px solid #000;
   border-radius: 20px;
-  background-color: #fff;
-}
+  background-color: #939ebe;
+} */
 
 body::-webkit-scrollbar-thumb {
   border-radius: 35px;
@@ -104,6 +116,7 @@ a.color-white{
     padding: 20px;
   }
 }
+
 /*--------------------------------------------------------------
 # Word waves
 --------------------------------------------------------------*/
@@ -244,15 +257,15 @@ a.color-white{
 }
 
 .header {
-  background-color: #fff;
+  background-color: #498cda;
   border: none;
   padding: 10px 10px 10px 10px;
-/*  transition: all 0.5s;
+  transition: all 0.5s;
   z-index: 997;
   height: 60px;
   box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
   background-color: var(--bs-cor-principal);
-  padding-left: 20px;*/
+  padding-left: 20px;
 
   /* Toggle Sidebar Button */
   /* Search Bar */
@@ -264,7 +277,7 @@ a.color-white{
   z-index: 997;
   height: 46px;
   background-color: var(--bs-cor-principal);
-  color: #fff;
+  color: #0a0404;
   border-radius: 10px;
 }
 
@@ -290,20 +303,20 @@ a.color-white{
 
 .header-nav .nav-icon {
   font-size: 22px;
-  color: #fff;
+  color: #140a0a;
   margin-right: 25px;
   position: relative;
 }
 
 .header-nav .nav-perfil {
-  color: #fff;
+  color: #131010;
 }
 
 .mini-foto-perf{
   width: 60px;
   height: 60px;
   margin-left: -85px;
-  border: 2px solid #fff;
+  border: 2px solid #cfbebe;
   border-radius: 100%;
   position: absolute;
 }
@@ -355,11 +368,11 @@ a.color-white{
 .header-nav .notifications .notification-item p {
   font-size: 13px;
   margin-bottom: 3px;
-  color: #919191;
+  color: #030101;
 }
 
 .header-nav .notifications .notification-item:hover {
-  background-color: #f6f9ff;
+  background-color: #b4b7bb;
 }
 
 .header-nav .perfil {

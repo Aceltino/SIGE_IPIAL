@@ -5,12 +5,12 @@
     	<!-- /	Logo ipial-->
       <div class="d-flex justify-content-between">
         
-        <div class="d-flex align-items-center" style="background-color: #96abce; padding-left: 30px; border-radius: 10px; padding-right: 100px;">        
+        <div class="d-flex align-items-center" style="background-color: #174183; padding-left: 30px; border-radius: 10px; padding-right: 100px;">        
           <a href="#" class="logo d-flex align-items-center">
           
             <!--<img src="assets/img/logo.png" alt="">-->
           
-            <span class="d-none d-lg-block">SIGE - IPIAL</span>
+            <span class="d-none d-lg-block" style=" color:rgb(255, 255, 255)" >SIGE - IPIAL</span>
           
             <i class="bi bi-list toggle-sidebar-btn"></i>
           </a>
@@ -19,8 +19,8 @@
         <div class="d-flex align-items-center" style="padding-left: 56px;">
 
     	   <a class="nav-link nav-perfil d-flex align-items-center pe-0" href="#">
-            <img src="img/foto.jpg" alt="perfil" class="mini-foto-perf">
-            <span class="d-none d-md-block ps-2">Nome Dealguma Pessoa Com Nomegrande <br> <small>Subdiretor pedagógico</small></span>
+            <img src={{URL::asset("img/foto.jpg")}} alt="perfil" class="mini-foto-perf">
+            <span class="d-none d-md-block ps-2">{{session('username')}}<br> <small>{{session('cargo')}}</small></span>
           </a>
           
         </div>
@@ -83,7 +83,7 @@
           </li><!-- Termina Nav Notificacao -->
 
           <li class="nav-item">
-          	<a class="nav-link nav-icon" href="#">
+          	<a class="nav-link nav-icon" href={{route('logout')}}>
           		<i class="bi bi-box-arrow-right"></i>
           	</a>
           </li>

@@ -25,20 +25,31 @@
       <img src={{URL::asset("img/logo.png")}}><br>
       <span>SIGE - IPIAL</span>
     </div>
-    <form class="row g-3 needs-validation" novalidate>
+
+    <form action={{route('checkLogin')}} method="post" class="row g-3 needs-validation" novalidate>
+      @csrf
       <div class="col-12">
-        
+        @if(session('erroCheckLogin'))
+          <div class="alert alert-danger">
+            {{session('erroCheckLogin')}}
+          </div>
+        @endif  
+        @if(session('erroCkeckLogin_Status'))
+          <div class="alert alert-danger">
+            {{session('erroCkeckLogin_Status')}}
+          </div>
+        @endif
         <div class="input-group has-validation">
           <span class="input-group-addon" id="inputGroupPrepend"><i class="bi bi-person"></i></span>
           <input type="text" name="username" autocomplete="off" placeholder="Inserir nome de usuário" class="form-control" required>
-          <div class="invalid-feedback">Por favor insere o e-mail!</div>
+          <div class="invalid-feedback">Por favor insere o seu Username!</div>
         </div>
       </div>
 
       <div class="input-group col-12">
         <span class="input-group-addon" id="inputGroupPrepend"><i class="bi bi-key-fill"></i></span>
         <input type="password" name="password" placeholder="Inserir a senha" class="form-control" required>
-        <div class="invalid-feedback">Por favor insere a senha!</div>
+        <div class="invalid-feedback">Por favor insere a sua Senha!</div>
       </div>
 
       <div class="container">
@@ -53,7 +64,7 @@
           
           <div class="col">
 
-            <a href="#" class="forgot-password">Esqueceu a senha?</a>
+            <a href={{route('recuperarPassword')}} class="forgot-password">Esqueceu a senha?</a>
           </div>
         </div>
       </div>

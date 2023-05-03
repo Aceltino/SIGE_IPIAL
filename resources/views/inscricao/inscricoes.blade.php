@@ -61,8 +61,15 @@
             <td>Informática</td>
             <td>Manhã</td>
             <td>
+
+              <a href={{route('conf-inscricao')}}>
+                <i class="bi bi-eye-fill"></i>
+              </a>
+              <i class="bi bi-pencil"></i>
+
               <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
               <a href="/editar-candidato"><i class="bi bi-pencil"></i></a>
+
               <i class="bi bi-trash-fill"></i>
               <i class="bi bi-check-square-fill"></i>
             </td>
@@ -77,8 +84,6 @@
             <td>Informática</td>
             <td>Manhã</td>
             <td>
-              <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-              <a href="/editar-candidato"><i class="bi bi-pencil"></i></a>
               <i class="bi bi-trash-fill"></i>
               <i class="bi bi-check-square-fill"></i>
             </td>
