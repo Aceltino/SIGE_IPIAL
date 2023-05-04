@@ -133,7 +133,7 @@
 	        </a>
 	        <ul id="comunicado-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 	          <li>
-	            <a href="#">
+	            <a href="criar-comunicado">
 	              <i class="bi bi-circle"></i><span>Criar comunicado</span>
 	            </a>
 	          </li>
