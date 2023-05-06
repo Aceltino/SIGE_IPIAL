@@ -48,7 +48,7 @@
 
             <div class="row">
 
-                <div class="form-group col-4">
+                <div  id="clone"class="form-group col-4">
                     <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
                         <option selected disabled>Disciplina:</option>
                         <option value="Tom Brauny">Matemática</option>
@@ -57,9 +57,9 @@
                     </select>
                 </div>
 
-                <div class="col">
+                <div  class="col">
 
-                    <i class="bi bi-plus-circle" style=" font-size: 30px; cursor: pointer;"></i> 
+                    <i id="clonebtn"class="bi bi-plus-circle" style=" font-size: 30px; cursor: pointer;"></i> 
 
                 </div>
             </div>

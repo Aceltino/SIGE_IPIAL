@@ -223,54 +223,65 @@
             </div>
 
             <div class="row">
-                
-                <div class="col-4 form-group gap-1 ">
-                    <select name="opcoes" id="opcoes"oninput="this.className = ''" class="form-select">
-                        <option disabled>Familiares:</option>
-                        <option value="pai" selected>Pai</option>
-                        <option value=" Mãe">Mãe</option>
-                        <option Value=" Outro">Outro</option>
-                    </select>
-                </div>
-
-                <div class="col-4 d-flex gap-1 justify-content-center align-items-center">
-                    <span style="color: #777;">+244</span>
-                    <input type="text" value=" 939293933" name=""  placeholder=" Telefone" oninput="this.className = ''"><i class="bi bi-plus-circle" style=" font-size: 30px; cursor: pointer;"></i> 
-                </div> 
-            </div>
-
-            <div class="row">
-
-                <div class="col-4 form-group gap-1 ">
+                    
+                <div class="col-3 form-group gap-1 ">
                     <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
-                        <option disabled >Familiares:</option>
-                        <option value="pai" >Pai</option>
-                        <option value= " mãe" selected>Mãe</option>
+                        <option disabled>Familiares:</option>
+                        <option value="pai"selected>Pai</option>
+                        <option value="mãe">Mãe</option>
                         <option value="outro">Outro</option>
                     </select>
                 </div>
-        
-
-                <div class="col-4 d-flex gap-1 justify-content-center align-items-center">
-                    <span style="color: #777;">+244</span>
-                    <input type="text" value=" 9399494949" name="" placeholder=" Telefone" oninput="this.className = ''"><i class="bi bi-plus-circle" style=" font-size: 30px; cursor: pointer;"></i> 
-                </div> 
-            </div>
             
+                <div id="clone1"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
+                    <span style="color: #777;">+244</span>
+                    <input type="text" value="939797979" name="" placeholder="Telefone" oninput="this.className = ''">
+                </div>
+
+                <div class="col-3">
+                    <i id="clonebtn1"class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>    
+                </div>
+            </div>
+
             <div class="row">
 
-                <div class="col-4 form-group gap-1 ">
+                <div class="col-lg-3 form-group gap-1 ">
                     <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
-                        <option  disabled>Familiares:</option>
-                        <option value="pai" >Pai</option>
-                        <option value="mãe">Mãe</option>
-                        <option value="outro" selected>Outro</option>
+                        <option disabled>Familiares:</option>
+                        <option value="pai">Pai</option>
+                        <option value="mãe" selected>Mãe</option>
+                        <option value="outro">Outro</option>
                     </select>
                 </div>
             
-                <div class="col-4 d-flex gap-1 justify-content-center align-items-center">
+                <div id="clone2"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
                     <span style="color: #777;">+244</span>
-                    <input type="text" name="" value=" 94992920" placeholder=" Telefone" oninput="this.className = ''"><i class="bi bi-plus-circle" style=" font-size: 30px; cursor: pointer;"></i> 
+                    <input type="text" value="939797979" name="" placeholder="Telefone" oninput="this.className = ''">
+                </div>
+
+                <div class="col-3">
+                    <i id="clonebtn2"class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>    
+                </div>
+            </div>
+                
+            <div class="row">
+
+                <div class="col-3 form-group gap-1 ">
+                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
+                        <option disabled>Familiares:</option>
+                        <option value="pai">Pai</option>
+                        <option value="mãe">Mãe</option>
+                        <option  value="outro"selected>Outro</option>
+                    </select>
+                </div>
+        
+                <div id="clone"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
+                    <span style="color: #777;">+244</span>
+                    <input type="text" value="939797979" name="" placeholder="Telefone" oninput="this.className = ''">
+                </div>
+
+                <div class="col-3">
+                    <i id="clonebtn"class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>    
                 </div>
             </div>
         </div>  

@@ -41,6 +41,7 @@
             <th scope="col">Nome do Curso</th>
             <th scope="col">Area de Formação</th>
             <th scope="col">Coordenador</th>
+            <th scope="col">Disciplinas</th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -50,6 +51,7 @@
             <th scope="row"> Técnico de Informática</th>
             <td>Informática</td>
             <td>Tom Brauny</td>
+            <td>TLP,SEAC( JESON*)</td>
             <td>
               <i class="bi bi-eye-fill"></i>
               <a href="/editar-curso"><i class="bi bi-pencil"></i></a>
@@ -62,6 +64,7 @@
             <th scope="row"> Técnico de Informática</th>
             <td>Informática</td>
             <td>Tom Brauny</td>
+            <td>TLP,SEAC( JESON*)</td>
             <td>
               <i class="bi bi-eye-fill"></i>
               <a href="/editar-curso"><i class="bi bi-pencil"></i></a>
@@ -69,10 +72,12 @@
               <i class="bi bi-check-square-fill"></i>
             </td>
           </tr>
+
           <tr style=" text-align: center;">
             <th scope="row"> Técnico de Informática</th>
             <td>Informática</td>
             <td>Tom Brauny</td>
+            <td>TLP,SEAC( JESON*)</td>
             <td>
               <i class="bi bi-eye-fill"></i>
               <a href="/editar-curso"><i class="bi bi-pencil"></i></a>
@@ -80,10 +85,12 @@
               <i class="bi bi-check-square-fill"></i>
             </td>
           </tr>
+
           <tr style=" text-align: center;">
             <th scope="row"> Técnico de Informática</th>
             <td>Informática</td>
             <td>Tom Brauny</td>
+            <td>TLP,SEAC( JESON*)</td>
             <td>
               <i class="bi bi-eye-fill"></i>
               <a href="/editar-curso"><i class="bi bi-pencil"></i></a>
@@ -91,10 +98,12 @@
               <i class="bi bi-check-square-fill"></i>
             </td>
           </tr>
+
           <tr style=" text-align: center;">
             <th scope="row"> Técnico de Informática</th>
             <td>Informática</td>
             <td>Tom Brauny</td>
+            <td>TLP,SEAC( JESON*)</td>
             <td>
               <i class="bi bi-eye-fill"></i>
               <a href="/editar-curso"><i class="bi bi-pencil"></i></a>
@@ -102,138 +111,8 @@
               <i class="bi bi-check-square-fill"></i>
             </td>
           </tr>
-          <tr style=" text-align: center;">
-            <th scope="row"> Técnico de Informática</th>
-            <td>Informática</td>
-            <td>Tom Brauny</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-curso"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-          <tr style=" text-align: center;">
-            <th scope="row"> Técnico de Informática</th>
-            <td>Informática</td>
-            <td>Tom Brauny</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-curso"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-          <tr style=" text-align: center;">
-            <th scope="row"> Técnico de Informática</th>
-            <td>Informática</td>
-            <td>Tom Brauny</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-curso"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-          <tr style=" text-align: center;">
-            <th scope="row"> Técnico de Informática</th>
-            <td>Informática</td>
-            <td>Tom Brauny</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-curso"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-          <tr style=" text-align: center;">
-            <th scope="row"> Técnico de Informática</th>
-            <td>Informática</td>
-            <td>Tom Brauny</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-curso"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-          <tr style=" text-align: center;">
-            <th scope="row"> Técnico de Informática</th>
-            <td>Informática</td>
-            <td>Tom Brauny</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-curso"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-          <tr style=" text-align: center;">
-            <th scope="row"> Técnico de Informática</th>
-            <td>Informática</td>
-            <td>Tom Brauny</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-curso"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-          <tr style=" text-align: center;">
-            <th scope="row"> Técnico de Informática</th>
-            <td>Informática</td>
-            <td>Tom Brauny</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-curso"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-          <tr style=" text-align: center;">
-            <th scope="row"> Técnico de Informática</th>
-            <td>Informática</td>
-            <td>Tom Brauny</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-curso"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-          <tr style=" text-align: center;">
-            <th scope="row"> Técnico de Informática</th>
-            <td>Informática</td>
-            <td>Tom Brauny</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-curso"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-          <tr style=" text-align: center;">
-            <th scope="row"> Técnico de Informática</th>
-            <td>Informática</td>
-            <td>Tom Brauny</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-curso"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-          <tr style=" text-align: center;">
-            <th scope="row"> Técnico de Informática</th>
-            <td>Informática</td>
-            <td>Tom Brauny</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-curso"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
+
+          
 
 
         </tbody>

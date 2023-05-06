@@ -118,9 +118,13 @@
             
             <div class="row">
 
-                <div class="col-lg-4 d-flex gap-1 justify-content-center align-items-center">
-                    <span style="color: #777;">+244</span>
-                    <input type="text" name="" placeholder="Telefone" oninput="this.className = ''"><i class="bi bi-plus-circle" style=" font-size: 30px; cursor: pointer;"></i> 
+                <div id="clone1"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
+                <span style="color: #777;">+244</span>
+                <input type="text" name="" placeholder="Telefone" oninput="this.className = ''">
+                </div>
+
+                <div class="col-3">
+                    <i id="clonebtn1"class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>    
                 </div>
             </div>
         </div> 
@@ -253,7 +257,7 @@
                 </div>
             </div>
         </div>  
-        <div style="text-align:center;margin-top:10px;">
+        <div style="text-align:center;margin-top:25px;">
             <div>
                 <button type="button" class="btn btn-danger" id="prevBtn" onclick="nextPrev(-1)">Retroceder</button>
                 <button type="button" class="btn btn-success" id="nextBtn" onclick="nextPrev(1)">Avançar</button>

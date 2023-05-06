@@ -30,68 +30,255 @@
 
         <div class="row" data-aos="fade-up">
 
-          <div class="col-lg-3 col-md-6 mt-4">
-            <div class="count-box">
+          <div class="col-lg-3 col-md-6 mt-4" >
+            <div class="count-box"  id="boxx">
               <i class="bi bi-people"></i>
               <span class="total">472</span>
               <p>INSCRITOS</p>
             </div>
+
+            <div class="box" id="box">
+                <ul class=" lista">
+
+                  <li class="clista">
+                    <span>Inscritos 10ª :</span>
+                    <span>10</span>
+                  </li>
+                  <li class="clista">
+                    <span>Inscritos 11ª :</span>
+                    <span>10</span>
+                  </li>
+                  <li class="clista">
+                    <span>Inscritos 12ª :</span>
+                    <span>10</span>
+                  </li>
+                  <li class="clista">
+                    <span>Inscritos 13ª :</span>
+                    <span>10</span>
+                  </li>
+                </ul>
+            </div>
           </div>
 
-          <div class="col-lg-3 col-md-6 mt-4">
-            <div class="count-box">
+
+
+          <div class="col-lg-3 col-md-6 mt-4" >
+            <div class="count-box" id="boxx1" >
               <i class="bi bi-person"></i>
               <span class="total">572</span>
               <p>ADMITIDOS</p>
             </div>
+            <div class="box1" id="box1">
+              <ul class=" lista">
+
+                <li class="clista">
+                  <span>Inscritos 10ª :</span>
+                  <span>10</span>
+                </li>
+                <li class="clista">
+                  <span>Inscritos 11ª :</span>
+                  <span>10</span>
+                </li>
+                <li class="clista">
+                  <span>Inscritos 12ª :</span>
+                  <span>10</span>
+                </li>
+                <li class="clista">
+                  <span>Inscritos 13ª :</span>
+                  <span>10</span>
+                </li>
+                
+
+              </ul>
+            </div>
           </div>
 
           <div class="col-lg-3 col-md-6 mt-4">
-            <div class="count-box">
+            <div class="count-box" id="boxx2" >
               <i class="bi bi-check2-square"></i>
               <span class="total">772</span>
               <p>NÃO ADMITIDOS</p>
             </div>
+            <div class="box2" id="box2">
+              <ul class=" lista">
+
+                <li class="clista">
+                  <span>Inscritos 10ª :</span>
+                  <span>10</span>
+                </li>
+                <li class="clista">
+                  <span>Inscritos 11ª :</span>
+                  <span>10</span>
+                </li>
+                <li class="clista">
+                  <span>Inscritos 12ª :</span>
+                  <span>10</span>
+                </li>
+                <li class="clista">
+                  <span>Inscritos 13ª :</span>
+                  <span>10</span>
+                </li>
+                
+
+              </ul>
+            </div>
           </div>
 
           <div class="col-lg-3 col-md-6 mt-4">
-            <div class="count-box">
+            <div class="count-box" id="boxx3">
               <i class="bi bi-clipboard"></i>
               <span class="total">562</span>
               <p>MATRICULADOS</p>
             </div>
+            <div class="box3" id="box3">
+              <ul class=" lista">
+
+                <li class="clista">
+                  <span>Inscritos 10ª :</span>
+                  <span>10</span>
+                </li>
+                <li class="clista">
+                  <span>Inscritos 11ª :</span>
+                  <span>10</span>
+                </li>
+                <li class="clista">
+                  <span>Inscritos 12ª :</span>
+                  <span>10</span>
+                </li>
+                <li class="clista">
+                  <span>Inscritos 13ª :</span>
+                  <span>10</span>
+                </li>
+                
+
+              </ul>
+            </div>
           </div>
           
           <div class="col-lg-3 col-md-6 mt-5">
-            <div class="count-box">
+            <div class="count-box" id="boxx4">
               <i class="bi bi-arrow-90deg-down"></i>
               <span class="total">33</span>
               <p>PROFESSORES</p>
             </div>
+            <div class="box4" id="box4">
+              <ul class=" lista">
+
+                <li class="clista">
+                  <span>Inscritos 10ª :</span>
+                  <span>10</span>
+                </li>
+                <li class="clista">
+                  <span>Inscritos 11ª :</span>
+                  <span>10</span>
+                </li>
+                <li class="clista">
+                  <span>Inscritos 12ª :</span>
+                  <span>10</span>
+                </li>
+                <li class="clista">
+                  <span>Inscritos 13ª :</span>
+                  <span>10</span>
+                </li>
+                
+
+              </ul>
+            </div>
           </div>
 
           <div class="col-lg-3 col-md-6 mt-5">
-            <div class="count-box">
+            <div class="count-box" id="boxx5">
               <i class="bi bi-person-check"></i>
               <span class="total">64</span>
               <p>TURMAS</p>
             </div>
+            <div class="box5" id="box5">
+              <ul class=" lista">
+
+                <li class="clista">
+                  <span>Inscritos 10ª :</span>
+                  <span>10</span>
+                </li>
+                <li class="clista">
+                  <span>Inscritos 11ª :</span>
+                  <span>10</span>
+                </li>
+                <li class="clista">
+                  <span>Inscritos 12ª :</span>
+                  <span>10</span>
+                </li>
+                <li class="clista">
+                  <span>Inscritos 13ª :</span>
+                  <span>10</span>
+                </li>
+                
+
+              </ul>
+            </div>
           </div>
 
           <div class="col-lg-3 col-md-6 mt-5">
-            <div class="count-box">
+            <div class="count-box" id="boxx6">
               <i class="bi bi-people"></i>
               <span class="total">800</span>
               <p>VAGAS</p>
             </div>
+            <div class="box6" id="box6">
+              <ul class=" lista">
+
+                <li class="clista">
+                  <span>Inscritos 10ª :</span>
+                  <span>10</span>
+                </li>
+                <li class="clista">
+                  <span>Inscritos 11ª :</span>
+                  <span>10</span>
+                </li>
+                <li class="clista">
+                  <span>Inscritos 12ª :</span>
+                  <span>10</span>
+                </li>
+                <li class="clista">
+                  <span>Inscritos 13ª :</span>
+                  <span>10</span>
+                </li>
+                
+
+              </ul>
+            </div>
+
           </div>
 
           <div class="col-lg-3 col-md-6 mt-5">
-            <div class="count-box">
+            <div class="count-box" id="boxx7">
               <i class="bi bi-people"></i>
               <span class="total">3</span>
               <p>CURSOS</p>
             </div>
+            <div class="box7" id="box7">
+              <ul class=" lista">
+
+                <li class="clista">
+                  <span>Inscritos 10ª :</span>
+                  <span>10</span>
+                </li>
+                <li class="clista">
+                  <span>Inscritos 11ª :</span>
+                  <span>10</span>
+                </li>
+                <li class="clista">
+                  <span>Inscritos 12ª :</span>
+                  <span>10</span>
+                </li>
+                <li class="clista">
+                  <span>Inscritos 13ª :</span>
+                  <span>10</span>
+                </li>
+                
+
+              </ul>
+            </div>
+
           </div>
           
                         
@@ -114,7 +301,7 @@
 		          type: 'value'
 		        },
 		        series: [{
-		          data: [120, 200, 150, 80, 70, 110, 130, 300],
+		          data: [120, 200, 300, 80, 70, 110, 130, 300],
 		          type: 'bar'
 		        }]
 		      });

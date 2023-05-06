@@ -30,6 +30,7 @@
             <th scope="col">Data de Inicio</th>
             <th scope="col">Data de Fim</th>
             <th scope="col">Número max de vagas na sala</th>
+            <th scope="col">Número max de sala</th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -39,18 +40,6 @@
             <th scope="row">2020</th>
             <td>2021</td>
             <td>50</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-
-          
-          <tr style=" text-align: center;">
-            <th scope="row">2020</th>
-            <td>2021</td>
             <td>50</td>
             <td>
               <i class="bi bi-eye-fill"></i>
@@ -65,18 +54,6 @@
             <th scope="row">2020</th>
             <td>2021</td>
             <td>50</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-
-          
-          <tr style=" text-align: center;">
-            <th scope="row">2020</th>
-            <td>2021</td>
             <td>50</td>
             <td>
               <i class="bi bi-eye-fill"></i>
@@ -91,18 +68,6 @@
             <th scope="row">2020</th>
             <td>2021</td>
             <td>50</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-
-          
-          <tr style=" text-align: center;">
-            <th scope="row">2020</th>
-            <td>2021</td>
             <td>50</td>
             <td>
               <i class="bi bi-eye-fill"></i>
@@ -117,18 +82,6 @@
             <th scope="row">2020</th>
             <td>2021</td>
             <td>50</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-
-          
-          <tr style=" text-align: center;">
-            <th scope="row">2020</th>
-            <td>2021</td>
             <td>50</td>
             <td>
               <i class="bi bi-eye-fill"></i>
@@ -143,18 +96,6 @@
             <th scope="row">2020</th>
             <td>2021</td>
             <td>50</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-
-          
-          <tr style=" text-align: center;">
-            <th scope="row">2020</th>
-            <td>2021</td>
             <td>50</td>
             <td>
               <i class="bi bi-eye-fill"></i>
@@ -169,18 +110,6 @@
             <th scope="row">2020</th>
             <td>2021</td>
             <td>50</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-
-          
-          <tr style=" text-align: center;">
-            <th scope="row">2020</th>
-            <td>2021</td>
             <td>50</td>
             <td>
               <i class="bi bi-eye-fill"></i>
@@ -195,18 +124,6 @@
             <th scope="row">2020</th>
             <td>2021</td>
             <td>50</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-
-          
-          <tr style=" text-align: center;">
-            <th scope="row">2020</th>
-            <td>2021</td>
             <td>50</td>
             <td>
               <i class="bi bi-eye-fill"></i>
@@ -221,18 +138,6 @@
             <th scope="row">2020</th>
             <td>2021</td>
             <td>50</td>
-            <td>
-              <i class="bi bi-eye-fill"></i>
-              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-
-          
-          <tr style=" text-align: center;">
-            <th scope="row">2020</th>
-            <td>2021</td>
             <td>50</td>
             <td>
               <i class="bi bi-eye-fill"></i>
@@ -247,6 +152,7 @@
             <th scope="row">2020</th>
             <td>2021</td>
             <td>50</td>
+            <td>50</td>
             <td>
               <i class="bi bi-eye-fill"></i>
               <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
@@ -259,6 +165,119 @@
           <tr style=" text-align: center;">
             <th scope="row">2020</th>
             <td>2021</td>
+            <td>50</td>
+            <td>50</td>
+            <td>
+              <i class="bi bi-eye-fill"></i>
+              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
+              <i class="bi bi-trash-fill"></i>
+              <i class="bi bi-check-square-fill"></i>
+            </td>
+          </tr>
+
+          
+          <tr style=" text-align: center;">
+            <th scope="row">2020</th>
+            <td>2021</td>
+            <td>50</td>
+            <td>50</td>
+            <td>
+              <i class="bi bi-eye-fill"></i>
+              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
+              <i class="bi bi-trash-fill"></i>
+              <i class="bi bi-check-square-fill"></i>
+            </td>
+          </tr>
+
+          
+          <tr style=" text-align: center;">
+            <th scope="row">2020</th>
+            <td>2021</td>
+            <td>50</td>
+            <td>50</td>
+            <td>
+              <i class="bi bi-eye-fill"></i>
+              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
+              <i class="bi bi-trash-fill"></i>
+              <i class="bi bi-check-square-fill"></i>
+            </td>
+          </tr>
+
+          
+          <tr style=" text-align: center;">
+            <th scope="row">2020</th>
+            <td>2021</td>
+            <td>50</td>
+            <td>50</td>
+            <td>
+              <i class="bi bi-eye-fill"></i>
+              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
+              <i class="bi bi-trash-fill"></i>
+              <i class="bi bi-check-square-fill"></i>
+            </td>
+          </tr>
+
+          
+          <tr style=" text-align: center;">
+            <th scope="row">2020</th>
+            <td>2021</td>
+            <td>50</td>
+            <td>50</td>
+            <td>
+              <i class="bi bi-eye-fill"></i>
+              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
+              <i class="bi bi-trash-fill"></i>
+              <i class="bi bi-check-square-fill"></i>
+            </td>
+          </tr>
+
+          
+          <tr style=" text-align: center;">
+            <th scope="row">2020</th>
+            <td>2021</td>
+            <td>50</td>
+            <td>50</td>
+            <td>
+              <i class="bi bi-eye-fill"></i>
+              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
+              <i class="bi bi-trash-fill"></i>
+              <i class="bi bi-check-square-fill"></i>
+            </td>
+          </tr>
+
+          
+          <tr style=" text-align: center;">
+            <th scope="row">2020</th>
+            <td>2021</td>
+            <td>50</td>
+            <td>50</td>
+            <td>
+              <i class="bi bi-eye-fill"></i>
+              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
+              <i class="bi bi-trash-fill"></i>
+              <i class="bi bi-check-square-fill"></i>
+            </td>
+          </tr>
+
+          
+          <tr style=" text-align: center;">
+            <th scope="row">2020</th>
+            <td>2021</td>
+            <td>50</td>
+            <td>50</td>
+            <td>
+              <i class="bi bi-eye-fill"></i>
+              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
+              <i class="bi bi-trash-fill"></i>
+              <i class="bi bi-check-square-fill"></i>
+            </td>
+          </tr>
+
+          
+          <tr style=" text-align: center;">
+            <th scope="row">2020</th>
+            <td>2021</td>
+            <td>50</td>
             <td>50</td>
             <td>
               <i class="bi bi-eye-fill"></i>
