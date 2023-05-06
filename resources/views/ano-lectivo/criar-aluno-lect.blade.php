@@ -31,9 +31,14 @@
                     <p>Data de Fim<input type="date" name="" oninput="this.className = ''"></p>
                 </div>
             </div>
-
-            <div class="col-5">
-                    <p><input type="text" placeholder=" Número maximo de aluno nas turmas" name="" oninput="this.className = ''"></p>
+            <div class="row">
+                <div class="col-6">
+                        <p><input type="text" placeholder=" Número maximo de aluno nas turmas" name="" oninput="this.className = ''"></p>
+                </div>
+    
+                <div class="col-6">
+                        <p><input type="text" placeholder=" Número maximo de Salas" name="" oninput="this.className = ''"></p>
+                </div>
             </div>
         </div>
 

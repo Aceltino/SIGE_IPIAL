@@ -55,14 +55,14 @@
           </div>
 
           <div class="row">
-          <div class="col-md-4 d-flex gap-1 justify-content-center align-items-center">
-            <span style="color: #777;">+244</span>
-            <input type="text" placeholder="Telefone-1" name="" oninput="this.className = ''">
-          </div>
+            <div id="clone1"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
+                <span style="color: #777;">+244</span>
+                <input type="text" name="" placeholder="Telefone" oninput="this.className = ''">
+              </div>
 
-            <div class="col">
-              <i class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>    
-            </div>
+              <div class="col-3">
+                  <i id="clonebtn1"class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>    
+              </div>
           </div>
         </div>
 

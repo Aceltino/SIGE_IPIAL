@@ -31,9 +31,9 @@ Route::prefix('autenticacao')->group(function(){
 });
 
 //Rotas do Painel
-Route::get('/', function () {
+Route::get('/inicio', function () {
     return view('pagina-inicial');
-})->name('inicio')->middleware('auth');
+})->name('inicio');
 
 /* Essas rotas sao apenas para conseguirem visualizar cada pagina*/
 
@@ -218,6 +218,3 @@ Route::get('/ano-letivo', function () {
 Route::get('/editar-ano-letivo', function () {
     return view('ano-lectivo/edit-ano-letivo');
 });/**<!--Fim Rotas ano lectivo--> */
-
-
-
