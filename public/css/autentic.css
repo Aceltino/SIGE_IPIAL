@@ -1,0 +1,93 @@
+/*Fonte Chakra Petch*/
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap');
+
+*{
+    font-family: 'Chakra Petch', sans-serif !important;
+  }
+
+body{
+	background: url("../img/bg.jpg");
+	background-size: cover;
+	position: relative;	
+}
+
+.area-logo{
+	text-align: center;
+	padding-bottom: 10px;
+}
+
+.area-logo img{
+	width: 100px;
+	height: 100px;
+	margin-top: -50px;
+}
+
+.area-logo span{
+	font-size: 26px;
+	font-weight: 700;
+	color: #174183;
+}
+
+.login-form{
+	margin: 130px auto;
+	padding: 40px;
+	padding-top: 0px;
+	width: 390px;
+	background-color: rgb(255, 255, 255, 0.7);
+	border-radius: 10px;
+}
+
+/*************Alguns reparos nos campos****************/
+.login-form .input-group{
+    padding-bottom: 15px;
+}
+
+.login-form .input-group-addon{
+    padding: 6px 10px;
+    font-size: 22px;
+    color: #ffffff;
+    font-weight: normal;
+    line-height: 1;
+    text-align: center;
+    background-color: rgb(23, 65, 131, 0.6);
+    border: none;
+    border-radius: 0;
+
+}
+/*****************/
+
+.login-form .form-control{
+	box-sizing: border-box;
+	padding: 6px;
+	background-color: rgb(255, 255, 255, 0.5);
+	transition: border-color 0s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.login-form .form-control:focus, .login-form .form-select:focus {
+	color: #212529;
+	background-color: rgb(255, 255, 255, 0.5);
+	border-color: #174183;
+	outline: 0;
+	box-shadow: 0 0 0 1px rgb(23, 65, 131, 0.25);
+  }
+
+.botao-log, .botao-log:hover{
+	color: #fff;
+	background-color: #174183;
+	border: none;
+}
+
+.forgot-password{
+	font-size: 15px;
+}
+
+.footer{
+    position: fixed; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    text-align: center; 
+    background-color: rgba(0, 0, 0, 0.3); padding: 5px; 
+    color: #fff;
+}
+

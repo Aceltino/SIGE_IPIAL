@@ -218,3 +218,13 @@ Route::get('/ano-letivo', function () {
 Route::get('/editar-ano-letivo', function () {
     return view('ano-lectivo/edit-ano-letivo');
 });/**<!--Fim Rotas ano lectivo--> */
+
+/**
+ * Rota do perfil de usuario
+ */
+
+ Route::get('/perfil', function () {
+    return view('perfil/perfil');
+});
+
+

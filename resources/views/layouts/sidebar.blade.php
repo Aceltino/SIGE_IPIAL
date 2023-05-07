@@ -166,7 +166,7 @@
 
     	<!-- /	Nav Perfil-->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="/perfil">
           <i class="bi bi-person"></i>
           <span>Perfil</span>
         </a>

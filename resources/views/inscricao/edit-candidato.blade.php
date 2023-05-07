@@ -31,7 +31,7 @@
                   		</div>
                 		
                 		<div class="col area-input form-group" style="margin-left: 10px;">
-                    		<label>Idade: </label><input type="text" name="" value="16">
+                    		<label>Idade: </label><input type="text" class="form-control" readonly="true" disabled name="" value="16">
                     
                   		</div>
                   		
@@ -43,7 +43,7 @@
               	</div>
 
                 <div class="area-input form-group">
-                    <label>Número do BI: </label><input type="text" name="" value="0002505QL014">
+                    <label>Número do BI: </label><input type="text" class="form-control" readonly="true" disabled name="" value="0002505QL014">
                 </div>
 
               	<div class="container">
@@ -66,8 +66,8 @@
                    			<label>Tel-3: </label><input type="text" name="" value="998 766 656">
                   		</div>
 
-                  		<div class="col area-input form-group" style="margin-left: 10px;">
-                    		<button class="accordion-buttons collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style="border: none;background-color: transparent;">
+                  		<div class="col form-group" style="margin-left: 10px;">
+                    		<button class="btn-imprimir accordion-buttons collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style="border: none; padding: 5px; width: 230px; height: 40px;">
                             Informações do Instituto: <i class="bi bi-row"></i>
                           	</button>
                   		</div>
@@ -109,11 +109,11 @@
                   <div class="container">
                     <div class="row">
                       <div class="col area-input form-group">
-                        <label>Número de processo: </label><input type="text" name="" value="76656">
+                        <label>Número de processo: </label><input type="text" class="form-control" readonly="true" disabled name="" value="76656">
                      
                       </div>
                       <div class="col area-input form-group" style="margin-left: 10px;">
-                        <label>Ano lectivo: </label><input type="text" name="" value="2022-2023">
+                        <label>Ano lectivo: </label><input type="text" class="form-control" readonly="true" disabled name="" value="2022-2023">
                       
                       </div>
                     </div>
