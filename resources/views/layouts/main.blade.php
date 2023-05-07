@@ -19,9 +19,16 @@
     <!-- /	Link do Css main do projecto -->
     <link href={{{URL::asset("css/estilo.css")}}} rel="stylesheet">
     <link href={{{URL::asset("css/tudo.css")}}} rel="stylesheet">
+    <link href={{{URL::asset("css/dinamico.css")}}} rel="stylesheet">
     <link href={{{URL::asset("css/perfil.css")}}} rel="stylesheet">
     <link href={{{URL::asset("css/fonts/fontawesome-all.min.css")}}} rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+    <!-- /	Link do js mim do projecto -->
+
+    <script src={{{URL::asset("js/jquery-3.6.4.min.js")}}}></script>
+
+  
 
 
 </head>
@@ -48,6 +55,11 @@
   <script src="js/script.js"></script>
   <script src="js/form.js"></script>
   <script src="js/select.js"></script>
+  <script src="js/form.js"></script>
+  <script src="js/clone-contato.js"></script>
+  <script src="js/dinamico.js"></script>
+  
+  
  
  
  
