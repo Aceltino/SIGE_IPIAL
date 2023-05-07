@@ -165,9 +165,9 @@
                        <label>Tel-3: </label><input type="text" name="" readonly="true" disabled value="998 766 656">
                       </div>
 
-                      <div class="col area-input form-group" style="margin-left: 10px;">
-                        <button class="accordion-buttons collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style="border: none;background-color: transparent;">
-                                Informações do Instituto: <i class="bi bi-arrow-right"></i>
+                      <div class="col form-group" style="margin-left: 10px;">
+                        <button class="btn-imprimir accordion-buttons collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style="border: none; padding: 5px; width: 230px; height: 40px;">
+                                Informações do Instituto: <i class="bi bi-arrow-down"></i>
                               </button>
                       </div>
                     </div>

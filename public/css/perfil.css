@@ -1,0 +1,133 @@
+/* Card */
+.card {
+    margin-bottom: 30px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-header,
+  .card-footer {
+    border-color: #ebeef4;
+    background-color: #fff;
+    color: #798eb3;
+    padding: 15px;
+  }
+  
+  .card-title {
+    padding: 20px 0 15px 0;
+    font-size: 18px;
+    font-weight: 500;
+    color: #012970;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .card-title span {
+    color: #899bbd;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  
+  .card-body {
+    padding: 0 20px 20px 20px;
+  }
+  
+  .card-img-overlay {
+    background-color: rgba(255, 255, 255, 0.6);
+  }
+  
+  /*--------------------------------------------------------------
+  # Perfil Page
+  --------------------------------------------------------------*/
+  .perfil{
+    padding-bottom: 60px;
+  }
+  
+  .perfil .perfil-card img {
+    max-width: 140px;
+    max-height: 140px;
+    border-radius: 10px;
+  }
+  
+  .perfil .perfil-card h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #174183;
+    margin: 10px 0 0 0;
+  }
+  
+  .perfil .perfil-card h3 {
+    font-size: 18px;
+   }
+  
+  #borda-nome{
+    width: 70%;
+    margin: auto;
+    color: #4154f1;
+    padding: 2px;
+    border-width: 3px;
+    border-radius: 20px;
+  }
+  
+  .perfil .perfil-card .social-links a {
+    font-size: 20px;
+    display: inline-block;
+    color: rgba(1, 41, 112, 0.5);
+    line-height: 0;
+    margin-right: 10px;
+    transition: 0.3s;
+  }
+  
+  
+  .perfil .dados .row {
+    margin-bottom: 20px;
+    font-size: 15px;
+  }
+  
+  .perfil .dados .card-title {
+    color: #174183;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  
+  .perfil .dados .label {
+    font-weight: 600;
+    color: rgba(1, 41, 112, 0.6);
+  }
+  
+  .perfil label {
+    font-weight: 600;
+    color: rgba(1, 41, 112, 0.6);
+  }
+  
+  .perfil .perfil-edit img {
+    max-width: 120px;
+    max-height: 120px;
+  }
+  
+  
+  /***********************************
+  * Bordas do tab
+  **/
+  
+  /* Bordered Tabs */
+  .nav-tabs-bordered {
+    border-bottom: 2px solid #ebeef4;
+  }
+  
+  .nav-tabs-bordered .nav-link {
+    margin-bottom: -2px;
+    border: none;
+    color: #2c384e;
+  }
+  
+  .nav-tabs-bordered .nav-link:hover,
+  .nav-tabs-bordered .nav-link:focus {
+    color: #174183;
+  }
+  
+  .nav-tabs-bordered .nav-link.active {
+    background-color: #fff;
+    color: #174183;
+    border-bottom: 2px solid #174183;
+  }

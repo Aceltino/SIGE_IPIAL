@@ -1,4 +1,5 @@
-/*#regForm {
+/*
+#regForm {
   background-color: #ffffff;
   margin: 100px auto;
   padding: 40px;
@@ -613,7 +614,7 @@ span.f-normal{
   gap: 20px;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 30px;
 }
 
 .provisorio{

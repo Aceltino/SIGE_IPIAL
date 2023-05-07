@@ -118,13 +118,9 @@
             
             <div class="row">
 
-                <div id="clone1"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
-                <span style="color: #777;">+244</span>
-                <input type="text" name="" placeholder="Telefone" oninput="this.className = ''">
-                </div>
-
-                <div class="col-3">
-                    <i id="clonebtn1"class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>    
+                <div class="col-lg-4 d-flex gap-1 justify-content-center align-items-center">
+                    <span style="color: #777;">+244</span>
+                    <input type="text" name="" placeholder="Telefone" oninput="this.className = ''"><i class="bi bi-plus-circle" style=" font-size: 30px; cursor: pointer;"></i> 
                 </div>
             </div>
         </div> 
@@ -179,8 +175,327 @@
         </div>
 
         <div class="tab">     
+            <!--  //  //  Inicio do formulario da ficha biografica  //  //--> 
+            <div class="volta-tabela" id="assiduidades">
+
+                <div class="form-ficha">
+                <!--1a Disiciplina-->
+                <div class="assidd-diciplina" style="padding-top: 10px;">     
+
+                    <div class="container">
+                        <div class="row">
+                        <div class="col-lg-3">
+                            <div class="area-input-fb form-group">
+                            <label>Classe: </label><input type="text" readonly="true" disabled name="" value="10ª Classe">
+                            </div>
+                            
+                        </div>
+
+                        <div class="col-lg-2">
+                            <div class="area-input-fb form-group">
+                            <label>Turma: </label><input type="text" name="">
+                            </div>
+                            
+                        </div>
+
+                        <div class="col">
+                            <div class="area-input-fb form-group">
+                            <label>Numero: </label><input type="text" placeholder="Numero do aluno" name="">
+                            </div>
+                            
+                        </div>
+
+                        <div class="col">
+                            <div class="area-input-fb form-group">
+                            <label>Anolec: </label><input type="text" placeholder="Ano lectivo" name="">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                            <div class="area-input-fb form-group">
+                                <label>Escola: </label><input type="text" placeholder="Nome da escola de proveniência" name="">
+                            </div>
+                            
+                            </div>
+
+                            <div class="col-lg-1">
+                            <div class="accordion">
+                            <a href="#" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUm" aria-expanded="true" aria-controls="collapseUm" style="padding: 0;background-color: transparent; color: #fff;"></a>
+                                
+                            </div>
+                            
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div id="collapseUm" class="accordion-collapse collapse show" aria-labelledby="headingUm" data-bs-parent="#assiduidades">
+                        <!-- /  Inicio da tabela de ficha biografica -->
+                        <table class="tabelassd">
+                        <thead>
+                            <tr style="background-color: var(--bs-cor-principal); color: #fff;">
+                            <th scope="col" style="text-align: left;">Disciplina</th>
+                            <th scope="col">1ºT</th>
+                            <th scope="col">2ºT</th>                  
+                            <th scope="col">3ºT</th>                  
+                            <th scope="col">CF</th>
+                            <th scope="col">CF</th>                  
+                            <th scope="col">PG</th>
+                            <th scope="col">PG</th>                                   
+                            <th scope="col">CA</th>                  
+                            <th scope="col">F-1ºT</th>
+                            <th scope="col">F-2ºT</th>
+                            <th scope="col">F-3ºT</th>
+                            <th scope="col">1ºE</th>                  
+                            <th scope="col">2ºE</th>                  
+                            <th scope="col">3ºE</th>                  
+                            <th scope="col">CDF</th>      
+                            </tr>
+                        </thead>
+                        <tbody>
             
-            Faz a Tabela aqui nessa página eliseu
+                            <tr>
+                            <td style="text-align: left;">Lingua Portuguesa</td>
+                            <td><input type="text" name="" maxlength="2"></td>
+                            <td><input type="text" name="" maxlength="2"></td>
+                            <td><input type="text" name="" maxlength="2"></td>
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>
+                            
+                            </tr>
+
+                            <tr>
+                            <td style="text-align: left;">Matematica</td>
+                            <td><input type="text" name="" maxlength="2"></td>
+                            <td><input type="text" name="" maxlength="2"></td>
+                            <td><input type="text" name="" maxlength="2"></td>
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>
+                            
+                            </tr>
+
+                            <tr>
+                            <td style="text-align: left;">Projecto Tecnologico</td>
+                            <td><input type="text" name="" maxlength="2"></td>
+                            <td><input type="text" name="" maxlength="2"></td>
+                            <td><input type="text" name="" maxlength="2"></td>
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>
+                            
+                            </tr>
+
+                        
+
+                            <tr>
+                            <td colspan="15" style="text-align: left; background-color: #96abce;">
+                                
+                                <span class="tb-negrito">Situação Final do Aluno: </span><span class="tb-azul">Transferido</span>
+                            </td>
+                            </tr>
+                            
+
+                        </tbody>
+                        </table>
+                        <!-- Termina a tabela de ficha biogrfica -->
+                        
+                    </div>
+                    
+                    
+                </div>
+        
+                <!--Selecacao das classes-->
+                <div class="assidd-diciplina">
+                    <div class="container">
+                        <div class="row" style="padding-top: 10px;">
+                        <div class="col-lg-3">
+                            <div class="area-input-fb form-group">
+                            <label>Classe: </label><input type="text" readonly="true" disabled name="" value="11ª Classe">
+                            </div>
+                            
+                        </div>
+
+                        <div class="col">
+                            <div class="accordion">
+                            <a href="#" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDois" aria-expanded="false" aria-controls="collapseDois" style="background-color: transparent;"></a>
+                                
+                            </div>
+                            
+                        </div>
+
+
+                        </div>
+                        
+                    </div> 
+
+                    <div id="collapseDois" class="accordion-collapse collapse" aria-labelledby="headingDois" data-bs-parent="#assiduidades">
+                    <div class="row" style="padding-top: 10px;">
+                        
+                        <div class="col-lg-2">
+                            <div class="area-input-fb form-group">
+                            <label>Turma: </label><input type="text" name="">
+                            </div>
+                            
+                        </div>
+
+                        <div class="col">
+                            <div class="area-input-fb form-group">
+                            <label>Numero: </label><input type="text" placeholder="Numero do aluno" name="">
+                            </div>
+                            
+                        </div>
+
+                        <div class="col">
+                            <div class="area-input-fb form-group">
+                            <label>Anolec: </label><input type="text" placeholder="Ano lectivo" name="">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                            <div class="area-input-fb form-group">
+                                <label>Escola: </label><input type="text" placeholder="Nome da escola de proveniência" name="">
+                            </div>
+                            
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- /  Inicio da tabela de ficha biografica -->
+                    <table class="tabelassd">
+                        <thead>
+                        <tr style="background-color: var(--bs-cor-principal); color: #fff;">
+                            <th scope="col" style="text-align: left;">Disciplina</th>
+                            <th scope="col">1ºT</th>
+                            <th scope="col">2ºT</th>                  
+                            <th scope="col">3ºT</th>                  
+                            <th scope="col">CF</th>
+                            <th scope="col">CF</th>                  
+                            <th scope="col">PG</th>
+                            <th scope="col">PG</th>                                   
+                            <th scope="col">CA</th>                  
+                            <th scope="col">F-1ºT</th>
+                            <th scope="col">F-2ºT</th>
+                            <th scope="col">F-3ºT</th>
+                            <th scope="col">1ºE</th>                  
+                            <th scope="col">2ºE</th>                  
+                            <th scope="col">3ºE</th>                  
+                            <th scope="col">CDF</th>      
+                        </tr>
+                        </thead>
+                        <tbody>
+            
+                        <tr>
+                            <td style="text-align: left;">Lingua Portuguesa</td>
+                            <td><input type="text" name="" maxlength="2"></td>
+                            <td><input type="text" name="" maxlength="2"></td>
+                            <td><input type="text" name="" maxlength="2"></td>
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>
+                        
+                        </tr>
+
+                        <tr>
+                            <td style="text-align: left;">Matematica</td>
+                            <td><input type="text" name="" maxlength="2"></td>
+                            <td><input type="text" name="" maxlength="2"></td>
+                            <td><input type="text" name="" maxlength="2"></td>
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>
+                        
+                        </tr>
+
+                        <tr>
+                            <td style="text-align: left;">Projecto Tecnologico</td>
+                            <td><input type="text" name="" maxlength="2"></td>
+                            <td><input type="text" name="" maxlength="2"></td>
+                            <td><input type="text" name="" maxlength="2"></td>
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>                  
+                            <td><input type="text" name="" maxlength="2"></td>
+                        
+                        </tr>
+
+                    
+
+                        <tr>
+                            <td colspan="15" style="text-align: left; background-color: #96abce;">
+                            
+                            <span class="tb-negrito">Situação Final do Aluno: </span><span class="tb-azul">Transferido</span>
+                            </td>
+                        </tr>
+                        
+
+                        </tbody>
+                    </table>
+                    <!-- Termina a tabela de ficha biogrfica -->              
+                    
+                    </div>
+                </div>
+
+                </div>
+            </div> 
+            <!-- /// Fim do formulario da ficha biografica-->
         </div>
 
         <div class="tab"> 
@@ -257,7 +572,7 @@
                 </div>
             </div>
         </div>  
-        <div style="text-align:center;margin-top:25px;">
+        <div style="text-align:center;margin-top:10px;">
             <div>
                 <button type="button" class="btn btn-danger" id="prevBtn" onclick="nextPrev(-1)">Retroceder</button>
                 <button type="button" class="btn btn-success" id="nextBtn" onclick="nextPrev(1)">Avançar</button>
