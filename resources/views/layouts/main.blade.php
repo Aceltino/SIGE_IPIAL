@@ -19,9 +19,16 @@
     <!-- /	Link do Css main do projecto -->
     <link href={{{URL::asset("css/estilo.css")}}} rel="stylesheet">
     <link href={{{URL::asset("css/tudo.css")}}} rel="stylesheet">
+    <link href={{{URL::asset("css/dinamico.css")}}} rel="stylesheet">
     <link href={{{URL::asset("css/perfil.css")}}} rel="stylesheet">
     <link href={{{URL::asset("css/fonts/fontawesome-all.min.css")}}} rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+    <!-- /	Link do js mim do projecto -->
+
+    <script src={{{URL::asset("js/jquery-3.6.4.min.js")}}}></script>
+
+  
 
 
 </head>
@@ -36,23 +43,23 @@
     @include('layouts.footer')
 
     <!-- /	Link dos js do bootstrap-->
-  <script src="vendor/apexcharts/apexcharts.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="vendor/chart.js/chart.umd.js"></script>
-  <script src="vendor/echarts/echarts.min.js"></script>
-  <script src="vendor/quill/quill.min.js"></script>
-  <script src="vendor/simple-datatables/simple-datatables.js"></script>
-  <script src="vendor/tinymce/tinymce.min.js"></script>
+
+  <script src={{{URL::asset("vendor/apexcharts/apexcharts.min.js")}}}></script>
+  <script src={{{URL::asset("vendor/bootstrap/js/bootstrap.bundle.min.js")}}}></script>
+  <script src={{{URL::asset("vendor/chart.js/chart.umd.js")}}}></script>
+  <script src={{{URL::asset("vendor/echarts/echarts.min.js")}}}></script>
+  <script src={{{URL::asset("vendor/quill/quill.min.js")}}}></script>
+  <script src={{{URL::asset("vendor/simple-datatables/simple-datatables.js")}}}></script>
+  <script src={{{URL::asset("vendor/tinymce/tinymce.min.js")}}}></script>
 
   <!-- /	Link do js main do projeto -->
-  <script src="js/script.js"></script>
-  <script src="js/form.js"></script>
-  <script src="js/select.js"></script>
+  <script src={{{URL::asset("js/script.js")}}}></script>
+  <script src={{{URL::asset("js/form.js")}}}></script>
+  <script src={{{URL::asset("js/select.js")}}}></script>
+  <script src={{{URL::asset("js/form.js")}}}></script>
+  <script src={{{URL::asset("js/clone-contato.js")}}}></script>
+  <script src={{{URL::asset("js/dinamico.js")}}}></script>
  
- 
- 
-  
-  
 
 </body>
 </html>
