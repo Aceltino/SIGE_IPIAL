@@ -20,18 +20,18 @@
             </div> 
 
             <div class="col-md-12 col-lg-4 mb-2">
-                <select class="btn-sel form-select">
-                    <optgroup label="Curso">
-                        <option value="D.P">Desenhador projectista - D.P</option>
-                        <option value="T.E.I.E">Técnico de Energia e Instalações Eléctricas - T.E.I.E</option>
-                        <option value="T.I">Técnico de Informática - T.I</option>
-                        <option value="E.T">Electrônica e Telecomunicação - E.T</option>
+                <select class="btn-sel form-select" id="filtro3">
+                        <option disabled selected>Curso</option>
+                        <option value="Desenhador projectista">Desenhador projectista</option>
+                        <option value="T.E.I.E">Técnico de Energia e Instalações Eléctricas</option>
+                        <option value="Informática">Informática</option>
+                        <option value="Telecomunicação">Telecomunicação</option>
                     </optgroup>
                 </select>
             </div> 
 
             <div class="col-md-12 col-lg-3">
-                <select class="btn-sel form-select">
+                <select class="btn-sel form-select" id="filtro5">
                     <optgroup label="Disciplina">
                         <option>Educação Física</option>
                         <option>Electrotecnia</option>
@@ -60,7 +60,7 @@
     <div class="procurar row">
         <div class="col-lg-12">
         <form class="proc-form d-flex align-items-center">
-            <input type="search" placeholder="Digite o nome do professor" name="" class="campo-pesq">
+            <input id="pesquisa"type="search" placeholder="Digite o nome do professor" name="" class="campo-pesq">
             <button type="submit" title="Search"><i class="bi bi-search bg-blue-principal btn-search w-100"></i></button>   
         </form>
         </div>
@@ -69,9 +69,9 @@
     <div class="row">
         <div class="col-12">
             <!-- /  Inicio da tabela de inscritos -->
-            <table class="table table-striped" style="margin-top: 20px;">
+            <table class="table table-striped" style="margin-top: 20px;" id="matricula-tab">
             <thead>
-                <tr>
+                <tr  style=" text-align: center;">
                     <th scope="col-lg-2">Nº do Bilhete</th>
                     <th scope="col-lg-2">Nome do professor</th>
                     <th scope="col-lg-2">Curso</th>
@@ -81,24 +81,24 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr  style=" text-align: center;">
                     <th scope="row">0000000KJ000098</th>
                     <td>Sungo Afonso</td>
                     <td>Informática</td>
                     <td>Tarde</td>
-                    <td>TLP</td>
+                    <td>Física</td>
                     <td>
                         <a href="/editar-dados-professor" class="btn btn-cor-sg-a w-48">Visualizar</a>
                         <a href="#" class="btn btn-cor-sg-a w-48 bg-red">Inactivar</a>
                     </td>
                 </tr>
                 
-                <tr>
+                <tr  style=" text-align: center;">
                 <th scope="row">0000000KJ000098</th>
                     <td>Sivi Lando</td>
                     <td>Informática</td>
                     <td>Noite</td>
-                    <td>TLP</td>
+                    <td>Química</td>
                     <td>
                         <a href="#" class="btn btn-cor-sg-a w-48">Ver inscrição</a>
                         <a href="#" class="btn btn-cor-sg-a w-48 bg-green">Activar</a>

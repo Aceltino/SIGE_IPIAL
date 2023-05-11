@@ -1,0 +1,35 @@
+/************
+
+Está é uma estilização para os botões de paginação para remover a estilização padrão do boostrap caso vocês não gostarem da estilização do boostrap, js
+
+
+
+
+.paginate_button{
+
+    background-color: #012970;
+    border: 3px solid #012970;
+    border-radius: 5px;
+    color: #fff;
+    padding: 5px 10px;
+    margin-left:3px;
+    cursor: pointer;
+    
+    
+}
+
+.paginate_button:hover{
+
+    background-color: #01173b;
+    border: 3px solid #01173b;
+    border-radius: 5px;
+    color: #fff;
+    padding: 5px 10px;
+    margin-left:3px;
+    cursor: pointer;
+    
+    
+}
+*/
+
+     

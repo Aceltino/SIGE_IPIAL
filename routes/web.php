@@ -205,7 +205,7 @@ Route::get('/editar-curso', function () {
 
 
 /******************************************
- * Rotas de curso ano-lectivo 
+ * Rotas do ano-lectivo 
  */
 Route::get('/criar-ano-letivo', function () {
     return view('ano-lectivo/criar-aluno-lect');
@@ -226,5 +226,29 @@ Route::get('/editar-ano-letivo', function () {
  Route::get('/perfil', function () {
     return view('perfil/perfil');
 });
+
+/******************************************
+ * Rotas da ficha biografica-lectivo 
+ */
+Route::get('/fichas-biograficas', function () {
+    return view('ficha-biog/ficha-biog');
+});
+
+/******************************************
+ * Rotas do processo do Aluno 
+ */
+Route::get('/processos', function () {
+    return view('processo/processos');
+});
+
+
+/******************************************
+ * Rotas do processo do Aluno 
+ */
+Route::get('/pautas', function () {
+    return view('pauta/pautas');
+});
+
+
 
 
