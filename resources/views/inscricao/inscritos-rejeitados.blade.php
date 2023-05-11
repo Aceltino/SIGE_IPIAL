@@ -25,14 +25,14 @@
 
     <div class="procurar">
     <form class="proc-form d-flex align-items-center">
-        <input type="text" placeholder="Digite o código da inscrição ou o número do B.I do Candidato" name="" class="campo-pesq">
+        <input id="pesquisa" type="text" placeholder="Digite o código da inscrição ou o número do B.I do Candidato" name="" class="campo-pesq">
         <button type="submit" title="Search"><i class="bi bi-search"></i></button>   
     </form>
     </div>
 
     <!-- /  Inicio da tabela de inscritos -->
-    <table class="table table-striped" style="margin-top: 20px;">
-    <thead>
+    <table id="matricula-tab"  class="table table-striped" style="margin-top: 20px;" >
+    <thead  style=" text-align: center;">
         <tr>
         <th scope="col">Número do BI</th>
         <th scope="col">Nome do Candidato</th>
@@ -45,7 +45,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
+        <tr  style=" text-align: center;">
         <th scope="row">0000000KJ000098</th>
         <td>Fernando Exemplo</td>
         <td>Masculino</td>
@@ -59,7 +59,7 @@
         </td>
         </tr>
         
-        <tr>
+        <tr  style=" text-align: center;">
         <th scope="row">0000000KJ000098</th>
         <td>Fernando Exemplo</td>
         <td>Masculino</td>

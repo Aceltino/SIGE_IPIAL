@@ -25,52 +25,52 @@
 
     <div class="procurar">
     <form class="proc-form d-flex align-items-center">
-        <input type="text" placeholder="Digite o código da inscrição ou o número do B.I do Candidato" name="" class="campo-pesq">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>   
+        <input id="pesquisa" type="text" placeholder="Digite o código da inscrição ou o número do B.I do Candidato" name="" class="campo-pesq">
+        <button id="pesquisa" type="submit" title="Search"><i class="bi bi-search"></i></button>   
     </form>
     </div>
 
     <!-- /  Inicio da tabela de inscritos -->
-    <table class="table table-striped" style="margin-top: 20px;">
-    <thead>
-        <tr>
-        <th scope="col">Número do BI</th>
-        <th scope="col">Nome do Candidato</th>
-        <th scope="col">Genero</th>
-        <th scope="col">Média</th>
-        <th scope="col">Idade</th>
-        <th scope="col">Curso</th>
-        <th scope="col">Período</th>
-        <th scope="col"></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-        <th scope="row">0000000KJ000098</th>
-        <td>Fernando Exemplo</td>
-        <td>Masculino</td>
-        <td>16</td>
-        <td>15</td>
-        <td>Informática</td>
-        <td>Manhã</td>
-        <td>
-            <a href="#" class="btn btn-cor-sg-a" data-bs-toggle="modal" data-bs-target="#ExtralargeModal">Ver inscrição</a>
-        </td>
-        </tr>
-        
-        <tr>
-        <th scope="row">0000000KJ000098</th>
-        <td>Fernando Exemplo</td>
-        <td>Masculino</td>
-        <td>16</td>
-        <td>15</td>
-        <td>Informática</td>
-        <td>Manhã</td>
-        <td>
-            <a href="#" class="btn btn-cor-sg-a" data-bs-toggle="modal" data-bs-target="#ExtralargeModal">Ver inscrição</a>
-        </td>
-        </tr>
-    </tbody>
+    <table  id="matricula-tab" class="table table-striped" style="margin-top: 20px;" >
+      <thead  style=" text-align: center;">
+          <tr>
+          <th scope="col">Número do BI</th>
+          <th scope="col">Nome do Candidato</th>
+          <th scope="col">Genero</th>
+          <th scope="col">Média</th>
+          <th scope="col">Idade</th>
+          <th scope="col">Curso</th>
+          <th scope="col">Período</th>
+          <th scope="col"></th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr  style=" text-align: center;">
+          <th scope="row">0000000KJ000098</th>
+          <td>Fernando Exemplo</td>
+          <td>Masculino</td>
+          <td>16</td>
+          <td>15</td>
+          <td>Informática</td>
+          <td>Manhã</td>
+          <td>
+          <a href="#" class="btn btn-cor-sg-a" data-bs-toggle="modal" data-bs-target="#ExtralargeModal">Ver inscrição</a>
+          </td>
+          </tr>
+          
+          <tr  style=" text-align: center;">
+          <th scope="row">0000000KJ000098</th>
+          <td>Fernando Exemplo</td>
+          <td>Masculino</td>
+          <td>16</td>
+          <td>15</td>
+          <td>Informática</td>
+          <td>Manhã</td>
+          <td>
+              <a href="#" class="btn btn-cor-sg-a" data-bs-toggle="modal" data-bs-target="#ExtralargeModal">Ver inscrição</a>
+          </td>
+          </tr>
+      </tbody>
     </table>
     <!-- Termina a tabela de inscritos -->
 

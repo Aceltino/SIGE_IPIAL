@@ -10,12 +10,12 @@
         </div>
       
          <div class="col-lg-2">
-           <select class="btn-sel form-select">
-              <option selected>Curso</option>
-              <option value="D.P">Desenhador projetista - D.P</option>
-              <option value="T.E.I.E">Técnico de Energia e Instalações Electricas - T.E.I.E</option>
-              <option value="T.I">Técnico de Informática - T.I</option>
-              <option value="E.T">Electronica e Telecomunicação - E.T</option>
+           <select class="btn-sel form-select" id="filtro">
+              <option selected disabled>Curso</option>
+              <option value="Desenhador projetista">Desenhador projetista</option>
+              <option value="Técnico de Energia e Instalações Electricas">Técnico de Energia e Instalações Electricas</option>
+              <option value="Informática ">Informática</option>
+              <option value="Electronica e Telecomunicação">Electronica e Telecomunicação</option>
            </select>
          </div> 
 
@@ -29,7 +29,7 @@
 
       <div class="procurar">
         <form class="proc-form d-flex align-items-center">
-          <input type="text" placeholder="Digite o código da inscrição ou o número do B.I do Candidato" name="" class="campo-pesq">
+          <input id="pesquisa" type="text" placeholder="Digite o código da inscrição ou o número do B.I do Candidato" name="" class="campo-pesq">
           <button type="submit" title="Search"><i class="bi bi-search"></i></button>   
         </form>
       </div>
@@ -38,9 +38,9 @@
         <button class="btn-imprimir">Imprimir <i class="bi bi-file-earmark-pdf"></i></button>
       </div>
       <!-- /  Inicio da tabela de inscritos -->
-      <table class="table table-striped" style="margin-top: 10px;">
+      <table class="table table-striped" style="margin-top: 10px;" id="matricula-tab">
         <thead>
-          <tr>
+          <tr  style=" text-align: center;">
             <th scope="col">Número do BI</th>
             <th scope="col">Nome do Candidato</th>
             <th scope="col">Genero</th>
@@ -52,7 +52,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr  style=" text-align: center;">
             <th scope="row">0000000KJ000098</th>
             <td>Fernando Exemplo</td>
             <td>Masculino</td>
@@ -64,11 +64,10 @@
               <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
               <a href="/editar-candidato"><i class="bi bi-pencil"></i></a>
               <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
             </td>
           </tr>
           
-          <tr>
+          <tr  style=" text-align: center;">
             <th scope="row">0000000KJ000098</th>
             <td>Fernando Exemplo</td>
             <td>Masculino</td>
@@ -80,7 +79,7 @@
               <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
               <a href="/editar-candidato"><i class="bi bi-pencil"></i></a>
               <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
+             
             </td>
           </tr>
         </tbody>

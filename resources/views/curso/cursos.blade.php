@@ -10,11 +10,11 @@
         </div>
       
          <div class="col-lg-4">
-           <select class="btn-sel form-select">
+           <select class="btn-sel form-select" id="filtro2">
               <option selected>Area de Formação</option>
-              <option value="CV">Construção civil</option>
+              <option value="Construção civil">Construção civil</option>
               <option value="EL">Electricidade</option>
-              <option value="IN">Informática - I</option>
+              <option value="Informática">Informática</option>
               <option value="E.T">Electronica e Telecomunicação - E.T</option>
            </select>
          </div> 
@@ -29,13 +29,13 @@
 
       <div class="procurar">
         <form class="proc-form d-flex align-items-center">
-          <input type="text" name="" class="campo-pesq">
+          <input id="pesquisa" type="text" name="" class="campo-pesq">
           <button type="submit" title="Search"><i class="bi bi-search"></i></button>   
         </form>
       </div>
 
       <!-- /  Inicio da tabela de inscritos -->
-      <table class="table table-striped">
+      <table class="table table-striped" id="matricula-tab">
         <thead>
           <tr style=" text-align: center;">
             <th scope="col">Nome do Curso</th>
@@ -49,8 +49,8 @@
 
           <tr style=" text-align: center;">
             <th scope="row"> Técnico de Informática</th>
-            <td>Informática</td>
-            <td>Tom Brauny</td>
+            <td>Construção civil</td>
+            <td>Aceltino</td>
             <td>TLP,SEAC( JESON*)</td>
             <td>
               <i class="bi bi-eye-fill"></i>
@@ -88,7 +88,7 @@
 
           <tr style=" text-align: center;">
             <th scope="row"> Técnico de Informática</th>
-            <td>Informática</td>
+            <td>Construção civil</td>
             <td>Tom Brauny</td>
             <td>TLP,SEAC( JESON*)</td>
             <td>
