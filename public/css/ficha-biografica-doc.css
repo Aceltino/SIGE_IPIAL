@@ -1,0 +1,175 @@
+.main-ficha-biografica{
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+	font-family: Arial !important;
+	font-size: 14px;
+    color: black;
+	width: 100%;
+}
+
+.div-ficha-biografica-primeira-linha, .div-ficha-biografica-segunda-linha{
+	width: 100%;
+}
+
+.div-ficha-biografica-primeira-linha{
+	display: flex;
+	justify-content: space-between;
+	text-transform: uppercase;
+}
+
+.section-ficha-biografica-top-left{
+	max-width: 80px;
+}
+
+.section-ficha-biografica-top-left img{
+	width: 100%;
+}
+
+.section-ficha-biografica-top-center{
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	width: 400px;
+	align-items: center;
+}
+
+.color-black{
+    color: black;
+}
+
+.article-insignia-text p, td p{
+    margin-bottom: 0;
+}
+
+.div-insignia-img{
+	max-width: 70px;
+}
+
+.div-insignia-img img{
+	width: 100%;
+}
+
+.section-ficha-biografica-top-right{
+	border: 1px solid black;
+	width: 90px;
+    height: 120px;
+}
+
+.text-uppercase{
+	text-transform: uppercase;
+}
+
+.section-title{
+	margin: 30px 0;
+}
+
+.section-title h1{
+	font-size: 18px;
+	font-weight: normal;
+	text-align: center;
+}
+
+.div-subtitle{
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 3px;
+}
+
+.div-subtitle h3{
+	font-size: 12px;
+	font-weight: normal;
+}
+
+mr-10{
+	margin-right: 10px;
+}
+
+.div-personal-data{
+	border: 1px solid black;
+	padding: 10px;
+}
+
+.first-p-div-personal-data{
+	margin-bottom: 6px;
+	display: flex;
+	flex-direction: column;
+}
+
+.second-p-div-personal-data{
+	margin-bottom: 6px;
+}
+
+.section-table-ficha-biografica table, .section-table-ficha-biografica table tr td{
+	border: 1px solid black;
+	border-collapse: collapse;
+	padding: 5px;
+}
+
+.mt-40{
+	margin-top: 40px;
+}
+
+.text-center{
+	text-align: center;
+}
+
+.mb-3{
+	margin-bottom: 3px;
+}
+
+.d-flex{
+	display: flex;
+}
+
+.section-descricao-div-1{
+	justify-content: space-between;
+	width: 84%;
+	margin-top: 15px;
+}
+
+.ml-10{
+	margin-left: 120px;
+}
+
+.separate{
+	letter-spacing: 1px;
+}
+
+.mt-10{
+	margin-top: 10px;
+}
+
+.mr-5{
+	margin-right: 30px;
+}
+
+.justify-content-center{
+	justify-content: center;
+}
+
+.border-bottom-none{
+	border-bottom: none !important;
+}
+
+.px-10{
+	padding: 0 59px;
+}
+
+.pt-0{
+	padding-top: 0px !important;
+}
+
+.section-texto-descritivo-final-div-1, .section-texto-descritivo-final-div-2
+{
+	border: 1px solid black;
+	padding: 5px;
+}
+
+.section-texto-descritivo-final-div-2{
+	border-left: none;
+}
+
+.justify-content-between{
+	justify-content: space-between;
+}
