@@ -257,8 +257,103 @@
         </a>
       </li>
 
-    
-
+      
+<!-- /	Nav horário-professor-->
+<li class="nav-item">
+  <a class="nav-link collapsed" data-bs-target="#horario-professor-nav" data-bs-toggle="collapse" href="#">
+    <i class="bi bi-clock"></i><span>Horário</span><i class="bi bi-chevron-down ms-auto"></i>
+  </a>
+  <ul id="horario-professor-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+    <li>
+      <a href="horario-profs">
+        <i class="bi bi-circle"></i><span>Horários</span>
+      </a>
+    </li>
+  </ul>
+</li>
+	<!-- /	Nav Turma-professor-->
+  <li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#turma-professor-nav" data-bs-toggle="collapse" href="#">
+      <i class="bi bi-clipboard"></i><span>Turma</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="turma-professor-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+      <li>
+        <a href="turma-profs">
+          <i class="bi bi-circle"></i><span>Turmas</span>
+        </a>
+      </li>
+  
     </ul>
+  </li>
+    
+          	<!-- /	Nav Pauta professor-->
+            <li class="nav-item">
+              <a class="nav-link collapsed" data-bs-target="#pauta-professor-nav" data-bs-toggle="collapse" href="#">
+              <i class="bi bi-calendar3"></i><span>Pauta</span><i class="bi bi-chevron-down ms-auto"></i>
+              </a>
+              <ul id="pauta-professor-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                  <a href="pauta-profs">
+                    <i class="bi bi-circle"></i><span>Pautas</span>
+                  </a>
+                </li>
+              </ul>
+          </li>
+      	<!-- /	Nav Mini-pauta-->
+        <li class="nav-item">
+	        <a class="nav-link collapsed" data-bs-target="#mini-pauta-professor-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-calendar-week"></i></i><span>Mini-Pauta</span><i class="bi bi-chevron-down ms-auto"></i>
+	        </a>
+	        <ul id="mini-pauta-professor-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+	          <li>
+	            <a href="mini-pauta-profs">
+	              <i class="bi bi-circle"></i><span>Mini-Pautas</span>
+	            </a>
+	          </li>
+	        </ul>
+	    </li>
 
+	<!-- /	Nav aluno-professor-->
+  <li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#aluno-professor-nav" data-bs-toggle="collapse" href="#">
+      <i class="bi bi-clipboard"></i><span>Aluno</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="aluno-professor-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+      <li>
+        <a href="consultar-aluno-profs">
+          <i class="bi bi-circle"></i><span>Alunos</span>
+        </a>
+      </li>
+  
+    </ul>
+  </li>
+	<!-- /	Nav calendario-professor-->
+  <li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#calendario-professor-nav" data-bs-toggle="collapse" href="#">
+      <i class="bi bi-clipboard"></i><span>Calendário</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="calendario-professor-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+      <li>
+        <a href="marcacao-provas-profs">
+          <i class="bi bi-circle"></i><span>Marcar</span>
+        </a>
+      </li>
+      <li>
+        <a href="consultar-calendario-profs">
+          <i class="bi bi-circle"></i><span>Calendários</span>
+        </a>
+      </li>
+    </ul>
+     </li>
+
+    <!-- /	Nav assiduidade-professor-->
+    
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#assiduidade-professor-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-clipboard"></i><span>Assuiduidade</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="assiduidade-professor-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+      
+      </ul>
+ </li>
   </aside><!-- Termina Sidebar-->
