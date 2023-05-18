@@ -234,6 +234,10 @@ Route::get('/fichas-biograficas', function () {
     return view('ficha-biog/ficha-biog');
 });
 
+Route::get('/fichas-biograficas-doc', function () {
+    return view('ficha-biog/ficha-biografica-doc');
+});
+
 /******************************************
  * Rotas do processo do Aluno 
  */
