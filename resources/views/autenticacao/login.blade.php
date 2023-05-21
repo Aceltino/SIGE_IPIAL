@@ -8,7 +8,17 @@
       <img src={{URL::asset("img/logo.png")}}><br>
       <span>SIGE - IPIAL</span>
     </div>
-    <form class="row g-3 needs-validation" novalidate>
+   @if($mensagem = Session::get('erro'))
+      {{ $mensagem }}
+   @endif
+
+   @if($errors->any())
+    @foreach( $error->all() as $error)
+        {{ $error }} <br>
+    @endforeach
+  @endif  
+    <form action="{{ route('login.auth') }}" method="POST" class="row g-3 needs-validation" novalidate >
+    @csrf   
       <div class="col-12">
         
         <div class="input-group has-validation">

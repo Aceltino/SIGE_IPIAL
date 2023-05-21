@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controller\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,11 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('autenticacao')->group(function(){
     
     //Rota de Login
-    Route::get('login', function () {
+    Route::get('/login', function () {
         return view('autenticacao/login');
     })->name('login');
+
+    Route::post('/auth', [LoginController::class, 'auth'])->name('login.auth');
     
     //Rota de Cadastro
     Route::get('/registrar', function () {

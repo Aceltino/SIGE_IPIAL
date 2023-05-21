@@ -8,7 +8,7 @@
       <img src={{URL::asset("img/logo.png")}}><br>
       <span>SIGE - IPIAL</span>
     </div>
-    <form class="row g-3 needs-validation" novalidate style="padding-top: 10px;">
+    <form  method="POST" class="row g-3 needs-validation" novalidate style="padding-top: 10px;">
       <div class="container">      
         
         <div class="row">
