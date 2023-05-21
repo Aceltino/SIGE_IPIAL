@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 //Routas para Autenticação no Sistema
 
 Route::prefix('autenticacao')->group(function(){
