@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Inscritos via online')
+@section('title', 'Pautas')
 
 @section('conteudo')
 <main id="main" class="main">
@@ -18,17 +18,7 @@
                 <option value="I12AT">TI12AT</option>
                 <option value="I13AT">I13AM</option>
             </select>
-            </div> 
-
-            <div class="col-lg-5">
-            <select class="btn-sel form-select" name="opcoes" id="filtro4">
-                <option selected disabled>Curso</option>
-                <option value="Desenhador projetista">Desenhador projetista</option>
-                <option value="T.E.I.E">Técnico de Energia e Instalações Electricas - T.E.I.E</option>
-                <option value="Informática<">Informática</option>
-                <option value="E.T">Electronica e Telecomunicação - E.T</option>
-            </select>
-            </div> 
+            </div>  
         
         </div>
     </div>
@@ -60,7 +50,7 @@
           <td>Informática</td>
           <td>Manhã</td>
           <td>
-          <a href="#" class="btn btn-cor-sg-a" data-bs-toggle="modal" data-bs-target="#ExtralargeModal">Ver Pauta</a>
+          <a href="/ver-pauta" class="btn btn-cor-sg-a">Ver Pauta</a>
           </td>
           </tr>
           
@@ -71,7 +61,7 @@
           <td>Desenhador projetista</td>
           <td>Tarde</td>
           <td>
-              <a href="#" class="btn btn-cor-sg-a" data-bs-toggle="modal" data-bs-target="#ExtralargeModal">Ver Pauta</a>
+              <a href="/ver-pauta" class="btn btn-cor-sg-a">Ver Pauta</a>
           </td>
           </tr>
       </tbody>
