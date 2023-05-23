@@ -31,8 +31,14 @@
                 </div>
             </div>
 
-            <div class="col-5">
-                <p><input type="text" value="50" placeholder=" Número maximo de aluno nas turmas" name="" oninput="this.className = ''"></p>
+            <div class="row">
+                <div class="col-6">
+                        <p><input type="text" value="50" placeholder=" Número maximo de aluno nas turmas" name="" oninput="this.className = ''"></p>
+                </div>
+    
+                <div class="col-6">
+                        <p><input type="text" value="20"placeholder=" Número maximo de Salas" name="" oninput="this.className = ''"></p>
+                </div>
             </div>
         </div>
         <div style="text-align:center;margin-top:10px;">

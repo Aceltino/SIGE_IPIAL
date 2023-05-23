@@ -223,7 +223,7 @@
               <span class="total">800</span>
               <p>VAGAS</p>
             </div>
-            <div class="box6" id="box6">
+            <div class=" box6" id="box6">
               <ul class=" lista">
 
                 <li class="clista">
@@ -288,26 +288,65 @@
     </section><!-- Termina seccao do dashboard -->
 	    
     <!-- /	Area do grafico-->
-	<div id="barChart" style="min-height: 400px;" class="echart"></div>
 
-		<script>
-		    document.addEventListener("DOMContentLoaded", () => {
-		      echarts.init(document.querySelector("#barChart")).setOption({
-		        xAxis: {
-		          type: 'category',
-		          data: ['Inscritos', 'Admitidos', 'não admit', 'Matriculados', 'Professores', 'Turmas', 'Cursos', 'Vagas']
-		        },
-		        yAxis: {
-		          type: 'value'
-		        },
-		        series: [{
-		          data: [120, 200, 300, 80, 70, 110, 130, 300],
-		          type: 'bar'
-		        }]
-		      });
-		    });
-	  	</script>
-    </div><!-- Termina Area do grafico -->
+<div>
+  <canvas id="myChart"></canvas>
+</div>
+
+
+
+
+
+
+<script>
+  $(document).ready(function() {
+  // Dados iniciais do gráfico
+  var data = {
+    labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho','Agosto', 'Setembro','Novembro','Dezembro'],
+    datasets: [{
+      label: 'Assiduidade Escolar',
+      data: [0,10,20,30,40,50,60,70,80,90,100],
+      backgroundColor: 'rgba(54, 162, 235, 0.5)',
+      borderColor: 'rgba(54, 162, 235, 1)',
+      borderWidth: 1
+    }],
+ 
+  };
+
+  // Configurações do gráfico
+  var options = {
+    responsive: true,
+    scales: {
+      y: {
+        min: 0,
+        max: 100,
+        ticks: {
+          stepSize: 10,
+            callback: function (value, index, values) {
+              return value + '%'; // Personalize os rótulos como desejar
+            }
+          }
+  }
+    }
+  };
+
+  // Criação do gráfico
+  var ctx = $('#myChart')
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: data,
+    options: options
+  });
+ 
+    // Redimensiona o gráfico quando a janela for redimensionada
+    $(window).on('resize', function() {
+    myChart.resize();
+    });
+
+});
+</script>
+
+    <!-- Termina Area do grafico -->
   
 </main>
 @endsection

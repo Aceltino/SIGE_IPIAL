@@ -26,24 +26,31 @@
             <div class="form-group">
                 <input type="text" style=" text-align: center;" placeholder="Nome do Curso" name="" oninput="this.className = ''">
             </div>
-                            
-            <div class="form-group">
-                <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
-                    <option selected disabled>Area de Formação:</option>
-                    <option value="Informática">Informática</option>
-                    <option value="Contrução civil">Contrução civil</option>
-                    <option value="Eletronica">Eletronica</option>
-                    <option value="Contrução civil">Contrução civil</option>
-                </select>
-            </div>
 
+            <div class="row">
+                <div class="col form-group">
+                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
+                        <option selected disabled>Area de Formação:</option>
+                        <option value="Informática">Informática</option>
+                        <option value="Contrução civil">Contrução civil</option>
+                        <option value="Eletronica">Eletronica</option>
+                        <option value="Contrução civil">Contrução civil</option>
+                    </select>
+                </div>
+
+                <div class=" col form-group">
+                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
+                        <option selected disabled>Coordenador:</option>
+                        <option value="Tom Brauny">Tom Brauny</option>
+                        <option value="João Miguel">João Miguel</option>
+                        <option value="Braga Santos">Braga Santos</option>
+                    </select>
+                </div>
+
+            </div>
+            
             <div class="form-group">
-                <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
-                    <option selected disabled>Coordenador:</option>
-                    <option value="Tom Brauny">Tom Brauny</option>
-                    <option value="João Miguel">João Miguel</option>
-                    <option value="Braga Santos">Braga Santos</option>
-                </select>
+                <input type="text" style=" text-align: center;" placeholder="Sigla do Curso" name="" oninput="this.className = ''">
             </div>
 
             <div class="row">

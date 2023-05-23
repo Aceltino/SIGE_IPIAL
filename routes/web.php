@@ -175,6 +175,9 @@ Route::get('/editar-turma', function () {
 /******************************************
  * Rotas de aluno
  */
+Route::get('/alunos', function () {
+    return view('aluno/aluno');
+});
 Route::get('/boletim-notas', function () {
     return view('aluno/boletim-notas');
 });
@@ -217,7 +220,9 @@ Route::get('/ano-letivo', function () {
 
 Route::get('/editar-ano-letivo', function () {
     return view('ano-lectivo/edit-ano-letivo');
-});/**<!--Fim Rotas ano lectivo--> */
+});
+
+/**<!--Fim Rotas ano lectivo--> */
 
 /**
  * Rota do perfil de usuario

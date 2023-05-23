@@ -48,6 +48,13 @@
           <i class="bi bi-journal-text"></i><span>Matrícula</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="matricula-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+        <li>
+            <a href="/alunos">
+              <i class="bi bi-circle"></i><span>Alunos</span>
+            </a>
+          </li>
+
           <li>
             <a href="/matricular-aluno">
               <i class="bi bi-circle"></i><span>Matricular aluno</span>
@@ -138,7 +145,7 @@
 	            </a>
 	          </li>
 	          <li>
-	            <a href="#">
+	            <a href="comunicados">
 	              <i class="bi bi-circle"></i><span>Comunicados</span>
 	            </a>
 	          </li>
@@ -213,7 +220,7 @@
 	        </a>
 	        <ul id="calprova-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 	          <li>
-	            <a href="calendario de prova">
+	            <a href="calendario-de-prova">
 	              <i class="bi bi-circle"></i><span>Calendários de Provas</span>
 	            </a>
 	          </li>

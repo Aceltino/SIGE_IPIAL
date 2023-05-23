@@ -37,16 +37,23 @@
 
             <div class="row">
                 
-                <div class="col">
-                    <div class="form-group">
-                        <input type="text" placeholder="Turno do Aluno" oninput="this.className = ''">
-                    </div>
-                </div>
+            <div class="col form-group gap-1 ">
+                <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
+                    <option disabled selected>Turno:</option>
+                    <option value="Manhã">Manhã</option>
+                    <option value="Tarde">Tarde</option>
+                    <option value="Noite">Noite</option>
+                </select>
+            </div>
 
-                <div class="col">
-                    <div class="form-group">
-                        <input type="text" placeholder="Turma do Aluno" oninput="this.className = ''">
-                    </div> 
+                <div class="col form-group gap-1 ">
+                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
+                        <option disabled selected>Turma:</option>
+                        <option value="I10AM">I10AM</option>
+                        <option value="I11AM">I11AM</option>
+                        <option value="I12BT">I12BT</option>
+                        <option value="I13BT">I13BT</option>
+                    </select>
                 </div>
 
                 <div class="col">
@@ -73,16 +80,44 @@
 
             <div class="row">
 
-                <div class="col">
-                    <div class="form-group">
-                        <input type="text" placeholder="Sala do Aluno" oninput="this.className = ''">
-                    </div> 
+                <div class="col form-group gap-1 ">
+                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
+                        <option disabled selected>sala:</option>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                    </select>
                 </div>
-
-                <div class="col">
-                    <div class="form-group">
-                        <input type="text" placeholder="Classe do aluno" oninput="this.className = ''">
-                    </div> 
+                
+                <div class="col form-group gap-1 ">
+                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
+                        <option disabled selected>Classe:</option>
+                        <option value="10">10ª</option>
+                        <option value="11">11ª</option>
+                        <option value="12">12ª</option>
+                        <option value="13">13ª</option>
+                    </select>
                 </div>
             </div>
 
