@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 //Routas para Autenticação no Sistema
 
 Route::prefix('autenticacao')->group(function(){
@@ -239,6 +238,10 @@ Route::get('/fichas-biograficas', function () {
     return view('ficha-biog/ficha-biog');
 });
 
+Route::get('/fichas-biograficas-doc', function () {
+    return view('ficha-biog/ficha-biografica-doc');
+});
+
 /******************************************
  * Rotas do processo do Aluno 
  */
@@ -248,12 +251,28 @@ Route::get('/processos', function () {
 
 
 /******************************************
- * Rotas do processo do Aluno 
+ * Rotas de pauta
  */
 Route::get('/pautas', function () {
     return view('pauta/pautas');
 });
 
+Route::get('/ver-pauta', function () {
+    return view('pauta/pauta-doc');
+});
+
+
+/******************************************
+ * Rotas de mini-pauta
+ */
+
+Route::get('/mini-pauta', function () {
+    return view('mini-pauta/mini-pauta');
+});
+
+Route::get('/ver-mini-pauta', function () {
+    return view('mini-pauta/mini-pauta-doc');
+});
 
 
 

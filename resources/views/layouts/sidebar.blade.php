@@ -256,16 +256,40 @@
 	        </ul>
 	    </li>
 
-    	<!-- /	Nav Perfil-->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="/perfil">
-          <i class="bi bi-person"></i>
-          <span>Perfil</span>
+
+
+      
+	<!-- /	Nav aluno-professor-->
+  <li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#aluno-professor-nav" data-bs-toggle="collapse" href="#">
+      <i class="bi bi-clipboard"></i><span>Aluno</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="aluno-professor-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+      <li>
+        <a href="consultar-aluno-profs">
+          <i class="bi bi-circle"></i><span>Alunos</span>
         </a>
       </li>
-
-    
-
+  
     </ul>
+  </li>
 
+    <!-- /	Nav assiduidade-professor-->
+    
+  <li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#assiduidade-professor-nav" data-bs-toggle="collapse" href="#">
+      <i class="bi bi-clipboard"></i><span>Assuiduidade</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="assiduidade-professor-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+    
+    </ul>
+  </li>
+
+  <!-- /	Nav Perfil-->
+<li class="nav-item">
+  <a class="nav-link collapsed" href="/perfil">
+    <i class="bi bi-person"></i>
+    <span>Perfil</span>
+  </a>
+</li>
   </aside><!-- Termina Sidebar-->
