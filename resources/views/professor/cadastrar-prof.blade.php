@@ -4,7 +4,7 @@
 
 @section('conteudo')
 <main id="main" class="main">
-      <form method="POST" action="" id="regForm" action="" class="formulario-layout">
+      <form id="regFormh" action="" class="formulario-layout">
         <div style="text-align:center;margin-top:40px;">
           <span class="step"></span>
           <span class="step"></span>
@@ -33,12 +33,11 @@
 
             <div class="col-md-2">
               <div class="form-group">
-                <input type="text" class="form-control" readonly="true" disabled oninput="this.className = ''" value="00">
+                <input type="text" placeholder="idade" oninput="this.className = ''">
               </div> 
             </div>
           </div>
-
- 
+          
           <div class="row d-flex align-items-center">
             <div class="col-md-4">
               <div class="form-group">
@@ -48,19 +47,9 @@
               </div>
             </div>
 
-            <div class="col-md-8" style=" display: flex; justify-content: flex-end;align-items: center; gap: 10px;">
-            <h5>Endereço</h5>
+            <div class="col-md-8">
               <div class="form-group">
-                <input type="text" placeholder="Municipio" oninput="this.className = ''">
-              </div> 
-              <div class="form-group">
-                <input type="text" placeholder="Bairro" oninput="this.className = ''">
-              </div> 
-              <div class="form-group">
-                <input type="text" placeholder="Zona" oninput="this.className = ''">
-              </div> 
-              <div class="form-group">
-                <input type="text" placeholder="Nº Casa" oninput="this.className = ''">
+                <input type="text" placeholder="Morada" oninput="this.className = ''">
               </div> 
             </div>
           </div>
