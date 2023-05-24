@@ -49,12 +49,6 @@
         </a>
         <ul id="matricula-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 
-        <li>
-            <a href="/alunos">
-              <i class="bi bi-circle"></i><span>Alunos</span>
-            </a>
-          </li>
-
           <li>
             <a href="/matricular-aluno">
               <i class="bi bi-circle"></i><span>Matricular aluno</span>
@@ -266,7 +260,7 @@
     </a>
     <ul id="aluno-professor-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
       <li>
-        <a href="consultar-aluno-profs">
+        <a href="/alunos">
           <i class="bi bi-circle"></i><span>Alunos</span>
         </a>
       </li>

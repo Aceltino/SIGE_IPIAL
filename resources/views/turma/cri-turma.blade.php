@@ -23,7 +23,7 @@
             </div>
 
             <div class="form-group">
-                <input type="text" style=" text-align: center;" placeholder="Nome da turma" name="" oninput="this.className = ''">
+                <input class="form-control" type="text" style=" text-align: center;" placeholder="Nome da turma" name="" oninput="this.className = ''" disabled>
             </div>
 
             <div class="row">
@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="col">
-                    <input type="text" readonly="true" value="VAGAS: 50" name="" desable="">
+                    <input class="form-control" type="text" readonly="true" value="VAGAS: 50" name="" desable="" disabled>
                 </div>
             </div>
 
@@ -57,11 +57,11 @@
                 <div class="form-group col">
                     <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
                         <option selected disabled>CURSO</option>
-                            <option value ="I">Informática - I</option>
-                            <option value="D.P">Desenhador projetista - D.P</option>
-                            <option value="T.E.I.E">Técnico de Energia e Instalações Electricas - T.E.I.E</option>
-                            <option value="T.I">Técnico de Informática - T.I</option>
-                            <option value="E.T">Electronica e Telecomunicação - E.T</option>
+                            <option value ="Informática">Informática</option>
+                            <option value="Desenhador projetista">Desenhador projetista</option>
+                            <option value="Técnico de Energia e Instalações Electricas">Técnico de Energia e Instalações Electricas</option>
+                            <option value="Técnico de Informática">Técnico de Informática</option>
+                            <option value="Electronica e Telecomunicação">Electronica e Telecomunicação</option>
                     </select>
                 </div>
 
@@ -97,7 +97,7 @@
             </div>
 
             <div class="form-group">
-                <input type="text"  style=" text-align: center; "placeholder="Ano Lectivo" name="" oninput="this.className = ''">
+                <input class="form-control" type="text"  style=" text-align: center; "placeholder="Ano Lectivo" name="" oninput="this.className = ''" disabled>
             </div>
 
             <div style="text-align:center;margin-top:10px;">

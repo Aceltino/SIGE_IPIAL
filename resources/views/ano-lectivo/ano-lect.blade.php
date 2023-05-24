@@ -36,7 +36,7 @@
 
       <div class="procurar">
         <form class="proc-form d-flex align-items-center">
-          <input id="pesquisa" type="text" name="" class="campo-pesq">
+          <input id="pesquisa" placeholder="Qual ano letivo estás a procurar?" value="" type="text" name="" class="campo-pesq">
           <button type="submit" title="Search"><i class="bi bi-search"></i></button>   
         </form>
       </div>
@@ -331,27 +331,57 @@
 
             <div class="corpo-modal">
               <form class="form-inativo">
-                <div class="dados-pessoais"> 
+                <div class="dados-pessoais">
                   <div Class="row">
 
                     <div class=" col area-input form-group" disabled>
-                     <label>Data de Inicio: </label><input type="text" name="" value="2020" disabled>
+                     <label>Nome do Ano Letivo: </label><input class="form-control" type="text" name="" value="Ano-Alda-2023" style="text-align: center;" disabled>
+                    </div>
+                  </div>  
+
+                  <div Class="row">
+
+                    <div class=" col area-input form-group" disabled>
+                     <label>Data de Inicio: </label><input class="form-control" type="text" name="" value="2020" disabled>
                     </div>
 
                     <div class="col area-input form-group" style="margin-left: 10px;" disabled>
-                     <label>Data de Fim: </label><input type="text" name="" value="2021" disabled>
+                     <label>Data de Fim: </label><input class="form-control" type="text" name="" value="2021" disabled>
                     </div>
                   </div>  
                   
                   <div class="row">
-                    <div class="col area-input form-group" style="margin-left: 10px;" disabled>
-                      <label>Número Máximo de turma: </label><input type="text" name="" value="19" disabled>
-                      </div>
+                    <div class="col area-input form-group" disabled>
+                      <label>Número Máximo de vagas na turma: </label><input class="form-control" type="text" name="" value="50" disabled>
+                    </div>
   
                     <div class="col area-input form-group" style="margin-left: 10px;" disabled>
-                      <label>Número Máximo de vagas na turma: </label><input type="text" name="" value="50" disabled>
-                      </div>
-                  </div>   
+                      <label>Número Máximo de Sala: </label><input class="form-control" type="text" name="" value="29" disabled>
+                    </div>
+
+                  </div>
+                  
+                  <div Class="row">
+
+                    <div class=" col area-input form-group" disabled>
+                      <label>Início das Incrições:</label><input class="form-control" type="text" name="" value="2002" disabled>
+                    </div>
+
+                    <div class="col area-input form-group" style="margin-left: 10px;" disabled>
+                      <label>Fim das Incrições:</label><input class="form-control" type="text" name="" value="2023" disabled>
+                    </div>
+                  </div> 
+
+                  <div Class="row">
+
+                    <div class=" col area-input form-group" disabled>
+                      <label>Início das Matriculas:</label><input class="form-control" type="text" name="" value="2002" disabled>
+                    </div>
+
+                    <div class="col area-input form-group" style="margin-left: 10px;" disabled>
+                      <label>Fim das Matriculas:</label><input class="form-control" type="text" name="" value="2023" disabled>
+                    </div>
+                  </div> 
 
                 </div>
                 <div class="footer-modal" style="text-align: center;">

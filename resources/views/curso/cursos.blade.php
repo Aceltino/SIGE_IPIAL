@@ -11,7 +11,7 @@
       
          <div class="col-lg-4">
            <select class="btn-sel form-select" id="filtro3">
-              <option selected>Area de Formação</option>
+              <option selected disabled>Area de Formação</option>
               <option value="Construção civil">Construção civil</option>
               <option value="EL">Electricidade</option>
               <option value="Informática">Informática</option>
@@ -20,8 +20,12 @@
          </div> 
 
          <div class="col-lg-4">
-           <select class="btn-sel form-select">
-             <option selected>Coordenador</option>
+           <select class="btn-sel form-select" id="filtro4">
+             <option selected disabled>Coordenador</option>
+             <option value="Aceltino">Aceltino</option>
+             <option value="Carlos">Carlos</option>
+             <option value="Aidth">Aidith</option>
+             <option value="Joelson">Joelson</option>
            </select>
          </div>
       
@@ -29,7 +33,7 @@
 
       <div class="procurar">
         <form class="proc-form d-flex align-items-center">
-          <input id="pesquisa" type="text" name="" class="campo-pesq">
+          <input id="pesquisa" type="text" name="" class="campo-pesq" placeholder="Digite o Curso que estás a procurar">
           <button type="submit" title="Search"><i class="bi bi-search"></i></button>   
         </form>
       </div>
@@ -42,7 +46,6 @@
             <th scope="col">Sigla</th>
             <th scope="col">Area de Formação</th>
             <th scope="col">Coordenador</th>
-            <th scope="col">Disciplinas</th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -53,7 +56,6 @@
             <td>I</td>
             <td>Construção civil</td>
             <td>Aceltino</td>
-            <td>TLP,SEAC( JESON*)</td>
             <td>
               <i class="bi bi-eye-fill"  data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
               <a href="/editar-curso"><i class="bi bi-pencil"></i></a>
@@ -67,7 +69,6 @@
             <td>I</td>
             <td>Informática</td>
             <td>Tom Brauny</td>
-            <td>TLP,SEAC( JESON*)</td>
             <td>
               <i class="bi bi-eye-fill"  data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
               <a href="/editar-curso"><i class="bi bi-pencil"></i></a>
@@ -81,7 +82,6 @@
             <td>I</td>
             <td>Informática</td>
             <td>Tom Brauny</td>
-            <td>TLP,SEAC( JESON*)</td>
             <td>
               <i class="bi bi-eye-fill"  data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
               <a href="/editar-curso"><i class="bi bi-pencil"></i></a>
@@ -95,7 +95,6 @@
             <td>I</td>
             <td>Construção civil</td>
             <td>Tom Brauny</td>
-            <td>TLP,SEAC( JESON*)</td>
             <td>
               <i class="bi bi-eye-fill"  data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
               <a href="/editar-curso"><i class="bi bi-pencil"></i></a>
@@ -109,7 +108,6 @@
             <td>I</td>
             <td>Informática</td>
             <td>Tom Brauny</td>
-            <td>TLP,SEAC( JESON*)</td>
             <td>
               <i class="bi bi-eye-fill"  data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
               <a href="/editar-curso"><i class="bi bi-pencil"></i></a>
@@ -179,149 +177,6 @@
                 </select>
             </div>
 
-            <div class="container">
-                
-                <div class="row">
-                    <label for="">Disciplinas:</label>
-                    <div  id="clone"class="form-group col-4">
-                      <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select" disabled>
-                            <option disabled>Disciplina:</option>
-                            <option value="Tom Brauny">Matemática</option>
-                            <option value="João Miguel" selected >Português</option>
-                            <option value="Braga Santos">Fisíca</option>
-                        </select>
-                    </div>
-                    <div  id="clone"class="form-group col-4">
-                      <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select" disabled>
-                            <option disabled>Disciplina:</option>
-                            <option value="Tom Brauny">Matemática</option>
-                            <option value="João Miguel" selected >Português</option>
-                            <option value="Braga Santos">Fisíca</option>
-                        </select>
-                    </div>
-                    <div  id="clone"class="form-group col-4">
-                      <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select" disabled>
-                            <option disabled>Disciplina:</option>
-                            <option value="Tom Brauny">Matemática</option>
-                            <option value="João Miguel" selected >Português</option>
-                            <option value="Braga Santos">Fisíca</option>
-                        </select>
-                    </div>
-                </div>
-                
-    
-                <div class="row">
-                    
-                    <div  id="clone"class="form-group col-4">
-                        <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select" disabled>
-                            <option disabled>Disciplina:</option>
-                            <option value="Tom Brauny">Matemática</option>
-                            <option value="João Miguel" selected >Português</option>
-                            <option value="Braga Santos">Fisíca</option>
-                        </select>
-                    </div>
-                    <div  id="clone"class="form-group col-4">
-                        <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select" disabled>
-                            <option disabled>Disciplina:</option>
-                            <option value="Tom Brauny">Matemática</option>
-                            <option value="João Miguel" selected >Português</option>
-                            <option value="Braga Santos">Fisíca</option>
-                        </select>
-                    </div>
-                    <div  id="clone"class="form-group col-4">
-                        <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select" disabled>
-                            <option disabled>Disciplina:</option>
-                            <option value="Tom Brauny">Matemática</option>
-                            <option value="João Miguel" selected >Português</option>
-                            <option value="Braga Santos">Fisíca</option>
-                        </select>
-                    </div>
-                </div>
-    
-                <div class="row">
-    
-                    <div  id="clone"class="form-group col-4">
-                        <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select" disabled>
-                            <option disabled>Disciplina:</option>
-                            <option value="Tom Brauny">Matemática</option>
-                            <option value="João Miguel" selected >Português</option>
-                            <option value="Braga Santos">Fisíca</option>
-                        </select>
-                    </div>
-                    <div  id="clone"class="form-group col-4">
-                        <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select" disabled>
-                            <option disabled>Disciplina:</option>
-                            <option value="Tom Brauny">Matemática</option>
-                            <option value="João Miguel" selected >Português</option>
-                            <option value="Braga Santos">Fisíca</option>
-                        </select>
-                    </div>
-                    <div  id="clone"class="form-group col-4">
-                        <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select" disabled>
-                            <option disabled>Disciplina:</option>
-                            <option value="Tom Brauny">Matemática</option>
-                            <option value="João Miguel" selected >Português</option>
-                            <option value="Braga Santos">Fisíca</option>
-                        </select>
-                    </div>
-                </div>
-    
-                <div class="row">
-    
-                    <div  id="clone"class="form-group col-4">
-                        <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select" disabled>
-                            <option disabled>Disciplina:</option>
-                            <option value="Tom Brauny">Matemática</option>
-                            <option value="João Miguel" selected >Português</option>
-                            <option value="Braga Santos">Fisíca</option>
-                        </select>
-                    </div>
-                    <div  id="clone"class="form-group col-4">
-                        <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select" disabled>
-                            <option disabled>Disciplina:</option>
-                            <option value="Tom Brauny">Matemática</option>
-                            <option value="João Miguel" selected >Português</option>
-                            <option value="Braga Santos">Fisíca</option>
-                        </select>
-                    </div>
-                    <div  id="clone"class="form-group col-4">
-                        <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select" disabled>
-                            <option disabled>Disciplina:</option>
-                            <option value="Tom Brauny">Matemática</option>
-                            <option value="João Miguel" selected >Português</option>
-                            <option value="Braga Santos">Fisíca</option>
-                        </select>
-                    </div>
-                </div>
-    
-                    <div class="row">
-    
-                        <div  id="clone"class="form-group col-4">
-                            <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select" disabled>
-                                <option disabled>Disciplina:</option>
-                                <option value="Tom Brauny">Matemática</option>
-                                <option value="João Miguel" selected >Português</option>
-                                <option value="Braga Santos">Fisíca</option>
-                            </select>
-                        </div>
-                        <div  id="clone"class="form-group col-4">
-                            <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select" disabled>
-                                <option disabled>Disciplina:</option>
-                                <option value="Tom Brauny">Matemática</option>
-                                <option value="João Miguel" selected >Português</option>
-                                <option value="Braga Santos">Fisíca</option>
-                            </select>
-                        </div>
-                        <div  id="clone"class="form-group col-4">
-                            <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select" disabled>
-                                <option disabled>Disciplina:</option>
-                                <option value="Tom Brauny">Matemática</option>
-                                <option value="João Miguel" selected >Português</option>
-                                <option value="Braga Santos">Fisíca</option>
-                            </select>
-                        </div>
-                    </div>
-            </div>
                 <div class="footer-modal" style="text-align: center;">
                  
                   <div class="jnt">

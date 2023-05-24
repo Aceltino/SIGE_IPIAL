@@ -317,13 +317,13 @@
                     </select>
                 </div>
         
-                <div id="clone"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
+                <div id="clone" class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
                     <span style="color: #777;">+244</span>
                     <input type="text" name="" placeholder="Telefone" oninput="this.className = ''">
                 </div>
 
                 <div class="col-3">
-                    <i id="clonebtn"class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>    
+                    <i id="clonebtn" class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>    
                 </div>
             </div>
 

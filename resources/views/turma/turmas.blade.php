@@ -11,7 +11,7 @@
   
       <div class="col-lg-2">
         <select class="btn-sel form-select" id="filtro5">
-          <option selected>curso</option>
+          <option selected disabled>curso</option>
           <option value="Desenhador projetista">Desenhador projetista</option>
           <option value="T.E.I.E">Técnico de Energia e Instalações Electricas - T.E.I.E</option>
           <option value="Informática">Informática</option>
@@ -20,8 +20,32 @@
       </div> 
 
       <div class="col-lg-2">
-        <select class="btn-sel form-select">
-          <option selected>Ano</option>
+        <select class="btn-sel form-select" id="filtro">
+          <option selected disabled>Sala</option>
+          <option value="01">01</option>
+          <option value="02">02</option>
+          <option value="03">03</option>
+          <option value="04">04</option>
+          <option value="05">05</option>
+          <option value="06">06</option>
+          <option value="07">07</option>
+          <option value="08">08</option>
+          <option value="09">09</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+          <option value="15">15</option>
+          <option value="16">16</option>
+          <option value="17">17</option>
+          <option value="18">18</option>
+          <option value="19">19</option>
+          <option value="20">20</option>
+          <option value="21">21</option>
+          <option value="22">22</option>
+          <option value="23">23</option>
+          <option value="24">100</option>
         </select>
       </div>
   
@@ -29,7 +53,7 @@
 
   <div class="procurar">
     <form class="proc-form d-flex align-items-center">
-      <input  id="pesquisa" type="text" name="" class="campo-pesq">
+      <input  id="pesquisa" type="text" name="" class="campo-pesq" placeholder="Digite os dados da Turma que procuras">
       <button type="submit" title="Search"><i class="bi bi-search"></i></button>   
     </form>
   </div>
@@ -55,7 +79,7 @@
         <td>Tarde</td>
         <td>16</td>
         <td>Informática</td>
-        <td>100</td>
+        <td>01</td>
         <td>2020/2029</td>
         <td>
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
@@ -71,7 +95,7 @@
         <td>Tarde</td>
         <td>50</td>
         <td>Telecomunicação</td>
-        <td>100</td>
+        <td>02</td>
         <td>2020/2024</td>
         <td>
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
@@ -87,7 +111,7 @@
         <td>Tarde</td>
         <td>50</td>
         <td>Telecomunicação</td>
-        <td>100</td>
+        <td>03</td>
         <td>2020/2024</td>
         <td>
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal" ></i>
@@ -103,7 +127,7 @@
         <td>Tarde</td>
         <td>50</td>
         <td>Desenhador projetista</td>
-        <td>100</td>
+        <td>04</td>
         <td>2020/2024</td>
         <td>
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
@@ -119,7 +143,7 @@
         <td>Tarde</td>
         <td>50</td>
         <td>Telecomunicação</td>
-        <td>100</td>
+        <td>05</td>
         <td>2020/2024</td>
         <td>
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
@@ -135,7 +159,7 @@
         <td>Tarde</td>
         <td>50</td>
         <td>Desenhador projetista</td>
-        <td>100</td>
+        <td>06</td>
         <td>2020/2024</td>
         <td>
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
@@ -151,7 +175,7 @@
         <td>Tarde</td>
         <td>50</td>
         <td>Telecomunicação</td>
-        <td>100</td>
+        <td>07</td>
         <td>2020/2024</td>
         <td>
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
@@ -167,7 +191,7 @@
         <td>Tarde</td>
         <td>50</td>
         <td>Informática</td>
-        <td>100</td>
+        <td>08</td>
         <td>2020/2024</td>
         <td>
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
@@ -183,7 +207,7 @@
         <td>Tarde</td>
         <td>50</td>
         <td>Telecomunicação</td>
-        <td>100</td>
+        <td>09</td>
         <td>2020/2024</td>
         <td>
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
@@ -199,7 +223,7 @@
         <td>Tarde</td>
         <td>50</td>
         <td>Telecomunicação</td>
-        <td>100</td>
+        <td>10</td>
         <td>2020/2024</td>
         <td>
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
@@ -215,7 +239,7 @@
         <td>Tarde</td>
         <td>50</td>
         <td>Informática</td>
-        <td>100</td>
+        <td>11</td>
         <td>2020/2024</td>
         <td>
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
@@ -231,7 +255,7 @@
         <td>Tarde</td>
         <td>50</td>
         <td>Telecomunicação</td>
-        <td>100</td>
+        <td>12</td>
         <td>2020/2024</td>
         <td>
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
@@ -247,7 +271,7 @@
         <td>Tarde</td>
         <td>50</td>
         <td>Telecomunicação</td>
-        <td>100</td>
+        <td>13</td>
         <td>2020/2024</td>
         <td>
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
@@ -285,7 +309,7 @@
             <form class="form-inativo">
               <div class="dados-pessoais">        
                   <div class="area-input form-group">
-                      <label>Nome Da Turma: </label><input type="text" name="" value="I12AT"  disabled>
+                      <label>Nome Da Turma: </label><input class="form-control" type="text" name="" value="I12AT"  disabled>
                   </div>
 
                 <div class="row">
@@ -293,10 +317,10 @@
                     <div class="col form-group gap-1 ">
                         <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select"  disabled>
                             <option  disabled>Classe:</option>
-                            <option value="Décima">10ª</option>
-                            <option value="Décima-primeira">11ª</option>
-                            <option value="Décima-segunda" selected>12ª</option>
-                            <option value="Décima-terceira">13ª</option>
+                            <option value="10">10ª</option>
+                            <option value="11">11ª</option>
+                            <option value="12" selected>12ª</option>
+                            <option value="13">13ª</option>
                         </select>
                     </div>
                         
@@ -312,11 +336,11 @@
                     <div class="form-group col">
                         <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select"  disabled>
                             <option  disabled>CURSO</option>
-                                <option value ="I" selected>Informática - I</option>
-                                <option value="D.P">Desenhador projetista - D.P</option>
-                                <option value="T.E.I.E">Técnico de Energia e Instalações Electricas - T.E.I.E</option>
-                                <option value="T.I">Técnico de Informática - T.I</option>
-                                <option value="E.T">Electronica e Telecomunicação - E.T</option>
+                                <option value ="Informática" selected>Informática</option>
+                                <option value="Desenhador projetista">Desenhador projetista</option>
+                                <option value="Técnico de Energia e Instalações Electricas">Técnico de Energia e Instalações Electricas</option>
+                                <option value="contrução civil">contrução civil</option>
+                                <option value="Electronica e Telecomunicação">Electronica e Telecomunicação</option>
                         </select>
                     </div>
 
@@ -326,13 +350,13 @@
                 <div class="row">
 
                     <div class=" col area-input form-group " >
-                        <label for=""> Sala:</label><input type="text" name="" value="09"  disabled >
+                        <label for=""> Sala:</label><input class="form-control" type="text" name="" value="09"  disabled >
                     </div>
                     <div class=" col area-input form-group " style="margin-left: 10px;" >
-                        <label for=""> Ano Lectivo:</label><input type="text" name="" value="2020-2021"  disabled >
+                        <label for=""> Ano Lectivo:</label><input class="form-control" type="text" name="" value="2020-2021"  disabled >
                     </div>
                     <div class=" col area-input form-group " style="margin-left: 10px;" >
-                        <label for=""> Vagas:</label><input type="text" name="" value="50" disabled>
+                        <label for=""> Vagas:</label><input class="form-control" type="text" name="" value="50" disabled>
                     </div>
                 </div>
             </div>

@@ -275,4 +275,21 @@ Route::get('/ver-mini-pauta', function () {
 });
 
 
+/******************************************
+ * Rotas do Comunicado
+ */
+
+ Route::get('/criar-comunicado', function () {
+    return view('comunicado/criar-comunicado');
+});
+
+Route::get('/editar-comunicado', function () {
+    return view('comunicado/editar-comunicado');
+});
+
+Route::get('/comunicados', function () {
+    return view('comunicado/comunicado');
+});
+
+
 

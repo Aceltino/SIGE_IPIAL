@@ -38,26 +38,41 @@
                     </select>
                 </div>
 
-                <div class="form-group col">
+
+                <div class=" col form-group " >
                     <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
-                        <option  disabled>CURSO</option>
-                            <option value ="I" selected>Informática - I</option>
-                            <option value="D.P">Desenhador projetista - D.P</option>
-                            <option value="T.E.I.E">Técnico de Energia e Instalações Electricas - T.E.I.E</option>
-                            <option value="T.I">Técnico de Informática - T.I</option>
-                            <option value="E.T">Electronica e Telecomunicação - E.T</option>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
                     </select>
                 </div>
 
 
             </div>
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
-
-                    <div class=" col area-input form-group " >
-                        <label for=""> Sala:</label><input type="text" name="" value="09" >
-                    </div>
-                    <div class=" col area-input form-group " style="margin-left: 10px;" >
+                    <div class=" col area-input form-group "  >
                         <label for=""> Ano Lectivo:</label><input type="text" name="" value="2020-2021" >
                     </div>
                     <div class=" col area-input form-group " style="margin-left: 10px;" >
@@ -66,9 +81,22 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="form-group col">
+                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
+                        <option  disabled>CURSO</option>
+                        <option value ="Informática" selected>Informática</option>
+                        <option value="Desenhador projetista">Desenhador projetista</option>
+                        <option value="Técnico de Energia e Instalações Electricas">Técnico de Energia e Instalações Electricas</option>
+                        <option value="contrução civil">contrução civil</option>
+                        <option value="Electronica e Telecomunicação">Electronica e Telecomunicação</option>
+                    </select>
+                </div>
+            </div>
+
                 <div class="footer-modal" style="text-align: center; margin-top: 50px;">
                     <div class="jnt">
-                        <a href="#" class="btn" style="background-color: #070b17; color: #fff;">Cancelar edição</a>
+                        <a href="/turmas" class="btn" style="background-color: #070b17; color: #fff;">Cancelar edição</a>
 
                         <button type="submit" class="btn" style="background-color: #26dd35; color: #fff;">Atualizar</button>
                     </div>

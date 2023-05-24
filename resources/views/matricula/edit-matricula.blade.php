@@ -248,7 +248,7 @@
 
                 <div class="footer-modal" style="text-align: center; margin-top: 50px;">
                     <div class="jnt">
-                        <a href="#" class="btn" style="background-color: #070b17; color: #fff;">Cancelar edição</a>
+                        <a href="/matriculas" class="btn" style="background-color: #070b17; color: #fff;">Cancelar edição</a>
 
                         <button type="submit" class="btn" style="background-color: #26dd35; color: #fff;">Atualizar</button>
                     </div>

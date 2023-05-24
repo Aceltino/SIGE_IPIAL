@@ -6,7 +6,7 @@
 
 @section('conteudo')
 <main id="main" class="main">
-   	<!-- /	Titulo-->  	
+    <!-- /	Titulo-->  	
      <div class="pagetitle">
       <div class="row">
         <div class="col">
@@ -290,7 +290,7 @@
     <!-- /	Area do grafico-->
 
 <div>
-  <canvas id="myChart"></canvas>
+  <canvas id="grafico"></canvas>
 </div>
 
 
@@ -305,7 +305,7 @@
     labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho','Agosto', 'Setembro','Novembro','Dezembro'],
     datasets: [{
       label: 'Assiduidade Escolar',
-      data: [0,10,20,30,40,50,60,70,80,90,100],
+      data: [7,10,20,30,40,50,60,70,80,90,100],
       backgroundColor: 'rgba(54, 162, 235, 0.5)',
       borderColor: 'rgba(54, 162, 235, 1)',
       borderWidth: 1
@@ -331,7 +331,7 @@
   };
 
   // Criação do gráfico
-  var ctx = $('#myChart')
+  var ctx = $('#grafico')
   var myChart = new Chart(ctx, {
     type: 'bar',
     data: data,

@@ -21,18 +21,20 @@
 
                 </div>
             </div>
-
-            <div class="form-group">
-                <input type="text" style=" text-align: center;" placeholder="Nome da turma" name="" oninput="this.className = ''">
+            <div class="row">
+                <div class="form-group col">
+                    <input type="text" style=" text-align: center;" value="" placeholder="Titulo do Comunicado" name="" oninput="this.className = ''">
+                </div>
             </div>
-
-            <div class="form-group" id=" textarea" >
-                <TExtarea style=" text-align: center;" id="area" placeholder="Nome da turma" name="" oninput="this.className = ''" ></TExtarea>
+            <div class="row">
+                <div class="col">
+                    <textarea style="border: 1px solid; border-color: rgb(204, 204, 204); border-radius: 5px; outline: none" class="w-100 "  rows="13" name="conteudo"  id="area" placeholder="Escreve aqui o conteúdo do Comunicado"></textarea>
+                </div>
             </div>
 
             <div style="text-align:center;margin-top:10px;">
                 <div>
-                    <button type="button" class="btn btn-success">Criar Turma</button>
+                    <button type="submit" class="btn btn-success">Criar Comunicado</button>
                 </div>
             </div>    
         </div>

@@ -24,7 +24,7 @@
             </div>
 
             <div class="form-group">
-                <input type="text" style=" text-align: center;" placeholder="Nome do Curso" name="" oninput="this.className = ''">
+                <input type="text" style=" text-align: center;" value="" placeholder="Nome do Curso" name="" oninput="this.className = ''">
             </div>
 
             <div class="row">
@@ -50,30 +50,12 @@
             </div>
             
             <div class="form-group">
-                <input type="text" style=" text-align: center;" placeholder="Sigla do Curso" name="" oninput="this.className = ''">
+                <input type="text" style=" text-align: center;" value="" placeholder="Sigla do Curso" name="" oninput="this.className = ''" maxlength="4">
             </div>
-
-            <div class="row">
-
-                <div  id="clone"class="form-group col-4">
-                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
-                        <option selected disabled>Disciplina:</option>
-                        <option value="Tom Brauny">Matemática</option>
-                        <option value="João Miguel">Português</option>
-                        <option value="Braga Santos">Fisíca</option>
-                    </select>
-                </div>
-
-                <div  class="col">
-
-                    <i id="clonebtn"class="bi bi-plus-circle" style=" font-size: 30px; cursor: pointer;"></i> 
-
-                </div>
-            </div>
-                        
+   
             <div style="text-align:center;margin-top:10px;">
                 <div>
-                    <button type="button" class="btn btn-success">Criar Curso</button>
+                    <button type="submit" class="btn btn-success">Criar Curso</button>
                 </div>
             </div>    
         </div>
