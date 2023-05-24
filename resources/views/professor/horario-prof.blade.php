@@ -4,29 +4,28 @@
 
 @section('conteudo')
 <main id="main" class="main">
-    <div class="d-flex align-items-center bg-blue-principal ms-4 border-radius-right py-2" style="padding-left: 56px;">
-        <a class="d-flex align-items-center pe-0" href="#">
-            <img src="img/foto.jpg" alt="perfil" class="mini-foto-perf mini-foto-perfil-2">
-            <span class="d-flex align-items-center ps-2">
-                <div class="col-sm-3">
-                    <a class="color-white" href="/editar-dados-professor">Disciplina(s)</a>
-                </div>
-                <div class="col-sm-3">
-                    <a class="color-white" href="/horario-professor"><strong>Horário</strong></a>
-                </div>
-                <div class="col-sm-3">
-                    <a class="color-white" href="/avaliacao-professor">Avaliação</a>
-                </div>
-                <div class="col-sm-3">
-                    <a class="color-white" href="/editar-dados-pessoais-professor">Dados pessoais</a>
-                </div>
-            </span>
-        </a>
-    </div>
+        <div class="d-flex align-items-center bg-blue-principal ms-4 border-radius-right py-2" style="padding-left: 56px;">
+            <a class="d-flex align-items-center pe-0" href="#">
+                <img src="img/foto.jpg" alt="perfil" class="mini-foto-perf mini-foto-perfil-2">
+                <span class="d-flex align-items-center ps-2">
+                    <div class="col-sm-3">
+                        <a class="color-white" href="/editar-dados-professor">Disciplina(s)</a>
+                    </div>
+                    <div class="col-sm-3">
+                        <a class="color-white" href="/horario-professor"><strong>Horário</strong></a>
+                    </div>
+                    <div class="col-sm-3">
+                        <a class="color-white" href="/avaliacao-professor">Avaliação</a>
+                    </div>
+                    <div class="col-sm-3">
+                        <a class="color-white" href="/editar-dados-pessoais-professor">Dados pessoais</a>
+                    </div>
+                </span>
+            </a>
+        </div>
 
-    <form method="POST" action="">
-        <div>
-            <div class="row">
+        <div >
+          <div class="row">
             <div class="col-sm-6 col-md-8">
                 <button class="btn bg-green color-white my-3 w-25" title="Professor em actividade">Activo</button>
             </div>
@@ -38,17 +37,17 @@
                     </optgroup>
                 </select>
             </div>
-            </div>
-            
-            <div class="form-group">
+          </div>
+          
+          <div class="form-group">
             <input type="text" placeholder="Nome do professor" value="Sivi Lando" name="" oninput="this.className = ''">
-            </div>
+          </div>
 
-            <div class="form-group">
+          <div class="form-group">
             <input type="text" placeholder="Turno" value="Manhã" name="" oninput="this.className = ''">
-            </div>
+          </div>
 
-            <div class="row">
+          <div class="row">
             <div class="col-lg-12">
                 <!-- /  Inicio da tabela de inscritos -->
             <table class="table table-striped align-middle text-center" style="margin-top: 5px;">
@@ -223,18 +222,19 @@
             </table>
             <!-- Termina a tabela de inscritos -->
             </div>
-            </div>
+          </div>
 
-            
+          
         </div>
 
         <div style="text-align:center;margin-top:30px;">
-            <div>
+          <div>
             <button type="button" class="btn color-white bg-blue-principal" id="prevBtn" onclick="nextPrev(-1)">Retroceder</button>
             <button type="button" class="btn color-white bg-yellowish-green" id="nextBtn" onclick="nextPrev(1)">Editar dados</button>
-            </div>
+          </div>
         </div>
-    </form>
+      </form>
 
-</main>
+
+    </main>
 @endsection

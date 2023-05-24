@@ -5,7 +5,7 @@
 @section('conteudo')
 <main id="main" class="main" >
 
-    <form method="POST" action="" id="regForm" action="" class="formulario-layout">
+    <form id="regFormh" action="" class="formulario-layout">
 
         <div style="text-align:center;margin-top:10px;">
             <span class="step"></span>
@@ -93,7 +93,7 @@
                 </div>
 
                 <div class="col">
-                    <input type="text" class="form-control" readonly="true" value="00" name="" disabled>
+                    <input type="text" readonly="true" value="00" name="" desable="">
                 </div>
 
                 <div class="col">
