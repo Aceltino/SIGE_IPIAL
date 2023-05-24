@@ -271,3 +271,20 @@ Route::get('/ver-mini-pauta', function () {
 
 
 
+/******************************************
+ * Rotas do cadastro de usuário
+ */
+/* cadastrar usuario*/
+Route::get('/use_cadastro', function () {
+    return view('usuario/use_cadastro');
+});
+
+/*Matricular aluno */
+Route::get('/usuarios', function () {
+    return view('usuario/usuarios');
+});
+
+/*Editar matricula */
+Route::get('/use_editar', function () {
+    return view('usuario/use_editar');
+});

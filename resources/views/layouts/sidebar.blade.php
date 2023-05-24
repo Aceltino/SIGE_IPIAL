@@ -277,7 +277,25 @@
     
     </ul>
   </li>
-
+  
+    	<!-- /	Nav usuario-->      
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#usuario-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-person-lines-fill"></i><span>Usuário</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="usuario-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="use_cadastro">
+              <i class="bi bi-circle"></i><span>Cadastrar usuário</span>
+            </a>
+          </li>
+          <li>
+            <a href="usuarios">
+              <i class="bi bi-circle"></i><span>Usuários</span>
+            </a>
+          </li>
+        </ul>
+      </li>
   <!-- /	Nav Perfil-->
 <li class="nav-item">
   <a class="nav-link collapsed" href="/perfil">
