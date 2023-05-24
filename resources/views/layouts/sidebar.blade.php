@@ -82,7 +82,7 @@
           </li>
           <li>
             <a href="consultar-professor">
-              <i class="bi bi-circle"></i><span>Consultar Professores</span>
+              <i class="bi bi-circle"></i><span>Professores</span>
             </a>
           </li>
         </ul>

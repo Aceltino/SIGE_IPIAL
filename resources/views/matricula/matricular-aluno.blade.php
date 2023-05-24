@@ -4,7 +4,7 @@
 
 @section('conteudo')
 <main id="main" class="main" >
-    <form id="regFormh" action="" class="formulario-layout">
+    <form method="POST" action="" id="regForm" class="formulario-layout">
 
         <div style="text-align:center;margin-top:10px;">
             <span class="step"></span>
@@ -12,25 +12,25 @@
             <span class="step"></span>
             <span class="step"></span>
         </div>
+        
+        <div class="row" >
+            <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
+                <div style="  text-align: center;">
+                    <h2>DADOS DO INSTITUTO</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col d-flex" style="margin-bottom: 15px;">
+                <div class= "d-flex"style="width: 246px;margin-right: auto;margin-left: auto">
+                    <input class=" form-control" type="text" style="border: 1px solid var(--bs-gray-400);border-top-left-radius: 9px;border-bottom-left-radius: 11px;padding-right: 0px;padding-left: 22px;padding-bottom: 3px;padding-top: 3px;font-size: 16px;height: 31px;" placeholder="Código de inscrição" required="" minlength="8" maxlength="8" pattern="number" > <i class="fas fa-search" style=" margin-left: -1px;font-size: 18px;color: var(--bs-gray-100);background: var(--bs-black);padding-left: 8px;padding-right: 8px;padding-top: 6px;padding-bottom: 6px;border-bottom-right-radius: 6px;border-top-right-radius: 6px;margin-top: 0px;"></i>
+                </div>
+            </div>
+        </div>
 
         <div class="tab">     
             
-            <div class="row" >
-                <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
-                    <div style="  text-align: center;">
-                        <h2>DADOS DO INSTITUTO</h2>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col d-flex" style="margin-bottom: 10px;">
-                    <div class= "d-flex"style="width: 246px;margin-right: auto;margin-left: auto">
-                        <input class=" form-control" type="text" style="border: 1px solid var(--bs-gray-400);border-top-left-radius: 9px;border-bottom-left-radius: 11px;padding-right: 0px;padding-left: 22px;padding-bottom: 3px;padding-top: 3px;font-size: 16px;height: 31px;" placeholder="Código de inscrição" required="" minlength="8" maxlength="8" pattern="number" > <i class="fas fa-search" style=" margin-left: -1px;font-size: 18px;color: var(--bs-gray-100);background: var(--bs-black);padding-left: 8px;padding-right: 8px;padding-top: 6px;padding-bottom: 6px;border-bottom-right-radius: 6px;border-top-right-radius: 6px;margin-top: 0px;"></i>
-                        </div>
-                </div>
-            </div>
-
             <div class="form-group">
                 <input type="text" placeholder="Nome Completo do Aluno" name="" oninput="this.className = ''">
             </div>
@@ -120,7 +120,7 @@
                 </div>
 
                 <div class="col">
-                    <input type="text" readonly="true" value="00" name="" desable="">
+                    <input type="text" class="form-control" readonly="true" value="00" name="" disabled>
                 </div>
 
                 <div class="col">
