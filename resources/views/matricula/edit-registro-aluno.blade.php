@@ -1,276 +1,259 @@
 @extends('layouts.main')
 
-@section('title', ' Editar Registro de Aluno')
+@section('title', 'Editar Registros')
 
 @section('conteudo')
-<main id="main" class="main" >
-    <form id="regFormh" action="" class="formulario-layout">
-        <div style="text-align:center;margin-top:10px;">
-          <span class="step"></span>
-          <span class="step"></span>
-          <span class="step"></span>
-          <span class="step"></span>
-          <span class="step"></span>
-        </div>
-
-        <div class="tab"> 
-
-            <div class="row" >
-
-                <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
-                    <div style="  text-align: center;">
-                        <h2>VERIFIQUE SE HÁ VAGAS SEGUNDO A SUA PREFERÊNCIA</h2>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="form-group">
-                <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
-                    <option disabled>CURSO</option>
-                    <option value ="I" selected>Informática - I</option>
-                    <option value="D.P">Desenhador projetista - D.P</option>
-                    <option value="T.E.I.E">Técnico de Energia e Instalações Electricas - T.E.I.E</option>
-                    <option value="T.I">Técnico de Informática - T.I</option>
-                    <option value="E.T">Electronica e Telecomunicação - E.T</option>
-                </select>
-            </div>
-
-            <div class="row">
-                
-                <div class="form-group col">
-                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
-                        <option disabled>Classe</option>
-                        <option value="10" selected>10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                    </select>
-                </div>
-
-                <div class="form-group col">
-                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
-                        <option disabled>Turno</option>
-                        <option value="Manhã">Manhã</option>
-                        <option value="Tarde" selected>Tarde</option>
-                        <option value="Noite">Noite</option>
-                    </select>
-                </div>
-
-                <div class="col">
-                    <input type="text" readonly="true" value="VAGAS: 500 " name="" desable="">
-                </div>
-            </div>
+<main id="main" class="main">
+    <div class="row">
+        <div class="col" style="display: flex; justify-content: flex-start; align-items: center;">
+            <h1>Dados pessoais</h1>      
         </div>
         
-        <div class="tab"> 
-    
-            <div class="row" >
-                <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
-                    <div style="  text-align: center;">
-                        <h2>INTRODUZA OS DADOS PESSOAIS</h2>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="form-group">
-                <input type="text" value="Márcio Celestino" placeholder="Nome Completo do aluno" name="" oninput="this.className = ''">
-            </div>
+    </div>
 
-            <div class="form-group">
-                <input type="text" value="fulano fulano" placeholder="Nome Completo do pai" name="" oninput="this.className = ''">
+    <form class="form-inativo">
+        <div class="dados-pessoais">        
+            <div class="area-input form-group">
+                <label>Nome Completo: </label><input type="text" name="" value="Bruno dos Santos Manuel">
+            </div>
+            <div class="area-input form-group">
+                <label>Nome do Pai: </label><input type="text" name="" value="Bruno dos Santos Manuel">
+            </div>
+            <div class="area-input form-group">
+                <label>Nome da Mãe: </label><input type="text" name="" value="Fernanda MIiles Manuel">
             </div>
 
-            <div class="form-group">
-                <input type="text" value="fulana fualana" placeholder="Nome Completo da mãe" name="" oninput="this.className = ''">
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <p><input type="date"  value="2000-04-01" name="" oninput="this.className = ''"></p>
-                </div>
-
-                <div class="col">
-                    <input type="text" readonly="true" value="23" name="" desable="">
-                </div>
-
-                <div class="col">
-                    <input type="text" value="Rocha" placeholder="Naturalidade" name="" oninput="this.className = ''">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-4">
-                    <div class="form-group">
-                        <LAbel > Sexo: </LAbel><input  style=" margin-left: 8px;"type="radio" id="masculino" name="genero" checked><label for="masculino"> Masculino</label>
-                        <input type="radio" id="feminino" name="genero"><label for="feminino"> Feminino</label>
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="form-group">
-                        <input type="text" value="00393930LA32"  placeholder="Número do bilhete de identidade" oninput="this.className = ''">
-                    </div>
-                </div>
-            </div>
-            
-            <div class="row">
-
-                <div class="col-lg-4 d-flex gap-1 justify-content-center align-items-center">
-                    <span style="color: #777;">+244</span>
-                    <input type="text" name=""  value="939393939" placeholder="Telefone" oninput="this.className = ''"><i class="bi bi-plus-circle" style=" font-size: 30px; cursor: pointer;"></i> 
-                </div>
-            </div>
-        </div> 
-
-        <div class="tab">     
-
-            <div class="row" >
-                <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
-                    <div style=" text-align: center;">
-                        <h2>INTRODUZA OS DADOS DA ESCOLA DE PROVIDÊNCIA</h2>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group">
-                    <input type="text" value="Alda Lara" placeholder="Nome da escola de proveniência" name="" oninput="this.className = ''">
-                </div>
-            </div>
-
-            <div class="row">
-
-                <div class="col">
-                    <div class="form-group">
-                        <input type="text" value="Manhã" placeholder="Turno" oninput="this.className = ''">
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="form-group">
-                        <input type="text" value="55" placeholder="Nº do aluno" oninput="this.className = ''">
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="form-group">
-                        <input type="text" value="A"placeholder="Turma" oninput="this.className = ''">
-                    </div>
-                </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col area-input form-group">
+                        <label>Data de nascimento: </label><input type="text" name="" value="05/04/2023">
                 
-            </div>
-
-            <div class="row">
-                <div class=" form-group">
-                    <input type="text" value="9393939393" placeholder=" Número do aluno" name="" oninput="this.className = ''">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class=" form-group">
-                    <input type="text" value="2020/2023" placeholder=" Ano letivo" name="" oninput="this.className = ''">
-                </div>
-            </div>     
-        </div>
-
-        <div class="tab">     
-            
-            Faz a Tabela aqui nessa página eliseu
-        </div>
-
-        <div class="tab"> 
-
-            <div class="row" >
-                <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
-                    <div style="  text-align: center;">
-                        <h2>INFORMAÇÕES IMPORTANTES PARA O INSTITUTO</h2>
                     </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <input type="email" value="email@gmail.com" placeholder="Digite o E-mail do Aluno" name="" oninput="this.className = ''">
-            </div>
-
-            <div class="form-group">
-                <input type="text" value="marciocelestino" placeholder="User name" name="" oninput="this.className = ''">
-            </div>
-
-            <div class="form-group">
-                <input type="password" value="12345" placeholder="Passoword" name="" oninput="this.className = ''">
-            </div>
-
-            <div class="row">
                     
-                <div class="col-3 form-group gap-1 ">
-                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
-                        <option disabled>Familiares:</option>
-                        <option value="pai"selected>Pai</option>
-                        <option value="mãe">Mãe</option>
-                        <option value="outro">Outro</option>
-                    </select>
+                    <div class="col area-input form-group" style="margin-left: 10px;">
+                        <label>Idade: </label><input type="text" class="form-control" readonly="true" disabled name="" value="16">
+                
+                    </div>
+                    
+                    <div class="col area-input form-group" style="margin-left: 10px;">
+                        <label>Gênero: </label><input type="text" name="" value="Masculino">
+                
+                    </div>
                 </div>
-            
-                <div id="clone1"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
-                    <span style="color: #777;">+244</span>
-                    <input type="text" name="" placeholder="Telefone" oninput="this.className = ''">
-                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class=" col area-input form-group" >
+                        <label>Número do BI: </label><input type="text" class="form-control" readonly="true" disabled name="" value="0002505QL014">
+                    </div>
 
-                <div class="col-3">
-                    <i id="clonebtn1"class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>    
+                    <div class="col area-input form-group" style="margin-left: 10px;">
+                        <label>Naturalidade: </label><input type="text" name="" value="Masculino">
+                    
+                    </div>
                 </div>
             </div>
 
-            <div class="row">
+            <div class="container">
+                <div class="row">
+                    <div class="col area-input form-group">
+                        <label>Tel-1: </label><input type="text" name="" value="998 766 656">
+                
+                    </div>
+                    
+                    <div class="col area-input form-group" style="margin-left: 10px;">
+                        <label>Tel-2: </label><input type="text" name="" value="998 766 656">
+                
+                    </div>
+                </div>              
+            </div>
 
-                <div class="col-lg-3 form-group gap-1 ">
-                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
-                        <option disabled>Familiares:</option>
-                        <option value="pai">Pai</option>
-                        <option value="mãe" selected>Mãe</option>
-                        <option value="outro">Outro</option>
-                    </select>
-                </div>
-            
-                <div id="clone2"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
-                    <span style="color: #777;">+244</span>
-                    <input type="text" name="" placeholder="Telefone" oninput="this.className = ''">
-                </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col area-input form-group">
+                        <label>Tel-3: </label><input type="text" name="" value="998 766 656">
+                    </div>
 
-                <div class="col-3">
-                    <i id="clonebtn2"class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>    
+                    <div class="col form-group" style="margin-left: 10px;">
+                        <button class="btn-imprimir accordion-buttons collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style="border: none; padding: 5px; width: 230px; height: 40px;">
+                        Informações do Instituto: <i class="bi bi-row"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
                 
+            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                <div class="dados-academicos">
+                    <div class="row">
+                        <div class="col" style="display: flex; justify-content: flex-start; align-items: center;">
+                            <h1>Dados Da Escola De Proveniência</h1>      
+                        </div>
+
+                    </div>
+
+                    <br>
+
+                    <div class="area-input form-group">
+                        <label>Escola de proveniência: </label><input type="text" name="" value="Escola Pública">
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                        <div class="col area-input form-group">
+                    <label>Turno: </label><input type="text" name="" value="Manhã">
+                    
+                    </div>
+                    <div class="col area-input form-group" style="margin-left: 10px;">
+                    <label>Turma: </label><input type="text" name="" value="IJ12">
+                    
+                    </div>
+                    <div class="col area-input form-group" style="margin-left: 10px;">
+                    <label>Nº aluno: </label>
+                    <input type="text" name="" value="21">
+                </div>
+                </div>              
+                </div>
+
+                <div class="container">
             <div class="row">
-
-                <div class="col-3 form-group gap-1 ">
-                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
-                        <option disabled>Familiares:</option>
-                        <option value="pai">Pai</option>
-                        <option value="mãe">Mãe</option>
-                        <option  value="outro"selected>Outro</option>
-                    </select>
-                </div>
-        
-                <div id="clone"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
-                    <span style="color: #777;">+244</span>
-                    <input type="text" name="" placeholder="Telefone" oninput="this.className = ''">
-                </div>
-
-                <div class="col-3">
-                    <i id="clonebtn"class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>    
+                    <div class="col area-input form-group" >
+                    <label>Ano lectivo: </label><input type="text" class="form-control" readonly="true" disabled name="" value="2022-2023">
+                    </div>
                 </div>
             </div>
-        </div>  
 
-        <div style="text-align:center;margin-top:10px;">
-          <div>
-            <button type="button" class="btn btn-danger" id="prevBtn" onclick="nextPrev(-1)">Retroceder</button>
-            <button type="button" class="btn btn-success" id="nextBtn" onclick="nextPrev(1)">Avançar</button>
-          </div>
-        </div>
-    </form>
+            <div class="col area-input form-group">
+                    <label>Número de processo: </label><input type="text" class="form-control" readonly="true" disabled name="" value="76656">
+                    
+                    </div>
+
+            <div class="row">
+                <div class="col" style="display: flex; justify-content: flex-start; align-items: center; margin-bottom: 15px;">
+                    <h1>Dados académicos</h1>      
+                </div>
+                
+            </div>
+            
+                <div class="container">
+                    <div class="row">
+                        <div class="col area-input form-group">
+                            <label>Código de Inscrição: </label><input type="text" class="form-control" readonly="true" disabled name="" value="49656">
+                            
+                        </div>
+                        <div class="col area-input form-group" style="margin-left: 10px;">
+                            <label>Número de processo: </label><input type="text" class="form-control" readonly="true" disabled name="" value="56656">
+                        
+                        </div>
+
+                            <div class="col area-input form-group" style="margin-left: 10px;">
+                            <label>Ano Lectivo: </label><input type="text" name="" value="2020-2021">
+                            
+                            </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                <div class="row">
+                    <div class="col area-input form-group">
+                    <label>Turno: </label><input type="text" name="" value="Manhã">
+                    
+                    </div>
+                    <div class="col area-input form-group" style="margin-left: 10px;">
+                    <label>Turma: </label><input type="text" name="" value="I12BT">
+                    
+                    </div>
+
+                    <div class="col area-input form-group" style="margin-left: 10px;">
+                    <label>Classe: </label><input type="text" name="" value="12ª">
+                    
+                    </div>
+                </div>
+            </div>
+
+                <div class="container">
+                <div class="row">
+                    <div class="col area-input form-group">
+                        <label>Nº do Aluno: </label><input type="text" name="" value="14">
+                    
+                    </div>
+                    <div class="col area-input form-group" style="margin-left: 10px;">
+                         <label>Sala: </label><input type="text" name="" value="09">
+                    
+                    </div>
+                </div>
+            </div>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col area-input form-group">
+                            <label>Pai Tel-1: </label><input type="text" name="" value="920303030">
+                        
+                        </div>
+                        <div class="col area-input form-group" style="margin-left: 10px;">
+                            <label>Pai Tel-2: </label><input type="text" name="" value="920303030">
+                        
+                        </div>
+
+                        <div class="col area-input form-group" style="margin-left: 10px;">
+                            <label>Pai Tel-3: </label><input type="text" name="" value="920303030">
+                        
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col area-input form-group">
+                            <label>Mãe Tel-1: </label><input type="text" name="" value="16">
+                        
+                        </div>
+                        <div class="col area-input form-group" style="margin-left: 10px;">
+                            <label>Mãe Tel-2: </label><input type="text" name="" value="920303030">
+                        
+                        </div>
+
+                        <div class="col area-input form-group" style="margin-left: 10px;">
+                            <label>Mãe Tel-3: </label><input type="text" name="" value="920303030">
+                        
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col area-input form-group">
+                            <label>Outro Tel-1: </label><input type="text" name="" value="920303030">
+                        
+                        </div>
+                        <div class="col area-input form-group" style="margin-left: 10px;">
+                            <label>Outro Tel-2: </label><input type="text" name="" value="920303030">
+                        
+                        </div>
+
+                        <div class="col area-input form-group" style="margin-left: 10px;">
+                            <label>Outro Tel-3: </label><input type="text" name="" value="920303030">
+                        
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col area-input form-group">
+                            <label>Curso: </label><input type="text" name="" value="Técnico de Informática">
+                        
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-modal" style="text-align: center; margin-top: 50px;">
+                    <div class="jnt">
+                        <a href="/matriculas" class="btn" style="background-color: #070b17; color: #fff;">Cancelar edição</a>
+
+                        <button type="submit" class="btn" style="background-color: #26dd35; color: #fff;">Atualizar</button>
+                    </div>
+                </div>
+        
+    </form> 
 </main>
- @endsection
+@endsection

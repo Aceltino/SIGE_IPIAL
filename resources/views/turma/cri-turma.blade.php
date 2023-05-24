@@ -23,7 +23,7 @@
             </div>
 
             <div class="form-group">
-                <input type="text" style=" text-align: center;" placeholder="Nome da turma" name="" oninput="this.className = ''">
+                <input class="form-control" type="text" style=" text-align: center;" placeholder="Nome da turma" name="" oninput="this.className = ''" disabled>
             </div>
 
             <div class="row">
@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="col">
-                    <input type="text" readonly="true" value="VAGAS: 50" name="" desable="">
+                    <input class="form-control" type="text" readonly="true" value="VAGAS: 50" name="" desable="" disabled>
                 </div>
             </div>
 
@@ -57,23 +57,47 @@
                 <div class="form-group col">
                     <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
                         <option selected disabled>CURSO</option>
-                            <option value ="I">Informática - I</option>
-                            <option value="D.P">Desenhador projetista - D.P</option>
-                            <option value="T.E.I.E">Técnico de Energia e Instalações Electricas - T.E.I.E</option>
-                            <option value="T.I">Técnico de Informática - T.I</option>
-                            <option value="E.T">Electronica e Telecomunicação - E.T</option>
+                            <option value ="Informática">Informática</option>
+                            <option value="Desenhador projetista">Desenhador projetista</option>
+                            <option value="Técnico de Energia e Instalações Electricas">Técnico de Energia e Instalações Electricas</option>
+                            <option value="Técnico de Informática">Técnico de Informática</option>
+                            <option value="Electronica e Telecomunicação">Electronica e Telecomunicação</option>
                     </select>
                 </div>
 
-                <div class="col">
-                    <div class="form-group">
-                        <input type="text" placeholder="Sala" oninput="this.className = ''">
-                    </div> 
+                <div class="col form-group gap-1 ">
+                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
+                        <option disabled selected>sala:</option>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                    </select>
                 </div>
             </div>
 
             <div class="form-group">
-                <input type="text"  style=" text-align: center; "placeholder="Ano Lectivo" name="" oninput="this.className = ''">
+                <input class="form-control" type="text"  style=" text-align: center; "placeholder="Ano Lectivo" name="" oninput="this.className = ''" disabled>
             </div>
 
             <div style="text-align:center;margin-top:10px;">

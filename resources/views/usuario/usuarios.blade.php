@@ -10,11 +10,11 @@
   </div>
   
   <div class="col-md-12 col-lg-4 mb-2">
-    <select class="btn-sel form-select" id="filtro3">
+    <select class="btn-sel form-select" id="filtro4">
                 <option selected disabled>Cargo:</option>
-                <option value="Informática">Professor/a</option>
-                <option value="Contrução civil">Secretário/a</option>
-                <option value="Eletronica">Coordenador/a</option>
+                <option value="Professora">Professora</option>
+                <option value="Secretária">Secretária</option>
+                <option value="Coordenadora">Coordenadora</option>
         </optgroup>
     </select>
 </div> 
@@ -28,7 +28,7 @@
 
   
   <!-- /  Inicio da tabela de usuários-->
-  <table class="table table-striped table-custom" id="usurio-tab">
+  <table class="table table-striped table-custom" id="matricula-tab">
     <thead>
       <tr style=" text-align: center;">
           <th scope="col">Nome do usuário</th>
@@ -36,59 +36,24 @@
           <th scope="col">Genero</th>
           <th scope="col">Cargo</th>
           <th scope="col">Estado</th>
+          <th></th>
       </tr>
     </thead>
     <tbody>
       <tr style=" text-align: center;">
         <th scope="row">Maria Paulo André</th>
-        <td>MariaPauloAndré@gmail.com</td>
+        <td>MariaPauloAndré</td>
         <td>Femenina</td>
         <td>professora</td>
-        <td>   <a href="#" class="btn btn-cor-sg-a w-48 bg-green">Activar</a></td>
- 
+        <td> <a href="#" class="btn btn-cor-sg-a w-48 bg-red">Inactivar</a> </td>
         <td>
-            <td>
-                <i class="bi bi-eye-fill"></i>
-                <a href="/use_editar"><i class="bi bi-pencil"></i></a>
-                <i class="bi bi-trash-fill"></i>
-               
-              </td>
-        </td>
+            <i class="bi bi-eye-fill"></i>
+            <a href="/use_editar"><i class="bi bi-pencil"></i></a>
+            <i class="bi bi-trash-fill"></i>
+            
+          </td>
       </tr>
       
-      <tr style=" text-align: center;">
-        <th scope="row">Fernando Mário Afonso</th>
-        <td>ernandoMárioAfonso@gamil.com</td>
-        <td>Masculino</td>
-        <td>professor</td>
-        <td><a href="#" class="btn btn-cor-sg-a w-48 bg-red">Inactivar</a> </td>
-        
-        <td>
-            <td>
-                <i class="bi bi-eye-fill"></i>
-                <a href="/use_editar"><i class="bi bi-pencil"></i></a>
-                <i class="bi bi-trash-fill"></i>
-               
-              </td>
-        </td>
-      </tr>
-
-      <tr style=" text-align: center;">
-        <th scope="row">José Luís Paulo</th>
-        <td>JoséLuísPaulo@gmail.com</td>
-        <td>Masculino</td>
-        <td>Secretário</td>
-        <td><a href="#" class="btn btn-cor-sg-a w-48 bg-green">Activar</a></td>
-        
-        <td>
-            <td>
-                <i class="bi bi-eye-fill"></i>
-                <a href="/use_editar"><i class="bi bi-pencil"></i></a>
-                <i class="bi bi-trash-fill"></i>
-               
-              </td>
-        </td>
-      </tr>
 
       
     </tbody>

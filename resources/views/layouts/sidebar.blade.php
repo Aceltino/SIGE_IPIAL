@@ -11,6 +11,45 @@
         </a>
       </li>
 
+      <!-- /	Nav usuario-->      
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#usuario-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-person-lines-fill"></i><span>Usuário</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="usuario-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="use_cadastro">
+              <i class="bi bi-circle"></i><span>Cadastrar usuário</span>
+            </a>
+          </li>
+          <li>
+            <a href="usuarios">
+              <i class="bi bi-circle"></i><span>Usuários</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+       	<!-- /	Nav Ano lectivo-->
+	    <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#ano-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-calendar-event"></i><span>Ano lectivo</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="ano-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="criar-ano-letivo">
+              <i class="bi bi-circle"></i><span>Criar ano lectivo</span>
+            </a>
+          </li>
+          <li>
+            <a href="ano-letivo">
+              <i class="bi bi-circle"></i><span>Ano lectivo</span>
+            </a>
+          </li>
+        </ul>
+     </li>
+
+
         <!-- /	Nav Inscricoes-->
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#inscriacao-nav" data-bs-toggle="collapse" href="#">
@@ -48,6 +87,7 @@
           <i class="bi bi-journal-text"></i><span>Matrícula</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="matricula-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
           <li>
             <a href="/matricular-aluno">
               <i class="bi bi-circle"></i><span>Matricular aluno</span>
@@ -138,27 +178,8 @@
 	            </a>
 	          </li>
 	          <li>
-	            <a href="#">
+	            <a href="comunicados">
 	              <i class="bi bi-circle"></i><span>Comunicados</span>
-	            </a>
-	          </li>
-	        </ul>
-	    </li>
-
-    	<!-- /	Nav Ano lectivo-->
-	    <li class="nav-item">
-	        <a class="nav-link collapsed" data-bs-target="#ano-nav" data-bs-toggle="collapse" href="#">
-	          <i class="bi bi-calendar-event"></i><span>Ano lectivo</span><i class="bi bi-chevron-down ms-auto"></i>
-	        </a>
-	        <ul id="ano-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-	          <li>
-	            <a href="criar-ano-letivo">
-	              <i class="bi bi-circle"></i><span>Criar ano lectivo</span>
-	            </a>
-	          </li>
-	          <li>
-	            <a href="ano-letivo">
-	              <i class="bi bi-circle"></i><span>Ano lectivo</span>
 	            </a>
 	          </li>
 	        </ul>
@@ -213,7 +234,7 @@
 	        </a>
 	        <ul id="calprova-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 	          <li>
-	            <a href="calendario de prova">
+	            <a href="calendario-de-prova">
 	              <i class="bi bi-circle"></i><span>Calendários de Provas</span>
 	            </a>
 	          </li>
@@ -259,7 +280,7 @@
     </a>
     <ul id="aluno-professor-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
       <li>
-        <a href="consultar-aluno-profs">
+        <a href="/alunos">
           <i class="bi bi-circle"></i><span>Alunos</span>
         </a>
       </li>
@@ -278,24 +299,7 @@
     </ul>
   </li>
   
-    	<!-- /	Nav usuario-->      
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#usuario-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-person-lines-fill"></i><span>Usuário</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="usuario-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="use_cadastro">
-              <i class="bi bi-circle"></i><span>Cadastrar usuário</span>
-            </a>
-          </li>
-          <li>
-            <a href="usuarios">
-              <i class="bi bi-circle"></i><span>Usuários</span>
-            </a>
-          </li>
-        </ul>
-      </li>
+
   <!-- /	Nav Perfil-->
 <li class="nav-item">
   <a class="nav-link collapsed" href="/perfil">

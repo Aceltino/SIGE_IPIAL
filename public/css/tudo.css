@@ -40,7 +40,7 @@
   }
   
   /* Style the input fields */
-   input[type="text"], input[type="date"], input[type="number"], input[type="email"], input[type="password"], select {
+   input[type="text"], input[type="date"], input[type="number"], input[type="email"], input[type="password"], input[type="time"], input[type="month"], input[type="week"], select {
   /*  padding: 10px;
     width: 100%;
     font-size: 17px;
@@ -54,7 +54,6 @@
     font-weight: 400;
     line-height: 1.5;
     color: #212529;
-    background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
     -webkit-appearance: none;
@@ -638,4 +637,10 @@ span.f-normal{
   background-color: var(--bs-cor-principal);
   color: #fff;
   font-size: 22px;
+}
+
+#aarea{
+background-color: #000;
+color: #00ff22;
+
 }

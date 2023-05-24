@@ -22,29 +22,56 @@
                 </div>
             </div>
 
+            <div class="row" style="margin-bottom: 5px;">
+                <div class="col">
+                    <input class="form-control" type="text" placeholder="Nome do Ano Lectivo" name="" oninput="this.className = ''" maxlength="15" minlength="15" style=" text-align: center;" >
+                </div>
+            </div>
+
             <div class="row" >
                 <div class="col">
-                    <p>Data de Início<input type="date" name="" oninput="this.className = ''"></p>
+                    <p>Data de Início<input type="date" name="" oninput="this.className = ''" required></p>
                 </div>
 
                 <div class="col">
-                    <p>Data de Fim<input type="date" name="" oninput="this.className = ''"></p>
+                    <p>Data de Fim <input type="date" name="" oninput="this.className = ''" required></p>
                 </div>
             </div>
+            <div class="row" >
+                <div class="col">
+                    <p>Início das Incrições<input type="date" name="" oninput="this.className = ''" required></p>
+                </div>
+
+                <div class="col">
+                    <p>Fim das Incrições<input type="date" name="" oninput="this.className = ''" required></p>
+                </div>
+            </div>
+
+            <div class="row" >
+                <div class="col">
+                    <p>Início das Matriculas<input type="date" name="" oninput="this.className = ''" required></p>
+                </div>
+
+                <div class="col">
+                    <p>Fim das Matriculas<input type="date" name="" oninput="this.className = ''" required></p>
+                </div>
+            </div>
+
+
             <div class="row">
                 <div class="col-6">
-                        <p><input type="text" placeholder=" Número maximo de aluno nas turmas" name="" oninput="this.className = ''"></p>
+                        <p><input type="number" placeholder=" Número maximo de aluno nas turmas" name="" oninput="this.className = ''" required></p>
                 </div>
     
                 <div class="col-6">
-                        <p><input type="text" placeholder=" Número maximo de Salas" name="" oninput="this.className = ''"></p>
+                        <p><input type="number" placeholder=" Número maximo de Salas" name="" oninput="this.className = ''" required></p>
                 </div>
             </div>
         </div>
 
         <div style="text-align:center;margin-top:10px;">
             <div>
-                <button type="button" class="btn btn-success">Criar Ano Lectivo</button>
+                <button type="submit" class="btn btn-success">Criar Ano Lectivo</button>
             </div>
         </div>
     </form>

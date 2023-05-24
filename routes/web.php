@@ -174,6 +174,9 @@ Route::get('/editar-turma', function () {
 /******************************************
  * Rotas de aluno
  */
+Route::get('/alunos', function () {
+    return view('aluno/aluno');
+});
 Route::get('/boletim-notas', function () {
     return view('aluno/boletim-notas');
 });
@@ -216,7 +219,9 @@ Route::get('/ano-letivo', function () {
 
 Route::get('/editar-ano-letivo', function () {
     return view('ano-lectivo/edit-ano-letivo');
-});/**<!--Fim Rotas ano lectivo--> */
+});
+
+/**<!--Fim Rotas ano lectivo--> */
 
 /**
  * Rota do perfil de usuario
@@ -267,6 +272,23 @@ Route::get('/mini-pauta', function () {
 
 Route::get('/ver-mini-pauta', function () {
     return view('mini-pauta/mini-pauta-doc');
+});
+
+
+/******************************************
+ * Rotas do Comunicado
+ */
+
+ Route::get('/criar-comunicado', function () {
+    return view('comunicado/criar-comunicado');
+});
+
+Route::get('/editar-comunicado', function () {
+    return view('comunicado/editar-comunicado');
+});
+
+Route::get('/comunicados', function () {
+    return view('comunicado/comunicado');
 });
 
 
