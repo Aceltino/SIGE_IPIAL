@@ -13,10 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('aluno_pertence_turma', function (Blueprint $table) {
-            $table->integer('aluno_turma_id', true);
-            $table->integer('aluno_id')->index('fk_tbl_aluno_turma_tbl_aluno1_idx');
-            $table->integer('ano_coord_id')->index('fk_tbl_aluno_turma_ano_turma_coord1_idx');
+        Schema::create('aluno_turma', function (Blueprint $table) {
+
+            $table->id('aluno_turma_id');
+
+            $table->foreignId('ano_coord_id')->index('fk_tbl_aluno_turma_ano_turma_coord1_idx');
+
+            //Chaves estrangeiras
+            $table->foreignId('aluno_id')
+            ->references('aluno_id')
+            ->on('alunos')
+            ->onDelete('CASCADE')
+            ->onUpdate('CASCADE');
 
             $table->primary(['aluno_turma_id', 'aluno_id', 'ano_coord_id']);
         });

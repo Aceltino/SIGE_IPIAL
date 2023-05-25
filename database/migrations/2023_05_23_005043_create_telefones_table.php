@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('telefones', function (Blueprint $table) {
-            $table->integer('telefone_id', true);
+            $table->id('telefone_id');
             $table->integer('num_tel')->unique('num_tel_UNIQUE');
             $table->integer('pessoa_id')->index('fk_tbl_telefone_tbl_pessoa1_idx');
             $table->timestamp('created_at')->useCurrentOnUpdate()->useCurrent();

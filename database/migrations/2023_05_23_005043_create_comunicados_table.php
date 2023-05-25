@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('comunicados', function (Blueprint $table) {
-            $table->integer('id_comunicado', true);
+            $table->id('id_comunicado');
             $table->string('titulo_com', 200);
             $table->text('conteudo_com');
             $table->timestamp('created_at')->useCurrentOnUpdate()->useCurrent();

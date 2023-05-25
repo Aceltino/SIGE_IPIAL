@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('disciplinas', function (Blueprint $table) {
-            $table->integer('disciplina_id')->primary();
+            $table->id('disciplina_id')->primary();
             $table->string('nome_disciplina', 100)->unique('nome_disciplina_UNIQUE');
             $table->string('componente', 100);
             $table->integer('tempo_prova');

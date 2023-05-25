@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pessoas', function (Blueprint $table) {
-            $table->integer('pessoa_id', true);
+            $table->id('pessoa_id');
             $table->string('nome_completo', 455);
             $table->string('num_bi', 14)->unique('num_bi_UNIQUE');
             $table->date('data_nascimento');

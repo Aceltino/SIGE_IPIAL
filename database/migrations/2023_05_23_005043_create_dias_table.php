@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('dias', function (Blueprint $table) {
-            $table->integer('dia_id', true);
+            $table->id('dia_id');
             $table->string('nome_dia', 60);
         });
     }

@@ -14,11 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('alunos', function (Blueprint $table) {
-            $table->integer('aluno_id');
+            $table->id('aluno_id');
             $table->timestamp('created_at')->useCurrentOnUpdate()->useCurrent();
             $table->timestamp('update')->nullable();
             $table->integer('curso_id')->index('fk_tbl_aluno_tbl_curso1_idx');
             $table->integer('candidato_id')->index('fk_tbl_aluno_tbl_candidato1_idx');
+            $table->boolean('status_alunos');
 
             $table->primary(['aluno_id', 'curso_id', 'candidato_id']);
         });

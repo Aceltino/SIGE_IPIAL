@@ -20,7 +20,9 @@ return new class extends Migration
 
             $table->primary(['candidato_id', 'curso_id']);
         });
-    }
+
+    }                 
+    
 
     /**
      * Reverse the migrations.
