@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('horarios', function (Blueprint $table) {
-            $table->integer('tempoDia_id', true);
+            $table->id('tempoDia_id');
             $table->integer('disciplina_id')->index('fk_tbl_tempo_dia_tbl_disciplina1_idx');
             $table->integer('tempo_id')->index('fk_tbl_tempo_dia_tbl_tempo1_idx');
             $table->integer('dia_id')->index('fk_tbl_tempo_dia_tbl_dia1_idx');

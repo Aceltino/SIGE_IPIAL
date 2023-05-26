@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('fichas_biografica', function (Blueprint $table) {
-            $table->integer('id_fichabiografica');
+            $table->id('id_fichabiografica')->primary();
             $table->longText('descricao')->nullable();
             $table->integer('aluno_id')->index('fk_tbl_fichabiografica_tbl_aluno1_idx');
             $table->timestamp('created_at')->useCurrentOnUpdate()->useCurrent();

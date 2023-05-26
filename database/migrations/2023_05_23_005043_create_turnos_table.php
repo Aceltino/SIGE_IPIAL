@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('turnos', function (Blueprint $table) {
-            $table->integer('turno_id', true);
+            $table->id('turno_id');
             $table->enum('nome_turno', ['Manhã', 'Tarde', 'Noite']);
         });
     }

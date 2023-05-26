@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('ano_turma_coord', function (Blueprint $table) {
-            $table->integer('turmaAno_id', true);
+            $table->id('turmaAno_id');
             $table->integer('turma_id')->index('fk_aluno_turma_coord_tbl_turma1_idx');
             $table->integer('num_vagas');
             $table->integer('professor_id')->index('fk_ano_turma_coord_professores1_idx');

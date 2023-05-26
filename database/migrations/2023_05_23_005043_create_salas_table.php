@@ -14,12 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('salas', function (Blueprint $table) {
-            $table->integer('sala_id')->primary();
-            $table->integer('sala')->nullable();
-            $table->enum('tipo_sala', ['Laboratorio', 'Normal'])->nullable();
+            $table->id('sala_id');
+            $table->enum('tipo_sala', ['Laboratorio','Normal','Ginasio'])->nullable();
             $table->timestamp('created_at')->useCurrentOnUpdate()->useCurrent();
             $table->timestamp('update_at')->nullable();
-            $table->integer('curso_id')->nullable()->index('fk_salas_cursos1_idx');
             $table->string('nome_sala', 25);
         });
     }

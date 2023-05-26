@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('escola_proveniencia', function (Blueprint $table) {
-            $table->integer('escola_proveniencia_id', true);
+            $table->id('escola_proveniencia_id')->primary();
             $table->string('nome_escola', 45);
             $table->enum('turno', ['Manhã', 'Tarde', 'Noite']);
             $table->integer('num_processo');

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('calendarios_provas', function (Blueprint $table) {
-            $table->integer('calendario_id', true);
+            $table->id('calendario_id');
             $table->date('inicio_prova');
             $table->date('fim_prova');
             $table->enum('tipo_prova', ['Prova Professor', 'ProvaTrimestre', 'Prova Global', 'Recurso', 'Exame Recurso', 'Exame', 'Exame Especial']);

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('classes', function (Blueprint $table) {
-            $table->integer('classe_id', true);
+            $table->id('classe_id');
             $table->string('classe', 45);
             $table->timestamp('created_at')->useCurrentOnUpdate()->useCurrent();
             $table->timestamp('update_at')->nullable();

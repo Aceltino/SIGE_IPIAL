@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('programas_calendario', function (Blueprint $table) {
-            $table->integer('agendaCalendar_id', true);
+            $table->id('agendaCalendar_id');
             $table->integer('calendario_id')->index('fk_tbl_agendaCalendario_tbl_calendario1_idx');
             $table->integer('disciplina_id')->index('fk_tbl_agendaCalendario_tbl_disciplina1_idx');
             $table->integer('tempo_id')->nullable()->index('fk_tbl_agendaCalendario_tbl_tempo1_idx');

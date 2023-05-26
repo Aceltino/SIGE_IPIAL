@@ -14,16 +14,18 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pessoas', function (Blueprint $table) {
-            $table->integer('pessoa_id', true);
+            $table->id('pessoa_id');
             $table->string('nome_completo', 455);
-            $table->string('num_bi', 14)->unique('num_bi_UNIQUE');
+            $table->string('num_bi', 14)->unique();
             $table->date('data_nascimento');
-            $table->enum('gerero_DG', ['Masculino', 'Femenino']);
-            $table->timestamp('created_at')->useCurrentOnUpdate()->useCurrent();
-            $table->timestamp('update_at')->nullable();
+            $table->enum('gerero', ['Masculino', 'Femenino']);
+            
+            //Chave estrageira
             $table->integer('endereco_id')->index('fk_tbl_pessoa_tbl_endereco1_idx');
-
             $table->primary(['pessoa_id', 'endereco_id']);
+            
+            //Data de Update e Create
+            $table->timestamps();
         });
     }
 

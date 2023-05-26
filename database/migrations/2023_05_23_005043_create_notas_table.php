@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('notas', function (Blueprint $table) {
-            $table->increments('nota_id');
+            $table->id('nota_id');
             $table->date('data_avaliacao');
             $table->double('nota_aluno');
             $table->enum('tipo_prova', ['AvaliacaoContinua', 'Prova Professor', 'ProvaTrimestre', 'Prova Global', 'Recurso', 'Exame Recurso', 'Exame', 'Exame Especial']);

@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\{
+    //Classes das Controllers 
+    AuthController
+};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,124 +17,134 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Routas para Autenticação no Sistema
 
+
+//Rotas do Painel
+Route::get('/', function () {
+    return view('pagina-inicial');
+})->name('inicio')->middleware('auth');
+
+
+//Routas para Autenticação no Sistema
 Route::prefix('autenticacao')->group(function(){
     
     //Rota de Login
-    Route::get('login', function () {
-        return view('autenticacao/login');
-    })->name('login');
-    
+    Route::get('login', [AuthController::class,'loginForm'])->name('login');
+
     //Rota de Cadastro
+    Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar');
+
+
+    //CODIFICANDO...
+    Route::get('/lembrar', function () {
+        return view('autenticacao/recuperar-senha');
+    })->name('recuperar-senha');
+    
     Route::get('/registrar', function () {
         return view('autenticacao/registrar');
-    });
+    })->name('registrar');
     
-});
 
-//Rotas do Painel
-Route::get('/inicio', function () {
-    return view('pagina-inicial');
-})->name('inicio');
-
-/* Essas rotas sao apenas para conseguirem visualizar cada pagina*/
-
-Route::get('/lembrar', function () {
-    return view('autenticacao/recuperar-senha');
-});
-
-Route::get('/registrar', function () {
-    return view('autenticacao/registrar');
+    /* Routas para enviou de Dados (Login)*/
+    Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck');
 });
 
 
 /******************************************
  * Rotas de inscricao
  */
-/*Inscricoes ou alunos inscritos */
-Route::get('/inscricoes', function () {
-    return view('inscricao/inscricoes');
+Route::prefix('inscricao')->group(function(){
+
+    /*Inscricoes ou alunos inscritos */
+    Route::get('/inscricoes', function () {
+        return view('inscricao/inscricoes');
+    });
+
+    /*Inscrever candidato */
+    Route::get('/inscrever', function () {
+        return view('inscricao/inscr-candidato');
+    })->name('inscriver->candidato');
+
+    /*Editar candidato */
+    Route::get('/editar-candidato', function () {
+        return view('inscricao/edit-candidato');
+    });
+
+    /*Inscritos online */
+    Route::get('/inscritos-online', function () {
+        return view('inscricao/inscritos-online');
+    });
+
+    /*Incritos rejeitados */
+    Route::get('/inscritos-rejeitados', function () {
+        return view('inscricao/inscritos-rejeitados');
+    });
+
+    /*Confirmar inscricao*/
+    Route::get('/conf-inscricao', function () {
+        return view('inscricao/conf-inscricao');
+    });
+
+    /* Rejeitar inscricao */
+    Route::get('/rej-inscricao', function () {
+        return view('inscricao/rejeitar-inscricao');
+        });
 });
 
-/*Inscrever candidato */
-Route::get('/inscrever', function () {
-    return view('inscricao/inscr-candidato');
-});
-
-/*Editar candidato */
-Route::get('/editar-candidato', function () {
-    return view('inscricao/edit-candidato');
-});
-
-/*Inscritos online */
-Route::get('/inscritos-online', function () {
-    return view('inscricao/inscritos-online');
-});
-
-/*Incritos rejeitados */
-Route::get('/inscritos-rejeitados', function () {
-    return view('inscricao/inscritos-rejeitados');
-});
-
-/*Confirmar inscricao*/
-Route::get('/conf-inscricao', function () {
-    return view('inscricao/conf-inscricao');
-});
-
-/* Rejeitar inscricao */
-Route::get('/rej-inscricao', function () {
-    return view('inscricao/rejeitar-inscricao');
-});/**<!--Fim Rotas de inscricao--> */
+/**<!--Fim Rotas de inscricao--> */
 
 
 /******************************************
  * Rotas das matriculas
  */
-/* Matriculas*/
-Route::get('/matriculas', function () {
-    return view('matricula/matriculas');
-});
+Route::prefix('matricula')->group(function(){
 
-/*Matricular aluno */
-Route::get('/matricular-aluno', function () {
-    return view('matricula/matricular-aluno');
-});
+    /* Matriculas*/
+    Route::get('/matriculas', function () {
+        return view('matricula/matriculas');
+    });
 
-/*Editar matricula */
-Route::get('/editar-matricula', function () {
-    return view('matricula/edit-matricula');
-});
+    /*Matricular aluno */
+    Route::get('/matricular-aluno', function () {
+        return view('matricula/matricular-aluno');
+    });
 
-/*Readimitir aluno */
-Route::get('/readmitir-aluno', function () {
-    return view('matricula/readmitir-aluno');
-});
+    /*Editar matricula */
+    Route::get('/editar-matricula', function () {
+        return view('matricula/edit-matricula');
+    });
 
-/*Aluno ativo */
-Route::get('/aluno-ativo', function () {
-    return view('matricula/aluno-ativo');
-});
+    /*Readimitir aluno */
+    Route::get('/readmitir-aluno', function () {
+        return view('matricula/readmitir-aluno');
+    });
 
-/*Aluno inativo */
-Route::get('/aluno-inativo', function () {
-    return view('matricula/aluno-inativo');
-});
+    /*Aluno ativo */
+    Route::get('/aluno-ativo', function () {
+        return view('matricula/aluno-ativo');
+    });
 
-/*Registrar aluno */
-Route::get('/registrar-aluno', function () {
-    return view('matricula/registrar-aluno');
-});
+    /*Aluno inativo */
+    Route::get('/aluno-inativo', function () {
+        return view('matricula/aluno-inativo');
+    });
 
-/*Alunos registrados */
-Route::get('/alunos-registrado', function () {
-    return view('matricula/alunos-registrado');
-});
+    /*Registrar aluno */
+    Route::get('/registrar-aluno', function () {
+        return view('matricula/registrar-aluno');
+    });
 
-/*Editar registro */
-Route::get('/editar-registro', function () {
-    return view('matricula/edit-registro-aluno');
-});/**<!--Fim Rotas de matriculas--> */
+    /*Alunos registrados */
+    Route::get('/alunos-registrado', function () {
+        return view('matricula/alunos-registrado');
+    });
+
+    /*Editar registro */
+    Route::get('/editar-registro', function () {
+        return view('matricula/edit-registro-aluno');
+    });
+});
+/**<!--Fim Rotas de matriculas--> */
 
 
 /******************************************
@@ -150,20 +164,49 @@ Route::get('/editar-dados-professor', function () {
 
 Route::get('/horario-professor', function () {
     return view('professor/horario-prof');
-});/**<!--Fim Rotas de Professor--> */
+});
+/**<!--Fim Rotas de Professor--> */
 
 
 /******************************************
  * Rotas das turmas
  */
-/* Criar turma*/
-Route::get('/criar-turma', function () {
-    return view('turma/cri-turma');
-});
 
-/*Trumas */
-Route::get('/turmas', function () {
-    return view('turma/turmas');
+Route::prefix('turma')->group(function(){
+
+    /* Criar turma*/
+    Route::get('/criar-turma', function () {
+        return view('turma/cri-turma');
+    });
+    
+    /*Trumas */
+    Route::get('/turmas', function () {
+        return view('turma/turmas');
+    });
+    
+    /*Editar turma */
+    Route::get('/editar-turma', function () {
+        return view('turma/edit-turma');
+    });
+});
+/**<!--Fim Rotas turma--> */
+
+
+Route::prefix('aluno')->group(function(){
+    /*
+        Rotas de aluno
+    */
+    Route::get('/boletim-notas', function () {
+        return view('aluno/boletim-notas');
+    });
+    
+    Route::get('/ficha-biografica', function () {
+        return view('aluno/ficha-biog');
+    });
+    
+    Route::get('/assiduidade-aluno', function () {
+        return view('aluno/assiduidade-aluno');
+    });
 });
 
 /*Editar turma */
@@ -193,24 +236,37 @@ Route::get('/assiduidade-aluno', function () {
 /******************************************
  * Rotas de curso
  */
-Route::get('/criar-curso', function () {
-    return view('curso/criar-curso');
+Route::prefix('curso')->group(function(){
+    
+    Route::get('/criar-curso', function () {
+        return view('curso/criar-curso');
+    });
+    
+    Route::get('/cursos', function () {
+        return view('curso/cursos');
+    });
+    
+    Route::get('/editar-curso', function () {
+        return view('curso/edit-curso');
+    });
 });
-
-Route::get('/cursos', function () {
-    return view('curso/cursos');
-});
-
-Route::get('/editar-curso', function () {
-    return view('curso/edit-curso');
-});/**<!--Fim Rotas curso--> */
-
+/**<!--Fim Rotas curso--> */
 
 /******************************************
  * Rotas do ano-lectivo 
  */
-Route::get('/criar-ano-letivo', function () {
-    return view('ano-lectivo/criar-aluno-lect');
+Route::prefix('ano-lectivo')->group(function(){
+    Route::get('/criar-ano-letivo', function () {
+        return view('ano-lectivo/criar-aluno-lect');
+    });
+    
+    Route::get('/ano-letivo', function () {
+        return view('ano-lectivo/ano-lect');
+    });
+    
+    Route::get('/editar-ano-letivo', function () {
+        return view('ano-lectivo/edit-ano-letivo');
+    });
 });
 
 Route::get('/ano-letivo', function () {
@@ -226,52 +282,56 @@ Route::get('/editar-ano-letivo', function () {
 /**
  * Rota do perfil de usuario
  */
-
- Route::get('/perfil', function () {
-    return view('perfil/perfil');
+Route::prefix('perfil')->group(function(){
+    Route::get('/perfil', function () {
+        return view('perfil/perfil');
+    });
+    
 });
-
+ 
 /******************************************
  * Rotas da ficha biografica-lectivo 
  */
-Route::get('/fichas-biograficas', function () {
-    return view('ficha-biog/ficha-biog');
-});
-
-Route::get('/fichas-biograficas-doc', function () {
-    return view('ficha-biog/ficha-biografica-doc');
+Route::prefix('ficha-biog')->group(function(){
+    
+    Route::get('/fichas-biograficas', function () {
+        return view('ficha-biog/ficha-biog');
+    });
+    Route::get('/fichas-biograficas-doc', function () {
+        return view('ficha-biog/ficha-biografica-doc');
+    });
 });
 
 /******************************************
  * Rotas do processo do Aluno 
  */
-Route::get('/processos', function () {
-    return view('processo/processos');
+Route::prefix('processo')->group(function(){
+    Route::get('/processos', function () {
+        return view('processo/processos');
+    });
 });
-
-
 /******************************************
  * Rotas de pauta
  */
-Route::get('/pautas', function () {
-    return view('pauta/pautas');
+Route::prefix('pauta')->group(function(){
+    Route::get('/pautas', function () {
+        return view('pauta/pautas');
+    });
+    Route::get('/ver-pauta', function () {
+        return view('pauta/pauta-doc');
+    });    
 });
-
-Route::get('/ver-pauta', function () {
-    return view('pauta/pauta-doc');
-});
-
-
 /******************************************
  * Rotas de mini-pauta
  */
-
-Route::get('/mini-pauta', function () {
-    return view('mini-pauta/mini-pauta');
-});
-
-Route::get('/ver-mini-pauta', function () {
-    return view('mini-pauta/mini-pauta-doc');
+Route::prefix('mini-pauta')->group(function(){
+    Route::get('/mini-pauta', function () {
+        return view('mini-pauta/mini-pauta');
+    });
+    Route::get('/ver-mini-pauta', function () {
+        return view('mini-pauta/mini-pauta-doc');
+    });
+    
 });
 
 

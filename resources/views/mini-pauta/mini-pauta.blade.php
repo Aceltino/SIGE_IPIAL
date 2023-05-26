@@ -61,7 +61,7 @@
           <td>Desenhador projetista</td>
           <td>Tarde</td>
           <td>
-              <a href="/ver-mini-pauta" class="btn btn-cor-sg-a">Ver Mini-pauta</a>
+              <a href="/mini-pauta/ver-mini-pauta" class="btn btn-cor-sg-a">Ver Mini-pauta</a>
           </td>
           </tr>
       </tbody>

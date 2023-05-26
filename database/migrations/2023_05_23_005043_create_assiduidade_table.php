@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('assiduidade', function (Blueprint $table) {
-            $table->integer('assiduidade_id');
-            $table->tinyInteger('falta_aluno');
+            $table->id('assiduidade_id');
+            $table->boolean('falta_aluno');
             $table->enum('status_falta', ['JUSTIFICADA', 'N-JUSTIFICADA']);
             $table->longText('descricao_falta')->nullable();
             $table->enum('tipo_falta', ['Disciplinar', 'Presencial']);

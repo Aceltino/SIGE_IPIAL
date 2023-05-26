@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('professores', function (Blueprint $table) {
-            $table->integer('professor_id', true);
+            $table->id('professor_id');
             $table->string('formacao');
             $table->timestamp('created_at')->useCurrentOnUpdate()->useCurrent();
             $table->timestamp('update_at')->nullable();

@@ -8,20 +8,31 @@
       <img src={{URL::asset("img/logo.png")}}><br>
       <span>SIGE - IPIAL</span>
     </div>
-    <form class="row g-3 needs-validation" novalidate>
+    @if(session('erro_login_001'))
+      <div class="alert alert-danger">
+          {{session('erro_login_001')}}
+      </div>
+    @endif
+    @if(session('erro_login_002'))
+      <div class="alert alert-danger">
+          {{session('erro_login_002')}}
+      </div>
+   @endif
+    <form action={{route('loginCheck')}} method="post" class="row g-3 needs-validation" novalidate>
+      @csrf
       <div class="col-12">
         
         <div class="input-group has-validation">
           <span class="input-group-addon" id="inputGroupPrepend"><i class="bi bi-person"></i></span>
           <input type="text" name="username" autocomplete="off" placeholder="Inserir nome de usuário" class="form-control" required>
-          <div class="invalid-feedback">Por favor insere o e-mail!</div>
+          <div class="invalid-feedback">Por favor insere o Nome do Usuario!</div>
         </div>
       </div>
 
       <div class="input-group col-12">
         <span class="input-group-addon" id="inputGroupPrepend"><i class="bi bi-key-fill"></i></span>
         <input type="password" name="password" placeholder="Inserir a senha" class="form-control" required>
-        <div class="invalid-feedback">Por favor insere a senha!</div>
+        <div class="invalid-feedback">Por favor insere a Senha!</div>
       </div>
 
       <div class="container">
