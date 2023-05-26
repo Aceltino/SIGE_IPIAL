@@ -208,7 +208,6 @@ Route::prefix('aluno')->group(function(){
         return view('aluno/assiduidade-aluno');
     });
 });
-<<<<<<< Updated upstream
 
 /*Editar turma */
 Route::get('/editar-turma', function () {
@@ -232,9 +231,6 @@ Route::get('/ficha-biografica', function () {
 Route::get('/assiduidade-aluno', function () {
     return view('aluno/assiduidade-aluno');
 });/**<!--Fim Rotas aluno--> */
-=======
-/**<!--Fim Rotas aluno--> */
->>>>>>> Stashed changes
 
 
 /******************************************
@@ -272,7 +268,6 @@ Route::prefix('ano-lectivo')->group(function(){
         return view('ano-lectivo/edit-ano-letivo');
     });
 });
-<<<<<<< Updated upstream
 
 Route::get('/ano-letivo', function () {
     return view('ano-lectivo/ano-lect');
@@ -282,8 +277,6 @@ Route::get('/editar-ano-letivo', function () {
     return view('ano-lectivo/edit-ano-letivo');
 });
 
-=======
->>>>>>> Stashed changes
 /**<!--Fim Rotas ano lectivo--> */
 
 /**

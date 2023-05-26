@@ -4,6 +4,7 @@
 
 @section('conteudo')
 <main id="main" class="main">
+
   <form method="POST" action="" id="regForm" class="form-nscricao">
   
     <div style="text-align:center;margin-top:40px;">
