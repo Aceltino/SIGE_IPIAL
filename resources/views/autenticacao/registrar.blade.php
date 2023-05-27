@@ -38,11 +38,11 @@
 
         <div class="col">
             <div class="input-group has-validation">
-              <input type="text" autocomplete="off" class="form-control" placeholder="Nº BI" required>
+              <input type="text" autocomplete="off" value="{{old('num_bi')}}" name="num_bi" class="form-control" placeholder="Nº BI" required>
               <div class="invalid-feedback">Por favor insira o Número de BI.</div>
             </div>
         </div>
-        @error('cargo')
+        @error('num_bi')
           <div class="alert alert-danger">{{$message}}</div>
         @enderror
 
@@ -52,18 +52,15 @@
             <option value="2">Mulher</option>
           </select>
         </div>
-        @error('cargo')
-          <div class="alert alert-danger">{{$message}}</div>
-        @enderror
-
+       
         <span style="color: rgb(88, 85, 85);">
           Data de Nascimento
           <div class="col">
             <div class="input-group has-validation">
-              <input type="date" autocomplete="off" class="form-control" placeholder="Data de Nascimento" required>
+              <input type="date" autocomplete="off" value="{{old('data_nascimento')}}" name="data_nascimento" class="form-control" placeholder="Data de Nascimento" required>
               <div class="invalid-feedback">Por favor insira a Data de Nascimento.</div>
             </div>
-            @error('cargo')
+            @error('data_nascimento')
               <div class="alert alert-danger">{{$message}}</div>
             @enderror
           </div>
@@ -75,7 +72,7 @@
       <div class="tab">
 
         <div class="input-group has-validation">
-          <input type="text" autocomplete="off" name="municipio" class="form-control" placeholder="Municipio" required>
+          <input type="text" autocomplete="off" value="{{old('municipio')}}" name="municipio" class="form-control" placeholder="Municipio" required>
           <div class="invalid-feedback">Por favor insira um Nome Completo</div>
         </div>
         @error('municipio')
@@ -83,7 +80,7 @@
         @enderror
 
         <div class="input-group has-validation">
-          <input type="text" autocomplete="off" name="bairro" class="form-control" placeholder="Bairro" required>
+          <input type="text" autocomplete="off" value="{{old('bairro')}}" name="bairro" class="form-control" placeholder="Bairro" required>
           <div class="invalid-feedback">Por favor insira um Nome Completo</div>
         </div>
         @error('bairro')
@@ -91,7 +88,7 @@
         @enderror
 
         <div class="input-group has-validation">
-          <input type="text" autocomplete="off" name="zona" class="form-control" placeholder="Zona" required>
+          <input type="text" autocomplete="off" value="{{old('zona')}}" name="zona" class="form-control" placeholder="Zona" required>
           <div class="invalid-feedback">Por favor insira um Nome Completo</div>
         </div>
         @error('zona')
@@ -99,7 +96,7 @@
         @enderror
 
         <div class="input-group has-validation">
-          <input type="number" autocomplete="off" name="num_casa" class="form-control" placeholder="Casa Nº" required>
+          <input type="number" autocomplete="off" value="{{old('num_casa')}}" name="num_casa" class="form-control" placeholder="Casa Nº" required>
           <div class="invalid-feedback">Por favor insira um Nome Completo</div>
         </div>
         @error('num_casa')
@@ -113,7 +110,7 @@
       <div class="tab">
         
         <div class="input-group has-validation">
-          <input type="number" autocomplete="off" name='num_telefone' class="form-control" placeholder="Telefone Nº" required>
+          <input type="number" autocomplete="off" value="{{old('num_telefone')}}" name='num_telefone' class="form-control" placeholder="Telefone Nº" required>
           <div class="invalid-feedback">Por favor insira um Número de Telefone</div>
         </div>
         @error('num_telefone')
@@ -134,7 +131,7 @@
         </div>
 
         <div class="input-group has-validation">
-          <input type="email" autocomplete="off" name="email" class="form-control" placeholder="Email" required>
+          <input type="email" autocomplete="off" value="{{old('email')}}" name="email" class="form-control" placeholder="Email" required>
           <div class="invalid-feedback">Por favor insira um Email</div>
         </div>
         @error('email')
@@ -142,7 +139,7 @@
         @enderror
 
         <div class="input-group has-validation">
-          <input type="password" autocomplete="off" name="password" class="form-control" placeholder="Senha" required>
+          <input type="password" autocomplete="off" value="{{old('password')}}" name="password" class="form-control" placeholder="Senha" required>
           <div class="invalid-feedback">Por favor insira uma Senha</div>
         </div>
         @error('password')
@@ -150,7 +147,7 @@
         @enderror
 
         <div class="input-group has-validation">
-          <input type="password" autocomplete="off" name='password_confirmation' class="form-control" placeholder="Confirmação da Senha" required>
+          <input type="password" autocomplete="off" value="{{old('password_confirmation')}}" name='password_confirmation' class="form-control" placeholder="Confirmação da Senha" required>
           <div class="invalid-feedback">Por favor insira a confirmação da senha</div>
         </div>
         @error('password_confirmation')

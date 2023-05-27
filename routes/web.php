@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
 //Rotas do Painel
 Route::get('/', function () {
     return view('pagina-inicial');
@@ -32,7 +31,7 @@ Route::prefix('autenticacao')->group(function(){
     Route::get('login', [AuthController::class,'loginForm'])->name('login');
 
     //Rota de Cadastro
-    Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar');
+    Route::post('registrar', [AuthController::class,'store'])->name('registrar');
 
 
     //CODIFICANDO...
