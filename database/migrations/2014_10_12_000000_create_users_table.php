@@ -22,13 +22,12 @@ return new class extends Migration
             $table->timestamps();
             $table->rememberToken();
 
-            // //Colunas de Relacionamento
-            // $table->foreignId('pessoa_id')
-            // ->references('pessoa_id')
-            // ->on('pessoas')
-            // ->onDelete('CASCADE')
-            // ->onUpdate('CASCADE');
-
+            //Colunas de Relacionamento
+            $table->foreignId('pessoa_id')
+            ->references('pessoa_id')
+            ->on('pessoas')
+            ->onDelete('CASCADE')
+            ->onUpdate('CASCADE');
         });
     }
 
