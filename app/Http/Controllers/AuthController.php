@@ -116,11 +116,14 @@ class AuthController extends Controller
             'num_casa'=>$request->num_casa,
         ];
 
-        $validator= Validator::make($request->all() /*$regras,*/ /*$mensagens*/);
+        $validator= Validator::make($request->all(), $regras_gerais, /*$mensagens*/);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
-        }
+        }   
+        
+        echo "Dados Bem Preenchido";
+        die;
 
         $credencias=[
             "name"=>$request->name,
