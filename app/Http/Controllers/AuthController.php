@@ -9,8 +9,10 @@ use App\Models\{
 };
 use GuzzleHttp\Promise\EachPromise;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\{
+    Auth,
+    Validator
+};
 
 class AuthController extends Controller
 {
@@ -27,8 +29,7 @@ class AuthController extends Controller
     }
 
     public function loginCheck(Request $request){
-        
-        
+       
         $credencias=[
             'nome_usuario'=>$request->username,
             'password'=>$request->password
@@ -37,16 +38,29 @@ class AuthController extends Controller
         if(empty($credencias['nome_usuario']) || empty($credencias['password'])){
            return redirect()->back()->with('erro_login_001',"Por favor, Insira os dados de Acesso");
         }
-        if(Auth::attempt($credencias)){
-            $user= Auth::user();
-            dd($user);
+        if(!Auth::attempt($credencias)){
+            return redirect()->back()->with('erro_login_002',"Dados Incorrecto"); 
         } 
-        return redirect()->back()->with('erro_login_002',"Dados Incorrecto"); 
-     
+
+
+        //Ação do Login
+        $user= Auth::user();
+        dd($user);
+        
+        $dados_user= UserController::show($user->id);
+
+        dd($dados_user);
+
+        session([
+            "cargo"=>$dados_user->cargo,
+            'nome_completo'=>$dados_user->pessoa->nome_completo,
+        ]);
+        return view('pagina-inicial');
     }
 
+
     public function store(Request $request){
- 
+   
         $regras_gerais=[
 
             //Formulario da Pessoa
@@ -66,8 +80,6 @@ class AuthController extends Controller
             'zona'=>'required|string',
             'num_casa'=>'required|numeric',
         ];
-
-        //Mensagens emitidas com base ao erro 
         $msg_erro=[
             
             '*.required'=>'Este campo deve ser preenchido',
@@ -95,50 +107,44 @@ class AuthController extends Controller
             'municipio.min'=>'O seu municipio não pode conter menos de 2 Letras',
             'num_casa.numeric'=>'Número de casa deve conter apenas digitos validos.',
         ];
-
         $dados=[
 
-            //Formulario da Pessoa
+            //Dados da Pessoa
             'nome'=>$request->nome,
             'sobre_nome'=>$request->sobre_nome,
             'data_nascimento'=>$request->data_nascimento,
             'num_bi'=>$request->num_bi,
 
-            //Formulario do user
+           //Dados do user
             'email'=>$request->email,
             'password'=>$request->password,
             'num_telefone'=>$request->num_telefone,
-
-            //Formulario do endereço
+            
+            //Dados do endereço
             'municipio'=>$request->municipio,
             'bairro'=>$request->bairro,
             'zona'=>$request->zona,
             'num_casa'=>$request->num_casa,
+            
         ];
-
-    
         $validator= Validator::make($dados,$regras_gerais,$msg_erro);
-       
         if ($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput();
+        }    
+                
+        if(!PessoaController::store($request)){
+            $msg="Lamentamos! Dados não cadastrado, tente este processo mais tarde...";
+            return redirect()->back()->with("erroCadastroPessoa",$msg);
+        }    
+        if(!EnderecoController::store($request)){
+            $msg="Lamentamos! Dados não Cadastrado, tente este processo mais tarde...";
+            return redirect()->back()->with("erroCadastroEndereco",$msg);
+        }        
+        if(!UserController::store($request)){
+            $msg="Lamentamos! Dados não Cadastrado, tente este processo mais tarde...";
+            return redirect()->back()->with("erroCadastroUser",$msg);
         }
-            echo "Dados Bem Preenchido";
-            die;
-
-        $credencias=[
-            "name"=>$request->name,
-            "email"=>$request->email,
-            'cargo'=>"Administrador",
-            "password"=>bcrypt($request->password),
-        ];
-
-        $user= User::create($credencias);
-
-        if(!$user){
-            $msg="Lamentamos! Usuario não Cadastrado, tente este processo mais tarde...";
-            return redirect()->back()->with("errorCadastroNewUsuario",$msg);
-        }
-        
-        return view("auth.login");
+   
+        return view("pagina-inicial");
     }
 }

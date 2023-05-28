@@ -6,7 +6,7 @@
 <main id="main" class="main">
 
   <form method="POST" action="" id="regForm" class="form-nscricao">
-  
+  @csrf
     <div style="text-align:center;margin-top:40px;">
       <span class="step"></span>
       <span class="step"></span>
@@ -18,47 +18,47 @@
       <h2>introduza os dados pessoais</h2>
       
       <div class="form-group">
-        <input type="text" placeholder="Nome Completo" name="" oninput="this.className = ''">
+        <input type="text" placeholder="Nome Completo" name="nome_completo" oninput="this.className = ''">
       </div>
       
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <input type="text" placeholder="Nome do Pai" oninput="this.className = ''">
+            <input type="text" placeholder="Nome do Pai" name="nome_pai_cand" oninput="this.className = ''">
           </div>
         </div>
 
         <div class="col">
           <div class="form-group">
-            <input type="text" placeholder="Nome da Mãe" oninput="this.className = ''">
+            <input type="text" placeholder="Nome da Mãe" name="nome_mae_cand" oninput="this.className = ''">
           </div> 
         </div>
       </div>
       
       <div class="row">
         <div class="col">
-          <p><input type="date" name="" oninput="this.className = ''"></p>
+          <p><input type="date" name="data_nascimento" oninput="this.className = ''"></p>
         </div>
 
         <div class="col">
           <input type="text" class="form-control" readonly="true" value="00" name="" disabled>
         </div>
         <div class="col">
-          <input type="text" placeholder="Naturalidade" name="" oninput="this.className = ''">
+          <input type="text" placeholder="Naturalidade" name="naturalidade_cand" oninput="this.className = ''">
         </div>
       </div>
       
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <input type="radio" id="masculino" name="masculino" checked><label for="masculino"> Masculino</label>
-            <input type="radio" id="feminino" name="feminino"><label for="feminino"> Feminino</label>
+            <input type="radio" id="masculino" name="masculino" value="Masculino" checked><label for="masculino"> Masculino</label>
+            <input type="radio" id="feminino" name="feminino" value="Femenino"><label for="feminino"> Feminino</label>
           </div>
         </div>
 
         <div class="col">
           <div class="form-group">
-            <input type="text" placeholder="Número do bilhete de identidade" oninput="this.className = ''">
+            <input type="text" placeholder="Número do bilhete de identidade" name="num_bi" oninput="this.className = ''">
           </div> 
         </div>
       </div>
@@ -66,7 +66,7 @@
       <div class="row">
         <div id="clone1"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
           <span style="color: #777;">+244</span>
-          <input type="text" value="" name="ola" placeholder="Telefone" oninput="this.className = ''">
+          <input type="text" value="" name="ola" placeholder="Telefone" name="num_tel" oninput="this.className = ''">
         </div>
 
         <div class="col-3">
@@ -78,36 +78,35 @@
     <div class="tab">
       <h2>introduza os dados da escola de providência</h2>
       <div class="form-group">
-        <input type="text" placeholder="Nome da escola de providência" oninput="this.className = ''">
+        <input type="text" placeholder="Nome da escola de providência" name="nome_escola" oninput="this.className = ''">
       </div>
 
       <div class="row">
         <div class="form-group col">
           <select oninput="this.className = ''" class="form-select">
-            <option selected disabled>Turno</option>
-            <option>Manhã</option>
+            <option selected>Manhã</option>
             <option>Tarde</option>
             <option>Noite</option>
           </select>
         </div>
 
         <div class="form-group col">
-          <input type="text" placeholder="Nº de estudante" oninput="this.className = ''">
+          <input type="text" placeholder="Nº de estudante" name="num_aluno" oninput="this.className = ''">
         </div>
 
         <div class="form-group col">
-          <input type="text" placeholder="Turma" oninput="this.className = ''">
+          <input type="text" placeholder="Turma" name="" oninput="this.className = ''">
         </div>
 
       </div>
 
       <div class="row">
         <div class="form-group col">
-          <input type="text" placeholder="Processo nº" oninput="this.className = ''">
+          <input type="text" placeholder="Processo nº" name="num_processo" oninput="this.className = ''">
         </div>
 
         <div class="form-group col">
-          <input type="text" placeholder="Ano Lectivo" oninput="this.className = ''">
+          <input type="text" placeholder="Ano Lectivo" name="ultimo_anoLectivo" oninput="this.className = ''">
         </div>
         
       </div>
