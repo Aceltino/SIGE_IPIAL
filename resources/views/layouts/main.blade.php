@@ -22,6 +22,7 @@
     <link href={{{URL::asset("css/tudo.css")}}} rel="stylesheet">
     <link href={{{URL::asset("css/dinamico.css")}}} rel="stylesheet">
     <link href={{{URL::asset("css/perfil.css")}}} rel="stylesheet">
+    <link href={{{URL::asset("css/calendario.css")}}} rel="stylesheet">
     <link href={{{URL::asset("css/ficha-biografica-doc.css")}}} rel="stylesheet">
     <link href={{{URL::asset("css/fonts/fontawesome-all.min.css")}}} rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
