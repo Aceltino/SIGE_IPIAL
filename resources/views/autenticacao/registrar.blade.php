@@ -18,7 +18,23 @@
         <span class="step"></span>
         <span class="step"></span>
         <span class="step"></span>
-      </div>
+      </div> 
+
+      @if(session('erroCadastroPessoa'))
+        <div class="alert alert-success">
+          {{session('erroCadastroPessoa')}}
+        </div>
+      @endif
+      @if(session('erroCadastroEndereco'))
+        <div class="alert alert-success">
+          {{session('erroCadastroEndereco')}}
+        </div>
+      @endif
+      @if(session('erroCadastroUser'))
+        <div class="alert alert-success">
+          {{session('erroCadastroUser')}}
+        </div>
+      @endif
 
       {{-- Dados da Pessoa - Apagar em Produção --}}
       <div class="tab">
@@ -47,9 +63,9 @@
         @enderror
 
         <div class="input-group has-validation">
-          <select class="form-select">
-            <option value="1" selected>Homem</option>
-            <option value="2">Mulher</option>
+          <select class="form-select" name="genero">
+            <option value="Masculino" selected>Masculino</option>
+            <option value="Femenino">Femenino</option>
           </select>
         </div>
        
@@ -102,7 +118,6 @@
         @error('num_casa')
           <div class="alert alert-danger">{{$message}}</div>
         @enderror
-       
 
       </div>
 

@@ -33,7 +33,7 @@
     <script src={{{URL::asset("js/jquery-3.6.4.min.js")}}}></script>
     <script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
     <script src={{{URL::asset("js/chart.js")}}}></script>
-    <script src="node_modules/chart.js/dist/chart.js"></script>
+    <script src={{URL::asset("node_modules/chart.js/dist/chart.js")}}></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     
 

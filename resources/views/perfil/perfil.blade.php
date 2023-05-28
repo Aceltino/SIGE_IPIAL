@@ -1,7 +1,5 @@
 @extends('layouts.main')
-
 @section('title', 'Perfil de usuario')
-
 @section('conteudo')
 <main id="main" class="main">
   	
