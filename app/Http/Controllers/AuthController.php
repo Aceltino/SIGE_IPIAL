@@ -41,8 +41,9 @@ class AuthController extends Controller
 
         //Ação do Login
         $user= Auth::user();
-        dd($user);
-
+        echo "Usuario Logado... Ainda em Desenvolvimento.CARLOS MARQUES";
+        // dd($user);
+        	die;
         $dados_user= UserController::show($user->id);
 
         dd($dados_user);
@@ -55,7 +56,6 @@ class AuthController extends Controller
     }
     public function store(Request $request){
 
-        // $num_registo=count(User::all());
         //Criando o nome do Usuario
         $posicao = 0; // posição do caractere desejado(Onde começa a contagem do caracter)
         $abreNome = substr($request->nome, $posicao,2);
@@ -145,7 +145,8 @@ class AuthController extends Controller
             'zona'=>$request->zona,
             'numero_casa'=>$request->num_casa,
         ]; 
-        $pessoa_id= $this->storePessoa($dadosPessoa,$dadosEndereco); 
+
+        $pessoa_id= $this->storePessoa($dadosEndereco,$dadosPessoa);
 
         $dadosUser=[
             'nome_usuario'=>$abreNome.count(User::all()).$abreSobreNome,
@@ -153,16 +154,20 @@ class AuthController extends Controller
             'password'=>bcrypt($request->password),
             'num_telefone'=>$request->num_telefone,
             'cargo_usuario'=>$request->cargo,
-            'status_usuario'=>1,   
+            'status_usuario'=>1,
             'pessoa_id'=>$pessoa_id,
         ];
-        
+
         $user=UserController::store($dadosUser);
         if(!$user){
             $msg="Lamentamos! Dados não Cadastrado, tente este processo mais tarde...";
             return redirect()->back()->with("erroCadastroUser",$msg);
         }
-        return $this->loginForm();
+
+        //Depois deve se fazer mudanças basicas.nem todo cadastro deve lhe reencaminhar no Login.
+        
+        $msg=$request->cargo." Cadastrado com Sucesso. Por favor entre com os seus dados";
+        return view('autenticacao.login')->with('registrado',$msg);
     }
 }
 
