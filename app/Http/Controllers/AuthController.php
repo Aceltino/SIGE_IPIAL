@@ -2,13 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\{
-    User,
-    //Classes das Models
-    Usuarios
-};
-use GuzzleHttp\Promise\EachPromise;
+use App\Traits\PessoaTrait;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{
     Auth,
@@ -17,6 +12,8 @@ use Illuminate\Support\Facades\{
 
 class AuthController extends Controller
 {
+    use PessoaTrait; 
+
     public function loginForm(){
         $user= User::all();
 
@@ -25,11 +22,9 @@ class AuthController extends Controller
         }
         return view('autenticacao.login');
     }
-
     public function registrarForm(){
        return view('autenticacao.registrar');
     }
-
     public function loginCheck(Request $request){
 
         $credencias=[
@@ -43,7 +38,6 @@ class AuthController extends Controller
         if(!Auth::attempt($credencias)){
             return redirect()->back()->with('erro_login_002',"Dados Incorrecto");
         }
-
 
         //Ação do Login
         $user= Auth::user();
@@ -59,9 +53,13 @@ class AuthController extends Controller
         ]);
         return view('pagina-inicial');
     }
-
-
     public function store(Request $request){
+
+        // $num_registo=count(User::all());
+        //Criando o nome do Usuario
+        $posicao = 0; // posição do caractere desejado(Onde começa a contagem do caracter)
+        $abreNome = substr($request->nome, $posicao,2);
+        $abreSobreNome = substr($request->sobre_nome, $posicao,2);
 
         $regras_gerais=[
 
@@ -109,7 +107,7 @@ class AuthController extends Controller
             'municipio.min'=>'O seu municipio não pode conter menos de 2 Letras',
             'num_casa.numeric'=>'Número de casa deve conter apenas digitos validos.',
         ];
-        $dados=[
+        $dadosFiltrados=[
 
             //Dados da Pessoa
             'nome'=>$request->nome,
@@ -129,26 +127,42 @@ class AuthController extends Controller
             'num_casa'=>$request->num_casa,
 
         ];
-        $validator= Validator::make($dados,$regras_gerais,$msg_erro);
 
-
+        $validator= Validator::make($dadosFiltrados,$regras_gerais,$msg_erro);
         if ($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        if(!PessoaController::store($request)){
-            $msg="Lamentamos! Dados não cadastrado, tente este processo mais tarde...";
-            return redirect()->back()->with("erroCadastroPessoa",$msg);
-        }
-        if(!EnderecoController::store($request)){
-            $msg="Lamentamos! Dados não Cadastrado, tente este processo mais tarde...";
-            return redirect()->back()->with("erroCadastroEndereco",$msg);
-        }
-        if(!UserController::store($request)){
+        $dadosPessoa=[
+            'nome_completo'=>ucfirst($request->nome)." ".ucfirst($request->sobre_nome),
+            'data_nascimento'=>$request->data_nascimento,
+            'num_bi'=> strtoupper($request->num_bi),
+            'genero'=>$request->genero
+        ];
+        $dadosEndereco=[
+            'municipio'=>$request->municipio,
+            'bairro'=>$request->bairro,
+            'zona'=>$request->zona,
+            'numero_casa'=>$request->num_casa,
+        ]; 
+        $pessoa_id= $this->storePessoa($dadosPessoa,$dadosEndereco); 
+
+        $dadosUser=[
+            'nome_usuario'=>$abreNome.count(User::all()).$abreSobreNome,
+            'email'=>$request->email,
+            'password'=>bcrypt($request->password),
+            'num_telefone'=>$request->num_telefone,
+            'cargo_usuario'=>$request->cargo,
+            'status_usuario'=>1,   
+            'pessoa_id'=>$pessoa_id,
+        ];
+        
+        $user=UserController::store($dadosUser);
+        if(!$user){
             $msg="Lamentamos! Dados não Cadastrado, tente este processo mais tarde...";
             return redirect()->back()->with("erroCadastroUser",$msg);
         }
-
-        return view("pagina-inicial");
+        return $this->loginForm();
     }
 }
+

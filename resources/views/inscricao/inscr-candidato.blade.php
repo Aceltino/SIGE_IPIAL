@@ -83,7 +83,7 @@
 
       <div class="row">
         <div class="form-group col">
-          <select oninput="this.className = ''" class="form-select">
+          <select oninput="this.className = ''" class="form-select" name="turno">
             <option selected>Manhã</option>
             <option>Tarde</option>
             <option>Noite</option>
@@ -95,7 +95,7 @@
         </div>
 
         <div class="form-group col">
-          <input type="text" placeholder="Turma" name="" oninput="this.className = ''">
+          <input type="text" placeholder="Turma" name="turma" oninput="this.className = ''">
         </div>
 
       </div>
@@ -116,7 +116,7 @@
       <h2>Escolha o curso segundo a ordem de preferência</h2>
 
       <div class="form-group">
-        <select oninput="this.className = ''" class="form-select">
+        <select oninput="this.className = ''" class="form-select" name="opcao1">
           <option selected disabled>Escolha a primeira opção</option>
           <option value="D.P">Desenhador projetista - D.P</option>
           <option value="T.E.I.E">Técnico de Energia e Instalações Electricas - T.E.I.E</option>
@@ -126,7 +126,7 @@
       </div>
 
       <div class="form-group">
-        <select oninput="this.className = ''" class="form-select">
+        <select oninput="this.className = ''" class="form-select" name="opcao2">
           <option selected disabled>Escolha a segunda opção</option>
           <option value="D.P">Desenhador projetista - D.P</option>
           <option value="T.E.I.E">Técnico de Energia e Instalações Electricas - T.E.I.E</option>
@@ -136,7 +136,7 @@
       </div>
 
       <div class="form-group">
-        <select oninput="this.className = ''" class="form-select">
+        <select oninput="this.className = ''" class="form-select" name="opcao3">
           <option selected disabled>Escolha a terceira opção</option>
           <option value="D.P">Desenhador projetista - D.P</option>
           <option value="T.E.I.E">Técnico de Energia e Instalações Electricas - T.E.I.E</option>
@@ -146,7 +146,7 @@
       </div>
 
       <div class="form-group">
-        <select oninput="this.className = ''" class="form-select">
+        <select oninput="this.className = ''" class="form-select" name="opcao4">
           <option selected disabled>Escolha a quarta opção</option>
           <option value="D.P">Desenhador projetista - D.P</option>
           <option value="T.E.I.E">Técnico de Energia e Instalações Electricas - T.E.I.E</option>
@@ -160,7 +160,7 @@
     <div class="tab">
       <h2>Digite as médias para cada disciplina solicitada</h2>
       <div class="form-group">
-        <select oninput="this.className = ''" class="form-select">
+        <select oninput="this.className = ''" class="form-select" name="LinguaP">
           <option selected disabled>Língua Portuguesa</option>
           <option value="10">10</option>
           <option value="11">11</option>
@@ -177,7 +177,7 @@
       </div>
 
       <div class="form-group">
-        <select oninput="this.className = ''" class="form-select">
+        <select oninput="this.className = ''" class="form-select" name="Matematic">
           <option selected disabled>Matemática</option>
           <option value="10">10</option>
           <option value="11">11</option>
@@ -194,7 +194,7 @@
       </div>
 
       <div class="form-group">
-        <select oninput="this.className = ''" class="form-select">
+        <select oninput="this.className = ''" class="form-select" name="Fisic">
           <option selected disabled>Física</option>
           <option value="10">10</option>
           <option value="11">11</option>
@@ -211,7 +211,7 @@
       </div>
 
       <div class="form-group">
-        <select oninput="this.className = ''" class="form-select">
+        <select oninput="this.className = ''" class="form-select" name="Quimic">
           <option selected disabled>Química</option>
           <option value="10">10</option>
           <option value="11">11</option>

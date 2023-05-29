@@ -29,6 +29,7 @@ Route::prefix('autenticacao')->group(function(){
 
     //Rota de Login
     Route::get('login', [AuthController::class,'loginForm'])->name('login');
+    Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck');
 
     //Rota de Cadastro
     Route::post('registrar', [AuthController::class,'store'])->name('registrar');
@@ -37,9 +38,7 @@ Route::prefix('autenticacao')->group(function(){
     Route::get('/lembrar', function () {
         return view('autenticacao/recuperar-senha');
     })->name('recuperar-senha');
-
-    /* Routas para enviou de Dados (Login)*/
-    Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck');
+        
 });
 
 
