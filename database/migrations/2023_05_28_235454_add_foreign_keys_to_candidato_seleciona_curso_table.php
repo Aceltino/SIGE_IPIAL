@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('candidato_seleciona_curso', function (Blueprint $table) {
-            $table->foreign(['curso_id'], 'fk_tbl_candidato_has_tbl_curso_tbl_curso2')->references(['curso_id'])->on('cursos')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->foreign(['candidato_id'], 'fk_tbl_candidato_has_tbl_curso_tbl_candidato2')->references(['candidato_id'])->on('candidatos')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign(['curso_id'], 'fk_tbl_candidato_has_tbl_curso_tbl_curso2')->references(['curso_id'])->on('cursos')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 
@@ -27,8 +27,8 @@ return new class extends Migration
     public function down()
     {
         Schema::table('candidato_seleciona_curso', function (Blueprint $table) {
-            $table->dropForeign('fk_tbl_candidato_has_tbl_curso_tbl_curso2');
             $table->dropForeign('fk_tbl_candidato_has_tbl_curso_tbl_candidato2');
+            $table->dropForeign('fk_tbl_candidato_has_tbl_curso_tbl_curso2');
         });
     }
 };

@@ -10,5 +10,6 @@ class Pessoa extends Model
     use HasFactory;
     protected $fillable = [
         'nome_completo',
+        
     ];
 }

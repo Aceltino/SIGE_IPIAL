@@ -35,8 +35,8 @@ class InscricaoController extends Controller
         'num_aluno'=>$request->num_aluno,
         'ultimo_anoLectivo'=>$request->ultimo_anoLectivo,
         // 'media'=> $medias,//por enquanto esse campo estou com duvidas
-        'certificado'=>$request->certificado,    
- 
+        'certificado'=>$request->certificado,
+
         //Dados pessoais
         'nome_completo'=>$request->nome_completo,
         'num_bi'=>$request->num_bi,
@@ -72,7 +72,7 @@ class InscricaoController extends Controller
           'num_tel'=>'required|size:9',
     ];
 
-    $validacao = Validator::make($dados,$regras);
+    $validacao = Validator::make($dados, $regras);
     if($validacao->fails()){
         return redirect()->back()->withErrors($validacao)->withInput();
     }
@@ -86,19 +86,19 @@ class InscricaoController extends Controller
 
     // ]
     // $user= User::created()
-        
+
     // sleep(2);
-    
+
     // $dadospessoas=[
-        
+
     //     ]
     //     $user= User::created()
-    
+
 
     if(!PessoaController::store($request)){
         $msg="Lamentamos! Dados não cadastrado, tente este processo mais tarde...";
         return redirect()->back()->with("erroCadastroPessoa",$msg);
     }
-                
+
     }
 }

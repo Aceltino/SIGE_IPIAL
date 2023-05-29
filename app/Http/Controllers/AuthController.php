@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\{
+    User,
     //Classes das Models
-    User
+    Usuarios
 };
 use GuzzleHttp\Promise\EachPromise;
 use Illuminate\Http\Request;
@@ -18,6 +19,7 @@ class AuthController extends Controller
 {
     public function loginForm(){
         $user= User::all();
+
         if(count($user)==0){
             return $this->registrarForm();
         }
@@ -29,24 +31,24 @@ class AuthController extends Controller
     }
 
     public function loginCheck(Request $request){
-       
+
         $credencias=[
             'nome_usuario'=>$request->username,
             'password'=>$request->password
-        ]; 
+        ];
 
         if(empty($credencias['nome_usuario']) || empty($credencias['password'])){
            return redirect()->back()->with('erro_login_001',"Por favor, Insira os dados de Acesso");
         }
         if(!Auth::attempt($credencias)){
-            return redirect()->back()->with('erro_login_002',"Dados Incorrecto"); 
-        } 
+            return redirect()->back()->with('erro_login_002',"Dados Incorrecto");
+        }
 
 
         //Ação do Login
         $user= Auth::user();
         dd($user);
-        
+
         $dados_user= UserController::show($user->id);
 
         dd($dados_user);
@@ -60,7 +62,7 @@ class AuthController extends Controller
 
 
     public function store(Request $request){
-   
+
         $regras_gerais=[
 
             //Formulario da Pessoa
@@ -81,7 +83,7 @@ class AuthController extends Controller
             'num_casa'=>'required|numeric',
         ];
         $msg_erro=[
-            
+
             '*.required'=>'Este campo deve ser preenchido',
             '*.string'=>'Este campo deve conter apenas Letras',
 
@@ -93,7 +95,7 @@ class AuthController extends Controller
             'data.date' => 'O campo :attribute deve ser uma data válida.',
             'data_nascimento.before'=> 'O campo :attribute deve ser uma data posterior à data atual.',
             'num_bi.size'=> 'Número de identificação esta incorrecto',
-            
+
             //Formulario do user
             'email.email'=>'Este campo deve conter um email valido',
             'email.max'=>'Lamentamos! Digita um email com menos caracter(letra)',
@@ -119,32 +121,34 @@ class AuthController extends Controller
             'email'=>$request->email,
             'password'=>$request->password,
             'num_telefone'=>$request->num_telefone,
-            
+
             //Dados do endereço
             'municipio'=>$request->municipio,
             'bairro'=>$request->bairro,
             'zona'=>$request->zona,
             'num_casa'=>$request->num_casa,
-            
+
         ];
         $validator= Validator::make($dados,$regras_gerais,$msg_erro);
+
+
         if ($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput();
-        }    
-                
+        }
+
         if(!PessoaController::store($request)){
             $msg="Lamentamos! Dados não cadastrado, tente este processo mais tarde...";
             return redirect()->back()->with("erroCadastroPessoa",$msg);
-        }    
+        }
         if(!EnderecoController::store($request)){
             $msg="Lamentamos! Dados não Cadastrado, tente este processo mais tarde...";
             return redirect()->back()->with("erroCadastroEndereco",$msg);
-        }        
+        }
         if(!UserController::store($request)){
             $msg="Lamentamos! Dados não Cadastrado, tente este processo mais tarde...";
             return redirect()->back()->with("erroCadastroUser",$msg);
         }
-   
+
         return view("pagina-inicial");
     }
 }

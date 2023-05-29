@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('horas', function (Blueprint $table) {
-            $table->foreign(['tempo_id'], 'fk_tbl_hora_tbl_tempo1')->references(['tempo_id'])->on('tempos')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->foreign(['turno_id'], 'fk_horas_turnos1')->references(['turno_id'])->on('turnos')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign(['tempo_id'], 'fk_tbl_hora_tbl_tempo1')->references(['tempo_id'])->on('tempos')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 
@@ -27,8 +27,8 @@ return new class extends Migration
     public function down()
     {
         Schema::table('horas', function (Blueprint $table) {
-            $table->dropForeign('fk_tbl_hora_tbl_tempo1');
             $table->dropForeign('fk_horas_turnos1');
+            $table->dropForeign('fk_tbl_hora_tbl_tempo1');
         });
     }
 };

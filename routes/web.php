@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\{
-    //Classes das Controllers 
+    //Classes das Controllers
     AuthController
 };
 use Illuminate\Support\Facades\Route;
@@ -26,23 +26,18 @@ Route::get('/', function () {
 
 //Routas para Autenticação no Sistema
 Route::prefix('autenticacao')->group(function(){
-    
+
     //Rota de Login
     Route::get('login', [AuthController::class,'loginForm'])->name('login');
 
     //Rota de Cadastro
     Route::post('registrar', [AuthController::class,'store'])->name('registrar');
 
-
     //CODIFICANDO...
     Route::get('/lembrar', function () {
         return view('autenticacao/recuperar-senha');
     })->name('recuperar-senha');
-    
-    Route::get('/registrar', function () {
-        return view('autenticacao/registrar');
-    })->name('registrar');
-    
+
     /* Routas para enviou de Dados (Login)*/
     Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck');
 });
@@ -153,15 +148,15 @@ Route::prefix('professor')->group(function(){
     Route::get('cadastrar-professor', function () {
         return view('professor/cadastrar-prof');
     });
-    
+
     Route::get('consultar-professor', function () {
         return view('professor/consultar-prof');
     });
-    
+
     Route::get('editar-dados-professor', function () {
         return view('professor/editar-dados-prof');
     });
-    
+
     Route::get('horario-professor', function () {
         return view('professor/horario-prof');
     });
@@ -180,12 +175,12 @@ Route::prefix('turma')->group(function(){
     Route::get('criar-turma', function () {
         return view('turma/cri-turma');
     });
-    
+
     /*Trumas */
     Route::get('turmas', function () {
         return view('turma/turmas');
     });
-    
+
     /*Editar turma */
     Route::get('editar-turma', function () {
         return view('turma/edit-turma');
@@ -201,11 +196,11 @@ Route::prefix('aluno')->group(function(){
     Route::get('boletim-notas', function () {
         return view('aluno/boletim-notas');
     });
-    
+
     Route::get('ficha-biografica', function () {
         return view('aluno/ficha-biog');
     });
-    
+
     Route::get('assiduidade-aluno', function () {
         return view('aluno/assiduidade-aluno');
     });
@@ -227,11 +222,11 @@ Route::prefix('aluno')->group(function(){
     Route::get('boletim-notas', function () {
         return view('aluno/boletim-notas');
     });
-    
+
     Route::get('ficha-biografica', function () {
         return view('aluno/ficha-biog');
     });
-    
+
     Route::get('assiduidade-aluno', function () {
         return view('aluno/assiduidade-aluno');
     });
@@ -243,15 +238,15 @@ Route::prefix('aluno')->group(function(){
  * Rotas de curso
  */
 Route::prefix('curso')->group(function(){
-    
+
     Route::get('criar-curso', function () {
         return view('curso/criar-curso');
     });
-    
+
     Route::get('cursos', function () {
         return view('curso/cursos');
     });
-    
+
     Route::get('editar-curso', function () {
         return view('curso/edit-curso');
     });
@@ -259,18 +254,18 @@ Route::prefix('curso')->group(function(){
 /**<!--Fim Rotas curso--> */
 
 /******************************************
- * Rotas do ano-lectivo 
+ * Rotas do ano-lectivo
  */
 Route::prefix('ano-lectivo')->group(function(){
 
     Route::get('criar-ano-letivo', function () {
         return view('ano-lectivo/criar-aluno-lect');
     });
-    
+
     Route::get('ano-letivo', function () {
         return view('ano-lectivo/ano-lect');
     });
-    
+
     Route::get('editar-ano-letivo', function () {
         return view('ano-lectivo/edit-ano-letivo');
     });
@@ -278,11 +273,11 @@ Route::prefix('ano-lectivo')->group(function(){
     Route::get('ano-letivo', function () {
         return view('ano-lectivo/ano-lect');
     });
-    
+
     Route::get('editar-ano-letivo', function () {
         return view('ano-lectivo/edit-ano-letivo');
     });
-    
+
 });
 
 /**<!--Fim Rotas ano lectivo--> */
@@ -293,12 +288,12 @@ Route::prefix('ano-lectivo')->group(function(){
 Route::get('perfil', function () {
     return view('perfil/perfil');
 })->name('perfil');
- 
+
 /******************************************
- * Rotas da ficha biografica-lectivo 
+ * Rotas da ficha biografica-lectivo
  */
 Route::prefix('ficha-biog')->group(function(){
-    
+
     Route::get('fichas-biograficas', function () {
         return view('ficha-biog/ficha-biog');
     });
@@ -308,7 +303,7 @@ Route::prefix('ficha-biog')->group(function(){
 });
 
 /******************************************
- * Rotas do processo do Aluno 
+ * Rotas do processo do Aluno
  */
 Route::prefix('processo')->group(function(){
     Route::get('processos', function () {
@@ -324,7 +319,7 @@ Route::prefix('pauta')->group(function(){
     });
     Route::get('ver-pauta', function () {
         return view('pauta/pauta-doc');
-    });    
+    });
 });
 /******************************************
  * Rotas de mini-pauta
@@ -336,7 +331,7 @@ Route::prefix('mini-pauta')->group(function(){
     Route::get('ver-mini-pauta', function () {
         return view('mini-pauta/mini-pauta-doc');
     });
-    
+
 });
 /******************************************
  * Rotas do Comunicado
@@ -346,16 +341,16 @@ Route::prefix('comunicado')->group(function(){
     Route::get('criar-comunicado', function () {
         return view('comunicado/criar-comunicado');
     });
-    
+
     Route::get('editar-comunicado', function () {
         return view('comunicado/editar-comunicado');
     });
-    
+
     Route::get('comunicados', function () {
         return view('comunicado/comunicado');
     });
 });
- 
+
 /******************************************
  * Rotas do cadastro de usuário
  */
@@ -365,12 +360,12 @@ Route::prefix('usuario')->group(function(){
     Route::get('use_cadastro', function () {
         return view('usuario/use_cadastro');
     });
-    
+
     /*Matricular aluno */
     Route::get('usuarios', function () {
         return view('usuario/usuarios');
     });
-    
+
     /*Editar matricula */
     Route::get('use_editar', function () {
         return view('usuario/use_editar');

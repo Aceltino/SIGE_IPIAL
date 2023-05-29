@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('aluno_pertence_turma', function (Blueprint $table) {
-            $table->foreign(['aluno_id'], 'fk_tbl_aluno_turma_tbl_aluno1')->references(['aluno_id'])->on('alunos')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->foreign(['ano_coord_id'], 'fk_tbl_aluno_turma_ano_turma_coord1')->references(['turmaAno_id'])->on('ano_turma_coord')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->foreign(['aluno_id'], 'fk_tbl_aluno_turma_tbl_aluno1')->references(['aluno_id'])->on('alunos')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 
@@ -27,8 +27,8 @@ return new class extends Migration
     public function down()
     {
         Schema::table('aluno_pertence_turma', function (Blueprint $table) {
-            $table->dropForeign('fk_tbl_aluno_turma_tbl_aluno1');
             $table->dropForeign('fk_tbl_aluno_turma_ano_turma_coord1');
+            $table->dropForeign('fk_tbl_aluno_turma_tbl_aluno1');
         });
     }
 };
