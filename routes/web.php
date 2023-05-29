@@ -82,6 +82,11 @@ Route::prefix('inscricao')->group(function(){
     Route::get('rej-inscricao', function () {
         return view('inscricao/rejeitar-inscricao');
         });
+
+    /* Rejeitar inscricao */
+    Route::get('admissoes', function () {
+    return view('inscricao/admissoes');
+    });
 });
 
 /**<!--Fim Rotas de inscricao--> */
