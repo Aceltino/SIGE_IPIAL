@@ -133,7 +133,7 @@
         @enderror
 
         <div class="input-group has-validation">
-          <select class="form-select">
+          <select name="cargo" class="form-select">
             <option value="1">Administrador</option>
             <option value="2">Professor</option>
             <option value="3">Subdirector Pedagogico</option>
