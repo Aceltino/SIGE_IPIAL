@@ -33,10 +33,7 @@ class UserController extends Controller
             'password'=>bcrypt($request->password),
             'num_telefone'=>$request->num_telefone,
         ];
-        if(!User::create($dados)){
-            return false;
-        }
-        return true;
+        return User::create($dados);
     }
 
     public static function show($id){

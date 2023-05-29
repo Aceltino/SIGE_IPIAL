@@ -39,10 +39,7 @@ Route::prefix('autenticacao')->group(function(){
         return view('autenticacao/recuperar-senha');
     })->name('recuperar-senha');
     
-    Route::get('/registrar', function () {
-        return view('autenticacao/registrar');
-    })->name('registrar');
-    
+   
     /* Routas para enviou de Dados (Login)*/
     Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck');
 });
