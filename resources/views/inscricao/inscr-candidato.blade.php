@@ -116,7 +116,7 @@
       <h2>Escolha o curso segundo a ordem de preferência</h2>
 
       <div class="form-group">
-        <select oninput="this.className = ''" class="form-select" name="opcao1">
+        <select oninput="this.className = ''" class="form-select" name="opcao[]">
           <option selected disabled>Escolha a primeira opção</option>
           <option value="D.P">Desenhador projetista - D.P</option>
           <option value="T.E.I.E">Técnico de Energia e Instalações Electricas - T.E.I.E</option>
@@ -126,7 +126,7 @@
       </div>
 
       <div class="form-group">
-        <select oninput="this.className = ''" class="form-select" name="opcao2">
+        <select oninput="this.className = ''" class="form-select" name="opcao[]">
           <option selected disabled>Escolha a segunda opção</option>
           <option value="D.P">Desenhador projetista - D.P</option>
           <option value="T.E.I.E">Técnico de Energia e Instalações Electricas - T.E.I.E</option>
@@ -136,7 +136,7 @@
       </div>
 
       <div class="form-group">
-        <select oninput="this.className = ''" class="form-select" name="opcao3">
+        <select oninput="this.className = ''" class="form-select" name="opcao[]">
           <option selected disabled>Escolha a terceira opção</option>
           <option value="D.P">Desenhador projetista - D.P</option>
           <option value="T.E.I.E">Técnico de Energia e Instalações Electricas - T.E.I.E</option>
@@ -146,7 +146,7 @@
       </div>
 
       <div class="form-group">
-        <select oninput="this.className = ''" class="form-select" name="opcao4">
+        <select oninput="this.className = ''" class="form-select" name="opcao[]">
           <option selected disabled>Escolha a quarta opção</option>
           <option value="D.P">Desenhador projetista - D.P</option>
           <option value="T.E.I.E">Técnico de Energia e Instalações Electricas - T.E.I.E</option>
