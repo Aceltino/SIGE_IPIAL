@@ -9,8 +9,9 @@ use Illuminate\Support\Facades\Validator;
 class InscricaoController extends Controller
 {
     public function create(){
-        return view('inscricao/inscr-candidato');;
+        return view('inscricao/inscr-candidato');
     }
+    
     public function store(Request $request)
     {
         $dados=[
@@ -44,10 +45,8 @@ class InscricaoController extends Controller
              'Matematica'=>$request->Matematic,
 
              // Dados do curso
-             'Curso1'=>$request->opcao1,
-             'Curso2'=>$request->opcao2,
-             'Curso3'=>$request->opcao3,
-             'Curso4'=>$request->opcao4,
+             'Opcoes'=>$request->opcao;
+             //opcao[]
 
         ];
         $regras=[
@@ -83,28 +82,33 @@ class InscricaoController extends Controller
             '*.numeric'=>'Este campo deve conter apenas numeros',
     
             //Formulario do candidato
-                'nome.max'=>'Este campo não pode conter mais de 50 letras.',
-                'nome.min'=>'Este campo não pode conter menos de 2 letras.',
-                'naturalidade_cand.max'=>'Este campo nao deve conter mais de 59 letras',
-                'naturalidade_cand.min'=>'Este campo nao deve conter menos de 4 letras',
+            'nome_pai_cand.max'=>'Este campo não pode conter mais de 50 letras.',
+            'nome_pai_cand.min'=>'Este campo não pode conter menos de 2 letras.',
+            'nome_mae_cand.max'=>'Este campo não pode conter mais de 50 letras.',
+            'nome_mae_cand.min'=>'Este campo não pode conter menos de 2 letras.',
+            'naturalidade_cand.max'=>'Este campo nao deve conter mais de 59 letras',
+            'naturalidade_cand.min'=>'Este campo nao deve conter menos de 4 letras',
+            
             //Formulario Pessoa
-                'nome.max'=>'Este campo não pode conter mais de 50 letras.',
-                'nome.min'=>'Este campo não pode conter menos de 2 letras.',
-                'sobre_nome.max'=>'Este campo não pode conter mais de 50 letras.',
-                'sobre_nome.min'=>'Este campo não pode conter menos de 2 letras.',
-                'data.date' => 'O campo :attribute deve ser uma data válida.',
-                'data_nascimento.before'=> 'O campo :attribute deve ser uma data posterior à data atual.',
-                'num_bi.size'=> 'Número de identificação esta incorrecto',
+            'nome.max'=>'Este campo não pode conter mais de 50 letras.',
+            'nome.min'=>'Este campo não pode conter menos de 2 letras.',
+            'sobre_nome.max'=>'Este campo não pode conter mais de 50 letras.',
+            'sobre_nome.min'=>'Este campo não pode conter menos de 2 letras.',
+            'data.date' => 'O campo :attribute deve ser uma data válida.',
+            'data_nascimento.before'=> 'O campo :attribute deve ser uma data posterior à data atual.',
+            'num_bi.size'=> 'Número de identificação esta incorrecto',
+
             //Formulario Escola proveniente
-                'nome_escola.max'=>'Este campo não pode conter mais de 100 letras',
-                'nome_escola.min'=>'Este campo não pode conter menos de 2 letras',
-                'num_processo'=>'Número do Processo deve conter apenas digitos validos.',
-                'num_processo'=>'Este campo não deve conter menos que 2 numeros',
-                'num_aluno'=>'Número do aluno deve conter apenas digitos validos.',
-                'ultimo_anoLectivo'=>'O ano Letivo deve conter apenas digitos validos.',
-                'certificado'=>'Deve contar apenas um arquivo PDF',
+            'nome_escola.max'=>'Este campo não pode conter mais de 100 letras',
+            'nome_escola.min'=>'Este campo não pode conter menos de 2 letras',
+            'num_processo'=>'Número do Processo deve conter apenas digitos validos.',
+            'nome_completo.min'=>'Este campo não deve conter menos que 2 numeros',
+            'num_aluno'=>'Número do aluno deve conter apenas digitos validos.',
+            'ultimo_anoLectivo'=>'O ano Letivo deve conter apenas digitos validos.',
+            'certificado'=>'Deve contar apenas um arquivo PDF',
+
             //Formulario Telefone
-                'num_tel'=>'Este campo nao pode conter mais de 9 numeros',
+            'num_tel'=>'Este campo nao pode conter mais de 9 numeros',
         ];
 
         $validacao = Validator::make($dados, $regras);

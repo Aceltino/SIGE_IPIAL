@@ -17,7 +17,12 @@
       <div class="alert alert-danger">
           {{session('erro_login_002')}}
       </div>
-   @endif
+    @endif
+    @if(session('registrado'))
+      <div class="alert alert-sucess">
+        {{session('registrado')}}
+    </div>
+    @endif
     <form action={{route('loginCheck')}} method="post" class="row g-3 needs-validation" novalidate>
       @csrf
       <div class="col-12">
