@@ -28,7 +28,7 @@
         <div>
             <div class="row">
             <div class="col-sm-6 col-md-8">
-                <button class="btn bg-green color-white my-3 w-25" title="Professor em actividade">Activo</button>
+                <span class="btn bg-green color-white my-3 w-25"  title="Professor em actividade">Activo</span>
             </div>
             <div class="col-sm-6 col-md-4 d-flex">
                 <select class="form-select bg-blue-principal color-white my-3 w-50 ms-auto" title="Professor em actividade">

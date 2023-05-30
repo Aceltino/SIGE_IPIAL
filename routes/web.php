@@ -19,10 +19,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-    //Rotas do Painel
-    Route::get('/', function () {
-        return view('pagina-inicial');
-    })->name('inicio');
+//Rotas do Painel
+Route::get('/', function () {
+    return view('pagina-inicial');
+})->name('inicio')->middleware('auth');
 
 
 //Routas para Autenticação no Sistema
@@ -397,4 +397,33 @@ Route::prefix('calend-prova')->group(function(){
     Route::get('edit-calend-prova', function(){
         return view('calend-prova/edit-calend-prova');
     });
+});
+
+
+/******************************************
+ * Rotas da Assiduidade de Aluno
+ */
+
+/* Assiduidade de alunos*/
+Route::get('/assiduidade_aluno', function () {
+    return view('assiduid-aluno/assd-aluno');
+});
+
+/*justificar ou editar assiduidade*/
+Route::get('/editar_assiduidade', function () {
+    return view('assiduid-aluno/edit-assd-aluno');
+});
+
+/******************************************
+ * Rotas da Avaliação de Aluno
+ */
+
+/*Avaliação de Aluno*/
+Route::get('/avaliar-aluno', function () {
+    return view('avaliac-aluno/avaliacoes-aluno');
+});
+
+/*editar Avaliação de Aluni*/
+Route::get('/editar-avaliacao-aluno', function () {
+    return view('avaliac-aluno/edit-valiac-aluno');
 });
