@@ -415,15 +415,15 @@ Route::get('/editar_assiduidade', function () {
 });
 
 /******************************************
- * Rotas da Assiduidade de Aluno
+ * Rotas da Avaliação de Aluno
  */
 
-/* Assiduidade de alunos*/
+/*Avaliação de Aluno*/
 Route::get('/avaliar-aluno', function () {
     return view('avaliac-aluno/avaliacoes-aluno');
 });
 
-/*justificar ou editar assiduidade*/
+/*editar Avaliação de Aluni*/
 Route::get('/editar-avaliacao-aluno', function () {
     return view('avaliac-aluno/edit-valiac-aluno');
 });
