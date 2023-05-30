@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'cadastrar disciplina')
+@section('title', 'editar disciplina')
 
 @section('conteudo')
 <main id="main" class="main" >
@@ -16,7 +16,7 @@
                 <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
 
                     <div style="  text-align: center;">
-                        <h2>ACTUALIZAR OS DADOS DA DISCIPLINA</h2>
+                        <h2>CADASTRAR DISCIPLINA</h2>
                     </div>
 
                 </div>
@@ -38,9 +38,10 @@
                   <option value="T.C">Todos os cursos</option>
                 </select>
               </div>
+                
             <div style="text-align:center;margin-top:40px;">
                 <div>
-                    <button type="button" class="btn btn-success">Actualizar</button>
+                    <button type="button" class="btn btn-success">Cadastrar</button>
                 </div>
             </div>    
         </div>

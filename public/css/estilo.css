@@ -17,6 +17,7 @@
 
 .bg-blue-principal{
   background-color: var(--bs-cor-principal) !important;
+
 }
 
 .color-red{
@@ -616,7 +617,9 @@ a.color-white{
 } 
   
  
-  
+  textarea{
+    resize: none;
+  }
   
   
   /*--------------------------------------------------------------

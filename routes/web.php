@@ -288,3 +288,18 @@ Route::get('/usuarios', function () {
 Route::get('/use_editar', function () {
     return view('usuario/use_editar');
 });
+
+/******************************************
+ * Rotas disciplinas
+ */
+Route::get('/cadastro_dis', function () {
+    return view('disciplina/cadastro_dis');
+});
+
+Route::get('/disciplinas', function () {
+    return view('disciplina/disciplinas');
+});
+
+Route::get('/edit-disciplina', function () {
+    return view('disciplina/edit-disciplina');
+});

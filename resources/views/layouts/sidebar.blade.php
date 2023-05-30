@@ -248,6 +248,25 @@
 
 	        </ul>
 	    </li>
+      <!-- /	Nav Disciplina-->
+      <li class="nav-item">
+	        <a class="nav-link collapsed" data-bs-target="#disciplina-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-folder2-open"></i></i><span>Disciplina</span><i class="bi bi-chevron-down ms-auto"></i>
+	        </a>
+	        <ul id="disciplina-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+            <a href="cadastro_dis">
+              <i class="bi bi-circle"></i><span>Cadastrar disciplina</span>
+            </a>
+          </li>
+          <li>
+            <a href="disciplinas">
+              <i class="bi bi-circle"></i><span>Disciplinas</span>
+            </a>
+          </li>
+
+	        </ul>
+	    </li>
 
 
 
