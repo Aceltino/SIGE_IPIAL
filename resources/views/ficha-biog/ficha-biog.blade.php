@@ -62,7 +62,7 @@
           <td>Desenhador projetista</td>
           <td>Manhã</td>
           <td>
-          <a href="#" class="btn btn-cor-sg-a" data-bs-toggle="modal" data-bs-target="#ExtralargeModal">Ver Ficha Biográfica</a>
+          <a href="/fichas-biograficas-doc" class="btn btn-cor-sg-a">Ver Ficha Biográfica</a>
           </td>
           </tr>
           
@@ -74,7 +74,7 @@
           <td>Informática</td>
           <td>Manhã</td>
           <td>
-              <a href="#" class="btn btn-cor-sg-a" data-bs-toggle="modal" data-bs-target="#ExtralargeModal">Ver Ficha Biográfica</a>
+              <a href="fichas-biograficas-doc" class="btn btn-cor-sg-a" data-bs-toggle="modal" data-bs-target="#ExtralargeModal">Ver Ficha Biográfica</a>
           </td>
           </tr>
       </tbody>

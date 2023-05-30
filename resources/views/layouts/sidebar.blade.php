@@ -1,5 +1,5 @@
   <!-- /	Sidebar -->
-  <aside id="sidebar" class="sidebar">
+  <aside id="sidebar" class="sidebar" >
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
@@ -269,9 +269,6 @@
 
 	        </ul>
 	    </li>
-
-
-
       
 	<!-- /	Nav aluno-professor-->
   <li class="nav-item">
@@ -288,6 +285,21 @@
     </ul>
   </li>
 
+      <!-- /	Nav Avaliação Aluno-->
+    
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#avaliacao-aluno-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-clipboard"></i><span>Avaliação</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="avaliacao-aluno-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/avaliar-aluno">
+              <i class="bi bi-circle"></i><span>Avaliar Avaliação</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
     <!-- /	Nav assiduidade-professor-->
     
   <li class="nav-item">
@@ -295,7 +307,11 @@
       <i class="bi bi-clipboard"></i><span>Assuiduidade</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
     <ul id="assiduidade-professor-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-    
+      <li>
+        <a href="/assiduidade_aluno">
+          <i class="bi bi-circle"></i><span>Assiduidades</span>
+        </a>
+      </li>
     </ul>
   </li>
   

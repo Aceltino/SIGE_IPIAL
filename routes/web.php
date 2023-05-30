@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 //Rotas do Painel
 Route::get('/', function () {
-    return view('pagina-inicial');
+    return view ('pagina-inicial');
 })->name('inicio')->middleware('auth');
 
 
@@ -369,4 +369,33 @@ Route::get('/usuarios', function () {
 /*Editar matricula */
 Route::get('/use_editar', function () {
     return view('usuario/use_editar');
+});
+
+
+/******************************************
+ * Rotas da Assiduidade de Aluno
+ */
+
+/* Assiduidade de alunos*/
+Route::get('/assiduidade_aluno', function () {
+    return view('assiduid-aluno/assd-aluno');
+});
+
+/*justificar ou editar assiduidade*/
+Route::get('/editar_assiduidade', function () {
+    return view('assiduid-aluno/edit-assd-aluno');
+});
+
+/******************************************
+ * Rotas da Assiduidade de Aluno
+ */
+
+/* Assiduidade de alunos*/
+Route::get('/avaliar-aluno', function () {
+    return view('avaliac-aluno/avaliacoes-aluno');
+});
+
+/*justificar ou editar assiduidade*/
+Route::get('/editar-avaliacao-aluno', function () {
+    return view('avaliac-aluno/edit-valiac-aluno');
 });

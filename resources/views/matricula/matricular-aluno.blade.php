@@ -4,15 +4,13 @@
 
 @section('conteudo')
 <main id="main" class="main" >
-    <form method="POST" action="" id="regForm" class="formulario-layout">
-
-        <div style="text-align:center;margin-top:10px;">
-            <span class="step"></span>
-            <span class="step"></span>
-            <span class="step"></span>
-            <span class="step"></span>
-        </div>
-        
+    <div style="text-align:center;margin-top:10px;">
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+    </div>
+    <div class="tab">
         <div class="row" >
             <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
                 <div style="  text-align: center;">
@@ -20,16 +18,16 @@
                 </div>
             </div>
         </div>
-
+    <form method="get" action="">
         <div class="row">
             <div class="col d-flex" style="margin-bottom: 15px;">
                 <div class= "d-flex"style="width: 246px;margin-right: auto;margin-left: auto">
-                    <input class=" form-control" type="text" style="border: 1px solid var(--bs-gray-400);border-top-left-radius: 9px;border-bottom-left-radius: 11px;padding-right: 0px;padding-left: 22px;padding-bottom: 3px;padding-top: 3px;font-size: 16px;height: 31px;" placeholder="Código de inscrição" required="" minlength="8" maxlength="8" pattern="number" > <i class="fas fa-search" style=" margin-left: -1px;font-size: 18px;color: var(--bs-gray-100);background: var(--bs-black);padding-left: 8px;padding-right: 8px;padding-top: 6px;padding-bottom: 6px;border-bottom-right-radius: 6px;border-top-right-radius: 6px;margin-top: 0px;"></i>
+                    <input class=" form-control codinscricao" type="text" placeholder="Código de inscrição" required=""><button class="fas fa-search codinscricaobotao" id="pesquisa" type="submit" title="Procurar"></button>
                 </div>
             </div>
-        </div>
-
-        <div class="tab">     
+        </div>   
+    </form> 
+    <form method="POST" action="" id="regForm" class="formulario-layout">   
             
             <div class="form-group">
                 <input type="text" placeholder="Nome Completo do Aluno" name="" oninput="this.className = ''">
@@ -37,24 +35,17 @@
 
             <div class="row">
                 
-            <div class="col form-group gap-1 ">
-                <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
-                    <option disabled selected>Turno:</option>
-                    <option value="Manhã">Manhã</option>
-                    <option value="Tarde">Tarde</option>
-                    <option value="Noite">Noite</option>
-                </select>
-            </div>
-
-                <div class="col form-group gap-1 ">
-                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
-                        <option disabled selected>Turma:</option>
-                        <option value="I10AM">I10AM</option>
-                        <option value="I11AM">I11AM</option>
-                        <option value="I12BT">I12BT</option>
-                        <option value="I13BT">I13BT</option>
-                    </select>
+            <div class="col">
+                <div class="form-group">
+                    <input id="" class="form-control" value="Manhã" placeholder="Turno" type="text" name="" oninput="this.className = ''" disabled>
                 </div>
+            </div>
+            
+            <div class="col">
+                <div class="form-group">
+                 <input id="" class="form-control" value="I10AM" placeholder="Turma" type="text" name="" oninput="this.className = ''" disabled>
+                </div>
+            </div>
 
                 <div class="col">
                     <div class="form-group">
@@ -67,13 +58,7 @@
 
                 <div class="col">
                     <div class="form-group">
-                        <input type="text" placeholder="Número de processo" oninput="this.className = ''">
-                    </div> 
-                </div>
-
-                <div class="col">
-                    <div class="form-group">
-                        <input type="text" placeholder="Ano lectivo" oninput="this.className = ''">
+                        <input type="text" placeholder="Curso" oninput="this.className = ''">
                     </div> 
                 </div>
             </div>
@@ -122,7 +107,7 @@
             </div>
 
             <div class="form-group">
-                <input type="text" placeholder="Curso do aluno" name="" oninput="this.className = ''">
+                <input class="form-control" style="text-align: center;" value="2021-2022" type="text" placeholder="Ano Lectivo" name="" oninput="this.className = ''" disabled>
             </div>
       
         </div>
@@ -183,10 +168,6 @@
                 <div id="clone1"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
                     <span style="color: #777;">+244</span>
                     <input type="text" name="" placeholder="Telefone" oninput="this.className = ''">
-                </div>
-
-                <div class="col-3">
-                    <i id="clonebtn1"class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>    
                 </div>
             </div>
         </div>  
@@ -279,10 +260,6 @@
                     <span style="color: #777;">+244</span>
                     <input type="text" name="" placeholder="Telefone" oninput="this.className = ''">
                 </div>
-
-                <div class="col-3">
-                    <i id="clonebtn3"class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>    
-                </div>
             </div>
 
             <div class="row">
@@ -300,10 +277,6 @@
                     <span style="color: #777;">+244</span>
                     <input type="text" name="" placeholder="Telefone" oninput="this.className = ''">
                 </div>
-
-                <div class="col-3">
-                    <i id="clonebtn2"class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>    
-                </div>
             </div>
                 
             <div class="row">
@@ -320,10 +293,6 @@
                 <div id="clone" class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
                     <span style="color: #777;">+244</span>
                     <input type="text" name="" placeholder="Telefone" oninput="this.className = ''">
-                </div>
-
-                <div class="col-3">
-                    <i id="clonebtn" class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>    
                 </div>
             </div>
 

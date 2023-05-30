@@ -1,1 +1,0 @@
-Página para registar as assiduidade dos alunos
