@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\{
 
 class AuthController extends Controller
 {
-    use PessoaTrait; 
+    use PessoaTrait;
 
     public function loginForm(){
         $user= User::all();
@@ -144,8 +144,8 @@ class AuthController extends Controller
             'bairro'=>$request->bairro,
             'zona'=>$request->zona,
             'numero_casa'=>$request->num_casa,
-        ]; 
-        $pessoa_id= $this->storePessoa($dadosPessoa,$dadosEndereco); 
+        ];
+        $pessoa_id= $this->storePessoa($dadosPessoa,$dadosEndereco);
 
         $dadosUser=[
             'nome_usuario'=>$abreNome.count(User::all()).$abreSobreNome,
@@ -153,10 +153,10 @@ class AuthController extends Controller
             'password'=>bcrypt($request->password),
             'num_telefone'=>$request->num_telefone,
             'cargo_usuario'=>$request->cargo,
-            'status_usuario'=>1,   
+            'status_usuario'=>1,
             'pessoa_id'=>$pessoa_id,
         ];
-        
+
         $user=UserController::store($dadosUser);
         if(!$user){
             $msg="Lamentamos! Dados não Cadastrado, tente este processo mais tarde...";
@@ -165,4 +165,3 @@ class AuthController extends Controller
         return $this->loginForm();
     }
 }
-

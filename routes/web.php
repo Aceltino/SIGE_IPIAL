@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\{
     //Classes das Controllers
-    AuthController
+    AuthController,
+    MatriculaController
 };
 use Illuminate\Support\Facades\Route;
 
@@ -18,10 +19,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-//Rotas do Painel
-Route::get('/', function () {
-    return view('pagina-inicial');
-})->name('inicio')->middleware('auth');
+    //Rotas do Painel
+    Route::get('/', function () {
+        return view('pagina-inicial');
+    })->name('inicio');
 
 
 //Routas para Autenticação no Sistema
@@ -38,7 +39,7 @@ Route::prefix('autenticacao')->group(function(){
     Route::get('/lembrar', function () {
         return view('autenticacao/recuperar-senha');
     })->name('recuperar-senha');
-        
+
 });
 
 
@@ -94,6 +95,10 @@ Route::prefix('inscricao')->group(function(){
 /******************************************
  * Rotas das matriculas
  */
+    //Rota de Login
+
+
+
 Route::prefix('matricula')->group(function(){
 
     /* Matriculas*/
@@ -102,9 +107,8 @@ Route::prefix('matricula')->group(function(){
     });
 
     /*Matricular aluno */
-    Route::get('matricular-aluno', function () {
-        return view('matricula/matricular-aluno');
-    });
+    Route::get('matricular-aluno',  [MatriculaController::class, 'create'])->name('matricula');
+    Route::post('matricular-aluno', [MatriculaController::class, 'store'])->name('matricular');
 
     /*Editar matricula */
     Route::get('editar-matricula', function () {
