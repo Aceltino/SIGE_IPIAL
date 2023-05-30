@@ -4,13 +4,15 @@
 
 @section('conteudo')
 <main id="main" class="main" >
-    <div style="text-align:center;margin-top:10px;">
-        <span class="step"></span>
-        <span class="step"></span>
-        <span class="step"></span>
-        <span class="step"></span>
-    </div>
-    <div class="tab">
+    <form method="POST" action="" id="regForm" class="formulario-layout">
+
+        <div style="text-align:center;margin-top:10px;">
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+        </div>
+        
         <div class="row" >
             <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
                 <div style="  text-align: center;">
@@ -25,40 +27,54 @@
                     <input class=" form-control codinscricao" type="text" placeholder="Código de inscrição" required=""><button class="fas fa-search codinscricaobotao" id="pesquisa" type="submit" title="Procurar"></button>
                 </div>
             </div>
-        </div>   
-    </form> 
-    <form method="POST" action="" id="regForm" class="formulario-layout">   
+        </div>
+
+        <div class="tab">     
             
             <div class="form-group">
-                <input type="text" placeholder="Nome Completo do Aluno" name="" oninput="this.className = ''">
+                <input type="text" placeholder="Nome Completo do Aluno" name="nome" oninput="this.className = ''">
             </div>
 
             <div class="row">
                 
-            <div class="col">
-                <div class="form-group">
-                    <input id="" class="form-control" value="Manhã" placeholder="Turno" type="text" name="" oninput="this.className = ''" disabled>
-                </div>
+            <div class="col form-group gap-1 ">
+                <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
+                    <option disabled selected>Turno:</option>
+                    <option value="Manhã">Manhã</option>
+                    <option value="Tarde">Tarde</option>
+                    <option value="Noite">Noite</option>
+                </select>
             </div>
-            
-            <div class="col">
-                <div class="form-group">
-                 <input id="" class="form-control" value="I10AM" placeholder="Turma" type="text" name="" oninput="this.className = ''" disabled>
+
+                <div class="col form-group gap-1 ">
+                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
+                        <option disabled selected>Turma:</option>
+                        <option value="I10AM">I10AM</option>
+                        <option value="I11AM">I11AM</option>
+                        <option value="I12BT">I12BT</option>
+                        <option value="I13BT">I13BT</option>
+                    </select>
                 </div>
-            </div>
 
                 <div class="col">
                     <div class="form-group">
-                        <input type="text" placeholder="Nº do Aluno" oninput="this.className = ''">
-                    </div> 
+                        <input type="text" name="n_aluno" placeholder="Nº do Aluno" oninput="this.className = ''">
+                    </div>
                 </div>
             </div>
 
             <div class="row">
+                @php
+                /* Comentei esta input porque, o numero de processo só deve ser gerado após ele ser matriculado...
+                <div class="col">
+                    <div class="form-group">
+                        <input type="text" placeholder="Número de processo" oninput="this.className = ''">
+                    </div> 
+                </div>
 
                 <div class="col">
                     <div class="form-group">
-                        <input type="text" placeholder="Curso" oninput="this.className = ''">
+                        <input type="text" placeholder="Ano lectivo" oninput="this.className = ''">
                     </div> 
                 </div>
             </div>
@@ -66,7 +82,7 @@
             <div class="row">
 
                 <div class="col form-group gap-1 ">
-                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
+                    <select name="sala" id="opcoes" oninput="this.className = ''" class="form-select">
                         <option disabled selected>sala:</option>
                         <option value="01">01</option>
                         <option value="02">02</option>
@@ -94,7 +110,7 @@
                         <option value="24">24</option>
                     </select>
                 </div>
-                
+
                 <div class="col form-group gap-1 ">
                     <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
                         <option disabled selected>Classe:</option>
@@ -109,11 +125,11 @@
             <div class="form-group">
                 <input class="form-control" style="text-align: center;" value="2021-2022" type="text" placeholder="Ano Lectivo" name="" oninput="this.className = ''" disabled>
             </div>
-      
+
         </div>
-    
-        <div class="tab"> 
-        
+
+        <div class="tab">
+
             <div class="row" >
                 <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
                     <div style="  text-align: center;">
@@ -162,17 +178,21 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="row">
 
                 <div id="clone1"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
                     <span style="color: #777;">+244</span>
                     <input type="text" name="" placeholder="Telefone" oninput="this.className = ''">
                 </div>
-            </div>
-        </div>  
 
-        <div class="tab">     
+                <div class="col-3">
+                    <i id="clonebtn1"class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>    
+                </div>
+            </div>
+        </div>
+
+        <div class="tab">
 
             <div class="row" >
                 <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
@@ -220,10 +240,10 @@
                 <div class=" form-group">
                     <input type="text" placeholder=" Ano letivo" name="" oninput="this.className = ''">
                 </div>
-            </div>     
+            </div>
         </div>
 
-        <div class="tab"> 
+        <div class="tab">
 
             <div class="row" >
                 <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
@@ -232,7 +252,7 @@
                     </div>
                 </div>
             </div>
-                
+
             <div class="form-group">
                 <input type="email" placeholder="Digite o E-mail do Aluno" name="" oninput="this.className = ''">
             </div>
@@ -246,7 +266,7 @@
             </div>
 
             <div class="row">
-                    
+
                 <div class="col-3 form-group gap-1 ">
                     <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
                         <option disabled>Familiares:</option>
@@ -255,10 +275,14 @@
                         <option value="outro">Outro</option>
                     </select>
                 </div>
-            
+
                 <div id="clone3"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
                     <span style="color: #777;">+244</span>
                     <input type="text" name="" placeholder="Telefone" oninput="this.className = ''">
+                </div>
+
+                <div class="col-3">
+                    <i id="clonebtn3"class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>    
                 </div>
             </div>
 
@@ -272,13 +296,17 @@
                         <option value="outro">Outro</option>
                     </select>
                 </div>
-            
+
                 <div id="clone2"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
                     <span style="color: #777;">+244</span>
                     <input type="text" name="" placeholder="Telefone" oninput="this.className = ''">
                 </div>
+
+                <div class="col-3">
+                    <i id="clonebtn2"class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>    
+                </div>
             </div>
-                
+
             <div class="row">
 
                 <div class="col-3 form-group gap-1 ">
@@ -289,14 +317,18 @@
                         <option  value="outro"selected>Outro</option>
                     </select>
                 </div>
-        
+
                 <div id="clone" class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
                     <span style="color: #777;">+244</span>
                     <input type="text" name="" placeholder="Telefone" oninput="this.className = ''">
                 </div>
+
+                <div class="col-3">
+                    <i id="clonebtn" class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>    
+                </div>
             </div>
 
-        </div> 
+        </div>
 
         <div style="text-align:center;margin-top:25px;">
             <div>

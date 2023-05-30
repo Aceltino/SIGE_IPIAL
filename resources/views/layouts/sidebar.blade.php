@@ -37,12 +37,12 @@
         </a>
         <ul id="ano-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="criar-ano-letivo">
+            <a href="ano-lectivo/criar-ano-letivo">
               <i class="bi bi-circle"></i><span>Criar ano lectivo</span>
             </a>
           </li>
           <li>
-            <a href="ano-letivo">
+            <a href="ano-lectivo/ano-letivo">
               <i class="bi bi-circle"></i><span>Ano lectivo</span>
             </a>
           </li>
@@ -57,22 +57,22 @@
         </a>
         <ul id="inscriacao-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="/inscrever">
+            <a href="inscricao/inscrever">
               <i class="bi bi-circle"></i><span>Inscrever candidato</span>
             </a>
           </li>
           <li>
-            <a href="/inscricoes">
+            <a href="inscricao/inscricoes">
               <i class="bi bi-circle"></i><span>Inscrições</span>
             </a>
           </li>
           <li>
-            <a href="/inscritos-online">
+            <a href="inscricao/inscritos-online">
               <i class="bi bi-circle"></i><span>Inscritos Online</span>
             </a>
           </li>
           <li>
-            <a href="/inscritos-rejeitados">
+            <a href="inscricao/inscritos-rejeitados">
               <i class="bi bi-circle"></i><span>Inscritos Rejeitados</span>
             </a>
           </li>
@@ -89,19 +89,19 @@
         <ul id="matricula-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 
           <li>
-            <a href="/matricular-aluno">
+            <a href="matricula/matricular-aluno">
               <i class="bi bi-circle"></i><span>Matricular aluno</span>
             </a>
           </li>
 
           <li>
-            <a href="/matriculas">
+            <a href="matricula/matriculas">
               <i class="bi bi-circle"></i><span>Matriculas</span>
             </a>
           </li>
 
           <li>
-            <a href="/registrar-aluno">
+            <a href="matricula/registrar-aluno">
               <i class="bi bi-circle"></i><span>Registrar Aluno</span>
             </a>
           </li>
@@ -116,12 +116,12 @@
         </a>
         <ul id="professor-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="/cadastrar-professor">
+            <a href="professor/cadastrar-prof">
               <i class="bi bi-circle"></i><span>Cadastrar Professores</span>
             </a>
           </li>
           <li>
-            <a href="consultar-professor">
+            <a href="professor/consultar-prof">
               <i class="bi bi-circle"></i><span>Professores</span>
             </a>
           </li>
@@ -135,12 +135,12 @@
         </a>
         <ul id="turma-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="/criar-turma">
+            <a href="turma/cri-turma">
               <i class="bi bi-circle"></i><span>Criar turma</span>
             </a>
           </li>
           <li>
-            <a href="turmas">
+            <a href="turma/turmas">
               <i class="bi bi-circle"></i><span>Turmas</span>
             </a>
           </li>
@@ -154,12 +154,12 @@
         </a>
         <ul id="curso-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="criar-curso">
+            <a href="curso/criar-curso">
               <i class="bi bi-circle"></i><span>Criar curso</span>
             </a>
           </li>
           <li>
-            <a href="cursos">
+            <a href="curso/cursos">
               <i class="bi bi-circle"></i><span>Cursos</span>
             </a>
           </li>
@@ -173,12 +173,12 @@
 	        </a>
 	        <ul id="comunicado-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 	          <li>
-	            <a href="criar-comunicado">
+	            <a href="comunicado/criar-comunicado">
 	              <i class="bi bi-circle"></i><span>Criar comunicado</span>
 	            </a>
 	          </li>
 	          <li>
-	            <a href="comunicados">
+	            <a href="comunicado/comunicado">
 	              <i class="bi bi-circle"></i><span>Comunicados</span>
 	            </a>
 	          </li>
@@ -192,7 +192,7 @@
 	        </a>
 	        <ul id="pauta-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 	          <li>
-	            <a href="pautas">
+	            <a href="pauta/pautas">
 	              <i class="bi bi-circle"></i><span>Pautas</span>
 	            </a>
 	          </li>
@@ -206,7 +206,7 @@
 	        </a>
 	        <ul id="mini-pauta-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 	          <li>
-	            <a href="mini-pauta">
+	            <a href="mini-pauta/mini-pauta">
 	              <i class="bi bi-circle"></i><span>Mini-Pautas</span>
 	            </a>
 	          </li>
@@ -220,7 +220,7 @@
 	        </a>
 	        <ul id="horario-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 	          <li>
-	            <a href="horario">
+	            <a href="professor/horario-prof">
 	              <i class="bi bi-circle"></i><span>Horários</span>
 	            </a>
 	          </li>
@@ -234,7 +234,7 @@
 	        </a>
 	        <ul id="calprova-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 	          <li>
-	            <a href="calendario-de-prova">
+	            <a href="calend-prova/calendario-prova">
 	              <i class="bi bi-circle"></i><span>Calendários de Provas</span>
 	            </a>
 	          </li>
@@ -248,7 +248,7 @@
 	        </a>
 	        <ul id="biografica-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 	          <li>
-	            <a href="fichas-biograficas">
+	            <a href="aluno/ficha-biog">
 	              <i class="bi bi-circle"></i><span>Fichas Biográficas</span>
 	            </a>
 	          </li>
@@ -318,7 +318,7 @@
 
   <!-- /	Nav Perfil-->
 <li class="nav-item">
-  <a class="nav-link collapsed" href="/perfil">
+  <a class="nav-link collapsed" href="perfil">
     <i class="bi bi-person"></i>
     <span>Perfil</span>
   </a>
