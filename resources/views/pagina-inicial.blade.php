@@ -31,7 +31,7 @@
         <div class="row" data-aos="fade-up">
 
           <div class="col-lg-3 col-md-6 mt-4" >
-            <div class="count-box"  id="boxx">
+            <div class="count-box" id="boxx">
               <i class="bi bi-people"></i>
               <span class="total">472</span>
               <p>INSCRITOS</p>
@@ -302,10 +302,10 @@
   $(document).ready(function() {
   // Dados iniciais do gráfico
   var data = {
-    labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho','Agosto', 'Setembro','Novembro','Dezembro'],
+    labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho','Agosto', 'Setembro', 'Outubro','Novembro','Dezembro'],
     datasets: [{
       label: 'Assiduidade Escolar',
-      data: [7,10,20,30,40,50,60,70,80,90,100],
+      data: [7,13,77,20,30,40,50,60,70,80,90,100],
       backgroundColor: 'rgba(54, 162, 235, 0.5)',
       borderColor: 'rgba(54, 162, 235, 1)',
       borderWidth: 1

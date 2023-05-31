@@ -645,3 +645,202 @@ a.color-white{
     color: #fff;
     font-weight: 700;
   }
+
+  .nomenumeroaluno{
+    border: 1px solid;
+    border-color: rgb(235, 235, 235); 
+    border-radius: 4px;
+    margin-top: 15px;
+    padding-left: 18px; 
+    padding-top: 11px;
+  }
+  .nofimnomenumeroaluno{
+    display: flex; 
+    float: right; 
+    margin-right: 20px;
+  }
+
+  .nomenumeroalunoinfo{
+    border-left: 3px solid;
+     border-color: rgb(20, 20, 90);
+  }
+
+  .bortabela{
+    border: 1px solid; 
+    border-color: rgb(235, 235, 235); 
+    border-radius: 4px; 
+    margin-top: 20px;
+    height: 370px; 
+    width: auto;
+    overflow: scroll;
+  }
+
+  .bortabelasemscroll{
+    border: 1px solid; 
+    border-color: rgb(235, 235, 235); 
+    border-radius: 4px; 
+    margin-top: 20px;
+    height: 170px; 
+    width: auto;
+  }
+
+  .bortabelaeditar{
+    border: 1px solid; 
+    border-color: rgb(235, 235, 235); 
+    border-radius: 4px; 
+    margin-top: 10px;
+    height: 370px;
+    width: auto;
+    overflow: scroll;
+    padding-top: 15px;
+  }
+
+  .datatabelapeddin{
+    padding-left: 25px; 
+    padding-top: 15px;
+  }
+
+  .botaoazul{
+    background-color: #173997f6; 
+    color: #fff; 
+    font-size: 16px; 
+    margin-top: 2px;
+  }
+
+  .botaoazul:hover{
+    background-color: #173997f6; 
+    color: #fff; 
+    font-size: 16px;
+  }
+
+  .botaovermelho{
+    background-color: #cf0808;
+    color: #fff; 
+    font-size: 16px; 
+    margin-top: 2px;
+  }
+
+  .botaovermelho:hover{
+    background-color: #cf0808;
+    color: #fff; 
+    font-size: 16px; 
+  }
+
+  .botaopreto{
+    background-color: #070b17;
+    color: #fff;
+    font-size: 16px;
+    margin-top: 2px;
+  }
+
+  .botaopreto:hover{
+    background-color: #070b17;
+    color: #fff;
+    font-size: 16px;
+  }
+
+  .linkeditar{
+    background-color: #cfd306; 
+    color: #fff; 
+    font-size: 16px; 
+    margin-top: 2px;
+  }
+
+  .linkeditar:hover{
+    background-color: #cfd306; 
+    color: #fff; 
+    font-size: 16px; 
+  }
+
+  .codinscricao{
+    border: 1px solid var(--bs-gray-400);
+    border-top-left-radius: 9px;
+    border-bottom-left-radius: 11px;
+    padding-right: 0px;
+    padding-left: 22px;
+    padding-bottom: 3px;
+    padding-top: 3px;
+    font-size: 16px;
+    height: 31px;
+  }
+
+  .codinscricaobotao{
+    margin-left: -1px;
+    font-size: 18px;
+    color: var(--bs-gray-100);
+    background: var(--bs-black);
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+    margin-top: 0px;
+  }
+
+ .innota{
+  text-align: center;
+  }
+
+  .botaovermelhonota{
+    background-color: #cf0808;
+    color: #fff; 
+    font-size: 16px; 
+    margin-top: 8px;
+    width: 200px;
+    height: 50px;
+  }
+  .botaovermelhonota:hover{
+    background-color: #cf0808;
+    color: #fff; 
+    font-size: 16px; 
+    margin-top: 8px;
+    width: 200px;
+    height: 50px;
+  }
+
+  .linkeditarnota{
+    background-color: #aeb108; 
+    color: #fff; 
+    font-size: 16px; 
+    margin-top: 8px;
+    width: 200px;
+    height: 50px;
+  }
+
+  .linkeditarnota:hover{
+    background-color: #cfd306; 
+    color: #fff; 
+    font-size: 16px; 
+    margin-top: 8px;
+    width: 200px;
+    height: 50px;
+  }
+
+  .botaoazulnota{
+    background-color: #173997f6; 
+    color: #fff; 
+    font-size: 16px; 
+    margin-top: 8px;
+    width: 200px;
+    height: 50px;
+  }
+  .botaoazulnota:hover{
+    background-color: #0e7704; 
+    color: #fff; 
+    font-size: 16px; 
+    margin-top: 8px;
+    width: 200px;
+    height: 50px;
+  }
+
+  .bordanota{
+    border: 1px solid; 
+    border-color: rgb(235, 235, 235); 
+    border-radius: 4px; 
+    margin-top: 3px;
+    margin-bottom: 15px;
+    height: 170px; 
+    width: auto;
+    padding-top: 15px;
+  }

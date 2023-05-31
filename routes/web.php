@@ -20,10 +20,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-    //Rotas do Painel
-    Route::get('/', function () {
-        return view('pagina-inicial');
-    })->name('inicio');
+//Rotas do Painel
+Route::get('/', function () {
+    return view('pagina-inicial');
+})->name('inicio')->middleware('auth');
 
 
 //Routas para Autenticação no Sistema
@@ -200,23 +200,6 @@ Route::prefix('turma')->group(function(){
 /**<!--Fim Rotas turma--> */
 
 
-Route::prefix('aluno')->group(function(){
-    /*
-        Rotas de aluno
-    */
-    Route::get('boletim-notas', function () {
-        return view('aluno/boletim-notas');
-    });
-
-    Route::get('ficha-biografica', function () {
-        return view('aluno/ficha-biog');
-    });
-
-    Route::get('assiduidade-aluno', function () {
-        return view('aluno/assiduidade-aluno');
-    });
-});
-
 /*Editar turma */
 Route::get('editar-turma', function () {
     return view('turma/edit-turma');
@@ -227,20 +210,10 @@ Route::get('editar-turma', function () {
  */
 Route::prefix('aluno')->group(function(){
 
-    Route::get('alunos', function () {
-        return view('aluno/aluno');
-    });
     Route::get('boletim-notas', function () {
-        return view('aluno/boletim-notas');
+        return view('boletim/boletim-notas');
     });
 
-    Route::get('ficha-biografica', function () {
-        return view('aluno/ficha-biog');
-    });
-
-    Route::get('assiduidade-aluno', function () {
-        return view('aluno/assiduidade-aluno');
-    });
 });
 /**<!--Fim Rotas aluno--> */
 
@@ -398,4 +371,33 @@ Route::prefix('calend-prova')->group(function(){
     Route::get('edit-calend-prova', function(){
         return view('calend-prova/edit-calend-prova');
     });
+});
+
+
+/******************************************
+ * Rotas da Assiduidade de Aluno
+ */
+
+/* Assiduidade de alunos*/
+Route::get('/assiduidade_aluno', function () {
+    return view('assiduid-aluno/assd-aluno');
+});
+
+/*justificar ou editar assiduidade*/
+Route::get('/editar_assiduidade', function () {
+    return view('assiduid-aluno/edit-assd-aluno');
+});
+
+/******************************************
+ * Rotas da Avaliação de Aluno
+ */
+
+/*Avaliação de Aluno*/
+Route::get('/avaliar-aluno', function () {
+    return view('avaliac-aluno/avaliacoes-aluno');
+});
+
+/*editar Avaliação de Aluni*/
+Route::get('/editar-avaliacao-aluno', function () {
+    return view('avaliac-aluno/edit-valiac-aluno');
 });
