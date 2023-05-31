@@ -199,23 +199,6 @@ Route::prefix('turma')->group(function(){
 /**<!--Fim Rotas turma--> */
 
 
-Route::prefix('aluno')->group(function(){
-    /*
-        Rotas de aluno
-    */
-    Route::get('boletim-notas', function () {
-        return view('aluno/boletim-notas');
-    });
-
-    Route::get('ficha-biografica', function () {
-        return view('aluno/ficha-biog');
-    });
-
-    Route::get('assiduidade-aluno', function () {
-        return view('aluno/assiduidade-aluno');
-    });
-});
-
 /*Editar turma */
 Route::get('editar-turma', function () {
     return view('turma/edit-turma');
@@ -226,20 +209,10 @@ Route::get('editar-turma', function () {
  */
 Route::prefix('aluno')->group(function(){
 
-    Route::get('alunos', function () {
-        return view('aluno/aluno');
-    });
     Route::get('boletim-notas', function () {
-        return view('aluno/boletim-notas');
+        return view('boletim/boletim-notas');
     });
 
-    Route::get('ficha-biografica', function () {
-        return view('aluno/ficha-biog');
-    });
-
-    Route::get('assiduidade-aluno', function () {
-        return view('aluno/assiduidade-aluno');
-    });
 });
 /**<!--Fim Rotas aluno--> */
 
