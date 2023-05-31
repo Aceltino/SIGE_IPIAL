@@ -8,7 +8,6 @@ use App\Traits\PessoaTrait;
 use App\Traits\CursoTrait;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\InscricaoRequest;
-use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\Validator;
 
 class InscricaoController extends Controller
