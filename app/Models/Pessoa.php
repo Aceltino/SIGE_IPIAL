@@ -8,14 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Pessoa extends Model
 {
     use HasFactory;
+    protected $table = 'pessoas';
     protected $fillable = [
+        'escola_proveniencia_id',
         'nome_completo',
         'num_bi',
         'genero',
         'data_nascimento',
         'updated_at',
         'created_at',
-        'endereco_id'
     ];
 
     public function endereco(){
@@ -24,4 +25,28 @@ class Pessoa extends Model
     public function user(){
         $this->hasOne(User::class,'pessoa_id','usuario_id');
     }
+    public function candidato(){
+        $this->hasOne(Candidato::class,'candidato_id','escola_proveniencia_id');
+    }
+
+    public function telefone()
+    {
+        return $this->hasMany(Telefone::class, 'pessoa_id', 'telefone_id');
+    }
+
+	/**
+	 * @return mixed
+	 */
+	public function getTable() {
+		return $this->table;
+	}
+
+	/**
+	 * @param mixed $table
+	 * @return self
+	 */
+	public function setTable($table): self {
+		$this->table = $table;
+		return $this;
+	}
 }

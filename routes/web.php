@@ -3,7 +3,8 @@
 use App\Http\Controllers\{
     //Classes das Controllers
     AuthController,
-    MatriculaController
+    MatriculaController,
+    InscricaoController
 };
 use Illuminate\Support\Facades\Route;
 
@@ -56,9 +57,9 @@ Route::prefix('inscricao')->group(function(){
     });
 
     /*Inscrever candidato */
-    Route::get('inscrever', function () {
-        return view('inscricao/inscr-candidato');
-    })->name('inscriver->candidato');
+    Route::get('inscrever', [InscricaoController::class, 'create'])->name('inscricao-view');
+    Route::post('inscrever', [InscricaoController::class, 'store'])->name('inscricao-store');
+
 
     /*Editar candidato */
     Route::get('editar-candidato', function () {

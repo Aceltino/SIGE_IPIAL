@@ -145,7 +145,7 @@ class AuthController extends Controller
             'zona'=>$request->zona,
             'numero_casa'=>$request->num_casa,
         ];
-        $pessoa_id= $this->storePessoa($dadosPessoa,$dadosEndereco);
+        $pessoa_id= $this->storePessoa($dadosPessoa, $dadosEndereco);
 
         $dadosUser=[
             'nome_usuario'=>$abreNome.count(User::all()).$abreSobreNome,

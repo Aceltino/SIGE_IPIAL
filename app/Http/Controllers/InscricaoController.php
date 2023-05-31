@@ -2,138 +2,120 @@
 
 namespace App\Http\Controllers;
 
+use App\Traits\AnoLectivoTrait;
+use App\Traits\EscolaTrait;
+use App\Traits\PessoaTrait;
+use App\Traits\CursoTrait;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\InscricaoRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+// use Illuminate\Support\Facades\Validator;
 
 class InscricaoController extends Controller
 {
+    use PessoaTrait;
+    use EscolaTrait;
+    use AnoLectivoTrait;
+    use CursoTrait;
     public function create(){
         return view('inscricao/inscr-candidato');
     }
-    
-    public function store(Request $request)
+
+    public function store(InscricaoRequest $input)
     {
-        $dados=[
+        $request = $input->validated(); // Inputs validadas
+        $dadosPessoa = [
+            'nome_completo'=>$request['nome_completo'],
+            'num_bi'=>strtoupper($request['num_bi']),
+            'data_nascimento'=>$request['data_nascimento'],
+            'genero'=>$request['genero'],
+        ];
+        $idPessoa = $this->storePessoa($dadosPessoa);
+        if(!$idPessoa)
+        {
+            $msg="Fique atento nos dados de identifcação, este candidato já está inscrito!";
+            return redirect()->back()->with("ErroPessoa",$msg);
+        }
 
+        $dadosTelefone=[
             //Dados do candidato
-            'nome_pai_cand'=>$request->nome_pai_cand,
-            'nome_mae_cand'=>$request->nome_mae_cand,
-            'naturalidade_cand'=>$request->naturalidade_cand,
-
-            //Dados da escola proveniente
-            'nome_escola'=>$request->nome_escola,
-            'turno'=>$request->turno,
-            'num_processo'=>$request->num_processo,
-            'num_aluno'=>$request->num_aluno,
-            'ultimo_anoLectivo'=>$request->ultimo_anoLectivo,
-            'certificado'=>$request->certificado,
-
-            //Dados pessoais
-            'nome_completo'=>$request->nome_completo,
-            'num_bi'=>$request->num_bi,
-            'data_nascimento'=>$request->data_nascimento,
-            'gerero_DG'=>$request->gerero_DG,
-
-            //Dados Telefone
-            'num_tel'=>$request->num_tel,
-
-             // Dados da media
-             'Portugues'=>$request->LinguaP,
-             'Quimica'=>$request->Quimic,
-             'Fisica'=>$request->Fisic,
-             'Matematica'=>$request->Matematic,
-
-             // Dados do curso
-             'Opcoes'=>$request->opcao;
-             //opcao[]
-
+            'num_tel'=>$request['num_tel'],
+            'pessoa_id' => $idPessoa
         ];
-        $regras=[
-
-            //Formulario candidato
-            'nome_pai_cand'=>'required|string|max:50|min:2',
-            'nome_mae_cand'=>'required|string|max:50|min:2',
-            'naturalidade_cand'=>'required|string|max:50|min:4',
-
-            //Formulario da Pessoa
-            'nome'=>'required|string|min:2|max:50',
-            'sobre_nome'=>'required|string|min:5|max:50',
-            'data_nascimento'=>'required|date|before:'.now()->format('d-m-Y'),
-            'num_bi'=>'required|size:14',
-
-            //Formulario escola proveniente
-            'nome_escola'=>'required|max:100|min:2',
-            'num_processo'=>'required|numeric|min:2',
-            'num_aluno'=>'required|numeric|min:2',
-            'ultimo_anoLectivo'=>'required|numeric|min:2',
-            'media'=>'required|',
-            'certificado'=>'required|mimes:pdf',
-
-            //Dados Telefone
-            'num_tel'=>'required|size:9',
-
-        ];
-
-        $msg_erro=[
-
-            '*.required'=>'Este campo deve ser preenchido',
-            '*.string'=>'Este campo deve conter apenas Letras',
-            '*.numeric'=>'Este campo deve conter apenas numeros',
-    
-            //Formulario do candidato
-            'nome_pai_cand.max'=>'Este campo não pode conter mais de 50 letras.',
-            'nome_pai_cand.min'=>'Este campo não pode conter menos de 2 letras.',
-            'nome_mae_cand.max'=>'Este campo não pode conter mais de 50 letras.',
-            'nome_mae_cand.min'=>'Este campo não pode conter menos de 2 letras.',
-            'naturalidade_cand.max'=>'Este campo nao deve conter mais de 59 letras',
-            'naturalidade_cand.min'=>'Este campo nao deve conter menos de 4 letras',
-            
-            //Formulario Pessoa
-            'nome.max'=>'Este campo não pode conter mais de 50 letras.',
-            'nome.min'=>'Este campo não pode conter menos de 2 letras.',
-            'sobre_nome.max'=>'Este campo não pode conter mais de 50 letras.',
-            'sobre_nome.min'=>'Este campo não pode conter menos de 2 letras.',
-            'data.date' => 'O campo :attribute deve ser uma data válida.',
-            'data_nascimento.before'=> 'O campo :attribute deve ser uma data posterior à data atual.',
-            'num_bi.size'=> 'Número de identificação esta incorrecto',
-
-            //Formulario Escola proveniente
-            'nome_escola.max'=>'Este campo não pode conter mais de 100 letras',
-            'nome_escola.min'=>'Este campo não pode conter menos de 2 letras',
-            'num_processo'=>'Número do Processo deve conter apenas digitos validos.',
-            'nome_completo.min'=>'Este campo não deve conter menos que 2 numeros',
-            'num_aluno'=>'Número do aluno deve conter apenas digitos validos.',
-            'ultimo_anoLectivo'=>'O ano Letivo deve conter apenas digitos validos.',
-            'certificado'=>'Deve contar apenas um arquivo PDF',
-
-            //Formulario Telefone
-            'num_tel'=>'Este campo nao pode conter mais de 9 numeros',
-        ];
-
-        $validacao = Validator::make($dados, $regras);
-        if($validacao->fails()){
-            return redirect()->back()->withErrors($validacao)->withInput();
+        $telefone = TelefoneController::storeTelefone($dadosTelefone);
+        if(!$telefone)
+        {
+            $msg="Lamentamos! Este número de telefone já existe em nossa base de dados, mas a candi";
+            return redirect()->back()->with("ErroTelefone",$msg);
         }
+        echo "Aceltino";
+        // $dadosEscola = [
+        //     'nome_escola'=>$request->nome_escola,
+        //     'turno'=>$request->turno,
+        //     'num_processo'=>$request->num_processo,
+        //     'num_aluno'=>$request->num_aluno,
+        //     'ultimo_anoLectivo'=>$request->ultimo_anoLectivo,
+        //     'turma_aluno' =>$request->turma_aluno,
+        //     'ling_port'   => $request->LinguaP,
+        //     'matematica'  => $request->Matematic,
+        //     'fisica' =>  $request->Fisic,
+        //     'quimica' => $request->Quimic
+        // ];
+        // $idEscola = $this->storeEscola($dadosEscola);
+        // if(!$idEscola)
+        // {
+        //     $msg="Lamentamos! Certifique de que introduziu os dados correctos ou tente mais tarde...";
+        //     return redirect()->back()->with("ErroCadastro",$msg);
+        // }
 
-        //DEPOIS COMEÇA A INSERÇÃO DE DADOS NAS TABELAS...
+        // $idAnolectivo = $this->pegarAnoLectivo();
+        // if(!$idAnolectivo)
+        // {
+        //     $msg="Lamentamos! Dados não cadastrado, tente este processo mais tarde...";
+        //     return redirect()->back()->with("ErroCadastro",$msg);
+        // }
 
-        // $dadosuser=[
+        // $dadosCandidato=[
+        //     //Dados do candidato
+        //     'nome_pai_cand'=>$request->nome_pai_cand,
+        //     'nome_mae_cand'=>$request->nome_mae_cand,
+        //     'naturalidade_cand'=>$request->naturalidade_cand,
+        //     'status' => "Pendente",
+        //     'pessoa_id' => $idPessoa,
+        //     'ano_lectivo_id' => $idAnolectivo,
+        //     'escola_proveniencia_id' => $idEscola
+        // ];
+        // $candidato = CandidatoController::store($dadosCandidato);
+        // if(!$candidato)
+        // {
+        //     $msg="Lamentamos! Dados não cadastrado, tente este processo mais tarde...";
+        //     return redirect()->back()->with("ErroCadastro",$msg);
+        // }
 
-        // ]
-        // $user= User::created()
+        // for($i = 1; $i <= 4; $i++)
+        // {
+        //     $id[$i] = $this->pegarIdCurso($request->input('curso' . $i));
 
-        // sleep(2);
+        //     if(!$id[$i])
+        //     {
+        //         $msg="Lamentamos! Dados não cadastrado, tente este processo mais tarde...";
+        //         return redirect()->back()->with("ErroCadastro",$msg);
+        //     }
+        // }
 
-        // $dadospessoas=[
+        // $candCurso = [
+        //     'curso_id' => $id,
+        //     'candidato_id' => $candidato->candidato_id
+        // ];
+        // $cursos = CandidatoCursoController::store($candCurso);
+        // if(!$cursos)
+        // {
+        //     $msg="Lamentamos! Dados não cadastrado, tente este processo mais tarde...";
+        //     return redirect()->back()->with("ErroCadastro",$msg);
+        // }
 
-        //     ]
-        //     $user= User::created()
+        // $msg="Candidato inscrito com sucesso!";
+        // return redirect()->back()->with("Sucesso",$msg);
 
-
-        if(!PessoaController::store($request)){
-            $msg="Lamentamos! Dados não cadastrado, tente este processo mais tarde...";
-            return redirect()->back()->with("erroCadastroPessoa",$msg);
-        }
     }
 }

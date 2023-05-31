@@ -5,7 +5,7 @@
 @section('conteudo')
 <main id="main" class="main">
 
-  <form method="POST" action="" id="regForm" class="form-nscricao">
+  <form method="POST" action="{{route('inscricao-store')}}" id="regForm" class="form-nscricao">
   @csrf
     <div style="text-align:center;margin-top:40px;">
       <span class="step"></span>
@@ -15,12 +15,70 @@
     </div>
 
     <div class="tab">
-      <h2>introduza os dados pessoais</h2>
-      
+    @error('nome_completo')
+        <div class="alert alert-danger">{{$message}}</div>
+    @enderror
+    @error('nome_pai_cand')
+        <div class="alert alert-danger">{{$message}}</div>
+    @enderror
+    @error('nome_mae_cand')
+        <div class="alert alert-danger">{{$message}}</div>
+    @enderror
+    @error('naturalidade_cand')
+        <div class="alert alert-danger">{{$message}}</div>
+    @enderror
+    @error('num_tel')
+    <div class="alert alert-danger">{{$message}}</div>
+    @enderror
+    @error('num_bi')
+    <div class="alert alert-danger">{{$message}}</div>
+    @enderror
+    @error('nome_escola')
+    <div class="alert alert-danger">{{$message}}</div>
+    @enderror
+    @error('num_aluno')
+    <div class="alert alert-danger">{{$message}}</div>
+    @enderror
+    @error('turma_aluno')
+    <div class="alert alert-danger">{{$message}}</div>
+    @enderror
+    @error('num_processo')
+    <div class="alert alert-danger">{{$message}}</div>
+    @enderror
+    @error('ultimo_anoLectivo')
+    <div class="alert alert-danger">{{$message}}</div>
+    @enderror
+
+    @if(session()->has('ErroPessoa'))
+    <div class="alert alert-danger">
+      {{session('ErroPessoa')}}
+    </div>
+  @endif
+
+  @if (session()->has('ErroTelefone'))
+  <div class="alert alert-danger">
+      {{ session('ErroTelefone') }}
+  </div>
+@endif
+
+
+    @if(session()->has('ErroCadastro'))
+    <div class="alert alert-danger">
+      {{session('ErroCadastro')}}
+    </div>
+  @endif
+
+    @if(session()->has('Sucesso'))
+    <div class="alert alert-success">
+      {{session('Sucesso')}}
+    </div>
+  @endif
+      <h2>Introduza os dados pessoais</h2>
+
       <div class="form-group">
         <input type="text" placeholder="Nome Completo" name="nome_completo" oninput="this.className = ''">
       </div>
-      
+
       <div class="row">
         <div class="col">
           <div class="form-group">
@@ -31,46 +89,46 @@
         <div class="col">
           <div class="form-group">
             <input type="text" placeholder="Nome da Mãe" name="nome_mae_cand" oninput="this.className = ''">
-          </div> 
+          </div>
         </div>
       </div>
-      
+
       <div class="row">
         <div class="col">
           <p><input type="date" name="data_nascimento" oninput="this.className = ''"></p>
         </div>
 
         <div class="col">
-          <input type="text" class="form-control" readonly="true" value="00" name="" disabled>
+          <input type="text" class="form-control" readonly="true" value="00" disabled>
         </div>
         <div class="col">
           <input type="text" placeholder="Naturalidade" name="naturalidade_cand" oninput="this.className = ''">
         </div>
       </div>
-      
+
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <input type="radio" id="masculino" name="masculino" value="Masculino" checked><label for="masculino"> Masculino</label>
-            <input type="radio" id="feminino" name="feminino" value="Femenino"><label for="feminino"> Feminino</label>
+            <input type="radio" id="masculino" name="genero" value="Masculino" checked><label for="masculino"> Masculino</label>
+            <input type="radio" id="feminino" name="genero" value="Femenino"><label for="feminino"> Feminino</label>
           </div>
         </div>
 
         <div class="col">
           <div class="form-group">
             <input type="text" placeholder="Número do bilhete de identidade" name="num_bi" oninput="this.className = ''">
-          </div> 
+          </div>
         </div>
       </div>
 
       <div class="row">
         <div id="clone1"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
           <span style="color: #777;">+244</span>
-          <input type="text" value="" name="ola" placeholder="Telefone" name="num_tel" oninput="this.className = ''">
+          <input type="text" value="" placeholder="Telefone" name="num_tel" oninput="this.className = ''">
         </div>
 
         <div class="col-3">
-            <i id="clonebtn1" class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>    
+            <i id="clonebtn1" class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>
         </div>
       </div>
     </div>
@@ -95,7 +153,7 @@
         </div>
 
         <div class="form-group col">
-          <input type="text" placeholder="Turma" name="turma" oninput="this.className = ''">
+          <input type="text" placeholder="Turma" name="turma_aluno" oninput="this.className = ''">
         </div>
 
       </div>
@@ -108,7 +166,7 @@
         <div class="form-group col">
           <input type="text" placeholder="Ano Lectivo" name="ultimo_anoLectivo" oninput="this.className = ''">
         </div>
-        
+
       </div>
     </div>
 
@@ -116,42 +174,42 @@
       <h2>Escolha o curso segundo a ordem de preferência</h2>
 
       <div class="form-group">
-        <select oninput="this.className = ''" class="form-select" name="opcao[]">
+        <select oninput="this.className = ''" class="form-select" name="curso1">
           <option selected disabled>Escolha a primeira opção</option>
-          <option value="D.P">Desenhador projetista - D.P</option>
-          <option value="T.E.I.E">Técnico de Energia e Instalações Electricas - T.E.I.E</option>
-          <option value="T.I">Técnico de Informática - T.I</option>
-          <option value="E.T">Electronica e Telecomunicação - E.T</option>
+          <option value="Tecnico de Informática">Tecnico de Informática</option>
+          <option value="Instalaçoes electricas">Instalaçoes electricas</option>
+          <option value="Desenho tecnico">Desenho tecnico</option>
+          <option value="Electronica e automaçao">Electronica e automaçao</option>
         </select>
       </div>
 
       <div class="form-group">
-        <select oninput="this.className = ''" class="form-select" name="opcao[]">
+        <select oninput="this.className = ''" class="form-select" name="curso2">
           <option selected disabled>Escolha a segunda opção</option>
-          <option value="D.P">Desenhador projetista - D.P</option>
-          <option value="T.E.I.E">Técnico de Energia e Instalações Electricas - T.E.I.E</option>
-          <option value="T.I">Técnico de Informática - T.I</option>
-          <option value="E.T">Electronica e Telecomunicação - E.T</option>
+          <option value="Tecnico de Informática">Tecnico de Informática</option>
+          <option value="Instalaçoes electricas">Instalaçoes electricas</option>
+          <option value="Desenho tecnico">Desenho tecnico</option>
+          <option value="Electronica e automaçao">Electronica e automaçao</option>
         </select>
       </div>
 
       <div class="form-group">
-        <select oninput="this.className = ''" class="form-select" name="opcao[]">
+        <select oninput="this.className = ''" class="form-select" name="curso3">
           <option selected disabled>Escolha a terceira opção</option>
-          <option value="D.P">Desenhador projetista - D.P</option>
-          <option value="T.E.I.E">Técnico de Energia e Instalações Electricas - T.E.I.E</option>
-          <option value="T.I">Técnico de Informática - T.I</option>
-          <option value="E.T">Electronica e Telecomunicação - E.T</option>
+          <option value="Tecnico de Informática">Tecnico de Informática</option>
+          <option value="Instalaçoes electricas">Instalaçoes electricas</option>
+          <option value="Desenho tecnico">Desenho tecnico</option>
+          <option value="Electronica e automaçao">Electronica e automaçao</option>
         </select>
       </div>
 
       <div class="form-group">
-        <select oninput="this.className = ''" class="form-select" name="opcao[]">
+        <select oninput="this.className = ''" class="form-select" name="curso4">
           <option selected disabled>Escolha a quarta opção</option>
-          <option value="D.P">Desenhador projetista - D.P</option>
-          <option value="T.E.I.E">Técnico de Energia e Instalações Electricas - T.E.I.E</option>
-          <option value="T.I">Técnico de Informática - T.I</option>
-          <option value="E.T">Electronica e Telecomunicação - E.T</option>
+          <option value="Tecnico de Informática">Tecnico de Informática</option>
+          <option value="Instalaçoes electricas">Instalaçoes electricas</option>
+          <option value="Desenho tecnico">Desenho tecnico</option>
+          <option value="Electronica e automaçao">Electronica e automaçao</option>
         </select>
       </div>
 
@@ -235,6 +293,7 @@
         <button type="button" class="btn btn-success our-green-bg" id="nextBtn" onclick="nextPrev(1)">Avançar</button>
       </div>
     </div>
+
   </form>
 
 </main>

@@ -9,12 +9,12 @@ use Illuminate\Http\Request;
 class MatriculaController extends Controller
 {
     public function create(){
-        return view('matricula.matricular-aluno');
+       // return view('matricula.matricular-aluno');
     }
 
     public function store(Request $request){
 
-       $var = "x";
-       dd($var);
+    //    $var = "x";
+    //    dd($var);
     }
 }
