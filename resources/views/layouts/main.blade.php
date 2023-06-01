@@ -53,7 +53,7 @@
     @include('layouts.footer')
 
     <!-- /	Link dos js do bootstrap-->
-  <script src="Datatables/datatables.min.js"></script>
+  <script src={{{URL::asset("Datatables/datatables.min.js")}}}></script>
   <script src={{{URL::asset("vendor/apexcharts/apexcharts.min.js")}}}></script>
   <script src={{{URL::asset("vendor/bootstrap/js/bootstrap.bundle.min.js")}}}></script>
   <script src={{{URL::asset("vendor/chart.js/chart.umd.js")}}}></script>
@@ -63,7 +63,7 @@
 
   <!-- /	Link do js main do projeto -->
   
-  <script src={{URL::asset("js/tab.js")}}></script>
+  <script src={{{URL::asset("js/tab.js")}}}></script>
   <script src={{{URL::asset("js/script.js")}}}></script>
   <script src={{{URL::asset("js/form.js")}}}></script>
   <script src={{{URL::asset("js/select.js")}}}></script>
