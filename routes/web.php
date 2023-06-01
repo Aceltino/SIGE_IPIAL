@@ -423,7 +423,7 @@ Route::get('/avaliar-aluno', function () {
     return view('avaliac-aluno/avaliacoes-aluno');
 });
 
-/*editar Avaliação de Aluni*/
+/*editar Avaliação de Aluno*/
 Route::get('/editar-avaliacao-aluno', function () {
     return view('avaliac-aluno/edit-valiac-aluno');
 });
