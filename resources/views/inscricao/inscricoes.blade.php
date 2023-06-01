@@ -10,7 +10,7 @@
     </div>
   
     <div class="col-lg-2">
-      <select class="btn-sel form-select" id="filtro">
+      <select class="btn-sel form-select" id="filtro5">
         <option selected disabled>Curso</option>
         <option value="Desenhador projetista">Desenhador projetista</option>
         <option value="Técnico de Energia e Instalações Electricas">Técnico de Energia e Instalações Electricas</option>
@@ -20,8 +20,10 @@
     </div> 
 
     <div class="col-lg-2">
-      <select class="btn-sel form-select">
-        <option selected>Inscritos</option>
+      <select class="btn-sel form-select" id="filtro">
+        <option selected disabled>Situação</option>
+        <option>A/Admitido</option>
+        <option>N/Admitido</option>
       </select>
     </div>
   
@@ -35,31 +37,31 @@
   </div>
 
   <div style="display: flex; justify-content: flex-end; align-items: center;">
-    <button class="btn-imprimir">Imprimir <i class="bi bi-file-earmark-pdf"></i></button>
+    <button class="btn-imprimir">Imprimir<i class="bi bi-file-earmark-pdf"></i></button>
   </div>
   <!-- /  Inicio da tabela de inscritos -->
   <table class="table table-striped" style="margin-top: 10px;" id="matricula-tab">
     <thead>
-      <tr  style=" text-align: center;">
+      <tr style=" text-align: center;">
         <th scope="col">Número do BI</th>
         <th scope="col">Nome do Candidato</th>
-        <th scope="col">Genero</th>
         <th scope="col">Média</th>
         <th scope="col">Idade</th>
         <th scope="col">Curso</th>
-        <th scope="col">Período</th>
-        <th scope="col"></th>
+        <th scope="col">Situação</th>
+        <th scope="col">Matricular</th>
+        <th scope="col">Ações</th>
       </tr>
     </thead>
     <tbody>
       <tr  style=" text-align: center;">
-        <th scope="row">0000000KJ000098</th>
+        <th scope="row">00000KJ000098</th>
         <td>Fernando Exemplo</td>
-        <td>Masculino</td>
         <td>16</td>
         <td>15</td>
         <td>Informática</td>
-        <td>Manhã</td>
+        <td><span style="font-weight: 600; color: green;">A/Admitido</span></td>
+        <td><a href="#" class="btn btn-success">Matricular</a></td>
         <td>
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
           <a href="/editar-candidato"><i class="bi bi-pencil"></i></a>
@@ -68,13 +70,13 @@
       </tr>
       
       <tr  style=" text-align: center;">
-        <th scope="row">0000000KJ000098</th>
+        <th scope="row">00000KJ000098</th>
         <td>Fernando Exemplo</td>
-        <td>Masculino</td>
         <td>16</td>
         <td>15</td>
         <td>Informática</td>
-        <td>Manhã</td>
+        <td><span style="font-weight: 600; color: red;">N/Admitido</span></td>
+        <td></td>
         <td>
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
           <a href="/editar-candidato"><i class="bi bi-pencil"></i></a>
