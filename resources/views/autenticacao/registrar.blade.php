@@ -10,15 +10,15 @@
       <span>SIGE - IPIAL</span><br>
       <span>Cadastro de Usuario</span>
     </div>
-    
-    
+
+
     <form method="POST" action={{route('registrar')}} id="regForm" class="row g-3 needs-validation">
       @csrf
       <div style="text-align:center;margin-top:40px;">
         <span class="step"></span>
         <span class="step"></span>
         <span class="step"></span>
-      </div> 
+      </div>
 
       @if(session('erroCadastroPessoa'))
         <div class="alert alert-success">
@@ -68,7 +68,7 @@
             <option value="Femenino">Femenino</option>
           </select>
         </div>
-       
+
         <span style="color: rgb(88, 85, 85);">
           Data de Nascimento
           <div class="col">
@@ -81,7 +81,7 @@
             @enderror
           </div>
         </span>
-    
+
       </div>
 
       {{--  Dados do Endereço - Apagar em Produção--}}
@@ -123,7 +123,7 @@
 
       {{-- Dados do Usuario - Apagar em Produção --}}
       <div class="tab">
-        
+
         <div class="input-group has-validation">
           <input type="number" autocomplete="off" value="{{old('num_telefone')}}" name='num_telefone' class="form-control" placeholder="Telefone Nº" required>
           <div class="invalid-feedback">Por favor insira um Número de Telefone</div>
@@ -170,7 +170,7 @@
         @enderror
 
       </div>
-      
+
   <div style="text-align:center;margin-top:10px;">
     <div>
       <button type="button" class="btn btn-danger" id="prevBtn" onclick="nextPrev(-1)">Retroceder</button>
@@ -179,7 +179,7 @@
   </div>
 
 </div>
-  
+
   </form>
 
   </div>

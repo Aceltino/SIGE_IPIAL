@@ -1,4 +1,4 @@
-.main-ficha-biografica{
+section.main-ficha-biografica{
 	display: flex;
 	flex-direction: column;
 	padding: 20px;
@@ -10,6 +10,7 @@
 
 .div-ficha-biografica-primeira-linha, .div-ficha-biografica-segunda-linha{
 	width: 100%;
+	font-family: Arial !important;
 }
 
 .div-ficha-biografica-primeira-linha{
@@ -40,6 +41,7 @@
 
 .article-insignia-text p, td p{
     margin-bottom: 0;
+	font-family: Arial !important;
 }
 
 .div-insignia-img{
@@ -61,11 +63,11 @@
 }
 
 .section-title{
-	margin: 30px 0;
+	margin: 0 0 30px 0;
 }
 
 .section-title h1{
-	font-size: 18px;
+	font-size: 14px;
 	font-weight: normal;
 	text-align: center;
 }
@@ -87,7 +89,8 @@ mr-10{
 
 .div-personal-data{
 	border: 1px solid black;
-	padding: 10px;
+	padding: 9px;
+	border-bottom: none !important;
 }
 
 .first-p-div-personal-data{
@@ -100,10 +103,15 @@ mr-10{
 	margin-bottom: 6px;
 }
 
+.section-table-ficha-biografica table{
+	width: 100%;
+}
+
 .section-table-ficha-biografica table, .section-table-ficha-biografica table tr td{
 	border: 1px solid black;
 	border-collapse: collapse;
 	padding: 5px;
+	font-family: Arial !important;
 }
 
 .mt-40{
@@ -164,6 +172,8 @@ mr-10{
 {
 	border: 1px solid black;
 	padding: 5px;
+	font-family: Arial !important;
+	width: 100%;
 }
 
 .section-texto-descritivo-final-div-2{
@@ -172,4 +182,8 @@ mr-10{
 
 .justify-content-between{
 	justify-content: space-between;
+}
+
+.text-red{
+	color: red;
 }

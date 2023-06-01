@@ -3,7 +3,8 @@
 use App\Http\Controllers\{
     //Classes das Controllers
     AuthController,
-    MatriculaController
+    MatriculaController,
+    InscricaoController
 };
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 //Rotas do Painel
 Route::get('/', function () {
     return view('pagina-inicial');
-})->name('inicio')->middleware('auth');
+})->name('inicio');
 
 
 //Routas para Autenticação no Sistema
@@ -56,9 +57,9 @@ Route::prefix('inscricao')->group(function(){
     });
 
     /*Inscrever candidato */
-    Route::get('inscrever', function () {
-        return view('inscricao/inscr-candidato');
-    })->name('inscriver->candidato');
+    Route::get('inscrever', [InscricaoController::class, 'create'])->name('inscricao-view');
+    Route::post('inscrever', [InscricaoController::class, 'store'])->name('inscricao-store');
+
 
     /*Editar candidato */
     Route::get('editar-candidato', function () {
@@ -199,23 +200,6 @@ Route::prefix('turma')->group(function(){
 /**<!--Fim Rotas turma--> */
 
 
-Route::prefix('aluno')->group(function(){
-    /*
-        Rotas de aluno
-    */
-    Route::get('boletim-notas', function () {
-        return view('aluno/boletim-notas');
-    });
-
-    Route::get('ficha-biografica', function () {
-        return view('aluno/ficha-biog');
-    });
-
-    Route::get('assiduidade-aluno', function () {
-        return view('aluno/assiduidade-aluno');
-    });
-});
-
 /*Editar turma */
 Route::get('editar-turma', function () {
     return view('turma/edit-turma');
@@ -226,20 +210,10 @@ Route::get('editar-turma', function () {
  */
 Route::prefix('aluno')->group(function(){
 
-    Route::get('alunos', function () {
-        return view('aluno/aluno');
-    });
     Route::get('boletim-notas', function () {
-        return view('aluno/boletim-notas');
+        return view('boletim/boletim-notas');
     });
 
-    Route::get('ficha-biografica', function () {
-        return view('aluno/ficha-biog');
-    });
-
-    Route::get('assiduidade-aluno', function () {
-        return view('aluno/assiduidade-aluno');
-    });
 });
 /**<!--Fim Rotas aluno--> */
 
@@ -269,15 +243,7 @@ Route::prefix('curso')->group(function(){
 Route::prefix('ano-lectivo')->group(function(){
 
     Route::get('criar-ano-letivo', function () {
-        return view('ano-lectivo/criar-aluno-lect');
-    });
-
-    Route::get('ano-letivo', function () {
-        return view('ano-lectivo/ano-lect');
-    });
-
-    Route::get('editar-ano-letivo', function () {
-        return view('ano-lectivo/edit-ano-letivo');
+        return view('ano-lectivo/criar-ano-lect');
     });
 
     Route::get('ano-letivo', function () {
@@ -426,4 +392,23 @@ Route::get('/avaliar-aluno', function () {
 /*editar Avaliação de Aluno*/
 Route::get('/editar-avaliacao-aluno', function () {
     return view('avaliac-aluno/edit-valiac-aluno');
+});
+
+/******************************************
+ * Rotas do horário
+******************************************/
+
+/*Criar horário*/
+Route::get('/criar-horario', function () {
+    return view('horario/criar-horario');
+});
+
+/*Ver o horário da turma*/
+Route::get('/horario-turma', function () {
+    return view('horario/horario-turma');
+});
+
+/*Editar horário*/
+Route::get('/editar-horario', function () {
+    return view('horario/editar-horario');
 });
