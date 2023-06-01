@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 //Rotas do Painel
 Route::get('/', function () {
     return view('pagina-inicial');
-})->name('inicio')->middleware('auth');
+})->name('inicio');
 
 
 //Routas para Autenticação no Sistema
@@ -243,15 +243,7 @@ Route::prefix('curso')->group(function(){
 Route::prefix('ano-lectivo')->group(function(){
 
     Route::get('criar-ano-letivo', function () {
-        return view('ano-lectivo/criar-aluno-lect');
-    });
-
-    Route::get('ano-letivo', function () {
-        return view('ano-lectivo/ano-lect');
-    });
-
-    Route::get('editar-ano-letivo', function () {
-        return view('ano-lectivo/edit-ano-letivo');
+        return view('ano-lectivo/criar-ano-lect');
     });
 
     Route::get('ano-letivo', function () {
@@ -400,4 +392,23 @@ Route::get('/avaliar-aluno', function () {
 /*editar Avaliação de Aluni*/
 Route::get('/editar-avaliacao-aluno', function () {
     return view('avaliac-aluno/edit-valiac-aluno');
+});
+
+/******************************************
+ * Rotas do horário
+******************************************/
+
+/*Criar horário*/
+Route::get('/criar-horario', function () {
+    return view('horario/criar-horario');
+});
+
+/*Ver o horário da turma*/
+Route::get('/horario-turma', function () {
+    return view('horario/horario-turma');
+});
+
+/*Editar horário*/
+Route::get('/editar-horario', function () {
+    return view('horario/editar-horario');
 });

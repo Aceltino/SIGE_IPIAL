@@ -15,7 +15,7 @@
         <option value="Desenhador projetista">Desenhador projetista</option>
         <option value="Técnico de Energia e Instalações Electricas">Técnico de Energia e Instalações Electricas</option>
         <option value="Informática ">Informática</option>
-        <option value="Electronica e Telecomunicação">Electronica e Telecomunicação</option>
+        <option value="Electronica e Telecomunicação">Electrônica e Telecomunicação</option>
       </select>
     </div> 
 

@@ -6,7 +6,7 @@
 <main id="main" class="main">
       <div class="row">
         <div class="col">
-          <h2>ANO LECTIVO</h2>      
+          <h2 class="color-blue-principal">ANO LECTIVO</h2>      
         </div>
          <div class="col-lg-4">
            <select class="btn-sel form-select" id="filtro1">
@@ -34,7 +34,7 @@
       
       </div>
 
-      <div class="procurar">
+      <div class="procurar mt-4">
         <form class="proc-form d-flex align-items-center">
           <input id="pesquisa" placeholder="Qual ano letivo estás a procurar?" value="" type="text" name="" class="campo-pesq">
           <button type="submit" title="Search"><i class="bi bi-search"></i></button>   
@@ -42,21 +42,23 @@
       </div>
 
       <!-- /  Inicio da tabela de inscritos -->
-      <table id="matricula-tab" class="table table-striped">
+      <table id="matricula-tab" class="table table-striped mt-4">
         <thead>
           <tr style=" text-align: center;">
+            <th scope="col">Designação</th>
             <th scope="col">Data de Inicio</th>
             <th scope="col">Data de Fim</th>
-            <th scope="col">Número max de vagas na sala</th>
-            <th scope="col">Número max de sala</th>
+            <th scope="col">Número máximo de vagas nas salas</th>
+            <th scope="col">Número máximo de salas</th>
             <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
 
           <tr style=" text-align: center;">
-            <th scope="row">2025</th>
-            <td>2026</td>
+            <td>2025-2026</td>
+            <td>04/09/2025</td>
+            <td>14/07/2026</td>
             <td>50</td>
             <td>50</td>
             <td>
@@ -69,8 +71,9 @@
 
           
           <tr style=" text-align: center;">
-            <th scope="row">2023</th>
-            <td>2024</td>
+            <td>2025-2026</td>
+            <td>04/09/2025</td>
+            <td>14/07/2026</td>
             <td>50</td>
             <td>50</td>
             <td>
@@ -83,8 +86,9 @@
 
           
           <tr style=" text-align: center;">
-            <th scope="row">2020</th>
-            <td>2021</td>
+            <td>2025-2026</td>
+            <td>04/09/2025</td>
+            <td>14/07/2026</td>
             <td>50</td>
             <td>50</td>
             <td>
@@ -97,8 +101,9 @@
 
           
           <tr style=" text-align: center;">
-            <th scope="row">2020</th>
-            <td>2021</td>
+            <td>2025-2026</td>
+            <td>04/09/2025</td>
+            <td>14/07/2026</td>
             <td>50</td>
             <td>50</td>
             <td>
@@ -111,8 +116,9 @@
 
           
           <tr style=" text-align: center;">
-            <th scope="row">2020</th>
-            <td>2021</td>
+            <td>2025-2026</td>
+            <td>04/09/2025</td>
+            <td>14/07/2026</td>
             <td>50</td>
             <td>50</td>
             <td>
@@ -125,8 +131,9 @@
 
           
           <tr style=" text-align: center;">
-            <th scope="row">2020</th>
-            <td>2021</td>
+            <td>2025-2026</td>
+            <td>04/09/2025</td>
+            <td>14/07/2026</td>
             <td>50</td>
             <td>50</td>
             <td>
@@ -139,8 +146,9 @@
 
           
           <tr style=" text-align: center;">
-            <th scope="row">2020</th>
-            <td>2021</td>
+            <td>2025-2026</td>
+            <td>04/09/2025</td>
+            <td>14/07/2026</td>
             <td>50</td>
             <td>50</td>
             <td>
@@ -153,8 +161,9 @@
 
           
           <tr style=" text-align: center;">
-            <th scope="row">2020</th>
-            <td>2021</td>
+            <td>2025-2026</td>
+            <td>04/09/2025</td>
+            <td>14/07/2026</td>
             <td>50</td>
             <td>50</td>
             <td>
@@ -167,8 +176,9 @@
 
           
           <tr style=" text-align: center;">
-            <th scope="row">2020</th>
-            <td>2021</td>
+            <td>2025-2026</td>
+            <td>04/09/2025</td>
+            <td>14/07/2026</td>
             <td>50</td>
             <td>50</td>
             <td>
@@ -181,8 +191,9 @@
 
           
           <tr style=" text-align: center;">
-            <th scope="row">2020</th>
-            <td>2021</td>
+            <td>2025-2026</td>
+            <td>04/09/2025</td>
+            <td>14/07/2026</td>
             <td>50</td>
             <td>50</td>
             <td>
@@ -195,8 +206,9 @@
 
           
           <tr style=" text-align: center;">
-            <th scope="row">2020</th>
-            <td>2021</td>
+            <td>2025-2026</td>
+            <td>04/09/2025</td>
+            <td>14/07/2026</td>
             <td>50</td>
             <td>50</td>
             <td>
@@ -209,8 +221,9 @@
 
           
           <tr style=" text-align: center;">
-            <th scope="row">2020</th>
-            <td>2021</td>
+            <td>2025-2026</td>
+            <td>04/09/2025</td>
+            <td>14/07/2026</td>
             <td>50</td>
             <td>50</td>
             <td>
@@ -223,8 +236,9 @@
 
           
           <tr style=" text-align: center;">
-            <th scope="row">2020</th>
-            <td>2021</td>
+            <td>2025-2026</td>
+            <td>04/09/2025</td>
+            <td>14/07/2026</td>
             <td>50</td>
             <td>50</td>
             <td>
@@ -237,8 +251,9 @@
 
           
           <tr style=" text-align: center;">
-            <th scope="row">2020</th>
-            <td>2021</td>
+            <td>2025-2026</td>
+            <td>04/09/2025</td>
+            <td>14/07/2026</td>
             <td>50</td>
             <td>50</td>
             <td>
@@ -251,8 +266,9 @@
 
           
           <tr style=" text-align: center;">
-            <th scope="row">2020</th>
-            <td>2021</td>
+            <td>2025-2026</td>
+            <td>04/09/2025</td>
+            <td>14/07/2026</td>
             <td>50</td>
             <td>50</td>
             <td>
@@ -265,8 +281,9 @@
 
           
           <tr style=" text-align: center;">
-            <th scope="row">2020</th>
-            <td>2021</td>
+            <td>2025-2026</td>
+            <td>04/09/2025</td>
+            <td>14/07/2026</td>
             <td>50</td>
             <td>50</td>
             <td>
@@ -279,8 +296,9 @@
 
           
           <tr style=" text-align: center;">
-            <th scope="row">2020</th>
-            <td>2021</td>
+            <td>2025-2026</td>
+            <td>04/09/2025</td>
+            <td>14/07/2026</td>
             <td>50</td>
             <td>50</td>
             <td>
@@ -293,8 +311,9 @@
 
           
           <tr style=" text-align: center;">
-            <th scope="row">2020</th>
-            <td>2021</td>
+            <td>2025-2026</td>
+            <td>04/09/2025</td>
+            <td>14/07/2026</td>
             <td>50</td>
             <td>50</td>
             <td>

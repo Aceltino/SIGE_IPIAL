@@ -20,6 +20,9 @@
                                 <b>Instituto Politécnico Industrial Alda Lara</b>
                             </p>
                         </article>
+                        <section class="section-title">
+                            <h1 class="text-uppercase color-black">Ficha de registro de dados biográficos e académicos</h1>
+                        </section>
                 </section>
                 <section class="section-ficha-biografica-top-right">
                     
@@ -27,29 +30,34 @@
             </div>
 
             <div class="div-ficha-biografica-segunda-linha">
-                <section class="section-title">
-                    <h1 class="text-uppercase color-black">Ficha de registro de dados biográficos e académicos</h1>
-                </section>
                 <section class="section-subtitle-and-personal-data">
                         <div class="div-subtitle">
-                            <h3 class="text-uppercase">Área de formação: Informática</h3>
-                            <h3 class="text-uppercase">Curso: Técnico de Informática</h3>
-                            <h3 class="text-uppercase mr-10">Processo nº 27</h3>
-                        </div>
-                        <div class="div-personal-data">
-                            <p class="first-p-div-personal-data">
-                                Nome_____________________________________________________________________________________________ Filho de ______________________________________________________________ 
-                            </p>
-                            <p class="second-p-div-personal-data">
-                                e de _____________________________________________________________ Natural de ________________________________ Nascido aos ____/____/_____ Portador do B.I nº _____________________
-                            </p>
+                            <h3 class="text-uppercase fw-bold text-red">Área de formação: Informática</h3>
+                            <h3 class="text-uppercase fw-bold text-red">Curso: Técnico de Informática</h3>
+                            <h3 class="text-uppercase fw-bold mr-10">Processo nº 27</h3>
                         </div>
                 </section>
 
-                <!------------------------------------------------------------------------------------->
+                <section class="section-table-ficha-biografica">
+                    <div class="div-personal-data">
+                        <p class="first-p-div-personal-data">
+                            Nome_____________________________________________________________________________________________________ 
+                            Filho de __________________________________________________________________________________________ 
+                        </p>
+                        <p class="second-p-div-personal-data">
+                            e de _______________________________________________________________________________ 
+                            Natural de ________________________________ Nascido aos ______/______/_________ 
+                            BI Nº __________________________________
+                        </p>
+                        <p class="third-p-div-personal-data">
+                            Telefone pessoal _________________________________ 
+                            parente/grau _________/_______________________________________  
+                            Morada _____________________________________
+                        </p>
+                    </div>
+                    <!------------------------------------------------------------------------------------->
                 <!----------------------------------- x Tabela 1 x ------------------------------------>
                 <!------------------------------------------------------------------------------------->
-                <section class="section-table-ficha-biografica mt-40">
                     <table>
                         <thead>
                             <!-- Primeira linha -->
