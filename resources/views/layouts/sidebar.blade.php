@@ -11,7 +11,7 @@
         </a>
       </li>
 
-      <!-- /	Nav usuario-->      
+      <!-- /	Nav usuario-->
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#usuario-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-person-lines-fill"></i><span>Usuário</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -76,7 +76,7 @@
               <i class="bi bi-circle"></i><span>Inscritos Rejeitados</span>
             </a>
           </li>
-          
+
 
         </ul>
       </li>
@@ -105,11 +105,11 @@
               <i class="bi bi-circle"></i><span>Registrar Aluno</span>
             </a>
           </li>
- 
+
         </ul>
       </li>
 
-    	<!-- /	Nav Professor-->      
+    	<!-- /	Nav Professor-->
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#professor-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-person-lines-fill"></i><span>Professor</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -269,7 +269,7 @@
 
 	        </ul>
 	    </li>
-      
+
 	<!-- /	Nav aluno-professor-->
   <li class="nav-item">
     <a class="nav-link collapsed" data-bs-target="#aluno-professor-nav" data-bs-toggle="collapse" href="#">
@@ -281,12 +281,12 @@
           <i class="bi bi-circle"></i><span>Alunos</span>
         </a>
       </li>
-  
+
     </ul>
   </li>
 
       <!-- /	Nav Avaliação Aluno-->
-    
+
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#avaliacao-aluno-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-clipboard"></i><span>Avaliação</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -301,7 +301,7 @@
       </li>
 
     <!-- /	Nav assiduidade-professor-->
-    
+
   <li class="nav-item">
     <a class="nav-link collapsed" data-bs-target="#assiduidade-professor-nav" data-bs-toggle="collapse" href="#">
       <i class="bi bi-clipboard"></i><span>Assuiduidade</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -314,7 +314,7 @@
       </li>
     </ul>
   </li>
-  
+
 
   <!-- /	Nav Perfil-->
 <li class="nav-item">

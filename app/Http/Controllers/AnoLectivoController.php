@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Traits;
+namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Models\Ano_lectivo;
+use Illuminate\Http\Request;
 
-trait AnoLectivoTrait
+class AnoLectivoController extends Controller
 {
     public static function pegarAnoLectivo()
     {

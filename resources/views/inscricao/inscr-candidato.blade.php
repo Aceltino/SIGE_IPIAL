@@ -56,7 +56,7 @@
   @endif
 
   @if (session()->has('ErroTelefone'))
-  <div class="alert alert-danger">
+  <div class="alert alert-warning">
       {{ session('ErroTelefone') }}
   </div>
 @endif
