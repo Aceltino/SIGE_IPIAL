@@ -26,7 +26,6 @@
         <option>N/Admitido</option>
       </select>
     </div>
-  
   </div>
 
   <div class="procurar">
