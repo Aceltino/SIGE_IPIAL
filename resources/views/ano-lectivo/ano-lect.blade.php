@@ -48,8 +48,8 @@
             <th scope="col">Designação</th>
             <th scope="col">Data de Inicio</th>
             <th scope="col">Data de Fim</th>
-            <th scope="col">Número máximo de vagas nas salas</th>
-            <th scope="col">Número máximo de salas</th>
+            <th scope="col">Número máximo de vagas nas turmas</th>
+            <th scope="col">Qtd. de salas</th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -65,7 +65,6 @@
               <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
               <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
               <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
             </td>
           </tr>
 
@@ -80,7 +79,6 @@
               <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
               <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
               <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
             </td>
           </tr>
 
@@ -95,7 +93,6 @@
               <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
               <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
               <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
             </td>
           </tr>
 
@@ -110,7 +107,6 @@
               <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
               <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
               <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
             </td>
           </tr>
 
@@ -125,7 +121,6 @@
               <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
               <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
               <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
             </td>
           </tr>
 
@@ -140,7 +135,6 @@
               <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
               <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
               <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
             </td>
           </tr>
 
@@ -155,7 +149,6 @@
               <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
               <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
               <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
             </td>
           </tr>
 
@@ -170,7 +163,6 @@
               <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
               <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
               <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
             </td>
           </tr>
 
@@ -185,7 +177,6 @@
               <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
               <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
               <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
             </td>
           </tr>
 
@@ -200,7 +191,6 @@
               <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
               <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
               <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
             </td>
           </tr>
 
@@ -215,7 +205,6 @@
               <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
               <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
               <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
             </td>
           </tr>
 
@@ -230,7 +219,6 @@
               <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
               <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
               <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
             </td>
           </tr>
 
@@ -245,7 +233,6 @@
               <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
               <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
               <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
             </td>
           </tr>
 
@@ -260,7 +247,6 @@
               <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
               <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
               <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
             </td>
           </tr>
 
@@ -275,7 +261,6 @@
               <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
               <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
               <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
             </td>
           </tr>
 
@@ -290,7 +275,6 @@
               <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
               <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
               <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
             </td>
           </tr>
 
@@ -305,7 +289,6 @@
               <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
               <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
               <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
             </td>
           </tr>
 
@@ -320,7 +303,6 @@
               <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
               <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
               <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
             </td>
           </tr>
         </tbody>
