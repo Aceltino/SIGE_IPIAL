@@ -40,7 +40,7 @@ class InscricaoController extends Controller
         $telefone = TelefoneController::storeTelefone($dadosTelefone);
         if(!$telefone)
         {
-            $msg="Lamentamos! Este número de telefone já existe em nossa base de dados, mas a candi";
+            $msg="Lamentamos! Este número de telefone já existe em nossa base de dados, mas a candidatura foi realizada com sucesso!";
             return redirect()->back()->with("ErroTelefone",$msg);
         }
 
@@ -63,7 +63,7 @@ class InscricaoController extends Controller
             return redirect()->back()->with("ErroCadastro",$msg);
         }
 
-        $idAnolectivo = AnoLectivoController::pegarAnoLectivo();
+        $idAnolectivo = AnoLectivoController::pegarIdAnoLectivo();
         if(!$idAnolectivo)
         {
             $msg="Lamentamos! Dados não cadastrado, tente este processo mais tarde...";

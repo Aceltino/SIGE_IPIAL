@@ -11,7 +11,7 @@ class EscolaController extends Controller
     public static function storeEscola($dadosEscola):int
     {
         $escola = Escola_proveniencia::create($dadosEscola);
-        $escolaId = $escola->id;
+        $escolaId = $escola->escola_proveniencia_id;
 
         return $escolaId;
     }

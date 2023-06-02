@@ -26,4 +26,9 @@ class Cursos extends Model
         return $this->belongsToMany(Candidato::class, 'candidato_seleciona_curso', 'curso_id', 'candidato_id');
     }
 
+    public function turma()
+    {
+        return $this->hasMany(Turma::class, 'curso_id', 'turma_id');
+    }
+
 }

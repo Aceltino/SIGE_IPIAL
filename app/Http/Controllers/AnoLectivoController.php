@@ -8,9 +8,14 @@ use Illuminate\Http\Request;
 
 class AnoLectivoController extends Controller
 {
-    public static function pegarAnoLectivo()
+    public static function pegarIdAnoLectivo()
     {
         $ultimoAno = Ano_lectivo::latest()->first();
         return $ultimoAno->ano_lectivo_id;
+    }
+    public static function pegarNumVagas()
+    {
+        $ultimoAno = Ano_lectivo::latest()->first();
+        return $ultimoAno->	num_aluno_na_turma;
     }
 }

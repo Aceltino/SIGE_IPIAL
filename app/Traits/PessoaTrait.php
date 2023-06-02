@@ -23,7 +23,7 @@ trait PessoaTrait
 
         $pessoaCriada = Pessoa::create($dadosPessoa);
 
-        return $pessoaCriada->id;
+        return $pessoaCriada->pessoa_id;
     }
 
     public static function verBilhete($num_bi):bool

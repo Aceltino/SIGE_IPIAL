@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\{
+     AdmissaoController,
     //Classes das Controllers
     AuthController,
+    CandidatoController,
     MatriculaController,
     InscricaoController
 };
@@ -24,6 +26,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('pagina-inicial');
 })->name('inicio');
+
+// Rota apenas de teste... Não apague -> ACELTINO
+Route::get('validar-aluno', [AdmissaoController::class, 'validarCandidato']);
 
 
 //Routas para Autenticação no Sistema
