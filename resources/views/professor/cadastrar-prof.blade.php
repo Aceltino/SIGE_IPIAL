@@ -11,24 +11,24 @@
           <span class="step"></span>
           <span class="step"></span>
         </div>
-
+ 
         <div class="tab">
           <h2 class="text-uppercase text-center my-3 color-blue-principal">introduza os dados pessoais</h2>
           
           <div class="form-group">
-            <input type="text" class="input-sm" placeholder="Nome Completo do professor" name="" oninput="this.className = ''">
+            <input name='nome_completo' type="text" class="input-sm" placeholder="Nome Completo do professor" name="" oninput="this.className = ''">
           </div>
           
           <div class="row">
             <div class="col-md-5">
               <div class="form-group">
-                <input type="text" placeholder="Número do bilhete de identidade" oninput="this.className = ''">
+                <input name='num_bi' type="text" placeholder="Número do bilhete de identidade" oninput="this.className = ''">
               </div>
             </div>
 
             <div class="col-md-5">
               <div class="form-group">
-                <input type="date" oninput="this.className = ''">
+                <input name='data_nascimento' type="date" oninput="this.className = ''">
               </div> 
             </div>
 
@@ -52,16 +52,16 @@
             <div class="col-md-8" style=" display: flex; justify-content: flex-end;align-items: center; gap: 10px;">
             <h5>Endereço</h5>
               <div class="form-group">
-                <input type="text" placeholder="Municipio" oninput="this.className = ''">
+                <input name='municipio' type="text" placeholder="Municipio" oninput="this.className = ''">
               </div> 
               <div class="form-group">
-                <input type="text" placeholder="Bairro" oninput="this.className = ''">
+                <input name='bairro' type="text" placeholder="Bairro" oninput="this.className = ''">
               </div> 
               <div class="form-group">
-                <input type="text" placeholder="Zona" oninput="this.className = ''">
+                <input name='zona' type="text" placeholder="Zona" oninput="this.className = ''">
               </div> 
               <div class="form-group">
-                <input type="text" placeholder="Nº Casa" oninput="this.className = ''">
+                <input name='numero_casa' type="text" placeholder="Nº Casa" oninput="this.className = ''">
               </div> 
             </div>
           </div>
@@ -69,7 +69,7 @@
           <div class="row">
             <div id="clone1"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
                 <span style="color: #777;">+244</span>
-                <input type="text" name="" placeholder="Telefone" oninput="this.className = ''">
+                <input name='num_tel' type="text" name="" placeholder="Telefone" oninput="this.className = ''">
               </div>
 
               <div class="col-3">
