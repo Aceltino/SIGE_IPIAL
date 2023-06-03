@@ -10,6 +10,7 @@ class Ano_lectivo extends Model
     use HasFactory;
 
     protected $table = 'ano_lectivo';
+    protected $primaryKey = 'ano_lectivo_id';
 
     protected $fillable = [
         'ano_lectivo',
@@ -29,6 +30,6 @@ class Ano_lectivo extends Model
 
     public function candidato()
     {
-        return $this->hasMany(Candidato::class, 'ano_lectivo_id', 'candidato_id');
+        return $this->hasMany(Candidato::class, 'ano_lectivo_id');
     }
 }

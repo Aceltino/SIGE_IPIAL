@@ -1,14 +1,17 @@
 <?php
 
-namespace App\Traits;
-use App\Models\Escola_proveniencia;
+namespace App\Http\Controllers;
 
-trait EscolaTrait
+use App\Http\Controllers\Controller;
+use App\Models\Escola_proveniencia;
+use Illuminate\Http\Request;
+
+class EscolaController extends Controller
 {
     public static function storeEscola($dadosEscola):int
     {
         $escola = Escola_proveniencia::create($dadosEscola);
-        $escolaId = $escola->id;
+        $escolaId = $escola->escola_proveniencia_id;
 
         return $escolaId;
     }
