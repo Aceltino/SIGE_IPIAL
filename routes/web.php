@@ -417,3 +417,21 @@ Route::get('/horario-turma', function () {
 Route::get('/editar-horario', function () {
     return view('horario/editar-horario');
 });
+/******************************************
+ * Rotas disciplina
+*/
+
+/*Cadastrar disciplina*/
+Route::get('/regi-disciplina', function () {
+    return view('disciplina/regi-disciplina');
+});
+
+/*Ver as disciplinas*/
+Route::get('/disciplinas', function () {
+    return view('disciplina/disciplinas');
+});
+
+/*Editar disciplina*/
+Route::get('/edit-disciplina', function () {
+    return view('disciplina/edit-disciplina');
+});
