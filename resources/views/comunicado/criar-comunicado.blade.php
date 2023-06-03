@@ -5,12 +5,13 @@
 @section('conteudo')
 <main id="main" class="main" >
 
-    <form id="regFormh" action="" class="formulario-layout">
+    <form id="regFormh" action="{{ route('comunicado-store') }}" class="formulario-layout" method="POST">
+    @csrf
         <div style="text-align:center;margin-top:10px;">
         <span class="step"></span>
         </div>
 
-        <div class="tab">     
+        <div class="tab">
 
             <div class="row" >
                 <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
@@ -23,7 +24,7 @@
             </div>
             <div class="row">
                 <div class="form-group col">
-                    <input type="text" style=" text-align: center;" value="" placeholder="Titulo do Comunicado" name="" oninput="this.className = ''">
+                    <input type="text" style=" text-align: center;" value="" placeholder="Titulo do Comunicado" name="titulo" oninput="this.className = ''">
                 </div>
             </div>
             <div class="row">
@@ -36,8 +37,9 @@
                 <div>
                     <button type="submit" class="btn btn-success">Criar Comunicado</button>
                 </div>
-            </div>    
+            </div>
         </div>
     </form>
 </main>
 @endsection
+
