@@ -116,12 +116,12 @@
         </a>
         <ul id="professor-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="professor/cadastrar-prof">
+            <a href={{ route('professor.cadastrar') }}>
               <i class="bi bi-circle"></i><span>Cadastrar Professores</span>
             </a>
           </li>
           <li>
-            <a href="professor/consultar-prof">
+            <a href={{ route('professor') }}>
               <i class="bi bi-circle"></i><span>Professores</span>
             </a>
           </li>

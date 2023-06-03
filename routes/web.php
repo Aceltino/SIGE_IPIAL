@@ -6,7 +6,8 @@ use App\Http\Controllers\{
     AuthController,
     CandidatoController,
     MatriculaController,
-    InscricaoController
+    InscricaoController,
+    ProfessorController
 };
 use Illuminate\Support\Facades\Route;
 
@@ -40,6 +41,9 @@ Route::prefix('autenticacao')->group(function(){
 
     //Rota de Cadastro
     Route::post('registrar', [AuthController::class,'store'])->name('registrar');
+
+    // Só a testar Augusto
+    Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar');
 
     //CODIFICANDO...
     Route::get('/lembrar', function () {
@@ -161,13 +165,10 @@ Route::prefix('matricula')->group(function(){
  */
 Route::prefix('professor')->group(function(){
 
-    Route::get('cadastrar-professor', function () {
-        return view('professor/cadastrar-prof');
-    });
+    Route::get('cadastrar-professor', [ProfessorController::class, 'create'])->name('professor.cadastrar');
+    Route::post('cadastrar-professor', [ProfessorController::class, 'store'])->name('prof.postRegistar');
 
-    Route::get('consultar-professor', function () {
-        return view('professor/consultar-prof');
-    });
+    Route::get('consultar-professor', [ProfessorController::class, 'index'])->name('professor');
 
     Route::get('editar-dados-professor', function () {
         return view('professor/editar-dados-prof');

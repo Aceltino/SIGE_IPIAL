@@ -4,7 +4,8 @@
 
 @section('conteudo')
 <main id="main" class="main">
-      <form method="POST" action="" id="regForm" action="" class="formulario-layout">
+      <form method="POST" action={{ route('prof.postRegistar') }} id="regForm" action="" class="formulario-layout">
+        @csrf
         <div style="text-align:center;margin-top:40px;">
           <span class="step"></span>
           <span class="step"></span>
