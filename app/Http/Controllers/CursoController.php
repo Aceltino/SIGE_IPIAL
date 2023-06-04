@@ -18,7 +18,7 @@ class CursoController extends Controller
     {
         $cursos = Cursos::all(['curso_id', 'nome_curso']);
         $nomesCursos = $cursos->pluck('nome_curso')->toArray();
-         return $nomesCursos;
+        return $nomesCursos;
     }
 
     public static function quantidadeCurso()

@@ -116,7 +116,7 @@
         </a>
         <ul id="professor-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="professor/cadastrar-prof">
+            <a href={{ route('professor.cadastrar') }}>
               <i class="bi bi-circle"></i><span>Cadastrar Professores</span>
             </a>
           </li>
@@ -173,12 +173,12 @@
 	        </a>
 	        <ul id="comunicado-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 	          <li>
-	            <a href="comunicado/criar-comunicado">
+	            <a href={{ route('comunicado.create') }}>
 	              <i class="bi bi-circle"></i><span>Criar comunicado</span>
 	            </a>
 	          </li>
 	          <li>
-	            <a href="comunicado/comunicado">
+	            <a href={{ route('comunicado.index') }}>
 	              <i class="bi bi-circle"></i><span>Comunicados</span>
 	            </a>
 	          </li>
@@ -343,3 +343,4 @@
   </a>
 </li>
   </aside><!-- Termina Sidebar-->
+{{ route('professor') }}
