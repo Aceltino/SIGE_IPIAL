@@ -31,7 +31,7 @@
         </div> <br>
 
             <div class="mb-3">
-                <textarea class="form-control" id="des-disciplina" rows="8" style="padding: 50px" placeholder="Descrição sobre a disciplina"></textarea>
+                <textarea class="form-control" id="des-disciplina" rows="8" style="padding:50px; resize: none;" placeholder="Descrição sobre a disciplina"></textarea>
               </div>
               <div class="form-group">
                 <select oninput="this.className = ''" class="form-select">
@@ -41,35 +41,23 @@
                   <option value="I"> Cientificas</option>
                 </select>
               </div>
-          <div class="row form-group">
-              <div class="col">
-                <select oninput="this.className = ''" class="form-select" name="curso1">
-                  <option selected disabled>Curso</option>
-                  <option value="Tecnico de Informática">Tecnico de Informática</option>
-                  <option value="Instalaçoes electricas">Instalaçoes electricas</option>
-                  <option value="Desenho tecnico">Desenho tecnico</option>
-                  <option value="Electronica e automaçao">Electronica e automaçao</option>
-                </select>
+      
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Tecnico de Informática</label>
               </div>
-              <ul class="col list-group">
-                <li class="list-group-item">
-                  <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                  Tecnico de Informática
-                </li>
-                <li class="list-group-item">
-                  <input class="form-check-input me-1" type="checkbox" value="" aria-label="..." >
-                  Instalaçoes electricas
-                </li>
-                <li class="list-group-item">
-                  <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                  Desenho tecnico
-                </li>
-                <li class="list-group-item">
-                  <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                Electronica e automaçao
-                </li>
-              </ul>
-            </div>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+                <label class="form-check-label" for="flexSwitchCheckChecked">Instalaçoes electricas</label>
+              </div>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDisabled" >
+                <label class="form-check-label" for="flexSwitchCheckDisabled">Desenho tecnico</label>
+              </div>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDisabled" >
+                <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Electronica e automaçao</label>
+              </div>
               
             <div style="text-align:center;margin-top:40px;">
                 <div>
