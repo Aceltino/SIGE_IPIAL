@@ -9,6 +9,8 @@ class Escola_proveniencia extends Model
 {
     use HasFactory;
     protected $table = 'escola_proveniencia';
+    protected $primaryKey = 'escola_proveniencia_id';
+
     protected $fillable = [
         'nome_escola',
         'turno',
@@ -26,6 +28,6 @@ class Escola_proveniencia extends Model
 
 
     public function candidato(){
-        $this->hasOne(Candidato::class,'candidato_id','escola_proveniencia_id');
+        $this->hasOne(Candidato::class, 'escola_proveniencia_id');
     }
 }

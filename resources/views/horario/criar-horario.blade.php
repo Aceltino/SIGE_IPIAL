@@ -50,20 +50,26 @@
 
             <div class="row mb-3">
                 <div class="col">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select oninput="this.className = ''" class="form-select" id="horario-select-turma">
                         <optgroup label="Turma">
                         <option value="I10AM">I10AM</option>
-                        <option value="I10BM">I10BM</option>
-                        <option value="I10CM">I10CM</option>
-                        <option value="I10DM">I10DM</option>
+                        <option value="I11BM">I11BM</option>
+                        <option value="I12CM">I12CM</option>
+                        <option value="I13DM">I13DM</option>
+                        <option value="I10AM">I10AT</option>
+                        <option value="I11BM">I11BT</option>
+                        <option value="I12CM">I12CT</option>
+                        <option value="I13DM">I13DT</option>
+                        <option value="I11AN">I11AN</option>
+                        <option value="I13DM">I13AN</option>
                         </optgroup>
                     </select>
                 </div>
             </div>
 
-            <div class="row mb-3">
+            <div class="row mb-3" id="horario-div-que-pode-desaparecer-1">
                 <div class="col-sm-6">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select oninput="this.className = ''" class="form-select" id="horario-select-primeiro-dia-de-educacao-fisica">
                         <optgroup label="Primeiro dia de Educação Física">
                         <option value="Segunda-Feira">Segunda-Feira</option>
                         <option value="Terça-Feira">Terça-Feira</option>
@@ -83,10 +89,10 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row" id="horario-div-que-pode-desaparecer-2">
                 <div class="col-sm-6">
-                    <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Primeiro dia de Educação Física">
+                    <select oninput="this.className = ''" class="form-select" id="horario-select-segundo-dia-de-educacao-fisica">
+                        <optgroup label="Segundo dia de Educação Física">
                         <option value="Segunda-Feira">Segunda-Feira</option>
                         <option value="Terça-Feira">Terça-Feira</option>
                         <option value="Quarta-Feira">Quarta-Feira</option>

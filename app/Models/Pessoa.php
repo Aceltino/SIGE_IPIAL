@@ -9,12 +9,14 @@ class Pessoa extends Model
 {
     use HasFactory;
     protected $table = 'pessoas';
+    protected $primaryKey = 'pessoa_id';
     protected $fillable = [
-        'escola_proveniencia_id',
+        'pessoa_id',
         'nome_completo',
         'num_bi',
         'genero',
         'data_nascimento',
+        'endereco_id',
         'updated_at',
         'created_at',
     ];
@@ -26,7 +28,7 @@ class Pessoa extends Model
         $this->hasOne(User::class,'pessoa_id','usuario_id');
     }
     public function candidato(){
-        $this->hasOne(Candidato::class,'candidato_id','escola_proveniencia_id');
+        $this->hasOne(Candidato::class,'pessoa_id');
     }
 
     public function telefone()

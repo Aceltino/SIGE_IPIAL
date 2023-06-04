@@ -70,6 +70,7 @@
   <script src={{{URL::asset("js/form.js")}}}></script>
   <script src={{{URL::asset("js/clone-contato.js")}}}></script>
   <script src={{{URL::asset("js/dinamico.js")}}}></script>
+  <script src={{{URL::asset("js/paineis/horario/horario.js")}}}></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
  
   

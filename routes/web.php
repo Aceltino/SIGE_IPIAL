@@ -1,11 +1,14 @@
 <?php
 
 use App\Http\Controllers\{
+     AdmissaoController,
     //Classes das Controllers
     AuthController,
+    CandidatoController,
     MatriculaController,
     InscricaoController,
-    CursoController
+    CursoController,
+    ProfessorController
 };
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +29,9 @@ Route::get('/', function () {
     return view('pagina-inicial');
 })->name('inicio');
 
+// Rota apenas de teste... Não apague -> ACELTINO
+Route::get('validar-aluno', [AdmissaoController::class, 'validarCandidato']);
+
 
 //Routas para Autenticação no Sistema
 Route::prefix('autenticacao')->group(function(){
@@ -36,6 +42,9 @@ Route::prefix('autenticacao')->group(function(){
 
     //Rota de Cadastro
     Route::post('registrar', [AuthController::class,'store'])->name('registrar');
+
+    // Só a testar Augusto
+    Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar');
 
     //CODIFICANDO...
     Route::get('/lembrar', function () {
@@ -157,13 +166,10 @@ Route::prefix('matricula')->group(function(){
  */
 Route::prefix('professor')->group(function(){
 
-    Route::get('cadastrar-professor', function () {
-        return view('professor/cadastrar-prof');
-    });
+    Route::get('cadastrar-professor', [ProfessorController::class, 'create'])->name('professor.cadastrar');
+    Route::post('cadastrar-professor', [ProfessorController::class, 'store'])->name('prof.postRegistar');
 
-    Route::get('consultar-professor', function () {
-        return view('professor/consultar-prof');
-    });
+    Route::get('consultar-professor', [ProfessorController::class, 'index'])->name('professor');
 
     Route::get('editar-dados-professor', function () {
         return view('professor/editar-dados-prof');
@@ -412,4 +418,22 @@ Route::get('/horario-turma', function () {
 /*Editar horário*/
 Route::get('/editar-horario', function () {
     return view('horario/editar-horario');
+});
+/******************************************
+ * Rotas disciplina
+*/
+
+/*Cadastrar disciplina*/
+Route::get('/regi-disciplina', function () {
+    return view('disciplina/regi-disciplina');
+});
+
+/*Ver as disciplinas*/
+Route::get('/disciplinas', function () {
+    return view('disciplina/disciplinas');
+});
+
+/*Editar disciplina*/
+Route::get('/edit-disciplina', function () {
+    return view('disciplina/edit-disciplina');
 });

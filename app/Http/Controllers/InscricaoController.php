@@ -18,6 +18,19 @@ class InscricaoController extends Controller
     public function store(InscricaoRequest $input)
     {
         $request = $input->validated(); // Inputs validadas
+        $curso = CursoController::quantidadeCurso();
+
+        for($i = 1; $i <= $curso; $i++)
+        {
+            $cursoValidado[$i] = $request['curso' . $i];
+        }
+        $validacaoCurso = CandidatoCursoController::validarCurso($cursoValidado);
+
+        if(!$validacaoCurso)
+        {
+            $msg="Lamentamos! Dados não cadastrado, um candidato não pode escolher o mesmo curso mais de uma vez. ...";
+            return redirect()->back()->with("ErroCurso",$msg);
+        }
 
         $dadosPessoa = [
             'nome_completo'=>$request['nome_completo'],
@@ -40,7 +53,7 @@ class InscricaoController extends Controller
         $telefone = TelefoneController::storeTelefone($dadosTelefone);
         if(!$telefone)
         {
-            $msg="Lamentamos! Este número de telefone já existe em nossa base de dados, mas a candi";
+            $msg="Lamentamos! Este número de telefone já existe em nossa base de dados, mas a candidatura foi realizada com sucesso!";
             return redirect()->back()->with("ErroTelefone",$msg);
         }
 
@@ -63,7 +76,7 @@ class InscricaoController extends Controller
             return redirect()->back()->with("ErroCadastro",$msg);
         }
 
-        $idAnolectivo = AnoLectivoController::pegarAnoLectivo();
+        $idAnolectivo = AnoLectivoController::pegarIdAnoLectivo();
         if(!$idAnolectivo)
         {
             $msg="Lamentamos! Dados não cadastrado, tente este processo mais tarde...";
@@ -86,8 +99,6 @@ class InscricaoController extends Controller
             return redirect()->back()->with("ErroCadastro",$msg);
         }
 
-        $curso = CursoController::quantidadeCurso();
-       //  Quando a API estiver funcionando devemos substituir... O nº 4 pela variavel '$curso'
         for($i = 1; $i <= $curso; $i++)
         {
             $id[$i] = CursoController::pegarIdCurso($request['curso' . $i]);
@@ -106,8 +117,8 @@ class InscricaoController extends Controller
         $cursos = CandidatoCursoController::store($candCurso);
         if(!$cursos)
         {
-            $msg="Lamentamos! Dados não cadastrado, tente este processo mais tarde...";
-            return redirect()->back()->with("ErroCadastro",$msg);
+            $msg="Lamentamos! Dados não cadastrado, um candidato não pode escolher o mesmo curso mais de uma vez. ...";
+            return redirect()->back()->with("ErroCurso",$msg);
         }
 
         $msg="Candidato inscrito com sucesso!";

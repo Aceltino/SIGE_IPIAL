@@ -116,12 +116,12 @@
         </a>
         <ul id="professor-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="professor/cadastrar-prof">
+            <a href={{ route('professor.cadastrar') }}>
               <i class="bi bi-circle"></i><span>Cadastrar Professores</span>
             </a>
           </li>
           <li>
-            <a href="professor/consultar-prof">
+            <a href={{ route('professor') }}>
               <i class="bi bi-circle"></i><span>Professores</span>
             </a>
           </li>
@@ -315,6 +315,25 @@
     </ul>
   </li>
 
+   <!-- /	Nav disciplina-->
+
+   <li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#disciplina-nav" data-bs-toggle="collapse" href="#">
+      <i class="bi bi-book-half"></i></i><span>Disciplina</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="disciplina-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+      <li>
+        <a href="/regi-disciplina">
+          <i class="bi bi-circle"></i><span>Cadastrar disciplina</span>
+        </a>
+      </li>
+      <li>
+        <a href="/disciplinas">
+          <i class="bi bi-circle"></i><span>Disciplina</span>
+        </a>
+      </li>
+    </ul>
+  </li>
 
   <!-- /	Nav Perfil-->
 <li class="nav-item">
