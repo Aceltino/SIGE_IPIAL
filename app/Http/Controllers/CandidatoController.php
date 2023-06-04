@@ -97,7 +97,7 @@ class CandidatoController extends Controller
                 'Pai' => $candidato->nome_pai_cand,
                 'Mae' => $candidato->nome_mae_cand,
                 'Naturalidade' => $candidato->naturalidade_cand,
-                'Situacao' => $candidato->status,
+                'Situacao' => $candidato->status
             ];
         }
 
