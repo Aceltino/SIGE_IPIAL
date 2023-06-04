@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Cursos;
+use App\Models\Pessoa;
+use App\Models\Endereco;
+use App\Models\Professor;
+use App\Models\Telefone;
 
 class ProfessorController extends Controller
 {
@@ -24,7 +29,8 @@ class ProfessorController extends Controller
      */
     public function create()
     {
-        return view('professor.cadastrar-prof');
+        $cursos = Cursos::all(['nome_curso', 'sigla']);
+        return view('professor.cadastrar-prof', ['cursos' => $cursos]);
     }
 
     /**
@@ -35,8 +41,51 @@ class ProfessorController extends Controller
      */
     public function store(Request $request)
     {
-        // Já começo a trabalhar ... Aguarde!
+        try {
+            // Validação dos dados
+            $validatedEndereco = $request->validate([
+                'municipio' => 'nullable|string',
+                'bairro' => 'nullable|string',
+                'zona' => 'nullable|string',
+                'numero_casa' => 'nullable|int',
+            ]);
+
+            $validatedPessoa = $request->validate([
+                'nome_completo' => 'required|string|max:255',
+                'num_bi' => 'required|string|max:14',
+                'genero' => 'required|in:Masculino,Feminino',
+                'data_nascimento' => 'required|date',
+                #'endereco_id' => 'required|exists:enderecos,id',
+            ]);
+
+            $validatedTelefone = $request->validate([
+                'num_tel' => ['required', 'regex:/^\d{9}$/'],
+                #'pessoa_id' => 'required|exists:pessoas,id',
+            ]);
+
+            // Criação do registro de Endereco
+            $endereco = Endereco::create($validatedEndereco);
+
+            // Criação do registro de Pessoa associado ao Endereco
+            $validatedPessoa['endereco_id'] = $endereco->endereco_id;
+            $pessoa = Pessoa::create($validatedPessoa);
+
+            // Criação do registro de Telefone associado à Pessoa
+            $validatedTelefone['pessoa_id'] = $pessoa->pessoa_id;
+            $telefone = Telefone::create($validatedTelefone);
+
+            $prof = Professor::create(['formacao' => 'Engenheiro Civil', 'pessoa_id' => $pessoa->pessoa_id]);
+
+            // Restante do código, se necessário
+
+            // Redirecionamento ou resposta de sucesso
+            return redirect()->route('professor')->with('success', 'Registro criado com sucesso!');
+        } catch (ValidationException $e) {
+            // Captura a exceção de validação e trata os erros
+            return redirect()->back()->withErrors($e->errors())->withInput();
+        }
     }
+
 
     /**
      * Display the specified resource.
