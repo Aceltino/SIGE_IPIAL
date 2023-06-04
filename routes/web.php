@@ -7,6 +7,7 @@ use App\Http\Controllers\{
     CandidatoController,
     MatriculaController,
     InscricaoController,
+    CursoController,
     ProfessorController
 };
 use Illuminate\Support\Facades\Route;
@@ -229,17 +230,17 @@ Route::prefix('aluno')->group(function(){
  */
 Route::prefix('curso')->group(function(){
 
-    Route::get('criar-curso', function () {
-        return view('curso/criar-curso');
-    });
+    Route::get('criar-curso', [CursoController::class, 'indexCadastro'])->name('cadastro.curso');
+    Route::post('criar-curso/cadastrar', [CursoController::class, 'store'])->name('cadastrar.curso');
 
-    Route::get('cursos', function () {
-        return view('curso/cursos');
-    });
 
-    Route::get('editar-curso', function () {
-        return view('curso/edit-curso');
-    });
+    Route::get('cursos', [CursoController::class, 'index'])->name('consultar.cursos');
+
+    Route::get('editar-curso/{id}', [CursoController::class, 'indexEditar'])->name('editar.curso');
+    Route::put('editar-curso/actualizar/{id}', [CursoController::class, 'update'])->name('editar.dados.curso');
+    Route::delete('apagar-curso/{id}', [CursoController::class, 'delete'])->name('apagar.curso');
+
+
 });
 /**<!--Fim Rotas curso--> */
 

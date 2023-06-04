@@ -51,4 +51,10 @@ class Pessoa extends Model
 		$this->table = $table;
 		return $this;
 	}
+
+    public function professor(){
+        $this->hasMany(Professor::class, 'professor_id','pessoa_id');
+    }
+
+    
 }
