@@ -11,10 +11,12 @@ class Pessoa extends Model
     protected $table = 'pessoas';
     protected $primaryKey = 'pessoa_id';
     protected $fillable = [
+        'pessoa_id',
         'nome_completo',
         'num_bi',
         'genero',
         'data_nascimento',
+        'endereco_id',
         'updated_at',
         'created_at',
     ];
