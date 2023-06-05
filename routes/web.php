@@ -435,3 +435,7 @@ Route::get('/disciplinas', function () {
 Route::get('/edit-disciplina', function () {
     return view('disciplina/edit-disciplina');
 });
+/*painel para nova senha*/
+Route::get('/nova_senha', function () {
+    return view('autenticacao/nova_senha');
+});
