@@ -40,21 +40,10 @@ class AuthController extends Controller
         if(!Auth::attempt($credencias)){
             return redirect()->back()->with('erro_login_002',"Dados Incorrecto");
         }
-
-        //Ação do Login Escreve João
         $user= Auth::user();
-        echo "Usuario Logado... Ainda em Desenvolvimento.CARLOS MARQUES";
-        // dd($user);
-        	die;
-        $dados_user= UserController::show($user->id);
+        return view('pagina-inicial',['user'=>$user]); //sobe
 
-        dd($dados_user);
-
-        session([
-            "cargo"=>$dados_user->cargo,
-            'nome_completo'=>$dados_user->pessoa->nome_completo,
-        ]);
-        return view('pagina-inicial');
+       
     }
     public function store(Request $request){
 
@@ -148,7 +137,6 @@ class AuthController extends Controller
             'numero_casa'=>$request->num_casa,
         ];
         $pessoa_id= $this->storePessoa($dadosPessoa, $dadosEndereco);
-        
 
         $dadosUser=[
             'nome_usuario'=>$abreNome.count(User::all()).$abreSobreNome,
@@ -169,6 +157,6 @@ class AuthController extends Controller
         //Depois deve se fazer mudanças basicas nem todo cadastro deve lhe reencaminhar no Login.
 
         $msg=$request->cargo." Cadastrado com Sucesso. Por favor entre com os seus dados";
-        return view('autenticacao.login')->with('registrado',$msg);
+        return view('pagina-inicial')->with('registrado',$msg);
     }
 }
