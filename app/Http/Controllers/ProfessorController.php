@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Cursos;
+use App\Models\Curso;
 use App\Models\Pessoa;
 use App\Models\Endereco;
 use App\Models\Professor;
@@ -28,7 +28,7 @@ class ProfessorController extends Controller
      */
     public function create()
     {
-        $cursos = Cursos::all(['nome_curso', 'sigla']);
+        $cursos = Curso::all(['nome_curso', 'sigla']);
         return view('professor.cadastrar-prof', ['cursos' => $cursos]);
     }
 

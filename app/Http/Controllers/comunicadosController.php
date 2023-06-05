@@ -12,7 +12,7 @@ class comunicadosController extends Controller
     public function index()
     {
         $comunicados = Comunicado::all();
-        return view('comunicado.comunicado', ['comunicados'=>$comunicados])
+        return view('comunicado.comunicado', ['comunicados'=>$comunicados]);
     }
     public function create()
     {
@@ -28,7 +28,7 @@ class comunicadosController extends Controller
     }
     public function edit($comunicado_id)
     {
-        $comunicados = Comunicados::where('comunicado_id',$comunicado_id)->first();
+        $comunicados = Comunicado::where('comunicado_id',$comunicado_id)->first();
         if(!empty($comunicados))
         {
             return view('comunicado.editar-comunicado', ['comunicados'=>$comunicados]);
@@ -43,7 +43,7 @@ class comunicadosController extends Controller
             'titulo_com' =>$request->titulo,
             'conteudo_com'=>$request->conteudo,
         ];
-        Comunicado::where('comunicado_id',$comunicado_id)-upadate($dados);
+        Comunicado::where('comunicado_id',$comunicado_id)->upadate($dados);
         return redirect()->route('comunicado.index');
 
     }

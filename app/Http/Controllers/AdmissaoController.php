@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-// use App\Models\Candidato;
 use App\Models\Turma;
 use Carbon\Carbon;
 

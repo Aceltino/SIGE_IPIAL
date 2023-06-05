@@ -17,20 +17,20 @@ class CursoController extends Controller
 
     public static function pegarIdCurso($nomeCurso):int
     {
-        $idCurso = Cursos::where('nome_curso', $nomeCurso)->pluck('curso_id')->first();
+        $idCurso = Curso::where('nome_curso', $nomeCurso)->pluck('curso_id')->first();
         return $idCurso;
     }
 
     public static function pegarNomeCurso()
     {
-        $cursos = Cursos::all(['curso_id', 'nome_curso']);
+        $cursos = Curso::all(['curso_id', 'nome_curso']);
         $nomesCursos = $cursos->pluck('nome_curso')->toArray();
         return $nomesCursos;
     }
 
     public static function quantidadeCurso()
     {
-        $cursos = count(Cursos::all());
+        $cursos = count(Curso::all());
         return $cursos;
     }
 
