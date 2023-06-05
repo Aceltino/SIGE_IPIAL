@@ -12,7 +12,16 @@ class Professor extends Model
     use UuidTrait;
 
     protected $table = 'professores';
+
+    public function pessoa(){
+        return $this->hasMany(Pessoa::class, 'pessoa_id', 'professor_id');
+    }
+
+    public function curso(){
+        return $this->belongsTo(Curso::class, 'curso_id', 'professor_id');
+    }
     protected $primaryKey = 'professor_id';
+  
     protected $fillable = [
         'formacao',
         'uuid',

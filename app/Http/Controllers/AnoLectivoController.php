@@ -16,6 +16,12 @@ class AnoLectivoController extends Controller
     public static function pegarNumVagas()
     {
         $ultimoAno = Ano_lectivo::latest()->first();
-        return $ultimoAno->	num_aluno_na_turma;
+        return $ultimoAno->num_aluno_na_turma;
+    }
+
+    public static function pegarDataFimInscricao()
+    {
+        $ultimoAno = Ano_lectivo::latest()->first();
+        return $ultimoAno->data_fim_inscricao;
     }
 }

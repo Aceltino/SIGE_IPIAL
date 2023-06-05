@@ -4,37 +4,43 @@
 
 @section('conteudo')
 <main id="main" class="main">
+    @if (session()->has('erro'))
+    {{session('erro')}}
+    @endif
+    @if (session()->has('sucesso'))
+        {{session('sucesso')}}
+    @endif
       <div class="row">
         <div class="col">
-          <h2>CURSOS</h2>      
+          <h2>CURSOS</h2>
         </div>
-      
+
          <div class="col-lg-4">
            <select class="btn-sel form-select" id="filtro3">
               <option selected disabled>Area de Formação</option>
-              <option value="Construção civil">Construção civil</option>
-              <option value="EL">Electricidade</option>
-              <option value="Informática">Informática</option>
-              <option value="E.T">Electronica e Telecomunicação - E.T</option>
+              @foreach ($areaFormacao as $af)
+                <option value="{{$af->nome_area_formacao}}">{{$af->nome_area_formacao}}</option>
+              @endforeach
+
            </select>
-         </div> 
+         </div>
 
          <div class="col-lg-4">
            <select class="btn-sel form-select" id="filtro4">
              <option selected disabled>Coordenador</option>
-             <option value="Aceltino">Aceltino</option>
-             <option value="Carlos">Carlos</option>
-             <option value="Aidth">Aidith</option>
-             <option value="Joelson">Joelson</option>
+             @foreach ($dados as $dado)
+                <option value="{{$dado['nome_completo']}}">{{$dado['nome_completo']}}</option>
+             @endforeach
+
            </select>
          </div>
-      
+
       </div>
 
       <div class="procurar">
         <form class="proc-form d-flex align-items-center">
           <input id="pesquisa" type="text" name="" class="campo-pesq" placeholder="Digite o Curso que estás a procurar">
-          <button type="submit" title="Search"><i class="bi bi-search"></i></button>   
+          <button type="submit" title="Search"><i class="bi bi-search"></i></button>
         </form>
       </div>
 
@@ -50,73 +56,27 @@
           </tr>
         </thead>
         <tbody>
+            @for ($i = 0; $i < count($cursoGeral); $i++)
 
-          <tr style=" text-align: center;">
-            <th scope="row"> Técnico de Informática</th>
-            <td>I</td>
-            <td>Construção civil</td>
-            <td>Aceltino</td>
-            <td>
-              <i class="bi bi-eye-fill"  data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-              <a href="/editar-curso"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
+                    <tr style=" text-align: center;">
+                        <th scope="row">{{$cursoGeral[$i]['nome_curso']}}</th>
+                        <td>{{$cursoGeral[$i]['sigla']}}</td>
+                        <td>{{$cursoGeral[$i]['nome_area_formacao']}}</td>
+                        <td>{{$cursoGeral[$i]['nome_coordenador']}}</td>
+                        <td>
+                        <i class="bi bi-eye-fill"  data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
+                        <a href="{{route('editar.curso', $cursoGeral[$i]['curso_id'])}}"><i class="bi bi-pencil"></i></a>
+                        <form action="{{route('apagar.curso', $cursoGeral[$i]['curso_id'])}}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button type="submit"><i class="bi bi-trash-fill" ></i></button>
+                        </form>
+                        <i class="bi bi-check-square-fill"></i>
+                        </td>
+                    </tr>
+            @endfor
 
-          <tr style=" text-align: center;">
-            <th scope="row"> Técnico de Informática</th>
-            <td>I</td>
-            <td>Informática</td>
-            <td>Tom Brauny</td>
-            <td>
-              <i class="bi bi-eye-fill"  data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-              <a href="/editar-curso"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
 
-          <tr style=" text-align: center;">
-            <th scope="row"> Técnico de Informática</th>
-            <td>I</td>
-            <td>Informática</td>
-            <td>Tom Brauny</td>
-            <td>
-              <i class="bi bi-eye-fill"  data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-              <a href="/editar-curso"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-
-          <tr style=" text-align: center;">
-            <th scope="row"> Técnico de Informática</th>
-            <td>I</td>
-            <td>Construção civil</td>
-            <td>Tom Brauny</td>
-            <td>
-              <i class="bi bi-eye-fill"  data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-              <a href="/editar-curso"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-
-          <tr style=" text-align: center;">
-            <th scope="row"> Técnico de Informática</th>
-            <td>I</td>
-            <td>Informática</td>
-            <td>Tom Brauny</td>
-            <td>
-              <i class="bi bi-eye-fill"  data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-              <a href="/editar-curso"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-
-          
 
 
         </tbody>
@@ -138,15 +98,15 @@
             <div class="cabecalho-modal">
               <div class="row">
                 <div class="col" style="display: flex; justify-content: flex-start; align-items: center;">
-                  <h1>Dados Do Curso</h1>      
+                  <h1>Dados Do Curso</h1>
                 </div>
-            
+
               </div>
             </div>
 
             <div class="corpo-modal">
               <form class="form-inativo">
-                <div class="dados-pessoais">        
+                <div class="dados-pessoais">
                 <div class="area-input form-group" disabled>
                 <label>Nome do Curso: </label><input type="text" name="" value="Técnico de informática" disabled>
                 </div>
@@ -157,7 +117,7 @@
 
 
             <div class="form-group">
-               <label for="">Area de Formação:</label> 
+               <label for="">Area de Formação:</label>
                <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select" disabled>
                     <option disabled>Area de Formação:</option>
                     <option value="Informática" selected>Informática</option>
@@ -178,22 +138,22 @@
             </div>
 
                 <div class="footer-modal" style="text-align: center;">
-                 
+
                   <div class="jnt">
                       <a href="/cursos" class="btn" style="background-color: #070b17; color: #fff;">Retrocer aos Cursos</a>
 
                       <a href="/editar-curso" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
-  
-  
+
+
                   </div>
                 </div>
-            
-              </form> 
+
+              </form>
             </div>
-            
+
           </div>
         </div>
-      </div>      
+      </div>
 
       <!--  / Termina a modal ver inscrito-->
 
