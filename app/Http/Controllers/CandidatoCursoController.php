@@ -11,20 +11,45 @@ class CandidatoCursoController extends Controller
     private static int $inserido = 0;
     public static function store($candCurso)
     {
+        $cursosSelecionados = [];
 
-        $cursoCount = count($candCurso['curso_id']);
-
-        for($i = 1; $i <= $cursoCount; $i++)
+        foreach ($candCurso['curso_id'] as $i => $cursoId)
         {
+
+            if (in_array($cursoId, $cursosSelecionados))
+            {
+                return false;
+            }
+
             $candidato = Candidato::find($candCurso['candidato_id']);
-            $candidato->curso()->attach($candCurso['curso_id'][$i],
-            [
-            'preferencia' => $i
+            $candidato->curso()->attach($cursoId, [
+                'preferencia' => $i + 1
             ]);
+
+            $cursosSelecionados[] = $cursoId;
             self::$inserido++;
         }
 
-        return self::$inserido == $cursoCount;
+        return self::$inserido == count($candCurso['curso_id']);
+    }
+
+    public static function validarCurso($curso)
+    {
+        $cursosSelecionados = [];
+
+        foreach ($curso as $i => $cursoNome)
+        {
+            if (in_array($cursoNome, $cursosSelecionados))
+            {
+                return false;
+            }
+
+            $cursosSelecionados[] = $cursoNome;
+        }
+
+        return true;
 
     }
+
+
 }

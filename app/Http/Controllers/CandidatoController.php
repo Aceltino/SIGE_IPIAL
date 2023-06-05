@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Candidato;
+use Carbon\Carbon;
 
 class CandidatoController extends Controller
 {
@@ -71,7 +72,28 @@ class CandidatoController extends Controller
     //FUNÇÂO USADA PARA API, TESTEM => "http://127.0.0.1:8000/api/candidatos"
     public static function pegarDadosCandidatos()
     {
-        $candidatos = Candidato::with('pessoa', 'escola', 'ano_lectivo')->get();
+        dd(AdmissaoController::validarCandidato());
+        $dataAtual = Carbon::now();
+
+        $candidatos = Candidato::with('pessoa', 'escola', 'ano_lectivo')
+        ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
+        ->get();
+
+        foreach ($candidatos as &$candidato)
+        {
+            $dataNascimento = Carbon::parse($candidato->pessoa->data_nascimento);
+            $idade = $dataAtual->diffInYears($dataNascimento);
+            $candidato['idade'] = $idade;
+        }
+
+        foreach ($candidatos as &$candidato)
+        {
+            $media = ($candidato->escola->fisica
+            + $candidato->escola->matematica
+            + $candidato->escola->quimica
+            + $candidato->escola->ling_port) / 4;
+            $candidato['media'] = $media;
+        }
 
         $dadosCandidatos = [];
 
@@ -83,6 +105,7 @@ class CandidatoController extends Controller
                 'Data de Nascimento' => $candidato->pessoa->data_nascimento,
                 'NumeroBI' => $candidato->pessoa->num_bi,
                 'Genero' => $candidato->pessoa->genero,
+                'Idade' => $candidato->idade,
 
                 'Matematica' => $candidato->escola->matematica,
                 'Lingua Portuguesa' => $candidato->escola->ling_port,
@@ -93,11 +116,12 @@ class CandidatoController extends Controller
                 'Numero Processo' => $candidato->escola->num_processo,
                 'Numero Aluno' => $candidato->escola->num_aluno,
                 'Ultimo AnoLectivo' => $candidato->escola->ultimo_anoLectivo,
+                'Media' => $candidato->media,
 
                 'Pai' => $candidato->nome_pai_cand,
                 'Mae' => $candidato->nome_mae_cand,
                 'Naturalidade' => $candidato->naturalidade_cand,
-                'Situacao' => $candidato->status,
+                'Situacao' => $candidato->status
             ];
         }
 

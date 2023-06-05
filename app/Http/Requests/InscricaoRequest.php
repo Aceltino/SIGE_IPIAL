@@ -63,7 +63,7 @@ class InscricaoRequest extends FormRequest
     public function messages()
     {
         return [
-            '*.required'=>'Todos os campos devem ser obrigatoriamente preenchidos',
+            '*.required'=>'Todos os campos devem ser preenchidos',
             '*.string'=>'Há campos com preenchimento obrigatorio de apenas letras e não número, fique mais atento.',
             '*.numeric'=>'Há campos com preenchimento obrigatorio de apenas numeros e não letras, fique mais atento.',
 
