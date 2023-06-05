@@ -41,7 +41,7 @@ class AuthController extends Controller
             return redirect()->back()->with('erro_login_002',"Dados Incorrecto");
         }
 
-        //Ação do Login
+        //Ação do Login Escreve João
         $user= Auth::user();
         echo "Usuario Logado... Ainda em Desenvolvimento.CARLOS MARQUES";
         // dd($user);
@@ -69,7 +69,7 @@ class AuthController extends Controller
             'nome'=>'required|string|min:2|max:50',
             'sobre_nome'=>'required|string|min:5|max:50',
             'data_nascimento'=>'required|date|before:'.now()->format('d-m-Y'),
-            'num_bi'=>'required|size:14|unique:pessoa,num_bi',
+            'num_bi'=>'required|size:14',
 
             //Formulario do user
             'email'=>'required|email|max:200|unique:users,email',
@@ -148,7 +148,7 @@ class AuthController extends Controller
             'numero_casa'=>$request->num_casa,
         ];
         $pessoa_id= $this->storePessoa($dadosPessoa, $dadosEndereco);
-
+        
 
         $dadosUser=[
             'nome_usuario'=>$abreNome.count(User::all()).$abreSobreNome,

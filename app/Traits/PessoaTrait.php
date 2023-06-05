@@ -12,7 +12,7 @@ trait PessoaTrait
         if(!$num_bi)
         {
             return false;
-            goto test;
+            // goto test;
         }
 
             test:
@@ -22,7 +22,7 @@ trait PessoaTrait
 
             $pessoaCriada = Pessoa::create($dadosPessoa);
 
-            exit;
+            // exit;
             return $pessoaCriada->pessoa_id;
     }
 
