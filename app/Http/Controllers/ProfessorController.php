@@ -20,7 +20,9 @@ class ProfessorController extends Controller
      */
     public function index()
     {
-        return view('professor.consultar-prof');
+        $professores = Professor::with('pessoa')->get();
+
+        return view('professor.consultar-prof', compact('professores'));
     }
 
     /**
@@ -32,6 +34,29 @@ class ProfessorController extends Controller
     {
         $cursos = Curso::all(['nome_curso', 'sigla']);
         return view('professor.cadastrar-prof', ['cursos' => $cursos]);
+    }
+
+    public function profEditar($uuid)
+    {
+        $professor = Professor::findByUuid($uuid);
+        return view('professor/editar-dados-prof', compact('professor'));
+    }
+
+    public function horarioProf()
+    {
+        if ($professor) {
+            return view('professor/horario-prof');
+        }
+    }
+
+    public function profDadosPessoais()
+    {
+        return view('professor/editar-dados-pessoais-prof');
+    }
+
+    public function avaliacao()
+    {
+        return view('professor/avaliacao-prof');
     }
 
     /**
@@ -98,7 +123,8 @@ class ProfessorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $professor = Professor::find($id);
+        return view('professor/editar-dados-prof', compact('professor'));
     }
 
     /**

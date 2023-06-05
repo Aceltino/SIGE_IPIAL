@@ -9,16 +9,16 @@
           <img src="img/foto.jpg" alt="perfil" class="mini-foto-perf mini-foto-perfil-2">
           <span class="d-flex align-items-center ps-2">
               <div class="col-lg-3">
-                  <a class="color-white" href="/editar-dados-professor"><strong>Disciplina(s)</strong></a>
+                  <a class="color-white" href={{ route('professor.Editar') }}><strong>Disciplina(s)</strong></a>
               </div>
               <div class="col-lg-3">
-                  <a class="color-white" href="/horario-professor">Horário</a>
+                  <a class="color-white" href={{ route('horarioProfessor') }}>Horário</a>
               </div>
               <div class="col-lg-3">
-                  <a class="color-white" href="/avaliacao-professor">Avaliação</a>
+                  <a class="color-white" href={{ route('avaliacao') }}>Avaliação</a>
               </div>
               <div class="col-lg-3">
-                  <a class="color-white" href="/editar-dados-pessoais-professor">Dados pessoais</a>
+                  <a class="color-white" href={{ route('professor.dados-pessoais') }}>Dados pessoais</a>
               </div>
           </span>
       </a>
