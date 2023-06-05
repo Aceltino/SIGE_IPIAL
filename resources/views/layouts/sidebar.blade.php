@@ -121,7 +121,7 @@
             </a>
           </li>
           <li>
-            <a href="professor/consultar-prof">
+            <a href={{ route('professor') }}>
               <i class="bi bi-circle"></i><span>Professores</span>
             </a>
           </li>

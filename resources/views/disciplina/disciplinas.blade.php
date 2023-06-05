@@ -110,33 +110,29 @@
               </div>
             </div>
 
+           
             <div class="cabecalho-modal">
               <div class="row">
                 <div class="col" style="display: flex; justify-content: flex-start; align-items: center;">
-                  <h1>Dados da disciplina</h1>      
+                  <h1>Dados da discplina</h1>      
                 </div>
-              
-              
-              </div>
-            </div>
-
-            <div class="corpo-modal" >
+                  <div class="corpo-modal" >
               <form class="form-inativo">
                 <div class="dados da disciplina">        
                 <div class="area-input form-group" style="border: none;">
-                <label>Nome da disciplina: </label><input type="text" name="" value=" Matemática">
+                <label>Nome da disciplina: </label><input type="text" name="" value=" Matemática" disabled>
             </div>
             <div class="area-input form-group" style="border: none; ">
-                <label>Sigla: </label><input type="text" name="" value="MAT">
+                <label>Sigla: </label><input type="text" name="" value="MAT" disabled>
             </div>
             <div class="area-input form-group" style="border: none; ">
-                <label>Descrição: </label><input type="text" name="" value="A matemática é a área do conhecimento que se ocupa do estudo de números...">
+                <label>Descrição: </label><input type="text" name="" value="A matemática é a área do conhecimento que se ocupa do estudo de números..." disabled>
             </div>
             <div class="area-input form-group" style="border: none; ">
-                <label>Componete: </label><input type="text" name="socio-culturais" value="socio-culturais">
+                <label>Componete: </label><input type="text" name="socio-culturais" value="socio-culturais" disabled>
             </div>
             <div class="area-input form-group" style="border: none; ">
-                <label>Curso: </label><input type="text" name="socio-culturais" value="Todos os cursos">
+                <label>Curso: </label><input type="text" name="socio-culturais" value="Instalaçoes electricas/Electronica e automaçao" disabled>
             </div>
 
                       <div class="footer-modal" style="text-align: center;">

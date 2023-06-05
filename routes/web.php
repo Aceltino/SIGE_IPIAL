@@ -43,6 +43,9 @@ Route::prefix('autenticacao')->group(function(){
     //Rota de Cadastro
     Route::post('registrar', [AuthController::class,'store'])->name('registrar');
 
+    // Só a testar Augusto
+    Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar');
+
     //CODIFICANDO...
     Route::get('/lembrar', function () {
         return view('autenticacao/recuperar-senha');
@@ -165,7 +168,10 @@ Route::prefix('professor')->group(function(){
 
     Route::get('cadastrar-professor', [ProfessorController::class, 'create'])->name('professor.cadastrar');
     Route::post('cadastrar-professor', [ProfessorController::class, 'store'])->name('prof.postRegistar');
+    Route::get('cadastrar-professor', [ProfessorController::class, 'create'])->name('professor.cadastrar');
+    Route::post('cadastrar-professor', [ProfessorController::class, 'store'])->name('prof.postRegistar');
 
+    Route::get('consultar-professor', [ProfessorController::class, 'index'])->name('professor');
     Route::get('consultar-professor', [ProfessorController::class, 'index'])->name('professor');
 
     Route::get('editar-dados-professor', function () {
@@ -227,17 +233,17 @@ Route::prefix('aluno')->group(function(){
  */
 Route::prefix('curso')->group(function(){
 
-    Route::get('criar-curso', function () {
-        return view('curso/criar-curso');
-    });
+    Route::get('criar-curso', [CursoController::class, 'indexCadastro'])->name('cadastro.curso');
+    Route::post('criar-curso/cadastrar', [CursoController::class, 'store'])->name('cadastrar.curso');
 
-    Route::get('cursos', function () {
-        return view('curso/cursos');
-    });
 
-    Route::get('editar-curso', function () {
-        return view('curso/edit-curso');
-    });
+    Route::get('cursos', [CursoController::class, 'index'])->name('consultar.cursos');
+
+    Route::get('editar-curso/{id}', [CursoController::class, 'indexEditar'])->name('editar.curso');
+    Route::put('editar-curso/actualizar/{id}', [CursoController::class, 'update'])->name('editar.dados.curso');
+    Route::delete('apagar-curso/{id}', [CursoController::class, 'delete'])->name('apagar.curso');
+
+
 });
 /**<!--Fim Rotas curso--> */
 

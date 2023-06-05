@@ -13,8 +13,6 @@ class Telefone extends Model
     protected $fillable = [
         'num_tel',
         'pessoa_id',
-        'created_at',
-        'updated_at',
     ];
 
     public function pessoa()
