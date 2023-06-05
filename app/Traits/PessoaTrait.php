@@ -12,16 +12,17 @@ trait PessoaTrait
         if(!$num_bi)
         {
             return false;
+            goto test;
         }
 
-        if($dadosEndereco != null)
-        {
+            test:
             $enderecoCriado=Endereco::create($dadosEndereco);
             $enderecoId=$enderecoCriado->id;
             $dadosPessoa['endereco_id']= $enderecoId;
-        }
+
             $pessoaCriada = Pessoa::create($dadosPessoa);
 
+            exit;
             return $pessoaCriada->pessoa_id;
     }
 
