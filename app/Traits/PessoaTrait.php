@@ -6,7 +6,7 @@ use App\Models\Pessoa;
 
 trait PessoaTrait
 {
-    public static function storePessoa($dadosPessoa, $dadosEndereco = null):int
+    public static function storePessoa($dadosPessoa, $dadosEndereco = null): int
     {
         $num_bi = self::verBilhete($dadosPessoa['num_bi']);
         if(!$num_bi)
