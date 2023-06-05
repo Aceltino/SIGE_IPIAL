@@ -71,7 +71,7 @@
             <!-- /  Inicio da tabela de inscritos -->
             <table class="table table-striped" style="margin-top: 20px;" id="matricula-tab">
             <thead>
-                <tr  style=" text-align: center;">
+                <tr style=" text-align: center;">
                     <th scope="col-lg-2">Nº do Bilhete</th>
                     <th scope="col-lg-2">Nome do professor</th>
                     <th scope="col-lg-2">Curso</th>
