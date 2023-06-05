@@ -7,11 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pessoa extends Model
 {
-    use HasFactory;
     protected $table = 'pessoas';
     protected $primaryKey = 'pessoa_id';
     protected $fillable = [
-        'pessoa_id',
         'nome_completo',
         'num_bi',
         'genero',
@@ -56,5 +54,5 @@ class Pessoa extends Model
         $this->hasMany(Professor::class, 'professor_id','pessoa_id');
     }
 
-    
+
 }

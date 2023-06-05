@@ -17,8 +17,9 @@ class InscricaoController extends Controller
 
     public function store(InscricaoRequest $input)
     {
+        // strtoupper -> Colocar esta função em todas as inputs
         $request = $input->validated(); // Inputs validadas
-        
+
         $curso = CursoController::quantidadeCurso();
 
         for($i = 1; $i <= $curso; $i++)

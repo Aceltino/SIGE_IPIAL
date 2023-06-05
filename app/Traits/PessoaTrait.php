@@ -6,22 +6,23 @@ use App\Models\Pessoa;
 
 trait PessoaTrait
 {
-    public static function storePessoa($dadosPessoa, $dadosEndereco = null):int
+    public static function storePessoa($dadosPessoa, $dadosEndereco = null): int
     {
         $num_bi = self::verBilhete($dadosPessoa['num_bi']);
         if(!$num_bi)
         {
             return false;
+            // goto test;
         }
 
-        if($dadosEndereco != null)
-        {
+            test:
             $enderecoCriado=Endereco::create($dadosEndereco);
             $enderecoId=$enderecoCriado->id;
             $dadosPessoa['endereco_id']= $enderecoId;
-        }
+
             $pessoaCriada = Pessoa::create($dadosPessoa);
 
+            // exit;
             return $pessoaCriada->pessoa_id;
     }
 

@@ -57,12 +57,12 @@
         </a>
         <ul id="inscriacao-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="inscricao/inscrever">
+            <a href="inscrever">
               <i class="bi bi-circle"></i><span>Inscrever candidato</span>
             </a>
           </li>
           <li>
-            <a href="inscricao/inscricoes">
+            <a href="inscricoes">
               <i class="bi bi-circle"></i><span>Inscrições</span>
             </a>
           </li>

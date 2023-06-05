@@ -30,7 +30,7 @@ Route::get('/', function () {
 })->name('inicio');
 
 // Rota apenas de teste... Não apague -> ACELTINO
-Route::get('validar-aluno', [CandidatoController::class, 'pegarDadosCandidatos']);
+Route::get('validar-aluno', [AdmissaoController::class, 'validarCandidato']);
 
 
 //Routas para Autenticação no Sistema
@@ -168,19 +168,14 @@ Route::prefix('professor')->group(function(){
 
     Route::get('cadastrar-professor', [ProfessorController::class, 'create'])->name('professor.cadastrar');
     Route::post('cadastrar-professor', [ProfessorController::class, 'store'])->name('prof.postRegistar');
-    Route::get('cadastrar-professor', [ProfessorController::class, 'create'])->name('professor.cadastrar');
-    Route::post('cadastrar-professor', [ProfessorController::class, 'store'])->name('prof.postRegistar');
 
     Route::get('consultar-professor', [ProfessorController::class, 'index'])->name('professor');
-    Route::get('consultar-professor', [ProfessorController::class, 'index'])->name('professor');
 
-    Route::get('editar-dados-professor', function () {
-        return view('professor/editar-dados-prof');
-    });
+    Route::get('editar/{id}', [ProfessorController::class, 'edit'])->name('professor.Editar');
+    Route::get('editar/dados-pessoais', [ProfessorController::class, 'profDadosPessoais'])->name('professor.dados-pessoais');
 
-    Route::get('horario-professor', function () {
-        return view('professor/horario-prof');
-    });
+    Route::get('horario-professor', [ProfessorController::class, 'horarioProf'])->name('horarioProfessor');
+    Route::get('avaliacao', [ProfessorController::class, 'avaliacao'])->name('avaliacao');
 });
 
 /**<!--Fim Rotas de Professor--> */
