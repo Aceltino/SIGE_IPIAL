@@ -20,7 +20,7 @@
   <!-- /  Inicio da tabela de inscritos -->
   <table class="table table-striped table-custom" id="matricula-tab">
     <thead>
-    @foreach ($comunicados as $comunicado)
+    @foreach ($comunicados as $comunicado) 
        <tr style=" text-align: center;">
           <th scope="col">{{ $comunicado->comunicado_id }}</th>
           <th scope="col">{{ $comunicado->titulo_com }}</th>

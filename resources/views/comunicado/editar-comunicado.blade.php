@@ -4,7 +4,12 @@
 
 @section('conteudo')
 <main id="main" class="main" >
-
+@if (session()->has('erro'))
+    {{session('erro')}}
+    @endif
+    @if (session()->has('sucesso'))
+        {{session('sucesso')}}
+    @endif
     <form id="regFormh" action="{{ route('comunicado.update',['id'=>$comunicados->comunicado_id]) }}" class="formulario-layout" method="POST">
     @csrf
     @method('PUT')

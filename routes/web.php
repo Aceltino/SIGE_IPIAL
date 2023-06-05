@@ -8,7 +8,9 @@ use App\Http\Controllers\{
     MatriculaController,
     InscricaoController,
     ProfessorController,
-    comunicadosController
+    comunicadosController,
+    CursoController
+    
 };
 use Illuminate\Support\Facades\Route;
 
