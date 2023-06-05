@@ -40,8 +40,8 @@ class AdmissaoController extends Controller
 
         $dataMaisUmDia = Carbon::parse($data)->addDay()->format('Y-m-d');
 
-        if ($dataMaisUmDia == $dataAtual)
-        {
+        // if ($dataMaisUmDia == $dataAtual)
+        // {
             $numVagasCurso = AdmissaoController::numeroVagas();
             $vagasTotal = 0;
             $admitidos = CandidatoController::pegarAdmitidos();
@@ -52,10 +52,10 @@ class AdmissaoController extends Controller
             }
             $numeroVagasTotal = $vagasTotal - $admitidos;
 
-            if($numeroVagasTotal === 0)
-            {
-                return false;
-            }
+            // if($numeroVagasTotal === 0)
+            // {
+            //     return false;
+            // }
 
             $candidatos = CandidatoController::pegarCandidatos();
 
@@ -78,7 +78,6 @@ class AdmissaoController extends Controller
             $mediaOrdenada = $medias;
             arsort($mediaOrdenada);
             $maioresMedias = array_slice($mediaOrdenada, 0, $numeroVagasTotal);
-
 
             $candAdmitidos = [];
             $count = 0;
@@ -109,12 +108,15 @@ class AdmissaoController extends Controller
 
                 return ($idadeA < $idadeB) ? -1 : 1;
             });
-
-            foreach ($candAdmitidos as $candidato)
+dd($candAdmitidos);
+            foreach ($candAdmitidos as &$candidato)
             {
                 CandidatoController::atualizarStatus($candidato['id']);
+                $cursoEcolhido[] = CandidatoController::pegarDadosCandidato($candidato['id']);
+                $candidato['cursoEscolhido'] = $cursoEcolhido;
             }
-            return $candAdmitidos;
-        }
+
+
+        // }
     }
 }

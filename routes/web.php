@@ -30,7 +30,7 @@ Route::get('/', function () {
 })->name('inicio');
 
 // Rota apenas de teste... Não apague -> ACELTINO
-Route::get('validar-aluno', [CandidatoController::class, 'pegarDadosCandidatos']);
+Route::get('validar-aluno', [AdmissaoController::class, 'validarCandidato']);
 
 
 //Routas para Autenticação no Sistema
