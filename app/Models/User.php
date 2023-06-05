@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class User extends Model implements Authenticatable
 {
-    use HasFactory;
+    use HasFactory, AuthenticatableTrait;
+
     protected $table = 'users';
 
     protected $fillable = [
@@ -39,8 +42,8 @@ class User extends Model
         'email_verified_at' => 'datetime',
     ];
 
-    public function pessoa(){
-        $this->belongsTo(Pessoa::class,'pessoa_id','ususario_id');
+    public function pessoa()
+    {
+        return $this->belongsTo(Pessoa::class, 'pessoa_id', 'ususario_id');
     }
-
 }
