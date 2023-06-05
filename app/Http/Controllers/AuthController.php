@@ -22,9 +22,11 @@ class AuthController extends Controller
         }
         return view('autenticacao.login');
     }
+
     public function registrarForm(){
        return view('autenticacao.registrar');
     }
+
     public function loginCheck(Request $request){
 
         $credencias=[

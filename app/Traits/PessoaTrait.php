@@ -20,10 +20,9 @@ trait PessoaTrait
             $enderecoId=$enderecoCriado->id;
             $dadosPessoa['endereco_id']= $enderecoId;
         }
+            $pessoaCriada = Pessoa::create($dadosPessoa);
 
-        $pessoaCriada = Pessoa::create($dadosPessoa);
-
-        return $pessoaCriada->pessoa_id;
+            return $pessoaCriada->pessoa_id;
     }
 
     public static function verBilhete($num_bi):bool
