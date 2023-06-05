@@ -13,6 +13,7 @@ use App\Http\Controllers\{
     
 };
 use Illuminate\Support\Facades\Route;
+use App\Http\Controller\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 
 //Rotas do Painel
 Route::get('/', function () {
