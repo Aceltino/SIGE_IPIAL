@@ -844,3 +844,22 @@ a.color-white{
     width: auto;
     padding-top: 15px;
   }
+
+ .btnadmitir{
+  margin-top: 10px;
+    width: 160px;
+    display: block;
+    padding: 10px 10px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    background-color: rgb(103, 194, 43);
+    color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }

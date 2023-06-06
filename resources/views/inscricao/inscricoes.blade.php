@@ -34,9 +34,16 @@
       <button type="submit" title="Search"><i class="bi bi-search"></i></button>   
     </form>
   </div>
-
   <div style="display: flex; justify-content: flex-end; align-items: center;">
-    <button class="btn-imprimir">Imprimir<i class="bi bi-file-earmark-pdf"></i></button>
+    <div >
+      <button class="btn-imprimir">Imprimir<i class="bi bi-file-earmark-pdf"></i></button>
+    </div>
+    <!-- / Adicionar a condição se a data atual for menor a da final de matricula aparece o botão -->
+    <div >
+      <button class="btnadmitir">Ativar Admições</button>
+    </div>
+    <!-- / Adicionar a condição se a data atual for menor a da final de matricula aparece o botão fin do coment+ario -->
+
   </div>
   <!-- /  Inicio da tabela de inscritos -->
   <table class="table table-striped" style="margin-top: 10px;" id="matricula-tab">
@@ -58,17 +65,24 @@
         <th scope="row">{{$dado['NumeroBI']}}</th>
         <td>{{$dado['Nome']}}</td>
         <td>{{$dado['Media']}}</td>
-        <td>15</td>
+        <td>{{$dado['Idade']}}</td>
         <td>Informática</td>
-        @if($dado['Situacao']== "Admitido")
+        @if($dado['Situacao'] == "Admitido")
         <td style="font-weight: 600; color: green;">{{$dado['Situacao']}}</td>
+        @elseif($dado['Situacao'] == "Pendente")
+         <td style="font-weight: 600; color: rgb(175, 0, 0);">{{$dado['Situacao']}}</td>
+         @elseif($dado['Situacao'] == "Não-Admitido")
+         <td style="font-weight: 600; color: rgb(175, 0, 0);">{{$dado['Situacao']}}</td>
         @else
-        <td style="font-weight: 600; color: rgb(175, 0, 0);">{{$dado['Situacao']}}</td>
+        <td style="font-weight: 600; color: rgb(0, 0, 0);">Erro</td>
         @endif
-        @if($dado['Situacao']== "Admitido" )
-        <td><a href="#" class="btn btn-success">Matricular</a></td>
+         <!-- / Adicionar a condição se atimitido e a data atual for menor a da final de matricula aparece o botão matricualr -->
+        @if($dado['Situacao'] == "Pe") 
+        <td class="pendente1">Aguarde...</td>
+        @elseif($dado['Situacao'] != 'Não admitido' && 'Adimitido')
+        <td class="pendente1"><a href="#" class="btn btn-success">Matricular</a></td>
         @else
-        <td></td>
+        <td>Fechado</td>
         @endif
         
         <td>
