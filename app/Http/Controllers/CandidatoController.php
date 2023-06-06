@@ -76,7 +76,7 @@ class CandidatoController extends Controller
 
         $candidatos = Candidato::with( 'pessoa', 'escola', 'ano_lectivo')
         ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
-        ->get()->toarray();
+        ->get();
 
         foreach ($candidatos as &$candidato)
         {
