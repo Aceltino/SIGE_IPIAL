@@ -9,11 +9,8 @@ use App\Http\Controllers\{
     InscricaoController,
     ProfessorController,
     comunicadosController,
-<<<<<<< HEAD
     CursoController,
-=======
     ConsumoApiController
->>>>>>> 3813b092d11d89055149277f0a21ec8acc7b2874
 };
 use Illuminate\Support\Facades\Route;
 

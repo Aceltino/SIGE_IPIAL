@@ -78,6 +78,7 @@ class CandidatoController extends Controller
         ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
         ->get();
 
+        dd($candidatos);
         foreach ($candidatos as &$candidato)
         {
             $dataNascimento = Carbon::parse($candidato->pessoa->data_nascimento);
