@@ -27,7 +27,7 @@ class Pessoa extends Model
         $this->hasOne(User::class,'pessoa_id','usuario_id');
     }
     public function candidato(){
-        $this->hasOne(Candidato::class,'pessoa_id');
+        $this->hasOne(Candidato::class,'candidato_id');
     }
 
 	/**

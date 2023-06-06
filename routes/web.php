@@ -13,6 +13,7 @@ use App\Http\Controllers\{
     ConsumoApiController
 };
 use Illuminate\Support\Facades\Route;
+use GuzzleHttp\Client;
 
 /*
 |--------------------------------------------------------------------------
