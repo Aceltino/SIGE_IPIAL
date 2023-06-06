@@ -12,6 +12,6 @@ class Disciplina extends Model
         'nome_disciplina',
         'componente',
         'tempo_prova',
-        'z',
+        'sigla',
      ];
 }

@@ -35,28 +35,18 @@ class InscricaoController extends Controller
         }
 
         $dadosPessoa = [
-            'nome_completo'=>$request['nome_completo'],
-            'num_bi'=>strtoupper($request['num_bi']),
-            'data_nascimento'=>$request['data_nascimento'],
-            'genero'=>$request['genero'],
+            'nome_completo'=> $request['nome_completo'],
+            'num_bi'=> strtoupper($request['num_bi']),
+            'data_nascimento'=> $request['data_nascimento'],
+            'genero'=> $request['genero'],
+            'telefone' => $request['num_tel']
         ];
+
         $idPessoa = $this->storePessoa($dadosPessoa);
         if(!$idPessoa)
         {
             $msg="Fique atento nos dados de identifcação, este candidato já está inscrito!";
             return redirect()->back()->with("ErroPessoa",$msg);
-        }
-
-        $dadosTelefone=[
-            //Dados do candidato
-            'num_tel'=>$request['num_tel'],
-            'pessoa_id' => $idPessoa
-        ];
-        $telefone = TelefoneController::storeTelefone($dadosTelefone);
-        if(!$telefone)
-        {
-            $msg="Lamentamos! Este número de telefone já existe em nossa base de dados, mas a candidatura foi realizada com sucesso!";
-            return redirect()->back()->with("ErroTelefone",$msg);
         }
 
         $dadosEscola = [
@@ -86,7 +76,6 @@ class InscricaoController extends Controller
         }
 
         $dadosCandidato=[
-            //Dados do candidato
             'nome_pai_cand'=>$request['nome_pai_cand'],
             'nome_mae_cand'=>$request['nome_mae_cand'],
             'naturalidade_cand'=>$request['naturalidade_cand'],
@@ -104,7 +93,6 @@ class InscricaoController extends Controller
         for($i = 1; $i <= $curso; $i++)
         {
             $id[$i] = CursoController::pegarIdCurso($request['curso' . $i]);
-
             if(!$id[$i])
             {
                 $msg="Lamentamos! Dados não cadastrado, tente este processo mais tarde...";

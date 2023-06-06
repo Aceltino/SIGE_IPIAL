@@ -132,10 +132,6 @@
           <span style="color: #777;">+244</span>
           <input type="text" value="" placeholder="Telefone" name="num_tel" oninput="this.className = ''">
         </div>
-
-        <div class="col-3">
-            <i id="clonebtn1" class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>
-        </div>
       </div>
     </div>
 

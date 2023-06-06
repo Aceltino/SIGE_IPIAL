@@ -1,4 +1,4 @@
-<?php
+q<?php
 
 use App\Http\Controllers\{
      AdmissaoController,
@@ -8,7 +8,8 @@ use App\Http\Controllers\{
     MatriculaController,
     InscricaoController,
     ProfessorController,
-    comunicadosController
+    comunicadosController,
+    CursoController,
 };
 use Illuminate\Support\Facades\Route;
 
@@ -40,19 +41,19 @@ Route::prefix('autenticacao')->group(function(){
     Route::get('login', [AuthController::class,'loginForm'])->name('login');
     Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck');
 
-    //Rota de Cadastro
-    Route::post('registrar', [AuthController::class,'store'])->name('registrar');
+    //Rota de Logout
+    Route::post('logout',[AuthController::class,'logout'])->name('logout');
 
-    // Só a testar Augusto
+    //Rota de Cadastro
     Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar');
+    Route::post('registrar', [AuthController::class,'store'])->name('registrar');
 
     //CODIFICANDO...
     Route::get('/lembrar', function () {
         return view('autenticacao/recuperar-senha');
     })->name('recuperar-senha');
 
-    /* Routas para enviou de Dados (Login)*/
-    Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck');
+ 
 });
 
 

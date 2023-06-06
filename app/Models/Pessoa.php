@@ -13,6 +13,7 @@ class Pessoa extends Model
         'nome_completo',
         'num_bi',
         'genero',
+        'telefone',
         'data_nascimento',
         'endereco_id',
         'updated_at',
@@ -27,11 +28,6 @@ class Pessoa extends Model
     }
     public function candidato(){
         $this->hasOne(Candidato::class,'pessoa_id');
-    }
-
-    public function telefone()
-    {
-        return $this->hasMany(Telefone::class, 'pessoa_id', 'telefone_id');
     }
 
 	/**
