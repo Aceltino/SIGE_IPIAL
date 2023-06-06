@@ -184,7 +184,6 @@ trait CursoTrait
 
         return ($var);
 
-
     }
 
     public static function checkSigla($sigla){
@@ -223,8 +222,6 @@ trait CursoTrait
             return redirect()->back()->with("erro", "Preencha todos os campos!");
         }
     }
-
-
 
 
 }

@@ -32,7 +32,7 @@ class InscricaoRequest extends FormRequest
             //Formulario da Pessoa
             'nome_completo'=>'required|string|min:2|max:100',
             'data_nascimento'=>'required|date|before:'.now()->format('d-m-Y'),
-            'num_bi'=>'required|size:14',
+            'num_bi'=>'required|size:14|unique:pessoas,num_bi',
             'genero' => 'required|string',
             'turno' => 'required|string',
 
@@ -81,6 +81,7 @@ class InscricaoRequest extends FormRequest
             'data_nascimento.date' => 'O campo data:attribute deve ser uma data válida.',
             'data_nascimento.before'=> 'O campo data de nascimento deve ser uma data posterior à data atual.',
             'num_bi.size'=> 'Número de identificação esta incorrecto',
+            'num_bi.unique'=> 'Número de identificação já esta a ser usado',
 
             //Formulario Escola proveniente
             'nome_escola.max'=>'Nome da escola não pode conter mais de 100 letras',

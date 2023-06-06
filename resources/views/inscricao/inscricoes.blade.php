@@ -53,36 +53,31 @@
       </tr>
     </thead>
     <tbody>
+      @foreach($dados as $dado)
       <tr  style=" text-align: center;">
-        <th scope="row">00000KJ000098</th>
-        <td>Fernando Exemplo</td>
-        <td>16</td>
+        <th scope="row">{{$dado['NumeroBI']}}</th>
+        <td>{{$dado['Nome']}}</td>
+        <td>{{$dado['Media']}}</td>
         <td>15</td>
         <td>Informática</td>
-        <td><span style="font-weight: 600; color: green;">A/Admitido</span></td>
+        @if($dado['Situacao']== "Admitido")
+        <td style="font-weight: 600; color: green;">{{$dado['Situacao']}}</td>
+        @else
+        <td style="font-weight: 600; color: rgb(175, 0, 0);">{{$dado['Situacao']}}</td>
+        @endif
+        @if($dado['Situacao']== "Admitido" )
         <td><a href="#" class="btn btn-success">Matricular</a></td>
-        <td>
-          <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-          <a href="/editar-candidato"><i class="bi bi-pencil"></i></a>
-          <i class="bi bi-trash-fill"></i>
-        </td>
-      </tr>
-      
-      <tr  style=" text-align: center;">
-        <th scope="row">00000KJ000098</th>
-        <td>Fernando Exemplo</td>
-        <td>16</td>
-        <td>15</td>
-        <td>Informática</td>
-        <td><span style="font-weight: 600; color: red;">N/Admitido</span></td>
+        @else
         <td></td>
+        @endif
+        
         <td>
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
           <a href="/editar-candidato"><i class="bi bi-pencil"></i></a>
           <i class="bi bi-trash-fill"></i>
-          
         </td>
       </tr>
+      @endforeach
     </tbody>
   </table>
   <!-- Termina a tabela de inscritos -->

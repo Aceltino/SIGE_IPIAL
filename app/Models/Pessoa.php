@@ -7,14 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pessoa extends Model
 {
-    use HasFactory;
     protected $table = 'pessoas';
     protected $primaryKey = 'pessoa_id';
     protected $fillable = [
-        'pessoa_id',
         'nome_completo',
         'num_bi',
         'genero',
+        'telefone',
         'data_nascimento',
         'endereco_id',
         'updated_at',
@@ -28,12 +27,7 @@ class Pessoa extends Model
         $this->hasOne(User::class,'pessoa_id','usuario_id');
     }
     public function candidato(){
-        $this->hasOne(Candidato::class,'pessoa_id');
-    }
-
-    public function telefone()
-    {
-        return $this->hasMany(Telefone::class, 'pessoa_id', 'telefone_id');
+        $this->hasOne(Candidato::class,'candidato_id');
     }
 
 	/**
@@ -56,5 +50,5 @@ class Pessoa extends Model
         $this->hasMany(Professor::class, 'professor_id','pessoa_id');
     }
 
-    
+
 }

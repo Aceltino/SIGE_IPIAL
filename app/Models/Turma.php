@@ -21,7 +21,7 @@ class Turma extends Model
 
     public function curso()
     {
-        return $this->belongsTo(Cursos::class, 'turma_id', 'curso_id');
+        return $this->belongsTo(Curso::class, 'turma_id', 'curso_id');
     }
 
     public function classe()

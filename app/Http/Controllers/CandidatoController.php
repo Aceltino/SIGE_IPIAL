@@ -72,7 +72,51 @@ class CandidatoController extends Controller
     //FUNÇÂO USADA PARA API, TESTEM => "http://127.0.0.1:8000/api/candidatos"
     public static function pegarDadosCandidatos()
     {
-        dd(AdmissaoController::validarCandidato());
+        $dataAtual = Carbon::now();
+
+        $candidatos = Candidato::with( 'pessoa', 'escola', 'ano_lectivo')
+        ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
+        ->get();
+
+        foreach ($candidatos as &$candidato)
+        {
+            $dataNascimento = Carbon::parse($candidato->pessoa->data_nascimento);
+            $idade = $dataAtual->diffInYears($dataNascimento);
+            $candidato['idade'] = $idade;
+        }
+
+        foreach ($candidatos as &$candidato)
+        {
+            $media = ($candidato->escola->fisica
+            + $candidato->escola->matematica
+            + $candidato->escola->quimica
+            + $candidato->escola->ling_port) / 4;
+            $candidato['media'] = $media;
+        }
+
+        $dadosCandidatos = [];
+
+        foreach ($candidatos as $candidato)
+        {
+            $dadosCandidatos[] =
+            [
+                'Nome' => $candidato->pessoa->nome_completo,
+                'NumeroBI' => $candidato->pessoa->num_bi,
+                'Idade' => $candidato->idade,
+
+                'Media' => $candidato->media,
+
+                'Id_inscricao' => $candidato->candidato_id,
+                'Situacao' => $candidato->status
+            ];
+        }
+
+        return $dadosCandidatos;
+
+    }
+
+    public static function pegarDadosCandidato($id)
+    {
         $dataAtual = Carbon::now();
 
         $candidatos = Candidato::with('pessoa', 'escola', 'ano_lectivo')

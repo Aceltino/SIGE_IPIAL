@@ -8,7 +8,9 @@ use App\Http\Controllers\{
     MatriculaController,
     InscricaoController,
     ProfessorController,
-    comunicadosController
+    comunicadosController,
+    CursoController,
+    ConsumoApiController
 };
 use Illuminate\Support\Facades\Route;
 
@@ -30,7 +32,7 @@ Route::get('/', function () {
 })->name('inicio');
 
 // Rota apenas de teste... Não apague -> ACELTINO
-Route::get('validar-aluno', [CandidatoController::class, 'pegarDadosCandidatos']);
+Route::get('validar-aluno', [AdmissaoController::class, 'validarCandidato']);
 
 
 //Routas para Autenticação no Sistema
@@ -40,19 +42,19 @@ Route::prefix('autenticacao')->group(function(){
     Route::get('login', [AuthController::class,'loginForm'])->name('login');
     Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck');
 
-    //Rota de Cadastro
-    Route::post('registrar', [AuthController::class,'store'])->name('registrar');
+    //Rota de Logout
+    Route::post('logout',[AuthController::class,'logout'])->name('logout');
 
-    // Só a testar Augusto
+    //Rota de Cadastro
     Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar');
+    Route::post('registrar', [AuthController::class,'store'])->name('registrar');
 
     //CODIFICANDO...
     Route::get('/lembrar', function () {
         return view('autenticacao/recuperar-senha');
     })->name('recuperar-senha');
 
-    /* Routas para enviou de Dados (Login)*/
-    Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck');
+
 });
 
 
@@ -62,9 +64,7 @@ Route::prefix('autenticacao')->group(function(){
 Route::prefix('inscricao')->group(function(){
 
     /*Inscricoes ou alunos inscritos */
-    Route::get('inscricoes', function () {
-        return view('inscricao/inscricoes');
-    });
+    Route::get('inscricoes', [ConsumoApiController::class, 'consumoinscricao']);
 
     /*Inscrever candidato */
     Route::get('inscrever', [InscricaoController::class, 'create'])->name('inscricao-view');
@@ -168,19 +168,14 @@ Route::prefix('professor')->group(function(){
 
     Route::get('cadastrar-professor', [ProfessorController::class, 'create'])->name('professor.cadastrar');
     Route::post('cadastrar-professor', [ProfessorController::class, 'store'])->name('prof.postRegistar');
-    Route::get('cadastrar-professor', [ProfessorController::class, 'create'])->name('professor.cadastrar');
-    Route::post('cadastrar-professor', [ProfessorController::class, 'store'])->name('prof.postRegistar');
 
     Route::get('consultar-professor', [ProfessorController::class, 'index'])->name('professor');
-    Route::get('consultar-professor', [ProfessorController::class, 'index'])->name('professor');
 
-    Route::get('editar-dados-professor', function () {
-        return view('professor/editar-dados-prof');
-    });
+    Route::get('editar/{id}', [ProfessorController::class, 'edit'])->name('professor.Editar');
+    Route::get('editar/dados-pessoais', [ProfessorController::class, 'profDadosPessoais'])->name('professor.dados-pessoais');
 
-    Route::get('horario-professor', function () {
-        return view('professor/horario-prof');
-    });
+    Route::get('horario-professor', [ProfessorController::class, 'horarioProf'])->name('horarioProfessor');
+    Route::get('avaliacao', [ProfessorController::class, 'avaliacao'])->name('avaliacao');
 });
 
 /**<!--Fim Rotas de Professor--> */
