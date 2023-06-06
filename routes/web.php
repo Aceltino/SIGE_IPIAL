@@ -9,7 +9,11 @@ use App\Http\Controllers\{
     InscricaoController,
     ProfessorController,
     comunicadosController,
+<<<<<<< HEAD
     CursoController,
+=======
+    ConsumoApiController
+>>>>>>> 3813b092d11d89055149277f0a21ec8acc7b2874
 };
 use Illuminate\Support\Facades\Route;
 
@@ -63,9 +67,7 @@ Route::prefix('autenticacao')->group(function(){
 Route::prefix('inscricao')->group(function(){
 
     /*Inscricoes ou alunos inscritos */
-    Route::get('inscricoes', function () {
-        return view('inscricao/inscricoes');
-    });
+    Route::get('inscricoes', [ConsumoApiController::class, 'consumoinscricao']);
 
     /*Inscrever candidato */
     Route::get('inscrever', [InscricaoController::class, 'create'])->name('inscricao-view');
