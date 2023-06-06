@@ -9,6 +9,7 @@ use App\Http\Controllers\{
     InscricaoController,
     ProfessorController,
     comunicadosController,
+    CandidatoCursoController,
     CursoController,
     ConsumoApiController
 };
@@ -32,7 +33,7 @@ Route::get('/', function () {
 })->name('inicio');
 
 // Rota apenas de teste... Não apague -> ACELTINO
-Route::get('validar-aluno', [AdmissaoController::class, 'validarCandidato']);
+Route::get('validar-aluno', [CandidatoController::class, 'pegarDadosCandidatos']);
 
 
 //Routas para Autenticação no Sistema

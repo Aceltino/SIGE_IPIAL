@@ -13,7 +13,7 @@ class CandidatoController extends Controller
         return Candidato::create($dadosCandidato);
     }
 
-    public static function pegarCandidatos()
+    public static function pegarCandidatos()  //Candidatos para o processo de admissão
     {
         $candidatos = Candidato::with('pessoa', 'escola')
         ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
@@ -29,9 +29,9 @@ class CandidatoController extends Controller
             $dadosCandidatos[] =
             [
                 'Nome' => $candidato->pessoa->nome_completo,
-                'Data de Nascimento' => $candidato->pessoa->data_nascimento,
+                'Data_Nascimento' => $candidato->pessoa->data_nascimento,
                 'Matematica' => $candidato->escola->matematica,
-                'Lingua Portuguesa' => $candidato->escola->ling_port,
+                'Lingua_Portuguesa' => $candidato->escola->ling_port,
                 'Fisica' => $candidato->escola->fisica,
                 'Quimica' => $candidato->escola->quimica,
                 'id' => $candidato->candidato_id,
@@ -53,11 +53,13 @@ class CandidatoController extends Controller
         return $candAdmitidos;
     }
 
-    public static function atualizarStatus($candidatoId)
+    public static function atualizarStatus($candidatoStatus) //Atualizar status
     {
             // Atualizar os dados do candidato
-            $candidato = Candidato::find($candidatoId);
+            $candidato = Candidato::find($candidatoStatus['id']);
             $candidato->status = "Admitido";
+            $candidato->cursoAdmitido = $candidatoStatus['cursoEscolhido'];
+
 
             $candidato->save();
 
@@ -94,8 +96,8 @@ class CandidatoController extends Controller
             $candidato['media'] = $media;
         }
 
+        AdmissaoController::validarCandidato();
         $dadosCandidatos = [];
-
         foreach ($candidatos as $candidato)
         {
             $dadosCandidatos[] =
@@ -105,6 +107,7 @@ class CandidatoController extends Controller
                 'Idade' => $candidato->idade,
 
                 'Media' => $candidato->media,
+                'Curso' => $candidato->cursoAdmitido,
 
                 'Id_inscricao' => $candidato->candidato_id,
                 'Situacao' => $candidato->status
@@ -146,13 +149,13 @@ class CandidatoController extends Controller
             $dadosCandidatos[] =
             [
                 'Nome' => $candidato->pessoa->nome_completo,
-                'Data de Nascimento' => $candidato->pessoa->data_nascimento,
+                'Data_Nascimento' => $candidato->pessoa->data_nascimento,
                 'NumeroBI' => $candidato->pessoa->num_bi,
                 'Genero' => $candidato->pessoa->genero,
                 'Idade' => $candidato->idade,
 
                 'Matematica' => $candidato->escola->matematica,
-                'Lingua Portuguesa' => $candidato->escola->ling_port,
+                'Lingua_Portuguesa' => $candidato->escola->ling_port,
                 'Fisica' => $candidato->escola->fisica,
                 'Quimica' => $candidato->escola->quimica,
                 'Escola' => $candidato->escola->nome_escola,
