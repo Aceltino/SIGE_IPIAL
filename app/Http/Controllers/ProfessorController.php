@@ -44,9 +44,7 @@ class ProfessorController extends Controller
 
     public function horarioProf()
     {
-        if ($professor) {
-            return view('professor/horario-prof');
-        }
+        return view('professor/horario-prof');
     }
 
     public function profDadosPessoais()
