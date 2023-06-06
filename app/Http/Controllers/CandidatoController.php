@@ -74,11 +74,10 @@ class CandidatoController extends Controller
     {
         $dataAtual = Carbon::now();
 
-        $candidatos = Candidato::with('pessoa', 'escola', 'ano_lectivo')
+        $candidatos = Candidato::with( 'pessoa', 'escola', 'ano_lectivo')
         ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
-        ->get()->toarray();
+        ->get();
 
-        dd($candidatos);
         foreach ($candidatos as &$candidato)
         {
             $dataNascimento = Carbon::parse($candidato->pessoa->data_nascimento);

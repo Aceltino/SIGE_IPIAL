@@ -130,7 +130,6 @@ class ProfessorController extends Controller
     {
         //
     }
-}
 public function store(Request $request)
     {
         try {
@@ -168,3 +167,5 @@ public function store(Request $request)
             return redirect()->back()->withErrors($e->errors())->withInput();
         }
     }
+
+}
