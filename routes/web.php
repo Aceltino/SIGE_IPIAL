@@ -1,4 +1,4 @@
-q<?php
+<?php
 
 use App\Http\Controllers\{
      AdmissaoController,
@@ -55,7 +55,7 @@ Route::prefix('autenticacao')->group(function(){
         return view('autenticacao/recuperar-senha');
     })->name('recuperar-senha');
 
- 
+
 });
 
 
