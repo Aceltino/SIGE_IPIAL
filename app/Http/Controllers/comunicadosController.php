@@ -20,10 +20,6 @@ class comunicadosController extends Controller
     }
     public function store(Request $request)
     {
-        $request->validate([
-            'titulo_com'=> 'required',
-            'conteudo_com'=> 'required',
-        ]);
         return Comunicado::create($request->all());
     }
     public function edit($comunicado_id)
@@ -39,14 +35,10 @@ class comunicadosController extends Controller
     }
     public function update(Request $request, $comunicado_id)
     {
-        $dados = [
-            'titulo_com' =>$request->titulo,
-            'conteudo_com'=>$request->conteudo,
-        ];
-        Comunicado::where('comunicado_id',$comunicado_id)->upadate($dados);
+        $comunicados = Comunicado::findOrFail($comunicado_id);
+        $comunicados->update($request->all());
         return redirect()->route('comunicado.index');
 
     }
-    
+
 }
- 

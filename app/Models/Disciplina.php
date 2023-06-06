@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Comunicado extends Model
+class Disciplina extends Model
 {
     use HasFactory;
-
     protected $fillable = [
-       'titulo_com',
-       'conteudo_com',
-    ];
-
-   
+        'nome_disciplina',
+        'componente',
+        'tempo_prova',
+        'sigla',
+     ];
 }

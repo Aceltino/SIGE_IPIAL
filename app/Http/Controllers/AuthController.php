@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Traits\PessoaTrait;
 use App\Models\User;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{
     Auth,
@@ -27,35 +28,22 @@ class AuthController extends Controller
        return view('autenticacao.registrar');
     }
 
-    public function loginCheck(Request $request){
-
-        $credencias=[
-            'nome_usuario'=>$request->username,
-            'password'=>$request->password
-        ];
-
-        if(empty($credencias['nome_usuario']) || empty($credencias['password'])){
-           return redirect()->back()->with('erro_login_001',"Por favor, Insira os dados de Acesso");
+    public function loginCheck(Request $request)
+    {
+        $credentials = $request->only('username', 'password');
+    
+        if (empty($credentials['username']) || empty($credentials['password'])) {
+            return redirect()->back()->with('erro_login_001', 'Por favor, insira os dados de acesso');
         }
-        if(!Auth::attempt($credencias)){
-            return redirect()->back()->with('erro_login_002',"Dados Incorrecto");
+    
+        if (!Auth::attempt($credentials)) {
+            return redirect()->back()->with('erro_login_002', 'Dados incorretos');
         }
-
-        //Ação do Login
-        $user= Auth::user();
-        echo "Usuario Logado... Ainda em Desenvolvimento.CARLOS MARQUES";
-        // dd($user);
-        	die;
-        $dados_user= UserController::show($user->id);
-
-        dd($dados_user);
-
-        session([
-            "cargo"=>$dados_user->cargo,
-            'nome_completo'=>$dados_user->pessoa->nome_completo,
-        ]);
-        return view('pagina-inicial');
+    
+        $user = Auth::user();
+        return view('pagina-inicial', ['user' => $user]);
     }
+    
     public function store(Request $request){
 
         //Criando o nome do Usuario
@@ -69,7 +57,7 @@ class AuthController extends Controller
             'nome'=>'required|string|min:2|max:50',
             'sobre_nome'=>'required|string|min:5|max:50',
             'data_nascimento'=>'required|date|before:'.now()->format('d-m-Y'),
-            'num_bi'=>'required|size:14',
+            'num_bi'=>'required|size:14|unique:pessoas,num_bi',
 
             //Formulario do user
             'email'=>'required|email|max:200|unique:users,email',
@@ -95,6 +83,7 @@ class AuthController extends Controller
             'data.date' => 'O campo :attribute deve ser uma data válida.',
             'data_nascimento.before'=> 'O campo :attribute deve ser uma data posterior à data atual.',
             'num_bi.size'=> 'Número de identificação esta incorrecto',
+            'num_bi.unique'=> 'Número de identificação Já esta a ser usado',
 
             //Formulario do user
             'email.email'=>'Este campo deve conter um email valido',
@@ -165,9 +154,15 @@ class AuthController extends Controller
             return redirect()->back()->with("erroCadastroUser",$msg);
         }
 
-        //Depois deve se fazer mudanças basicas.nem todo cadastro deve lhe reencaminhar no Login.
+        //Depois deve se fazer mudanças basicas nem todo cadastro deve lhe reencaminhar no Login.
 
         $msg=$request->cargo." Cadastrado com Sucesso. Por favor entre com os seus dados";
         return view('autenticacao.login')->with('registrado',$msg);
+    }
+
+    public function logout(){
+        Auth::logout();
+        Session::invalidate();
+        return redirect()->route("autenticacao.login");      
     }
 }

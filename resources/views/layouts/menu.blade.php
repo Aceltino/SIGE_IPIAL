@@ -83,7 +83,7 @@
           </li><!-- Termina Nav Notificacao -->
 
           <li class="nav-item">
-          	<a class="nav-link nav-icon" href="#">
+          	<a class="nav-link nav-icon" href={{route('logout')}}>
           		<i class="bi bi-box-arrow-right"></i>
           	</a>
           </li>

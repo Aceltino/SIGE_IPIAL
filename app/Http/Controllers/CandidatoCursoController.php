@@ -37,7 +37,7 @@ class CandidatoCursoController extends Controller
     {
         $cursosSelecionados = [];
 
-        foreach ($curso as $i => $cursoNome)
+        foreach ($curso as $cursoNome)
         {
             if (in_array($cursoNome, $cursosSelecionados))
             {
@@ -48,6 +48,13 @@ class CandidatoCursoController extends Controller
         }
 
         return true;
+
+    }
+
+    public static function cursoEscolhido($candidato)
+    {
+        $candidato->load(relations:'curso');
+        return $candidato;
 
     }
 

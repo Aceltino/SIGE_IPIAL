@@ -43,6 +43,6 @@ class Candidato extends Model
 
     public function curso()
     {
-        return $this->belongsToMany(Cursos::class, 'candidato_curso', 'candidato_id', 'curso_id');
+        return $this->belongsToMany(Curso::class, 'candidato_curso', 'candidato_id', 'curso_id');
     }
 }

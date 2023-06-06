@@ -47,6 +47,9 @@
     @include('layouts.menu')
 
     @include('layouts.sidebar')
+    @php
+
+    @endphp
 
     @yield('conteudo')
 

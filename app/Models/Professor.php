@@ -34,7 +34,7 @@ class Professor extends Model
         return $this->belongsTo(Curso::class, 'curso_id', 'professor_id');
     }
     protected $primaryKey = 'professor_id';
-  
+
     protected $fillable = [
         'formacao',
         'uuid',

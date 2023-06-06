@@ -34,7 +34,8 @@ class CursoController extends Controller
         return $cursos;
     }
 
-    public function indexCadastro(){
+    public function indexCadastro()
+    {
         //Retorno dos dados para o preenchimento dos selects na view do cadastro do curso
         $coordenador = Professor::where('cargo', "Coordenador")->get()->toArray();
         $pessoa = Pessoa::all()->toArray();
