@@ -30,12 +30,8 @@
        </thead>
     <tbody>
       <tr style=" text-align: center;">
-        <th scope="row">Defesas do fim do curso 2020 </th>
-        <td>bcvjgvjghvjhkhbkjbkjbkjbkbkbkb</td>
-
-        <td>
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-          <a href="/editar-comunicado"><i class="bi bi-pencil"></i></a>
+          <a href="{{ route('comunicado.edit') }}"><i class="bi bi-pencil"></i></a>
           <i class="bi bi-trash-fill"></i>
           <i class="bi bi-check-square-fill"></i>
         </td>
@@ -84,9 +80,9 @@
                       <div class="footer-modal" style="text-align: center;">
 
                         <div class="jnt">
-                            <a href="/comunicados" class="btn" style="background-color: #070b17; color: #fff;">Retrocer aos Comunicados</a>
+                            <a href="{{ route('comunicado.index') }}" class="btn" style="background-color: #070b17; color: #fff;">Retrocer aos Comunicados</a>
 
-                            <a href="/editar-comunicado" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
+                            <a href="{{ route('comunicado.edit', ['id'=>$comunicado->comunicado_id]) }}" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
                         </div>
                       </div>
 

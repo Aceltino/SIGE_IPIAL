@@ -168,38 +168,38 @@
       </ul>
     </li>
 
-    <!-- /	Nav Comunicado-->
-    <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#comunicado-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-map"></i><span>Comunicado</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="comunicado-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="comunicado/criar-comunicado">
-              <i class="bi bi-circle"></i><span>Criar comunicado</span>
-            </a>
-          </li>
-          <li>
-            <a href="comunicado/comunicado">
-              <i class="bi bi-circle"></i><span>Comunicados</span>
-            </a>
-          </li>
-        </ul>
-    </li>
+    	<!-- /	Nav Comunicado-->
+     	<li class="nav-item">
+	        <a class="nav-link collapsed" data-bs-target="#comunicado-nav" data-bs-toggle="collapse" href="#">
+	          <i class="bi bi-map"></i><span>Comunicado</span><i class="bi bi-chevron-down ms-auto"></i>
+	        </a>
+	        <ul id="comunicado-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+	          <li>
+	            <a href="comunicado/criar-comunicado">
+	              <i class="bi bi-circle"></i><span>Criar comunicado</span>
+	            </a>
+	          </li>
+	          <li>
+	            <a href="comunicado/comunicado">
+	              <i class="bi bi-circle"></i><span>Comunicados</span>
+	            </a>
+	          </li>
+	        </ul>
+	    </li>
 
-          <!-- /	Nav Pauta-->
-    <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#pauta-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-calendar3"></i><span>Pauta</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="pauta-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="pauta/pautas">
-              <i class="bi bi-circle"></i><span>Pautas</span>
+        <!-- /	Nav Pauta-->
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#pauta-nav" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-calendar3"></i><span>Pauta</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
-          </li>
-        </ul>
-    </li>
+            <ul id="pauta-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+              <li>
+                <a href="pauta/pautas">
+                  <i class="bi bi-circle"></i><span>Pautas</span>
+                </a>
+              </li>
+            </ul>
+        </li>
 
           <!-- /	Nav Mini-pauta-->
     <li class="nav-item">

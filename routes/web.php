@@ -6,7 +6,9 @@ use App\Http\Controllers\{
     AuthController,
     CandidatoController,
     MatriculaController,
-    InscricaoController
+    InscricaoController,
+    ProfessorController,
+    comunicadosController
 };
 use Illuminate\Support\Facades\Route;
 
@@ -28,7 +30,7 @@ Route::get('/', function () {
 })->name('inicio');
 
 // Rota apenas de teste... Não apague -> ACELTINO
-Route::get('validar-aluno', [AdmissaoController::class, 'validarCandidato']);
+Route::get('validar-aluno', [CandidatoController::class, 'pegarDadosCandidatos']);
 
 
 //Routas para Autenticação no Sistema
@@ -36,10 +38,13 @@ Route::prefix('autenticacao')->group(function(){
 
     //Rota de Login
     Route::get('login', [AuthController::class,'loginForm'])->name('login');
-     Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck');
+    Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck');
 
     //Rota de Cadastro
     Route::post('registrar', [AuthController::class,'store'])->name('registrar');
+
+    // Só a testar Augusto
+    Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar');
 
     //CODIFICANDO...
     Route::get('/lembrar', function () {
@@ -161,13 +166,13 @@ Route::prefix('matricula')->group(function(){
  */
 Route::prefix('professor')->group(function(){
 
-    Route::get('cadastrar-professor', function () {
-        return view('professor/cadastrar-prof');
-    });
+    Route::get('cadastrar-professor', [ProfessorController::class, 'create'])->name('professor.cadastrar');
+    Route::post('cadastrar-professor', [ProfessorController::class, 'store'])->name('prof.postRegistar');
+    Route::get('cadastrar-professor', [ProfessorController::class, 'create'])->name('professor.cadastrar');
+    Route::post('cadastrar-professor', [ProfessorController::class, 'store'])->name('prof.postRegistar');
 
-    Route::get('consultar-professor', function () {
-        return view('professor/consultar-prof');
-    });
+    Route::get('consultar-professor', [ProfessorController::class, 'index'])->name('professor');
+    Route::get('consultar-professor', [ProfessorController::class, 'index'])->name('professor');
 
     Route::get('editar-dados-professor', function () {
         return view('professor/editar-dados-prof');
@@ -228,17 +233,17 @@ Route::prefix('aluno')->group(function(){
  */
 Route::prefix('curso')->group(function(){
 
-    Route::get('criar-curso', function () {
-        return view('curso/criar-curso');
-    });
+    Route::get('criar-curso', [CursoController::class, 'indexCadastro'])->name('cadastro.curso');
+    Route::post('criar-curso/cadastrar', [CursoController::class, 'store'])->name('cadastrar.curso');
 
-    Route::get('cursos', function () {
-        return view('curso/cursos');
-    });
 
-    Route::get('editar-curso', function () {
-        return view('curso/edit-curso');
-    });
+    Route::get('cursos', [CursoController::class, 'index'])->name('consultar.cursos');
+
+    Route::get('editar-curso/{id}', [CursoController::class, 'indexEditar'])->name('editar.curso');
+    Route::put('editar-curso/actualizar/{id}', [CursoController::class, 'update'])->name('editar.dados.curso');
+    Route::delete('apagar-curso/{id}', [CursoController::class, 'delete'])->name('apagar.curso');
+
+
 });
 /**<!--Fim Rotas curso--> */
 
@@ -319,17 +324,12 @@ Route::prefix('mini-pauta')->group(function(){
  */
 Route::prefix('comunicado')->group(function(){
 
-    Route::get('criar-comunicado', function () {
-        return view('comunicado/criar-comunicado');
-    });
+    Route::get('consultar-comunicado', [comunicadosController::class, 'index'])->name('comunicado.index');
+    Route::get('criar-comunicado', [comunicadosController::class, 'create'])->name('comunicado.create');
+    Route::post('criar-comunicado', [comunicadosController::class, 'store'])->name('comunicado.store');
+    Route::get('/{comunicado_id}/editar-comunicado', [comunicadosController::class, 'edit'])->name('comunicado.edit');
+    Route::put('/{comunicado_id}', [comunicadosController::class, 'update'])->where('comunicado_id', '[0-9]+')->name('comunicado.update');
 
-    Route::get('editar-comunicado', function () {
-        return view('comunicado/editar-comunicado');
-    });
-
-    Route::get('comunicados', function () {
-        return view('comunicado/comunicado');
-    });
 });
 
 /******************************************
@@ -434,4 +434,8 @@ Route::get('/disciplinas', function () {
 /*Editar disciplina*/
 Route::get('/edit-disciplina', function () {
     return view('disciplina/edit-disciplina');
+});
+/*painel para nova senha*/
+Route::get('/nova_senha', function () {
+    return view('autenticacao/nova_senha');
 });

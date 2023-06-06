@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Candidato;
 use App\Models\Turma;
 use Carbon\Carbon;
 
@@ -36,78 +35,86 @@ class AdmissaoController extends Controller
 
     public static function validarCandidato()
     {
-        $numVagasCurso = AdmissaoController::numeroVagas();
-        $vagasTotal = 0;
-        $admitidos = CandidatoController::pegarAdmitidos();
+        $dataAtual = Carbon::now();
+        $data = AnoLectivoController::pegarDataFimInscricao();
 
-        foreach ($numVagasCurso as $vagasCurso)
+        $dataMaisUmDia = Carbon::parse($data)->addDay()->format('Y-m-d');
+
+        if ($dataMaisUmDia == $dataAtual)
         {
-            $vagasTotal += $vagasCurso['Vagas da 10ª Classe'];
-        }
-        $numeroVagasTotal = $vagasTotal - $admitidos;
+            $numVagasCurso = AdmissaoController::numeroVagas();
+            $vagasTotal = 0;
+            $admitidos = CandidatoController::pegarAdmitidos();
 
-        if($numeroVagasTotal === 0)
-        {
-            return "Sem vagas disponíveis";
-        }
-
-        $candidatos = CandidatoController::pegarCandidatos();
-
-        foreach ($candidatos as &$candidato)
-        {
-            $dataNascimento = Carbon::parse($candidato['Data de Nascimento']);
-            $dataAtual = Carbon::now();
-            $idade = $dataAtual->diffInYears($dataNascimento);
-            $candidato['idade'] = $idade;
-        }
-
-        foreach ($candidatos as &$candidato)
-        {
-            $media = ($candidato['Matematica']
-            + $candidato['Lingua Portuguesa']
-            + $candidato['Fisica']
-            + $candidato['Quimica']) / 4;
-            $candidato['media'] = $media;
-        }
-
-        $mediaOrdenada = $candidatos;
-        arsort($mediaOrdenada);
-        $maioresMedias = array_slice($mediaOrdenada, 0, $numeroVagasTotal);
-
-        $candAdmitidos = [];
-        $count = 0;
-
-        foreach ($candidatos as $candidato)
-        {
-            if (in_array($candidato, $maioresMedias))
+            foreach ($numVagasCurso as $vagasCurso)
             {
-                $candAdmitidos[] = $candidato;
-                $count++;
+                $vagasTotal += $vagasCurso['Vagas da 10ª Classe'];
+            }
+            $numeroVagasTotal = $vagasTotal - $admitidos;
 
-                if ($count >= count($maioresMedias))
+            if($numeroVagasTotal === 0)
+            {
+                return false;
+            }
+
+            $candidatos = CandidatoController::pegarCandidatos();
+
+            foreach ($candidatos as &$candidato)
+            {
+                $dataNascimento = Carbon::parse($candidato['Data de Nascimento']);
+                $idade = $dataAtual->diffInYears($dataNascimento);
+                $candidato['idade'] = $idade;
+            }
+
+            foreach ($candidatos as &$candidato)
+            {
+                $media = ($candidato['Matematica']
+                + $candidato['Lingua Portuguesa']
+                + $candidato['Fisica']
+                + $candidato['Quimica']) / 4;
+                $medias[] = $candidato['media'] = $media;
+            }
+
+            $mediaOrdenada = $medias;
+            arsort($mediaOrdenada);
+            $maioresMedias = array_slice($mediaOrdenada, 0, $numeroVagasTotal);
+
+
+            $candAdmitidos = [];
+            $count = 0;
+
+            for($i= 0; $i < count($candidatos); $i++)
+            {
+                if(in_array($candidatos[$i]['media'], $maioresMedias))
                 {
-                    break;
+                    $candAdmitidos[] = $candidatos[$i];
+                    $count++;
+
+                    if ($count >= count($maioresMedias))
+                    {
+                        break;
+                    }
                 }
             }
-        }
 
-        usort($candAdmitidos, function ($a, $b)
-        {
-            $idadeA = $a['idade'];
-            $idadeB = $b['idade'];
-
-            if ($idadeA == $idadeB)
+            usort($candAdmitidos, function ($a, $b)
             {
-                return 0;
+                $idadeA = $a['idade'];
+                $idadeB = $b['idade'];
+
+                if ($idadeA == $idadeB)
+                {
+                    return 0;
+                }
+
+                return ($idadeA < $idadeB) ? -1 : 1;
+            });
+
+            foreach ($candAdmitidos as $candidato)
+            {
+                CandidatoController::atualizarStatus($candidato['id']);
             }
-
-            return ($idadeA < $idadeB) ? -1 : 1;
-        });
-
-        foreach ($candAdmitidos as $candidato)
-        {
-            CandidatoController::atualizarStatus($candidato['id']);
+            return $candAdmitidos;
         }
-        echo "Admitidos";
     }
 }

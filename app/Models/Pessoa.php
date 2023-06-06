@@ -11,10 +11,12 @@ class Pessoa extends Model
     protected $table = 'pessoas';
     protected $primaryKey = 'pessoa_id';
     protected $fillable = [
+        'pessoa_id',
         'nome_completo',
         'num_bi',
         'genero',
         'data_nascimento',
+        'endereco_id',
         'updated_at',
         'created_at',
     ];
@@ -49,4 +51,10 @@ class Pessoa extends Model
 		$this->table = $table;
 		return $this;
 	}
+
+    public function professor(){
+        $this->hasMany(Professor::class, 'professor_id','pessoa_id');
+    }
+
+    
 }
