@@ -55,20 +55,21 @@ class CandidatoController extends Controller
 
     public static function atualizarStatus($candidatoStatus) //Atualizar status
     {
-            // Atualizar os dados do candidato
-            $candidato = Candidato::find($candidatoStatus['id']);
-            $candidato->status = "Admitido";
-            $candidato->cursoAdmitido = $candidatoStatus['cursoEscolhido'];
+        // Atualizar os dados do candidato
+        $candidato = Candidato::find($candidatoStatus['id']);
+        $candidato->status = "Admitido";
+        $candidato->cursoAdmitido = $candidatoStatus['cursoEscolhido'];
 
 
+        $candidato->save();
+
+        $candidatos = Candidato::where('status', 'pendente')->get();
+
+        foreach ($candidatos as $candidato)
+        {
+            $candidato->status = 'não admitido';
             $candidato->save();
-
-            $candidatos = Candidato::where('status', 'pendente')->get();
-
-            foreach ($candidatos as $candidato) {
-                $candidato->status = 'não admitido';
-                $candidato->save();
-            }
+        }
     }
 
     //FUNÇÂO USADA PARA API, TESTEM => "http://127.0.0.1:8000/api/candidatos"
@@ -128,68 +129,7 @@ class CandidatoController extends Controller
                 'Data_inscricao' => $candidato->created_at
             ];
         }
-
         return $dadosCandidatos;
-
     }
-
-    public static function pegarDadosCandidato($id)
-    {
-        $dataAtual = Carbon::now();
-
-        $candidatos = Candidato::with('pessoa', 'escola', 'ano_lectivo')
-        ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
-        ->get();
-
-        foreach ($candidatos as &$candidato)
-        {
-            $dataNascimento = Carbon::parse($candidato->pessoa->data_nascimento);
-            $idade = $dataAtual->diffInYears($dataNascimento);
-            $candidato['idade'] = $idade;
-        }
-
-        foreach ($candidatos as &$candidato)
-        {
-            $media = ($candidato->escola->fisica
-            + $candidato->escola->matematica
-            + $candidato->escola->quimica
-            + $candidato->escola->ling_port) / 4;
-            $candidato['media'] = $media;
-        }
-
-        $dadosCandidatos = [];
-
-        foreach ($candidatos as $candidato)
-        {
-            $dadosCandidatos[] =
-            [
-                'Nome' => $candidato->pessoa->nome_completo,
-                'Data_Nascimento' => $candidato->pessoa->data_nascimento,
-                'NumeroBI' => $candidato->pessoa->num_bi,
-                'Genero' => $candidato->pessoa->genero,
-                'Idade' => $candidato->idade,
-
-                'Matematica' => $candidato->escola->matematica,
-                'Lingua_Portuguesa' => $candidato->escola->ling_port,
-                'Fisica' => $candidato->escola->fisica,
-                'Quimica' => $candidato->escola->quimica,
-                'Escola' => $candidato->escola->nome_escola,
-                'Turno' => $candidato->escola->turno,
-                'Numero Processo' => $candidato->escola->num_processo,
-                'Numero Aluno' => $candidato->escola->num_aluno,
-                'Ultimo AnoLectivo' => $candidato->escola->ultimo_anoLectivo,
-                'Media' => $candidato->media,
-
-                'Pai' => $candidato->nome_pai_cand,
-                'Mae' => $candidato->nome_mae_cand,
-                'Naturalidade' => $candidato->naturalidade_cand,
-                'Situacao' => $candidato->status
-            ];
-        }
-
-        return $dadosCandidatos;
-
-    }
-
 
 }

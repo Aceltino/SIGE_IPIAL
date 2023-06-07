@@ -73,35 +73,39 @@ Route::prefix('inscricao')->group(function(){
     Route::post('inscrever', [InscricaoController::class, 'store'])->name('inscricao-store');
 
 
+    Route::get('editar-candidato', [InscricaoController::class, 'edit'])->name('inscricao-view');
+    Route::post('editar-candidato', [InscricaoController::class, 'update'])->name('inscricao-store');
+
+
     /*Editar candidato */
     Route::get('editar-candidato', function () {
         return view('inscricao/edit-candidato');
     });
 
     /*Inscritos online */
-    Route::get('inscritos-online', function () {
-        return view('inscricao/inscritos-online');
-    });
+    // Route::get('inscritos-online', function () {
+    //     return view('inscricao/inscritos-online');
+    // });
 
-    /*Incritos rejeitados */
-    Route::get('inscritos-rejeitados', function () {
-        return view('inscricao/inscritos-rejeitados');
-    });
+    // /*Incritos rejeitados */
+    // Route::get('inscritos-rejeitados', function () {
+    //     return view('inscricao/inscritos-rejeitados');
+    // });
 
-    /*Confirmar inscricao*/
-    Route::get('conf-inscricao', function () {
-        return view('inscricao/conf-inscricao');
-    });
-
-    /* Rejeitar inscricao */
-    Route::get('rej-inscricao', function () {
-        return view('inscricao/rejeitar-inscricao');
-        });
+    // /*Confirmar inscricao*/
+    // Route::get('conf-inscricao', function () {
+    //     return view('inscricao/conf-inscricao');
+    // });
 
     /* Rejeitar inscricao */
-    Route::get('admissoes', function () {
-    return view('inscricao/admissoes');
-    });
+    // Route::get('rej-inscricao', function () {
+    //     return view('inscricao/rejeitar-inscricao');
+    //     });
+
+    // /* Rejeitar inscricao */
+    // Route::get('admissoes', function () {
+    // return view('inscricao/admissoes');
+    // });
 });
 
 /**<!--Fim Rotas de inscricao--> */
