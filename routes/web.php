@@ -9,10 +9,12 @@ use App\Http\Controllers\{
     InscricaoController,
     ProfessorController,
     comunicadosController,
+    CandidatoCursoController,
     CursoController,
     ConsumoApiController
 };
 use Illuminate\Support\Facades\Route;
+use GuzzleHttp\Client;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,10 +31,10 @@ use Illuminate\Support\Facades\Route;
 //Rotas do Painel
 Route::get('/', function () {
     return view('pagina-inicial');
-})->name('inicio');
+})->name('inicio')->middleware('auth');
 
 // Rota apenas de teste... Não apague -> ACELTINO
-Route::get('validar-aluno', [AdmissaoController::class, 'validarCandidato']);
+Route::get('validar-aluno', [CandidatoController::class, 'pegarDadosCandidatos']);
 
 
 //Routas para Autenticação no Sistema
@@ -43,7 +45,7 @@ Route::prefix('autenticacao')->group(function(){
     Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck');
 
     //Rota de Logout
-    Route::post('logout',[AuthController::class,'logout'])->name('logout');
+    Route::get('logout',[AuthController::class,'logout'])->name('logout');
 
     //Rota de Cadastro
     Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar');

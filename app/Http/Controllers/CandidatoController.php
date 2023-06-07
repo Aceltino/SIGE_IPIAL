@@ -13,7 +13,7 @@ class CandidatoController extends Controller
         return Candidato::create($dadosCandidato);
     }
 
-    public static function pegarCandidatos()
+    public static function pegarCandidatos()  //Candidatos para o processo de admissão
     {
         $candidatos = Candidato::with('pessoa', 'escola')
         ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
@@ -29,9 +29,9 @@ class CandidatoController extends Controller
             $dadosCandidatos[] =
             [
                 'Nome' => $candidato->pessoa->nome_completo,
-                'Data de Nascimento' => $candidato->pessoa->data_nascimento,
+                'Data_Nascimento' => $candidato->pessoa->data_nascimento,
                 'Matematica' => $candidato->escola->matematica,
-                'Lingua Portuguesa' => $candidato->escola->ling_port,
+                'Lingua_Portuguesa' => $candidato->escola->ling_port,
                 'Fisica' => $candidato->escola->fisica,
                 'Quimica' => $candidato->escola->quimica,
                 'id' => $candidato->candidato_id,
@@ -53,11 +53,13 @@ class CandidatoController extends Controller
         return $candAdmitidos;
     }
 
-    public static function atualizarStatus($candidatoId)
+    public static function atualizarStatus($candidatoStatus) //Atualizar status
     {
             // Atualizar os dados do candidato
-            $candidato = Candidato::find($candidatoId);
+            $candidato = Candidato::find($candidatoStatus['id']);
             $candidato->status = "Admitido";
+            $candidato->cursoAdmitido = $candidatoStatus['cursoEscolhido'];
+
 
             $candidato->save();
 
@@ -94,20 +96,36 @@ class CandidatoController extends Controller
             $candidato['media'] = $media;
         }
 
+        AdmissaoController::validarCandidato();
         $dadosCandidatos = [];
-
         foreach ($candidatos as $candidato)
         {
             $dadosCandidatos[] =
             [
                 'Nome' => $candidato->pessoa->nome_completo,
+                'Data_Nascimento' => $candidato->pessoa->data_nascimento,
                 'NumeroBI' => $candidato->pessoa->num_bi,
+                'Genero' => $candidato->pessoa->genero,
                 'Idade' => $candidato->idade,
 
+                'Matematica' => $candidato->escola->matematica,
+                'Lingua_Portuguesa' => $candidato->escola->ling_port,
+                'Fisica' => $candidato->escola->fisica,
+                'Quimica' => $candidato->escola->quimica,
+                'Escola' => $candidato->escola->nome_escola,
+                'Turno' => $candidato->escola->turno,
+                'Numero Processo' => $candidato->escola->num_processo,
+                'Numero Aluno' => $candidato->escola->num_aluno,
+                'Ultimo AnoLectivo' => $candidato->escola->ultimo_anoLectivo,
                 'Media' => $candidato->media,
 
+                'Curso' => $candidato->cursoAdmitido,
+                'Pai' => $candidato->nome_pai_cand,
+                'Mae' => $candidato->nome_mae_cand,
+                'Naturalidade' => $candidato->naturalidade_cand,
+                'Situacao' => $candidato->status,
                 'Id_inscricao' => $candidato->candidato_id,
-                'Situacao' => $candidato->status
+                'Data_inscricao' => $candidato->created_at
             ];
         }
 
@@ -146,13 +164,13 @@ class CandidatoController extends Controller
             $dadosCandidatos[] =
             [
                 'Nome' => $candidato->pessoa->nome_completo,
-                'Data de Nascimento' => $candidato->pessoa->data_nascimento,
+                'Data_Nascimento' => $candidato->pessoa->data_nascimento,
                 'NumeroBI' => $candidato->pessoa->num_bi,
                 'Genero' => $candidato->pessoa->genero,
                 'Idade' => $candidato->idade,
 
                 'Matematica' => $candidato->escola->matematica,
-                'Lingua Portuguesa' => $candidato->escola->ling_port,
+                'Lingua_Portuguesa' => $candidato->escola->ling_port,
                 'Fisica' => $candidato->escola->fisica,
                 'Quimica' => $candidato->escola->quimica,
                 'Escola' => $candidato->escola->nome_escola,

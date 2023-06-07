@@ -9,10 +9,12 @@ use Illuminate\Http\Request;
 class CandidatoCursoController extends Controller
 {
     private static int $inserido = 0;
+    private static int $preferencia = 1;
+
+
     public static function store($candCurso)
     {
         $cursosSelecionados = [];
-
         foreach ($candCurso['curso_id'] as $i => $cursoId)
         {
 
@@ -23,7 +25,7 @@ class CandidatoCursoController extends Controller
 
             $candidato = Candidato::find($candCurso['candidato_id']);
             $candidato->curso()->attach($cursoId, [
-                'preferencia' => $i + 1
+                'preferencia' =>self::$preferencia++
             ]);
 
             $cursosSelecionados[] = $cursoId;
@@ -53,8 +55,18 @@ class CandidatoCursoController extends Controller
 
     public static function cursoEscolhido($candidato)
     {
-        $candidato->load(relations:'curso');
-        return $candidato;
+        $candidato = Candidato::find($candidato);
+        $candidato->load('curso');
+
+        $cursoPreferencia = [];
+        foreach($candidato->curso as $escolhido) {
+            $cursoPreferencia[] = [
+                'nomeCurso' => $escolhido->nome_curso,
+                'prefCurso' => $escolhido->pivot->preferencia
+            ];
+        }
+
+        return $cursoPreferencia;
 
     }
 
