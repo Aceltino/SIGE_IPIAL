@@ -18,6 +18,11 @@
           {{session('erro_login_002')}}
       </div>
     @endif
+    @if(session('erro_login_003'))
+      <div class="alert alert-danger">
+          {{session('erro_login_003')}}
+      </div>
+    @endif
     @if(session('registrado'))
       <div class="alert alert-sucess">
         {{session('registrado')}}

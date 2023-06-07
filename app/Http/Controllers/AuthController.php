@@ -30,18 +30,28 @@ class AuthController extends Controller
 
     public function loginCheck(Request $request)
     {
-        $credentials = $request->only('username', 'password');
-    
-        if (empty($credentials['username']) || empty($credentials['password'])) {
+       
+        $credencias= [
+            'nome_usuario'=>$request->username,
+            'password'=>$request->password,
+        ];
+
+        if (empty($credencias['nome_usuario']) || empty($credencias['password'])) {
             return redirect()->back()->with('erro_login_001', 'Por favor, insira os dados de acesso');
         }
-    
-        if (!Auth::attempt($credentials)) {
+        if (!Auth::attempt($credencias)) {
             return redirect()->back()->with('erro_login_002', 'Dados incorretos');
         }
-    
         $user = Auth::user();
-        return view('pagina-inicial', ['user' => $user]);
+        if(!$user->status_usuario){
+
+            Auth::logout();
+            return redirect()->back()->with('erro_login_003', 'Usuario Bloqueado, Entre em contacto com a instituição');
+        }
+
+        Session::start();
+        $request->session()->regenerate();
+        return redirect()->intended('/');
     }
     
     public function store(Request $request){
@@ -128,7 +138,8 @@ class AuthController extends Controller
             'nome_completo'=>ucfirst($request->nome)." ".ucfirst($request->sobre_nome),
             'data_nascimento'=>$request->data_nascimento,
             'num_bi'=> strtoupper($request->num_bi),
-            'genero'=>$request->genero
+            'genero'=>$request->genero,
+            'telefone'=>$request->num_telefone
         ];
         $dadosEndereco=[
             'municipio'=>$request->municipio,
@@ -163,6 +174,6 @@ class AuthController extends Controller
     public function logout(){
         Auth::logout();
         Session::invalidate();
-        return redirect()->route("autenticacao.login");      
+        return redirect()->route("login");      
     }
 }
