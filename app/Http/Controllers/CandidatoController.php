@@ -103,14 +103,29 @@ class CandidatoController extends Controller
             $dadosCandidatos[] =
             [
                 'Nome' => $candidato->pessoa->nome_completo,
+                'Data_Nascimento' => $candidato->pessoa->data_nascimento,
                 'NumeroBI' => $candidato->pessoa->num_bi,
+                'Genero' => $candidato->pessoa->genero,
                 'Idade' => $candidato->idade,
 
+                'Matematica' => $candidato->escola->matematica,
+                'Lingua_Portuguesa' => $candidato->escola->ling_port,
+                'Fisica' => $candidato->escola->fisica,
+                'Quimica' => $candidato->escola->quimica,
+                'Escola' => $candidato->escola->nome_escola,
+                'Turno' => $candidato->escola->turno,
+                'Numero Processo' => $candidato->escola->num_processo,
+                'Numero Aluno' => $candidato->escola->num_aluno,
+                'Ultimo AnoLectivo' => $candidato->escola->ultimo_anoLectivo,
                 'Media' => $candidato->media,
-                'Curso' => $candidato->cursoAdmitido,
 
+                'Curso' => $candidato->cursoAdmitido,
+                'Pai' => $candidato->nome_pai_cand,
+                'Mae' => $candidato->nome_mae_cand,
+                'Naturalidade' => $candidato->naturalidade_cand,
+                'Situacao' => $candidato->status,
                 'Id_inscricao' => $candidato->candidato_id,
-                'Situacao' => $candidato->status
+                'Data_inscricao' => $candidato->created_at
             ];
         }
 
