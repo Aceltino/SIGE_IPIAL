@@ -69,25 +69,25 @@
         <td>Informática</td>
         @if($dado['Situacao'] == "Admitido")
         <td style="font-weight: 600; color: green;">{{$dado['Situacao']}}</td>
-        @elseif($dado['Situacao'] == "Pendente")
-         <td style="font-weight: 600; color: rgb(175, 0, 0);">{{$dado['Situacao']}}</td>
-         @elseif($dado['Situacao'] == "Não-Admitido")
+        @elseif($dado['Situacao'] == "pendente")
+         <td style="font-weight: 600; color: rgb(226, 223, 7);">{{$dado['Situacao']}}</td>
+         @elseif($dado['Situacao'] == "não admitido")
          <td style="font-weight: 600; color: rgb(175, 0, 0);">{{$dado['Situacao']}}</td>
         @else
         <td style="font-weight: 600; color: rgb(0, 0, 0);">Erro</td>
         @endif
          <!-- / Adicionar a condição se atimitido e a data atual for menor a da final de matricula aparece o botão matricualr -->
-        @if($dado['Situacao'] == "Pe") 
-        <td class="pendente1">Aguarde...</td>
-        @elseif($dado['Situacao'] != 'Não admitido' && 'Adimitido')
+        @if($dado['Situacao'] == "Admitido") 
         <td class="pendente1"><a href="#" class="btn btn-success">Matricular</a></td>
+        @elseif($dado['Situacao'] == "Pendente")
+        <td class="pendente1">Aguarde...</td>
         @else
         <td>Fechado</td>
         @endif
         
         <td>
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-          <a href="/editar-candidato"><i class="bi bi-pencil"></i></a>
+          <a href="{{route('inscricao-view')}}"><i class="bi bi-pencil"></i></a>
           <i class="bi bi-trash-fill"></i>
         </td>
       </tr>

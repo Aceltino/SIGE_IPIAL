@@ -136,12 +136,12 @@
           <select name="cargo" class="form-select">
             <option value="Administrador" selected>Administrador</option>
             <option value="Professor">Professor</option>
-            <option value="Subdirector Pedagogico">Subdirector Pedagogico</option>
-            <option value="Secretario Pedagogica">Secretaria Pedagogica</option>
-            <option value="Derector Geral">Director Geral</option>
-            <option value="Coordenador">Coordenação</option>
-            <option value="Usuario - Inscrição">Usuario - Inscrição</option>
-            <option value="Usuario - Matricula">Usuario - Matricula</option>
+            <option value="Subdirector">Subdirector Pedagogico</option>
+            <option value="Secretaria">Secretaria Pedagogica</option>
+            <option value="Director">Director Geral</option>
+            <option value="Coordenacao">Coordenação</option>
+            <option value="insc_user">Usuario - Inscrição</option>
+            <option value="matri_user">Usuario - Matricula</option>
           </select>
         </div>
 
