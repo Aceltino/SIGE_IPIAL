@@ -12,6 +12,7 @@ class User extends Model implements Authenticatable
     use HasFactory, AuthenticatableTrait;
 
     protected $table = 'users';
+    protected $primaryKey= 'usuario_id';
 
     protected $fillable = [
         'nome_usuario',
