@@ -46,7 +46,7 @@
 
   </div>
   <!-- /  Inicio da tabela de inscritos -->
-  <table class="table table-striped" style="margin-top: 10px;" id="matricula-tab">
+  <table class="table table-striped display" style="margin-top: 10px;" id="Inscricoes-tab">
     <thead>
       <tr style=" text-align: center;">
         <th scope="col">Número do BI</th>
@@ -63,7 +63,7 @@
       @foreach($dados as $dado)
       <tr  style=" text-align: center;">
         <th scope="row">{{$dado['NumeroBI']}}</th>
-        <td>{{$dado['Nome']}}</td>
+        <td class="ellipsis" title="{{$dado['Nome']}}">{{$dado['Nome']}}</td>
         <td>{{$dado['Media']}}</td>
         <td>{{$dado['Idade']}}</td>
         <td>Informática</td>
