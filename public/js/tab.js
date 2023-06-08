@@ -1,7 +1,7 @@
 //Javascript da tabela de inscrições views
 var totalRegistros = 0;
 $(document).ready(function () {
-  var $T= $("#Inscricoes-tab").DataTable({
+  var $T= $("#Inscricoes").DataTable({
     initComplete: function(settings, json) {
       // Verifica a contagem de registros
       if (totalRegistros > 15) {

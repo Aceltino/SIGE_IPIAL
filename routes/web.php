@@ -11,7 +11,9 @@ use App\Http\Controllers\{
     comunicadosController,
     CandidatoCursoController,
     CursoController,
-    ConsumoApiController
+    ConsumoApiController,
+    MiniPautaController,
+    PautaController,
 };
 use Illuminate\Support\Facades\Route;
 use GuzzleHttp\Client;
@@ -28,34 +30,31 @@ use GuzzleHttp\Client;
 */
 
 
-//Rotas do Painel
+//Rotas inicial do Painel
 Route::get('/', function () {
     return view('pagina-inicial');
 })->name('inicio')->middleware('auth');
 
+ //Rota final do painel 
+ Route::get('logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
+
 // Rota apenas de teste... Não apague -> ACELTINO
 Route::get('validar-aluno', [CandidatoController::class, 'pegarDadosCandidatos']);
-
 
 //Routas para Autenticação no Sistema
 Route::prefix('autenticacao')->group(function(){
 
     //Rota de Login
-    Route::get('login', [AuthController::class,'loginForm'])->name('login');
-    Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck');
-
-    //Rota de Logout
-    Route::get('logout',[AuthController::class,'logout'])->name('logout');
+    Route::get('login', [AuthController::class,'loginForm'])->name('login')->middleware('guest');
+    Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck')->middleware('guest');
 
     //Rota de Cadastro
     Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar');
     Route::post('registrar', [AuthController::class,'store'])->name('registrar');
 
     //CODIFICANDO...
-    Route::get('/lembrar', function () {
-        return view('autenticacao/recuperar-senha');
-    })->name('recuperar-senha');
-
+    Route::get('lembrar', [AuthController::class,'lembrar'])->name('recuperar-senha')->middleware('guest');
+    
 
 });
 
@@ -66,15 +65,16 @@ Route::prefix('autenticacao')->group(function(){
 Route::prefix('inscricao')->group(function(){
 
     /*Inscricoes ou alunos inscritos */
-    Route::get('inscricoes', [ConsumoApiController::class, 'consumoinscricao']);
+    // Route::get('inscricoes', [ConsumoApiController::class, 'consumoinscricao']);
+     Route::get('inscricoes', [InscricaoController::class, 'index'])->name('inscricao-index');
 
     /*Inscrever candidato */
     Route::get('inscrever', [InscricaoController::class, 'create'])->name('inscricao-view');
     Route::post('inscrever', [InscricaoController::class, 'store'])->name('inscricao-store');
 
 
-    Route::get('editar-candidato', [InscricaoController::class, 'edit'])->name('inscricao-view');
-    Route::post('editar-candidato', [InscricaoController::class, 'update'])->name('inscricao-store');
+    Route::get('editar-candidato/{candidato}/editar', [InscricaoController::class, 'edit'])->name('inscricao-edit');
+    Route::put('editar-candidato/{candidato}', [InscricaoController::class, 'update'])->name('inscricao-update');
 
 
     /*Editar candidato */
@@ -172,16 +172,19 @@ Route::prefix('matricula')->group(function(){
  */
 Route::prefix('professor')->group(function(){
 
+    Route::get('rota/{segmento}', [ProfessorController::class, 'editarProfessor'])->name('prof.rota');
+
     Route::get('cadastrar-professor', [ProfessorController::class, 'create'])->name('professor.cadastrar');
     Route::post('cadastrar-professor', [ProfessorController::class, 'store'])->name('prof.postRegistar');
 
     Route::get('consultar-professor', [ProfessorController::class, 'index'])->name('professor');
 
-    Route::get('editar/{id}', [ProfessorController::class, 'edit'])->name('professor.Editar');
-    Route::get('editar/dados-pessoais', [ProfessorController::class, 'profDadosPessoais'])->name('professor.dados-pessoais');
+    Route::get('editar/{id}', [ProfessorController::class, 'editar'])->name('professor.Editar');
+    Route::post('editar/{id}', [ProfessorController::class, 'atualizar'])->name('professor.atualizar');
+    Route::get('dados-pessoais/{id}', [ProfessorController::class, 'profDadosPessoais'])->name('professor.dados-pessoais');
 
-    Route::get('horario-professor', [ProfessorController::class, 'horarioProf'])->name('horarioProfessor');
-    Route::get('avaliacao', [ProfessorController::class, 'avaliacao'])->name('avaliacao');
+    Route::get('horario/{id}', [ProfessorController::class, 'horarioProf'])->name('horarioProfessor');
+    Route::get('avaliacao/{id}', [ProfessorController::class, 'avaliacao'])->name('avaliacao');
 });
 
 /**<!--Fim Rotas de Professor--> */
@@ -301,23 +304,15 @@ Route::prefix('processo')->group(function(){
  * Rotas de pauta
  */
 Route::prefix('pauta')->group(function(){
-    Route::get('pautas', function () {
-        return view('pauta/pautas');
-    });
-    Route::get('ver-pauta', function () {
-        return view('pauta/pauta-doc');
-    });
+    Route::get('pautas', [PautaController::class, 'index'])->name('pauta');
+    Route::get('ver-pauta', [PautaController::class, 'show'])->name('pauta.show');
 });
 /******************************************
  * Rotas de mini-pauta
  */
 Route::prefix('mini-pauta')->group(function(){
-    Route::get('mini-pauta', function () {
-        return view('mini-pauta/mini-pauta');
-    });
-    Route::get('ver-mini-pauta', function () {
-        return view('mini-pauta/mini-pauta-doc');
-    });
+    Route::get('mini-pauta', [MiniPautaController::class, 'index'])->name('mini-pauta');
+    Route::get('ver-mini-pauta', [MiniPautaController::class, 'show'])->name('mini-pauta.show');
 
 });
 /******************************************

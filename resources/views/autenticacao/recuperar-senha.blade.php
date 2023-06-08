@@ -12,7 +12,7 @@
 
       <div class="input-group col-12">
         <span class="input-group-addon" id="inputGroupPrepend"><i class="bi bi-lock-fill"></i></span>
-        <input type="password" name="password" placeholder="Inserir o e-mail" class="form-control" required>
+        <input type="email" name="email" placeholder="Inserir o e-mail" class="form-control" required>
         <div class="invalid-feedback">Por favor insere um e-mail!</div>
       </div>
 
@@ -24,8 +24,7 @@
           </div>
           
           <div class="col">
-
-            <a href="autenticacao/login">Lembrou? Entre</a>
+            <a href={{route('login')}}>Lembrou? Entre</a>
           </div>
         </div>
       </div>

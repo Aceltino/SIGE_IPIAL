@@ -69,6 +69,38 @@ fetch('/api/candidatos')
                       Idade.value =registro.Idade;
                       const NumeroBI =  document.querySelector('#modal-registro-NumeroBI');
                       NumeroBI.value =registro.NumeroBI;
+                      const Numerotel =  document.querySelector('#modal-registro-Numerotel');
+                      Numerotel.value =registro.Telefone;
+                      const escolaprov =  document.querySelector('#modal-registro-escolaprov');
+                      escolaprov.value =registro.Escola;
+                      const Turno =  document.querySelector('#modal-registro-Turno');
+                      Turno.value =registro.Turno;
+                      const Turma =  document.querySelector('#modal-registro-Turma');
+                      Turma.value =registro.Turma;
+                      const Numero_Aluno =  document.querySelector('#modal-registro-Numero_Aluno');
+                      Numero_Aluno.value =registro.Numero_Aluno;
+                      const Numero_Processo =  document.querySelector('#modal-registro-Numero_Processo');
+                      Numero_Processo.value =registro.Numero_Processo;
+                      const Ultimo_AnoLectivo =  document.querySelector('#modal-registro-Ultimo_AnoLectivo');
+                      Ultimo_AnoLectivo.value =registro.Ultimo_AnoLectivo;
+                      const Lingua_Portuguesa =  document.querySelector('#modal-registro-Lingua_Portuguesa');
+                      Lingua_Portuguesa.value =registro.Lingua_Portuguesa;
+                      const Matematica =  document.querySelector('#modal-registro-Matematica');
+                      Matematica.value =registro.Matematica;
+                      const Fisica =  document.querySelector('#modal-registro-Fisica');
+                      Fisica.value =registro.Fisica;
+                      const Quimica =  document.querySelector('#modal-registro-Quimica');
+                      Quimica.value =registro.Quimica;
+                      const Cursos=  document.querySelector('#modal-registro-Cursos');
+                      Cursos.value =registro.Cursos;
+                      const Data_inscricao =  document.querySelector('#modal-registro-Data_inscricao');
+                      Data_inscricao.value =registro.Data_inscricao;
+                     // const Turma =  document.querySelector('#modal-registro-Turma');
+                     // Turma.value =registro.Turma;
+                      //const Turma =  document.querySelector('#modal-registro-Turma');
+                      //Turma.value =registro.Turma;
+                      //const Turma =  document.querySelector('#modal-registro-Turma');
+                      //Turma.value =registro.Turma;
                         
                     //passando os valores para a modadl Fim
     

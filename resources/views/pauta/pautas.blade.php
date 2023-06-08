@@ -50,7 +50,7 @@
           <td>Informática</td>
           <td>Manhã</td>
           <td>
-          <a href="/ver-pauta" class="btn btn-cor-sg-a">Ver Pauta</a>
+          <a href={{ route('pauta.show') }} class="btn btn-cor-sg-a">Ver Pauta</a>
           </td>
           </tr>
           
@@ -61,7 +61,7 @@
           <td>Desenhador projetista</td>
           <td>Tarde</td>
           <td>
-              <a href="/ver-pauta" class="btn btn-cor-sg-a">Ver Pauta</a>
+              <a href={{ route('pauta.show') }} class="btn btn-cor-sg-a">Ver Pauta</a>
           </td>
           </tr>
       </tbody>

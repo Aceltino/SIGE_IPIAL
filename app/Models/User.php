@@ -45,6 +45,6 @@ class User extends Model implements Authenticatable
 
     public function pessoa()
     {
-        return $this->belongsTo(Pessoa::class, 'pessoa_id', 'ususario_id');
+        return $this->belongsTo(Pessoa::class, 'pessoa_id');
     }
 }

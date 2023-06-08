@@ -27,12 +27,12 @@ class InscricaoRequest extends FormRequest
             //Formulario candidato
             'nome_pai_cand'=>'required|string|max:100|min:2',
             'nome_mae_cand'=>'required|string|max:100|min:2',
-            'naturalidade_cand'=>'required|string|max:100|min:2',
+            'naturalidade_cand'=>'nullable|string|max:100|min:2',
 
             //Formulario da Pessoa
             'nome_completo'=>'required|string|min:2|max:100',
             'data_nascimento'=>'required|date|before:'.now()->format('d-m-Y'),
-            'num_bi'=>'required|size:14|unique:pessoas,num_bi',
+            'num_bi'=>'nullable|size:14|unique:pessoas,num_bi',
             'genero' => 'required|string',
             'turno' => 'required|string',
 
@@ -50,9 +50,9 @@ class InscricaoRequest extends FormRequest
 
             //Formulario escola proveniente
             'nome_escola'=>'required|max:100|min:2',
-            'num_processo'=>'required|numeric|min:2',
+            'num_processo'=>'filled|numeric|min:2',
             'num_aluno'=>'required|numeric|min:1',
-            'ultimo_anoLectivo'=>'required|numeric|min:2',
+            'ultimo_anoLectivo'=>'nullable|numeric|min:2',
             'turma_aluno' => 'required|string',
 
             //Dados Telefone

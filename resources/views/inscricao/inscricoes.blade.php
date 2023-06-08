@@ -4,13 +4,12 @@
 
 
 @section('conteudo')
-
 <main id="main" class="main">
   <div class="row">
     <div class="col">
-      <h2>Inscritos</h2>      
+      <h2>Inscritos</h2>
     </div>
-  
+
     <div class="col-lg-2">
       <select class="btn-sel form-select" id="filtro5">
         <option selected disabled>Curso</option>
@@ -19,7 +18,7 @@
         <option value="Informática ">Informática</option>
         <option value="Electronica e Telecomunicação">Electrônica e Telecomunicação</option>
       </select>
-    </div> 
+    </div>
 
     <div class="col-lg-2">
       <select class="btn-sel form-select" id="filtro">
@@ -33,7 +32,7 @@
   <div class="procurar">
     <form class="proc-form d-flex align-items-center">
       <input id="pesquisa" type="text" placeholder="Digite o código da inscrição ou o número do B.I do Candidato" name="" class="campo-pesq">
-      <button type="submit" title="Search"><i class="bi bi-search"></i></button>   
+      <button type="submit" title="Search"><i class="bi bi-search"></i></button>
     </form>
   </div>
   <div style="display: flex; justify-content: flex-end; align-items: center;">
@@ -42,7 +41,7 @@
     </div>
     <!-- / Adicionar a condição se a data atual for menor a da final de matricula aparece o botão -->
     <div >
-      <button class="btnadmitir">Ativar Admições</button>
+      <a href="" class="bth btnadmitir">Ativar Admitido</a>
     </div>
     <!-- / Adicionar a condição se a data atual for menor a da final de matricula aparece o botão fin do coment+ario -->
 
@@ -62,9 +61,7 @@
         <th scope="col">Ações</th>
       </tr>
     </thead>
-    <tbody >
-<!-- Conteúdo API -->
-
+    <tbody>
     </tbody>
   </table>
  
@@ -86,9 +83,9 @@
         <div class="cabecalho-modal">
           <div class="row">
             <div class="col" style="display: flex; justify-content: flex-start; align-items: center;">
-              <h1>Dados pessoais</h1>      
+              <h1>Dados pessoais</h1>
             </div>
-          
+
             <div class="col" style="display: flex; justify-content: flex-end; align-items: center;">
               <button class="btn-imprimir">Imprimir <i class="bi bi-file-earmark-pdf"></i></button>
             </div>
@@ -98,7 +95,7 @@
 
         <div class="corpo-modal">
           <form class="form-inativo">
-            <div class="dados-pessoais">        
+            <div class="dados-pessoais">
               <div class="area-input form-group">
                 <label>Nome Completo: </label><input type="text" id="modal-registro-nome" name="" readonly="true" disabled value="">
               </div>
@@ -118,7 +115,7 @@
                   <div class="col area-input form-group" style="margin-left: 10px;">
                     <label>Idade: </label><input type="text" name=""id="modal-registro-Idade"readonly="true" disabled value="">
                   </div>
-                  
+
                   <div class="col area-input form-group" style="margin-left: 10px;">
                     <label>Gênero: </label><input type="text" name="" id="modal-registro-Genero" readonly="true" disabled value="">  
                   </div>
@@ -133,20 +130,7 @@
               <div class="container">
                 <div class="row">
                   <div class="col area-input form-group">
-                    <label>Tel-1: </label><input type="text" name="" readonly="true" disabled value="998 766 656">
-                  </div>
-
-                  <div class="col area-input form-group" style="margin-left: 10px;">
-                    <label>Tel-2: </label><input type="text" name="" readonly="true" disabled value="998 766 656">  
-                  </div>
-
-                </div>              
-              </div>
-
-              <div class="container">
-                <div class="row">
-                  <div class="col area-input form-group">
-                    <label>Tel-3: </label><input type="text" name="" readonly="true" disabled value="998 766 656">
+                    <label>Telefone: </label><input type="text" name="" id="modal-registro-Numerotel" readonly="true" disabled value="">
                   </div>
 
                   <div class="col form-group" style="margin-left: 10px;">
@@ -158,60 +142,34 @@
                 </div>
               </div>
             </div>
-            
+
             <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                 <div class="dados-academicos">
                   <div class="row">
                     <div class="col" style="display: flex; justify-content: flex-start; align-items: center;">
-                      <h1>Dados académicos</h1>      
-                    </div>  
+                      <h1>Dados académicos</h1>
+                    </div>
                   </div>
 
                   <br>
 
                   <div class="area-input form-group">
-                    <label>Escola de proveniência: </label><input type="text" name="" readonly="true" disabled value="Escola Pública">
+                    <label>Escola de proveniência: </label><input type="text" id="modal-registro-escolaprov" name="" readonly="true" disabled value="">
                   </div>
 
                   <div class="container">
                     <div class="row">
                       <div class="col area-input form-group">
-                        <label>Turno: </label><input type="text" name="" readonly="true" disabled value="Manhã">
+                        <label>Turno: </label><input type="text" name="" id="modal-registro-Turno" readonly="true" disabled value="">
                       </div>
 
                       <div class="col area-input form-group" style="margin-left: 10px;">
-                        <label>Turma: </label><input type="text" name="" readonly="true" disabled value="IJ12">
+                        <label>Turma: </label><input type="text" name="" id="modal-registro-Turma" readonly="true" disabled value="IJ12">
                       </div>
 
                       <div class="col area-input form-group" style="margin-left: 10px;">
                         <label>Nº aluno: </label>
-                        <input type="text" name="" readonly="true" disabled value="21">
-                      </div>
-
-                    </div>              
-                  </div>
-
-                  <div class="container">
-                    <div class="row">
-                      <div class="col area-input form-group">
-                        <label>Número de processo: </label><input type="text" name="" readonly="true" disabled value="76656">
-                      </div>
-
-                      <div class="col area-input form-group" style="margin-left: 10px;">
-                        <label>Ano lectivo: </label><input type="text" name="" readonly="true" disabled value="2022-2023">
-                      </div>
-
-                    </div>
-                  </div>
-                
-                  <div class="container">
-                    <div class="row">
-                      <div class="col area-input form-group">
-                        <label>Língua Poertuguesa: </label><input type="text" name="" readonly="true" disabled value="17">
-                      </div>
-
-                      <div class="col area-input form-group" style="margin-left: 10px;">
-                        <label>1º Curso: </label><input type="text" name="" readonly="true" disabled value="Electronica e Telecomunicação">
+                        <input type="text" name="" id="modal-registro-Numero_Aluno" readonly="true" disabled value="">
                       </div>
 
                     </div>
@@ -220,20 +178,46 @@
                   <div class="container">
                     <div class="row">
                       <div class="col area-input form-group">
-                        <label>Matemática: </label><input type="text" name="" readonly="true" disabled value="15">
+                        <label>Número de processo: </label><input type="text" name="" id="modal-registro-Numero_Processo" readonly="true" disabled value="">
+                      </div>
+
+                      <div class="col area-input form-group" style="margin-left: 10px;">
+                        <label>Ano lectivo: </label><input type="text" name="" id="modal-registro-Ultimo_AnoLectivo" readonly="true" disabled value="">
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="container">
+                    <div class="row">
+                      <div class="col area-input form-group">
+                        <label>Língua Poertuguesa: </label><input type="text" name="" id="modal-registro-Lingua_Portuguesa" readonly="true" disabled value="">
+                      </div>
+
+                      <div class="col area-input form-group" style="margin-left: 10px;">
+                        <label>1º Curso: </label><input type="text" name="" id="modal-registro-Cursos" readonly="true" disabled value="">
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="container">
+                    <div class="row">
+                      <div class="col area-input form-group">
+                        <label>Matemática: </label><input type="text" name="" id="modal-registro-Matematica" readonly="true" disabled value="">
                       </div>
 
                       <div class="col area-input form-group" style="margin-left: 10px;">
                         <label>2º Curso: </label><input type="text" name="" readonly="true" disabled value="Desenhador projetista - D.P">
                       </div>
-                  
+
                     </div>
                   </div>
 
                   <div class="container">
                     <div class="row">
                       <div class="col area-input form-group">
-                        <label>Química: </label><input type="text" name="" readonly="true" disabled value="14">
+                        <label>Química: </label><input type="text" name="" id="modal-registro-Quimica" readonly="true" disabled value="">
                       </div>
 
                       <div class="col area-input form-group" style="margin-left: 10px;">
@@ -246,7 +230,7 @@
                   <div class="container">
                     <div class="row">
                       <div class="col area-input form-group">
-                        <label>Física: </label><input type="text" name="" readonly="true" disabled value="16">
+                        <label>Física: </label><input type="text" name="" id="modal-registro-Fisica" readonly="true" disabled value="">
                       </div>
 
                       <div class="col area-input form-group" style="margin-left: 10px;">
@@ -258,15 +242,15 @@
 
                   <div class="container">
                     <div class="row">
-                      <div class="col form-group">
-                        <label style="padding: 10px; border-radius: 10px; background-color: #96abce;">Inscrição: 10-01-2023</label>
+                      <div class="col form-group" style="padding: 10px; border-radius: 10px; background-color: #96abce;">
+                        <label >Data Data de Inscrição:</label><input type="text" name="" id="modal-registro-Data_inscricao" readonly="true" disabled value=""> 
                       </div>
                     </div>
                   </div>
 
                 </div>
             </div>
-                  
+
             <div class="footer-modal" style="text-align: center;">
               <a href="/editar-candidato" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
               <div class="jnt">
@@ -275,13 +259,13 @@
                 <a href="#ExtralargeModal" class="btn" style="background-color: #070b17; color: #fff;">Dados pessoais <i class="bi bi-arrow-up"></i></a>
               </div>
             </div>
-        
-          </form> 
+
+          </form>
         </div>
-        
+
       </div>
     </div>
-  </div>      
+  </div>
 
   <!--  / Termina a modal ver inscrito-->
 

@@ -82,33 +82,33 @@
       <h2>Introduza os dados pessoais</h2>
 
       <div class="form-group">
-        <input type="text" placeholder="Nome Completo" value="{{old('nome_completo')}}" name="nome_completo" oninput="this.className = ''">
+        <input type="text" placeholder="Nome Completo" value="{{ old('nome_completo') }}" name="nome_completo" oninput="this.className = ''">
       </div>
 
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <input type="text" placeholder="Nome do Pai" value="{{old('nome_pai_cand')}}" name="nome_pai_cand" oninput="this.className = ''">
+            <input type="text" placeholder="Nome do Pai" value="{{ old('nome_pai_cand') }}" name="nome_pai_cand" oninput="this.className = ''">
           </div>
         </div>
 
         <div class="col">
           <div class="form-group">
-            <input type="text" placeholder="Nome da Mãe" value="{{old('nome_mae_cand')}}" name="nome_mae_cand" oninput="this.className = ''">
+            <input type="text" placeholder="Nome da Mãe" value="{{ old('nome_mae_cand') }}" name="nome_mae_cand" oninput="this.className = ''">
           </div>
         </div>
       </div>
 
       <div class="row">
         <div class="col">
-          <p><input type="date" name="data_nascimento" value="{{old('data_nascimento')}}" oninput="this.className = ''"></p>
+          <p><input type="date" value="{{ old('data_nascimento') }}" name="data_nascimento" oninput="this.className = ''"></p>
         </div>
 
         <div class="col">
           <input type="text" class="form-control" readonly="true" value="00" disabled>
         </div>
         <div class="col">
-          <input type="text" placeholder="Naturalidade" value="{{old('naturalidade_cand')}}" name="naturalidade_cand" oninput="this.className = ''">
+          <input type="text" placeholder="Naturalidade" value="{{ old('naturalidade_cand') }}" name="naturalidade_cand" oninput="this.className = ''">
         </div>
       </div>
 
@@ -122,7 +122,7 @@
 
         <div class="col">
           <div class="form-group">
-            <input type="text" placeholder="Número do bilhete de identidade" value="{{old('num_bi')}}"   name="num_bi" oninput="this.className = ''">
+            <input type="text" placeholder="Número do bilhete de identidade"  name="num_bi" oninput="this.className = ''">
           </div>
         </div>
       </div>
@@ -130,7 +130,7 @@
       <div class="row">
         <div id="clone1"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
           <span style="color: #777;">+244</span>
-          <input type="text" value="" placeholder="Telefone" value="{{old('num_tel')}}" name="num_tel" oninput="this.className = ''">
+          <input type="text" value="" placeholder="Telefone" value="{{ old('num_tel') }}" name="num_tel" oninput="this.className = ''">
         </div>
       </div>
     </div>
@@ -138,7 +138,7 @@
     <div class="tab">
       <h2>introduza os dados da escola de providência</h2>
       <div class="form-group">
-        <input type="text" placeholder="Nome da escola de providência" value="{{old('nome_escola')}}" name="nome_escola" oninput="this.className = ''">
+        <input type="text" placeholder="Nome da escola de providência" value="{{ old('nome_escola') }}" name="nome_escola" oninput="this.className = ''">
       </div>
 
       <div class="row">
@@ -151,22 +151,22 @@
         </div>
 
         <div class="form-group col">
-          <input type="text" placeholder="Nº de estudante" value="{{old('num_aluno')}}" name="num_aluno" oninput="this.className = ''">
+          <input type="text" placeholder="Nº de estudante" value="{{ old('num_aluno') }}" name="num_aluno" oninput="this.className = ''">
         </div>
 
         <div class="form-group col">
-          <input type="text" placeholder="Turma" value="{{old('turma_aluno')}}" name="turma_aluno" oninput="this.className = ''">
+          <input type="text" placeholder="Turma" value="{{ old('turma_aluno') }}" name="turma_aluno" oninput="this.className = ''">
         </div>
 
       </div>
 
       <div class="row">
         <div class="form-group col">
-          <input type="text" placeholder="Processo nº" value="{{old('num_processo')}}" name="num_processo" oninput="this.className = ''">
+          <input type="text" placeholder="Processo nº" value="{{ old('num_processo') }}" name="num_processo" oninput="this.className = ''">
         </div>
 
         <div class="form-group col">
-          <input type="text" placeholder="Ano Lectivo" value="{{old('ultimo_anoLectivo')}}" name="ultimo_anoLectivo" oninput="this.className = ''">
+          <input type="text" placeholder="Ano Lectivo" value="{{ old('ultimo_anoLectivo') }}" name="ultimo_anoLectivo" oninput="this.className = ''">
         </div>
 
       </div>
