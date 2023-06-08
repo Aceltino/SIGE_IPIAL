@@ -20,6 +20,11 @@ class Pessoa extends Model
         'created_at',
     ];
 
+    public function belongEndereco()
+    {
+        return $this->belongsTo(Endereco::class, 'endereco_id');
+    }
+
     public function endereco(){
         $this->belongsTo(Endereco::class, 'endereco_id','pessoa_id');
     }
@@ -49,6 +54,4 @@ class Pessoa extends Model
     public function professor(){
         $this->hasMany(Professor::class, 'professor_id','pessoa_id');
     }
-
-
 }

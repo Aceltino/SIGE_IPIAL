@@ -10,6 +10,7 @@ use App\Models\Endereco;
 use App\Models\Professor;
 use App\Models\Telefone;
 use Illuminate\Support\Facades\Validator;
+use App\Traits\ValidarBITrait;
 
 class ProfessorController extends Controller
 {
@@ -95,6 +96,9 @@ class ProfessorController extends Controller
                 'num_tel' => ['required', 'regex:/^\d{9}$/'],
                 'data_nascimento' => 'required|date',
             ]);
+
+            // $num = $request->input('...');
+            // $validarBI = ValidarBITrait::validar($num);
 
             $endereco = Endereco::create($validatedEndereco);
 
