@@ -40,7 +40,7 @@ class AdmissaoController extends Controller
 
         $dataMaisUmDia = Carbon::parse($data)->addDay()->format('Y-m-d');
 
-        // if ($dataMaisUmDia == $dataAtual)
+        // if ($dataMaisUmDia >= $dataAtual)
         // {
             $numVagasCurso = AdmissaoController::numeroVagas();
             $vagasTotal = 0;
@@ -52,16 +52,16 @@ class AdmissaoController extends Controller
             }
             $numeroVagasTotal = $vagasTotal - $admitidos;
 
-            // if($numeroVagasTotal === 0)
-            // {
-            //     return false;
-            // }
+            if($numeroVagasTotal === 0)
+            {
+                return false;
+            }
 
             $candidatos = CandidatoController::pegarCandidatos();
 
             foreach ($candidatos as &$candidato)
             {
-                $dataNascimento = Carbon::parse($candidato['Data de Nascimento']);
+                $dataNascimento = Carbon::parse($candidato['Data_Nascimento']);
                 $idade = $dataAtual->diffInYears($dataNascimento);
                 $candidato['idade'] = $idade;
             }
@@ -69,7 +69,7 @@ class AdmissaoController extends Controller
             foreach ($candidatos as &$candidato)
             {
                 $media = ($candidato['Matematica']
-                + $candidato['Lingua Portuguesa']
+                + $candidato['Lingua_Portuguesa']
                 + $candidato['Fisica']
                 + $candidato['Quimica']) / 4;
                 $medias[] = $candidato['media'] = $media;
@@ -108,14 +108,53 @@ class AdmissaoController extends Controller
 
                 return ($idadeA < $idadeB) ? -1 : 1;
             });
-dd($candAdmitidos);
-            foreach ($candAdmitidos as &$candidato)
-            {
-                CandidatoController::atualizarStatus($candidato['id']);
-                $cursoEcolhido[] = CandidatoController::pegarDadosCandidato($candidato['id']);
-                $candidato['cursoEscolhido'] = $cursoEcolhido;
+
+            foreach ($candAdmitidos as &$candidato) {
+                $cursoPreferencia = CandidatoCursoController::cursoEscolhido($candidato['id']);
+                $candidato['cursoEscolhido'] = $cursoPreferencia;
             }
 
+            $admitidos = [];
+
+            foreach ($candAdmitidos as &$candidato)
+            {
+
+                if (in_array($candidato['id'], $admitidos))
+                {
+                    continue;
+                }
+
+                usort($candidato['cursoEscolhido'], function ($a, $b)
+                {
+                    return $a['prefCurso'] - $b['prefCurso'];
+                });
+
+                $cursoEscolhido = null;
+
+                foreach ($candidato['cursoEscolhido'] as $preferencia)
+                {
+                    $nomeCurso = $preferencia['nomeCurso'];
+
+                    foreach ($numVagasCurso as $index => $curso)
+                    {
+                        if ($curso['Curso'] === $nomeCurso && $curso['Vagas da 10ª Classe'] > 0)
+                        {
+                            $cursoEscolhido = $nomeCurso;
+                            $numVagasCurso[$index]['Vagas da 10ª Classe']--;
+                            $admitidos[] = $candidato['id'];
+                            break 2;
+                        }
+                    }
+
+                    if ($cursoEscolhido !== null)
+                    {
+                        break;
+                    }
+                }
+                $candidato['cursoEscolhido'] = $cursoEscolhido;
+                CandidatoController::atualizarStatus($candidato);
+            }
+            return $candAdmitidos;
 
         // }
     }

@@ -16,6 +16,7 @@ class Candidato extends Model
         'nome_pai_cand',
         'nome_mae_cand',
         'naturalidade_cand',
+        'cursoAdmitido',
         'escola_proveniencia_id',
         'created_at',
         'updated_at',
@@ -43,6 +44,6 @@ class Candidato extends Model
 
     public function curso()
     {
-        return $this->belongsToMany(Curso::class, 'candidato_curso', 'candidato_id', 'curso_id');
+        return $this->belongsToMany(Curso::class, 'candidato_curso', 'candidato_id', 'curso_id')->withPivot('preferencia');
     }
 }

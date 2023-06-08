@@ -9,10 +9,12 @@ use App\Http\Controllers\{
     InscricaoController,
     ProfessorController,
     comunicadosController,
+    CandidatoCursoController,
     CursoController,
     ConsumoApiController
 };
 use Illuminate\Support\Facades\Route;
+use GuzzleHttp\Client;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,34 +28,31 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-//Rotas do Painel
+//Rotas inicial do Painel
 Route::get('/', function () {
     return view('pagina-inicial');
-})->name('inicio');
+})->name('inicio')->middleware('auth');
+
+ //Rota final do painel 
+ Route::get('logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
 
 // Rota apenas de teste... Não apague -> ACELTINO
-Route::get('validar-aluno', [AdmissaoController::class, 'validarCandidato']);
-
+Route::get('validar-aluno', [CandidatoController::class, 'pegarDadosCandidatos']);
 
 //Routas para Autenticação no Sistema
 Route::prefix('autenticacao')->group(function(){
 
     //Rota de Login
-    Route::get('login', [AuthController::class,'loginForm'])->name('login');
-    Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck');
-
-    //Rota de Logout
-    Route::post('logout',[AuthController::class,'logout'])->name('logout');
+    Route::get('login', [AuthController::class,'loginForm'])->name('login')->middleware('guest');
+    Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck')->middleware('guest');
 
     //Rota de Cadastro
     Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar');
     Route::post('registrar', [AuthController::class,'store'])->name('registrar');
 
     //CODIFICANDO...
-    Route::get('/lembrar', function () {
-        return view('autenticacao/recuperar-senha');
-    })->name('recuperar-senha');
-
+    Route::get('lembrar', [AuthController::class,'lembrar'])->name('recuperar-senha')->middleware('guest');
+    
 
 });
 
@@ -64,11 +63,16 @@ Route::prefix('autenticacao')->group(function(){
 Route::prefix('inscricao')->group(function(){
 
     /*Inscricoes ou alunos inscritos */
-    Route::get('inscricoes', [ConsumoApiController::class, 'consumoinscricao']);
+    // Route::get('inscricoes', [ConsumoApiController::class, 'consumoinscricao']);
+     Route::get('inscricoes', [InscricaoController::class, 'index'])->name('inscricao-index');
 
     /*Inscrever candidato */
     Route::get('inscrever', [InscricaoController::class, 'create'])->name('inscricao-view');
     Route::post('inscrever', [InscricaoController::class, 'store'])->name('inscricao-store');
+
+
+    Route::get('editar-candidato/{candidato}/editar', [InscricaoController::class, 'edit'])->name('inscricao-edit');
+    Route::put('editar-candidato/{candidato}', [InscricaoController::class, 'update'])->name('inscricao-update');
 
 
     /*Editar candidato */
@@ -77,29 +81,29 @@ Route::prefix('inscricao')->group(function(){
     });
 
     /*Inscritos online */
-    Route::get('inscritos-online', function () {
-        return view('inscricao/inscritos-online');
-    });
+    // Route::get('inscritos-online', function () {
+    //     return view('inscricao/inscritos-online');
+    // });
 
-    /*Incritos rejeitados */
-    Route::get('inscritos-rejeitados', function () {
-        return view('inscricao/inscritos-rejeitados');
-    });
+    // /*Incritos rejeitados */
+    // Route::get('inscritos-rejeitados', function () {
+    //     return view('inscricao/inscritos-rejeitados');
+    // });
 
-    /*Confirmar inscricao*/
-    Route::get('conf-inscricao', function () {
-        return view('inscricao/conf-inscricao');
-    });
-
-    /* Rejeitar inscricao */
-    Route::get('rej-inscricao', function () {
-        return view('inscricao/rejeitar-inscricao');
-        });
+    // /*Confirmar inscricao*/
+    // Route::get('conf-inscricao', function () {
+    //     return view('inscricao/conf-inscricao');
+    // });
 
     /* Rejeitar inscricao */
-    Route::get('admissoes', function () {
-    return view('inscricao/admissoes');
-    });
+    // Route::get('rej-inscricao', function () {
+    //     return view('inscricao/rejeitar-inscricao');
+    //     });
+
+    // /* Rejeitar inscricao */
+    // Route::get('admissoes', function () {
+    // return view('inscricao/admissoes');
+    // });
 });
 
 /**<!--Fim Rotas de inscricao--> */

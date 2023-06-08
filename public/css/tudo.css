@@ -185,6 +185,7 @@
     -moz-appearance: none;
     appearance: none;
     border-radius: 0.25rem;
+    margin-right: 4px;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
   
