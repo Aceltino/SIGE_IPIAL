@@ -28,34 +28,31 @@ use GuzzleHttp\Client;
 */
 
 
-//Rotas do Painel
+//Rotas inicial do Painel
 Route::get('/', function () {
     return view('pagina-inicial');
 })->name('inicio')->middleware('auth');
 
+ //Rota final do painel 
+ Route::get('logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
+
 // Rota apenas de teste... Não apague -> ACELTINO
 Route::get('validar-aluno', [CandidatoController::class, 'pegarDadosCandidatos']);
-
 
 //Routas para Autenticação no Sistema
 Route::prefix('autenticacao')->group(function(){
 
     //Rota de Login
-    Route::get('login', [AuthController::class,'loginForm'])->name('login');
-    Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck');
-
-    //Rota de Logout
-    Route::get('logout',[AuthController::class,'logout'])->name('logout');
+    Route::get('login', [AuthController::class,'loginForm'])->name('login')->middleware('guest');
+    Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck')->middleware('guest');
 
     //Rota de Cadastro
     Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar');
     Route::post('registrar', [AuthController::class,'store'])->name('registrar');
 
     //CODIFICANDO...
-    Route::get('/lembrar', function () {
-        return view('autenticacao/recuperar-senha');
-    })->name('recuperar-senha');
-
+    Route::get('lembrar', [AuthController::class,'lembrar'])->name('recuperar-senha')->middleware('guest');
+    
 
 });
 
