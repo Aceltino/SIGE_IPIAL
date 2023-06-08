@@ -2,14 +2,27 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model implements Authenticatable
+class User extends Model implements Authenticatable,CanResetPassword
 {
+
+
     use HasFactory, AuthenticatableTrait;
+
+    public function getEmailForPasswordReset()
+    {
+        return $this->email;
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        // Implemente aqui a lógica para enviar a notificação de redefinição de senha
+    }
 
     protected $table = 'users';
     protected $primaryKey= 'usuario_id';
@@ -45,6 +58,7 @@ class User extends Model implements Authenticatable
 
     public function pessoa()
     {
-        return $this->belongsTo(Pessoa::class, 'pessoa_id');
+        return $this->belongsTo(Pessoa::class, 'pessoa_id', 'usuario_id');
+
     }
 }

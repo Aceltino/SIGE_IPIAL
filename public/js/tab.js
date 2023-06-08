@@ -1,7 +1,14 @@
 //Javascript da tabela de inscrições views
-
+var totalRegistros = 0;
 $(document).ready(function () {
-  var $T= $("#Inscricoes-tab").DataTable({
+  var $T= $("#Inscricoes").DataTable({
+    initComplete: function(settings, json) {
+      // Verifica a contagem de registros
+      if (totalRegistros > 15) {
+        // Ativa o DataTables
+        $T.draw();
+      }
+    },
         pageLength: 6,
         "dom": '<"top"i>rt<"bottom"lp><"clear">',
         lengthChange: false,
@@ -29,6 +36,7 @@ $(document).ready(function () {
         select: true
         
     });
+    
 
         $('.ellipsis').tooltipster({
           theme: 'tooltipster-shadow', // Estilo do tooltip (você pode escolher outro tema)

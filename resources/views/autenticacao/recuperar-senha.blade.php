@@ -8,11 +8,29 @@
       <img src={{URL::asset("img/logo.png")}}><br>
       <span>SIGE - IPIAL</span>
     </div>
-    <form class="row g-3 needs-validation" novalidate>
-
+    @if(session('erro_email_001'))
+      <div class="alert alert-danger">
+          {{session('erro_email_001')}}
+      </div>
+    @endif
+    @if(session('status'))
+      <div class="alert alert-success" role="alert">
+        {{session('status')}}
+      </div>
+    @endif
+   
+    <form action={{route('password-email')}} method="post" class="row g-3 needs-validation" novalidate>
+    @csrf
       <div class="input-group col-12">
         <span class="input-group-addon" id="inputGroupPrepend"><i class="bi bi-lock-fill"></i></span>
-        <input type="email" name="email" placeholder="Inserir o e-mail" class="form-control" required>
+        <input type="email" name="email" value="{{old('email')}}" placeholder="Inserir o e-mail" class="form-control" required autofocus> 
+
+        @error('email')
+          <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+          </span>
+        @enderror
+
         <div class="invalid-feedback">Por favor insere um e-mail!</div>
       </div>
 

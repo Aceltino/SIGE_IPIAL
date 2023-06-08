@@ -8,14 +8,14 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{
     Auth,
-    Validator
+    Validator,
+    Password
 };
+use Laravel\Fortify\Fortify;
 
 class AuthController extends Controller
 {
     use PessoaTrait;
-
-
     public function loginForm(){
         $user= User::all();
 
@@ -24,13 +24,16 @@ class AuthController extends Controller
         }
         return view('autenticacao.login');
     }
-
     public function registrarForm(){
        return view('autenticacao.registrar');
     }
-
-    public function loginCheck(Request $request)
-    {
+    public function resetForm(){
+        return view('autenticacao.recuperar-senha');
+    } 
+    public function resetPasswordForm($token){
+        return view('autenticacao.nova_senha', ['token' => $token]);
+    }
+    public function loginCheck(Request $request){
        
         $credencias= [
             'nome_usuario'=>$request->username,
@@ -40,7 +43,7 @@ class AuthController extends Controller
         if (empty($credencias['nome_usuario']) || empty($credencias['password'])) {
             return redirect()->back()->with('erro_login_001', 'Por favor, insira os dados de acesso');
         }
-        if (!Auth::attempt($credencias)) {
+        if (!Auth::attempt($credencias,$request->lembrar)) {
             return redirect()->back()->with('erro_login_002', 'Dados incorretos');
         }
         $user = Auth::user();
@@ -56,7 +59,6 @@ class AuthController extends Controller
 
         return redirect()->intended('/');
     }
-    
     public function store(Request $request){
 
         //Criando o nome do Usuario
@@ -173,14 +175,30 @@ class AuthController extends Controller
         $msg=$request->cargo." Cadastrado com Sucesso. Por favor entre com os seus dados";
         return view('autenticacao.login')->with('registrado',$msg);
     }
-
     public function logout(){
         Auth::logout();
         Session::invalidate();
         return redirect()->route("login");      
     }
 
-    public function lembrar(){
-        return view('autenticacao.recuperar-senha');
+    public function envioLinkEmail(Request $request){
+
+        $request->validate(['email' => 'required|email']);
+
+        $consutEmail= User::where('email',$request->email)->first();
+        if(!$consutEmail) {
+            $msg="Lamentamos! este email não esta atrelado a conta do usuario";
+            return redirect()->back()->with('erro_email_001',$msg);
+        }
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
+        
+        return $status === Password::RESET_LINK_SENT
+                    ? back()->with(['status' => __("Enviamos seu link de redefinição de senha por e-mail!")])
+                    : back()->withErrors(['email' => __($status)]);
+
     }
-}
+
+   
+}   
