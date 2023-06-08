@@ -57,7 +57,7 @@
           
           <div class="col">
 
-            <a href="/lembrar" class="forgot-password">Esqueceu a senha?</a>
+            <a href={{route('recuperar-senha')}} class="forgot-password">Esqueceu a senha?</a>
           </div>
         </div>
       </div>

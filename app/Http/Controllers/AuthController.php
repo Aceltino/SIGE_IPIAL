@@ -15,6 +15,7 @@ class AuthController extends Controller
 {
     use PessoaTrait;
 
+
     public function loginForm(){
         $user= User::all();
 
@@ -51,6 +52,8 @@ class AuthController extends Controller
 
         Session::start();
         $request->session()->regenerate();
+        session(['user'=>$user]);
+
         return redirect()->intended('/');
     }
     
@@ -175,5 +178,9 @@ class AuthController extends Controller
         Auth::logout();
         Session::invalidate();
         return redirect()->route("login");      
+    }
+
+    public function lembrar(){
+        return view('autenticacao.recuperar-senha');
     }
 }

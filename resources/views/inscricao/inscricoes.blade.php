@@ -53,7 +53,7 @@
 
   </div>
   <!-- /  Inicio da tabela de inscritos -->
-  <table class="table table-striped" style="margin-top: 10px;" id="matricula-tab">
+  <table class="table table-striped display" style="margin-top: 10px;" id="Inscricoes-tab">
     <thead>
       <tr style=" text-align: center;">
         <th scope="col">Número do BI</th>
