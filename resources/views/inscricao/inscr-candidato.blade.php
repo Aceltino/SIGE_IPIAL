@@ -68,9 +68,9 @@
     @endif
 
 
-        @if(session()->has('ErroCadastro'))
+        @if(session()->has('ErroCandidato'))
         <div class="alert alert-danger">
-        {{session('ErroCadastro')}}
+        {{session('ErroCandidato')}}
         </div>
     @endif
 

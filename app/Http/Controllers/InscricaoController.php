@@ -232,4 +232,5 @@ class InscricaoController extends Controller
     return Redirect::route('inscricao-index')->with("Sucesso",$msg);
     }
 
+
 }

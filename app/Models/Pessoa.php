@@ -29,7 +29,7 @@ class Pessoa extends Model
         $this->belongsTo(Endereco::class, 'endereco_id','pessoa_id');
     }
     public function user(){
-        $this->hasOne(User::class,'pessoa_id','usuario_id');
+        $this->hasOne(User::class, 'usuario_id');
     }
     public function candidato(){
         $this->hasOne(Candidato::class,'candidato_id');
