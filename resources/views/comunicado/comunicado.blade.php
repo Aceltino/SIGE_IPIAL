@@ -82,7 +82,7 @@
                         <div class="jnt">
                             <a href="{{ route('comunicado.index') }}" class="btn" style="background-color: #070b17; color: #fff;">Retrocer aos Comunicados</a>
 
-                            <a href="{{ route('comunicado.edit', ['id'=>$comunicado->comunicado_id]) }}" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
+                            <a href="{{ route('comunicado.edit', ['id'=>$comunicados->comunicado_id]) }}" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
                         </div>
                       </div>
 

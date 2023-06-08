@@ -26,9 +26,9 @@ class comunicadosController extends Controller
         ]);
         return Comunicado::create($request->all());
     }
-    public function edit($comunicado_id)
+    public function edit($id)
     {
-        $comunicados = Comunicado::where('comunicado_id',$comunicado_id)->first();
+        $comunicados = Comunicado::where('id',$id)->first();
         if(!empty($comunicados))
         {
             return view('comunicado.editar-comunicado', ['comunicados'=>$comunicados]);
@@ -37,13 +37,13 @@ class comunicadosController extends Controller
                 return redirect()->route('comunicado.index');
         }
     }
-    public function update(Request $request, $comunicado_id)
+    public function update(Request $request, $id)
     {
         $dados = [
             'titulo_com' =>$request->titulo,
             'conteudo_com'=>$request->conteudo,
         ];
-        Comunicado::where('comunicado_id',$comunicado_id)->upadate($dados);
+        Comunicado::where('id',$id)->upadate($dados);
         return redirect()->route('comunicado.index');
 
     }
