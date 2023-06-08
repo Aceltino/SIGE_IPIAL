@@ -53,7 +53,7 @@
     </div>
     <!-- / Adicionar a condição se a data atual for menor a da final de matricula aparece o botão -->
     <div >
-      <a href="" class="bth btnadmitir">Ativar Admitido</a>
+      <a href="{{ route('admitir-inscritos') }}" class="bth btnadmitir">Ativar Admitido</a>
     </div>
     <!-- / Adicionar a condição se a data atual for menor a da final de matricula aparece o botão fin do coment+ario -->
 
@@ -264,9 +264,9 @@
             </div>
 
             <div class="footer-modal" style="text-align: center;">
-              <a href={{ route('inscricao-edit', ['candidato' => 1]) }} class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
+              <a href="{{ route('inscricao-edit', ['candidato' => 1]) }}" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
               <div class="jnt">
-                <a href="#" class="btn" style="background-color: #070b17; color: #fff;">Retrocer aos inscritos</a>
+                <a href="{{ route('inscricao-index') }}" class="btn" style="background-color: #070b17; color: #fff;">Retrocer aos inscritos</a>
 
                 <a href="#ExtralargeModal" class="btn" style="background-color: #070b17; color: #fff;">Dados pessoais <i class="bi bi-arrow-up"></i></a>
               </div>
