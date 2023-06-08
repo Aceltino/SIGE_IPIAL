@@ -97,7 +97,6 @@ class CandidatoController extends Controller
             $candidato['media'] = $media;
         }
 
-        AdmissaoController::validarCandidato();
         $dadosCandidatos = [];
         foreach ($candidatos as $candidato)
         {
@@ -108,6 +107,7 @@ class CandidatoController extends Controller
                 'NumeroBI' => $candidato->pessoa->num_bi,
                 'Genero' => $candidato->pessoa->genero,
                 'Idade' => $candidato->idade,
+                'Telefone' => $candidato->pessoa->telefone,
 
                 'Matematica' => $candidato->escola->matematica,
                 'Lingua_Portuguesa' => $candidato->escola->ling_port,
@@ -143,7 +143,7 @@ class CandidatoController extends Controller
                     return $a['prefCurso'] - $b['prefCurso'];
                 });
                 // dd($cursoCandidato);
-                $candidato = Candidato::with( 'pessoa', 'escola')->findOrFail($id);
+                $candidato = Candidato::with('pessoa', 'escola')->findOrFail($id);
 
                 $cursoEscolhido = [];
 

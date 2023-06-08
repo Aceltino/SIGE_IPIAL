@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Turma;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Redirect;
 
 class AdmissaoController extends Controller
 {
@@ -36,12 +37,6 @@ class AdmissaoController extends Controller
     public static function validarCandidato()
     {
         $dataAtual = Carbon::now();
-        $data = AnoLectivoController::pegarDataFimInscricao();
-
-        $dataMaisUmDia = Carbon::parse($data)->addDay()->format('Y-m-d');
-
-        // if ($dataMaisUmDia >= $dataAtual)
-        // {
             $numVagasCurso = AdmissaoController::numeroVagas();
             $vagasTotal = 0;
             $admitidos = CandidatoController::pegarAdmitidos();
@@ -154,8 +149,21 @@ class AdmissaoController extends Controller
                 $candidato['cursoEscolhido'] = $cursoEscolhido;
                 CandidatoController::atualizarStatus($candidato);
             }
-            return $candAdmitidos;
-
-        // }
+        return true;
     }
+
+    public function admitirCandidatos()
+    {
+        $admitidos = AdmissaoController::validarCandidato();
+
+        if(!$admitidos)
+        {
+            $msg="Tente este processo após o fim da matricula";
+            return redirect()->back()->with("ErroCandidato", $msg);
+        }
+            $msg = "Novo(s) alunos admitidos!";
+            return Redirect::route('inscricao-index')->with("Sucesso", $msg);
+    }
+
+
 }

@@ -4,17 +4,25 @@
 
 @section('conteudo')
 
-@if(session()->has('Sucesso'))
-<div class="alert alert-success">
-{{session('Sucesso')}}
-</div>
-@endif
+
 
 <main id="main" class="main">
   <div class="row">
     <div class="col">
       <h2>Inscritos</h2>
     </div>
+
+    @if(session()->has('Sucesso'))
+<div class="alert alert-success">
+{{session('Sucesso')}}
+</div>
+@endif
+
+@if(session()->has('ErroCandidato'))
+        <div class="alert alert-danger">
+        {{session('ErroCandidato')}}
+        </div>
+    @endif
 
     <div class="col-lg-2">
       <select class="btn-sel form-select" id="filtro5">
@@ -47,7 +55,7 @@
     </div>
     <!-- / Adicionar a condição se a data atual for menor a da final de matricula aparece o botão -->
     <div >
-      <button class="btnadmitir">Ativar Admições</button>
+      <a href=" {{ route('admitir-inscritos')}}" class="btnadmitir">Ativar Admições</a>
     </div>
     <!-- / Adicionar a condição se a data atual for menor a da final de matricula aparece o botão fin do coment+ario -->
 
@@ -301,7 +309,7 @@
             </div>
 
             <div class="footer-modal" style="text-align: center;">
-              <a href="/editar-candidato" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
+              <a href={{ route('inscricao-edit', ['candidato' => 1]) }} class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
               <div class="jnt">
                 <a href="#" class="btn" style="background-color: #070b17; color: #fff;">Retrocer aos inscritos</a>
 

@@ -35,7 +35,7 @@ Route::get('/', function () {
     return view('pagina-inicial');
 })->name('inicio')->middleware('auth');
 
- //Rota final do painel 
+ //Rota final do painel
  Route::get('logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
 
 // Rota apenas de teste... Não apague -> ACELTINO
@@ -54,7 +54,7 @@ Route::prefix('autenticacao')->group(function(){
 
     //CODIFICANDO...
     Route::get('lembrar', [AuthController::class,'lembrar'])->name('recuperar-senha')->middleware('guest');
-    
+
 
 });
 
@@ -71,6 +71,10 @@ Route::prefix('inscricao')->group(function(){
     /*Inscrever candidato */
     Route::get('inscrever', [InscricaoController::class, 'create'])->name('inscricao-view');
     Route::post('inscrever', [InscricaoController::class, 'store'])->name('inscricao-store');
+
+    // Admitir inscrito
+    Route::get('admitir', [AdmissaoController::class, 'admitirCandidatos'])->name('admitir-inscritos');
+
 
 
     Route::get('editar-candidato/{candidato}/editar', [InscricaoController::class, 'edit'])->name('inscricao-edit');
