@@ -11,7 +11,6 @@ use App\Http\Controllers\{
     comunicadosController,
     CandidatoCursoController,
     CursoController,
-    ConsumoApiController,
     MiniPautaController,
     PautaController,
 };
