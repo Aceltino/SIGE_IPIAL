@@ -12,10 +12,11 @@ class Ano_lectivo extends Model
     protected $table = 'ano_lectivo';
 
     protected $fillable = [
+        'ano_lectivo_id',
         'ano_lectivo',
         'status_ano_lectivo',
         'data_inicio_ano_lectivo',
-        'data_fim_ano_ano_lectivo',
+        'data_fim_ano_lectivo',
         'num_aluno_na_turma',
         'num_sala_escola',
         'created_at',
