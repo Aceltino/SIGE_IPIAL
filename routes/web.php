@@ -86,16 +86,12 @@ Route::prefix('inscricao')->group(function(){
     // Admitir inscrito
     Route::get('admitir', [AdmissaoController::class, 'admitirCandidatos'])->name('admitir-inscritos');
 
-
-
+    // Editar inscrito
     Route::get('editar-candidato/{candidato}/editar', [InscricaoController::class, 'edit'])->name('inscricao-edit');
     Route::put('editar-candidato/{candidato}', [InscricaoController::class, 'update'])->name('inscricao-update');
 
 
     /*Editar candidato */
-    Route::get('editar-candidato', function () {
-        return view('inscricao/edit-candidato');
-    });
 
     /*Inscritos online */
     // Route::get('inscritos-online', function () {
@@ -167,11 +163,6 @@ Route::prefix('matricula')->group(function(){
     /*Registrar aluno */
     Route::get('registrar-aluno', function () {
         return view('matricula/registrar-aluno');
-    });
-
-    /*Alunos registrados */
-    Route::get('alunos-registrado', function () {
-        return view('matricula/alunos-registrado');
     });
 
     /*Editar registro */
