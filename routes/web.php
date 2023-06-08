@@ -11,7 +11,9 @@ use App\Http\Controllers\{
     comunicadosController,
     CandidatoCursoController,
     CursoController,
-    ConsumoApiController
+    ConsumoApiController,
+    MiniPautaController,
+    PautaController,
 };
 use Illuminate\Support\Facades\Route;
 use GuzzleHttp\Client;
@@ -170,16 +172,19 @@ Route::prefix('matricula')->group(function(){
  */
 Route::prefix('professor')->group(function(){
 
+    Route::get('rota/{segmento}', [ProfessorController::class, 'editarProfessor'])->name('prof.rota');
+
     Route::get('cadastrar-professor', [ProfessorController::class, 'create'])->name('professor.cadastrar');
     Route::post('cadastrar-professor', [ProfessorController::class, 'store'])->name('prof.postRegistar');
 
     Route::get('consultar-professor', [ProfessorController::class, 'index'])->name('professor');
 
-    Route::get('editar/{id}', [ProfessorController::class, 'edit'])->name('professor.Editar');
-    Route::get('editar/dados-pessoais', [ProfessorController::class, 'profDadosPessoais'])->name('professor.dados-pessoais');
+    Route::get('editar/{id}', [ProfessorController::class, 'editar'])->name('professor.Editar');
+    Route::post('editar/{id}', [ProfessorController::class, 'atualizar'])->name('professor.atualizar');
+    Route::get('dados-pessoais/{id}', [ProfessorController::class, 'profDadosPessoais'])->name('professor.dados-pessoais');
 
-    Route::get('horario-professor', [ProfessorController::class, 'horarioProf'])->name('horarioProfessor');
-    Route::get('avaliacao', [ProfessorController::class, 'avaliacao'])->name('avaliacao');
+    Route::get('horario/{id}', [ProfessorController::class, 'horarioProf'])->name('horarioProfessor');
+    Route::get('avaliacao/{id}', [ProfessorController::class, 'avaliacao'])->name('avaliacao');
 });
 
 /**<!--Fim Rotas de Professor--> */
@@ -299,23 +304,15 @@ Route::prefix('processo')->group(function(){
  * Rotas de pauta
  */
 Route::prefix('pauta')->group(function(){
-    Route::get('pautas', function () {
-        return view('pauta/pautas');
-    });
-    Route::get('ver-pauta', function () {
-        return view('pauta/pauta-doc');
-    });
+    Route::get('pautas', [PautaController::class, 'index'])->name('pauta');
+    Route::get('ver-pauta', [PautaController::class, 'show'])->name('pauta.show');
 });
 /******************************************
  * Rotas de mini-pauta
  */
 Route::prefix('mini-pauta')->group(function(){
-    Route::get('mini-pauta', function () {
-        return view('mini-pauta/mini-pauta');
-    });
-    Route::get('ver-mini-pauta', function () {
-        return view('mini-pauta/mini-pauta-doc');
-    });
+    Route::get('mini-pauta', [MiniPautaController::class, 'index'])->name('mini-pauta');
+    Route::get('ver-mini-pauta', [MiniPautaController::class, 'show'])->name('mini-pauta.show');
 
 });
 /******************************************

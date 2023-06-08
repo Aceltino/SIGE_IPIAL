@@ -95,9 +95,11 @@
           <div class="form-group">
             <select name='formacao' oninput="this.className = ''" class="form-select">
               <optgroup label="Curso">
+
                 @foreach ($cursos as $curso)
                   <option value="{{ $curso->sigla }}">{{ $curso->nome_curso }}</option>
                 @endforeach
+                
               </optgroup>
             </select>
           </div>
