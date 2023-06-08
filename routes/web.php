@@ -52,9 +52,17 @@ Route::prefix('autenticacao')->group(function(){
     Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar');
     Route::post('registrar', [AuthController::class,'store'])->name('registrar');
 
-    //CODIFICANDO...
-    Route::get('lembrar', [AuthController::class,'lembrar'])->name('recuperar-senha')->middleware('guest');
-    
+    //rota para envio de email para redifinição de senha
+    Route::get('reset', [AuthController::class,'resetForm'])->name('recuperar-senha')->middleware('guest');
+    Route::post('reset/email', [AuthController::class, 'envioLinkEmail'])->name('password-email')->middleware('guest');
+
+    //rota para redifinição de senha
+    Route::get('lembrar/reset/{token}', [AuthController::class, 'resetPasswordForm'])->name('nova-password');
+    Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password-update');
+
+    Route::get('/reset-password/{token}', function ($token) {
+        return view('auth.reset-password', ['token' => $token]);
+    })->middleware('guest')->name('password.reset');
 
 });
 
