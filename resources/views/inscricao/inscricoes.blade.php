@@ -2,7 +2,9 @@
 
 @section('title', 'Alunos inscritos')
 
+
 @section('conteudo')
+
 <main id="main" class="main">
   <div class="row">
     <div class="col">
@@ -46,6 +48,7 @@
 
   </div>
   <!-- /  Inicio da tabela de inscritos -->
+
   <table class="table table-striped display" style="margin-top: 10px;" id="Inscricoes-tab">
     <thead>
       <tr style=" text-align: center;">
@@ -59,46 +62,17 @@
         <th scope="col">Ações</th>
       </tr>
     </thead>
-    <tbody>
-      @foreach($dados as $dado)
-      <tr  style=" text-align: center;">
-        <th scope="row">{{$dado['NumeroBI']}}</th>
-        <td class="ellipsis" title="{{$dado['Nome']}}">{{$dado['Nome']}}</td>
-        <td>{{$dado['Media']}}</td>
-        <td>{{$dado['Idade']}}</td>
-        <td>Informática</td>
-        @if($dado['Situacao'] == "Admitido")
-        <td style="font-weight: 600; color: green;">{{$dado['Situacao']}}</td>
-        @elseif($dado['Situacao'] == "pendente")
-         <td style="font-weight: 600; color: rgb(226, 223, 7);">{{$dado['Situacao']}}</td>
-         @elseif($dado['Situacao'] == "não admitido")
-         <td style="font-weight: 600; color: rgb(175, 0, 0);">{{$dado['Situacao']}}</td>
-        @else
-        <td style="font-weight: 600; color: rgb(0, 0, 0);">Erro</td>
-        @endif
-         <!-- / Adicionar a condição se atimitido e a data atual for menor a da final de matricula aparece o botão matricualr -->
-        @if($dado['Situacao'] == "Admitido") 
-        <td class="pendente1"><a href="#" class="btn btn-success">Matricular</a></td>
-        @elseif($dado['Situacao'] == "Pendente")
-        <td class="pendente1">Aguarde...</td>
-        @else
-        <td>Fechado</td>
-        @endif
-        
-        <td>
-          <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-          <a href="{{route('inscricao-view')}}"><i class="bi bi-pencil"></i></a>
-          <i class="bi bi-trash-fill"></i>
-        </td>
-      </tr>
-      @endforeach
+    <tbody >
+<!-- Conteúdo API -->
+
     </tbody>
   </table>
+ 
   <!-- Termina a tabela de inscritos -->
 
 
   <!--Inicio da modal ver inscrito-->
-  <div class="modal fade" id="ExtralargeModal" tabindex="-1" data-bs-backdrop="false">
+  <div class="modal fade" id="Modalinscricao" tabindex="-1" data-bs-backdrop="false">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
 
@@ -126,34 +100,34 @@
           <form class="form-inativo">
             <div class="dados-pessoais">        
               <div class="area-input form-group">
-                <label>Nome Completo: </label><input type="text" name="" readonly="true" disabled value="Bruno dos Santos Manuel">
+                <label>Nome Completo: </label><input type="text" id="modal-registro-nome" name="" readonly="true" disabled value="">
               </div>
               <div class="area-input form-group">
-                <label>Nome do Pai: </label><input type="text" name="" readonly="true" disabled value="Bruno dos Santos Manuel">
+                <label>Nome do Pai: </label><input type="text" name="" id="modal-registro-pai" readonly="true" disabled value="">
               </div>
               <div class="area-input form-group">
-                <label>Nome da Mãe: </label><input type="text" name="" readonly="true" disabled value="Fernanda MIiles Manuel">
+                <label>Nome da Mãe: </label><input type="text" name="" id="modal-registro-mae" readonly="true" disabled value="">
               </div>
 
               <div class="container">
                 <div class="row">
                   <div class="col area-input form-group">
-                    <label>Data de nascimento: </label><input type="text" name="" readonly="true" disabled value="05/04/2023">
+                    <label>Data de nascimento: </label><input type="text" name="" id="modal-registro-datanasc" readonly="true" disabled value="">
                   </div>
 
                   <div class="col area-input form-group" style="margin-left: 10px;">
-                    <label>Idade: </label><input type="text" name="" readonly="true" disabled value="16">
+                    <label>Idade: </label><input type="text" name=""id="modal-registro-Idade"readonly="true" disabled value="">
                   </div>
                   
                   <div class="col area-input form-group" style="margin-left: 10px;">
-                    <label>Gênero: </label><input type="text" name="" readonly="true" disabled value="Masculino">  
+                    <label>Gênero: </label><input type="text" name="" id="modal-registro-Genero" readonly="true" disabled value="">  
                   </div>
 
                 </div>
               </div>
 
               <div class="area-input form-group">
-                <label>Número do BI: </label><input type="text" name="" readonly="true" disabled value="0002505QL014">
+                <label>Número do BI: </label><input type="text" name="" id="modal-registro-NumeroBI" readonly="true" disabled value="0002505QL014">
               </div>
 
               <div class="container">

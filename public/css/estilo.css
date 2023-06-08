@@ -976,3 +976,48 @@ a.color-white{
     text-overflow: ellipsis;
     max-width: 100px; /* Defina a largura máxima da célula de dados */
 }
+.texto{
+  text-align: center;
+}
+
+.texto1{
+  align-items: center;
+}
+
+.texto2{
+
+  text-align: center;
+  
+}
+.texto3{
+
+  text-align: center;
+  color: rgb(3, 170, 3);
+  
+}
+
+.texto4{
+
+  text-align: center;
+  color: #0e7704;
+  
+}
+.texto5{
+
+  text-align: center;
+  color: rgb(223, 219, 5);
+  
+}
+
+.texto6{
+
+  text-align: center;
+  color: rgb(88, 88, 88);
+  
+}
+
+
+.tto{
+  margin-left: 10px;
+}
+
