@@ -66,15 +66,16 @@ Route::prefix('autenticacao')->group(function(){
 Route::prefix('inscricao')->group(function(){
 
     /*Inscricoes ou alunos inscritos */
-    Route::get('inscricoes', [ConsumoApiController::class, 'consumoinscricao']);
+    // Route::get('inscricoes', [ConsumoApiController::class, 'consumoinscricao']);
+     Route::get('inscricoes', [InscricaoController::class, 'index'])->name('inscricao-index');
 
     /*Inscrever candidato */
     Route::get('inscrever', [InscricaoController::class, 'create'])->name('inscricao-view');
     Route::post('inscrever', [InscricaoController::class, 'store'])->name('inscricao-store');
 
 
-    Route::get('editar-candidato', [InscricaoController::class, 'edit'])->name('inscricao-view');
-    Route::post('editar-candidato', [InscricaoController::class, 'update'])->name('inscricao-store');
+    Route::get('editar-candidato/{candidato}/editar', [InscricaoController::class, 'edit'])->name('inscricao-edit');
+    Route::put('editar-candidato/{candidato}', [InscricaoController::class, 'update'])->name('inscricao-update');
 
 
     /*Editar candidato */

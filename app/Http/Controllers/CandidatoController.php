@@ -115,9 +115,9 @@ class CandidatoController extends Controller
                 'Quimica' => $candidato->escola->quimica,
                 'Escola' => $candidato->escola->nome_escola,
                 'Turno' => $candidato->escola->turno,
-                'Numero Processo' => $candidato->escola->num_processo,
-                'Numero Aluno' => $candidato->escola->num_aluno,
-                'Ultimo AnoLectivo' => $candidato->escola->ultimo_anoLectivo,
+                'Numero_Processo' => $candidato->escola->num_processo,
+                'Numero_Aluno' => $candidato->escola->num_aluno,
+                'Ultimo_AnoLectivo' => $candidato->escola->ultimo_anoLectivo,
                 'Media' => $candidato->media,
 
                 'Curso' => $candidato->cursoAdmitido,
@@ -130,6 +130,70 @@ class CandidatoController extends Controller
             ];
         }
         return $dadosCandidatos;
+    }
+
+    public static function pegarDadosCandidato($id)
+    {
+        $dataAtual = Carbon::now();
+
+        $cursoCandidato = CandidatoCursoController::cursoEscolhido($id);
+
+                usort($cursoCandidato, function ($a, $b)
+                {
+                    return $a['prefCurso'] - $b['prefCurso'];
+                });
+                // dd($cursoCandidato);
+                $candidato = Candidato::with( 'pessoa', 'escola')->findOrFail($id);
+
+                $cursoEscolhido = [];
+
+                $dataNascimento = Carbon::parse($candidato->pessoa->data_nascimento);
+                $idade = $dataAtual->diffInYears($dataNascimento);
+                $candidato['idade'] = $idade;
+
+                foreach($cursoCandidato as $curso)
+                {
+                    $cursoEscolhido[] = $curso['nomeCurso'];
+                }
+
+            $dadosCandidatos[] =
+            [
+                'Nome' => $candidato->pessoa->nome_completo,
+                'Data_Nascimento' => $candidato->pessoa->data_nascimento,
+                'NumeroBI' => $candidato->pessoa->num_bi,
+                'Genero' => $candidato->pessoa->genero,
+                'Idade' => $candidato->idade,
+                'Telefone' => $candidato->pessoa->telefone,
+
+                'Matematica' => $candidato->escola->matematica,
+                'Lingua_Portuguesa' => $candidato->escola->ling_port,
+                'Fisica' => $candidato->escola->fisica,
+                'Quimica' => $candidato->escola->quimica,
+                'Escola' => $candidato->escola->nome_escola,
+                'Turno' => $candidato->escola->turno,
+                'Turma' => $candidato->escola->turma_aluno,
+                'Numero_Processo' => $candidato->escola->num_processo,
+                'Numero_Aluno' => $candidato->escola->num_aluno,
+                'Ultimo_AnoLectivo' => $candidato->escola->ultimo_anoLectivo,
+                'Id_inscricao' => $candidato->candidato_id,
+                'Cursos' => $cursoEscolhido,
+
+                'Pai' => $candidato->nome_pai_cand,
+                'Mae' => $candidato->nome_mae_cand,
+                'Naturalidade' => $candidato->naturalidade_cand,
+            ];
+        return $dadosCandidatos;
+    }
+
+    public static function updateCandidato($dadosCandidato)
+    {
+        $candidato = Candidato::find($dadosCandidato['id']);
+
+        $candidato->nome_pai_cand = $dadosCandidato['nome_pai_cand'];
+        $candidato->nome_mae_cand = $dadosCandidato['nome_mae_cand'];
+        $candidatoAtualizado = $candidato->save();
+
+        return $candidatoAtualizado;
     }
 
 }
