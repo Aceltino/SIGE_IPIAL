@@ -16,6 +16,10 @@ return array(
     'App\\Http\\Controllers\\AdmissaoController' => $baseDir . '/app/Http/Controllers/AdmissaoController.php',
     'App\\Http\\Controllers\\AnoLectivoController' => $baseDir . '/app/Http/Controllers/AnoLectivoController.php',
     'App\\Http\\Controllers\\AreaFormacaoController' => $baseDir . '/app/Http/Controllers/AreaFormacaoController.php',
+
+    'App\\Http\\Controllers\\AdmissaoController' => $baseDir . '/app/Http/Controllers/AdmissaoController.php',
+    'App\\Http\\Controllers\\AnoLectivoController' => $baseDir . '/app/Http/Controllers/AnoLectivoController.php',
+
     'App\\Http\\Controllers\\AuthController' => $baseDir . '/app/Http/Controllers/AuthController.php',
     'App\\Http\\Controllers\\CandidatoController' => $baseDir . '/app/Http/Controllers/CandidatoController.php',
     'App\\Http\\Controllers\\CandidatoCursoController' => $baseDir . '/app/Http/Controllers/CandidatoCursoController.php',
@@ -23,12 +27,21 @@ return array(
     'App\\Http\\Controllers\\ConsumoApiController' => $baseDir . '/app/Http/Controllers/ConsumoApiController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\CursoController' => $baseDir . '/app/Http/Controllers/CursoController.php',
+
+    'App\\Http\\Controllers\\EscolaController' => $baseDir . '/app/Http/Controllers/EscolaController.php',
+    'App\\Http\\Controllers\\CursoController' => $baseDir . '/app/Http/Controllers/CursoController.php',
+
     'App\\Http\\Controllers\\DisciplinasController' => $baseDir . '/app/Http/Controllers/DisciplinasController.php',
     'App\\Http\\Controllers\\EnderecoController' => $baseDir . '/app/Http/Controllers/EnderecoController.php',
     'App\\Http\\Controllers\\EscolaController' => $baseDir . '/app/Http/Controllers/EscolaController.php',
     'App\\Http\\Controllers\\InscricaoController' => $baseDir . '/app/Http/Controllers/InscricaoController.php',
     'App\\Http\\Controllers\\MatriculaController' => $baseDir . '/app/Http/Controllers/MatriculaController.php',
     'App\\Http\\Controllers\\ProfessorController' => $baseDir . '/app/Http/Controllers/ProfessorController.php',
+
+    'App\\Http\\Controllers\\MatriculaController' => $baseDir . '/app/Http/Controllers/MatriculaController.php',
+    'App\\Http\\Controllers\\ProfessorController' => $baseDir . '/app/Http/Controllers/ProfessorController.php',
+    'App\\Http\\Controllers\\TelefoneController' => $baseDir . '/app/Http/Controllers/TelefoneController.php',
+
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
     'App\\Http\\Controllers\\comunicadosController' => $baseDir . '/app/Http/Controllers/comunicadosController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
@@ -49,8 +62,20 @@ return array(
     'App\\Models\\Comunicado' => $baseDir . '/app/Models/Comunicado.php',
     'App\\Models\\Curso' => $baseDir . '/app/Models/Curso.php',
     'App\\Models\\Disciplina' => $baseDir . '/app/Models/Disciplina.php',
+
     'App\\Models\\Endereco' => $baseDir . '/app/Models/Endereco.php',
     'App\\Models\\Escola_proveniencia' => $baseDir . '/app/Models/Escola_proveniencia.php',
+
+    'App\\Http\\Requests\\InscricaoRequest' => $baseDir . '/app/Http/Requests/InscricaoRequest.php',
+    'App\\Models\\Ano_lectivo' => $baseDir . '/app/Models/Ano_lectivo.php',
+    'App\\Models\\Candidato' => $baseDir . '/app/Models/Candidato.php',
+    'App\\Models\\Classe' => $baseDir . '/app/Models/Classe.php',
+    'App\\Models\\Comunicado' => $baseDir . '/app/Models/Comunicado.php',
+    'App\\Models\\Cursos' => $baseDir . '/app/Models/Cursos.php',
+    'App\\Models\\Endereco' => $baseDir . '/app/Models/Endereco.php',
+    'App\\Models\\Escola_proveniencia' => $baseDir . '/app/Models/Escola_proveniencia.php',
+    'App\\Models\\Escola_proveniencia' => $baseDir . '/app/Models/Escola_proveniencia.php',
+
     'App\\Models\\Pessoa' => $baseDir . '/app/Models/Pessoa.php',
     'App\\Models\\Professor' => $baseDir . '/app/Models/Professor.php',
     'App\\Models\\Turma' => $baseDir . '/app/Models/Turma.php',
