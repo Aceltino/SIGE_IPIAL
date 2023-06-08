@@ -25,6 +25,15 @@ class ProfessorController extends Controller
         return view('professor.consultar-prof', compact('professores'));
     }
 
+    public function editarProfessor(Request $request, $segmento)
+    {
+        // Lógica do controlador aqui
+        // $request é uma instância da classe Request, que pode ser usada para acessar outros dados da requisição, como query parameters, headers, etc.
+        // $segmento é o valor passado na URL como segmento
+
+        return "Você digitou o segmento: " . $segmento;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -42,19 +51,25 @@ class ProfessorController extends Controller
         return view('professor/editar-dados-prof', compact('professor'));
     }
 
-    public function horarioProf()
+    public function horarioProf($id)
     {
-        return view('professor/horario-prof');
+        $professor = Professor::with('pessoa')->findOrFail($id);
+        if ( !$professor ) return false;
+        return view('professor/horario-prof', compact('professor'));
     }
 
-    public function profDadosPessoais()
+    public function profDadosPessoais($id)
     {
-        return view('professor/editar-dados-pessoais-prof');
+        $professor = Professor::with('pessoa')->findOrFail($id);
+        if ( !$professor ) return false;
+        return view('professor.editar-dados-pessoais-prof', compact('professor'));
     }
 
-    public function avaliacao()
+    public function avaliacao($id)
     {
-        return view('professor/avaliacao-prof');
+        $professor = Professor::with('pessoa')->findOrFail($id);
+        if ( !$professor ) return false;
+        return view('professor/avaliacao-prof', compact('professor'));
     }
 
     /**
@@ -77,20 +92,14 @@ class ProfessorController extends Controller
                 'nome_completo' => 'required|string|max:255',
                 'num_bi' => 'required|regex:/^\d{9}[A-Z]{2}\d{3}$/',
                 'genero' => 'required|in:Masculino,Feminino',
-                'data_nascimento' => 'required|date',
-            ]);
-
-            $validatedTelefone = $request->validate([
                 'num_tel' => ['required', 'regex:/^\d{9}$/'],
+                'data_nascimento' => 'required|date',
             ]);
 
             $endereco = Endereco::create($validatedEndereco);
 
             $validatedPessoa['endereco_id'] = $endereco->endereco_id;
             $pessoa = Pessoa::create($validatedPessoa);
-
-            $validatedTelefone['pessoa_id'] = $pessoa->pessoa_id;
-            $telefone = Telefone::create($validatedTelefone);
 
             $prof = Professor::create(['formacao' => 'Engenheiro Civil', 'pessoa_id' => $pessoa->pessoa_id]);
 
@@ -103,26 +112,30 @@ class ProfessorController extends Controller
 
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editar($id)
     {
-        $professor = Professor::find($id);
-        return view('professor/editar-dados-prof', compact('professor'));
+        $professor = Professor::with('pessoa')->findOrFail($id);
+        if ( !$professor ) return false;
+
+        return view('professor.editar-dados-prof', compact('professor'));
+    }
+
+    public function atualizar(Request $request, $id)
+    {
+        $professor = Professor::findOrFail($id);
+        $professor->formacao = $request->input('formacao');
+        $professor->pessoa->nome_completo = $request->input('nome_completo');
+        $professor->pessoa->telefone = $request->input('telefone');
+        $professor->pessoa->num_bi = $request->input('num_bi');
+        $professor->pessoa->save();
+        $professor->save();
+
+        return redirect()->route('professor.Editar', ['id' => $professor->professor_id])->with('success', 'Dados do professor atualizados com sucesso!');
     }
 
     /**
@@ -147,7 +160,7 @@ class ProfessorController extends Controller
     {
         //
     }
-public function store(Request $request)
+    /*public function store(Request $request)
     {
         try {
             $validatedEndereco = $request->validate([
@@ -183,6 +196,5 @@ public function store(Request $request)
             // Captura a exceção de validação e trata os erros
             return redirect()->back()->withErrors($e->errors())->withInput();
         }
-    }
-
+    }*/
 }

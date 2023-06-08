@@ -11,13 +11,7 @@ class Professor extends Model
     use HasFactory, UuidTrait;
 
     protected $table = 'professores';
-
-    /*
-    public function pessoa(){
-        return $this->hasMany(Pessoa::class, 'pessoa_id', 'professor_id');
-    }
-    */
-
+    
     // Criei essa nova relação > Augusto Kussema
     public function pessoa()
     {
@@ -41,12 +35,12 @@ class Professor extends Model
         'pessoa_id',
     ];
 
-    protected static function boot()
+    /*protected static function boot()
     {
         parent::boot();
 
         static::creating(function ($model) {
             $model->uuid = static::gerarUuid();
         });
-    }
+    }*/
 }

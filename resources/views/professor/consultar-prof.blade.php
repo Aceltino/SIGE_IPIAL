@@ -68,7 +68,6 @@
 
     <div class="row">
         <div class="col-12">
-            <!-- /  Inicio da tabela de inscritos -->
             <table class="table table-striped" style="margin-top: 20px;" id="matricula-tab">
             <thead>
                 <tr style=" text-align: center;">
@@ -89,8 +88,8 @@
                         <td>{{$prof->cargo }}</td>
                         <td>Física</td>
                         <td>
-                            <a href={{ route('professor.Editar', ['id' => $prof->pessoa->pessoa_id]) }} class="btn btn-cor-sg-a w-48">Visualizar</a>
-                            <a href="#" class="btn btn-cor-sg-a w-48 bg-red">Inactivar</a>
+                            <a href={{ route('professor.Editar', ['id' => $prof->professor_id]) }} class="btn btn-cor-sg-a w-48">Detalhes</a>
+                            <!--<a href="" class="btn btn-cor-sg-a w-48 bg-red"></a> -->
                         </td>
                     </tr>
                 @endforeach
@@ -107,7 +106,6 @@
                 </tr> -->
             </tbody>
             </table>
-            <!-- Termina a tabela de inscritos -->
         </div>
     </div>
 </main>

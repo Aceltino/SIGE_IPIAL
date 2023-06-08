@@ -119,12 +119,12 @@
       </a>
       <ul id="professor-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="professor/cadastrar-prof">
+          <a href={{ route('professor.cadastrar') }}>
             <i class="bi bi-circle"></i><span>Cadastrar Professores</span>
           </a>
         </li>
         <li>
-          <a href="professor/consultar-prof">
+          <a href={{ route('professor') }}>
             <i class="bi bi-circle"></i><span>Professores</span>
           </a>
         </li>
@@ -195,7 +195,7 @@
         </a>
         <ul id="pauta-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="pauta/pautas">
+            <a href={{ route('pauta') }}>
               <i class="bi bi-circle"></i><span>Pautas</span>
             </a>
           </li>
@@ -209,7 +209,7 @@
       </a>
       <ul id="mini-pauta-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="mini-pauta/mini-pauta">
+          <a href={{ route('mini-pauta') }}>
             <i class="bi bi-circle"></i><span>Mini-Pautas</span>
           </a>
         </li>
