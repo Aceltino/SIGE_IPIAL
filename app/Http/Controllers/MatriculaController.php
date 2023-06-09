@@ -8,8 +8,12 @@ use Illuminate\Http\Request;
 
 class MatriculaController extends Controller
 {
-    public function create(){
-       // return view('matricula.matricular-aluno');
+    public function create($id)
+    {
+        $candidato = CandidatoController::pegarDadosCandidato($id);
+        return view('inscricao/edit-candidato',[
+            'candidato' => $candidato[0]
+        ]);
     }
 
     public function store(Request $request){

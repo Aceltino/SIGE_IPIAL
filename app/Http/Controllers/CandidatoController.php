@@ -75,6 +75,9 @@ class CandidatoController extends Controller
     //FUNÇÂO USADA PARA API, TESTEM => "http://127.0.0.1:8000/api/candidatos"
     public static function pegarDadosCandidatos()
     {
+
+
+
         $dataAtual = Carbon::now();
 
         $candidatos = Candidato::with( 'pessoa', 'escola', 'ano_lectivo')
@@ -86,6 +89,7 @@ class CandidatoController extends Controller
             $dataNascimento = Carbon::parse($candidato->pessoa->data_nascimento);
             $idade = $dataAtual->diffInYears($dataNascimento);
             $candidato['idade'] = $idade;
+
         }
 
         foreach ($candidatos as &$candidato)
@@ -95,7 +99,19 @@ class CandidatoController extends Controller
             + $candidato->escola->quimica
             + $candidato->escola->ling_port) / 4;
             $candidato['media'] = $media;
+            $cursoCandidato = CandidatoCursoController::cursoEscolhido($candidato->candidato_id);
         }
+
+        $cursoEscolhido = [];
+
+        usort($cursoCandidato, function ($a, $b)
+            {
+                return $a['prefCurso'] - $b['prefCurso'];
+            });
+        foreach($cursoCandidato as $curso)
+                {
+                    $cursoEscolhido[] = $curso['nomeCurso'];
+                }
 
         $dadosCandidatos = [];
         foreach ($candidatos as $candidato)
@@ -115,12 +131,16 @@ class CandidatoController extends Controller
                 'Quimica' => $candidato->escola->quimica,
                 'Escola' => $candidato->escola->nome_escola,
                 'Turno' => $candidato->escola->turno,
+                'Turma' => $candidato->escola->turma_aluno,
                 'Numero_Processo' => $candidato->escola->num_processo,
                 'Numero_Aluno' => $candidato->escola->num_aluno,
                 'Ultimo_AnoLectivo' => $candidato->escola->ultimo_anoLectivo,
                 'Media' => $candidato->media,
 
                 'Curso' => $candidato->cursoAdmitido,
+                'cursosEscolhidos' => $cursoEscolhido,
+
+
                 'Pai' => $candidato->nome_pai_cand,
                 'Mae' => $candidato->nome_mae_cand,
                 'Naturalidade' => $candidato->naturalidade_cand,

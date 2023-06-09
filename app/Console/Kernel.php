@@ -18,7 +18,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
 
-        $schedule->call([AdmissaoController::class, 'validarCandidato'])->daily();
+        // $schedule->call([AdmissaoController::class, 'validarCandidato'])->daily();
 
     }
 
