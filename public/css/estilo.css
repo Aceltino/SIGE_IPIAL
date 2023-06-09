@@ -152,6 +152,53 @@ a.color-white{
   opacity: 1;
 }
 
+/*--------------------------------------------------------------
+# Preloader
+--------------------------------------------------------------*/
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  overflow: hidden;
+  background: #070b17;
+}
+
+#preloader:before {
+  content: "";
+  position: fixed;
+  top: calc(50% - 0px);
+  left: calc(50% - 30px);
+  border: 6px solid #174183;
+  border-top-color: #151515;
+  border-bottom-color: #151515;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: animate-preloader 1s linear infinite;
+  animation: animate-preloader 1s linear infinite;
+}
+
+@-webkit-keyframes animate-preloader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animate-preloader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /* Dropdown menus */
 .dropdown-menu {
   border-radius: 4px;
@@ -844,3 +891,141 @@ a.color-white{
     width: auto;
     padding-top: 15px;
   }
+
+ .btnadmitir{
+  margin-top: 10px;
+    width: 160px;
+    display: block;
+    padding: 10px 10px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    background-color: rgb(103, 194, 43);
+    color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  .filter {
+    position: absolute;
+    right: 0px;
+    top: 15px;
+  }
+  
+   .filter .icon {
+    color: #aab7cf;
+    padding-right: 20px;
+    padding-bottom: 5px;
+    transition: 0.3s;
+    font-size: 16px;
+  }
+  
+   .filter .icon:hover,
+   .filter .icon:focus {
+    color: #4154f1;
+  }
+  
+   .filter .dropdown-header {
+    padding: 8px 15px;
+  }
+  
+   .filter .dropdown-header h6 {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #aab7cf;
+    margin-bottom: 0;
+    padding: 0;
+  }
+  
+   .filter .dropdown-item {
+    padding: 8px 15px;
+  }
+  
+  /* Info Cards */
+   .info-card {
+    padding-bottom: 10px;
+  }
+  
+   .info-card h6 {
+    font-size: 28px;
+    color: #012970;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+  }
+  
+   .card-icon {
+    font-size: 32px;
+    line-height: 0;
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
+
+  .ellipsis {
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100px; /* Defina a largura máxima da célula de dados */
+}
+.texto{
+  text-align: center;
+}
+
+.texto1{
+  align-items: center;
+}
+
+.texto2{
+
+  text-align: center;
+  
+}
+.texto3{
+
+  text-align: center;
+  color: rgb(3, 170, 3);
+  
+}
+
+.texto4{
+
+  text-align: center;
+  color: #0e7704;
+  
+}
+.texto5{
+
+  text-align: center;
+  color: rgb(223, 219, 5);
+  
+}
+
+.texto6{
+
+  text-align: center;
+  color: rgb(88, 88, 88);
+  
+}
+
+
+.tto{
+  margin-left: 10px;
+}
+
+.botaoMatricular{
+  background-color: #173997f6; 
+  color: #fff; 
+  font-size: 16px; 
+  margin-top: 8px;
+  width: 40px;
+  height: 10px;
+}

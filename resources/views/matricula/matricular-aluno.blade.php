@@ -12,7 +12,9 @@
             <span class="step"></span>
         </div>
                 
-    <form method="POST" action="" id="regForm" class="formulario-layout"> 
+    <form method="POST" action="" id="regForm" class="formulario-layout">
+        @csrf
+        @method('put') 
         <div class="tab"> 
             <div class="row" >
                 <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
@@ -21,15 +23,15 @@
                     </div>
                 </div>
             </div>
-            <form method="get" action="">
+            
                 <div class="row">
                     <div class="col d-flex" style="margin-bottom: 15px;">
                         <div class= "d-flex"style="width: 246px;margin-right: auto;margin-left: auto">
-                            <input class=" form-control codinscricao" type="text" placeholder="Código de inscrição" required=""><button class="fas fa-search codinscricaobotao" id="pesquisa" type="submit" title="Procurar"></button>
+                            <input class=" form-control codinscricao" type="text" name="" value="{{$idcandidato->candidato_id}}" placeholder="Código de inscrição" required=""><button class="fas fa-search codinscricaobotao" id="pesquisa" type="submit" title="Procurar"></button>
                         </div>
                     </div>
                 </div>
-            </form>  
+              
             <div class="form-group">
                 <input type="text" placeholder="Nome Completo do Aluno" name="nome" oninput="this.className = ''">
             </div>

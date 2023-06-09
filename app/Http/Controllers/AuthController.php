@@ -4,16 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Traits\PessoaTrait;
 use App\Models\User;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{
     Auth,
-    Validator
+    Validator,
+    Password
 };
+use Laravel\Fortify\Fortify;
 
 class AuthController extends Controller
 {
     use PessoaTrait;
-
     public function loginForm(){
         $user= User::all();
 
@@ -25,34 +27,37 @@ class AuthController extends Controller
     public function registrarForm(){
        return view('autenticacao.registrar');
     }
+    public function resetForm(){
+        return view('autenticacao.recuperar-senha');
+    } 
+    public function resetPasswordForm($token){
+        return view('autenticacao.nova_senha', ['token' => $token]);
+    }
     public function loginCheck(Request $request){
-
-        $credencias=[
+       
+        $credencias= [
             'nome_usuario'=>$request->username,
-            'password'=>$request->password
+            'password'=>$request->password,
         ];
 
-        if(empty($credencias['nome_usuario']) || empty($credencias['password'])){
-           return redirect()->back()->with('erro_login_001',"Por favor, Insira os dados de Acesso");
+        if (empty($credencias['nome_usuario']) || empty($credencias['password'])) {
+            return redirect()->back()->with('erro_login_001', 'Por favor, insira os dados de acesso');
         }
-        if(!Auth::attempt($credencias)){
-            return redirect()->back()->with('erro_login_002',"Dados Incorrecto");
+        if (!Auth::attempt($credencias,$request->lembrar)) {
+            return redirect()->back()->with('erro_login_002', 'Dados incorretos');
+        }
+        $user = Auth::user();
+        if(!$user->status_usuario){
+
+            Auth::logout();
+            return redirect()->back()->with('erro_login_003', 'Usuario Bloqueado, Entre em contacto com a instituição');
         }
 
-        //Ação do Login
-        $user= Auth::user();
-        echo "Usuario Logado... Ainda em Desenvolvimento.CARLOS MARQUES";
-        // dd($user);
-        	die;
-        $dados_user= UserController::show($user->id);
+        Session::start();
+        $request->session()->regenerate();
+        session(['user'=>$user]);
 
-        dd($dados_user);
-
-        session([
-            "cargo"=>$dados_user->cargo,
-            'nome_completo'=>$dados_user->pessoa->nome_completo,
-        ]);
-        return view('pagina-inicial');
+        return redirect()->intended('/');
     }
     public function store(Request $request){
 
@@ -67,7 +72,7 @@ class AuthController extends Controller
             'nome'=>'required|string|min:2|max:50',
             'sobre_nome'=>'required|string|min:5|max:50',
             'data_nascimento'=>'required|date|before:'.now()->format('d-m-Y'),
-            'num_bi'=>'required|size:14',
+            'num_bi'=>'required|size:14|unique:pessoas,num_bi',
 
             //Formulario do user
             'email'=>'required|email|max:200|unique:users,email',
@@ -93,6 +98,7 @@ class AuthController extends Controller
             'data.date' => 'O campo :attribute deve ser uma data válida.',
             'data_nascimento.before'=> 'O campo :attribute deve ser uma data posterior à data atual.',
             'num_bi.size'=> 'Número de identificação esta incorrecto',
+            'num_bi.unique'=> 'Número de identificação Já esta a ser usado',
 
             //Formulario do user
             'email.email'=>'Este campo deve conter um email valido',
@@ -137,7 +143,8 @@ class AuthController extends Controller
             'nome_completo'=>ucfirst($request->nome)." ".ucfirst($request->sobre_nome),
             'data_nascimento'=>$request->data_nascimento,
             'num_bi'=> strtoupper($request->num_bi),
-            'genero'=>$request->genero
+            'genero'=>$request->genero,
+            'telefone'=>$request->num_telefone
         ];
         $dadosEndereco=[
             'municipio'=>$request->municipio,
@@ -163,9 +170,35 @@ class AuthController extends Controller
             return redirect()->back()->with("erroCadastroUser",$msg);
         }
 
-        //Depois deve se fazer mudanças basicas.nem todo cadastro deve lhe reencaminhar no Login.
+        //Depois deve se fazer mudanças basicas nem todo cadastro deve lhe reencaminhar no Login.
 
         $msg=$request->cargo." Cadastrado com Sucesso. Por favor entre com os seus dados";
         return view('autenticacao.login')->with('registrado',$msg);
     }
-}
+    public function logout(){
+        Auth::logout();
+        Session::invalidate();
+        return redirect()->route("login");      
+    }
+
+    public function envioLinkEmail(Request $request){
+
+        $request->validate(['email' => 'required|email']);
+
+        $consutEmail= User::where('email',$request->email)->first();
+        if(!$consutEmail) {
+            $msg="Lamentamos! este email não esta atrelado a conta do usuario";
+            return redirect()->back()->with('erro_email_001',$msg);
+        }
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
+        
+        return $status === Password::RESET_LINK_SENT
+                    ? back()->with(['status' => __("Enviamos seu link de redefinição de senha por e-mail!")])
+                    : back()->withErrors(['email' => __($status)]);
+
+    }
+
+   
+}   

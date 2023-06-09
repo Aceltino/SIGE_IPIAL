@@ -6,40 +6,38 @@
 <main id="main" class="main">
   <div class="row">
     <div class="col">
-      <h2>Comunicados</h2>      
+      <h2>Comunicados</h2>
     </div>
   </div>
 
   <div class="procurar">
     <form class="proc-form d-flex align-items-center">
       <input id="pesquisa" placeholder='pesquise o comunicado pelo seu Título' type="text" name="" class="campo-pesq">
-      <button type="submit" title="procurar"><i class="bi bi-search"></i></button>   
+      <button type="submit" title="procurar"><i class="bi bi-search"></i></button>
     </form>
   </div>
-  
+
   <!-- /  Inicio da tabela de inscritos -->
   <table class="table table-striped table-custom" id="matricula-tab">
     <thead>
-      <tr style=" text-align: center;">
-          <th scope="col">Título do Comunicado</th>
-          <th scope="col">conteúdo</th>
-          <th scope="col"></th>
+    @foreach ($comunicados as $comunicado)
+       <tr style=" text-align: center;">
+          <th scope="col">{{ $comunicado->comunicado_id }}</th>
+          <th scope="col">{{ $comunicado->titulo_com }}</th>
+          <th scope="col">{{ $comunicado->conteudo_com  }}</th>
       </tr>
-    </thead>
+     @endforeach
+       </thead>
     <tbody>
       <tr style=" text-align: center;">
-        <th scope="row">Defesas do fim do curso 2020 </th>
-        <td>bcvjgvjghvjhkhbkjbkjbkjbkbkbkb</td>
-
-        <td>
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-          <a href="/editar-comunicado"><i class="bi bi-pencil"></i></a>
+          <a href="{{ route('comunicado.edit') }}"><i class="bi bi-pencil"></i></a>
           <i class="bi bi-trash-fill"></i>
           <i class="bi bi-check-square-fill"></i>
         </td>
       </tr>
 
-      
+
     </tbody>
   </table>
   <!-- Termina a tabela de matriculas -->
@@ -59,14 +57,14 @@
             <div class="cabecalho-modal">
               <div class="row">
                 <div class="col" style="display: flex; justify-content: flex-start; align-items: center;">
-                  <h1>Dados do Comunicado</h1>      
+                  <h1>Dados do Comunicado</h1>
                 </div>
               </div>
             </div>
 
             <div class="corpo-modal">
               <form class="form-inativo">
-                <div class="dados-pessoais">        
+                <div class="dados-pessoais">
                     <div class="area-input form-group">
                         <label>Título do Comunicado: </label><input class="form-control" type="text" name="" value="Defesas dos Finalistas 2023" readonly disabled>
                     </div>
@@ -78,24 +76,25 @@
                         </div>
                     </div>
 
-                      
-                      <div class="footer-modal" style="text-align: center;">
-                        
-                        <div class="jnt">
-                            <a href="/comunicados" class="btn" style="background-color: #070b17; color: #fff;">Retrocer aos Comunicados</a>
 
-                            <a href="/editar-comunicado" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
+                      <div class="footer-modal" style="text-align: center;">
+
+                        <div class="jnt">
+                            <a href="{{ route('comunicado.index') }}" class="btn" style="background-color: #070b17; color: #fff;">Retrocer aos Comunicados</a>
+
+                            <a href="{{ route('comunicado.edit', ['id'=>$comunicado->comunicado_id]) }}" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
                         </div>
                       </div>
-            
-              </form> 
+
+              </form>
             </div>
-            
+
           </div>
         </div>
-      </div>      
+      </div>
 
       <!--  / Termina a modal ver inscrito-->
-  
+
 </main>
 @endsection
+@for

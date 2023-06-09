@@ -1,16 +1,24 @@
 <?php
 
 use App\Http\Controllers\{
+     AdmissaoController,
     //Classes das Controllers
     AuthController,
+    CandidatoController,
     MatriculaController,
     InscricaoController,
+    ProfessorController,
+    comunicadosController,
+    CandidatoCursoController,
     CursoController,
     AssiduidadeAlunoController,
     AvaliacaoAlunoController,
-    AnoLectivoController
+    AnoLectivoController,
+    MiniPautaController,
+    PautaController,
 };
 use Illuminate\Support\Facades\Route;
+use GuzzleHttp\Client;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,29 +32,43 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-//Rotas do Painel
+//Rotas inicial do Painel
 Route::get('/', function () {
     return view('pagina-inicial');
-})->name('inicio');
+})->name('inicio')->middleware('auth');
 
+ //Rota final do painel
+ Route::get('logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
+
+// Rota apenas de teste... Não apague -> ACELTINO
+Route::get('validar-aluno', [CandidatoController::class, 'pegarDadosCandidatos']);
 
 //Routas para Autenticação no Sistema
 Route::prefix('autenticacao')->group(function(){
 
     //Rota de Login
-    Route::get('login', [AuthController::class,'loginForm'])->name('login');
-     Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck');
+    Route::get('login', [AuthController::class,'loginForm'])->name('login')->middleware('guest');
+    Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck')->middleware('guest');
 
     //Rota de Cadastro
+    Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar');
     Route::post('registrar', [AuthController::class,'store'])->name('registrar');
 
     //CODIFICANDO...
-    Route::get('/lembrar', function () {
-        return view('autenticacao/recuperar-senha');
-    })->name('recuperar-senha');
+    Route::get('lembrar', [AuthController::class,'lembrar'])->name('recuperar-senha')->middleware('guest');
 
-    /* Routas para enviou de Dados (Login)*/
-    Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck');
+    //rota para envio de email para redifinição de senha
+    Route::get('reset', [AuthController::class,'resetForm'])->name('recuperar-senha')->middleware('guest');
+    Route::post('reset/email', [AuthController::class, 'envioLinkEmail'])->name('password-email')->middleware('guest');
+
+    //rota para redifinição de senha
+    Route::get('lembrar/reset/{token}', [AuthController::class, 'resetPasswordForm'])->name('nova-password');
+    Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password-update');
+
+    Route::get('/reset-password/{token}', function ($token) {
+        return view('auth.reset-password', ['token' => $token]);
+    })->middleware('guest')->name('password.reset');
+
 });
 
 
@@ -56,44 +78,47 @@ Route::prefix('autenticacao')->group(function(){
 Route::prefix('inscricao')->group(function(){
 
     /*Inscricoes ou alunos inscritos */
-    Route::get('inscricoes', function () {
-        return view('inscricao/inscricoes');
-    });
+    // Route::get('inscricoes', [ConsumoApiController::class, 'consumoinscricao']);
+     Route::get('inscricoes', [InscricaoController::class, 'index'])->name('inscricao-index');
 
     /*Inscrever candidato */
     Route::get('inscrever', [InscricaoController::class, 'create'])->name('inscricao-view');
     Route::post('inscrever', [InscricaoController::class, 'store'])->name('inscricao-store');
 
+    // Admitir inscrito
+    Route::get('admitir', [AdmissaoController::class, 'admitirCandidatos'])->name('admitir-inscritos');
+
+    // Editar inscrito
+    Route::get('editar-candidato/{candidato}/editar', [InscricaoController::class, 'edit'])->name('inscricao-edit');
+    Route::put('editar-candidato/{candidato}', [InscricaoController::class, 'update'])->name('inscricao-update');
+
 
     /*Editar candidato */
-    Route::get('editar-candidato', function () {
-        return view('inscricao/edit-candidato');
-    });
 
     /*Inscritos online */
-    Route::get('inscritos-online', function () {
-        return view('inscricao/inscritos-online');
-    });
+    // Route::get('inscritos-online', function () {
+    //     return view('inscricao/inscritos-online');
+    // });
 
-    /*Incritos rejeitados */
-    Route::get('inscritos-rejeitados', function () {
-        return view('inscricao/inscritos-rejeitados');
-    });
+    // /*Incritos rejeitados */
+    // Route::get('inscritos-rejeitados', function () {
+    //     return view('inscricao/inscritos-rejeitados');
+    // });
 
-    /*Confirmar inscricao*/
-    Route::get('conf-inscricao', function () {
-        return view('inscricao/conf-inscricao');
-    });
-
-    /* Rejeitar inscricao */
-    Route::get('rej-inscricao', function () {
-        return view('inscricao/rejeitar-inscricao');
-        });
+    // /*Confirmar inscricao*/
+    // Route::get('conf-inscricao', function () {
+    //     return view('inscricao/conf-inscricao');
+    // });
 
     /* Rejeitar inscricao */
-    Route::get('admissoes', function () {
-    return view('inscricao/admissoes');
-    });
+    // Route::get('rej-inscricao', function () {
+    //     return view('inscricao/rejeitar-inscricao');
+    //     });
+
+    // /* Rejeitar inscricao */
+    // Route::get('admissoes', function () {
+    // return view('inscricao/admissoes');
+    // });
 });
 
 /**<!--Fim Rotas de inscricao--> */
@@ -114,7 +139,7 @@ Route::prefix('matricula')->group(function(){
     });
 
     /*Matricular aluno */
-    Route::get('matricular-aluno',  [MatriculaController::class, 'create'])->name('matricula');
+    Route::get('matricular-aluno/{candidato_id}',  [MatriculaController::class, 'create'])->name('matricula');
     Route::post('matricular-aluno', [MatriculaController::class, 'store'])->name('matricular');
 
     /*Editar matricula */
@@ -142,11 +167,6 @@ Route::prefix('matricula')->group(function(){
         return view('matricula/registrar-aluno');
     });
 
-    /*Alunos registrados */
-    Route::get('alunos-registrado', function () {
-        return view('matricula/alunos-registrado');
-    });
-
     /*Editar registro */
     Route::get('editar-registro', function () {
         return view('matricula/edit-registro-aluno');
@@ -160,21 +180,19 @@ Route::prefix('matricula')->group(function(){
  */
 Route::prefix('professor')->group(function(){
 
-    Route::get('cadastrar-professor', function () {
-        return view('professor/cadastrar-prof');
-    });
+    Route::get('rota/{segmento}', [ProfessorController::class, 'editarProfessor'])->name('prof.rota');
 
-    Route::get('consultar-professor', function () {
-        return view('professor/consultar-prof');
-    });
+    Route::get('cadastrar-professor', [ProfessorController::class, 'create'])->name('professor.cadastrar');
+    Route::post('cadastrar-professor', [ProfessorController::class, 'store'])->name('prof.postRegistar');
 
-    Route::get('editar-dados-professor', function () {
-        return view('professor/editar-dados-prof');
-    });
+    Route::get('consultar-professor', [ProfessorController::class, 'index'])->name('professor');
 
-    Route::get('horario-professor', function () {
-        return view('professor/horario-prof');
-    });
+    Route::get('editar/{id}', [ProfessorController::class, 'editar'])->name('professor.Editar');
+    Route::post('editar/{id}', [ProfessorController::class, 'atualizar'])->name('professor.atualizar');
+    Route::get('dados-pessoais/{id}', [ProfessorController::class, 'profDadosPessoais'])->name('professor.dados-pessoais');
+
+    Route::get('horario/{id}', [ProfessorController::class, 'horarioProf'])->name('horarioProfessor');
+    Route::get('avaliacao/{id}', [ProfessorController::class, 'avaliacao'])->name('avaliacao');
 });
 
 /**<!--Fim Rotas de Professor--> */
@@ -293,23 +311,15 @@ Route::prefix('processo')->group(function(){
  * Rotas de pauta
  */
 Route::prefix('pauta')->group(function(){
-    Route::get('pautas', function () {
-        return view('pauta/pautas');
-    });
-    Route::get('ver-pauta', function () {
-        return view('pauta/pauta-doc');
-    });
+    Route::get('pautas', [PautaController::class, 'index'])->name('pauta');
+    Route::get('ver-pauta', [PautaController::class, 'show'])->name('pauta.show');
 });
 /******************************************
  * Rotas de mini-pauta
  */
 Route::prefix('mini-pauta')->group(function(){
-    Route::get('mini-pauta', function () {
-        return view('mini-pauta/mini-pauta');
-    });
-    Route::get('ver-mini-pauta', function () {
-        return view('mini-pauta/mini-pauta-doc');
-    });
+    Route::get('mini-pauta', [MiniPautaController::class, 'index'])->name('mini-pauta');
+    Route::get('ver-mini-pauta', [MiniPautaController::class, 'show'])->name('mini-pauta.show');
 
 });
 /******************************************
@@ -317,17 +327,12 @@ Route::prefix('mini-pauta')->group(function(){
  */
 Route::prefix('comunicado')->group(function(){
 
-    Route::get('criar-comunicado', function () {
-        return view('comunicado/criar-comunicado');
-    });
+    Route::get('consultar-comunicado', [comunicadosController::class, 'index'])->name('comunicado.index');
+    Route::get('criar-comunicado', [comunicadosController::class, 'create'])->name('comunicado.create');
+    Route::post('criar-comunicado', [comunicadosController::class, 'store'])->name('comunicado.store');
+    Route::get('/{comunicado_id}/editar-comunicado', [comunicadosController::class, 'edit'])->name('comunicado.edit');
+    Route::put('/{comunicado_id}', [comunicadosController::class, 'update'])->where('comunicado_id', '[0-9]+')->name('comunicado.update');
 
-    Route::get('editar-comunicado', function () {
-        return view('comunicado/editar-comunicado');
-    });
-
-    Route::get('comunicados', function () {
-        return view('comunicado/comunicado');
-    });
 });
 
 /******************************************
@@ -410,4 +415,26 @@ Route::get('/horario-turma', function () {
 /*Editar horário*/
 Route::get('/editar-horario', function () {
     return view('horario/editar-horario');
+});
+/******************************************
+ * Rotas disciplina
+*/
+
+/*Cadastrar disciplina*/
+Route::get('/regi-disciplina', function () {
+    return view('disciplina/regi-disciplina');
+});
+
+/*Ver as disciplinas*/
+Route::get('/disciplinas', function () {
+    return view('disciplina/disciplinas');
+});
+
+/*Editar disciplina*/
+Route::get('/edit-disciplina', function () {
+    return view('disciplina/edit-disciplina');
+});
+/*painel para nova senha*/
+Route::get('/nova_senha', function () {
+    return view('autenticacao/nova_senha');
 });

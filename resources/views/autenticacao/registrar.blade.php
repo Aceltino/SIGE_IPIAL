@@ -134,14 +134,14 @@
 
         <div class="input-group has-validation">
           <select name="cargo" class="form-select">
-            <option value="1">Administrador</option>
-            <option value="2">Professor</option>
-            <option value="3">Subdirector Pedagogico</option>
-            <option value="4">Secretaria Pedagogica</option>
-            <option value="5">Director Geral</option>
-            <option value="6" selected>Coordenação</option>
-            <option value="7">Usuario - Inscrição</option>
-            <option value="8">Usuario - Matricula</option>
+            <option value="Administrador" selected>Administrador</option>
+            <option value="Professor">Professor</option>
+            <option value="Subdirector">Subdirector Pedagogico</option>
+            <option value="Secretaria">Secretaria Pedagogica</option>
+            <option value="Director">Director Geral</option>
+            <option value="Coordenacao">Coordenação</option>
+            <option value="insc_user">Usuario - Inscrição</option>
+            <option value="matri_user">Usuario - Matricula</option>
           </select>
         </div>
 

@@ -48,8 +48,8 @@
             <th scope="col">Designação</th>
             <th scope="col">Data de Inicio</th>
             <th scope="col">Data de Fim</th>
-            <th scope="col">Número máximo de vagas nas salas</th>
-            <th scope="col">Número máximo de salas</th>
+            <th scope="col">Número máximo de vagas nas turmas</th>
+            <th scope="col">Qtd. de salas</th>
             <th scope="col"></th>
           </tr>
         </thead>

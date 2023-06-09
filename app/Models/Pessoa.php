@@ -7,31 +7,32 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pessoa extends Model
 {
-    use HasFactory;
     protected $table = 'pessoas';
+    protected $primaryKey = 'pessoa_id';
     protected $fillable = [
-        'escola_proveniencia_id',
         'nome_completo',
         'num_bi',
         'genero',
+        'telefone',
         'data_nascimento',
+        'endereco_id',
         'updated_at',
         'created_at',
     ];
+
+    public function belongEndereco()
+    {
+        return $this->belongsTo(Endereco::class, 'endereco_id');
+    }
 
     public function endereco(){
         $this->belongsTo(Endereco::class, 'endereco_id','pessoa_id');
     }
     public function user(){
-        $this->hasOne(User::class,'pessoa_id','usuario_id');
+        $this->hasOne(User::class, 'usuario_id');
     }
     public function candidato(){
-        $this->hasOne(Candidato::class,'candidato_id','escola_proveniencia_id');
-    }
-
-    public function telefone()
-    {
-        return $this->hasMany(Telefone::class, 'pessoa_id', 'telefone_id');
+        $this->hasOne(Candidato::class,'candidato_id');
     }
 
 	/**
@@ -53,6 +54,4 @@ class Pessoa extends Model
     public function professor(){
         $this->hasMany(Professor::class, 'professor_id','pessoa_id');
     }
-
-    
 }

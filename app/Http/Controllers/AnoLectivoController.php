@@ -12,7 +12,7 @@ use App\Models\Trimestre;
 
 class AnoLectivoController extends Controller
 {
-    public static function pegarAnoLectivo()
+    public static function pegarIdAnoLectivo()
     {
         $ultimoAno = Ano_lectivo::latest()->first();
         return $ultimoAno->ano_lectivo_id;
@@ -167,5 +167,16 @@ class AnoLectivoController extends Controller
     public function delete($id){
         Ano_lectivo::where('ano_lectivo_id', $id)->delete();
         return redirect()->route('ano.lectivo')->with('sucesso', "Ano lectivo eliminado com sucesso!");
+    }
+    public static function pegarNumVagas()
+    {
+        $ultimoAno = Ano_lectivo::latest()->first();
+        return $ultimoAno->num_aluno_na_turma;
+    }
+
+    public static function pegarDataFimInscricao()
+    {
+        $ultimoAno = Ano_lectivo::latest()->first();
+        return $ultimoAno->data_fim_inscricao;
     }
 }

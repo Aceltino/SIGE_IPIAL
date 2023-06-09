@@ -18,6 +18,11 @@
           {{session('erro_login_002')}}
       </div>
     @endif
+    @if(session('erro_login_003'))
+      <div class="alert alert-danger">
+          {{session('erro_login_003')}}
+      </div>
+    @endif
     @if(session('registrado'))
       <div class="alert alert-sucess">
         {{session('registrado')}}
@@ -45,14 +50,14 @@
         <div class="row" style="padding-top: 5px;">
           <div class="col">
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
+              <input class="form-check-input" type="checkbox" name="lembrar" value="true" id="rememberMe">
               <label class="form-check-label" for="rememberMe">Lembrar-me</label>
             </div>  
           </div>
           
           <div class="col">
 
-            <a href="/lembrar" class="forgot-password">Esqueceu a senha?</a>
+            <a href={{route('recuperar-senha')}} class="forgot-password">Esqueceu a senha?</a>
           </div>
         </div>
       </div>

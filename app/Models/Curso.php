@@ -10,6 +10,7 @@ class Curso extends Model
     use HasFactory;
 
     protected $table = 'cursos';
+    protected $primaryKey = 'curso_id';
 
     protected $fillable = [
         'nome_curso',
@@ -26,5 +27,15 @@ class Curso extends Model
 
     public function areaFormacao(){
         return $this->hasOne(Area_formacao::class, 'professor_id', 'curso_id');
+    }
+    
+    public function Candidato()
+    {
+        return $this->belongsToMany(Candidato::class, 'candidato_seleciona_curso', 'curso_id', 'candidato_id');
+    }
+
+    public function turma()
+    {
+        return $this->hasMany(Turma::class, 'curso_id', 'turma_id');
     }
 }

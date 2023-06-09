@@ -1,9 +1,46 @@
+/* Cores background */
+.bg-yellow{
+	background-color: rgb(252, 252, 10);
+}
+
+.bg-light-pink{
+	background-color: rgba(255, 209, 241, 0.925);
+}
+
+.bg-light-gray{
+	background-color: rgba(212, 198, 198, 0.788);
+}
+
+.bg-dark-pink{
+	background-color: rgba(197, 146, 155, 0.877);
+}
+
+.bg-orange{
+	background-color:rgba(241, 82, 19, 0.932);
+}
+
+.bg-dark-gray{
+	background-color: rgba(141, 137, 137, 0.753);
+}
+
+.bg-darkest-gray{
+	background-color: rgba(27, 27, 27, 0.753);
+}
+/* Peculiaridades da tabela 1*/
+.text-faltas{
+	font-size: 8px;
+}
+
+.fonte-size-10px{
+	font-size: 10px;
+}
+
 section.main-ficha-biografica{
 	display: flex;
 	flex-direction: column;
 	padding: 20px;
 	font-family: Arial !important;
-	font-size: 14px;
+	font-size: 11px;
     color: black;
 	width: 100%;
 }
@@ -67,7 +104,7 @@ section.main-ficha-biografica{
 }
 
 .section-title h1{
-	font-size: 14px;
+	font-size: 12px;
 	font-weight: normal;
 	text-align: center;
 }
@@ -77,6 +114,7 @@ section.main-ficha-biografica{
 	justify-content: space-between;
 	margin-bottom: 3px;
 }
+
 
 .div-subtitle h3{
 	font-size: 12px;
@@ -89,7 +127,7 @@ mr-10{
 
 .div-personal-data{
 	border: 1px solid black;
-	padding: 9px;
+	padding: 9px 9px 1px 9px;
 	border-bottom: none !important;
 }
 
@@ -110,16 +148,12 @@ mr-10{
 .section-table-ficha-biografica table, .section-table-ficha-biografica table tr td{
 	border: 1px solid black;
 	border-collapse: collapse;
-	padding: 5px;
+	padding: 2px 5px;
 	font-family: Arial !important;
 }
 
 .mt-40{
 	margin-top: 40px;
-}
-
-.text-center{
-	text-align: center;
 }
 
 .mb-3{
@@ -131,13 +165,11 @@ mr-10{
 }
 
 .section-descricao-div-1{
-	justify-content: space-between;
-	width: 84%;
-	margin-top: 15px;
+	width: 86%;
 }
 
 .ml-10{
-	margin-left: 120px;
+	margin-left: 10px;
 }
 
 .separate{
@@ -186,4 +218,49 @@ mr-10{
 
 .text-red{
 	color: red;
+}
+
+#print-button{
+	background-color: #174183;
+	color: white;
+}
+
+/*************************************************************
+						TO PRINT
+************************************************************/
+@media print {
+	#header{
+		display: none;
+	}
+
+	aside{
+		display: none;
+	}
+
+	#main {
+		margin-top: 0;
+		padding: 2px 2px;
+		padding-bottom: 5px;
+	}
+
+	section.main-ficha-biografica{
+		padding: 2px;
+		font-size: 9px;
+	}
+
+	.section-ficha-biografica-top-right{
+		border: 1px solid black;
+	}
+
+	.section-title h1{
+		font-size: 9px;
+	}
+
+	#section-btn-print{
+		display: none;
+	}
+
+	#footer{
+		display: none;
+	}
 }

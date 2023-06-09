@@ -5,7 +5,7 @@
 @section('conteudo')
 
 <main id="main" class="main">
-    
+
       <form method="POST" id="regForm" action="{{route('cadastrar.ano.lectivo')}}" class="formulario-layout">
         @csrf
         <div style="text-align:center;margin-top:40px;">

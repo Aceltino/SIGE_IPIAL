@@ -14,95 +14,101 @@
       <span class="step"></span>
     </div>
 
-    <div class="tab">
-    @error('nome_completo')
+        <div class="tab">
+        @error('nome_completo')
+            <div class="alert alert-danger">{{$message}}</div>
+        @enderror
+        @error('nome_pai_cand')
+            <div class="alert alert-danger">{{$message}}</div>
+        @enderror
+        @error('nome_mae_cand')
+            <div class="alert alert-danger">{{$message}}</div>
+        @enderror
+        @error('naturalidade_cand')
+            <div class="alert alert-danger">{{$message}}</div>
+        @enderror
+        @error('num_tel')
         <div class="alert alert-danger">{{$message}}</div>
-    @enderror
-    @error('nome_pai_cand')
+        @enderror
+        @error('num_bi')
         <div class="alert alert-danger">{{$message}}</div>
-    @enderror
-    @error('nome_mae_cand')
+        @enderror
+        @error('nome_escola')
         <div class="alert alert-danger">{{$message}}</div>
-    @enderror
-    @error('naturalidade_cand')
+        @enderror
+        @error('num_aluno')
         <div class="alert alert-danger">{{$message}}</div>
-    @enderror
-    @error('num_tel')
-    <div class="alert alert-danger">{{$message}}</div>
-    @enderror
-    @error('num_bi')
-    <div class="alert alert-danger">{{$message}}</div>
-    @enderror
-    @error('nome_escola')
-    <div class="alert alert-danger">{{$message}}</div>
-    @enderror
-    @error('num_aluno')
-    <div class="alert alert-danger">{{$message}}</div>
-    @enderror
-    @error('turma_aluno')
-    <div class="alert alert-danger">{{$message}}</div>
-    @enderror
-    @error('num_processo')
-    <div class="alert alert-danger">{{$message}}</div>
-    @enderror
-    @error('ultimo_anoLectivo')
-    <div class="alert alert-danger">{{$message}}</div>
-    @enderror
+        @enderror
+        @error('turma_aluno')
+        <div class="alert alert-danger">{{$message}}</div>
+        @enderror
+        @error('num_processo')
+        <div class="alert alert-danger">{{$message}}</div>
+        @enderror
+        @error('ultimo_anoLectivo')
+        <div class="alert alert-danger">{{$message}}</div>
+        @enderror
 
-    @if(session()->has('ErroPessoa'))
-    <div class="alert alert-danger">
-      {{session('ErroPessoa')}}
+        @if(session()->has('ErroPessoa'))
+        <div class="alert alert-danger">
+        {{session('ErroPessoa')}}
+        </div>
+    @endif
+
+    @if (session()->has('ErroTelefone'))
+    <div class="alert alert-warning">
+        {{ session('ErroTelefone') }}
     </div>
-  @endif
+    @endif
 
-  @if (session()->has('ErroTelefone'))
-  <div class="alert alert-warning">
-      {{ session('ErroTelefone') }}
-  </div>
-@endif
-
-
-    @if(session()->has('ErroCadastro'))
-    <div class="alert alert-danger">
-      {{session('ErroCadastro')}}
+    @if (session()->has('ErroCurso'))
+    <div class="alert alert-warning">
+        {{ session('ErroCurso') }}
     </div>
-  @endif
+    @endif
 
-    @if(session()->has('Sucesso'))
-    <div class="alert alert-success">
-      {{session('Sucesso')}}
-    </div>
-  @endif
+
+        @if(session()->has('ErroCandidato'))
+        <div class="alert alert-danger">
+        {{session('ErroCandidato')}}
+        </div>
+    @endif
+
+        @if(session()->has('Sucesso'))
+        <div class="alert alert-success">
+        {{session('Sucesso')}}
+        </div>
+    @endif
       <h2>Introduza os dados pessoais</h2>
 
       <div class="form-group">
-        <input type="text" placeholder="Nome Completo" name="nome_completo" oninput="this.className = ''">
+        <input type="text" placeholder="Nome Completo" value="{{ old('nome_completo') }}" name="nome_completo" oninput="this.className = ''">
       </div>
 
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <input type="text" placeholder="Nome do Pai" name="nome_pai_cand" oninput="this.className = ''">
+            <input type="text" placeholder="Nome do Pai" value="{{ old('nome_pai_cand') }}" name="nome_pai_cand" oninput="this.className = ''">
           </div>
         </div>
 
         <div class="col">
           <div class="form-group">
-            <input type="text" placeholder="Nome da Mãe" name="nome_mae_cand" oninput="this.className = ''">
+            <input type="text" placeholder="Nome da Mãe" value="{{ old('nome_mae_cand') }}" name="nome_mae_cand" oninput="this.className = ''">
           </div>
         </div>
       </div>
 
       <div class="row">
         <div class="col">
-          <p><input type="date" name="data_nascimento" oninput="this.className = ''"></p>
+          <p><input type="date" value="{{ old('data_nascimento') }}" name="data_nascimento" oninput="this.className = ''"></p>
         </div>
 
         <div class="col">
           <input type="text" class="form-control" readonly="true" value="00" disabled>
         </div>
         <div class="col">
-          <input type="text" placeholder="Naturalidade" name="naturalidade_cand" oninput="this.className = ''">
+          <input type="text" placeholder="Naturalidade" value="{{ old('naturalidade_cand') }}" name="naturalidade_cand" oninput="this.className = ''">
         </div>
       </div>
 
@@ -116,7 +122,7 @@
 
         <div class="col">
           <div class="form-group">
-            <input type="text" placeholder="Número do bilhete de identidade" name="num_bi" oninput="this.className = ''">
+            <input type="text" placeholder="Número do bilhete de identidade"  name="num_bi" oninput="this.className = ''">
           </div>
         </div>
       </div>
@@ -124,11 +130,7 @@
       <div class="row">
         <div id="clone1"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
           <span style="color: #777;">+244</span>
-          <input type="text" value="" placeholder="Telefone" name="num_tel" oninput="this.className = ''">
-        </div>
-
-        <div class="col-3">
-            <i id="clonebtn1" class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>
+          <input type="text" value="" placeholder="Telefone" value="{{ old('num_tel') }}" name="num_tel" oninput="this.className = ''">
         </div>
       </div>
     </div>
@@ -136,7 +138,7 @@
     <div class="tab">
       <h2>introduza os dados da escola de providência</h2>
       <div class="form-group">
-        <input type="text" placeholder="Nome da escola de providência" name="nome_escola" oninput="this.className = ''">
+        <input type="text" placeholder="Nome da escola de providência" value="{{ old('nome_escola') }}" name="nome_escola" oninput="this.className = ''">
       </div>
 
       <div class="row">
@@ -149,22 +151,22 @@
         </div>
 
         <div class="form-group col">
-          <input type="text" placeholder="Nº de estudante" name="num_aluno" oninput="this.className = ''">
+          <input type="text" placeholder="Nº de estudante" value="{{ old('num_aluno') }}" name="num_aluno" oninput="this.className = ''">
         </div>
 
         <div class="form-group col">
-          <input type="text" placeholder="Turma" name="turma_aluno" oninput="this.className = ''">
+          <input type="text" placeholder="Turma" value="{{ old('turma_aluno') }}" name="turma_aluno" oninput="this.className = ''">
         </div>
 
       </div>
 
       <div class="row">
         <div class="form-group col">
-          <input type="text" placeholder="Processo nº" name="num_processo" oninput="this.className = ''">
+          <input type="text" placeholder="Processo nº" value="{{ old('num_processo') }}" name="num_processo" oninput="this.className = ''">
         </div>
 
         <div class="form-group col">
-          <input type="text" placeholder="Ano Lectivo" name="ultimo_anoLectivo" oninput="this.className = ''">
+          <input type="text" placeholder="Ano Lectivo" value="{{ old('ultimo_anoLectivo') }}" name="ultimo_anoLectivo" oninput="this.className = ''">
         </div>
 
       </div>

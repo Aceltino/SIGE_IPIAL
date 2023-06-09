@@ -2,15 +2,34 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\CanResetPassword;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\{Pessoa, Endereco};
 
-class User extends Model
+class User extends Model implements Authenticatable,CanResetPassword
 {
-    use HasFactory;
+
+
+    use HasFactory, AuthenticatableTrait;
+
+    public function getEmailForPasswordReset()
+    {
+        return $this->email;
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        // Implemente aqui a lógica para enviar a notificação de redefinição de senha
+    }
+
     protected $table = 'users';
+    protected $primaryKey= 'usuario_id';
 
     protected $fillable = [
+        'usuario_id',
         'nome_usuario',
         'password',
         'email',
@@ -39,8 +58,13 @@ class User extends Model
         'email_verified_at' => 'datetime',
     ];
 
-    public function pessoa(){
-        $this->belongsTo(Pessoa::class,'pessoa_id','ususario_id');
+    public function pessoa()
+    {
+        return $this->belongsTo(Pessoa::class, 'usuario_id');
     }
 
+    public function belongPessoa()
+    {
+        return $this->belongsTo(Pessoa::class, 'pessoa_id');
+    }
 }

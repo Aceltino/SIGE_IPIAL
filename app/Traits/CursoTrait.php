@@ -184,7 +184,6 @@ trait CursoTrait
 
         return ($var);
 
-
     }
 
     public static function checkSigla($sigla){
@@ -213,7 +212,7 @@ trait CursoTrait
         if($erro == 1){
             return redirect()->back()->with("erro", "Os campos não podem conter nenhum espaço no início!");
         } elseif($erro == 2){
-            return redirect()->back()->with("erro", "Espaçamento amais entre os nomes!");
+            return redirect()->back()->with("erro", "Espaçamento a mais entre os nomes!");
         } elseif ($erro == 3) {
             return redirect()->back()->with("erro", "Os campos não podem conter nenhum número!");
         } elseif ($erro == 4) {
@@ -223,8 +222,6 @@ trait CursoTrait
             return redirect()->back()->with("erro", "Preencha todos os campos!");
         }
     }
-
-
 
 
 }
