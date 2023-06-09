@@ -82,11 +82,34 @@
 
           </li><!-- Termina Nav Notificacao -->
 
-          <li class="nav-item">
-          	<a class="nav-link nav-icon" href={{route('logout')}}>
-          		<i class="bi bi-box-arrow-right"></i>
-          	</a>
-          </li>
+			<li class="nav-item">
+				<button type="button" class="btn nav-link nav-icon" data-bs-toggle="modal" data-bs-target="#basicModal">
+					<i class="bi bi-box-arrow-right"></i>
+				</button>
+          	
+        	</li>
+
+
+			<div class="modal fade" id="basicModal" tabindex="-1" data-bs-backdrop="false" style="color: #000;">
+    			<div class="modal-dialog">
+      				<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+
+						<div class="modal-body" style="color: #696969;">
+							Tem a certeza de que pretende sair do sistema?
+                    	</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancelar</button>
+							<a class="btn btn-danger" href={{route('logout')}}>Sair</a>
+						</div>
+					
+					</div>
+				</div>
+			</div>
+
 
         </ul>
       </nav><!-- Fim Menu do cabecalho -->
