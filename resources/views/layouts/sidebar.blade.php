@@ -241,6 +241,11 @@
             <i class="bi bi-circle"></i><span>Calendários de Provas</span>
           </a>
         </li>
+        <li>
+          <a href="calend-prova/cri-calendario-prov">
+            <i class="bi bi-circle"></i><span>Criar Calendário</span>
+          </a>
+        </li>
       </ul>
     </li>
 

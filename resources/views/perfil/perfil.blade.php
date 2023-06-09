@@ -57,10 +57,8 @@
              <div class="tab-content pt-2">
 
                <div class="tab-pane fade show active dados" id="dados">
-                 <h5 class="card-title">Sobre</h5>
-                 <p class="small">Funcionário do Intituto médio politécnico nocargo de Subdiretor Pedagógico há 12 anos, lecionou as disciplinas de: Física, Inglês e Matemática no curso de Informática todas as classes.</p>
 
-                 <h5 class="card-title">Informações sobre o usuario</h5>
+                 <h5 class="card-title" style="font-size: 22px; text-align: center; text-transform: uppercase;">Informações sobre o usuario</h5>
 
                  <div class="row">
                    <div class="col-lg-4 col-md-4 label">Nome completo</div>
@@ -103,38 +101,32 @@
                    @php
                       $endereco = Auth::user()->belongPessoa->belongEndereco;
                    @endphp
-                   <div class="col-lg-8 col-md-8">{{ $endereco->numero_casa }}, {{ $endereco->zona }}, {{ $endereco->bairro }}, {{ $endereco->municipio }}</div>
+                   <div class="col-lg-8 col-md-8">{{--{{ $endereco->numero_casa }}, {{ $endereco->zona }}, {{ $endereco->bairro }}, {{ $endereco->municipio }}--}}</div>
                  </div>
 
                </div>
 
                <div class="tab-pane fade perfil-edit pt-3" id="edit-perfil">
+                 
+                <!-- Form Editar perfil -->
+                <form>
 
-                 <!-- perfil Edit Form -->
-                 <form>
-                   <div class="row mb-3">
-                     <label for="foto-perfil" class="col-md-4 col-lg-4 col-form-label">Foto</label>
-                     <div class="col-md-8 col-lg-8">
-                       <div class="pt-2">
-                            <form>
-                                <label for="foto-perf"><span class="btn btn-warning btn-sm" title="Atualizar foto de perfil"><i class="bi bi-upload"></i></span></label>
-                                <input type="file" id="foto-perf" hidden>
-                            </form>
-                       </div>
-                     </div>
-                   </div>
-
-                   <div class="row mb-3">
-                     <label for="sobre" class="col-md-4 col-lg-4 col-form-label">Sobre</label>
-                     <div class="col-md-8 col-lg-8">
-                       <textarea class="form-control" id="sobre" style="height: 100px">Funcionário do Intituto médio politécnico nocargo de Subdiretor Pedagógico há 12 anos, lecionou as disciplinas de: Física, Inglês e Matemática no curso de Informática todas as classes..</textarea>
-                     </div>
-                   </div>
+                 <div class="row mb-3">
+                   <label for="foto-perfil" class="col-md-4 col-lg-4 col-form-label">Foto</label>
+                   <div class="col-md-8 col-lg-8">
+                     <div class="pt-2">
+                        <label for="foto-perf"><span class="btn btn-warning btn-sm" title="Atualizar foto de perfil"><i class="bi bi-upload"></i></span></label>
+                         <input type="file" id="foto-perf" hidden>
+                        
+                      </div>
+                    </div>
+                  </div>
+                  
 
                    <div class="row mb-3">
                      <label for="nomeComp" class="col-md-4 col-lg-4 col-form-label">Nome Completo</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="nomeComp" value="Domingos Agostinho">
+                       <input type="text" class="form-control" id="nomeComp" value="{{ Auth::user()->belongPessoa->nome_completo }}">
                      </div>
                    </div>
 
@@ -142,68 +134,74 @@
                    <div class="row mb-3">
                      <label for="genero" class="col-md-4 col-lg- col-form-label">Gênero</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" readonly="true" disabled class="form-control" id="genero" value="Masculino">
+                       <input type="text" class="form-control" id="genero" value="{{ Auth::user()->belongPessoa->genero }}">
                      </div>
                    </div>
 
                    <div class="row mb-3">
                      <label for="dtNascimento" class="col-md-4 col-lg-4 col-form-label">Data de nascimento</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="dtNascimento" value="02/02/2023">
+                       <input type="text" class="form-control" id="dtNascimento" value="{{ Auth::user()->belongPessoa->data_nascimento }}">
                      </div>
                    </div>
 
                    <div class="row mb-3">
                      <label for="nBI" class="col-md-4 col-lg-4 col-form-label">Nº BI</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="nBI" value="0000000KJ000098">
+                       <input type="text" class="form-control" id="nBI" value="{{ Auth::user()->belongPessoa->num_bi }}">
                      </div>
                    </div>
 
                    <div class="row mb-3">
                      <label for="Email" class="col-md-4 col-lg-4 col-form-label">E-mail</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="Email" value="domingosagostinho@exemplo.com">
+                       <input type="text" class="form-control" id="Email" value="{{ Auth::user()->email }}">
                      </div>
                    </div>
 
                    <div class="row mb-3">
                      <label for="Telefone1" class="col-md-4 col-lg-4 col-form-label">Nº telefone1</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="Telefone1" value="90909090">
-                     </div>
-                   </div>
-
-                   <div class="row mb-3">
-                     <label for="Telefone2" class="col-md-4 col-lg-4 col-form-label">Nº telefone2</label>
-                     <div class="col-md-8 col-lg-8">
-                       <input type="email" class="form-control" id="Telefone2" value="090909090">
+                       <input type="text" class="form-control" id="Telefone1" value="{{ Auth::user()->belongPessoa->telefone }}090">
                      </div>
                    </div>
 
                    <div class="row mb-3">
                      <label for="Cargo" class="col-md-4 col-lg-4 col-form-label">Cargo</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="Cargo" value="Subdiretor pedagógico">
+                       <input type="text" class="form-control" id="Cargo" value="{{ Auth::user()->cargo_usuario }}">
                      </div>
                    </div>
 
                    <div class="row mb-3">
                      <label for="Endereco" class="col-md-4 col-lg-4 col-form-label">Endereço</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="Endereco" value="Casa nº 2322, Rua Qualquer, Luanda, Luanda Angola">
+                        <div class="row">
+                          <div class="col-lg-3">
+                            <input type="text" class="form-control" name="municipio" placeholder="Municipio">
+                          </div>
+                          <div class="col-lg-3">
+                            <input type="text" class="form-control" name="bairro" placeholder="Bairro">
+                          </div>
+                          <div class="col-lg-3">
+                            <input type="text" class="form-control" name="zona" placeholder="Zona">
+                          </div>
+                          <div class="col-lg-3">                          
+                            <input type="number" class="form-control"  name="num_casa" placeholder="Casa Nº">
+                          </div>
+                        </div>
                      </div>
                    </div>
 
                    <div class="text-center">
                      <button type="submit" class="btn" style="margin-top: 10px; background-color: #174183; color: #fff;">Atualizar Dados</button>
                    </div>
-                 </form><!-- End perfil Edit Form -->
+                 </form><!-- Fim Form Editar Perfil -->
 
                </div>
 
                <div class="tab-pane fade pt-3" id="alterar-senha">
-                 <!-- Change Password Form -->
+                 <!-- Form Alterar Password -->
                  <form>
 
                    <div class="row mb-3">
@@ -230,11 +228,11 @@
                    <div class="text-center">
                      <button type="submit" class="btn" style="margin-top: 10px; background-color: #174183; color: #fff;">Alterar Senha</button>
                    </div>
-                 </form><!-- End Change Password Form -->
+                 </form><!-- Fim Form Alterar Password -->
 
                </div>
 
-             </div><!-- End Bordered Tabs -->
+             </div><!-- Fim Bordered Tabs -->
 
            </div>
          </div>
