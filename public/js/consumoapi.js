@@ -5,7 +5,7 @@ fetch('/api/candidatos')
             .then(response => response.json())
             //CASO POSITIVO O JSON VAI PARA A VARIAVEL OS REGISTROS
             .then(registros => {
-                const tabela = document.getElementById('Inscricoes-tab');
+                const tabela = document.getElementById('Inscricoes');
                 const tbody = tabela.getElementsByTagName('tbody')[0];
                 //criando o foreach para cada registro da API
                 registros.forEach(registro => {

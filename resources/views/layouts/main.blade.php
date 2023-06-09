@@ -22,7 +22,7 @@
     
     
     <!-- /	Link do Css main do projecto -->
-    
+    <link href={{{URL::asset("css/apitabelainscricao.css")}}} rel="stylesheet">
     <link href={{{URL::asset("css/estilo.css")}}} rel="stylesheet">
     <link href={{{URL::asset("css/tudo.css")}}} rel="stylesheet">
     <link href={{{URL::asset("css/dinamico.css")}}} rel="stylesheet">
@@ -31,7 +31,8 @@
     <link href={{{URL::asset("css/ficha-biografica-doc.css")}}} rel="stylesheet">
     <link href={{{URL::asset("css/fonts/fontawesome-all.min.css")}}} rel="stylesheet">
     <link href={{{URL::asset("tooltipster/dist/css/tooltipster.bundle.min.css")}}} rel="stylesheet">
-    <link href={{{URL::asset("Datatables/datatables.min.css")}}} rel="stylesheet">
+
+    
     
     <!-- /	Link do js mim do projecto -->
     <script src={{{URL::asset("js/jquery-3.6.4.min.js")}}}></script>
@@ -58,8 +59,8 @@
     @include('layouts.footer')
 
     <!-- /	Link dos js do bootstrap-->
- 
- 
+  <script src={{{URL::asset("js/axios.min.js")}}}></script>
+  <script src={{{URL::asset("js/APIconsumo.js")}}}></script>
   <script src={{{URL::asset("vendor/apexcharts/apexcharts.min.js")}}}></script>
   <script src={{{URL::asset("vendor/bootstrap/js/bootstrap.bundle.min.js")}}}></script>
   <script src={{{URL::asset("vendor/chart.js/chart.umd.js")}}}></script>
