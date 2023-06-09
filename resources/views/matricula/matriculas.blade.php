@@ -8,22 +8,25 @@
     <div class="col">
       <h2>Matriculas</h2>      
     </div>
-  
-      <div class="col-lg-2">
-        <select class="btn-sel form-select" id="filtro">
-          <option selected disabled>Curso</option>
-          <option value="Desenhador projetista">Desenhador projetista</option>
-          <option value="Técnico de Energia e Instalações Electricas">Técnico de Energia e Instalações Electricas</option>
-          <option value="Técnico de Informática">Técnico de Informática</option>
-          <option value="Electronica e Telecomunicação">Electronica e Telecomunicação</option>
-        </select>
-      </div> 
 
       <div class="col-lg-2">
         <select class="btn-sel form-select">
-          <option selected>Matriculas</option>
+          <option selected>Estado</option>
         </select>
       </div>
+
+      <div class="col-lg-2">
+        <select class="btn-sel form-select">
+          <option selected>Turma</option>
+        </select>
+      </div>
+
+      <div class="col-lg-2">
+        <select class="btn-sel form-select">
+          <option selected>Média</option>
+        </select>
+      </div>
+      
   
   </div>
 
@@ -44,64 +47,45 @@
       <tr style=" text-align: center;">
           <th scope="col">N do Processo</th>
           <th scope="col">Nome do Aluno</th>
-          <th scope="col">Genero</th>
+          <th scope="col">Turma</th>
           <th scope="col">Média</th>
           <th scope="col">Idade</th>
-          <th scope="col">Curso</th>
-          <th scope="col">Período</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Ações</th>
           <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
+
       <tr style=" text-align: center;">
         <th scope="row">393839</th>
         <td>Fernando </td>
-        <td>Masculino</td>
+        <td>I12BT</td>
         <td>16</td>
         <td>15</td>
-        <td>Técnico de Informática</td>
-        <td>Manhã</td>
+        <td>Inativo</td>
+        <td><a href="#" name="" id="" class="btn btn-success"  role="button">Ativar</a></td>
         <td>
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
           <a href="/editar-registro"><i class="bi bi-pencil"></i></a>
           <i class="bi bi-trash-fill"></i>
-          <i class="bi bi-check-square-fill"></i>
         </td>
       </tr>
       
       <tr style=" text-align: center;">
-        <th scope="row">38373839</th>
-        <td>Fernando Exemplo</td>
-        <td>Masculino</td>
+        <th scope="row">393839</th>
+        <td>Fernando </td>
+        <td>I12BT</td>
         <td>16</td>
         <td>15</td>
-        <td>Desenhador projetista</td>
-        <td>Manhã</td>
+        <td>Ativo</td>
+        <td><a href="#" name="" id="" class="btn btn-danger"  role="button">Inativar</a></td>
         <td>
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-          <a href="/editar-matricula"><i class="bi bi-pencil"></i></a>
+          <a href="/editar-registro"><i class="bi bi-pencil"></i></a>
           <i class="bi bi-trash-fill"></i>
-          <i class="bi bi-check-square-fill"></i>
         </td>
       </tr>
-
-      <tr style=" text-align: center;">
-        <th scope="row">38373839</th>
-        <td>Fernando Exemplo</td>
-        <td>Masculino</td>
-        <td>16</td>
-        <td>15</td>
-        <td>Informática</td>
-        <td>Manhã</td>
-        <td>
-          <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-          <a href="/editar-matricula"><i class="bi bi-pencil"></i></a>
-          <i class="bi bi-trash-fill"></i>
-          <i class="bi bi-check-square-fill"></i>
-        </td>
-      </tr>
-
-      
     </tbody>
   </table>
   <!-- Termina a tabela de matriculas -->
