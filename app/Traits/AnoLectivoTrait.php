@@ -8,9 +8,17 @@ use Illuminate\Support\Fluent;
 
 trait AnoLectivoTrait
 {
+    public static function validateDesignacao($designacao){
+        $desig = Ano_lectivo::where('ano_lectivo', $designacao)->get();
+        if(count($desig) > 0){
+            return false;
+        } else{
+            return true;
+        }
+    }
     public static function validateInicioAnoLectivo($anoLectivo){
         $ultimoAno = Ano_lectivo::latest()->first();
-        if($ultimoAno->count() > 0){
+        if($ultimoAno != null){
             $totime1 = strtotime($anoLectivo);
             $totime2 = strtotime($ultimoAno->data_fim_ano_lectivo);
             if($totime1 > $totime2){
@@ -32,7 +40,8 @@ trait AnoLectivoTrait
             $ini = new DateTime($inicio);
             $fn = new DateTime($fim);
             $f = $ini->diff($fn);
-            if($f->m >= 10 && $f->m <= 11 && $f->y == 0){
+            //dd($f);
+            if(($f->m <= 11 && $f->y == 0) || ($f->y == 1 && $f->m == 0)){
                 return true;
             } else{
                 return 2;

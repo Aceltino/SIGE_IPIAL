@@ -252,9 +252,10 @@ Route::prefix('ano-lectivo')->group(function(){
 
     Route::get('ano-letivo', [AnoLectivoController::class, 'index'])->name('ano.lectivo');
 
-    Route::get('editar-ano-letivo', function () {
-        return view('ano-lectivo/edit-ano-letivo');
-    });
+    Route::get('editar-ano-letivo/{id}', [AnoLectivoController::class, 'indexUpdate'])->name('editar.ano.lectivo');
+    Route::put('editar-ano-letivo/editar', [AnoLectivoController::class, 'update'])->name('update.ano.lectivo');
+
+    Route::delete('apagar-ano-lectivo/{id}', [AnoLectivoController::class, 'delete'])->name('apagar.ano.lectivo');
 
 });
 

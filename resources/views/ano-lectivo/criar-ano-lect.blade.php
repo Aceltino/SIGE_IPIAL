@@ -5,9 +5,7 @@
 @section('conteudo')
 
 <main id="main" class="main">
-    @if (session()->has('sucesso'))
-        {{session('sucesso')}}
-    @endif
+    
       <form method="POST" id="regForm" action="{{route('cadastrar.ano.lectivo')}}" class="formulario-layout">
         @csrf
         <div style="text-align:center;margin-top:40px;">
@@ -266,7 +264,7 @@
             <div class="row" >
                 <div class="col">
                     <p>Duração de cada tempo (em minutos)<input type="number" placeholder="Ex:50" name="duracao_tempo_noite" value="{{old('duracao_tempo_noite')}}" oninput="this.className = ''" required></p>
-                    @error('duracao_tempo_noit')
+                    @error('duracao_tempo_noite')
                         <p style="color:red">{{$message}}</p>
                     @enderror
                 </div>

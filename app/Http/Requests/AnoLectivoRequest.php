@@ -29,13 +29,19 @@ class AnoLectivoRequest extends FormRequest
                 'required',
                 'string',
                 'min:1',
-                'max:15'
+                'max:15',
+                function($attribute, $value, $fail){
+                    $desig = AnoLectivoTrait::validateDesignacao($value);
+                    if(!$desig && !isset($this->id)){
+                        return $fail("Esta designação para o ano lectivo já existe.");
+                    }
+                }
             ],
             'data_inicio_ano_lectivo' => [
                 'required',
                 function($attribute, $value, $fail){
                     $ulAno = AnoLectivoTrait::validateInicioAnoLectivo($value);
-                    if(!$ulAno){
+                    if(!$ulAno && !isset($this->id)){
                         return $fail("A data de início do ano lectivo deve ser superior ao ano lectivo anterior!");
                     }
                 }
@@ -285,6 +291,7 @@ class AnoLectivoRequest extends FormRequest
                 'max:30',
                 'min:1'
             ],
+            'id' => 'integer'
         ];
     }
 

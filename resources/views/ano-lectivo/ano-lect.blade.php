@@ -4,40 +4,40 @@
 
 @section('conteudo')
 <main id="main" class="main">
+    @if (session()->has('sucesso'))
+        {{session('sucesso')}}
+    @endif
+    @if (session()->has('erro'))
+        {{session('erro')}}
+    @endif
       <div class="row">
         <div class="col">
-          <h2 class="color-blue-principal">ANO LECTIVO</h2>      
+          <h2 class="color-blue-principal">ANO LECTIVO</h2>
         </div>
          <div class="col-lg-4">
            <select class="btn-sel form-select" id="filtro1">
              <option selected disabled>Ano de Inicio</option>
-             <option value="2021">2021</option>
-             <option value="2022">2022</option>
-             <option value="2023">2023</option>
-             <option value="2024">2024</option>
-             <option value="2025">2025</option>
-             <option value="2026">2026</option>
+             @for ($i = 0; $i < count($anoLectivo); $i++)
+                <option value="{{$anoLectivo[$i]['data_inicio_ano_lectivo']}}">{{$anoLectivo[$i]['data_inicio_ano_lectivo']}}</option>
+             @endfor
            </select>
          </div>
 
          <div class="col-lg-4">
            <select class="btn-sel form-select" id="filtro2">
              <option selected disabled>Ano de fim</option>
-             <option value="2021">2021</option>
-             <option value="2022">2022</option>
-             <option value="2023">2023</option>
-             <option value="2024">2024</option>
-             <option value="2025">2025</option>
-             <option value="2026">2026</option>
+             @for ($i = 0; $i < count($anoLectivo); $i++)
+                <option value="{{$anoLectivo[$i]['data_fim_ano_lectivo']}}">{{$anoLectivo[$i]['data_fim_ano_lectivo']}}</option>
+             @endfor
            </select>
          </div>
-      
+
       </div>
 
       <div class="procurar mt-4">
         <form class="proc-form d-flex align-items-center">
           <input id="pesquisa" placeholder="Qual ano letivo estás a procurar?" value="" type="text" name="" class="campo-pesq">
-          <button type="submit" title="Search"><i class="bi bi-search"></i></button>   
+          <button type="submit" title="Search"><i class="bi bi-search"></i></button>
         </form>
       </div>
 
@@ -54,275 +54,26 @@
           </tr>
         </thead>
         <tbody>
-
+        @foreach ($anoLectivo as $al)
           <tr style=" text-align: center;">
-            <td>2025-2026</td>
-            <td>04/09/2025</td>
-            <td>14/07/2026</td>
-            <td>50</td>
-            <td>50</td>
-            <td>
-              <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
+                <td>{{$al['ano_lectivo']}}</td>
+                <td>{{$al['data_inicio_ano_lectivo']}}</td>
+                <td>{{$al['data_fim_ano_lectivo']}}</td>
+                <td>{{$al['num_aluno_na_turma']}}</td>
+                <td>{{$al['num_sala_escola']}}</td>
+                <td>
+                    <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
+                    <a href="{{route('editar.ano.lectivo', $al['ano_lectivo_id'])}}"><i class="bi bi-pencil"></i></a>
+                    <form action="{{route('apagar.ano.lectivo', $al['ano_lectivo_id'])}}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <button type="submit"><i class="bi bi-trash-fill" ></i></button>
+                    </form>
+                    <i class="bi bi-check-square-fill"></i>
+                </td>
+            </tr>
+        @endforeach
 
-          
-          <tr style=" text-align: center;">
-            <td>2025-2026</td>
-            <td>04/09/2025</td>
-            <td>14/07/2026</td>
-            <td>50</td>
-            <td>50</td>
-            <td>
-              <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-
-          
-          <tr style=" text-align: center;">
-            <td>2025-2026</td>
-            <td>04/09/2025</td>
-            <td>14/07/2026</td>
-            <td>50</td>
-            <td>50</td>
-            <td>
-              <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-
-          
-          <tr style=" text-align: center;">
-            <td>2025-2026</td>
-            <td>04/09/2025</td>
-            <td>14/07/2026</td>
-            <td>50</td>
-            <td>50</td>
-            <td>
-              <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-
-          
-          <tr style=" text-align: center;">
-            <td>2025-2026</td>
-            <td>04/09/2025</td>
-            <td>14/07/2026</td>
-            <td>50</td>
-            <td>50</td>
-            <td>
-              <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-
-          
-          <tr style=" text-align: center;">
-            <td>2025-2026</td>
-            <td>04/09/2025</td>
-            <td>14/07/2026</td>
-            <td>50</td>
-            <td>50</td>
-            <td>
-              <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-
-          
-          <tr style=" text-align: center;">
-            <td>2025-2026</td>
-            <td>04/09/2025</td>
-            <td>14/07/2026</td>
-            <td>50</td>
-            <td>50</td>
-            <td>
-              <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-
-          
-          <tr style=" text-align: center;">
-            <td>2025-2026</td>
-            <td>04/09/2025</td>
-            <td>14/07/2026</td>
-            <td>50</td>
-            <td>50</td>
-            <td>
-              <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-
-          
-          <tr style=" text-align: center;">
-            <td>2025-2026</td>
-            <td>04/09/2025</td>
-            <td>14/07/2026</td>
-            <td>50</td>
-            <td>50</td>
-            <td>
-              <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-
-          
-          <tr style=" text-align: center;">
-            <td>2025-2026</td>
-            <td>04/09/2025</td>
-            <td>14/07/2026</td>
-            <td>50</td>
-            <td>50</td>
-            <td>
-              <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-
-          
-          <tr style=" text-align: center;">
-            <td>2025-2026</td>
-            <td>04/09/2025</td>
-            <td>14/07/2026</td>
-            <td>50</td>
-            <td>50</td>
-            <td>
-              <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-
-          
-          <tr style=" text-align: center;">
-            <td>2025-2026</td>
-            <td>04/09/2025</td>
-            <td>14/07/2026</td>
-            <td>50</td>
-            <td>50</td>
-            <td>
-              <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-
-          
-          <tr style=" text-align: center;">
-            <td>2025-2026</td>
-            <td>04/09/2025</td>
-            <td>14/07/2026</td>
-            <td>50</td>
-            <td>50</td>
-            <td>
-              <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-
-          
-          <tr style=" text-align: center;">
-            <td>2025-2026</td>
-            <td>04/09/2025</td>
-            <td>14/07/2026</td>
-            <td>50</td>
-            <td>50</td>
-            <td>
-              <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-
-          
-          <tr style=" text-align: center;">
-            <td>2025-2026</td>
-            <td>04/09/2025</td>
-            <td>14/07/2026</td>
-            <td>50</td>
-            <td>50</td>
-            <td>
-              <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-
-          
-          <tr style=" text-align: center;">
-            <td>2025-2026</td>
-            <td>04/09/2025</td>
-            <td>14/07/2026</td>
-            <td>50</td>
-            <td>50</td>
-            <td>
-              <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-
-          
-          <tr style=" text-align: center;">
-            <td>2025-2026</td>
-            <td>04/09/2025</td>
-            <td>14/07/2026</td>
-            <td>50</td>
-            <td>50</td>
-            <td>
-              <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
-
-          
-          <tr style=" text-align: center;">
-            <td>2025-2026</td>
-            <td>04/09/2025</td>
-            <td>14/07/2026</td>
-            <td>50</td>
-            <td>50</td>
-            <td>
-              <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-              <a href="/editar-ano-letivo"><i class="bi bi-pencil"></i></a>
-              <i class="bi bi-trash-fill"></i>
-              <i class="bi bi-check-square-fill"></i>
-            </td>
-          </tr>
         </tbody>
       </table>
       <!-- Termina a tabela de matriculas -->
@@ -342,9 +93,9 @@
             <div class="cabecalho-modal">
               <div class="row">
                 <div class="col" style="display: flex; justify-content: flex-start; align-items: center;">
-                  <h1>Dados Do Ano Lectivo</h1>      
+                  <h1>Dados Do Ano Lectivo</h1>
                 </div>
-            
+
               </div>
             </div>
 
@@ -356,7 +107,7 @@
                     <div class=" col area-input form-group" disabled>
                      <label>Nome do Ano Letivo: </label><input class="form-control" type="text" name="" value="Ano-Alda-2023" style="text-align: center;" disabled>
                     </div>
-                  </div>  
+                  </div>
 
                   <div Class="row">
 
@@ -367,19 +118,19 @@
                     <div class="col area-input form-group" style="margin-left: 10px;" disabled>
                      <label>Data de Fim: </label><input class="form-control" type="text" name="" value="2021" disabled>
                     </div>
-                  </div>  
-                  
+                  </div>
+
                   <div class="row">
                     <div class="col area-input form-group" disabled>
                       <label>Número Máximo de vagas na turma: </label><input class="form-control" type="text" name="" value="50" disabled>
                     </div>
-  
+
                     <div class="col area-input form-group" style="margin-left: 10px;" disabled>
                       <label>Número Máximo de Sala: </label><input class="form-control" type="text" name="" value="29" disabled>
                     </div>
 
                   </div>
-                  
+
                   <div Class="row">
 
                     <div class=" col area-input form-group" disabled>
@@ -389,7 +140,7 @@
                     <div class="col area-input form-group" style="margin-left: 10px;" disabled>
                       <label>Fim das Incrições:</label><input class="form-control" type="text" name="" value="2023" disabled>
                     </div>
-                  </div> 
+                  </div>
 
                   <div Class="row">
 
@@ -400,26 +151,26 @@
                     <div class="col area-input form-group" style="margin-left: 10px;" disabled>
                       <label>Fim das Matriculas:</label><input class="form-control" type="text" name="" value="2023" disabled>
                     </div>
-                  </div> 
+                  </div>
 
                 </div>
                 <div class="footer-modal" style="text-align: center;">
-                 
+
                   <div class="jnt">
                       <a href="/ano-letivo" class="btn" style="background-color: #070b17; color: #fff;">Retrocer aos Anos Lectivos</a>
 
                       <a href="/editar-ano-letivo" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
-  
-  
+
+
                   </div>
                 </div>
-            
-              </form> 
+
+              </form>
             </div>
-            
+
           </div>
         </div>
-      </div>      
+      </div>
 
       <!--  / Termina a modal ver inscrito-->
 
