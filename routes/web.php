@@ -141,7 +141,7 @@ Route::prefix('matricula')->group(function(){
     });
 
     /*Matricular aluno */
-    Route::get('matricular-aluno',  [MatriculaController::class, 'create'])->name('matricula');
+    Route::get('matricular-aluno/{candidato_id}',  [MatriculaController::class, 'create'])->name('matricula');
     Route::post('matricular-aluno', [MatriculaController::class, 'store'])->name('matricular');
 
     /*Editar matricula */

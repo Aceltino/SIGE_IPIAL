@@ -1021,3 +1021,11 @@ a.color-white{
   margin-left: 10px;
 }
 
+.botaoMatricular{
+  background-color: #173997f6; 
+  color: #fff; 
+  font-size: 16px; 
+  margin-top: 8px;
+  width: 40px;
+  height: 10px;
+}

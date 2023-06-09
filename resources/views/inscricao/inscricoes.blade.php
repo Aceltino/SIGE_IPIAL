@@ -5,23 +5,22 @@
 
 @section('conteudo')
 <main id="main" class="main">
-  <div class="row">
-    <div class="col">
-      <h2>Inscritos</h2>
-    </div>
+  @if(session()->has('ErroCandidato'))
+  <div class="alert alert-danger">
+  {{session('ErroCandidato')}}
+  </div>
+@endif
 
-    @if(session()->has('Sucesso'))
+@if(session()->has('Sucesso'))
 <div class="alert alert-success">
 {{session('Sucesso')}}
 </div>
 @endif
 
-@if(session()->has('ErroCandidato'))
-        <div class="alert alert-danger">
-        {{session('ErroCandidato')}}
-        </div>
-    @endif
-
+  <div class="row">
+    <div class="col">
+      <h2>Inscritos</h2>
+    </div>
     <div class="col-lg-2">
       <select class="btn-sel form-select" id="filtro5">
         <option selected disabled>Curso</option>
@@ -30,7 +29,7 @@
         <option value="Informática ">Informática</option>
         <option value="Electronica e Telecomunicação">Electrônica e Telecomunicação</option>
       </select>
-    </div>
+  </div>
 
     <div class="col-lg-2">
       <select class="btn-sel form-select" id="filtro">
@@ -60,7 +59,7 @@
   </div>
   <!-- /  Inicio da tabela de inscritos -->
 
-  <table class="table table-striped display" style="margin-top: 10px;" id="Inscricoes-tab">
+  <table class="table table-striped display" style="margin-top: 10px; text-align: center;" id="Inscricoes-ta">
     <thead>
       <tr style=" text-align: center;">
         <th scope="col">Número do BI</th>
@@ -72,7 +71,7 @@
         <th scope="col">Matricular</th>
         <th scope="col">Ações</th>
       </tr>
-    </thead>
+    </thead> 
     <tbody>
     </tbody>
   </table>

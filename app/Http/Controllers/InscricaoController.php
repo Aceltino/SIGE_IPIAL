@@ -127,7 +127,7 @@ class InscricaoController extends Controller
     public function edit($id)
     {
         $candidato = CandidatoController::pegarDadosCandidato($id);
-        return view('inscricao/edit-candidato',[
+        return view('inscricao.edit-candidato',[
             'candidato' => $candidato[0]
         ]);
     }
