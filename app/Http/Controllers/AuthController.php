@@ -27,12 +27,12 @@ class AuthController extends Controller
     public function registrarForm(){
        return view('autenticacao.registrar');
     }
-    public function resetForm(){
-        return view('autenticacao.recuperar-senha');
-    } 
-    public function resetPasswordForm($token){
-        return view('autenticacao.nova_senha', ['token' => $token]);
-    }
+    // public function resetForm(){
+    //     return view('autenticacao.recuperar-senha');
+    // } 
+    // public function resetPasswordForm($token){
+    //     return view('autenticacao.nova_senha', ['token' => $token]);
+    // }
     public function loginCheck(Request $request){
        
         $credencias= [
@@ -181,24 +181,132 @@ class AuthController extends Controller
         return redirect()->route("login");      
     }
 
-    public function envioLinkEmail(Request $request){
+    // public function envioLinkEmail(Request $request){
 
+    //     $request->validate(['email' => 'required|email']);
+
+    //     $consutEmail= User::where('email',$request->email)->first();
+    //     if(!$consutEmail) {
+    //         $msg="Lamentamos! este email não esta atrelado a conta do usuario";
+    //         return redirect()->back()->with('erro_email_001',$msg);
+    //     }
+    //     $status = Password::sendResetLink(
+    //         $request->only('email')
+    //     );
+        
+    //     return $status === Password::RESET_LINK_SENT
+    //                 ? back()->with(['status' => __("Enviamos seu link de redefinição de senha por e-mail!")])
+    //                 : back()->withErrors(['email' => __($status)]);
+
+    // }
+
+    // public function resetPassword(){
+
+    //     $request->validate([
+    //         'token' => 'required',
+    //         'email' => 'required|email',
+    //         'password' => 'required|min:8|confirmed',
+    //     ]);
+     
+    //     $status = Password::reset(
+    //         $request->only('email', 'password', 'password_confirmation', 'token'),
+    //         function ($user, $password) {
+    //             $user->forceFill([
+    //                 'password' => Hash::make($password)
+    //             ])->setRememberToken(Str::random(60));
+     
+    //             $user->save();
+     
+    //             event(new PasswordReset($user));
+    //         }
+    //     );
+     
+    //     return $status === Password::PASSWORD_RESET
+    //                 ? redirect()->route('login')->with('status', __($status))
+    //                 : back()->withErrors(['email' => [__($status)]]);
+
+    // }
+
+
+    //TESTE-1..............Passo-1.......................
+
+    public function resetForm()
+    {
+        return view('autenticacao.recuperar-senha');
+    }
+
+    public function sendResetLinkEmail(Request $request)
+    {
         $request->validate(['email' => 'required|email']);
 
-        $consutEmail= User::where('email',$request->email)->first();
-        if(!$consutEmail) {
-            $msg="Lamentamos! este email não esta atrelado a conta do usuario";
-            return redirect()->back()->with('erro_email_001',$msg);
-        }
-        $status = Password::sendResetLink(
+        $response = $this->broker()->sendResetLink(
             $request->only('email')
-        );
+        );  
+
         
-        return $status === Password::RESET_LINK_SENT
-                    ? back()->with(['status' => __("Enviamos seu link de redefinição de senha por e-mail!")])
-                    : back()->withErrors(['email' => __($status)]);
+        return $response == Password::RESET_LINK_SENT
+            ? back()->with('status', "Enviamos seu link de redefinição de senha por e-mail!")
+            : back()->withErrors(['email' => trans($response)]);
 
     }
 
-   
+
+
+    //TESTE-2.............Passo-2.....................
+    
+    public function resetPasswordForm(Request $request, $token = null)
+    {
+        return view('autenticacao.nova_senha')->with(
+            ['token' => $token, 'email' => $request->email]
+        );
+    }
+
+    
+    public function reset(Request $request)
+    {
+        $request->validate($this->rules(), $this->validationErrorMessages());
+
+        $response = $this->broker()->reset(
+            $this->credentials($request),
+            function ($user, $password) {
+                $this->resetPassword($user, $password);
+            }
+        );
+
+        return $response == Password::PASSWORD_RESET
+            ? redirect()->route('login')->with('status', trans($response))
+            : back()->withErrors(['email' => trans($response)]);
+    }
+
+    protected function rules()
+    {
+        return [
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|confirmed|min:8',
+        ];
+    }
+
+    protected function validationErrorMessages()
+    {
+        return [];
+    }
+
+    protected function credentials(Request $request)
+    {
+        return $request->only(
+            'email', 'password', 'password_confirmation', 'token'
+        );
+    }
+
+    protected function resetPassword($user, $password)
+    {
+        $user->password = bcrypt($password);
+        $user->save();
+    }
+
+    public function broker()
+    {
+        return Password::broker();
+    }
 }   

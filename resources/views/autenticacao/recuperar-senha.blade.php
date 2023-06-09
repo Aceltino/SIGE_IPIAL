@@ -18,7 +18,7 @@
         {{session('status')}}
       </div>
     @endif
-   
+    
     <form action={{route('password-email')}} method="post" class="row g-3 needs-validation" novalidate>
     @csrf
       <div class="input-group col-12">
