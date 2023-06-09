@@ -11,6 +11,9 @@ use App\Http\Controllers\{
     comunicadosController,
     CandidatoCursoController,
     CursoController,
+    AssiduidadeAlunoController,
+    AvaliacaoAlunoController,
+    AnoLectivoController,
     MiniPautaController,
     PautaController,
 };
@@ -261,17 +264,16 @@ Route::prefix('curso')->group(function(){
  */
 Route::prefix('ano-lectivo')->group(function(){
 
-    Route::get('criar-ano-letivo', function () {
-        return view('ano-lectivo/criar-ano-lect');
-    });
+    Route::get('criar-ano-letivo', [AnoLectivoController::class, 'indexCadastroAnoLectivo'])->name('cadastro.ano.lectivo');
+    Route::post('criar-ano-letivo/cadastrar', [AnoLectivoController::class, 'store'])->name('cadastrar.ano.lectivo');
 
-    Route::get('ano-letivo', function () {
-        return view('ano-lectivo/ano-lect');
-    });
 
-    Route::get('editar-ano-letivo', function () {
-        return view('ano-lectivo/edit-ano-letivo');
-    });
+    Route::get('ano-letivo', [AnoLectivoController::class, 'index'])->name('ano.lectivo');
+
+    Route::get('editar-ano-letivo/{id}', [AnoLectivoController::class, 'indexUpdate'])->name('editar.ano.lectivo');
+    Route::put('editar-ano-letivo/editar', [AnoLectivoController::class, 'update'])->name('update.ano.lectivo');
+
+    Route::delete('apagar-ano-lectivo/{id}', [AnoLectivoController::class, 'delete'])->name('apagar.ano.lectivo');
 
 });
 
@@ -377,9 +379,7 @@ Route::prefix('calend-prova')->group(function(){
  */
 
 /* Assiduidade de alunos*/
-Route::get('/assiduidade_aluno', function () {
-    return view('assiduid-aluno/assd-aluno');
-});
+Route::get('/assiduidade_aluno', [AssiduidadeAlunoController::class, 'index'])->name('assiduidade');
 
 /*justificar ou editar assiduidade*/
 Route::get('/editar_assiduidade', function () {
@@ -391,9 +391,7 @@ Route::get('/editar_assiduidade', function () {
  */
 
 /*Avaliação de Aluno*/
-Route::get('/avaliar-aluno', function () {
-    return view('avaliac-aluno/avaliacoes-aluno');
-});
+Route::get('/avaliar-aluno', [AvaliacaoAlunoController::class, 'index'])->name('avaliacao.aluno');
 
 /*editar Avaliação de Aluno*/
 Route::get('/editar-avaliacao-aluno', function () {
