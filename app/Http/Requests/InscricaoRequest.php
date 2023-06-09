@@ -50,7 +50,7 @@ class InscricaoRequest extends FormRequest
 
             //Formulario escola proveniente
             'nome_escola'=>'required|max:100|min:2',
-            'num_processo'=>'filled|numeric|min:2',
+            'num_processo'=>'required|numeric|min:2',
             'num_aluno'=>'required|numeric|min:1',
             'ultimo_anoLectivo'=>'nullable|numeric|min:2',
             'turma_aluno' => 'required|string',
