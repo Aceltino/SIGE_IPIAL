@@ -55,20 +55,21 @@ class CandidatoController extends Controller
 
     public static function atualizarStatus($candidatoStatus) //Atualizar status
     {
-            // Atualizar os dados do candidato
-            $candidato = Candidato::find($candidatoStatus['id']);
-            $candidato->status = "Admitido";
-            $candidato->cursoAdmitido = $candidatoStatus['cursoEscolhido'];
+        // Atualizar os dados do candidato
+        $candidato = Candidato::find($candidatoStatus['id']);
+        $candidato->status = "Admitido";
+        $candidato->cursoAdmitido = $candidatoStatus['cursoEscolhido'];
 
 
+        $candidato->save();
+
+        $candidatos = Candidato::where('status', 'pendente')->get();
+
+        foreach ($candidatos as $candidato)
+        {
+            $candidato->status = 'não admitido';
             $candidato->save();
-
-            $candidatos = Candidato::where('status', 'pendente')->get();
-
-            foreach ($candidatos as $candidato) {
-                $candidato->status = 'não admitido';
-                $candidato->save();
-            }
+        }
     }
 
     //FUNÇÂO USADA PARA API, TESTEM => "http://127.0.0.1:8000/api/candidatos"
@@ -114,9 +115,9 @@ class CandidatoController extends Controller
                 'Quimica' => $candidato->escola->quimica,
                 'Escola' => $candidato->escola->nome_escola,
                 'Turno' => $candidato->escola->turno,
-                'Numero Processo' => $candidato->escola->num_processo,
-                'Numero Aluno' => $candidato->escola->num_aluno,
-                'Ultimo AnoLectivo' => $candidato->escola->ultimo_anoLectivo,
+                'Numero_Processo' => $candidato->escola->num_processo,
+                'Numero_Aluno' => $candidato->escola->num_aluno,
+                'Ultimo_AnoLectivo' => $candidato->escola->ultimo_anoLectivo,
                 'Media' => $candidato->media,
 
                 'Curso' => $candidato->cursoAdmitido,
@@ -128,39 +129,33 @@ class CandidatoController extends Controller
                 'Data_inscricao' => $candidato->created_at
             ];
         }
-
         return $dadosCandidatos;
-
     }
 
     public static function pegarDadosCandidato($id)
     {
         $dataAtual = Carbon::now();
 
-        $candidatos = Candidato::with('pessoa', 'escola', 'ano_lectivo')
-        ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
-        ->get();
+        $cursoCandidato = CandidatoCursoController::cursoEscolhido($id);
 
-        foreach ($candidatos as &$candidato)
-        {
-            $dataNascimento = Carbon::parse($candidato->pessoa->data_nascimento);
-            $idade = $dataAtual->diffInYears($dataNascimento);
-            $candidato['idade'] = $idade;
-        }
+                usort($cursoCandidato, function ($a, $b)
+                {
+                    return $a['prefCurso'] - $b['prefCurso'];
+                });
+                // dd($cursoCandidato);
+                $candidato = Candidato::with( 'pessoa', 'escola')->findOrFail($id);
 
-        foreach ($candidatos as &$candidato)
-        {
-            $media = ($candidato->escola->fisica
-            + $candidato->escola->matematica
-            + $candidato->escola->quimica
-            + $candidato->escola->ling_port) / 4;
-            $candidato['media'] = $media;
-        }
+                $cursoEscolhido = [];
 
-        $dadosCandidatos = [];
+                $dataNascimento = Carbon::parse($candidato->pessoa->data_nascimento);
+                $idade = $dataAtual->diffInYears($dataNascimento);
+                $candidato['idade'] = $idade;
 
-        foreach ($candidatos as $candidato)
-        {
+                foreach($cursoCandidato as $curso)
+                {
+                    $cursoEscolhido[] = $curso['nomeCurso'];
+                }
+
             $dadosCandidatos[] =
             [
                 'Nome' => $candidato->pessoa->nome_completo,
@@ -168,6 +163,7 @@ class CandidatoController extends Controller
                 'NumeroBI' => $candidato->pessoa->num_bi,
                 'Genero' => $candidato->pessoa->genero,
                 'Idade' => $candidato->idade,
+                'Telefone' => $candidato->pessoa->telefone,
 
                 'Matematica' => $candidato->escola->matematica,
                 'Lingua_Portuguesa' => $candidato->escola->ling_port,
@@ -175,21 +171,29 @@ class CandidatoController extends Controller
                 'Quimica' => $candidato->escola->quimica,
                 'Escola' => $candidato->escola->nome_escola,
                 'Turno' => $candidato->escola->turno,
-                'Numero Processo' => $candidato->escola->num_processo,
-                'Numero Aluno' => $candidato->escola->num_aluno,
-                'Ultimo AnoLectivo' => $candidato->escola->ultimo_anoLectivo,
-                'Media' => $candidato->media,
+                'Turma' => $candidato->escola->turma_aluno,
+                'Numero_Processo' => $candidato->escola->num_processo,
+                'Numero_Aluno' => $candidato->escola->num_aluno,
+                'Ultimo_AnoLectivo' => $candidato->escola->ultimo_anoLectivo,
+                'Id_inscricao' => $candidato->candidato_id,
+                'Cursos' => $cursoEscolhido,
 
                 'Pai' => $candidato->nome_pai_cand,
                 'Mae' => $candidato->nome_mae_cand,
                 'Naturalidade' => $candidato->naturalidade_cand,
-                'Situacao' => $candidato->status
             ];
-        }
-
         return $dadosCandidatos;
-
     }
 
+    public static function updateCandidato($dadosCandidato)
+    {
+        $candidato = Candidato::find($dadosCandidato['id']);
+
+        $candidato->nome_pai_cand = $dadosCandidato['nome_pai_cand'];
+        $candidato->nome_mae_cand = $dadosCandidato['nome_mae_cand'];
+        $candidatoAtualizado = $candidato->save();
+
+        return $candidatoAtualizado;
+    }
 
 }

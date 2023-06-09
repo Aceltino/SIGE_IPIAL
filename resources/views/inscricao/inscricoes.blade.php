@@ -3,12 +3,19 @@
 @section('title', 'Alunos inscritos')
 
 @section('conteudo')
+
+@if(session()->has('Sucesso'))
+<div class="alert alert-success">
+{{session('Sucesso')}}
+</div>
+@endif
+
 <main id="main" class="main">
   <div class="row">
     <div class="col">
-      <h2>Inscritos</h2>      
+      <h2>Inscritos</h2>
     </div>
-  
+
     <div class="col-lg-2">
       <select class="btn-sel form-select" id="filtro5">
         <option selected disabled>Curso</option>
@@ -17,7 +24,7 @@
         <option value="Informática ">Informática</option>
         <option value="Electronica e Telecomunicação">Electrônica e Telecomunicação</option>
       </select>
-    </div> 
+    </div>
 
     <div class="col-lg-2">
       <select class="btn-sel form-select" id="filtro">
@@ -31,7 +38,7 @@
   <div class="procurar">
     <form class="proc-form d-flex align-items-center">
       <input id="pesquisa" type="text" placeholder="Digite o código da inscrição ou o número do B.I do Candidato" name="" class="campo-pesq">
-      <button type="submit" title="Search"><i class="bi bi-search"></i></button>   
+      <button type="submit" title="Search"><i class="bi bi-search"></i></button>
     </form>
   </div>
   <div style="display: flex; justify-content: flex-end; align-items: center;">
@@ -46,7 +53,7 @@
 
   </div>
   <!-- /  Inicio da tabela de inscritos -->
-  <table class="table table-striped" style="margin-top: 10px;" id="matricula-tab">
+  <table class="table table-striped display" style="margin-top: 10px;" id="Inscricoes-tab">
     <thead>
       <tr style=" text-align: center;">
         <th scope="col">Número do BI</th>
@@ -60,38 +67,38 @@
       </tr>
     </thead>
     <tbody>
-      @foreach($dados as $dado)
+      {{-- @foreach($dados as $dado) --}}
       <tr  style=" text-align: center;">
-        <th scope="row">{{$dado['NumeroBI']}}</th>
-        <td>{{$dado['Nome']}}</td>
-        <td>{{$dado['Media']}}</td>
-        <td>{{$dado['Idade']}}</td>
+        <th scope="row">dado'NumeroBI'</th>
+        <td>'Nome'</td>
+        <td>$dado'Media'</td>
+        <td>$dado'Idade'</td>
         <td>Informática</td>
-        @if($dado['Situacao'] == "Admitido")
-        <td style="font-weight: 600; color: green;">{{$dado['Situacao']}}</td>
-        @elseif($dado['Situacao'] == "Pendente")
-         <td style="font-weight: 600; color: rgb(175, 0, 0);">{{$dado['Situacao']}}</td>
-         @elseif($dado['Situacao'] == "Não-Admitido")
-         <td style="font-weight: 600; color: rgb(175, 0, 0);">{{$dado['Situacao']}}</td>
-        @else
+        {{-- @if($dado['Situacao'] == "Admitido") --}}
+        <td style="font-weight: 600; color: green;">Situação'</td>
+        {{-- @elseif($dado['Situacao'] == "Pendente") --}}
+         <td style="font-weight: 600; color: rgb(175, 0, 0);">'Situacao'</td>
+         {{-- @elseif($dado['Situacao'] == "Não-Admitido") --}}
+         <td style="font-weight: 600; color: rgb(175, 0, 0);">'Situacao'</td>
+        {{-- @else --}}
         <td style="font-weight: 600; color: rgb(0, 0, 0);">Erro</td>
-        @endif
+        {{-- @endif --}}
          <!-- / Adicionar a condição se atimitido e a data atual for menor a da final de matricula aparece o botão matricualr -->
-        @if($dado['Situacao'] == "Pe") 
+        {{-- @if($dado['Situacao'] == "Pe") --}}
         <td class="pendente1">Aguarde...</td>
-        @elseif($dado['Situacao'] != 'Não admitido' && 'Adimitido')
+        {{-- @elseif($dado['Situacao'] != 'Não admitido' && 'Adimitido') --}}
         <td class="pendente1"><a href="#" class="btn btn-success">Matricular</a></td>
-        @else
+        {{-- @else --}}
         <td>Fechado</td>
-        @endif
-        
+        {{-- @endif --}}
+
         <td>
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-          <a href="/editar-candidato"><i class="bi bi-pencil"></i></a>
+          <a href="{{ route('inscricao-edit', ['candidato' => 1]) }}"><i class="bi bi-pencil"></i></a>
           <i class="bi bi-trash-fill"></i>
         </td>
       </tr>
-      @endforeach
+      {{-- @endforeach --}}
     </tbody>
   </table>
   <!-- Termina a tabela de inscritos -->
@@ -112,9 +119,9 @@
         <div class="cabecalho-modal">
           <div class="row">
             <div class="col" style="display: flex; justify-content: flex-start; align-items: center;">
-              <h1>Dados pessoais</h1>      
+              <h1>Dados pessoais</h1>
             </div>
-          
+
             <div class="col" style="display: flex; justify-content: flex-end; align-items: center;">
               <button class="btn-imprimir">Imprimir <i class="bi bi-file-earmark-pdf"></i></button>
             </div>
@@ -124,7 +131,7 @@
 
         <div class="corpo-modal">
           <form class="form-inativo">
-            <div class="dados-pessoais">        
+            <div class="dados-pessoais">
               <div class="area-input form-group">
                 <label>Nome Completo: </label><input type="text" name="" readonly="true" disabled value="Bruno dos Santos Manuel">
               </div>
@@ -144,9 +151,9 @@
                   <div class="col area-input form-group" style="margin-left: 10px;">
                     <label>Idade: </label><input type="text" name="" readonly="true" disabled value="16">
                   </div>
-                  
+
                   <div class="col area-input form-group" style="margin-left: 10px;">
-                    <label>Gênero: </label><input type="text" name="" readonly="true" disabled value="Masculino">  
+                    <label>Gênero: </label><input type="text" name="" readonly="true" disabled value="Masculino">
                   </div>
 
                 </div>
@@ -163,10 +170,10 @@
                   </div>
 
                   <div class="col area-input form-group" style="margin-left: 10px;">
-                    <label>Tel-2: </label><input type="text" name="" readonly="true" disabled value="998 766 656">  
+                    <label>Tel-2: </label><input type="text" name="" readonly="true" disabled value="998 766 656">
                   </div>
 
-                </div>              
+                </div>
               </div>
 
               <div class="container">
@@ -184,13 +191,13 @@
                 </div>
               </div>
             </div>
-            
+
             <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                 <div class="dados-academicos">
                   <div class="row">
                     <div class="col" style="display: flex; justify-content: flex-start; align-items: center;">
-                      <h1>Dados académicos</h1>      
-                    </div>  
+                      <h1>Dados académicos</h1>
+                    </div>
                   </div>
 
                   <br>
@@ -214,7 +221,7 @@
                         <input type="text" name="" readonly="true" disabled value="21">
                       </div>
 
-                    </div>              
+                    </div>
                   </div>
 
                   <div class="container">
@@ -229,7 +236,7 @@
 
                     </div>
                   </div>
-                
+
                   <div class="container">
                     <div class="row">
                       <div class="col area-input form-group">
@@ -252,7 +259,7 @@
                       <div class="col area-input form-group" style="margin-left: 10px;">
                         <label>2º Curso: </label><input type="text" name="" readonly="true" disabled value="Desenhador projetista - D.P">
                       </div>
-                  
+
                     </div>
                   </div>
 
@@ -292,7 +299,7 @@
 
                 </div>
             </div>
-                  
+
             <div class="footer-modal" style="text-align: center;">
               <a href="/editar-candidato" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
               <div class="jnt">
@@ -301,13 +308,13 @@
                 <a href="#ExtralargeModal" class="btn" style="background-color: #070b17; color: #fff;">Dados pessoais <i class="bi bi-arrow-up"></i></a>
               </div>
             </div>
-        
-          </form> 
+
+          </form>
         </div>
-        
+
       </div>
     </div>
-  </div>      
+  </div>
 
   <!--  / Termina a modal ver inscrito-->
 

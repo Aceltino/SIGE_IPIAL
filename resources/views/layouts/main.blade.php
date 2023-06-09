@@ -26,6 +26,8 @@
     <link href={{{URL::asset("css/ficha-biografica-doc.css")}}} rel="stylesheet">
     <link href={{{URL::asset("css/fonts/fontawesome-all.min.css")}}} rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link href={{{URL::asset("tooltipster/dist/css/tooltipster.bundle.min.css")}}} rel="stylesheet">
+    <link href={{{URL::asset("Datatables/datatables.min.css")}}} rel="stylesheet">
     
  
     
@@ -36,6 +38,8 @@
     <script src={{{URL::asset("js/chart.js")}}}></script>
     <script src={{URL::asset("node_modules/chart.js/dist/chart.js")}}></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src={{{URL::asset("tooltipster/dist/js/tooltipster.bundle.min.js")}}}></script>
+    <script src={{{URL::asset("Datatables/datatables.min.js")}}}></script>
     
 
   
@@ -75,6 +79,7 @@
   <script src={{{URL::asset("js/dinamico.js")}}}></script>
   <script src={{{URL::asset("js/paineis/horario/horario.js")}}}></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+  <script src={{{URL::asset("tooltipster/dist/js/tooltipster.bundle.min.js")}}}></script>
  
   
 </body>

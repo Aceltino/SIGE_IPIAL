@@ -367,8 +367,8 @@ class ComposerStaticInitd687848da1c8e5b0effdcf829e99ed56
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-factory/src',
-            1 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            1 => __DIR__ . '/..' . '/psr/http-factory/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -613,6 +613,9 @@ class ComposerStaticInitd687848da1c8e5b0effdcf829e99ed56
         'App\\Http\\Controllers\\CandidatoCursoController' => __DIR__ . '/../..' . '/app/Http/Controllers/CandidatoCursoController.php',
         'App\\Http\\Controllers\\ClasseController' => __DIR__ . '/../..' . '/app/Http/Controllers/ClasseController.php',
         'App\\Http\\Controllers\\ConsumoApiController' => __DIR__ . '/../..' . '/app/Http/Controllers/ConsumoApiController.php',
+        'App\\Http\\Controllers\\CandidatoController' => __DIR__ . '/../..' . '/app/Http/Controllers/CandidatoController.php',
+        'App\\Http\\Controllers\\CandidatoCursoController' => __DIR__ . '/../..' . '/app/Http/Controllers/CandidatoCursoController.php',
+        'App\\Http\\Controllers\\ClasseController' => __DIR__ . '/../..' . '/app/Http/Controllers/ClasseController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\CursoController' => __DIR__ . '/../..' . '/app/Http/Controllers/CursoController.php',
         'App\\Http\\Controllers\\DisciplinasController' => __DIR__ . '/../..' . '/app/Http/Controllers/DisciplinasController.php',

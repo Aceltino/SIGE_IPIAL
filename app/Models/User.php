@@ -59,5 +59,6 @@ class User extends Model implements Authenticatable,CanResetPassword
     public function pessoa()
     {
         return $this->belongsTo(Pessoa::class, 'pessoa_id', 'usuario_id');
+
     }
 }

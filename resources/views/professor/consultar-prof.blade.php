@@ -68,33 +68,33 @@
 
     <div class="row">
         <div class="col-12">
-            <!-- /  Inicio da tabela de inscritos -->
             <table class="table table-striped" style="margin-top: 20px;" id="matricula-tab">
             <thead>
-                <tr  style=" text-align: center;">
+                <tr style=" text-align: center;">
                     <th scope="col-lg-2">Nº do Bilhete</th>
                     <th scope="col-lg-2">Nome do professor</th>
-                    <th scope="col-lg-2">Curso</th>
-                    <th scope="col-lg-2">Turno</th>
+                    <th scope="col-lg-2">Formação</th>
+                    <th scope="col-lg-2">Cargo</th>
                     <th scope="col-lg-2">Disciplina(s)</th>
                     <th scope="col-lg-2"></th>
                 </tr>
             </thead>
             <tbody>
-                <tr  style=" text-align: center;">
+                @foreach ($professores as $prof)
+                    <tr style=" text-align: center;">
+                        <th scope="row">{{ $prof->pessoa->num_bi }}</th>
+                        <td>{{ $prof->pessoa->nome_completo }}</td>
+                        <td>{{ $prof->formacao }}</td>
+                        <td>{{$prof->cargo }}</td>
+                        <td>Física</td>
+                        <td>
+                            <a href={{ route('professor.Editar', ['id' => $prof->professor_id]) }} class="btn btn-cor-sg-a w-48">Detalhes</a>
+                            <!--<a href="" class="btn btn-cor-sg-a w-48 bg-red"></a> -->
+                        </td>
+                    </tr>
+                @endforeach
+                <!--<tr  style=" text-align: center;">
                     <th scope="row">0000000KJ000098</th>
-                    <td>Sungo Afonso</td>
-                    <td>Informática</td>
-                    <td>Tarde</td>
-                    <td>Física</td>
-                    <td>
-                        <a href="/editar-dados-professor" class="btn btn-cor-sg-a w-48">Visualizar</a>
-                        <a href="#" class="btn btn-cor-sg-a w-48 bg-red">Inactivar</a>
-                    </td>
-                </tr>
-                
-                <tr  style=" text-align: center;">
-                <th scope="row">0000000KJ000098</th>
                     <td>Sivi Lando</td>
                     <td>Informática</td>
                     <td>Noite</td>
@@ -103,10 +103,9 @@
                         <a href="#" class="btn btn-cor-sg-a w-48">Ver inscrição</a>
                         <a href="#" class="btn btn-cor-sg-a w-48 bg-green">Activar</a>
                     </td>
-                </tr>
+                </tr> -->
             </tbody>
             </table>
-            <!-- Termina a tabela de inscritos -->
         </div>
     </div>
 </main>
