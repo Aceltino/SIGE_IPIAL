@@ -3,6 +3,7 @@
 @section('title', 'Matricular Aluno')
 
 @section('conteudo')
+{{-- {{ dd($candidato) }} --}}
 <main id="main" class="main" >
 
         <div style="text-align:center;margin-top:10px;">
@@ -11,11 +12,11 @@
             <span class="step"></span>
             <span class="step"></span>
         </div>
-                
+
     <form method="POST" action="" id="regForm" class="formulario-layout">
         @csrf
-        @method('put') 
-        <div class="tab"> 
+        @method('put')
+        <div class="tab">
             <div class="row" >
                 <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
                     <div style="  text-align: center;">
@@ -23,31 +24,31 @@
                     </div>
                 </div>
             </div>
-            
+
                 <div class="row">
                     <div class="col d-flex" style="margin-bottom: 15px;">
                         <div class= "d-flex"style="width: 246px;margin-right: auto; margin-left: auto;">
-                            <input class=" form-control codinscricao" style="text-align: center" type="text" name="" value="{{$idcandidato->candidato_id}}" placeholder="Código de inscrição" required="" disabled readonly><button class="fas fa-search codinscricaobotao" id="pesquisa" type="submit" title="Procurar"></button>
+                            <input class=" form-control codinscricao" style="text-align: center" type="text" name="" value="{{$candidato['Id_inscricao']}}" required="" disabled readonly><button class="fas fa-search codinscricaobotao" id="pesquisa" type="submit" title="Procurar"></button>
                         </div>
                     </div>
                 </div>
-              
+
             <div class="form-group">
-                <input class="form-control" style="text-align: center;" type="text" placeholder="Nome Completo do Aluno" name="nome" value="Antonio" oninput="this.className = ''" disabled readonly>
+                <input class="form-control" style="text-align: center;" type="text" name="nome_completo" value="{{$candidato['Nome']}}" oninput="this.className = ''" disabled readonly>
             </div>
 
             <div class="row">
 
                 <div class="col">
                     <div class="form-group">
-                        <input class="form-control" style="text-align: center;" type="text" placeholder="Curso" oninput="this.className = ''" value="vvvvv" disabled readonly>
-                    </div> 
+                        <input class="form-control" style="text-align: center;" type="text" name="curso_escolhido" value="{{$candidato['Curso']}}"  oninput="this.className = ''" disabled readonly>
+                    </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class=" col form-group">
-                    <input class="form-control" style="text-align: center;" value="2021-2022" type="text" placeholder="Ano Lectivo" name="" oninput="this.className = ''" disabled readonly>
+                    <input class="form-control" style="text-align: center;" type="text" name="curso_escolhido" value="{{$candidato['Ultimo_AnoLectivo']}}"  oninput="this.className = ''" disabled readonly>
                 </div>
             </div>
 
