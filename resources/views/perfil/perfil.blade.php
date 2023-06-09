@@ -146,7 +146,7 @@
                    </div>
 
                    <div class="row mb-3">
-                     <label for="nBI" class="col-md-4 col-lg-4 col-form-label">Nº BI</label>
+                     <label for="nBI" class="col-md-4 col-lg-4 col-form-label">Número do BI</label>
                      <div class="col-md-8 col-lg-8">
                        <input type="text" class="form-control" id="nBI" value="{{ Auth::user()->belongPessoa->num_bi }}">
                      </div>
@@ -160,7 +160,7 @@
                    </div>
 
                    <div class="row mb-3">
-                     <label for="Telefone1" class="col-md-4 col-lg-4 col-form-label">Nº telefone1</label>
+                     <label for="Telefone1" class="col-md-4 col-lg-4 col-form-label">Número telefone</label>
                      <div class="col-md-8 col-lg-8">
                        <input type="text" class="form-control" id="Telefone1" value="{{ Auth::user()->belongPessoa->telefone }}090">
                      </div>
