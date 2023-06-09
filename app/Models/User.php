@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\{Pessoa, Endereco};
 
 class User extends Model implements Authenticatable,CanResetPassword
 {
@@ -28,6 +29,7 @@ class User extends Model implements Authenticatable,CanResetPassword
     protected $primaryKey= 'usuario_id';
 
     protected $fillable = [
+        'usuario_id',
         'nome_usuario',
         'password',
         'email',
@@ -58,7 +60,11 @@ class User extends Model implements Authenticatable,CanResetPassword
 
     public function pessoa()
     {
-        return $this->belongsTo(Pessoa::class,'usuario_id');
+        return $this->belongsTo(Pessoa::class, 'usuario_id');
+    }
 
+    public function belongPessoa()
+    {
+        return $this->belongsTo(Pessoa::class, 'pessoa_id');
     }
 }

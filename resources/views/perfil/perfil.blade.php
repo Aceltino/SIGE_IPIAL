@@ -26,8 +26,8 @@
            <div class="card-body perfil-card pt-4 d-flex flex-column align-items-center">
 
              <img src={{URL::asset("img/foto-perfil.jpg")}} alt="perfil" class="l">
-             <h2>Domingos Agostinho</h2>
-             <h3>Subdiretor Pedagógico</h3>
+             <h2>{{ Auth::user()->belongPessoa->nome_completo }}</h2>
+             <h3>{{ Auth::user()->cargo_usuario }}</h3>
            </div>
            <hr id="borda-nome">
          </div>
@@ -64,43 +64,46 @@
 
                  <div class="row">
                    <div class="col-lg-4 col-md-4 label">Nome completo</div>
-                   <div class="col-lg-8 col-md-8">Domingos Agostinho</div>
+                   <div class="col-lg-8 col-md-8">{{ Auth::user()->belongPessoa->nome_completo }}</div>
                  </div>
 
                  <div class="row">
                    <div class="col-lg-4 col-md-4 label">Genêro</div>
-                   <div class="col-lg-8 col-md-8">Masculino</div>
+                   <div class="col-lg-8 col-md-8">{{ Auth::user()->belongPessoa->genero }}</div>
                  </div>
 
 
                  <div class="row">
                    <div class="col-lg-4 col-md-4 label">Data de nascimento</div>
-                   <div class="col-lg-8 col-md-8">02/02/2023</div>
+                   <div class="col-lg-8 col-md-8">{{ Auth::user()->belongPessoa->data_nascimento }}</div>
                  </div>
 
                  <div class="row">
                    <div class="col-lg-4 col-md-4 label">Nº BI</div>
-                   <div class="col-lg-8 col-md-8">0000000KJ000098</div>
+                   <div class="col-lg-8 col-md-8">{{ Auth::user()->belongPessoa->num_bi }}</div>
                  </div>
 
                  <div class="row">
                    <div class="col-lg-4 col-md-4 label">E-mail</div>
-                   <div class="col-lg-8 col-md-8">domingosagostinho@exemplo.com</div>
+                   <div class="col-lg-8 col-md-8">{{ Auth::user()->email }}</div>
                  </div>
 
                  <div class="row">
                    <div class="col-lg-4 col-md-4 label">Nº de telefone</div>
-                   <div class="col-lg-8 col-md-8">90909090 / 090909090</div>
+                   <div class="col-lg-8 col-md-8">{{ Auth::user()->belongPessoa->telefone }}</div>
                  </div>
 
                  <div class="row">
                    <div class="col-lg-4 col-md-4 label">Cargo</div>
-                   <div class="col-lg-8 col-md-8">Subdiretor pedagógico</div>
+                   <div class="col-lg-8 col-md-8">{{ Auth::user()->cargo_usuario }}</div>
                  </div>
 
                  <div class="row">
                    <div class="col-lg-4 col-md-4 label">Endereço</div>
-                   <div class="col-lg-8 col-md-8">Casa nº 2322, Rua Qualquer, Luanda, Luanda Angola</div>
+                   @php
+                      $endereco = Auth::user()->belongPessoa->belongEndereco;
+                   @endphp
+                   <div class="col-lg-8 col-md-8">{{ $endereco->numero_casa }}, {{ $endereco->zona }}, {{ $endereco->bairro }}, {{ $endereco->municipio }}</div>
                  </div>
 
                </div>

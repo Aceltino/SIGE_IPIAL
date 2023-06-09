@@ -31,7 +31,7 @@
     <link href={{{URL::asset("css/ficha-biografica-doc.css")}}} rel="stylesheet">
     <link href={{{URL::asset("css/fonts/fontawesome-all.min.css")}}} rel="stylesheet">
     <link href={{{URL::asset("tooltipster/dist/css/tooltipster.bundle.min.css")}}} rel="stylesheet">
-    <link href={{{URL::asset("Datatables/datatables.min.css")}}} rel="stylesheet">
+
     
     
     <!-- /	Link do js mim do projecto -->

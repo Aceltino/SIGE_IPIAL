@@ -19,8 +19,8 @@
         <div class="d-flex align-items-center" style="padding-left: 56px;">
 
     	   <a class="nav-link nav-perfil d-flex align-items-center pe-0" href="#">
-            <img src={{URL::asset("img/foto.jpg")}} alt="perfil" class="mini-foto-perf">
-            <span class="d-none d-md-block ps-2">{{Auth::user()->pessoa->nome_completo }} <br> <small>{{Auth::user()->cargo_usuario}}</small></span>
+            <img src={{ URL::asset("img/foto.jpg") }} alt="perfil" class="mini-foto-perf">
+            <span class="d-none d-md-block ps-2">{{ Auth::user()->belongPessoa->nome_completo }} <br> <small>{{ Auth::user()->cargo_usuario }}</small></span>
           </a>
           
         </div>
