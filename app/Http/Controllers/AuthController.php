@@ -40,6 +40,7 @@ class AuthController extends Controller
             'password'=>$request->password,
         ];
 
+<<<<<<< Updated upstream
         if (empty($credencias['nome_usuario']) || empty($credencias['password'])) {
             return redirect()->back()->with('erro_login_001', 'Por favor, insira os dados de acesso');
         }
@@ -58,6 +59,35 @@ class AuthController extends Controller
         session(['user'=>$user]);
 
         return redirect()->intended('/');
+=======
+    public function loginCheck(Request $request){
+        
+        $credencias=[
+            'nome_usuario'=>$request->username,
+            'password'=>$request->password,
+        ];
+       
+    
+        if (empty($credencias['nome_usuario']) || empty($credencias['password'])) {
+            return redirect()->back()->with('erro_login_001', 'Por favor, insira os dados de acesso');
+        }
+    
+        if (!Auth::attempt($credencias)) {
+            return redirect()->back()->with('erro_login_002', 'Dados incorretos');
+        }
+        $user = Auth::user();
+
+        if (!$user->status_usuario) {
+            return redirect()->back()->with('erro_login_003', 'Usuario Bloqueado. Entre em contacto com a Instituição');
+        }
+
+        $request->session()->regenerate();
+        session(['user'=>$user]);
+        session(['cargo'=>$user->cargo_usuario]);
+        
+        return redirect('/');
+
+>>>>>>> Stashed changes
     }
     public function store(Request $request){
 

@@ -34,19 +34,34 @@ use GuzzleHttp\Client;
 Route::get('/', function () {
     return view('pagina-inicial');
 })->name('inicio')->middleware('auth');
+<<<<<<< Updated upstream
 
  //Rota final do painel 
  Route::get('logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
 
 // Rota apenas de teste... Não apague -> ACELTINO
 Route::get('validar-aluno', [CandidatoController::class, 'pegarDadosCandidatos']);
+=======
+
+// Rota apenas de teste... Não apague -> ACELTINO
+Route::get('validar-aluno', [AdmissaoController::class, 'validarCandidato']);
+>>>>>>> Stashed changes
 
 //Routas para Autenticação no Sistema
 Route::prefix('autenticacao')->group(function(){
 
     //Rota de Login
+<<<<<<< Updated upstream
     Route::get('login', [AuthController::class,'loginForm'])->name('login')->middleware('guest');
     Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck')->middleware('guest');
+=======
+    Route::get('login', [AuthController::class,'loginForm'])->name('login');
+
+    Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck');
+
+    //Rota de Logout
+    Route::get('logout',[AuthController::class,'logout'])->name('logout');
+>>>>>>> Stashed changes
 
     //Rota de Cadastro
     Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar');

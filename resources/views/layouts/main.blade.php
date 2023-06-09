@@ -16,7 +16,7 @@
     <link href={{URL::asset("vendor/quill/quill.bubble.css")}} rel="stylesheet">
     <link href={{URL::asset("vendor/remixicon/remixicon.css")}} rel="stylesheet">
     
-    
+
     <!-- /	Link do Css main do projecto -->
     <link href={{{URL::asset("css/estilo.css")}}} rel="stylesheet">
     <link href={{{URL::asset("css/tudo.css")}}} rel="stylesheet">
@@ -26,11 +26,14 @@
     <link href={{{URL::asset("css/ficha-biografica-doc.css")}}} rel="stylesheet">
     <link href={{{URL::asset("css/fonts/fontawesome-all.min.css")}}} rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+<<<<<<< Updated upstream
     <link href={{{URL::asset("tooltipster/dist/css/tooltipster.bundle.min.css")}}} rel="stylesheet">
     <link href={{{URL::asset("Datatables/datatables.min.css")}}} rel="stylesheet">
     
  
     
+=======
+>>>>>>> Stashed changes
 
     <!-- /	Link do js mim do projecto -->
     <script src={{{URL::asset("js/jquery-3.6.4.min.js")}}}></script>
@@ -41,10 +44,6 @@
     <script src={{{URL::asset("tooltipster/dist/js/tooltipster.bundle.min.js")}}}></script>
     <script src={{{URL::asset("Datatables/datatables.min.js")}}}></script>
     
-
-  
-
-
 </head>
 <body>
 
