@@ -16,15 +16,6 @@
           <option value="T.E.I.E">Ficha biográfica</option>
         </select>
       </div>
-      
-      <div class="col-lg-2">
-        Dados pessoais
-      </div> 
-
-      <div class="col-lg-2">
-        Encarregado
-      </div>
-  
   </div>
 
 
@@ -102,7 +93,6 @@
 
     <div style="text-align: center;">
       <a href="#" class="btn" style="background-color: #070b17; color: #fff;"><i class="bi bi-arrow-left"></i> Retroceder</a>
-      <button class="btn" style="background-color: #bcdd2b; color: #fff; margin-left: 30px;">Readimitir aluno</button>
     </div>
   
   </form>

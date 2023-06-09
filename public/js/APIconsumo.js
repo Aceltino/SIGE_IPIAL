@@ -42,8 +42,9 @@ axios.get('/api/candidatos')
                     <td>${Botao}</td>
                     <td>
                     <i ${botaoVisualizar}></i>
-                    <a href="/editar-candidato/${registro.Id_inscricao}/editar"><i class="bi bi-pencil"></i></a>
+                    <a href="/inscricao/editar-candidato/${registro.Id_inscricao}/editar"><i class="bi bi-pencil"></i></a>
                     </td>
+                    
                     
                     
                 `; 

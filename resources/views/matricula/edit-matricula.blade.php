@@ -26,8 +26,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col area-input form-group">
-                        <label>Data de nascimento: </label><input type="text" name="" value="05/04/2023">
-                
+                        <label>Data de nascimento: </label><input type="date" name="" value="">
                     </div>
                     
                     <div class="col area-input form-group" style="margin-left: 10px;">
@@ -36,7 +35,8 @@
                     </div>
                     
                     <div class="col area-input form-group" style="margin-left: 10px;">
-                        <label>Gênero: </label><input type="text" name="" value="Masculino">
+                        <label>Gênero:</label><input type="radio" id="masculino" name="genero" value="Masculino" checked><label for="masculino"> Masculino</label>
+                        <input type="radio" id="feminino" name="genero" value="Femenino"><label for="feminino"> Feminino</label>
                 
                     </div>
                 </div>
@@ -57,21 +57,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col area-input form-group">
-                        <label>Tel-1: </label><input type="text" name="" value="998 766 656">
-                
-                    </div>
-                    
-                    <div class="col area-input form-group" style="margin-left: 10px;">
-                        <label>Tel-2: </label><input type="text" name="" value="998 766 656">
-                
-                    </div>
-                </div>              
-            </div>
-
-            <div class="container">
-                <div class="row">
-                    <div class="col area-input form-group">
-                        <label>Tel-3: </label><input type="text" name="" value="998 766 656">
+                        <label>Telefone: </label><input type="text" name="" value="998 766 656">
                     </div>
 
                     <div class="col form-group" style="margin-left: 10px;">
@@ -117,13 +103,13 @@
                 <div class="container">
             <div class="row">
                     <div class="col area-input form-group" >
-                    <label>Ano lectivo: </label><input type="text" class="form-control" readonly="true" disabled name="" value="2022-2023">
+                    <label>Ano lectivo: </label><input type="text" class="form-control"   name="" >
                     </div>
                 </div>
             </div>
 
             <div class="col area-input form-group">
-                    <label>Número de processo: </label><input type="text" class="form-control" readonly="true" disabled name="" value="76656">
+                    <label>Número de processo: </label><input type="text" class="form-control"  name="" >
                     
                     </div>
 
@@ -146,7 +132,7 @@
                         </div>
 
                             <div class="col area-input form-group" style="margin-left: 10px;">
-                            <label>Ano Lectivo: </label><input type="text" name="" value="2020-2021">
+                            <label>Ano Lectivo: </label><input class="form-control" type="text" name="" value="2020-2021" readonly disabled>
                             
                             </div>
                     </div>
@@ -155,16 +141,16 @@
                 <div class="container">
                 <div class="row">
                     <div class="col area-input form-group">
-                    <label>Turno: </label><input type="text" name="" value="Manhã">
+                    <label>Turno: </label><input type="text" class="form-control"  name="" value="Manhã" disabled readonly>
                     
                     </div>
                     <div class="col area-input form-group" style="margin-left: 10px;">
-                    <label>Turma: </label><input type="text" name="" value="I12BT">
+                    <label>Turma: </label><input type="text" class="form-control"  name="" value="I12BT" disabled readonly>
                     
                     </div>
 
                     <div class="col area-input form-group" style="margin-left: 10px;">
-                    <label>Classe: </label><input type="text" name="" value="12ª">
+                    <label>Classe: </label><input type="text" class="form-control"  name="" value="12ª" disabled readonly>
                     
                     </div>
                 </div>
@@ -173,11 +159,11 @@
                 <div class="container">
                 <div class="row">
                     <div class="col area-input form-group">
-                        <label>Nº do Aluno: </label><input type="text" name="" value="14">
+                        <label>Nº do Aluno: </label><input type="text" class="form-control"  name="" value="14" disabled readonly>
                     
                     </div>
                     <div class="col area-input form-group" style="margin-left: 10px;">
-                         <label>Sala: </label><input type="text" name="" value="09">
+                         <label>Sala: </label><input class="form-control" type="text" name="" value="09" disabled readonly>
                     
                     </div>
                 </div>
@@ -186,16 +172,16 @@
                 <div class="container">
                     <div class="row">
                         <div class="col area-input form-group">
-                            <label>Pai Tel-1: </label><input type="text" name="" value="920303030">
+                            <label>Tel Pai: </label><input type="text" name="" value="920303030">
                         
                         </div>
                         <div class="col area-input form-group" style="margin-left: 10px;">
-                            <label>Pai Tel-2: </label><input type="text" name="" value="920303030">
+                            <label>Tel Mãe: </label><input type="text" name="" value="920303030">
                         
                         </div>
 
                         <div class="col area-input form-group" style="margin-left: 10px;">
-                            <label>Pai Tel-3: </label><input type="text" name="" value="920303030">
+                            <label>Tel Outro: </label><input type="text" name="" value="920303030">
                         
                         </div>
                     </div>
@@ -204,43 +190,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col area-input form-group">
-                            <label>Mãe Tel-1: </label><input type="text" name="" value="16">
-                        
-                        </div>
-                        <div class="col area-input form-group" style="margin-left: 10px;">
-                            <label>Mãe Tel-2: </label><input type="text" name="" value="920303030">
-                        
-                        </div>
-
-                        <div class="col area-input form-group" style="margin-left: 10px;">
-                            <label>Mãe Tel-3: </label><input type="text" name="" value="920303030">
-                        
-                        </div>
-                    </div>
-                </div>
-
-                <div class="container">
-                    <div class="row">
-                        <div class="col area-input form-group">
-                            <label>Outro Tel-1: </label><input type="text" name="" value="920303030">
-                        
-                        </div>
-                        <div class="col area-input form-group" style="margin-left: 10px;">
-                            <label>Outro Tel-2: </label><input type="text" name="" value="920303030">
-                        
-                        </div>
-
-                        <div class="col area-input form-group" style="margin-left: 10px;">
-                            <label>Outro Tel-3: </label><input type="text" name="" value="920303030">
-                        
-                        </div>
-                    </div>
-                </div>
-
-                <div class="container">
-                    <div class="row">
-                        <div class="col area-input form-group">
-                            <label>Curso: </label><input type="text" name="" value="Técnico de Informática">
+                            <label>Curso: </label><input type="text" class="form-control"  name="" value="Técnico de Informática" disabled readonly>
                         
                         </div>
                     </div>
