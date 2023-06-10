@@ -11,16 +11,15 @@ use App\Models\{
 
 class MatriculaController extends Controller
 {
-    public function create($id){
+    public function create($id)
+    {
         $candidato = CandidatoController::pegarDadosCandidato($id);
         return view('matricula.matricular-aluno',[
             'candidato' => $candidato[0]
         ]);
     }
 
-    public function store(Request $request){
-
-    //    $var = "x";
-    //    dd($var);
+    public function store(Request $request)
+    {
     }
 }

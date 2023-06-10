@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class InscricaoUpdateRequest extends FormRequest
+class MatriculaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,7 +27,7 @@ class InscricaoUpdateRequest extends FormRequest
             //Formulario candidato
             'nome_pai_cand'=>'required|string|max:100|min:2',
             'nome_mae_cand'=>'required|string|max:100|min:2',
-            'naturalidade_cand'=>'filled|string|max:100|min:2',
+            'naturalidade_cand'=>'required|string|max:100|min:2',
 
             //Formulario da Pessoa
             'nome_completo'=>'required|string|min:2|max:100',
@@ -35,12 +35,6 @@ class InscricaoUpdateRequest extends FormRequest
             'num_bi'=>'nullable|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi',
             'genero' => 'required|string',
             'turno' => 'required|string',
-
-            //Cursos escolhidos pelos candidatos
-            'curso1' => 'required|string',
-            'curso2' => 'required|string',
-            'curso3' => 'required|string',
-            'curso4' => 'required|string',
 
             //Notas das disciplinas
             'LinguaP' => 'required|numeric',
@@ -51,13 +45,23 @@ class InscricaoUpdateRequest extends FormRequest
 
             //Formulario escola proveniente
             'nome_escola'=>'required|max:100|min:2',
-            'num_processo'=>'filled|numeric|min:2',
-            'num_aluno'=>'required|numeric|min:1',
-            'ultimo_anoLectivo'=>'filled|numeric|min:2',
+            'num_processo'=>'required|int|min:2',
+            'num_aluno'=>'required|int|min:1',
+            'ultimo_anoLectivo'=>'required|numeric|min:2',
             'turma_aluno' => 'required|string',
 
             //Dados Telefone
-            'num_tel'=>'required|size:9'
+            'num_tel'=>'required|size:9',
+
+            //Outros
+            'email'=>'required|email',
+            'grau2'=>'required|string',
+            'grau3'=>'required|string',
+
+            //Telefone encarregado
+            'telefone1'=>'required|size:9',
+            'telefone2'=>'required|size:9',
+            'telefone3'=>'required|size:9',
         ];
     }
 

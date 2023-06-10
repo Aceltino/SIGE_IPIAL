@@ -13,9 +13,9 @@
             <span class="step"></span>
         </div>
 
-    <form method="POST" action="" id="regForm" class="formulario-layout">
+    <form method="POST" action="{{ route('matricula-store', ['candidato' => $candidato['Id_inscricao']]) }}" id="regForm" class="formulario-layout">
         @csrf
-        @method('put')
+        @method('PUT')
         <div class="tab">
             <div class="row" >
                 <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
@@ -41,14 +41,14 @@
 
                 <div class="col">
                     <div class="form-group">
-                        <input class="form-control" style="text-align: center;" type="text" name="curso_escolhido" value="{{$candidato['Curso']}}"  oninput="this.className = ''" disabled readonly>
+                        <input class="form-control" style="text-align: center;" type="text" name="curso_escolhido" value="{{$candidato['Curso']}}"  oninput="this.className = ''"  readonly>
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class=" col form-group">
-                    <input class="form-control" style="text-align: center;" type="text" name="curso_escolhido" value="{{$candidato['Ultimo_AnoLectivo']}}"  oninput="this.className = ''" disabled readonly>
+                    <input class="form-control" style="text-align: center;" type="text" name="ultimo_anoLectivo" value="{{$candidato['Ultimo_AnoLectivo']}}"  oninput="this.className = ''" disabled readonly>
                 </div>
             </div>
 
@@ -65,42 +65,42 @@
             </div>
 
             <div class="form-group">
-                <input type="text" placeholder="Nome Completo do aluno" name="" oninput="this.className = ''">
+                <input type="text" name="nome_completo" value="{{$candidato['Nome']}}" oninput="this.className = ''">
             </div>
 
             <div class="form-group">
-                <input type="text" placeholder="Nome Completo do pai" name="" oninput="this.className = ''">
+                <input type="text" name="nome_pai_cand" value ="{{ $candidato['Pai'] }}" oninput="this.className = ''">
             </div>
 
             <div class="form-group">
-                <input type="text" placeholder="Nome Completo da mãe" name="" oninput="this.className = ''">
+                <input type="text" name="nome_mae_cand" value ="{{ $candidato['Mae'] }}" oninput="this.className = ''">
             </div>
 
             <div class="row">
                 <div class="col">
-                    <p><input type="date" name="" oninput="this.className = ''"></p>
+                    <p><input type="date" name="data_nascimento" value ="{{ $candidato['Data_Nascimento'] }}" oninput="this.className = ''"></p>
                 </div>
 
                 <div class="col">
-                    <input type="text" class="form-control" readonly="true" value="00" name="" disabled>
+                    <input type="text" class="form-control" readonly="true" value ="{{ $candidato['Idade'] }}" disabled>
                 </div>
 
                 <div class="col">
-                    <input type="text" placeholder="Naturalidade" name="" oninput="this.className = ''">
+                    <input type="text" name="naturalidade_cand" value ="{{ $candidato['Naturalidade'] }}" oninput="this.className = ''">
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-4">
                     <div class="form-group">
-                        <LAbel > Sexo: </LAbel><input  style=" margin-left: 8px;"type="radio" id="masculino" name="genero"  required><label for="masculino"> Masculino</label>
-                        <input type="radio" id="feminino" name="genero" required><label for="feminino"> Feminino</label>
+                        <LAbel > Sexo: </LAbel><input  style=" margin-left: 8px;"type="radio" id="masculino" checked><label for="{{ $candidato['Genero'] }}"> Masculino</label>
+                        <input type="radio" id="feminino" name="genero"><label for="feminino"> Feminino</label>
                     </div>
                 </div>
 
                 <div class="col">
                     <div class="form-group">
-                        <input type="text" placeholder="Número do bilhete de identidade" oninput="this.className = ''">
+                        <input type="text" name="num_bi" value ="{{ $candidato['NumeroBI'] }}" oninput="this.className = ''">
                     </div>
                 </div>
             </div>
@@ -109,7 +109,7 @@
 
                 <div id="clone1"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
                     <span style="color: #777;">+244</span>
-                    <input type="text" name="" placeholder="Telefone" oninput="this.className = ''">
+                    <input type="text" name="num_tel" value ="{{ $candidato['Telefone'] }}" oninput="this.className = ''">
                 </div>
             </div>
         </div>
@@ -126,7 +126,7 @@
 
             <div class="row">
                 <div class="form-group">
-                    <input type="text" placeholder="Nome da escola de proveniência" name="" oninput="this.className = ''">
+                    <input type="text" name="nome_escola" value ="{{ $candidato['Escola'] }}" oninput="this.className = ''">
                 </div>
             </div>
 
@@ -134,33 +134,33 @@
 
                 <div class="col">
                     <div class="form-group">
-                        <input type="text" placeholder="Turno" oninput="this.className = ''">
+                        <input type="text" name="turno" value ="{{ $candidato['Turno'] }}" oninput="this.className = ''">
                     </div>
                 </div>
 
                 <div class="col">
                     <div class="form-group">
-                        <input type="text" placeholder="Nº do aluno" oninput="this.className = ''">
+                        <input type="text" value ="{{ $candidato['Numero_Aluno'] }}" name="num_aluno" oninput="this.className = ''">
                     </div>
                 </div>
 
                 <div class="col">
                     <div class="form-group">
-                        <input type="text" placeholder="Turma" oninput="this.className = ''">
+                        <input type="text" name="turma_aluno" value ="{{ $candidato['Turma'] }}" oninput="this.className = ''">
                     </div>
                 </div>
             </div>
 
-
-            <div class="row">
-                <div class=" form-group">
-                    <input type="text" placeholder=" Número do aluno" name="" oninput="this.className = ''">
-                </div>
-            </div>
 
             <div class="row">
                 <div class=" form-group">
-                    <input type="text" placeholder=" Ano letivo" name="" oninput="this.className = ''">
+                    <input type="text" name="num_processo" value ="{{ $candidato['Numero_Processo'] }}" oninput="this.className = ''">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class=" form-group">
+                    <input type="text" name="ultimo_anoLectivo" value ="{{ $candidato['Ultimo_AnoLectivo'] }}" oninput="this.className = ''">
                 </div>
             </div>
         </div>
@@ -289,17 +289,17 @@
             <div class="row">
 
                 <div class="col-3 form-group gap-1 ">
-                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
+                    <select name="grau1" id="opcoes" oninput="this.className = ''" class="form-select">
                         <option disabled>Familiares:</option>
-                        <option value="pai"selected>Pai</option>
-                        <option value="mãe">Mãe</option>
-                        <option value="outro">Outro</option>
+                        <option value="Pai"selected>Pai</option>
+                        <option value="Mãe">Mãe</option>
+                        <option value="Outro">Outro</option>
                     </select>
                 </div>
 
                 <div id="clone3"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
                     <span style="color: #777;">+244</span>
-                    <input type="text" name="" placeholder="Telefone" oninput="this.className = ''">
+                    <input type="text" name="telefone1" placeholder="Telefone" oninput="this.className = ''">
                 </div>
 
             </div>
@@ -307,34 +307,35 @@
             <div class="row">
 
                 <div class="col-lg-3 form-group gap-1 ">
-                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
+                    <select name="grau2" id="opcoes" oninput="this.className = ''" class="form-select">
                         <option disabled>Familiares:</option>
-                        <option value="pai">Pai</option>
-                        <option value="mãe" selected>Mãe</option>
-                        <option value="outro">Outro</option>
+                        <option value="Pai">Pai</option>
+                        <option value="Mãe" selected>Mãe</option>
+                        <option value="Outro">Outro</option>
                     </select>
                 </div>
 
                 <div id="clone2"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
                     <span style="color: #777;">+244</span>
-                    <input type="text" name="" placeholder="Telefone" oninput="this.className = ''">
+                    <input type="text" name="telefone2" placeholder="Telefone" oninput="this.className = ''">
                 </div>
             </div>
 
             <div class="row">
 
                 <div class="col-3 form-group gap-1 ">
-                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
+                    <select name="grau3" id="opcoes" oninput="this.className = ''" class="form-select">
                         <option disabled>Familiares:</option>
-                        <option value="pai">Pai</option>
-                        <option value="mãe">Mãe</option>
-                        <option  value="outro"selected>Outro</option>
+                        <option value="Pai">Pai</option>
+                        <option value="Mãe">Mãe</option>
+                        <option value="Outro"selected>Outro</option>
                     </select>
                 </div>
 
                 <div id="clone" class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
                     <span style="color: #777;">+244</span>
-                    <input type="text" name="" placeholder="Telefone" oninput="this.className = ''">
+                    <input type="text" name="telefone3" placeholder="Telefone" oninput="this.className = ''">
+                     <input type="hidden" name="id" value ="{{  $candidato['Id_inscricao'] }}"> {{-- Input para recuperar o id --}}
                 </div>
             </div>
 
