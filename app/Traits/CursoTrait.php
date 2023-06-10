@@ -224,5 +224,9 @@ trait CursoTrait
     }
 
 
+    public static function hasSigla($sigla){
+        //Função para verificar se já existe a sigla cadastrada
+        return 0;
+    }
 }
 ?>
