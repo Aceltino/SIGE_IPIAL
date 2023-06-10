@@ -21,7 +21,7 @@ fetch('/api/candidatos')
                     const botaoEditar = document.createElement('button');
                     const linkIcone1 = document.createElement('a');
                     const linkIcone2 = document.createElement('a');
-                    //atribundo os valores da API 
+                    //atribundo os valores da API
                     tdId.innerText = registro.NumeroBI;
                     tdNome.innerText = registro.Nome;
                     tdMedia.innerText =registro.Media;
@@ -41,7 +41,7 @@ fetch('/api/candidatos')
                     tdIdade.classList.add('texto');
                     tdCurso.classList.add('texto');
                     tdSituacao.style.textAlign = 'center';
-                    //Condicionando a apresentação dos dados de acordo com as condições necessárias 10%
+                    //Condicionando a apresentação dos dados de acordo com as condições necessárias 10%  "Add como ultimo parametro para poder abrir a matricula" ->matricular
                     if(registro.Situacao === 'Admitido'){
                         tdSituacao.style.color = 'green';
                     }else if(registro.Situacao === 'Não admitido'){
@@ -101,9 +101,9 @@ fetch('/api/candidatos')
                       //Turma.value =registro.Turma;
                       //const Turma =  document.querySelector('#modal-registro-Turma');
                       //Turma.value =registro.Turma;
-                        
+
                     //passando os valores para a modadl Fim
-    
+
                         // Exibir a modal
                         const modal = new bootstrap.Modal(document.getElementById('Modalinscricao'));
                         modal.show();

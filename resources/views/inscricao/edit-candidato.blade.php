@@ -156,7 +156,7 @@
           <br>
 
           <div class="area-input form-group">
-            <label>Escola de proveniência: </label><input type="text" name="nome_escola" value ="{{ $candidato['Escola'] }}"  >
+            <label>Escola de proveniência: </label><input type="text" name="nome_escola" value ="{{ $candidato['Escola'] }}" >
           </div>
 
           <div class="container">
@@ -234,7 +234,7 @@
             <div class="row">
               <div class="col area-input form-group">
                 <label>Física: </label><input type="text" name="Fisic" value ="{{ $candidato['Fisica'] }}">
-
+{{-- Apresentar os cursos dinamicamente --}}
               </div>
               <div class="col area-input form-group" style="margin-left: 10px;">
                 <label>4º Curso: </label><input type="text" name="curso4" value ="{{ $candidato['Cursos'][3] }}">

@@ -32,7 +32,7 @@ class InscricaoRequest extends FormRequest
             //Formulario da Pessoa
             'nome_completo'=>'required|string|min:2|max:100',
             'data_nascimento'=>'required|date|before:'.now()->format('d-m-Y'),
-            'num_bi'=>'nullable|size:14|unique:pessoas,num_bi',
+            'num_bi'=>'nullable|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi',
             'genero' => 'required|string',
             'turno' => 'required|string',
 
