@@ -4,30 +4,30 @@
     <div class="topo d-flex">
     	<!-- /	Logo ipial-->
       <div class="d-flex justify-content-between">
-        
-        <div class="d-flex align-items-center" style="background-color: #96abce; padding-left: 30px; border-radius: 10px; padding-right: 100px;">        
+
+        <div class="d-flex align-items-center" style="background-color: #96abce; padding-left: 30px; border-radius: 10px; padding-right: 100px;">
           <a href="#" class="logo d-flex align-items-center">
-          
+
             <!--<img src="assets/img/logo.png" alt="">-->
-          
+
             <span class="d-none d-lg-block">SIGE - IPIAL</span>
-          
+
             <i class="bi bi-list toggle-sidebar-btn"></i>
           </a>
         </div>
-        
+
         <div class="d-flex align-items-center" style="padding-left: 56px;">
 
     	   <a class="nav-link nav-perfil d-flex align-items-center pe-0" href="#">
             <img src={{ URL::asset("img/foto.jpg") }} alt="perfil" class="mini-foto-perf">
             <span class="d-none d-md-block ps-2">{{ Auth::user()->belongPessoa->nome_completo }} <br> <small>{{ Auth::user()->cargo_usuario }}</small></span>
           </a>
-          
+
         </div>
 
 
       </div><!-- Termina Logo -->
-           
+
       <!-- /	Menu do cabecalho -->
       <nav class="header-nav ms-auto d-flex align-items-center">
         <ul class="d-flex align-items-center">
@@ -86,7 +86,7 @@
 				<button type="button" class="btn nav-link nav-icon" data-bs-toggle="modal" data-bs-target="#basicModal">
 					<i class="bi bi-box-arrow-right"></i>
 				</button>
-          	
+
         	</li>
 
 
@@ -105,7 +105,7 @@
 							<button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancelar</button>
 							<a class="btn btn-danger" href={{route('logout')}}>Sair</a>
 						</div>
-					
+
 					</div>
 				</div>
 			</div>
@@ -113,7 +113,7 @@
 
         </ul>
       </nav><!-- Fim Menu do cabecalho -->
-      
+
     </div>
 
   </header><!-- Fim Header -->
