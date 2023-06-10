@@ -30,33 +30,38 @@
             </div>
         </div> <br>
 
-            <div class="mb-3">
-                <textarea class="form-control" id="des-disciplina" rows="8" style="padding:50px; resize: none;" placeholder="Descrição sobre a disciplina">Matemática é a área do conhecimento que se ocupa do estudo de números, formas, estruturas, organizaçõe variações etc., perpassando pelas mais diversas ciências e técnicas.</textarea>
-              </div>
+           
               <div class="form-group">
                 <select oninput="this.className = ''" class="form-select">
                   <option  disabled> Componetes</option>
-                  <option selected value="c.T">Técnicas </option>
+                  <option selected  value="c.T">Técnicas </option>
                   <option value="I.E"> Socio-culturais</option>
                   <option value="I"> Cientificas</option>
                 </select>
               </div>
-              <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                <label class="form-check-label" for="flexSwitchCheckDefault">Tecnico de Informática</label>
-              </div>
-              <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                <label class="form-check-label" for="flexSwitchCheckChecked">Instalaçoes electricas</label>
-              </div>
-              <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDisabled" >
-                <label class="form-check-label" for="flexSwitchCheckDisabled">Desenho tecnico</label>
-              </div>
-              <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDisabled" checked>
-                <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Electronica e automaçao</label>
-              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Tecnico de Informática</label>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Instalaçoes electricas</label>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDisabled" >
+                    <label class="form-check-label" for="flexSwitchCheckDisabled">Desenho tecnico</label>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDisabled" >
+                    <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Electronica e automaçao</label>
+                  </div>
+                 </div>
+                <div class="col">
+                     <input type="time" style=" text-align: center;" name="tempo_prova" value="01:30"  oninput="this.className = ''">
+                 </div>
+             </div>
               
             <div style="text-align:center;margin-top:40px;">
                 <div>
