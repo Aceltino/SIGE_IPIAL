@@ -49,11 +49,15 @@ class AdmissaoController extends Controller
 
             if($numeroVagasTotal === 0)
             {
-                return false;
+                return "As vagas esgotaram, aguarde o inicio das matriculas.";
             }
 
             $candidatos = CandidatoController::pegarCandidatos();
 
+            if(!$candidatos)
+            {
+                return "Ainda há ".$numeroVagasTotal." vagas cadastre novo(s) candidatos";
+            }
             foreach ($candidatos as &$candidato)
             {
                 $dataNascimento = Carbon::parse($candidato['Data_Nascimento']);
@@ -156,10 +160,9 @@ class AdmissaoController extends Controller
     {
         $admitidos = AdmissaoController::validarCandidato();
 
-        if(!$admitidos)
+        if($admitidos !== true)
         {
-            $msg="Tente este processo após o fim da matricula";
-            return redirect()->back()->with("ErroCandidato", $msg);
+            return redirect()->back()->with("ErroCandidato", $admitidos);
         }
             $msg = "Novo(s) alunos admitidos!";
             return Redirect::route('inscricao-index')->with("Sucesso", $msg);

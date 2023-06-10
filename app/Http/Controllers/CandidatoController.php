@@ -75,9 +75,6 @@ class CandidatoController extends Controller
     //FUNÇÂO USADA PARA API, TESTEM => "http://127.0.0.1:8000/api/candidatos"
     public static function pegarDadosCandidatos()
     {
-
-
-
         $dataAtual = Carbon::now();
 
         $candidatos = Candidato::with( 'pessoa', 'escola', 'ano_lectivo')
@@ -197,6 +194,7 @@ class CandidatoController extends Controller
                 'Ultimo_AnoLectivo' => $candidato->escola->ultimo_anoLectivo,
                 'Id_inscricao' => $candidato->candidato_id,
                 'Cursos' => $cursoEscolhido,
+                'Curso' => $candidato->cursoAdmitido,
 
                 'Pai' => $candidato->nome_pai_cand,
                 'Mae' => $candidato->nome_mae_cand,

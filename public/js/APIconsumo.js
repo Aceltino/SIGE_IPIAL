@@ -2,7 +2,7 @@ axios.get('/api/candidatos')
         .then(function(response) {
             const registros = response.data;
 
-            const tabelaRegistros = document.getElementById('Inscricoes-ta');
+            const tabelaRegistros = document.getElementById('Inscricoes');
             const tbody = tabelaRegistros.getElementsByTagName('tbody')[0];
 
             registros.forEach(function(registro) {
@@ -42,8 +42,9 @@ axios.get('/api/candidatos')
                     <td>${Botao}</td>
                     <td>
                     <i ${botaoVisualizar}></i>
-                    <a href="/editar-candidato/${registro.Id_inscricao}/editar"><i class="bi bi-pencil"></i></a>
+                    <a href="/inscricao/editar-candidato/${registro.Id_inscricao}/editar"><i class="bi bi-pencil"></i></a>
                     </td>
+                    
                     
                     
                 `; 
@@ -241,7 +242,7 @@ axios.get('/api/candidatos')
                 document.body.insertAdjacentHTML('beforeend', modal);
 
             });
-            var $T= $("#Inscricoes-ta").DataTable({
+            var $T= $("#Inscricoes").DataTable({
                 initComplete: function(settings, json) {
                   // Verifica a contagem de registros
                   if (totalRegistros > 15) {
