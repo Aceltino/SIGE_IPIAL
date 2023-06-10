@@ -5,10 +5,14 @@
 @section('conteudo')
 <main id="main" class="main" >
 @if (session()->has('erro'))
+<div class="alert alert-danger">
     {{session('erro')}}
+</div>
 @endif
 @if (session()->has('sucesso'))
+<div class="alert alert-success">
     {{session('sucesso')}}
+</div>
 @endif
     <form id="regFormh" action="{{route('cadastrar.curso')}}" class="formulario-layout" method="POST">
         @csrf
