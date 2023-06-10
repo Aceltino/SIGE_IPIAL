@@ -33,10 +33,15 @@ class InscricaoController extends Controller
 
         $curso = CursoController::quantidadeCurso();
 
+        dd($request);
+
         for($i = 1; $i <= $curso; $i++)
         {
             $cursoValidado[$i] = $request['curso' . $i];
         }
+
+        dd($curso);
+
         $validacaoCurso = CandidatoCursoController::validarCurso($cursoValidado);
 
         if(!$validacaoCurso)
@@ -100,6 +105,7 @@ class InscricaoController extends Controller
             $msg="Lamentamos! Dados não cadastrado, tente este processo mais tarde...";
             return redirect()->back()->with("ErroCadastro",$msg);
         }
+        dd($curso);
 
         for($i = 1; $i <= $curso; $i++)
         {
