@@ -93,8 +93,8 @@
             <div class="row">
                 <div class="col-4">
                     <div class="form-group">
-                        <LAbel > Sexo: </LAbel><input  style=" margin-left: 8px;"type="radio" id="masculino" name="genero" checked><label for="masculino"> Masculino</label>
-                        <input type="radio" id="feminino" name="genero"><label for="feminino"> Feminino</label>
+                        <LAbel > Sexo: </LAbel><input  style=" margin-left: 8px;"type="radio" id="masculino" name="genero"  required><label for="masculino"> Masculino</label>
+                        <input type="radio" id="feminino" name="genero" required><label for="feminino"> Feminino</label>
                     </div>
                 </div>
 
@@ -176,8 +176,115 @@
             </div>
 
             <div class=" col form-group">
-                <input type="email" placeholder="Digite o E-mail do Aluno" name="" oninput="this.className = ''">
+                <input type="email" placeholder="Digite o E-mail do Aluno" name=""  value="" oninput="this.className = ''">
             </div>
+        {{-- Dados do primero encarregado --}}
+            <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <input type="text" placeholder="Nome do Primeiro encarregado" value="" name="Nome do Primeiro encarregado" oninput="this.className = ''">
+                  </div>
+                </div>
+            </div>
+        
+            <div class="row">
+                <div class="col">
+                    <p><input type="date" value="" name="data_nascimento" oninput="this.className = ''"></p>
+                </div>
+    
+                <div class="col">
+                    <input type="text" class="form-control" readonly="true" value="00" disabled>
+                </div>
+            </div>
+
+            <div class="row">
+    
+                <div class="col">
+                    <div class="form-group">
+                     <LAbel>SEXO:  </LAbel> <input style=" margin-left: 8px;" type="radio" id="masculino" name="genero" value="Masculino" checked oninput="this.className = ''" ><label for="masculino"> Masculino</label>
+                      <input type="radio" id="feminino" name="genero" value="Femenino" oninput="this.className = ''"><label for="feminino"> Feminino</label>
+                    </div>
+                </div>
+
+                <div class="col-8">
+                    <div class="form-group">
+                        <input type="text" placeholder="Número do bilhete de identidade"  name="" value="" oninput="this.className = ''">
+                    </div>
+                </div>
+            </div>
+          {{-- Dados do primero encarregado  FIM--}}
+
+
+          {{-- Dados do Segundo encarregado --}}
+            <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <input type="text" placeholder="Nome do Segundo encarregado" value="" name="" oninput="this.className = ''">
+                  </div>
+                </div>
+            </div>
+        
+            <div class="row">
+                <div class="col">
+                    <p><input type="date" value="" name="data_nascimento" oninput="this.className = ''"></p>
+                </div>
+    
+                <div class="col">
+                    <input type="text" class="form-control" readonly="true" value="00" disabled>
+                </div>
+            </div>
+            <div class="row">
+    
+                <div class="col">
+                    <div class="form-group">
+                        <LAbel>SEXO:  </LAbel><input style=" margin-left: 8px;" type="radio" id="masculino" name="genero" value="Masculino" checked><label for="masculino"> Masculino</label>
+                      <input type="radio" id="feminino" name="genero" value="Femenino"><label for="feminino"> Feminino</label>
+                    </div>
+                </div>
+
+                <div class="col-8">
+                    <div class="form-group">
+                        <input type="text" placeholder="Número do bilhete de identidade"  name="" value="" oninput="this.className = ''">
+                    </div>
+                </div>
+            </div>
+          {{-- Dados do Segundo encarregado FIM --}}
+
+
+           {{-- Dados do Terceiro encarregado --}}
+            <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <input type="text" placeholder="Nome do Terceiro encarregado" value="" name="" oninput="this.className = ''">
+                  </div>
+                </div>
+            </div>
+        
+            <div class="row">
+                <div class="col">
+                    <p><input type="date" value="" name="data_nascimento" oninput="this.className = ''"></p>
+                </div>
+    
+                <div class="col">
+                    <input type="text" class="form-control" readonly="true" value="00" disabled>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <LAbel>SEXO:  </LAbel><input style=" margin-left: 8px;" type="radio" id="masculino" name="genero" value="Masculino" checked><label for="masculino"> Masculino</label>
+                      <input type="radio" id="feminino" name="genero" value="Femenino"><label for="feminino"> Feminino</label>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="form-group">
+                        <input type="text" placeholder="Número do bilhete de identidade"  name="" value="" oninput="this.className = ''">
+                    </div>
+                </div>
+            </div>
+          {{-- Dados do Terceiro encarregado FIM --}}
+
 
             <div class="row">
 
