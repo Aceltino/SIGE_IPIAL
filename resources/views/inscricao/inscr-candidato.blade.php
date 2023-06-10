@@ -143,7 +143,7 @@
 
       <div class="row">
         <div class="form-group col">
-          <select oninput="this.className = ''" class="form-select" name="turno">
+          <select oninput="this.className = ''" class="form-select" value="{{ old('turno') }}" name="turno">
             <option selected>Manhã</option>
             <option>Tarde</option>
             <option>Noite</option>
@@ -174,7 +174,6 @@
 
     <div class="tab">
       <h2>Escolha o curso segundo a ordem de preferência</h2>
-
 
         @php
             $a=1;

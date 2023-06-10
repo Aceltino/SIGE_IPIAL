@@ -29,19 +29,6 @@ class InscricaoRequest extends FormRequest
         $rules = [];
 
 
-        $i = 1;
-        for($i = $i; $i == $i; $i++)
-        {
-            $i = 1;
-            if( in_array($this->request->get('curso'.$i), $this->request->all()) )
-            {
-                $rules = [
-                'curso'.$i => 'required|string',
-                ];
-                $i++;
-            }
-        }
-        dd($rules);
 
         // for()
         // {
@@ -79,6 +66,20 @@ class InscricaoRequest extends FormRequest
             //Dados Telefone
             'num_tel'=>'required|size:9'
         ];
+        $count = 1;
+        for($i = 1; $i <= count($this->request->all()); $i++)
+        {
+            if( in_array($this->request->get('curso'.$i), $this->request->all()) )
+            {
+                $rules['curso'.$i] = 'required|string';
+
+
+            } else
+            {
+                break;
+            }
+            $count++;
+        }
         return $rules;
 
     }
