@@ -24,10 +24,10 @@
     <div class="col-lg-2">
       <select class="btn-sel form-select" id="filtro5">
         <option selected disabled>Curso</option>
-        <option value="Desenhador projetista">Desenhador projetista</option>
-        <option value="Técnico de Energia e Instalações Electricas">Técnico de Energia e Instalações Electricas</option>
-        <option value="Informática ">Informática</option>
-        <option value="Electronica e Telecomunicação">Electrônica e Telecomunicação</option>
+        @foreach($cursos as $curso)
+        <option value="{{$curso['nome_curso']}}">{{$curso['nome_curso']}}</option>
+        @endforeach
+
       </select>
   </div>
 
@@ -59,7 +59,7 @@
   </div>
   <!-- /  Inicio da tabela de inscritos -->
 
-  <table class="table table-striped display" style="margin-top: 10px; text-align: center;" id="Inscricoes-ta">
+  <table class="table table-striped display" style="margin-top: 10px; text-align: center;" id="Inscricoes">
     <thead>
       <tr style=" text-align: center;">
         <th scope="col">Número do BI</th>
@@ -72,7 +72,7 @@
         <th scope="col">Ações</th>
       </tr>
     </thead> 
-    <tbody id="tabela-registros">
+    <tbody>
     </tbody>
   </table>
 

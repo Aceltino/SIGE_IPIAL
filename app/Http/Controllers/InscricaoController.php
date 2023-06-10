@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\InscricaoRequest;
 use App\Http\Requests\InscricaoUpdateRequest;
 use App\Models\Candidato;
+use App\Models\Curso;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -17,10 +18,12 @@ class InscricaoController extends Controller
     use PessoaTrait;
 
     public function index(){
-        return view('inscricao/inscricoes');
+        $cursos = Curso::all();
+        return view('inscricao/inscricoes',compact('cursos'));
     }
     public function create(){
-        return view('inscricao/inscr-candidato');
+        $cursos = Curso::all();
+        return view('inscricao/inscr-candidato',compact('cursos'));
     }
 
     public function store(InscricaoRequest $input)
