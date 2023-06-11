@@ -48,7 +48,7 @@
       </div>
 
       <div class="col-12">
-        <button class="botao-log btn btn-primary w-100" type="submit">Entrar</button>
+        <button class="botao-log btn btn-primary w-100" type="submit">Recuperar</button>
       </div>
     </form>
     

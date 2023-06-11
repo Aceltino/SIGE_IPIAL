@@ -52,22 +52,15 @@ Route::prefix('autenticacao')->group(function(){
 
     //Rota de Cadastro
     Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar')->middleware('checkcargo');
-    Route::post('registrar', [AuthController::class,'store'])->name('registrar');
+    Route::post('registrar', [AuthController::class,'store'])->name('registrar')->middleware(['checkcargo']);
 
-    //CODIFICANDO...
-    Route::get('lembrar', [AuthController::class,'lembrar'])->name('recuperar-senha')->middleware('guest');
-
-    //rota para envio de email para redifinição de senha
+    //Rota para envio de email para redifinição de senha
     Route::get('reset', [AuthController::class,'resetForm'])->name('recuperar-senha')->middleware('guest');
-    Route::post('reset/email', [AuthController::class, 'envioLinkEmail'])->name('password-email')->middleware('guest');
+    Route::post('reset/link', [AuthController::class, 'envioLinkEmail'])->name('password-email')->middleware('guest');
 
-    //rota para redifinição de senha
-    Route::get('lembrar/reset/{token}', [AuthController::class, 'resetPasswordForm'])->name('nova-password');
-    Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password-update');
-
-    Route::get('/reset-password/{token}', function ($token) {
-        return view('auth.reset-password', ['token' => $token]);
-    })->middleware('guest')->name('password.reset');
+    //Rota para redifinição de senha
+    Route::get('reset/{token}', [AuthController::class, 'resetPasswordForm'])->name('nova-password')->middleware('guest');
+    Route::post('reset',[AuthController::class, 'processarRedefinicaoPassword'])->name('password-update')->middleware('guest');
 
 });
 
@@ -75,7 +68,7 @@ Route::prefix('autenticacao')->group(function(){
 /******************************************
  * Rotas de inscricao
  */
-Route::prefix('inscricao')->middleware('checkcargo')->group(function(){
+Route::prefix('inscricao')->middleware(['auth','checkcargo'])->group(function(){
 
     /*Inscricoes ou alunos inscritos */
     // Route::get('inscricoes', [ConsumoApiController::class, 'consumoinscricao']);
@@ -129,7 +122,7 @@ Route::prefix('inscricao')->middleware('checkcargo')->group(function(){
  */
 
 
-Route::prefix('matricula')->group(function(){
+Route::prefix('matricula')->middleware(['auth','checkcargo'])->group(function(){
 
     /* Matriculas*/
     Route::get('matriculas', function () {
@@ -176,7 +169,7 @@ Route::prefix('matricula')->group(function(){
 /******************************************
  * Rotas de professor
  */
-Route::prefix('professor')->group(function(){
+Route::prefix('professor')->middleware(['auth','checkcargo'])->group(function(){
 
     Route::get('rota/{segmento}', [ProfessorController::class, 'editarProfessor'])->name('prof.rota');
 
@@ -228,7 +221,7 @@ Route::get('editar-turma', function () {
 /******************************************
  * Rotas de aluno
  */
-Route::prefix('aluno')->group(function(){
+Route::prefix('aluno')->middleware(['auth'])->group(function(){
 
     Route::get('boletim-notas', function () {
         return view('boletim/boletim-notas');
@@ -241,11 +234,10 @@ Route::prefix('aluno')->group(function(){
 /******************************************
  * Rotas de curso
  */
-Route::prefix('curso')->group(function(){
+Route::prefix('curso')->middleware(['auth'])->group(function(){
 
     Route::get('criar-curso', [CursoController::class, 'indexCadastro'])->name('cadastro.curso');
     Route::post('criar-curso/cadastrar', [CursoController::class, 'store'])->name('cadastrar.curso');
-
 
     Route::get('cursos', [CursoController::class, 'index'])->name('consultar.cursos');
 
@@ -260,11 +252,10 @@ Route::prefix('curso')->group(function(){
 /******************************************
  * Rotas do ano-lectivo
  */
-Route::prefix('ano-lectivo')->group(function(){
+Route::prefix('ano-lectivo')->middleware(['auth','checkcargo'])->group(function(){
 
     Route::get('criar-ano-letivo', [AnoLectivoController::class, 'indexCadastroAnoLectivo'])->name('cadastro.ano.lectivo');
     Route::post('criar-ano-letivo/cadastrar', [AnoLectivoController::class, 'store'])->name('cadastrar.ano.lectivo');
-
 
     Route::get('ano-letivo', [AnoLectivoController::class, 'index'])->name('ano.lectivo');
 
@@ -309,7 +300,7 @@ Route::prefix('processo')->group(function(){
 /******************************************
  * Rotas de pauta
  */
-Route::prefix('pauta')->group(function(){
+Route::prefix('pauta')->middleware(['auth'])->group(function(){
     Route::get('pautas', [PautaController::class, 'index'])->name('pauta');
     Route::get('ver-pauta', [PautaController::class, 'show'])->name('pauta.show');
 });
@@ -324,7 +315,7 @@ Route::prefix('mini-pauta')->group(function(){
 /******************************************
  * Rotas do Comunicado
  */
-Route::prefix('comunicado')->group(function(){
+Route::prefix('comunicado')->middleware(['auth'])->group(function(){
 
     Route::get('consultar-comunicado', [comunicadosController::class, 'index'])->name('comunicado.index');
     Route::get('criar-comunicado', [comunicadosController::class, 'create'])->name('comunicado.create');
@@ -338,7 +329,7 @@ Route::prefix('comunicado')->group(function(){
  * Rotas do cadastro de usuário
  */
 /* cadastrar usuario*/
-Route::prefix('usuario')->group(function(){
+Route::prefix('usuario')->middleware(['auth','checkcargo'])->group(function(){
 
     Route::get('use_cadastro', function () {
         return view('usuario/use_cadastro');
@@ -432,8 +423,4 @@ Route::get('/disciplinas', function () {
 /*Editar disciplina*/
 Route::get('/edit-disciplina', function () {
     return view('disciplina/edit-disciplina');
-});
-/*painel para nova senha*/
-Route::get('/nova_senha', function () {
-    return view('autenticacao/nova_senha');
 });
