@@ -29,8 +29,12 @@ class AuthController extends Controller
     public function registrarForm(){
        return view('autenticacao.registrar');
     }
-    
-    //Metodo de Check de Login
+    public function resetForm(){
+        return view('autenticacao.recuperar-senha');
+    } 
+    public function resetPasswordForm($token){
+        return view('autenticacao.nova_senha', ['token' => $token]);
+    }
     public function loginCheck(Request $request){
        
         $credencias= [
@@ -38,6 +42,7 @@ class AuthController extends Controller
             'password'=>$request->password,
         ];
 
+<<<<<<< Updated upstream
         if (empty($credencias['nome_usuario']) || empty($credencias['password'])) {
             return redirect()->back()->with('erro_login_001', 'Por favor, insira os dados de acesso');
         }
@@ -56,6 +61,35 @@ class AuthController extends Controller
         session(['user'=>$user]);
 
         return redirect()->intended('/');
+=======
+    public function loginCheck(Request $request){
+        
+        $credencias=[
+            'nome_usuario'=>$request->username,
+            'password'=>$request->password,
+        ];
+       
+    
+        if (empty($credencias['nome_usuario']) || empty($credencias['password'])) {
+            return redirect()->back()->with('erro_login_001', 'Por favor, insira os dados de acesso');
+        }
+    
+        if (!Auth::attempt($credencias)) {
+            return redirect()->back()->with('erro_login_002', 'Dados incorretos');
+        }
+        $user = Auth::user();
+
+        if (!$user->status_usuario) {
+            return redirect()->back()->with('erro_login_003', 'Usuario Bloqueado. Entre em contacto com a Instituição');
+        }
+
+        $request->session()->regenerate();
+        session(['user'=>$user]);
+        session(['cargo'=>$user->cargo_usuario]);
+        
+        return redirect('/');
+
+>>>>>>> Stashed changes
     }
 
     //Metodo de Armazenamento dos usuario,pessoa e endereço
@@ -181,118 +215,24 @@ class AuthController extends Controller
         return redirect()->route("login");      
     }
 
-   
-    //Metodo que retorna o formulario de recuperação de senha 
-    public function resetForm(){
-        return view('autenticacao.recuperar-senha');
-    } 
+    public function envioLinkEmail(Request $request){
 
-    //Metodo que retorna o formulario de reposição de uma nova senha 
-    public function resetPasswordForm($token){
-        return view('autenticacao.nova_senha', ['token' => $token]);
-    }
-
-    //Metodo que envia o link de recuperação de senha no email do usuario
-    public function envioLinkEmail(Request $request)
-    {
         $request->validate(['email' => 'required|email']);
 
-        $user = User::where('email', $request->email)->first();
-
-        if (!$user) {
-            $msg = "Lamentamos! Este e-mail não está vinculado a uma conta de usuário.";
-            return redirect()->back()->with('erro_email_001', $msg);
+        $consutEmail= User::where('email',$request->email)->first();
+        if(!$consutEmail) {
+            $msg="Lamentamos! este email não esta atrelado a conta do usuario";
+            return redirect()->back()->with('erro_email_001',$msg);
         }
-
-        // Gerar o token de redefinição de senha
-        $token = app('auth.password.broker')->createToken($user);
-      
-        // Construir o URL de redefinição de senha
-        $resetUrl = url('autenticacao/reset', $token);
-
-        // Enviar o e-mail
-        Mail::send('Mail.resetPassword', ['resetUrl' => $resetUrl], function ($message) use ($user) {
-            $message->to($user->email);
-            $message->subject('SIGE-IPIAL (Redefinição de senha)');
-        });
-
-        return back()->with(['status' => 'Enviamos o link de redefinição de senha por e-mail!']);
-   
-    }   
-
-    //Metodo que processa redifinição de senha na db com base ao link
-    public function processarRedefinicaoPassword(Request $request)
-    {
-        switch($request->password) {
-            case $request->password_confirmation:
-                goto conti_salvar;
-            default:
-            $msg = "A confirmação da senha não correspondem.";
-            return redirect()->back()->with('erro_senha_001', $msg)->withInput();
-        }
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
         
-        conti_salvar:
-        $dados=[
-            'token'=>$request->token,
-            'email'=>$request->email,
-            'password'=>$request->password,
-        ];
-        $regras=[
-            'token' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|min:6',
-        ];
-        $msg_erro=[
-            '*.required'=>'Este campo deve ser preenchido',
-            'email.email'=>'Este campo deve conter um email valido',
-            'password.min'=>'A senha deve conter no minimo 6 letras',
-        ];
-
-        $validator= Validator::make($dados,$regras,$msg_erro);
-
-        if($validator->fails()){
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-    
-        $user = User::where('email', $request->email)->first();
-
-        if (!$user) {
-            $msg = "Lamentamos! Este e-mail não está vinculado a uma conta de usuário.";
-            return redirect()->back()->with('erro_email_001', $msg)->withInput();
-        }
-
-        conti_expire:
-        $resetPassword = DB::table('password_resets')
-        ->where('email', $request->email)
-        ->first();
-
-        if (!$resetPassword) {
-            return redirect()->back()->with('erro_link_001','Link inválido de redefinição de senha.')->withInput();
-        }
-
-        $dataCarbon = Carbon::parse($resetPassword->created_at);
-        $dataAtual = Carbon::now();
-
-        // Verifique se a data armazenada já passou 5 minutos em relação à data atual
-        if($dataCarbon->diffInMinutes($dataAtual) >= 5) {
-            // Remover o token de redefinição de senha após 5min
-            DB::table('password_resets')->where('email', $request->email)->delete();
-            goto conti_expire;
-        } 
-
-        $resetPassword=Hash::check($request->token, $resetPassword->token);
-        if (!$resetPassword) {
-            return back()->with('erro_link_001', 'Link inválido de redefinição de senha.')->withInput();
-        }
-
-        $user->password = bcrypt($request->password);
-        $user->save();
-
-        // Remover o token de redefinição de senha após a alteração
-        DB::table('password_resets')->where('email', $request->email)->delete();
-
-        return redirect()->route('login')->with('success_reset_001','Senha redefinida com sucesso! Faça login com sua nova senha.');
+        return $status === Password::RESET_LINK_SENT
+                    ? back()->with(['status' => __("Enviamos seu link de redefinição de senha por e-mail!")])
+                    : back()->withErrors(['email' => __($status)]);
 
     }
 
-}
+   
+}   
