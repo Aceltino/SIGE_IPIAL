@@ -140,7 +140,7 @@ Route::prefix('matricula')->group(function(){
 
     /*Matricular aluno */
     Route::get('matricular-aluno/{candidato}',  [MatriculaController::class, 'create'])->name('matricula-view');
-    Route::put('matricular-aluno/{candidato}', [MatriculaController::class, 'store'])->name('matricula-store');
+    Route::post('matricular-aluno/{candidato}', [MatriculaController::class, 'store'])->name('matricula-store');
 
     /*Editar matricula */
     Route::get('editar-matricula', function () {
