@@ -143,7 +143,7 @@
 
       <div class="row">
         <div class="form-group col">
-          <select oninput="this.className = ''" class="form-select" name="turno">
+          <select oninput="this.className = ''" class="form-select" value="{{ old('turno') }}" name="turno">
             <option selected>Manhã</option>
             <option>Tarde</option>
             <option>Noite</option>
@@ -175,45 +175,23 @@
     <div class="tab">
       <h2>Escolha o curso segundo a ordem de preferência</h2>
 
-      <div class="form-group">
-        <select oninput="this.className = ''" class="form-select" name="curso1">
-          <option selected disabled>Escolha a primeira opção</option>
-          <option value="Tecnico de Informática">Tecnico de Informática</option>
-          <option value="Instalaçoes electricas">Instalaçoes electricas</option>
-          <option value="Desenho tecnico">Desenho tecnico</option>
-          <option value="Electronica e automaçao">Electronica e automaçao</option>
-        </select>
-      </div>
+        @php
+            $a=1;
+        @endphp
+          @foreach($cursos as $curso)
+          <div class="form-group">
+          <select oninput="this.className = ''" class="form-select" name="curso{{$a}}">
+          <option selected disabled>Escolha a {{$a}}ª opção</option>
+          @foreach ($cursos as $Curso )
+          <option value="{{$Curso['nome_curso']}}">{{$Curso['nome_curso']}}</option>
+          @endforeach
+         </select>
+         @php
+              $a++;
+         @endphp
+          </div>
+          @endforeach
 
-      <div class="form-group">
-        <select oninput="this.className = ''" class="form-select" name="curso2">
-          <option selected disabled>Escolha a segunda opção</option>
-          <option value="Tecnico de Informática">Tecnico de Informática</option>
-          <option value="Instalaçoes electricas">Instalaçoes electricas</option>
-          <option value="Desenho tecnico">Desenho tecnico</option>
-          <option value="Electronica e automaçao">Electronica e automaçao</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <select oninput="this.className = ''" class="form-select" name="curso3">
-          <option selected disabled>Escolha a terceira opção</option>
-          <option value="Tecnico de Informática">Tecnico de Informática</option>
-          <option value="Instalaçoes electricas">Instalaçoes electricas</option>
-          <option value="Desenho tecnico">Desenho tecnico</option>
-          <option value="Electronica e automaçao">Electronica e automaçao</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <select oninput="this.className = ''" class="form-select" name="curso4">
-          <option selected disabled>Escolha a quarta opção</option>
-          <option value="Tecnico de Informática">Tecnico de Informática</option>
-          <option value="Instalaçoes electricas">Instalaçoes electricas</option>
-          <option value="Desenho tecnico">Desenho tecnico</option>
-          <option value="Electronica e automaçao">Electronica e automaçao</option>
-        </select>
-      </div>
 
     </div>
 

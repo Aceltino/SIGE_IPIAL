@@ -33,7 +33,7 @@
 
   <div class="procurar">
     <form class="proc-form d-flex align-items-center">
-      <input id="pesquisa" placeholder='Digite o numéro de processo' type="text" name="" class="campo-pesq">
+      <input id="pesquisa" placeholder='Digite o nome das disciplina' type="text" name="" class="campo-pesq">
       <button type="submit" title="procurar"><i class="bi bi-search"></i></button>   
     </form>
   </div>
@@ -41,13 +41,14 @@
 
   
   <!-- /  Inicio da tabela de disciplina -->
-  <table class="table table-striped table-custom" id="matricula-tab">
+  <table class="table table-striped display" style="margin-top: 10px;" id="Inscricoes-tab">
     <thead>
       <tr style=" text-align: center;">
-          <th scope="col">Nome da disciplina</th>
-          <th scope="col">Componete</th>
-          <th scope="col">Curso</th>
-          <th scope="col"></th>
+        <th scope="col">Nome da disciplina</th>
+        <th scope="col">Componente</th>
+        <th scope="col">Curso</th>
+        <th scope="col"></th>
+     
       </tr>
     </thead>
     <tbody>
@@ -90,10 +91,6 @@
         
         </td>
       </tr>
-      
-  
-
-      
     </tbody>
   </table>
   <!-- Termina a tabela de disciplina -->
@@ -125,9 +122,7 @@
             <div class="area-input form-group" style="border: none; ">
                 <label>Sigla: </label><input type="text" name="" value="MAT" disabled>
             </div>
-            <div class="area-input form-group" style="border: none; ">
-                <label>Descrição: </label><input type="text" name="" value="A matemática é a área do conhecimento que se ocupa do estudo de números..." disabled>
-            </div>
+            
             <div class="area-input form-group" style="border: none; ">
                 <label>Componete: </label><input type="text" name="socio-culturais" value="socio-culturais" disabled>
             </div>
@@ -135,6 +130,9 @@
                 <label>Curso: </label><input type="text" name="socio-culturais" value="Instalaçoes electricas/Electronica e automaçao" disabled>
             </div>
 
+  <div class="area-input form-group" style="border: none; ">
+                <label>Tempo de prova: </label><input type="text" name="tempo_prova" value="01:30" disabled>
+            </div>
                       <div class="footer-modal" style="text-align: center;">
                         <a href="/edit-disciplina" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
                     

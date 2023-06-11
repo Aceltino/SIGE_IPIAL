@@ -23,7 +23,18 @@ class InscricaoRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        // dd($this->request->all());
+        // dd($this->request->get('curso'. 1));
+
+        $rules = [];
+
+
+
+        // for()
+        // {
+
+        // }
+        $rules = [
             //Formulario candidato
             'nome_pai_cand'=>'required|string|max:100|min:2',
             'nome_mae_cand'=>'required|string|max:100|min:2',
@@ -32,15 +43,12 @@ class InscricaoRequest extends FormRequest
             //Formulario da Pessoa
             'nome_completo'=>'required|string|min:2|max:100',
             'data_nascimento'=>'required|date|before:'.now()->format('d-m-Y'),
-            'num_bi'=>'nullable|size:14|unique:pessoas,num_bi',
+            'num_bi'=>'nullable|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi',
             'genero' => 'required|string',
             'turno' => 'required|string',
 
-            //Cursos escolhidos pelos candidatos
-            'curso1' => 'required|string',
-            'curso2' => 'required|string',
-            'curso3' => 'required|string',
-            'curso4' => 'required|string',
+            //Cursos escolhidos pelos candidato
+
 
             //Notas das disciplinas
             'LinguaP' => 'required|numeric',
@@ -58,6 +66,22 @@ class InscricaoRequest extends FormRequest
             //Dados Telefone
             'num_tel'=>'required|size:9'
         ];
+        $count = 1;
+        for($i = 1; $i <= count($this->request->all()); $i++)
+        {
+            if( in_array($this->request->get('curso'.$i), $this->request->all()) )
+            {
+                $rules['curso'.$i] = 'required|string';
+
+
+            } else
+            {
+                break;
+            }
+            $count++;
+        }
+        return $rules;
+
     }
 
     public function messages()

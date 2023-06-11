@@ -137,7 +137,7 @@ class AnoLectivoController extends Controller
 
             $trimestre[0] = [
                 'trimestre' => 1,
-                'status' => 1,
+                'status' => 0,
                 'data_inicio' => $request['data_inicio1'],
                 'data_fim' => $request['data_fim1'],
             ];

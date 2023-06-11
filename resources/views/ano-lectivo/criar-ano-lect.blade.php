@@ -22,7 +22,7 @@
 
           <div class="row" >
                 <div class="col">
-                    <p>Designação do ano lectivo<input type="text" name="ano_lectivo" value="{{old('ano_lectivo')}}"></p>
+                    <p>Designação do ano lectivo<input type="text" id="descricao-ano-lectivo" name="ano_lectivo" class="form-control" value="" oninput="this.className = ''" disabled readonly></p>
                     @error('ano_lectivo')
                         <p style="color:red">{{$message}}</p>
                     @enderror
@@ -32,14 +32,14 @@
 
           <div class="row" >
                 <div class="col">
-                    <p>Data de início do ano lectivo<input type="date" name="data_inicio_ano_lectivo" value="{{old('data_inicio_ano_lectivo')}}" oninput="this.className = ''" required></p>
+                    <p>Data de início do ano lectivo<input type="date" name="data_inicio_ano_lectivo" id="data-inicio-ano-lectivo" value="{{old('data_inicio_ano_lectivo')}}" oninput="this.className = ''" required></p>
                     @error('data_inicio_ano_lectivo')
                         <p style="color:red">{{$message}}</p>
                     @enderror
                 </div>
 
                 <div class="col">
-                    <p>Data de fim do ano lectivo<input type="date" name="data_fim_ano_lectivo" value="{{old('data_fim_ano_lectivo')}}" oninput="this.className = ''" required></p>
+                    <p>Data de fim do ano lectivo<input type="date" name="data_fim_ano_lectivo" id="data-fim-ano-lectivo" value="{{old('data_fim_ano_lectivo')}}" oninput="this.className = ''" required></p>
                     @error('data_fim_ano_lectivo')
                         <p style="color:red">{{$message}}</p>
                     @enderror
