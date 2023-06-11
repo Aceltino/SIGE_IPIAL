@@ -18,7 +18,7 @@
         {{session('status')}}
       </div>
     @endif
-   
+    
     <form action={{route('password-email')}} method="post" class="row g-3 needs-validation" novalidate>
     @csrf
       <div class="input-group col-12">
@@ -48,7 +48,7 @@
       </div>
 
       <div class="col-12">
-        <button class="botao-log btn btn-primary w-100" type="submit">Entrar</button>
+        <button class="botao-log btn btn-primary w-100" type="submit">Recuperar</button>
       </div>
     </form>
     

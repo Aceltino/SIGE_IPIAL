@@ -13,6 +13,13 @@ class Comunicado extends Model
        'titulo_com',
        'conteudo_com',
     ];
-
+    public function pessoa()
+    {
+        return $this->belongsTo(Pessoa::class,'pessoa_id');
+    }
+    public function ano_lectivo()
+    {
+        return $this->belongsTo(Ano_lectivo::class);
+    }
    
 }
