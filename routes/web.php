@@ -16,6 +16,7 @@ use App\Http\Controllers\{
     AnoLectivoController,
     MiniPautaController,
     PautaController,
+    DisciplinasController,
 };
 use Illuminate\Support\Facades\Route;
 use GuzzleHttp\Client;
@@ -68,7 +69,7 @@ Route::prefix('autenticacao')->group(function(){
 /******************************************
  * Rotas de inscricao
  */
-Route::prefix('inscricao')->middleware(['auth','checkcargo'])->group(function(){
+Route::prefix('inscricao')->group(function(){
 
     /*Inscricoes ou alunos inscritos */
     // Route::get('inscricoes', [ConsumoApiController::class, 'consumoinscricao']);
@@ -122,7 +123,7 @@ Route::prefix('inscricao')->middleware(['auth','checkcargo'])->group(function(){
  */
 
 
-Route::prefix('matricula')->middleware(['auth','checkcargo'])->group(function(){
+Route::prefix('matricula')->group(function(){
 
     /* Matriculas*/
     Route::get('matriculas', function () {
@@ -411,16 +412,12 @@ Route::get('/editar-horario', function () {
 */
 
 /*Cadastrar disciplina*/
-Route::get('/regi-disciplina', function () {
-    return view('disciplina/regi-disciplina');
+Route::prefix('disciplina')->group(function(){
+        Route::get('disciplinas', [DisciplinasController::class,'index'])->name('consultar.disciplina');
+        Route::get('regi-disciplina',[DisciplinasController::class, 'create'])->name('criar.disciplina');
+        Route::post('regi-disciplina', [DisciplinasController::class, 'store'])->name('disciplina.store');
+        Route::get('edit-disciplina', [DisciplinasController::class, 'edit'])->name('disciplina.edit');
+        Route::put('edit-disciplina/{disciplina_id}', [DisciplinasController::class, 'update'])->where('disciplina_id', '[0-9]+')->name('disciplina.update');
+        Route::delete('{disciplina_id}', [DisciplinasController::class, 'destroy'])->where('disciplina_id', '[0-9]+')->name('disciplina.delete');
 });
 
-/*Ver as disciplinas*/
-Route::get('/disciplinas', function () {
-    return view('disciplina/disciplinas');
-});
-
-/*Editar disciplina*/
-Route::get('/edit-disciplina', function () {
-    return view('disciplina/edit-disciplina');
-});

@@ -37,7 +37,7 @@ class InscricaoController extends Controller
         {
             $cursoValidado[$i] = $request['curso' . $i];
         }
-
+        
         $validacaoCurso = CandidatoCursoController::validarCurso($cursoValidado);
 
         if(!$validacaoCurso)
