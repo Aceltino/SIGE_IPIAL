@@ -55,27 +55,27 @@ class AnoLectivoController extends Controller
         ];
 
         $id = Ano_Lectivo::create($anoLectivo);
-        //dd($id->id);
+        //dd($id->ano_lectivo_id);
         $trimestre[0] = [
             'trimestre' => 1,
-            'status' => 1,
+            'status' => 0,
             'data_inicio' => $request['data_inicio1'],
             'data_fim' => $request['data_fim1'],
-            'ano_lectivo_id' => $id->id
+            'ano_lectivo_id' => $id->ano_lectivo_id
         ];
         $trimestre[1] = [
             'trimestre' => 2,
             'status' => 0,
             'data_inicio' => $request['data_inicio2'],
             'data_fim' => $request['data_fim2'],
-            'ano_lectivo_id' => $id->id
+            'ano_lectivo_id' => $id->ano_lectivo_id
         ];
         $trimestre[2] = [
             'trimestre' => 3,
             'status' => 0,
             'data_inicio' => $request['data_inicio3'],
             'data_fim' => $request['data_fim3'],
-            'ano_lectivo_id' => $id->id
+            'ano_lectivo_id' => $id->ano_lectivo_id
         ];
         for($i = 0; $i < count($trimestre); $i++){
             Trimestre::create($trimestre[$i]);

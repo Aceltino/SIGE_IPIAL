@@ -51,7 +51,7 @@ Route::prefix('autenticacao')->group(function(){
     Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck')->middleware('guest');
 
     //Rota de Cadastro
-    Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar');
+    Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar')->middleware('checkcargo');
     Route::post('registrar', [AuthController::class,'store'])->name('registrar');
 
     //CODIFICANDO...
@@ -75,7 +75,7 @@ Route::prefix('autenticacao')->group(function(){
 /******************************************
  * Rotas de inscricao
  */
-Route::prefix('inscricao')->group(function(){
+Route::prefix('inscricao')->middleware('checkcargo')->group(function(){
 
     /*Inscricoes ou alunos inscritos */
     // Route::get('inscricoes', [ConsumoApiController::class, 'consumoinscricao']);
@@ -127,8 +127,6 @@ Route::prefix('inscricao')->group(function(){
 /******************************************
  * Rotas das matriculas
  */
-    //Rota de Login
-
 
 
 Route::prefix('matricula')->group(function(){
@@ -282,9 +280,10 @@ Route::prefix('ano-lectivo')->group(function(){
 /**
  * Rota do perfil de usuario
  */
+
 Route::get('perfil', function () {
     return view('perfil/perfil');
-})->name('perfil');
+})->name('perfil')->middleware(['auth']);
 
 /******************************************
  * Rotas da ficha biografica-lectivo

@@ -12,6 +12,7 @@ trait PessoaTrait
     {
         if($dadosEndereco)
         {
+           
             $enderecoId = EnderecoController::store($dadosEndereco);
             $dadosPessoa['endereco_id']= $enderecoId;
         }
