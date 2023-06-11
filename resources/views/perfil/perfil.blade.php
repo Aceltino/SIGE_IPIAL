@@ -101,7 +101,22 @@
                    @php
                       $endereco = Auth::user()->belongPessoa->belongEndereco;
                    @endphp
-                   <div class="col-lg-8 col-md-8">{{--{{ $endereco->numero_casa }}, {{ $endereco->zona }}, {{ $endereco->bairro }}, {{ $endereco->municipio }}--}}</div>
+                   <div class="col-lg-8 col-md-8">
+                    @php 
+                      if($endereco===null){
+                        echo "Sem Endereço";
+                      }else {
+                        echo "<strong>Municipio:</strong> ".$municipio= $endereco->municipio;
+                        echo " , ";
+                        echo "<strong>Bairro:</strong> ".$bairro= $endereco->bairro;
+                        echo "<br>";
+                        echo "<strong>Zona:</strong> ".$zona= $endereco->zona;
+                        echo " , ";
+                        echo "<strong>Número da Casa:</strong> ".$numero_casa= $endereco->numero_casa;
+                      }  
+                    @endphp
+                      {{-- {{ $municipio=null ? " " : $municipio}},{{$bairro=""}},{{$zona=""}},{{$numero_casa=""}} --}}
+                    </div> 
                  </div>
 
                </div>

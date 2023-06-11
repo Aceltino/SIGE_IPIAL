@@ -28,6 +28,11 @@
         {{session('registrado')}}
     </div>
     @endif
+    @if(session('success_reset_001'))
+      <div class="alert alert-success">
+          {{session('success_reset_001')}}
+      </div>
+    @endif
     <form action={{route('loginCheck')}} method="post" class="row g-3 needs-validation" novalidate>
       @csrf
       <div class="col-12">

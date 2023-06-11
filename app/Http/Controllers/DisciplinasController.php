@@ -19,7 +19,8 @@ class DisciplinasController extends Controller
     }
     public function store(Request $request)
     {
-        return Disciplina::create($request->all());
+         Disciplina::create($request->all());
+         return redirect()->route('disciplina.index');
     }
     public function edit($disciplina_id)
     {

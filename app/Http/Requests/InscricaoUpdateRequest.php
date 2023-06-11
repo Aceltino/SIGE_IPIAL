@@ -23,7 +23,9 @@ class InscricaoUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [];
+
+        $rules = [
             //Formulario candidato
             'nome_pai_cand'=>'required|string|max:100|min:2',
             'nome_mae_cand'=>'required|string|max:100|min:2',
@@ -35,12 +37,6 @@ class InscricaoUpdateRequest extends FormRequest
             'num_bi'=>'nullable|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi',
             'genero' => 'required|string',
             'turno' => 'required|string',
-
-            //Cursos escolhidos pelos candidatos
-            'curso1' => 'required|string',
-            'curso2' => 'required|string',
-            'curso3' => 'required|string',
-            'curso4' => 'required|string',
 
             //Notas das disciplinas
             'LinguaP' => 'required|numeric',
@@ -59,6 +55,20 @@ class InscricaoUpdateRequest extends FormRequest
             //Dados Telefone
             'num_tel'=>'required|size:9'
         ];
+
+        $count = 1;
+        for($i = 1; $i <= count($this->request->all()); $i++)
+        {
+            if( in_array($this->request->get('curso'.$i), $this->request->all()) )
+            {
+                $rules['curso'.$i] = 'required|string';
+            } else
+            {
+                break;
+            }
+            $count++;
+        }
+        return $rules;
     }
 
     public function messages()
@@ -81,8 +91,8 @@ class InscricaoUpdateRequest extends FormRequest
             'nome_completo.min'=>'O nome não deve ter menos de 2 letras',
             'data_nascimento.date' => 'O campo data:attribute deve ser uma data válida.',
             'data_nascimento.before'=> 'O campo data de nascimento deve ser uma data posterior à data atual.',
-            'num_bi.size'=> 'Número de identificação esta incorrecto',
             'num_bi.unique'=> 'Número de identificação já esta a ser usado',
+            'num_bi'=> 'Número de identificação inválido',
 
             //Formulario Escola proveniente
             'nome_escola.max'=>'Nome da escola não pode conter mais de 100 letras',
