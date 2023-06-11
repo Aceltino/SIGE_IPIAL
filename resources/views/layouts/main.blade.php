@@ -66,7 +66,7 @@
   <script src={{{URL::asset("js/dinamico.js")}}}></script>
   <script src={{{URL::asset("js/paineis/disciplina/disciplina.js")}}}></script>
   <script src={{{URL::asset("js/paineis/horario/horario.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/ano-lectivo/validacoes.js")}}}></script>
+  <script src={{{URL::asset("js/paineis/ano-lectivo/criar-ano-lectivo.js")}}}></script>
   <script src={{{URL::asset("tooltipster/dist/js/tooltipster.bundle.min.js")}}}></script>
   <script src={{{URL::asset("js/tab.js")}}}></script>
 
