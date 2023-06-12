@@ -611,6 +611,16 @@ a.color-white{
   }
   
  /*--------------------------------------------------------------
+. Figura-card
+--------------------------------------------------------------*/
+.figura-card{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+}
+
+/*--------------------------------------------------------------
 # Counts
 --------------------------------------------------------------*/
 .counts {
@@ -620,7 +630,9 @@ a.color-white{
 .counts .count-box {
   padding: 30px 30px 25px 30px;
   width: 100%;
+  height: 100%;
   position: relative;
+  transition: 0.5s;
   margin-top: 10px;
   text-align: center;
   background: var(--bs-cor-principal);
@@ -660,7 +672,36 @@ a.color-white{
   font-size: 18px;
   color: #fff;
   font-weight: 500;
-} 
+}
+
+.figura-card:hover .count-box{
+/*  transform: scale(1.5);*/
+transition: 0.5s;
+transform: scale(0.50);
+}
+
+/*--------------------------------------------------------------
+. card-legenda
+--------------------------------------------------------------*/
+.card-legenda{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding-top: 10px;
+  background-color: rgba(7, 11, 23, 0.8);
+  color: #fff;
+  border-radius: 10px;
+  transform: translateY(100px);
+  opacity: 0;
+}
+
+.figura-card:hover .card-legenda{
+  position: absolute;
+  transform: translateY(-146px);
+  opacity: 1;
+  transition: 0.5s;
+}
+
   
  
   
