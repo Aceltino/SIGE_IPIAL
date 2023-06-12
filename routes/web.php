@@ -251,9 +251,9 @@ Route::prefix('curso')->middleware(['auth'])->group(function(){
 /**<!--Fim Rotas curso--> */
 
 /******************************************
- * Rotas do ano-lectivo
+ * Rotas do ano-lectivo ->middleware(['auth','checkcargo'])
  */
-Route::prefix('ano-lectivo')->middleware(['auth','checkcargo'])->group(function(){
+Route::prefix('ano-lectivo')->group(function(){
 
     Route::get('criar-ano-letivo', [AnoLectivoController::class, 'indexCadastroAnoLectivo'])->name('cadastro.ano.lectivo');
     Route::post('criar-ano-letivo/cadastrar', [AnoLectivoController::class, 'store'])->name('cadastrar.ano.lectivo');

@@ -22,7 +22,7 @@
 
           <div class="row" >
                 <div class="col">
-                    <p>Designação do ano lectivo<input type="text" id="descricao-do-ano-lectivo" name="ano_lectivo" class="form-control" value="" oninput="this.className = ''" disabled readonly></p>
+                    <p>Designação do ano lectivo<input type="text" id="descricao-do-ano-lectivo" name="ano_lectivo" class="form-control" value="{{old('data_fim_matricula')}}" oninput="this.className = ''" disabled readonly></p>
                     @error('ano_lectivo')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
@@ -155,14 +155,14 @@
 
           <div class="row" >
                 <div class="col">
-                    <p>Hora do início das aulas<input type="time" name="hora_inicio_manha" value="{{old('hora_inicio_manha')}}" oninput="this.className = ''" required></p>
+                    <p>Hora do início das aulas<input type="time" name="hora_inicio_manha" id="hora-de-inicio-das-aulas-no-periodo-da-manha"  value="{{old('hora_inicio_manha')}}" min="05:00" max="09:00" oninput="this.className = ''" required></p>
                     @error('hora_inicio_manha')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
                 </div>
 
                 <div class="col">
-                    <p>Hora do fim das aulas<input type="time" name="hora_fim_manha" value="{{old('hora_fim_manha')}}" oninput="this.className = ''" required></p>
+                    <p>Hora do fim das aulas<input type="time" name="hora_fim_manha" id="hora-de-fim-das-aulas-no-periodo-da-manha" value="{{old('hora_fim_manha')}}" min="11:00" max="13:00" oninput="this.className = ''" required></p>
                     @error('hora_fim_manha')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
@@ -171,14 +171,14 @@
 
             <div class="row" >
                 <div class="col">
-                    <p>Duração de cada tempo (em minutos)<input type="number" placeholder="Ex:50" name="duracao_tempo_manha" value="{{old('duracao_tempo_manha')}}" oninput="this.className = ''" required></p>
+                    <p>Duração de cada tempo (em minutos)<input type="number" placeholder="Ex:50" name="duracao_tempo_manha" id="duracao-do-tempo-de-aula-no-periodo-da-manha" value="{{old('duracao_tempo_manha')}}" oninput="this.className = ''" required></p>
                     @error('duracao_tempo_manha')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
                 </div>
 
                 <div class="col">
-                    <p>Duração do intervalo menor (em minutos)<input type="number" placeholder="Ex:5" name="duracao_int_menor_manha" value="{{old('duracao_int_menor_manha')}}" oninput="this.className = ''" required></p>
+                    <p>Duração do intervalo menor (em minutos)<input type="number" placeholder="Ex:5" name="duracao_int_menor_manha" id="duracao-do-intervalo-menor-no-periodo-da-manha" value="{{old('duracao_int_menor_manha')}}" oninput="this.className = ''" required></p>
                     @error('duracao_int_menor_manha')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
@@ -187,7 +187,7 @@
 
             <div class="row" >
                 <div class="col-6">
-                    <p>Duração do intervalo maior (em minutos)<input type="number" placeholder="Ex:15" name="duracao_int_maior_manha" value="{{old('duracao_int_maior_manha')}}" oninput="this.className = ''" required></p>
+                    <p>Duração do intervalo maior (em minutos)<input type="number" placeholder="Ex:15" name="duracao_int_maior_manha" id="duracao-do-intervalo-maior-no-periodo-da-manha" value="{{old('duracao_int_maior_manha')}}" oninput="this.className = ''" required></p>
                     @error('duracao_int_maior_manha')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
@@ -201,14 +201,14 @@
 
           <div class="row" >
                 <div class="col">
-                    <p>Hora do início das aulas<input type="time" name="hora_inicio_tarde" value="{{old('hora_inicio_tarde')}}" oninput="this.className = ''" required></p>
+                    <p>Hora do início das aulas<input type="time" name="hora_inicio_tarde" id="hora-de-inicio-das-aulas-no-periodo-da-tarde" value="{{old('hora_inicio_tarde')}}" oninput="this.className = ''" required></p>
                     @error('hora_inicio_tarde')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
                 </div>
 
                 <div class="col">
-                    <p>Hora do fim das aulas<input type="time" name="hora_fim_tarde" value="{{old('hora_fim_tarde')}}" oninput="this.className = ''" required></p>
+                    <p>Hora do fim das aulas<input type="time" name="hora_fim_tarde" id="hora-de-fim-das-aulas-no-periodo-da-tarde" value="{{old('hora_fim_tarde')}}" oninput="this.className = ''" required></p>
                     @error('hora_fim_tarde')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
@@ -217,14 +217,14 @@
 
             <div class="row" >
                 <div class="col">
-                    <p>Duração de cada tempo (em minutos)<input type="number" placeholder="Ex:50" name="duracao_tempo_tarde" value="{{old('duracao_tempo_tarde')}}" oninput="this.className = ''" required></p>
+                    <p>Duração de cada tempo (em minutos)<input type="number" placeholder="Ex:50" name="duracao_tempo_tarde" id="duracao-do-tempo-de-aula-no-periodo-da-tarde" value="{{old('duracao_tempo_tarde')}}" oninput="this.className = ''" required></p>
                     @error('duracao_tempo_tarde')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
                 </div>
 
                 <div class="col">
-                    <p>Duração do intervalo menor (em minutos)<input type="number" placeholder="Ex:5" name="duracao_int_menor_tarde" value="{{old('duracao_int_menor_tarde')}}" oninput="this.className = ''" required></p>
+                    <p>Duração do intervalo menor (em minutos)<input type="number" placeholder="Ex:5" name="duracao_int_menor_tarde" id="duracao-do-intervalo-menor-no-periodo-da-tarde" value="{{old('duracao_int_menor_tarde')}}" oninput="this.className = ''" required></p>
                     @error('duracao_int_menor_tarde')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
@@ -233,7 +233,7 @@
 
             <div class="row" >
                 <div class="col-6">
-                    <p>Duração do intervalo maior (em minutos)<input type="number" placeholder="Ex:15" name="duracao_int_maior_tarde" value="{{old('duracao_int_maior_tarde')}}" oninput="this.className = ''" required></p>
+                    <p>Duração do intervalo maior (em minutos)<input type="number" placeholder="Ex:15" name="duracao_int_maior_tarde" id="duracao-do-intervalo-maior-no-periodo-da-tarde" value="{{old('duracao_int_maior_tarde')}}" oninput="this.className = ''" required></p>
                     @error('duracao_int_maior_tarde')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
@@ -247,14 +247,14 @@
 
           <div class="row" >
                 <div class="col">
-                    <p>Hora do início das aulas<input type="time" name="hora_inicio_noite" value="{{old('hora_inicio_noite')}}" oninput="this.className = ''" required></p>
+                    <p>Hora do início das aulas<input type="time" name="hora_inicio_noite" id="hora-de-inicio-das-aulas-no-periodo-da-noite" value="{{old('hora_inicio_noite')}}" oninput="this.className = ''" required></p>
                     @error('hora_inicio_noite')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
                 </div>
 
                 <div class="col">
-                    <p>Hora do fim das aulas<input type="time" name="hora_fim_noite" value="{{old('hora_fim_noite')}}" oninput="this.className = ''" required></p>
+                    <p>Hora do fim das aulas<input type="time" name="hora_fim_noite" id="hora-de-fim-das-aulas-no-periodo-da-noite" value="{{old('hora_fim_noite')}}" oninput="this.className = ''" required></p>
                     @error('hora_fim_noite')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
@@ -263,14 +263,14 @@
 
             <div class="row" >
                 <div class="col">
-                    <p>Duração de cada tempo (em minutos)<input type="number" placeholder="Ex:50" name="duracao_tempo_noite" value="{{old('duracao_tempo_noite')}}" oninput="this.className = ''" required></p>
+                    <p>Duração de cada tempo (em minutos)<input type="number" placeholder="Ex:50" name="duracao_tempo_noite" id="duracao-do-tempo-de-aula-no-periodo-da-noite" value="{{old('duracao_tempo_noite')}}" oninput="this.className = ''" required></p>
                     @error('duracao_tempo_noite')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
                 </div>
 
                 <div class="col">
-                    <p>Duração do intervalo menor (em minutos)<input type="number" placeholder="Ex:5" name="duracao_int_menor_noite" value="{{old('duracao_int_menor_noite')}}" oninput="this.className = ''" required></p>
+                    <p>Duração do intervalo menor (em minutos)<input type="number" placeholder="Ex:5" name="duracao_int_menor_noite" id="duracao-do-intervalo-menor-no-periodo-da-noite" value="{{old('duracao_int_menor_noite')}}" oninput="this.className = ''" required></p>
                     @error('duracao_int_menor_noite')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
@@ -279,7 +279,7 @@
 
             <div class="row" >
                 <div class="col-6">
-                    <p>Duração do intervalo maior (em minutos)<input type="number" placeholder="Ex:15" name="duracao_int_maior_noite" value="{{old('duracao_int_maior_noite')}}" oninput="this.className = ''" required></p>
+                    <p>Duração do intervalo maior (em minutos)<input type="number" placeholder="Ex:15" name="duracao_int_maior_noite" id="duracao-do-intervalo-maior-no-periodo-da-noite" value="{{old('duracao_int_maior_noite')}}" oninput="this.className = ''" required></p>
                     @error('duracao_int_maior_noite')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
