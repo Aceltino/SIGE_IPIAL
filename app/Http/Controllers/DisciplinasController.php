@@ -35,8 +35,12 @@ class DisciplinasController extends Controller
     }
     public function update(Request $request, $disciplina_id)
     {
-        $disciplinas = Disciplina::findOrFail($disciplina_id);
-        $disciplinas->update($request->all());
+        $data = [
+            ''
+            ''
+            ''
+            ''
+        ];
         return redirect()->route('disciplina.index');
 
     }

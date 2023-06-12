@@ -23,7 +23,6 @@ class MatriculaRequest extends FormRequest
      */
     public function rules()
     {
-        dd($this->request->all());
         $rules = [
             //Formulario candidato
             'nome_pai_cand'=>'required|string|max:100|min:2',

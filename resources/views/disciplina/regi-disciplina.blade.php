@@ -10,7 +10,7 @@
         <span class="step"></span>
         </div>
 
-        <div class="tab">     
+        <div class="tab">
 
             <div class="row" >
                 <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
@@ -30,7 +30,6 @@
             </div>
         </div> <br>
 
-           
               <div class="form-group">
                 <select oninput="this.className = ''" class="form-select">
                   <option selected disabled> Componetes</option>
@@ -62,12 +61,12 @@
                      <input type="time" style=" text-align: center;" name="tempo_prova"  oninput="this.className = ''">
                  </div>
              </div>
-              
+
             <div style="text-align:center;margin-top:40px;">
                 <div>
                     <button type="button" class="btn btn-success">Cadastrar</button>
                 </div>
-            </div>    
+            </div>
         </div>
     </form>
 </main>
