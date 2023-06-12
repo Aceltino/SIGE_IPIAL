@@ -292,10 +292,10 @@
 
                 <div class="col">
                     <div class="form-group">
-                    <LAbel>SEXO:  </LAbel> <input style=" margin-left: 8px;" type="radio" id="masculino" name="genero_enc1" value="{{ old('genero_enc1') }}" checked oninput="this.className = ''" ><label for="masculino"> Masculino</label>
-                    <input type="radio" id="feminino" name="genero_enc1" value="Femenino" oninput="this.className = ''"><label for="feminino"> Feminino</label>
+                      <input type="radio" id="masculino" name="genero1" value="Masculino" checked><label for="masculino"> Masculino</label>
+                      <input type="radio" id="feminino" name="genero1" value="Femenino"><label for="feminino"> Feminino</label>
                     </div>
-                </div>
+                  </div>
 
                 <div class="col-8">
                     <div class="form-group">
@@ -344,10 +344,10 @@
 
                 <div class="col">
                     <div class="form-group">
-                        <LAbel>SEXO:  </LAbel><input style=" margin-left: 8px;" type="radio" id="masculino" name="genero_enc2" value="Masculino" checked><label for="masculino"> Masculino</label>
-                        <input type="radio" id="feminino" name="genero_enc2" value="Femenino"><label for="feminino"> Feminino</label>
+                      <input type="radio" id="masculino" name="genero2" value="Masculino" checked><label for="masculino"> Masculino</label>
+                      <input type="radio" id="feminino" name="genero2" value="Femenino"><label for="feminino"> Feminino</label>
                     </div>
-                </div>
+                  </div>
 
                 <div class="col-8">
                     <div class="form-group">
@@ -397,8 +397,8 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                        <LAbel>SEXO:  </LAbel><input style=" margin-left: 8px;" type="radio" id="masculino" name="genero_enc3" value="Masculino" checked><label for="masculino"> Masculino</label>
-                        <input type="radio" id="feminino" name="genero" value="Femenino"><label for="feminino"> Feminino</label>
+                      <input type="radio" id="masculino" name="genero3" value="Masculino" checked><label for="masculino"> Masculino</label>
+                      <input type="radio" id="feminino" name="genero3" value="Femenino"><label for="feminino"> Feminino</label>
                     </div>
                 </div>
                 <div class="col-8">
