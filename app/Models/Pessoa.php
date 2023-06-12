@@ -34,6 +34,9 @@ class Pessoa extends Model
     public function candidato(){
         $this->hasOne(Candidato::class,'candidato_id');
     }
+    public function encarregado(){
+        $this->hasOne(Encarregado::class,'encarregado_id');
+    }
     public function comunicados()
     {
         return $this-> hasMany(Comunicado::class);

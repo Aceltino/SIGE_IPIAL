@@ -49,7 +49,7 @@ class InscricaoUpdateRequest extends FormRequest
             'nome_escola'=>'required|max:100|min:2',
             'num_processo'=>'filled|numeric|min:2',
             'num_aluno'=>'required|numeric|min:1',
-            'ultimo_anoLectivo'=>'filled|numeric|min:2',
+            'ultimo_anoLectivo'=>'required|numeric|min:2',
             'turma_aluno' => 'required|string',
 
             //Dados Telefone

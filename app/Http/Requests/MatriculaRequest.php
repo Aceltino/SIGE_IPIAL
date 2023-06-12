@@ -38,6 +38,7 @@ class MatriculaRequest extends FormRequest
 
             //User
             'email'=>'required|email',
+            'curso_escolhido' =>'required|string',
 
             //Formulario escola proveniente
             'nome_escola'=>'required|max:100|min:2',

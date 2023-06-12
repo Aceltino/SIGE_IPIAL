@@ -185,7 +185,7 @@
               </div>
 
               <div class="col area-input form-group" style="margin-left: 10px;">
-                <label>Ano lectivo: </label><input type="text" class="form-control" disabled name="ultimo_anoLectivo" value ="{{ $candidato['Ultimo_AnoLectivo'] }}" readonly="true" >
+                <label>Ano lectivo: </label><input type="text" class="form-control" name="ultimo_anoLectivo" value ="{{ $candidato['Ultimo_AnoLectivo'] }}" " >
 
               </div>
             </div>
