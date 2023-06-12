@@ -52,8 +52,8 @@ Route::prefix('autenticacao')->group(function(){
     Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck')->middleware('guest');
 
     //Rota de Cadastro
-    Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar')->middleware('checkcargo');
-    Route::post('registrar', [AuthController::class,'store'])->name('registrar')->middleware(['checkcargo']);
+    Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar');
+    Route::post('registrar', [AuthController::class,'store'])->name('registrar');
 
     //Rota para envio de email para redifinição de senha
     Route::get('reset', [AuthController::class,'resetForm'])->name('recuperar-senha')->middleware('guest');

@@ -9,15 +9,22 @@
 @if(Auth::user()->cargo_usuario == "Administrador" || Auth::user()->cargo_usuario == "Subdirector")
   <div class="area-admin-subd">
     <!-- /	Titulo-->  	
-     <div class="pagetitle">
+    <div class="pagetitle">
       <div class="row">
         <div class="col">
           <h1>Página inicial</h1>      
         </div>
+
+        <div class="col-lg-3" >
+          <div style="background-color: #96abce; border-radius: 10px; padding: 10px;">
+            <span class="ano-l" style="font-size: 16px; font-weight: 700;"><strong>2022 - 2023</strong> | </span><span class="trimestre" style="font-size: 16px;">IIIº Trimestre</span>
+                
+          </div>
+        </div>
         
         <div class="col-lg-2">
           <span class="breadcrumb">
-            <select class="btn-sel form-select">
+            <select class="btn-sel form-select" style="padding: 10px;">
               <option selected>2022 - 2023</option>
               <option value="2021-2022">2021 - 2022</option>
             </select>
@@ -25,262 +32,162 @@
         </div>
       </div>
     </div>
-
-	  <!-- /	seccao do dashboard-->
+	  
     <section id="counts" class="counts">
       <div class="container">
 
         <div class="row" data-aos="fade-up">
 
-          <div class="col-lg-3 col-md-6 mt-4" >
-            <div class="count-box" id="boxx">
-              <i class="bi bi-people"></i>
-              <span class="total">472</span>
-              <p>INSCRITOS</p>
-            </div>
+          <div class="col-lg-3 col-md-6 mt-4">
+          
+            <div class="figura-card">
+              <div class="count-box">
+                <i class="bi bi-people"></i>
+                <span class="total">472</span>
+                <p>INSCRITOS</p>
+              </div>
 
-            <div class="box" id="box">
-                <ul class=" lista">
-
-                  <li class="clista">
-                    <span>Inscritos 10ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 11ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 12ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 13ª :</span>
-                    <span>10</span>
-                  </li>
+              <div class="card-legenda">
+                <ul>
+                  <li>T.I: 200</li>
+                  <li>D.P: 100</li>
+                  <li>T.E.I.E: 50</li>
+                  <li>E.T: 122</li>
                 </ul>
+              </div>
             </div>
-          </div>
 
-
-
-          <div class="col-lg-3 col-md-6 mt-4" >
-            <div class="count-box" id="boxx1" >
-              <i class="bi bi-person"></i>
-              <span class="total">572</span>
-              <p>ADMITIDOS</p>
-            </div>
-            <div class="box1" id="box1">
-              <ul class=" lista">
-
-                <li class="clista">
-                  <span>Inscritos 10ª :</span>
-                  <span>10</span>
-                </li>
-                <li class="clista">
-                  <span>Inscritos 11ª :</span>
-                  <span>10</span>
-                </li>
-                <li class="clista">
-                  <span>Inscritos 12ª :</span>
-                  <span>10</span>
-                </li>
-                <li class="clista">
-                  <span>Inscritos 13ª :</span>
-                  <span>10</span>
-                </li>
-                
-
-              </ul>
-            </div>
           </div>
 
           <div class="col-lg-3 col-md-6 mt-4">
-            <div class="count-box" id="boxx2" >
-              <i class="bi bi-check2-square"></i>
-              <span class="total">772</span>
-              <p>NÃO ADMITIDOS</p>
-            </div>
-            <div class="box2" id="box2">
-              <ul class=" lista">
 
-                <li class="clista">
-                  <span>Inscritos 10ª :</span>
-                  <span>10</span>
-                </li>
-                <li class="clista">
-                  <span>Inscritos 11ª :</span>
-                  <span>10</span>
-                </li>
-                <li class="clista">
-                  <span>Inscritos 12ª :</span>
-                  <span>10</span>
-                </li>
-                <li class="clista">
-                  <span>Inscritos 13ª :</span>
-                  <span>10</span>
-                </li>
-                
-
-              </ul>
+            <div class="figura-card">
+              <div class="count-box">
+                <i class="bi bi-person"></i>
+                <span class="total">572</span>
+                <p>ADMITIDOS</p>
+              </div>
+              
+              <div class="card-legenda">
+                <ul>
+                  <li>T.I: 200</li>
+                  <li>D.P: 200</li>
+                  <li>T.E.I.E: 50</li>
+                  <li>E.T: 122</li>
+                </ul>
+              </div>
             </div>
+
           </div>
 
           <div class="col-lg-3 col-md-6 mt-4">
-            <div class="count-box" id="boxx3">
-              <i class="bi bi-clipboard"></i>
-              <span class="total">562</span>
-              <p>MATRICULADOS</p>
-            </div>
-            <div class="box3" id="box3">
-              <ul class=" lista">
 
-                <li class="clista">
-                  <span>Inscritos 10ª :</span>
-                  <span>10</span>
-                </li>
-                <li class="clista">
-                  <span>Inscritos 11ª :</span>
-                  <span>10</span>
-                </li>
-                <li class="clista">
-                  <span>Inscritos 12ª :</span>
-                  <span>10</span>
-                </li>
-                <li class="clista">
-                  <span>Inscritos 13ª :</span>
-                  <span>10</span>
-                </li>
-                
-
-              </ul>
+            <div class="figura-card">
+              <div class="count-box">
+                <i class="bi bi-check2-square"></i>
+                <span class="total">772</span>
+                <p>NÃO ADMITIDOS</p>
+              </div>
+              
+              <div class="card-legenda">
+                <ul>
+                  <li>T.I: 300</li>
+                  <li>D.P: 200</li>
+                  <li>T.E.I.E: 150</li>
+                  <li>E.T: 122</li>
+                </ul>
+              </div>
             </div>
+
+          </div>
+
+          <div class="col-lg-3 col-md-6 mt-4">
+
+            <div class="figura-card">
+              <div class="count-box">
+                <i class="bi bi-clipboard"></i>
+                <span class="total">562</span>
+                <p>MATRICULADOS</p>
+              </div>
+              
+              <div class="card-legenda">
+                <ul>
+                  <li>T.I: 200</li>
+                  <li>D.P: 150</li>
+                  <li>T.E.I.E: 100</li>
+                  <li>E.T: 132</li>
+                </ul>
+              </div>
+            </div>
+
           </div>
           
           <div class="col-lg-3 col-md-6 mt-5">
-            <div class="count-box" id="boxx4">
-              <i class="bi bi-arrow-90deg-down"></i>
-              <span class="total">33</span>
-              <p>PROFESSORES</p>
-            </div>
-            <div class="box4" id="box4">
-              <ul class=" lista">
 
-                <li class="clista">
-                  <span>Inscritos 10ª :</span>
-                  <span>10</span>
-                </li>
-                <li class="clista">
-                  <span>Inscritos 11ª :</span>
-                  <span>10</span>
-                </li>
-                <li class="clista">
-                  <span>Inscritos 12ª :</span>
-                  <span>10</span>
-                </li>
-                <li class="clista">
-                  <span>Inscritos 13ª :</span>
-                  <span>10</span>
-                </li>
-                
-
-              </ul>
+            <div class="figura-card">
+              <div class="count-box">
+                <i class="bi bi-arrow-90deg-down"></i>
+                <span class="total">233</span>
+                <p>PROFESSORES</p>
+              </div>
+              
+              <div class="card-legenda">
+                <ul>
+                  <li>T.I: 63</li>
+                  <li>D.P: 50</li>
+                  <li>T.E.I.E: 50</li>
+                  <li>E.T: 70</li>
+                </ul>
+              </div>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-6 mt-5">
-            <div class="count-box" id="boxx5">
-              <i class="bi bi-person-check"></i>
-              <span class="total">64</span>
-              <p>TURMAS</p>
-            </div>
-            <div class="box5" id="box5">
-              <ul class=" lista">
 
-                <li class="clista">
-                  <span>Inscritos 10ª :</span>
-                  <span>10</span>
-                </li>
-                <li class="clista">
-                  <span>Inscritos 11ª :</span>
-                  <span>10</span>
-                </li>
-                <li class="clista">
-                  <span>Inscritos 12ª :</span>
-                  <span>10</span>
-                </li>
-                <li class="clista">
-                  <span>Inscritos 13ª :</span>
-                  <span>10</span>
-                </li>
-                
-
-              </ul>
+            <div class="figura-card">
+              <div class="count-box">
+                <i class="bi bi-person-check"></i>
+                <span class="total">66</span>
+                <p>TURMAS</p>
+              </div>
+              
+              <div class="card-legenda">
+                <ul>
+                  <li>T.I: 20</li>
+                  <li>D.P: 20</li>
+                  <li>T.E.I.E: 16</li>
+                  <li>E.T: 10</li>
+                </ul>
+              </div>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-6 mt-5">
-            <div class="count-box" id="boxx6">
+
+            <div class="figura-card">
+              <div class="count-box">
+                <i class="bi bi-people"></i>
+                <span class="total">800</span>
+                <p>VAGAS</p>
+              </div>
+              
+              <div class="card-legenda">
+                <ul>
+                  <li>T.I: 200</li>
+                  <li>D.P: 100</li>
+                  <li>T.E.I.E: 300</li>
+                  <li>E.T: 200</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mt-5">
+            <div class="count-box">
               <i class="bi bi-people"></i>
-              <span class="total">800</span>
-              <p>VAGAS</p>
-            </div>
-            <div class=" box6" id="box6">
-              <ul class=" lista">
-
-                <li class="clista">
-                  <span>Inscritos 10ª :</span>
-                  <span>10</span>
-                </li>
-                <li class="clista">
-                  <span>Inscritos 11ª :</span>
-                  <span>10</span>
-                </li>
-                <li class="clista">
-                  <span>Inscritos 12ª :</span>
-                  <span>10</span>
-                </li>
-                <li class="clista">
-                  <span>Inscritos 13ª :</span>
-                  <span>10</span>
-                </li>
-                
-
-              </ul>
-            </div>
-
-          </div>
-
-          <div class="col-lg-3 col-md-6 mt-5">
-            <div class="count-box" id="boxx7">
-              <i class="bi bi-people"></i>
-              <span class="total">3</span>
+              <span class="total">4</span>
               <p>CURSOS</p>
             </div>
-            <div class="box7" id="box7">
-              <ul class=" lista">
-
-                <li class="clista">
-                  <span>Inscritos 10ª :</span>
-                  <span>10</span>
-                </li>
-                <li class="clista">
-                  <span>Inscritos 11ª :</span>
-                  <span>10</span>
-                </li>
-                <li class="clista">
-                  <span>Inscritos 12ª :</span>
-                  <span>10</span>
-                </li>
-                <li class="clista">
-                  <span>Inscritos 13ª :</span>
-                  <span>10</span>
-                </li>
-                
-
-              </ul>
-            </div>
-
           </div>
           
                         
@@ -288,64 +195,142 @@
 
       </div>
     </section><!-- Termina seccao do dashboard -->
-	    
-    <!-- /	Area do grafico-->
 
-    <div>
-      <canvas id="grafico"></canvas>
-    </div>
+    <br><br>
 
+    <div class="row">
 
+      <!-- Coluna da esquerda -->
+      <div class="col-lg-8">
+        <div class="row">
 
-    <script>
-      $(document).ready(function() {
-      // Dados iniciais do gráfico
-      var data = {
-        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho','Agosto', 'Setembro', 'Outubro','Novembro','Dezembro'],
-        datasets: [{
-          label: 'Assiduidade Escolar',
-          data: [7,13,77,20,30,40,50,60,70,80,90,100],
-          backgroundColor: 'rgba(54, 162, 235, 0.5)',
-          borderColor: 'rgba(54, 162, 235, 1)',
-          borderWidth: 1
-        }],
-    
-      };
+          <!-- Card Alunos -->
+          <div class="col-xxl-4 col-xl-12">
 
-      // Configurações do gráfico
-      var options = {
-        responsive: true,
-        scales: {
-          y: {
-            min: 0,
-            max: 100,
-            ticks: {
-              stepSize: 10,
-                callback: function (value, index, values) {
-                  return value + '%'; // Personalize os rótulos como desejar
-                }
-              }
-      }
-        }
-      };
+            <div class="card info-card">
 
-      // Criação do gráfico
-      var ctx = $('#grafico')
-      var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: data,
-        options: options
-      });
-    
-        // Redimensiona o gráfico quando a janela for redimensionada
-        $(window).on('resize', function() {
-        myChart.resize();
-        });
+              <div class="card-body">
+                <h5 class="card-title">Alunos <span>| 2022 - 2023</span></h5>
+                <table class="table table-striped">
+                  <thead>
+                    <tr style="text-transform: uppercase;">
+                      <th scope="col">Cursos</th>
+                      <th scope="col">Manhã</th>
+                      <th scope="col">Tarde</th>
+                      <th scope="col">Noite</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span>Técnico de Informática</span></td>
+                      <td>64</td>
+                      <td>90</td>
+                      <td>48</td>
+                    </tr>
+                    <tr>
+                      <td><span>Desenhador Projetista</span></td>
+                      <td>79</td>
+                      <td>41</td>
+                      <td>39</td>
+                    </tr>
+                    <tr>
+                      <td><span>Técnico de Energia e Instalações Electricas</span></td>
+                      <td>79</td>
+                      <td>41</td>
+                      <td>39</td>
+                    </tr>
+                    <tr>
+                      <td><span>Electronica e Telecomunicação</span></td>
+                      <td>79</td>
+                      <td>41</td>
+                      <td>39</td>
+                    </tr>
+                  </tbody>
+                </table>
 
-    });
-    </script>
+              </div>
+            </div>
 
-    <!-- Termina Area do grafico -->
+          </div><!-- Fim Card Alunos -->
+
+          <!-- Card Turmas -->
+          <div class="col-xxl-4 col-xl-12">
+
+            <div class="card info-card">
+
+              <div class="card-body">
+                <h5 class="card-title">Turmas <span>| 2022 - 2023</span></h5>
+                <table class="table table-striped">
+                  <thead>
+                    <tr style="text-transform: uppercase;">
+                      <th scope="col">Cursos</th>
+                      <th scope="col">Manhã</th>
+                      <th scope="col">Tarde</th>
+                      <th scope="col">Noite</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span>Técnico de Informática</span></td>
+                      <td>8</td>
+                      <td>6</td>
+                      <td>6</td>
+                    </tr>
+                    <tr>
+                      <td><span>Desenhador Projetista</span></td>
+                      <td>6</td>
+                      <td>8</td>
+                      <td>6</td>
+                    </tr>
+                    <tr>
+                      <td><span>Técnico de Energia e Instalações Electricas</span></td>
+                      <td>6</td>
+                      <td>5</td>
+                      <td>5</td>
+                    </tr>
+                    <tr>
+                      <td><span>Electronica e Telecomunicação</span></td>
+                      <td>3</td>
+                      <td>4</td>
+                      <td>3</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+
+          </div><!-- Fim Card Turmas -->
+
+        </div>
+      </div><!-- Fim Coluna da esquerda -->
+
+      <!-- Coluna da direita -->
+      <div class="col-lg-4">
+      
+        <div class="alert alert-warning bg-warning border-0 alert-dismissible fade show" role="alert">
+              Mensagem importante!
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <!-- Card comunicado -->
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Hoje <span>| 13h:02</span></h5>
+
+            <div class="activity" style="text-align: justify;">
+
+              <h5 class="card-title" style="text-align: center;">Comunicado</h5>
+
+               <p>Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado-nav Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicadoAqui o Texto do comunicado v Aqui o Texto do comunicado Aqui o Texto do comunicado</p> 
+            </div>
+
+          </div>
+        </div><!-- Fim Card comunicado -->
+
+      </div><!-- Fim Coluna da direita -->
+
+    </div>    
+    <br><br><br>
   </div><!-- Fim da dashboard Admin e Subdireção -->
   
   {{-- DIRETOR GERAL ----- / Inicio do Diretor Geral --}}
@@ -357,274 +342,180 @@
           <div class="col">
             <h1>Página inicial</h1>      
           </div>
+
+          <div class="col-lg-3" >
+            <div style="background-color: #96abce; border-radius: 10px; padding: 10px;">
+              <span class="ano-l" style="font-size: 16px; font-weight: 700;"><strong>2022 - 2023</strong> | </span><span class="trimestre" style="font-size: 16px;">IIIº Trimestre</span>
+                  
+            </div>
+          </div>
           
           <div class="col-lg-2">
             <span class="breadcrumb">
-              <select class="btn-sel form-select">
+              <select class="btn-sel form-select" style="padding: 10px;">
                 <option selected>2022 - 2023</option>
                 <option value="2021-2022">2021 - 2022</option>
               </select>
             </span>      
           </div>
-
         </div>
       </div>
-
-      <!-- /	seccao do dashboard-->
+	  
       <section id="counts" class="counts">
         <div class="container">
 
           <div class="row" data-aos="fade-up">
 
-            <div class="col-lg-3 col-md-6 mt-4" >
-              <div class="count-box" id="boxx">
-                <i class="bi bi-people"></i>
-                <span class="total">472</span>
-                <p>INSCRITOS</p>
-              </div>
+            <div class="col-lg-3 col-md-6 mt-4">
+            
+              <div class="figura-card">
+                <div class="count-box">
+                  <i class="bi bi-people"></i>
+                  <span class="total">472</span>
+                  <p>INSCRITOS</p>
+                </div>
 
-              <div class="box" id="box">
-                  <ul class=" lista">
-
-                    <li class="clista">
-                      <span>Inscritos 10ª :</span>
-                      <span>10</span>
-                    </li>
-                    <li class="clista">
-                      <span>Inscritos 11ª :</span>
-                      <span>10</span>
-                    </li>
-                    <li class="clista">
-                      <span>Inscritos 12ª :</span>
-                      <span>10</span>
-                    </li>
-                    <li class="clista">
-                      <span>Inscritos 13ª :</span>
-                      <span>10</span>
-                    </li>
+                <div class="card-legenda">
+                  <ul>
+                    <li>T.I: 200</li>
+                    <li>D.P: 100</li>
+                    <li>T.E.I.E: 50</li>
+                    <li>E.T: 122</li>
                   </ul>
+                </div>
               </div>
-            </div>
 
-
-
-            <div class="col-lg-3 col-md-6 mt-4" >
-              <div class="count-box" id="boxx1" >
-                <i class="bi bi-person"></i>
-                <span class="total">572</span>
-                <p>ADMITIDOS</p>
-              </div>
-              <div class="box1" id="box1">
-                <ul class=" lista">
-
-                  <li class="clista">
-                    <span>Inscritos 10ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 11ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 12ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 13ª :</span>
-                    <span>10</span>
-                  </li>
-                  
-
-                </ul>
-              </div>
             </div>
 
             <div class="col-lg-3 col-md-6 mt-4">
-              <div class="count-box" id="boxx2" >
-                <i class="bi bi-check2-square"></i>
-                <span class="total">772</span>
-                <p>NÃO ADMITIDOS</p>
-              </div>
-              <div class="box2" id="box2">
-                <ul class=" lista">
 
-                  <li class="clista">
-                    <span>Inscritos 10ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 11ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 12ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 13ª :</span>
-                    <span>10</span>
-                  </li>
-                  
-
-                </ul>
+              <div class="figura-card">
+                <div class="count-box">
+                  <i class="bi bi-person"></i>
+                  <span class="total">572</span>
+                  <p>ADMITIDOS</p>
+                </div>
+                
+                <div class="card-legenda">
+                  <ul>
+                    <li>T.I: 200</li>
+                    <li>D.P: 200</li>
+                    <li>T.E.I.E: 50</li>
+                    <li>E.T: 122</li>
+                  </ul>
+                </div>
               </div>
+
             </div>
 
             <div class="col-lg-3 col-md-6 mt-4">
-              <div class="count-box" id="boxx3">
-                <i class="bi bi-clipboard"></i>
-                <span class="total">562</span>
-                <p>MATRICULADOS</p>
-              </div>
-              <div class="box3" id="box3">
-                <ul class=" lista">
 
-                  <li class="clista">
-                    <span>Inscritos 10ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 11ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 12ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 13ª :</span>
-                    <span>10</span>
-                  </li>
-                  
-
-                </ul>
+              <div class="figura-card">
+                <div class="count-box">
+                  <i class="bi bi-check2-square"></i>
+                  <span class="total">772</span>
+                  <p>NÃO ADMITIDOS</p>
+                </div>
+                
+                <div class="card-legenda">
+                  <ul>
+                    <li>T.I: 300</li>
+                    <li>D.P: 200</li>
+                    <li>T.E.I.E: 150</li>
+                    <li>E.T: 122</li>
+                  </ul>
+                </div>
               </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6 mt-4">
+
+              <div class="figura-card">
+                <div class="count-box">
+                  <i class="bi bi-clipboard"></i>
+                  <span class="total">562</span>
+                  <p>MATRICULADOS</p>
+                </div>
+                
+                <div class="card-legenda">
+                  <ul>
+                    <li>T.I: 200</li>
+                    <li>D.P: 150</li>
+                    <li>T.E.I.E: 100</li>
+                    <li>E.T: 132</li>
+                  </ul>
+                </div>
+              </div>
+
             </div>
             
             <div class="col-lg-3 col-md-6 mt-5">
-              <div class="count-box" id="boxx4">
-                <i class="bi bi-arrow-90deg-down"></i>
-                <span class="total">33</span>
-                <p>PROFESSORES</p>
-              </div>
-              <div class="box4" id="box4">
-                <ul class=" lista">
 
-                  <li class="clista">
-                    <span>Inscritos 10ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 11ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 12ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 13ª :</span>
-                    <span>10</span>
-                  </li>
-                  
-
-                </ul>
+              <div class="figura-card">
+                <div class="count-box">
+                  <i class="bi bi-arrow-90deg-down"></i>
+                  <span class="total">233</span>
+                  <p>PROFESSORES</p>
+                </div>
+                
+                <div class="card-legenda">
+                  <ul>
+                    <li>T.I: 63</li>
+                    <li>D.P: 50</li>
+                    <li>T.E.I.E: 50</li>
+                    <li>E.T: 70</li>
+                  </ul>
+                </div>
               </div>
             </div>
 
             <div class="col-lg-3 col-md-6 mt-5">
-              <div class="count-box" id="boxx5">
-                <i class="bi bi-person-check"></i>
-                <span class="total">64</span>
-                <p>TURMAS</p>
-              </div>
-              <div class="box5" id="box5">
-                <ul class=" lista">
 
-                  <li class="clista">
-                    <span>Inscritos 10ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 11ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 12ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 13ª :</span>
-                    <span>10</span>
-                  </li>
-                  
-
-                </ul>
+              <div class="figura-card">
+                <div class="count-box">
+                  <i class="bi bi-person-check"></i>
+                  <span class="total">66</span>
+                  <p>TURMAS</p>
+                </div>
+                
+                <div class="card-legenda">
+                  <ul>
+                    <li>T.I: 20</li>
+                    <li>D.P: 20</li>
+                    <li>T.E.I.E: 16</li>
+                    <li>E.T: 10</li>
+                  </ul>
+                </div>
               </div>
             </div>
 
             <div class="col-lg-3 col-md-6 mt-5">
-              <div class="count-box" id="boxx6">
+
+              <div class="figura-card">
+                <div class="count-box">
+                  <i class="bi bi-people"></i>
+                  <span class="total">800</span>
+                  <p>VAGAS</p>
+                </div>
+                
+                <div class="card-legenda">
+                  <ul>
+                    <li>T.I: 200</li>
+                    <li>D.P: 100</li>
+                    <li>T.E.I.E: 300</li>
+                    <li>E.T: 200</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mt-5">
+              <div class="count-box">
                 <i class="bi bi-people"></i>
-                <span class="total">800</span>
-                <p>VAGAS</p>
-              </div>
-              <div class=" box6" id="box6">
-                <ul class=" lista">
-
-                  <li class="clista">
-                    <span>Inscritos 10ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 11ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 12ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 13ª :</span>
-                    <span>10</span>
-                  </li>
-                  
-
-                </ul>
-              </div>
-
-            </div>
-
-            <div class="col-lg-3 col-md-6 mt-5">
-              <div class="count-box" id="boxx7">
-                <i class="bi bi-people"></i>
-                <span class="total">3</span>
+                <span class="total">4</span>
                 <p>CURSOS</p>
               </div>
-              <div class="box7" id="box7">
-                <ul class=" lista">
-
-                  <li class="clista">
-                    <span>Inscritos 10ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 11ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 12ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 13ª :</span>
-                    <span>10</span>
-                  </li>
-                  
-
-                </ul>
-              </div>
-
             </div>
             
                           
@@ -632,62 +523,142 @@
 
         </div>
       </section><!-- Termina seccao do dashboard -->
+
+      <br><br>
+
+      <div class="row">
+
+        <!-- Coluna esquerda -->
+        <div class="col-lg-8">
+          <div class="row">
+
+            <!-- Card Alunos -->
+            <div class="col-xxl-4 col-xl-12">
+
+              <div class="card info-card">
+
+                <div class="card-body">
+                  <h5 class="card-title">Alunos <span>| 2022 - 2023</span></h5>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr style="text-transform: uppercase;">
+                        <th scope="col">Cursos</th>
+                        <th scope="col">Manhã</th>
+                        <th scope="col">Tarde</th>
+                        <th scope="col">Noite</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><span>Técnico de Informática</span></td>
+                        <td>64</td>
+                        <td>90</td>
+                        <td>48</td>
+                      </tr>
+                      <tr>
+                        <td><span>Desenhador Projetista</span></td>
+                        <td>79</td>
+                        <td>41</td>
+                        <td>39</td>
+                      </tr>
+                      <tr>
+                        <td><span>Técnico de Energia e Instalações Electricas</span></td>
+                        <td>79</td>
+                        <td>41</td>
+                        <td>39</td>
+                      </tr>
+                      <tr>
+                        <td><span>Electronica e Telecomunicação</span></td>
+                        <td>79</td>
+                        <td>41</td>
+                        <td>39</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+              </div>
+
+            </div><!-- Fim Card Alunos -->
+
+            <!-- Card Turmas -->
+            <div class="col-xxl-4 col-xl-12">
+
+              <div class="card info-card">
+
+                <div class="card-body">
+                  <h5 class="card-title">Turmas <span>| 2022 - 2023</span></h5>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr style="text-transform: uppercase;">
+                        <th scope="col">Cursos</th>
+                        <th scope="col">Manhã</th>
+                        <th scope="col">Tarde</th>
+                        <th scope="col">Noite</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><span>Técnico de Informática</span></td>
+                        <td>8</td>
+                        <td>6</td>
+                        <td>6</td>
+                      </tr>
+                      <tr>
+                        <td><span>Desenhador Projetista</span></td>
+                        <td>6</td>
+                        <td>8</td>
+                        <td>6</td>
+                      </tr>
+                      <tr>
+                        <td><span>Técnico de Energia e Instalações Electricas</span></td>
+                        <td>6</td>
+                        <td>5</td>
+                        <td>5</td>
+                      </tr>
+                      <tr>
+                        <td><span>Electronica e Telecomunicação</span></td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>3</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+              </div>
+
+            </div><!-- Fim Card Turmas -->
+
+          </div>
+        </div><!-- Fim Coluna da esquerda -->
+
+        <!-- Coluna da direita -->
+        <div class="col-lg-4">
         
-      <!-- /	Area do grafico-->
+          <div class="alert alert-warning bg-warning border-0 alert-dismissible fade show" role="alert">
+                Mensagem importante!
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          <!-- Card comunicado -->
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Hoje <span>| 13h:02</span></h5>
 
-      <div>
-        <canvas id="grafico"></canvas>
-      </div>
+              <div class="activity" style="text-align: justify;">
 
-      <script>
-        $(document).ready(function() {
-        // Dados iniciais do gráfico
-        var data = {
-          labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho','Agosto', 'Setembro', 'Outubro','Novembro','Dezembro'],
-          datasets: [{
-            label: 'Assiduidade Escolar',
-            data: [7,13,77,20,30,40,50,60,70,80,90,100],
-            backgroundColor: 'rgba(54, 162, 235, 0.5)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
-          }],
-      
-        };
+                <h5 class="card-title" style="text-align: center;">Comunicado</h5>
 
-        // Configurações do gráfico
-        var options = {
-          responsive: true,
-          scales: {
-            y: {
-              min: 0,
-              max: 100,
-              ticks: {
-                stepSize: 10,
-                  callback: function (value, index, values) {
-                    return value + '%'; // Personalize os rótulos como desejar
-                  }
-                }
-        }
-          }
-        };
+                <p>Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado-nav Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicadoAqui o Texto do comunicado v Aqui o Texto do comunicado Aqui o Texto do comunicado</p> 
+              </div>
 
-        // Criação do gráfico
-        var ctx = $('#grafico')
-        var myChart = new Chart(ctx, {
-          type: 'bar',
-          data: data,
-          options: options
-        });
-      
-          // Redimensiona o gráfico quando a janela for redimensionada
-          $(window).on('resize', function() {
-          myChart.resize();
-          });
+            </div>
+          </div><!-- Fim Card comunicado -->
 
-      });
-      </script>
+        </div><!-- Fim Coluna da direita -->
 
-      <!-- Termina Area do grafico -->
+      </div>    
+      <br><br><br>
     </div><!-- Fim da dashboard Diretor Geral -->
 
   {{-- SECRETARIA PEDAGÓGICA -----   / Inicio de secretrio Pedagógico --}}
@@ -699,147 +670,213 @@
           <div class="col">
             <h1>Página inicial</h1>      
           </div>
-          
+
+          <div class="col-lg-3" >
+            <div style="background-color: #96abce; border-radius: 10px; padding: 10px;">
+              <span class="ano-l" style="font-size: 16px; font-weight: 700;"><strong>2022 - 2023</strong> | </span><span class="trimestre" style="font-size: 16px;">IIIº Trimestre</span>
+                  
+            </div>
+          </div>
+        
           <div class="col-lg-2">
             <span class="breadcrumb">
-              <select class="btn-sel form-select">
+              <select class="btn-sel form-select" style="padding: 10px;">
                 <option selected>2022 - 2023</option>
                 <option value="2021-2022">2021 - 2022</option>
               </select>
             </span>      
           </div>
-
         </div>
       </div>
-
-      <!-- /	seccao do dashboard-->
+	  
       <section id="counts" class="counts">
         <div class="container">
 
           <div class="row" data-aos="fade-up">
 
             <div class="col-lg-3 col-md-6 mt-4">
-              <div class="count-box" id="boxx3">
-                <i class="bi bi-clipboard"></i>
-                <span class="total">562</span>
-                <p>MATRICULADOS</p>
+
+              <div class="figura-card">
+                <div class="count-box">
+                  <i class="bi bi-clipboard"></i>
+                  <span class="total">562</span>
+                  <p>MATRICULADOS</p>
+                </div>
+                
+                <div class="card-legenda">
+                  <ul>
+                    <li>T.I: 200</li>
+                    <li>D.P: 150</li>
+                    <li>T.E.I.E: 100</li>
+                    <li>E.T: 132</li>
+                  </ul>
+                </div>
               </div>
-              <div class="box3" id="box3">
-                <ul class=" lista">
 
-                  <li class="clista">
-                    <span>Inscritos 10ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 11ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 12ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 13ª :</span>
-                    <span>10</span>
-                  </li>
-                  
+            </div>
+            
 
-                </ul>
+            <div class="col-lg-3 col-md-6 mt-4">
+
+              <div class="figura-card">
+                <div class="count-box">
+                  <i class="bi bi-person-check"></i>
+                  <span class="total">66</span>
+                  <p>TURMAS</p>
+                </div>
+                
+                <div class="card-legenda">
+                  <ul>
+                    <li>T.I: 20</li>
+                    <li>D.P: 20</li>
+                    <li>T.E.I.E: 16</li>
+                    <li>E.T: 10</li>
+                  </ul>
+                </div>
               </div>
             </div>
             
-            <div class="col-lg-3 col-md-6 mt-4">
-              <div class="count-box" id="boxx5">
-                <i class="bi bi-person-check"></i>
-                <span class="total">64</span>
-                <p>TURMAS</p>
-              </div>
-              <div class="box5" id="box5">
-                <ul class=" lista">
-
-                  <li class="clista">
-                    <span>Inscritos 10ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 11ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 12ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 13ª :</span>
-                    <span>10</span>
-                  </li>
-                  
-
-                </ul>
-              </div>
-            </div>
                           
           </div>
 
         </div>
       </section><!-- Termina seccao do dashboard -->
+
+      <br><br>
+
+      <div class="row">
+
+        <!-- Coluna da esquerda -->
+        <div class="col-lg-8">
+          <div class="row">
+
+            <!-- Card Alunos -->
+            <div class="col-xxl-4 col-xl-12">
+
+              <div class="card info-card">
+
+                <div class="card-body">
+                  <h5 class="card-title">Alunos <span>| 2022 - 2023</span></h5>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr style="text-transform: uppercase;">
+                        <th scope="col">Cursos</th>
+                        <th scope="col">Manhã</th>
+                        <th scope="col">Tarde</th>
+                        <th scope="col">Noite</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><span>Técnico de Informática</span></td>
+                        <td>64</td>
+                        <td>90</td>
+                        <td>48</td>
+                      </tr>
+                      <tr>
+                        <td><span>Desenhador Projetista</span></td>
+                        <td>79</td>
+                        <td>41</td>
+                        <td>39</td>
+                      </tr>
+                      <tr>
+                        <td><span>Técnico de Energia e Instalações Electricas</span></td>
+                        <td>79</td>
+                        <td>41</td>
+                        <td>39</td>
+                      </tr>
+                      <tr>
+                        <td><span>Electronica e Telecomunicação</span></td>
+                        <td>79</td>
+                        <td>41</td>
+                        <td>39</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+              </div>
+
+            </div><!-- Fim Card Alunos -->
+
+            <!-- Card Turmas -->
+            <div class="col-xxl-4 col-xl-12">
+
+              <div class="card info-card">
+
+                <div class="card-body">
+                  <h5 class="card-title">Turmas <span>| 2022 - 2023</span></h5>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr style="text-transform: uppercase;">
+                        <th scope="col">Cursos</th>
+                        <th scope="col">Manhã</th>
+                        <th scope="col">Tarde</th>
+                        <th scope="col">Noite</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><span>Técnico de Informática</span></td>
+                        <td>8</td>
+                        <td>6</td>
+                        <td>6</td>
+                      </tr>
+                      <tr>
+                        <td><span>Desenhador Projetista</span></td>
+                        <td>6</td>
+                        <td>8</td>
+                        <td>6</td>
+                      </tr>
+                      <tr>
+                        <td><span>Técnico de Energia e Instalações Electricas</span></td>
+                        <td>6</td>
+                        <td>5</td>
+                        <td>5</td>
+                      </tr>
+                      <tr>
+                        <td><span>Electronica e Telecomunicação</span></td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>3</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+              </div>
+
+            </div><!-- Fim Card Turmas -->
+
+          </div>
+        </div><!-- Fim Coluna da esquerda -->
+
+        <!-- Coluna da direita -->
+        <div class="col-lg-4">
         
-      <!-- /	Area do grafico-->
+          <div class="alert alert-warning bg-warning border-0 alert-dismissible fade show" role="alert">
+                Mensagem importante!
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          <!-- Card comunicado -->
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Hoje <span>| 13h:02</span></h5>
 
-      <div>
-        <canvas id="grafico"></canvas>
-      </div>
+              <div class="activity" style="text-align: justify;">
 
-      <script>
-        $(document).ready(function() {
-        // Dados iniciais do gráfico
-        var data = {
-          labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho','Agosto', 'Setembro', 'Outubro','Novembro','Dezembro'],
-          datasets: [{
-            label: 'Assiduidade Escolar',
-            data: [7,13,77,20,30,40,50,60,70,80,90,100],
-            backgroundColor: 'rgba(54, 162, 235, 0.5)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
-          }],
-      
-        };
+                <h5 class="card-title" style="text-align: center;">Comunicado</h5>
 
-        // Configurações do gráfico
-        var options = {
-          responsive: true,
-          scales: {
-            y: {
-              min: 0,
-              max: 100,
-              ticks: {
-                stepSize: 10,
-                  callback: function (value, index, values) {
-                    return value + '%'; // Personalize os rótulos como desejar
-                  }
-                }
-        }
-          }
-        };
+                <p>Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado-nav Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicadoAqui o Texto do comunicado v Aqui o Texto do comunicado Aqui o Texto do comunicado</p> 
+              </div>
 
-        // Criação do gráfico
-        var ctx = $('#grafico')
-        var myChart = new Chart(ctx, {
-          type: 'bar',
-          data: data,
-          options: options
-        });
-      
-          // Redimensiona o gráfico quando a janela for redimensionada
-          $(window).on('resize', function() {
-          myChart.resize();
-          });
+            </div>
+          </div><!-- Fim Card comunicado -->
 
-      });
-      </script>
+        </div><!-- Fim Coluna da direita -->
 
-      <!-- Termina Area do grafico -->
+      </div>    
+      <br><br><br>
     </div><!-- Fim da dashboard Secretaria Pedagogica -->
 
   {{-- COORDENADOR -----  /  Inicio de Coordenador de curso --}}
@@ -851,147 +888,213 @@
           <div class="col">
             <h1>Página inicial</h1>      
           </div>
-          
+
+          <div class="col-lg-3" >
+            <div style="background-color: #96abce; border-radius: 10px; padding: 10px;">
+              <span class="ano-l" style="font-size: 16px; font-weight: 700;"><strong>2022 - 2023</strong> | </span><span class="trimestre" style="font-size: 16px;">IIIº Trimestre</span>
+                  
+            </div>
+          </div>
+        
           <div class="col-lg-2">
             <span class="breadcrumb">
-              <select class="btn-sel form-select">
+              <select class="btn-sel form-select" style="padding: 10px;">
                 <option selected>2022 - 2023</option>
                 <option value="2021-2022">2021 - 2022</option>
               </select>
             </span>      
           </div>
-
         </div>
       </div>
-
-      <!-- /	seccao do dashboard-->
+	  
       <section id="counts" class="counts">
         <div class="container">
 
           <div class="row" data-aos="fade-up">
 
             <div class="col-lg-3 col-md-6 mt-4">
-              <div class="count-box" id="boxx3">
-                <i class="bi bi-clipboard"></i>
-                <span class="total">562</span>
-                <p>MATRICULADOS</p>
+
+              <div class="figura-card">
+                <div class="count-box">
+                  <i class="bi bi-clipboard"></i>
+                  <span class="total">562</span>
+                  <p>MATRICULADOS</p>
+                </div>
+                
+                <div class="card-legenda">
+                  <ul>
+                    <li>T.I: 200</li>
+                    <li>D.P: 150</li>
+                    <li>T.E.I.E: 100</li>
+                    <li>E.T: 132</li>
+                  </ul>
+                </div>
               </div>
-              <div class="box3" id="box3">
-                <ul class=" lista">
 
-                  <li class="clista">
-                    <span>Inscritos 10ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 11ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 12ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 13ª :</span>
-                    <span>10</span>
-                  </li>
-                  
+            </div>
+            
 
-                </ul>
+            <div class="col-lg-3 col-md-6 mt-4">
+
+              <div class="figura-card">
+                <div class="count-box">
+                  <i class="bi bi-person-check"></i>
+                  <span class="total">66</span>
+                  <p>TURMAS</p>
+                </div>
+                
+                <div class="card-legenda">
+                  <ul>
+                    <li>T.I: 20</li>
+                    <li>D.P: 20</li>
+                    <li>T.E.I.E: 16</li>
+                    <li>E.T: 10</li>
+                  </ul>
+                </div>
               </div>
             </div>
             
-            <div class="col-lg-3 col-md-6 mt-4">
-              <div class="count-box" id="boxx5">
-                <i class="bi bi-person-check"></i>
-                <span class="total">64</span>
-                <p>TURMAS</p>
-              </div>
-              <div class="box5" id="box5">
-                <ul class=" lista">
-
-                  <li class="clista">
-                    <span>Inscritos 10ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 11ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 12ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 13ª :</span>
-                    <span>10</span>
-                  </li>
-                  
-
-                </ul>
-              </div>
-            </div>
                           
           </div>
 
         </div>
       </section><!-- Termina seccao do dashboard -->
+
+      <br><br>
+
+      <div class="row">
+
+        <!-- Coluna da esquerda -->
+        <div class="col-lg-8">
+          <div class="row">
+
+            <!-- Card Alunos -->
+            <div class="col-xxl-4 col-xl-12">
+
+              <div class="card info-card">
+
+                <div class="card-body">
+                  <h5 class="card-title">Alunos <span>| 2022 - 2023</span></h5>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr style="text-transform: uppercase;">
+                        <th scope="col">Cursos</th>
+                        <th scope="col">Manhã</th>
+                        <th scope="col">Tarde</th>
+                        <th scope="col">Noite</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><span>Técnico de Informática</span></td>
+                        <td>64</td>
+                        <td>90</td>
+                        <td>48</td>
+                      </tr>
+                      <tr>
+                        <td><span>Desenhador Projetista</span></td>
+                        <td>79</td>
+                        <td>41</td>
+                        <td>39</td>
+                      </tr>
+                      <tr>
+                        <td><span>Técnico de Energia e Instalações Electricas</span></td>
+                        <td>79</td>
+                        <td>41</td>
+                        <td>39</td>
+                      </tr>
+                      <tr>
+                        <td><span>Electronica e Telecomunicação</span></td>
+                        <td>79</td>
+                        <td>41</td>
+                        <td>39</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+              </div>
+
+            </div><!-- Fim Card Alunos -->
+
+            <!-- Card Turmas -->
+            <div class="col-xxl-4 col-xl-12">
+
+              <div class="card info-card">
+
+                <div class="card-body">
+                  <h5 class="card-title">Turmas <span>| 2022 - 2023</span></h5>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr style="text-transform: uppercase;">
+                        <th scope="col">Cursos</th>
+                        <th scope="col">Manhã</th>
+                        <th scope="col">Tarde</th>
+                        <th scope="col">Noite</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><span>Técnico de Informática</span></td>
+                        <td>8</td>
+                        <td>6</td>
+                        <td>6</td>
+                      </tr>
+                      <tr>
+                        <td><span>Desenhador Projetista</span></td>
+                        <td>6</td>
+                        <td>8</td>
+                        <td>6</td>
+                      </tr>
+                      <tr>
+                        <td><span>Técnico de Energia e Instalações Electricas</span></td>
+                        <td>6</td>
+                        <td>5</td>
+                        <td>5</td>
+                      </tr>
+                      <tr>
+                        <td><span>Electronica e Telecomunicação</span></td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>3</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+              </div>
+
+            </div><!-- Fim Card Turmas -->
+
+          </div>
+        </div><!-- Fim Coluna da esquerda -->
+
+        <!-- Coluna da direita -->
+        <div class="col-lg-4">
         
-      <!-- /	Area do grafico-->
+          <div class="alert alert-warning bg-warning border-0 alert-dismissible fade show" role="alert">
+                Mensagem importante!
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          <!-- Card comunicado -->
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Hoje <span>| 13h:02</span></h5>
 
-      <div>
-        <canvas id="grafico"></canvas>
-      </div>
+              <div class="activity" style="text-align: justify;">
 
-      <script>
-        $(document).ready(function() {
-        // Dados iniciais do gráfico
-        var data = {
-          labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho','Agosto', 'Setembro', 'Outubro','Novembro','Dezembro'],
-          datasets: [{
-            label: 'Assiduidade Escolar',
-            data: [7,13,77,20,30,40,50,60,70,80,90,100],
-            backgroundColor: 'rgba(54, 162, 235, 0.5)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
-          }],
-      
-        };
+                <h5 class="card-title" style="text-align: center;">Comunicado</h5>
 
-        // Configurações do gráfico
-        var options = {
-          responsive: true,
-          scales: {
-            y: {
-              min: 0,
-              max: 100,
-              ticks: {
-                stepSize: 10,
-                  callback: function (value, index, values) {
-                    return value + '%'; // Personalize os rótulos como desejar
-                  }
-                }
-        }
-          }
-        };
+                <p>Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado-nav Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicadoAqui o Texto do comunicado v Aqui o Texto do comunicado Aqui o Texto do comunicado</p> 
+              </div>
 
-        // Criação do gráfico
-        var ctx = $('#grafico')
-        var myChart = new Chart(ctx, {
-          type: 'bar',
-          data: data,
-          options: options
-        });
-      
-          // Redimensiona o gráfico quando a janela for redimensionada
-          $(window).on('resize', function() {
-          myChart.resize();
-          });
+            </div>
+          </div><!-- Fim Card comunicado -->
 
-      });
-      </script>
+        </div><!-- Fim Coluna da direita -->
 
-      <!-- Termina Area do grafico -->
+      </div>    
+      <br><br><br>
     </div><!-- Fim da dashboard Coordenador -->
 
   {{-- PROFESSOR ----- / Inicio de Professor --}}
@@ -1003,116 +1106,142 @@
           <div class="col">
             <h1>Página inicial</h1>      
           </div>
-          
+
+          <div class="col-lg-3" >
+            <div style="background-color: #96abce; border-radius: 10px; padding: 10px;">
+              <span class="ano-l" style="font-size: 16px; font-weight: 700;"><strong>2022 - 2023</strong> | </span><span class="trimestre" style="font-size: 16px;">IIIº Trimestre</span>
+                  
+            </div>
+          </div>
+        
           <div class="col-lg-2">
             <span class="breadcrumb">
-              <select class="btn-sel form-select">
+              <select class="btn-sel form-select" style="padding: 10px;">
                 <option selected>2022 - 2023</option>
                 <option value="2021-2022">2021 - 2022</option>
               </select>
             </span>      
           </div>
-
         </div>
       </div>
-
-      <!-- /	seccao do dashboard-->
+	  
       <section id="counts" class="counts">
         <div class="container">
 
           <div class="row" data-aos="fade-up">
 
-            <div class="col-lg-3 col-md-6">
-              <div class="count-box" id="boxx5">
-                <i class="bi bi-person-check"></i>
-                <span class="total">64</span>
-                <p>TURMAS</p>
-              </div>
-              <div class="box5" id="box5">
-                <ul class=" lista">
+            <div class="col-lg-3 col-md-6 mt-4">
 
-                  <li class="clista">
-                    <span>Inscritos 10ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 11ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 12ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 13ª :</span>
-                    <span>10</span>
-                  </li>
-                  
-
-                </ul>
+              <div class="figura-card">
+                <div class="count-box">
+                  <i class="bi bi-person-check"></i>
+                  <span class="total">66</span>
+                  <p>TURMAS</p>
+                </div>
+                
+                <div class="card-legenda">
+                  <ul>
+                    <li>T.I: 20</li>
+                    <li>D.P: 20</li>
+                    <li>T.E.I.E: 16</li>
+                    <li>E.T: 10</li>
+                  </ul>
+                </div>
               </div>
             </div>
+            
                           
           </div>
 
         </div>
       </section><!-- Termina seccao do dashboard -->
+
+      <br><br>
+
+      <div class="row">
+
+        <!-- Coluna da esquerda -->
+        <div class="col-lg-8">
+          <div class="row">
+
+            <!-- Card Turmas -->
+            <div class="col-xxl-4 col-xl-12">
+
+              <div class="card info-card">
+
+                <div class="card-body">
+                  <h5 class="card-title">Turmas <span>| 2022 - 2023</span></h5>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr style="text-transform: uppercase;">
+                        <th scope="col">Cursos</th>
+                        <th scope="col">Manhã</th>
+                        <th scope="col">Tarde</th>
+                        <th scope="col">Noite</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><span>Técnico de Informática</span></td>
+                        <td>8</td>
+                        <td>6</td>
+                        <td>6</td>
+                      </tr>
+                      <tr>
+                        <td><span>Desenhador Projetista</span></td>
+                        <td>6</td>
+                        <td>8</td>
+                        <td>6</td>
+                      </tr>
+                      <tr>
+                        <td><span>Técnico de Energia e Instalações Electricas</span></td>
+                        <td>6</td>
+                        <td>5</td>
+                        <td>5</td>
+                      </tr>
+                      <tr>
+                        <td><span>Electronica e Telecomunicação</span></td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>3</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+              </div>
+
+            </div><!-- Fim Card Turmas -->
+
+          </div>
+        </div><!-- Fim Coluna da esquerda -->
+
+        <!-- Coluna da direita -->
+        <div class="col-lg-4">
         
-      <!-- /	Area do grafico-->
+          <div class="alert alert-warning bg-warning border-0 alert-dismissible fade show" role="alert">
+                Mensagem importante!
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          <!-- Card comunicado -->
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Hoje <span>| 13h:02</span></h5>
 
-      <div>
-        <canvas id="grafico"></canvas>
-      </div>
+              <div class="activity" style="text-align: justify;">
 
-      <script>
-        $(document).ready(function() {
-        // Dados iniciais do gráfico
-        var data = {
-          labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho','Agosto', 'Setembro', 'Outubro','Novembro','Dezembro'],
-          datasets: [{
-            label: 'Assiduidade Escolar',
-            data: [7,13,77,20,30,40,50,60,70,80,90,100],
-            backgroundColor: 'rgba(54, 162, 235, 0.5)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
-          }],
-      
-        };
+                <h5 class="card-title" style="text-align: center;">Comunicado</h5>
 
-        // Configurações do gráfico
-        var options = {
-          responsive: true,
-          scales: {
-            y: {
-              min: 0,
-              max: 100,
-              ticks: {
-                stepSize: 10,
-                  callback: function (value, index, values) {
-                    return value + '%'; // Personalize os rótulos como desejar
-                  }
-                }
-        }
-          }
-        };
+                <p>Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado-nav Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicadoAqui o Texto do comunicado v Aqui o Texto do comunicado Aqui o Texto do comunicado</p> 
+              </div>
 
-        // Criação do gráfico
-        var ctx = $('#grafico')
-        var myChart = new Chart(ctx, {
-          type: 'bar',
-          data: data,
-          options: options
-        });
-      
-          // Redimensiona o gráfico quando a janela for redimensionada
-          $(window).on('resize', function() {
-          myChart.resize();
-          });
+            </div>
+          </div><!-- Fim Card comunicado -->
 
-      });
-      </script>
+        </div><!-- Fim Coluna da direita -->
 
-      <!-- Termina Area do grafico -->
+      </div>    
+      <br><br><br>
     </div><!-- Fim da dashboard Professor -->   
     
   {{-- ALUNO ----- / Inicio de Aluno --}}
@@ -1526,298 +1655,281 @@
           <div class="col">
             <h1>Página inicial</h1>      
           </div>
-          
+
+          <div class="col-lg-3" >
+            <div style="background-color: #96abce; border-radius: 10px; padding: 10px;">
+              <span class="ano-l" style="font-size: 16px; font-weight: 700;"><strong>2022 - 2023</strong> | </span><span class="trimestre" style="font-size: 16px;">IIIº Trimestre</span>
+                  
+            </div>
+          </div>
+        
           <div class="col-lg-2">
             <span class="breadcrumb">
-              <select class="btn-sel form-select">
+              <select class="btn-sel form-select" style="padding: 10px;">
                 <option selected>2022 - 2023</option>
                 <option value="2021-2022">2021 - 2022</option>
               </select>
             </span>      
           </div>
-
         </div>
       </div>
-
-      <!-- /	seccao do dashboard-->
+	  
       <section id="counts" class="counts">
         <div class="container">
 
           <div class="row" data-aos="fade-up">
 
-            <div class="col-lg-3 col-md-6 mt-4" >
-              <div class="count-box" id="boxx">
-                <i class="bi bi-people"></i>
-                <span class="total">472</span>
-                <p>INSCRITOS</p>
-              </div>
+            <div class="col-lg-3 col-md-6 mt-4">
+            
+              <div class="figura-card">
+                <div class="count-box">
+                  <i class="bi bi-people"></i>
+                  <span class="total">472</span>
+                  <p>INSCRITOS</p>
+                </div>
 
-              <div class="box" id="box">
-                  <ul class=" lista">
-
-                    <li class="clista">
-                      <span>Inscritos 10ª :</span>
-                      <span>10</span>
-                    </li>
-                    <li class="clista">
-                      <span>Inscritos 11ª :</span>
-                      <span>10</span>
-                    </li>
-                    <li class="clista">
-                      <span>Inscritos 12ª :</span>
-                      <span>10</span>
-                    </li>
-                    <li class="clista">
-                      <span>Inscritos 13ª :</span>
-                      <span>10</span>
-                    </li>
+                <div class="card-legenda">
+                  <ul>
+                    <li>T.I: 200</li>
+                    <li>D.P: 100</li>
+                    <li>T.E.I.E: 50</li>
+                    <li>E.T: 122</li>
                   </ul>
+                </div>
               </div>
-            </div>
 
-            <div class="col-lg-3 col-md-6 mt-4" >
-              <div class="count-box" id="boxx1" >
-                <i class="bi bi-person"></i>
-                <span class="total">572</span>
-                <p>ADMITIDOS</p>
-              </div>
-              <div class="box1" id="box1">
-                <ul class=" lista">
-
-                  <li class="clista">
-                    <span>Inscritos 10ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 11ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 12ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 13ª :</span>
-                    <span>10</span>
-                  </li>
-                  
-
-                </ul>
-              </div>
             </div>
 
             <div class="col-lg-3 col-md-6 mt-4">
-              <div class="count-box" id="boxx2" >
-                <i class="bi bi-check2-square"></i>
-                <span class="total">772</span>
-                <p>NÃO ADMITIDOS</p>
-              </div>
-              <div class="box2" id="box2">
-                <ul class=" lista">
 
-                  <li class="clista">
-                    <span>Inscritos 10ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 11ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 12ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 13ª :</span>
-                    <span>10</span>
-                  </li>
-                  
-
-                </ul>
+              <div class="figura-card">
+                <div class="count-box">
+                  <i class="bi bi-person"></i>
+                  <span class="total">572</span>
+                  <p>ADMITIDOS</p>
+                </div>
+                
+                <div class="card-legenda">
+                  <ul>
+                    <li>T.I: 200</li>
+                    <li>D.P: 200</li>
+                    <li>T.E.I.E: 50</li>
+                    <li>E.T: 122</li>
+                  </ul>
+                </div>
               </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6 mt-4">
+
+              <div class="figura-card">
+                <div class="count-box">
+                  <i class="bi bi-check2-square"></i>
+                  <span class="total">772</span>
+                  <p>NÃO ADMITIDOS</p>
+                </div>
+                
+                <div class="card-legenda">
+                  <ul>
+                    <li>T.I: 300</li>
+                    <li>D.P: 200</li>
+                    <li>T.E.I.E: 150</li>
+                    <li>E.T: 122</li>
+                  </ul>
+                </div>
+              </div>
+
             </div>
                           
           </div>
 
         </div>
       </section><!-- Termina seccao do dashboard -->
-        
-      <!-- /	Area do grafico-->
 
-      <div>
-        <canvas id="grafico"></canvas>
-      </div>
+      <br><br>
 
-      <script>
-        $(document).ready(function() {
-        // Dados iniciais do gráfico
-        var data = {
-          labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho','Agosto', 'Setembro', 'Outubro','Novembro','Dezembro'],
-          datasets: [{
-            label: 'Assiduidade Escolar',
-            data: [7,13,77,20,30,40,50,60,70,80,90,100],
-            backgroundColor: 'rgba(54, 162, 235, 0.5)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
-          }],
-      
-        };
+      <div class="row">
 
-        // Configurações do gráfico
-        var options = {
-          responsive: true,
-          scales: {
-            y: {
-              min: 0,
-              max: 100,
-              ticks: {
-                stepSize: 10,
-                  callback: function (value, index, values) {
-                    return value + '%'; // Personalize os rótulos como desejar
-                  }
-                }
-        }
-          }
-        };
+        <!-- Coluna da esquerda -->
+        <div class="col-lg-12">
+          <div class="row">
 
-        // Criação do gráfico
-        var ctx = $('#grafico')
-        var myChart = new Chart(ctx, {
-          type: 'bar',
-          data: data,
-          options: options
-        });
-      
-          // Redimensiona o gráfico quando a janela for redimensionada
-          $(window).on('resize', function() {
-          myChart.resize();
-          });
+            <!-- Card Alunos -->
+            <div class="col-xxl-4 col-xl-12">
+              <div class="alert alert-warning bg-warning border-0 alert-dismissible fade show" role="alert">
+                  Mensagem importante!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
 
-      });
-      </script>
+              <!-- Card comunicado -->
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Hoje <span>| 13h:02</span></h5>
 
-      <!-- Termina Area do grafico -->
+                  <div class="activity" style="text-align: justify;">
+
+                    <h5 class="card-title" style="text-align: center;">Comunicado</h5>
+
+                    <p>Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado-nav Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicadoAqui o Texto do comunicado v Aqui o Texto do comunicado Aqui o Texto do comunicado</p> 
+                  </div>
+
+                </div>
+              </div><!-- Fim Card comunicado -->
+            </div><!-- Fim Card Alunos -->
+
+          </div>
+        </div><!-- Fim Coluna da esquerda -->
+
+      </div>    
+      <br><br><br>
     </div><!-- Fim da dashboard Usuario - Inscrição --> 
 
   {{-- Usuario - Matricula ----- / Inicio de Usuario - Matricula --}}
   @elseif(Auth::user()->cargo_usuario == "matri_user")  
-  <div class="area-use-matr">
+    <div class="area-use-matr">
       <!-- /	Titulo-->  	
       <div class="pagetitle">
         <div class="row">
           <div class="col">
             <h1>Página inicial</h1>      
           </div>
-          
+
+          <div class="col-lg-3" >
+            <div style="background-color: #96abce; border-radius: 10px; padding: 10px;">
+              <span class="ano-l" style="font-size: 16px; font-weight: 700;"><strong>2022 - 2023</strong> | </span><span class="trimestre" style="font-size: 16px;">IIIº Trimestre</span>
+                  
+            </div>
+          </div>
+        
           <div class="col-lg-2">
             <span class="breadcrumb">
-              <select class="btn-sel form-select">
+              <select class="btn-sel form-select" style="padding: 10px;">
                 <option selected>2022 - 2023</option>
                 <option value="2021-2022">2021 - 2022</option>
               </select>
             </span>      
           </div>
-
         </div>
       </div>
-
-      <!-- /	seccao do dashboard-->
+	  
       <section id="counts" class="counts">
         <div class="container">
 
           <div class="row" data-aos="fade-up">
 
             <div class="col-lg-3 col-md-6 mt-4">
-              <div class="count-box" id="boxx3">
-                <i class="bi bi-clipboard"></i>
-                <span class="total">562</span>
-                <p>MATRICULADOS</p>
-              </div>
-              <div class="box3" id="box3">
-                <ul class=" lista">
 
-                  <li class="clista">
-                    <span>Inscritos 10ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 11ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 12ª :</span>
-                    <span>10</span>
-                  </li>
-                  <li class="clista">
-                    <span>Inscritos 13ª :</span>
-                    <span>10</span>
-                  </li>
-                  
-
-                </ul>
+              <div class="figura-card">
+                <div class="count-box">
+                  <i class="bi bi-clipboard"></i>
+                  <span class="total">562</span>
+                  <p>MATRICULADOS</p>
+                </div>
+                
+                <div class="card-legenda">
+                  <ul>
+                    <li>T.I: 200</li>
+                    <li>D.P: 150</li>
+                    <li>T.E.I.E: 100</li>
+                    <li>E.T: 132</li>
+                  </ul>
+                </div>
               </div>
-            </div>
+
+            </div>            
                           
           </div>
 
         </div>
       </section><!-- Termina seccao do dashboard -->
+
+      <br><br>
+
+      <div class="row">
+
+        <!-- Coluna da esquerda -->
+        <div class="col-lg-8">
+          <div class="row">
+
+            <!-- Card Alunos -->
+            <div class="col-xxl-4 col-xl-12">
+
+              <div class="card info-card">
+
+                <div class="card-body">
+                  <h5 class="card-title">Alunos <span>| 2022 - 2023</span></h5>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr style="text-transform: uppercase;">
+                        <th scope="col">Cursos</th>
+                        <th scope="col">Manhã</th>
+                        <th scope="col">Tarde</th>
+                        <th scope="col">Noite</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><span>Técnico de Informática</span></td>
+                        <td>64</td>
+                        <td>90</td>
+                        <td>48</td>
+                      </tr>
+                      <tr>
+                        <td><span>Desenhador Projetista</span></td>
+                        <td>79</td>
+                        <td>41</td>
+                        <td>39</td>
+                      </tr>
+                      <tr>
+                        <td><span>Técnico de Energia e Instalações Electricas</span></td>
+                        <td>79</td>
+                        <td>41</td>
+                        <td>39</td>
+                      </tr>
+                      <tr>
+                        <td><span>Electronica e Telecomunicação</span></td>
+                        <td>79</td>
+                        <td>41</td>
+                        <td>39</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+              </div>
+
+            </div><!-- Fim Card Alunos -->
+
+          </div>
+        </div><!-- Fim Coluna da esquerda -->
+
+        <!-- Coluna da direita -->
+        <div class="col-lg-4">
         
-      <!-- /	Area do grafico-->
+          <div class="alert alert-warning bg-warning border-0 alert-dismissible fade show" role="alert">
+                Mensagem importante!
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          <!-- Card comunicado -->
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Hoje <span>| 13h:02</span></h5>
 
-      <div>
-        <canvas id="grafico"></canvas>
-      </div>
+              <div class="activity" style="text-align: justify;">
 
-      <script>
-        $(document).ready(function() {
-        // Dados iniciais do gráfico
-        var data = {
-          labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho','Agosto', 'Setembro', 'Outubro','Novembro','Dezembro'],
-          datasets: [{
-            label: 'Assiduidade Escolar',
-            data: [7,13,77,20,30,40,50,60,70,80,90,100],
-            backgroundColor: 'rgba(54, 162, 235, 0.5)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1
-          }],
-      
-        };
+                <h5 class="card-title" style="text-align: center;">Comunicado</h5>
 
-        // Configurações do gráfico
-        var options = {
-          responsive: true,
-          scales: {
-            y: {
-              min: 0,
-              max: 100,
-              ticks: {
-                stepSize: 10,
-                  callback: function (value, index, values) {
-                    return value + '%'; // Personalize os rótulos como desejar
-                  }
-                }
-        }
-          }
-        };
+                <p>Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado-nav Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicadoAqui o Texto do comunicado v Aqui o Texto do comunicado Aqui o Texto do comunicado</p> 
+              </div>
 
-        // Criação do gráfico
-        var ctx = $('#grafico')
-        var myChart = new Chart(ctx, {
-          type: 'bar',
-          data: data,
-          options: options
-        });
-      
-          // Redimensiona o gráfico quando a janela for redimensionada
-          $(window).on('resize', function() {
-          myChart.resize();
-          });
+            </div>
+          </div><!-- Fim Card comunicado -->
 
-      });
-      </script>
+        </div><!-- Fim Coluna da direita -->
 
-      <!-- Termina Area do grafico -->
+      </div>    
+      <br><br><br>    
     </div><!-- Fim da dashboard Usuario - Matr --> 
   @else
 

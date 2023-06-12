@@ -635,7 +635,7 @@ span.f-normal{
   justify-content: center;
   align-items: center;
   border-radius: 100%;
-  background-color: var(--bs-cor-principal);
+  background-color: #ff3c3c;
   color: #fff;
   font-size: 22px;
 }
