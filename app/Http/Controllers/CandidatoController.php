@@ -205,13 +205,22 @@ class CandidatoController extends Controller
 
     public static function updateCandidato($dadosCandidato)
     {
-        $candidato = Candidato::find($dadosCandidato['id']);
-
-        $candidato->nome_pai_cand = $dadosCandidato['nome_pai_cand'];
-        $candidato->nome_mae_cand = $dadosCandidato['nome_mae_cand'];
+        $candidato = Candidato::find($dadosCandidato['candidato_id']);
+        foreach ($dadosCandidato as $campo => $valor)
+        {
+            $candidato->$campo = $valor;
+        }
         $candidatoAtualizado = $candidato->save();
 
         return $candidatoAtualizado;
+
+        // $escola = Escola_proveniencia::find($dadosEscola['escola_proveniencia_id']);
+        // foreach ($dadosEscola as $campo => $valor)
+        // {
+        //     $escola->$campo = $valor;
+        // }
+        // $escolaAtualizado = $escola->save();
+        // return $escolaAtualizado;
     }
 
 }
