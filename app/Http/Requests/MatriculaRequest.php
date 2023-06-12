@@ -32,10 +32,10 @@ class MatriculaRequest extends FormRequest
 
             //Formulario da Pessoa
             'nome_completo'=>'required|string|min:2|max:100',
-            'data_nascimento'=>'required|date|before:'.now()->format('d-m-Y'),
-            'num_bi'=>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi',
             'genero' => 'required|string',
             'num_tel'=>'required|size:9',
+            'num_bi' =>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi',
+
             //User
             'email'=>'required|email',
 
@@ -45,13 +45,14 @@ class MatriculaRequest extends FormRequest
             'num_aluno'=>'required|int|min:1',
             'turma_aluno' => 'required|string',
             'turno' => 'required|string',
+            'ultimo_anoLectivo' => 'required|string',
 
             //encarregado 1
             'telefone1'=>'required|size:9',
             'grau1'=>'required|string',
             'nome_enc1' => 'required|string|max:100|min:2',
             'data_nascimento_enc1' => 'required|date|before:'.now()->format('d-m-Y'),
-            'genero_enc1' =>'required|string',
+            'genero1' =>'required|string',
             'num_bi_enc1' =>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi',
 
             //encarregado 2
@@ -59,7 +60,7 @@ class MatriculaRequest extends FormRequest
             'grau2'=>'required|string',
             'nome_enc2' => 'required|string|max:100|min:2',
             'data_nascimento_enc2' => 'required|date|before:'.now()->format('d-m-Y'),
-            'genero_enc2' =>'required|string',
+            'genero2' =>'required|string',
             'num_bi_enc2' =>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi',
 
             //encarregado 3
@@ -67,9 +68,10 @@ class MatriculaRequest extends FormRequest
             'grau3'=>'required|string',
             'nome_enc3' => 'required|string|max:100|min:2',
             'data_nascimento_enc3' => 'required|date|before:'.now()->format('d-m-Y'),
-            'genero_enc3' =>'required|string',
+            'genero3' =>'required|string',
             'num_bi_enc3' =>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi',
         ];
+        // dd($this->request->all());
         return $rules;
     }
 

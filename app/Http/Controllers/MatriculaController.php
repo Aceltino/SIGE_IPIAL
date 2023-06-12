@@ -25,21 +25,6 @@ class MatriculaController extends Controller
         $request = $input->validated(); // Inputs validadas
         dd($request);
 
-        $curso = CursoController::quantidadeCurso();
-
-        for($i = 1; $i <= $curso; $i++)
-        {
-            $cursoValidado[$i] = $request['curso' . $i];
-        }
-
-        $validacaoCurso = CandidatoCursoController::validarCurso($cursoValidado);
-
-        if(!$validacaoCurso)
-        {
-            $msg="Lamentamos! Dados não cadastrado, um candidato não pode escolher o mesmo curso mais de uma vez. ...";
-            return redirect()->back()->with("ErroCurso",$msg);
-        }
-
         $dadosPessoa = [
             'nome_completo'=> $request['nome_completo'],
             'data_nascimento'=> $request['data_nascimento'],
