@@ -24,12 +24,12 @@
             </div>
             <div class="row">
                 <div class="form-group col">
-                    <input type="text" style=" text-align: center;" value="" placeholder="Titulo do Comunicado" name="titulo" oninput="this.className = ''">
+                    <input type="text" style=" text-align: center;" value="" placeholder="Titulo do Comunicado" name="titulo_com" oninput="this.className = ''">
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <textarea style="border: 1px solid; border-color: rgb(204, 204, 204); border-radius: 5px; outline: none" class="w-100 "  rows="13" name="conteudo"  id="area" placeholder="Escreve aqui o conteúdo do Comunicado"></textarea>
+                    <textarea style="border: 1px solid; border-color: rgb(204, 204, 204); border-radius: 5px; outline: none" class="w-100 "  rows="13" name="conteudo_com"  id="area" placeholder="Escreve aqui o conteúdo do Comunicado"></textarea>
                 </div>
             </div>
 

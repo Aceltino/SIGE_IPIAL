@@ -45,6 +45,7 @@
     <thead>
       <tr style=" text-align: center;">
         <th scope="col">Nome da disciplina</th>
+        <th scope="col">Sigla</th>
         <th scope="col">Compoente</th>
         <th scope="col">Curso</th>
         <th scope="col"></th>
@@ -54,7 +55,7 @@
     <tbody>
     @foreach($disciplinas as $disciplina)
       <tr style=" text-align: center;">
-        <th scope="row">{{ $disciplina->nome_disciplina }}</th>
+        <td>{{ $disciplina->nome_disciplina }}</td>
         <td>{{ $disciplina->sigla		}}</td>
         <td>{{ $disciplina->componente	}}</td>
         <td>{{ $disciplina->tempo_prov }}</td>
@@ -66,32 +67,8 @@
 
         </td>
       </tr>
-      <tr style=" text-align: center;">
-        <th scope="row">Programação</th>
-        <td>Técnicas</td>
-        <td>Técnico de Informática</td>
-
-
-        <td>
-          <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-          <a href="/edit-disciplina"><i class="bi bi-pencil"></i></a>
-          <i class="bi bi-trash-fill"></i>
-
-        </td>
-      </tr>
-      <tr style=" text-align: center;">
-        <th scope="row">Empreendedorismo</th>
-        <td>Socio-culturais</td>
-        <td>Todos os curos</td>
-
-
-        <td>
-          <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-          <a href="/edit-disciplina"><i class="bi bi-pencil"></i></a>
-          <i class="bi bi-trash-fill"></i>
-
-        </td>
-      </tr>
+      @endforeach
+      
     </tbody>
   </table>
   <!-- Termina a tabela de disciplina -->

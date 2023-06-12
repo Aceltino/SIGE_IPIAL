@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Comunicado;
+use App\Models\User;
+use App\Models\Ano_lectivo;
 use Illuminate\Support\Facades\Auth;
 
 class comunicadosController extends Controller
@@ -21,20 +23,22 @@ class comunicadosController extends Controller
     }
     public function store(Request $request)
     {
-        $pessoaId = Auth::pesssoa_id();
+        $UsuarioId = Auth::with('usuario_id')->get();
+        $ano_lectivo = Ano_lectivo::with('ano_lectivo_id')->get();
         $comunicados = new Comunicado();
-        $comunicados->pessoaId = $pessoaId;
         $comunicados->titulo_com = $request->titulo_com;
         $comunicados->conteudo_com = $request->conteudo_com;
+        $comunicados->ano_lectivo_id = $ano_lectivo;
+        $comunicados->usuario_id = $UsuarioId;
         $comunicados->save();
-         return redirect()->route('comunicado.index',$comunicados->pessoa_id);
+         return redirect()->route('comunicado.index',$comunicados);
     }
     public function edit($comunicado_id)
     {
         $comunicados = Comunicado::where('comunicado_id',$comunicado_id)->first();
         if(!empty($comunicados))
         {
-            return view('comunicado.editar-comunicado')->with('comunicados',$comunicados);
+            return view('comunicado.editar-comunicado', ['comunicados',$comunicados]);
         }
         else{
                 return redirect()->route('comunicado.index');
@@ -42,8 +46,11 @@ class comunicadosController extends Controller
     }
     public function update(Request $request, $comunicado_id)
     {
-        $comunicados = Comunicado::findOrFail($comunicado_id);
-        $comunicados->update($request->all());
+       $dados= [
+        'titulo_com' => $request->titulo_com,
+        'conteudo_com' => $request->conteudo_com,
+       ];
+       Comunicado::where('comunicado_id',$comunicado_id)->update($dados);
         return redirect()->route('comunicado.index');
 
     }

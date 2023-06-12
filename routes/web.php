@@ -17,6 +17,7 @@ use App\Http\Controllers\{
     MiniPautaController,
     PautaController,
     DisciplinasController,
+    ProcessoController,
 };
 use Illuminate\Support\Facades\Route;
 use GuzzleHttp\Client;
@@ -294,9 +295,7 @@ Route::prefix('ficha-biog')->group(function(){
  * Rotas do processo do Aluno
  */
 Route::prefix('processo')->group(function(){
-    Route::get('processos', function () {
-        return view('processo/processos');
-    });
+    Route::get('processos',[ProcessoController::class, 'index'])->name('processo.consultar');
 });
 /******************************************
  * Rotas de pauta
@@ -321,7 +320,7 @@ Route::prefix('comunicado')->middleware(['auth'])->group(function(){
     Route::get('consultar-comunicado', [comunicadosController::class, 'index'])->name('comunicado.index');
     Route::get('criar-comunicado', [comunicadosController::class, 'create'])->name('comunicado.create');
     Route::post('criar-comunicado', [comunicadosController::class, 'store'])->name('comunicado.store');
-    Route::get('/{comunicado_id}/editar-comunicado', [comunicadosController::class, 'edit'])->name('comunicado.edit');
+    Route::get('/{comunicado_id}/editar-comunicado', [comunicadosController::class, 'edit'])->where('comunicado_id', '[0-9]+')->name('comunicado.edit');
     Route::put('/{comunicado_id}', [comunicadosController::class, 'update'])->where('comunicado_id', '[0-9]+')->name('comunicado.update');
 
 });

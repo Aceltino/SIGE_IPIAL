@@ -270,7 +270,7 @@
       </a>
       <ul id="processo-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="processos">
+          <a href={{route('processo.consultar')}}>
             <i class="bi bi-circle"></i><span>Processos</span>
           </a>
         </li>
@@ -527,7 +527,7 @@
         </a>
         <ul id="processo-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="processos">
+            <a href={{route('processo.consultar')}}>
               <i class="bi bi-circle"></i><span>Processos</span>
             </a>
           </li>
@@ -660,7 +660,7 @@
           </a>
           <ul id="processo-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <a href="processos">
+              <a href={{route('processo.consultar')}}>
                 <i class="bi bi-circle"></i><span>Processos</span>
               </a>
             </li>

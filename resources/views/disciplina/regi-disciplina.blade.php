@@ -23,27 +23,35 @@
             </div>
         <div class="row">
            <div class="col">
-                <input type="text" style=" text-align: center;" placeholder="Nome da disciplina" name="" oninput="this.className = ''">
+                <input type="text" style=" text-align: center;" placeholder="Nome da disciplina" name="nome_disciplina" oninput="this.className = ''">
             </div>
            <div class="col">
-                <input type="text" style=" text-align: center;" placeholder="Sigla" name=""  oninput="this.className = ''">
+                <input type="text" style=" text-align: center;" placeholder="Sigla" name="sigla"  oninput="this.className = ''">
             </div>
         </div> <br>
 
               <div class="form-group">
-                <select oninput="this.className = ''" class="form-select">
+                <select oninput="this.className = ''" class="form-select" name="componente">
                   <option selected disabled> Componetes</option>
                   <option  value="c.T">Técnicas </option>
                   <option value="I.E"> Socio-culturais</option>
                   <option value="I"> Cientificas</option>
                 </select>
               </div>
+              @php
+                  $j=1;
+             @endphp
               <div class="row">
                 <div class="col">
+                  @foreach($cursos as $curso)
                   <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                    <label class="form-check-label" for="flexSwitchCheckDefault">Tecnico de Informática</label>
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="curso{{$j}}">
+                    <label class="form-check-label" for="flexSwitchCheckDefault" value="{{$curso['nome_curso']}}">{{$curso['nome_curso']}}</label>
                   </div>
+                  @php
+                     $j++;
+                 @endphp
+                  @endforeach
                   <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
                     <label class="form-check-label" for="flexSwitchCheckChecked">Instalaçoes electricas</label>

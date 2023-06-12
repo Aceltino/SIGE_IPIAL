@@ -34,6 +34,7 @@ class Pessoa extends Model
     public function candidato(){
         $this->hasOne(Candidato::class,'candidato_id');
     }
+<<<<<<< Updated upstream
     public function encarregado(){
         $this->hasOne(Encarregado::class,'encarregado_id');
     }
@@ -41,6 +42,9 @@ class Pessoa extends Model
     {
         return $this-> hasMany(Comunicado::class);
     }
+=======
+
+>>>>>>> Stashed changes
 
 	/**
 	 * @return mixed
