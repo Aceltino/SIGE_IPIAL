@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Comunicado;
+use App\Models\User;
+use App\Models\Ano_lectivo;
 use Illuminate\Support\Facades\Auth;
 
 class comunicadosController extends Controller
@@ -21,13 +23,15 @@ class comunicadosController extends Controller
     }
     public function store(Request $request)
     {
-        $pessoaId = Auth::pesssoa_id();
+        $UsuarioId = Auth::user();
+        $ano_lectivo = Ano_lectivo::first();
         $comunicados = new Comunicado();
-        $comunicados->pessoaId = $pessoaId;
         $comunicados->titulo_com = $request->titulo_com;
         $comunicados->conteudo_com = $request->conteudo_com;
+        $comunicados->ano_lectivo_id = $ano_lectivo->id;
+        $comunicados->usuario_id =$UsuarioId->id;
         $comunicados->save();
-         return redirect()->route('comunicado.index',$comunicados->pessoa_id);
+         return redirect()->route('comunicado.index',$comunicados);
     }
     public function edit($comunicado_id)
     {
