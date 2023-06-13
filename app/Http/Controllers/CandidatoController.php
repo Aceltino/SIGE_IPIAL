@@ -79,7 +79,11 @@ class CandidatoController extends Controller
 
         $candidatos = Candidato::with( 'pessoa', 'escola', 'ano_lectivo')
         ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
-        ->get();
+        ->where(function ($query) {
+            $query->where('status', 'não admitido')
+                ->orWhere('status', 'pendente')
+                ->orWhere('status', 'admitido');
+        })->get();
 
         foreach ($candidatos as &$candidato)
         {
@@ -221,6 +225,14 @@ class CandidatoController extends Controller
         // }
         // $escolaAtualizado = $escola->save();
         // return $escolaAtualizado;
+    }
+
+    public static function atualizarMatriculado($candidatoStatus) //Atualizar status
+    {
+        // Atualizar os dados
+        $candidato = Candidato::find($candidatoStatus['id']);
+        $candidato->status = "Matriculado";
+        $candidato->save();
     }
 
 }
