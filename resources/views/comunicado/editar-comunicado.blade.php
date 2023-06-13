@@ -4,7 +4,6 @@
 
 @section('conteudo')
 <main id="main" class="main" >
-
     <form id="regFormh" action="{{ route('comunicado.update',['comunicado_id'=>$comunicados->comunicado_id]) }}" class="formulario-layout" method="POST">
     @csrf
     @method('PUT')

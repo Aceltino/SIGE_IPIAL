@@ -19,8 +19,7 @@ use App\Http\Controllers\{
     DisciplinasController,
     ProcessoController,
 };
-use Illuminate\Support\Facades\Route;
-use GuzzleHttp\Client;
+7
 
 /*
 |--------------------------------------------------------------------------
@@ -33,8 +32,10 @@ use GuzzleHttp\Client;
 |
 */
 
+<
 
 //Rotas inicial do Painel
+
 Route::get('/', function () {
     return view('pagina-inicial');
 })->name('inicio')->middleware('auth');
@@ -322,6 +323,7 @@ Route::prefix('comunicado')->middleware(['auth'])->group(function(){
     Route::post('criar-comunicado', [comunicadosController::class, 'store'])->name('comunicado.store');
     Route::get('/{comunicado_id}/editar-comunicado', [comunicadosController::class, 'edit'])->where('comunicado_id', '[0-9]+')->name('comunicado.edit');
     Route::put('/{comunicado_id}', [comunicadosController::class, 'update'])->where('comunicado_id', '[0-9]+')->name('comunicado.update');
+
 
 });
 

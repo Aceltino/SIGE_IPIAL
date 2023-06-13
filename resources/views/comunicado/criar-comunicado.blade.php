@@ -4,8 +4,13 @@
 
 @section('conteudo')
 <main id="main" class="main" >
-
-    <form id="regFormh" action="{{ route('comunicado-store') }}" class="formulario-layout" method="POST">
+@if (session()->has('erro'))
+    {{session('erro')}}
+@endif
+@if (session()->has('sucesso'))
+    {{session('sucesso')}}
+@endif
+    <form id="regFormh" action="{{ route('comunicado.store') }}" class="formulario-layout" method="POST">
     @csrf
         <div style="text-align:center;margin-top:10px;">
         <span class="step"></span>
