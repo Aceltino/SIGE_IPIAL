@@ -36,6 +36,7 @@
                     @error('data_inicio_ano_lectivo')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-data-de-inicio-do-ano-lectivo"></p>
                 </div>
 
                 <div class="col">
@@ -43,6 +44,7 @@
                     @error('data_fim_ano_lectivo')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-data-de-fim-do-ano-lectivo"></p>
                 </div>
             </div>
 
@@ -52,6 +54,7 @@
                     @error('data_inicio_inscricao')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-data-de-inicio-das-inscricoes"></p>
                 </div>
 
                 <div class="col">
@@ -59,6 +62,7 @@
                     @error('data_fim_inscricao')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-data-de-fim-das-inscricoes"></p>
                 </div>
             </div>
 
@@ -68,6 +72,7 @@
                     @error('data_inicio_matricula')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-data-de-inicio-das-matriculas"></p>
                 </div>
 
                 <div class="col">
@@ -75,6 +80,7 @@
                     @error('data_fim_matricula')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-data-de-fim-das-matriculas"></p>
                 </div>
             </div>
 
@@ -85,6 +91,7 @@
                     @error('num_aluno_na_turma')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-do-numero-maximo-de-alunos-nas-turmas"></p>
                 </div>
 
                 <div class="col-6">
@@ -92,6 +99,7 @@
                     @error('num_sala_escola')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-do-numero-maximo-de-salas"></p>
                 </div>
             </div>
         </div>
@@ -106,6 +114,7 @@
                     @error('data_inicio1')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-data-de-inicio-do-primeiro-trimestre"></p>
                 </div>
 
                 <div class="col">
@@ -113,6 +122,7 @@
                     @error('data_fim1')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-data-de-fim-do-primeiro-trimestre"></p>
                 </div>
             </div>
 
@@ -122,6 +132,7 @@
                     @error('data_inicio2')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-data-de-inicio-do-segundo-trimestre"></p>
                 </div>
 
                 <div class="col">
@@ -129,6 +140,7 @@
                     @error('data_fim2')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-data-de-fim-do-segundo-trimestre"></p>
                 </div>
             </div>
 
@@ -138,6 +150,7 @@
                     @error('data_inicio3')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-data-de-inicio-do-terceiro-trimestre"></p>
                 </div>
 
                 <div class="col">
@@ -145,6 +158,7 @@
                     @error('data_fim3')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-data-de-fim-do-terceiro-trimestre"></p>
                 </div>
             </div>
         </div>
@@ -159,6 +173,7 @@
                     @error('hora_inicio_manha')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-hora-de-inicio-das-aulas-no-periodo-da-manha"></p>
                 </div>
 
                 <div class="col">
@@ -166,6 +181,7 @@
                     @error('hora_fim_manha')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-hora-de-fim-das-aulas-no-periodo-da-manha"></p>
                 </div>
             </div>
 
@@ -175,6 +191,7 @@
                     @error('duracao_tempo_manha')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-duracao-do-tempo-de-aula-no-periodo-da-manha"></p>
                 </div>
 
                 <div class="col">
@@ -182,6 +199,7 @@
                     @error('duracao_int_menor_manha')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-duracao-do-intervalo-menor-no-periodo-da-manha"></p>
                 </div>
             </div>
 
@@ -191,6 +209,7 @@
                     @error('duracao_int_maior_manha')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-duracao-do-intervalo-maior-no-periodo-da-manha"></p>
                 </div>
             </div>
         </div>
@@ -205,6 +224,7 @@
                     @error('hora_inicio_tarde')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-hora-de-inicio-das-aulas-no-periodo-da-tarde"></p>
                 </div>
 
                 <div class="col">
@@ -212,6 +232,7 @@
                     @error('hora_fim_tarde')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-hora-de-fim-das-aulas-no-periodo-da-tarde"></p>
                 </div>
             </div>
 
@@ -221,6 +242,7 @@
                     @error('duracao_tempo_tarde')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-duracao-do-tempo-de-aula-no-periodo-da-tarde"></p>
                 </div>
 
                 <div class="col">
@@ -228,6 +250,7 @@
                     @error('duracao_int_menor_tarde')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-duracao-do-intervalo-menor-no-periodo-da-tarde"></p>
                 </div>
             </div>
 
@@ -237,6 +260,7 @@
                     @error('duracao_int_maior_tarde')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-duracao-do-intervalo-maior-no-periodo-da-tarde"></p>
                 </div>
             </div>
         </div>
@@ -251,6 +275,7 @@
                     @error('hora_inicio_noite')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-hora-de-inicio-das-aulas-no-periodo-da-noite"></p>
                 </div>
 
                 <div class="col">
@@ -258,6 +283,7 @@
                     @error('hora_fim_noite')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-hora-de-fim-das-aulas-no-periodo-da-noite"></p>
                 </div>
             </div>
 
@@ -267,6 +293,7 @@
                     @error('duracao_tempo_noite')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-duracao-do-tempo-de-aula-no-periodo-da-noite"></p>
                 </div>
 
                 <div class="col">
@@ -274,6 +301,7 @@
                     @error('duracao_int_menor_noite')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-duracao-do-intervalo-menor-no-periodo-da-noite"></p>
                 </div>
             </div>
 
@@ -283,6 +311,7 @@
                     @error('duracao_int_maior_noite')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-duracao-do-intervalo-maior-no-periodo-da-noite"></p>
                 </div>
             </div>
         </div>
