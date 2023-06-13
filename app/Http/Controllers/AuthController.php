@@ -154,11 +154,9 @@ class AuthController extends Controller
         ];
         $pessoa_id= $this->storePessoa($dadosPessoa, $dadosEndereco);
 
-        c
-
-        $user=UserController::store($dadosUser);
+        $user = UserController::store($dadosUser);
         if(!$user){
-            $msg="Lamentamos! Dados não Cadastrado, tente este processo mais tarde...";
+            $msg = "Lamentamos! Dados não Cadastrado, tente este processo mais tarde...";
             return redirect()->back()->with("erroCadastroUser",$msg);
         }
 

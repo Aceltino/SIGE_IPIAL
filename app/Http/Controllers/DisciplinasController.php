@@ -21,7 +21,13 @@ class DisciplinasController extends Controller
     }
     public function store(Request $request)
     {
-         Disciplina::create($request->all());
+        $disciplinas = new Disciplina();
+        $disciplinas->nome_disciplina = $request->nome_disciplina;
+        $disciplinas->componente = $request->componente;
+        $disciplinas->tempo_prova = $request-> tempo_prova;
+        $disciplinas->sigla = $request->sigla;
+        $disciplinas->curso_id = $request->curso[$j];
+        $disciplinas->save();
          return redirect()->route('disciplina.index');
     }
     public function edit($disciplina_id)

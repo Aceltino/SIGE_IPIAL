@@ -1,8 +1,8 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Doctrine\Common;
+
+use Doctrine\Deprecations\Deprecation;
 
 use function spl_object_hash;
 
@@ -19,7 +19,7 @@ class EventManager
      *
      * @var array<string, object[]>
      */
-    private array $listeners = [];
+    private $listeners = [];
 
     /**
      * Dispatches an event to all registered listeners.
@@ -28,14 +28,16 @@ class EventManager
      *                                  the name of the method that is invoked on listeners.
      * @param EventArgs|null $eventArgs The event arguments to pass to the event handlers/listeners.
      *                                  If not supplied, the single empty EventArgs instance is used.
+     *
+     * @return void
      */
-    public function dispatchEvent(string $eventName, EventArgs|null $eventArgs = null): void
+    public function dispatchEvent($eventName, ?EventArgs $eventArgs = null)
     {
         if (! isset($this->listeners[$eventName])) {
             return;
         }
 
-        $eventArgs ??= EventArgs::getEmptyInstance();
+        $eventArgs = $eventArgs ?? EventArgs::getEmptyInstance();
 
         foreach ($this->listeners[$eventName] as $listener) {
             $listener->$eventName($eventArgs);
@@ -45,12 +47,24 @@ class EventManager
     /**
      * Gets the listeners of a specific event.
      *
-     * @param string $event The name of the event.
+     * @param string|null $event The name of the event.
      *
-     * @return object[]
+     * @return object[]|array<string, object[]> The event listeners for the specified event, or all event listeners.
+     * @psalm-return ($event is null ? array<string, object[]> : object[])
      */
-    public function getListeners(string $event): array
+    public function getListeners($event = null)
     {
+        if ($event === null) {
+            Deprecation::trigger(
+                'doctrine/event-manager',
+                'https://github.com/doctrine/event-manager/pull/50',
+                'Calling %s without an event name is deprecated. Call getAllListeners() instead.',
+                __METHOD__
+            );
+
+            return $this->getAllListeners();
+        }
+
         return $this->listeners[$event] ?? [];
     }
 
@@ -66,8 +80,12 @@ class EventManager
 
     /**
      * Checks whether an event has any registered listeners.
+     *
+     * @param string $event
+     *
+     * @return bool TRUE if the specified event has any listeners, FALSE otherwise.
      */
-    public function hasListeners(string $event): bool
+    public function hasListeners($event)
     {
         return ! empty($this->listeners[$event]);
     }
@@ -77,8 +95,10 @@ class EventManager
      *
      * @param string|string[] $events   The event(s) to listen on.
      * @param object          $listener The listener object.
+     *
+     * @return void
      */
-    public function addEventListener(string|array $events, object $listener): void
+    public function addEventListener($events, $listener)
     {
         // Picks the hash code related to that listener
         $hash = spl_object_hash($listener);
@@ -94,8 +114,11 @@ class EventManager
      * Removes an event listener from the specified events.
      *
      * @param string|string[] $events
+     * @param object          $listener
+     *
+     * @return void
      */
-    public function removeEventListener(string|array $events, object $listener): void
+    public function removeEventListener($events, $listener)
     {
         // Picks the hash code related to that listener
         $hash = spl_object_hash($listener);
@@ -106,23 +129,27 @@ class EventManager
     }
 
     /**
-     * Adds an EventSubscriber.
+     * Adds an EventSubscriber. The subscriber is asked for all the events it is
+     * interested in and added as a listener for these events.
      *
-     * The subscriber is asked for all the events it is interested in and added
-     * as a listener for these events.
+     * @param EventSubscriber $subscriber The subscriber.
+     *
+     * @return void
      */
-    public function addEventSubscriber(EventSubscriber $subscriber): void
+    public function addEventSubscriber(EventSubscriber $subscriber)
     {
         $this->addEventListener($subscriber->getSubscribedEvents(), $subscriber);
     }
 
     /**
-     * Removes an EventSubscriber.
+     * Removes an EventSubscriber. The subscriber is asked for all the events it is
+     * interested in and removed as a listener for these events.
      *
-     * The subscriber is asked for all the events it is interested in and removed
-     * as a listener for these events.
+     * @param EventSubscriber $subscriber The subscriber.
+     *
+     * @return void
      */
-    public function removeEventSubscriber(EventSubscriber $subscriber): void
+    public function removeEventSubscriber(EventSubscriber $subscriber)
     {
         $this->removeEventListener($subscriber->getSubscribedEvents(), $subscriber);
     }
