@@ -35,13 +35,13 @@ class DisciplinasController extends Controller
     }
     public function update(Request $request, $disciplina_id)
     {
-        $data = [
-            ''
-            ''
-            ''
-            ''
-        ];
-        return redirect()->route('disciplina.index');
+        // $data = [
+        //     ''
+        //     ''
+        //     ''
+        //     ''
+        // ];
+        // return redirect()->route('disciplina.index');
 
     }
 

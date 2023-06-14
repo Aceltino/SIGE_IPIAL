@@ -7,6 +7,7 @@
     "require": {
         "php": "^8.0.2",
         "guzzlehttp/guzzle": "^7.2",
+        "inertiajs/inertia-laravel": "^0.6.9",
         "laravel/fortify": "^1.17",
         "laravel/framework": "^9.19",
         "laravel/jetstream": "^3.0",
@@ -29,7 +30,7 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-            
+
         }
     },
     "autoload-dev": {
@@ -66,5 +67,9 @@
         }
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+
+    "preferred-install": {
+        "*": "source"
+    }
 }

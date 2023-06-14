@@ -4,6 +4,7 @@ use App\Http\Controllers\{
      AdmissaoController,
     //Classes das Controllers
     AuthController,
+    AlunoTurmaController,
     CandidatoController,
     MatriculaController,
     InscricaoController,
@@ -32,6 +33,8 @@ use GuzzleHttp\Client;
 |
 */
 
+// Rota apenas de teste... Não apague -> ACELTINO
+Route::get('validar-aluno', [AlunoTurmaController::class, 'SelecionarTurma']);
 
 //Rotas inicial do Painel
 Route::get('/', function () {
@@ -40,9 +43,6 @@ Route::get('/', function () {
 
  //Rota final do painel
  Route::get('logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
-
-// Rota apenas de teste... Não apague -> ACELTINO
-Route::get('validar-aluno', [CandidatoController::class, 'pegarDadosCandidatos']);
 
 //Routas para Autenticação no Sistema
 Route::prefix('autenticacao')->group(function(){

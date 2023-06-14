@@ -154,7 +154,15 @@ class AuthController extends Controller
         ];
         $pessoa_id= $this->storePessoa($dadosPessoa, $dadosEndereco);
 
-        c
+        $dadosUser=[
+            'nome_usuario'=>$abreNome.count(User::all()).$abreSobreNome,
+            'email'=>$request->email,
+            'password'=>bcrypt($request->num_telefone),
+            'cargo_usuario'=> $request->cargo,
+            'num_telefone' =>$request->num_telefone,
+            'status_usuario'=>1,
+            'pessoa_id'=> $pessoa_id
+        ];
 
         $user=UserController::store($dadosUser);
         if(!$user){

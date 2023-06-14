@@ -45,8 +45,10 @@ class CandidatoController extends Controller
     {
         $candidatos = Candidato::with('pessoa', 'escola')
         ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
-        ->where('status', 'Admitido')
-        ->get();
+        ->where(function ($query) {
+            $query->where('status', 'admitido')
+                ->orWhere('status', 'matriculado');
+        })->get();
 
         $candAdmitidos = count($candidatos);
 
