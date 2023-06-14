@@ -66,6 +66,7 @@
 
         </td>
       </tr>
+      @endforeach
       <tr style=" text-align: center;">
         <th scope="row">Programação</th>
         <td>Técnicas</td>
