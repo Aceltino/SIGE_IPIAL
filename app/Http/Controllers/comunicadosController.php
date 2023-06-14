@@ -31,7 +31,7 @@ class comunicadosController extends Controller
 
         return redirect()->route('comunicado.index',$comunicados);
     }
-    public function edit($comunicado_id)
+    public function edit($id)
     {
         $comunicados = Comunicado::where('comunicado_id', $comunicado_id)->firstOrFail();
         if(!empty($comunicados))
@@ -50,7 +50,6 @@ class comunicadosController extends Controller
             'conteudo_com' => $request->conteudo_com
         ]);
         return redirect()->route('comunicado.index');
-
     }
     public function destroy($comunicado_id)
     {

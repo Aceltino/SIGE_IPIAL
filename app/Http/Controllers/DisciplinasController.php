@@ -6,12 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Disciplina;
 use App\Models\Curso;
+use App\Models\Curso;
 
 class DisciplinasController extends Controller
 {
     public function index()
     {
        $disciplinas = Disciplina::all();
+       $cursos = Curso::all(['nome_curso']);
+        return view('disciplina.disciplinas', ['disciplinas'=>$disciplinas, 'cursos'=>$cursos]);
        $cursos = Curso::all(['nome_curso']);
         return view('disciplina.disciplinas', ['disciplinas'=>$disciplinas, 'cursos'=>$cursos]);
     }

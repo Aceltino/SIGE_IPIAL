@@ -56,7 +56,7 @@
     <tbody>
     @foreach($disciplinas as $disciplina)
       <tr style=" text-align: center;">
-        <th scope="row">{{ $disciplina->nome_disciplina }}</th>
+        <td>{{ $disciplina->nome_disciplina }}</td>
         <td>{{ $disciplina->sigla		}}</td>
         <td>{{ $disciplina->componente	}}</td>
         <td>{{ $disciplina->tempo_prov }}</td>
