@@ -31,7 +31,7 @@ class ProgressIndicator
         'very_verbose_no_ansi' => ' %message% (%elapsed:6s%, %memory:6s%)',
     ];
 
-    private OutputInterface $output;
+    private $output;
     private int $startTime;
     private ?string $format = null;
     private ?string $message = null;
@@ -54,8 +54,14 @@ class ProgressIndicator
     {
         $this->output = $output;
 
-        $format ??= $this->determineBestFormat();
-        $indicatorValues ??= ['-', '\\', '|', '/'];
+        if (null === $format) {
+            $format = $this->determineBestFormat();
+        }
+
+        if (null === $indicatorValues) {
+            $indicatorValues = ['-', '\\', '|', '/'];
+        }
+
         $indicatorValues = array_values($indicatorValues);
 
         if (2 > \count($indicatorValues)) {
@@ -70,8 +76,6 @@ class ProgressIndicator
 
     /**
      * Sets the current indicator message.
-     *
-     * @return void
      */
     public function setMessage(?string $message)
     {
@@ -82,8 +86,6 @@ class ProgressIndicator
 
     /**
      * Starts the indicator output.
-     *
-     * @return void
      */
     public function start(string $message)
     {
@@ -102,8 +104,6 @@ class ProgressIndicator
 
     /**
      * Advances the indicator.
-     *
-     * @return void
      */
     public function advance()
     {
@@ -130,7 +130,7 @@ class ProgressIndicator
     /**
      * Finish the indicator with message.
      *
-     * @return void
+     * @param $message
      */
     public function finish(string $message)
     {
@@ -156,8 +156,6 @@ class ProgressIndicator
      * Sets a placeholder formatter for a given name.
      *
      * This method also allow you to override an existing placeholder.
-     *
-     * @return void
      */
     public static function setPlaceholderFormatterDefinition(string $name, callable $callable)
     {
@@ -176,7 +174,7 @@ class ProgressIndicator
         return self::$formatters[$name] ?? null;
     }
 
-    private function display(): void
+    private function display()
     {
         if (OutputInterface::VERBOSITY_QUIET === $this->output->getVerbosity()) {
             return;
@@ -193,19 +191,22 @@ class ProgressIndicator
 
     private function determineBestFormat(): string
     {
-        return match ($this->output->getVerbosity()) {
+        switch ($this->output->getVerbosity()) {
             // OutputInterface::VERBOSITY_QUIET: display is disabled anyway
-            OutputInterface::VERBOSITY_VERBOSE => $this->output->isDecorated() ? 'verbose' : 'verbose_no_ansi',
-            OutputInterface::VERBOSITY_VERY_VERBOSE,
-            OutputInterface::VERBOSITY_DEBUG => $this->output->isDecorated() ? 'very_verbose' : 'very_verbose_no_ansi',
-            default => $this->output->isDecorated() ? 'normal' : 'normal_no_ansi',
-        };
+            case OutputInterface::VERBOSITY_VERBOSE:
+                return $this->output->isDecorated() ? 'verbose' : 'verbose_no_ansi';
+            case OutputInterface::VERBOSITY_VERY_VERBOSE:
+            case OutputInterface::VERBOSITY_DEBUG:
+                return $this->output->isDecorated() ? 'very_verbose' : 'very_verbose_no_ansi';
+            default:
+                return $this->output->isDecorated() ? 'normal' : 'normal_no_ansi';
+        }
     }
 
     /**
      * Overwrites a previous message to the output.
      */
-    private function overwrite(string $message): void
+    private function overwrite(string $message)
     {
         if ($this->output->isDecorated()) {
             $this->output->write("\x0D\x1B[2K");
@@ -226,10 +227,18 @@ class ProgressIndicator
     private static function initPlaceholderFormatters(): array
     {
         return [
-            'indicator' => fn (self $indicator) => $indicator->indicatorValues[$indicator->indicatorCurrent % \count($indicator->indicatorValues)],
-            'message' => fn (self $indicator) => $indicator->message,
-            'elapsed' => fn (self $indicator) => Helper::formatTime(time() - $indicator->startTime),
-            'memory' => fn () => Helper::formatMemory(memory_get_usage(true)),
+            'indicator' => function (self $indicator) {
+                return $indicator->indicatorValues[$indicator->indicatorCurrent % \count($indicator->indicatorValues)];
+            },
+            'message' => function (self $indicator) {
+                return $indicator->message;
+            },
+            'elapsed' => function (self $indicator) {
+                return Helper::formatTime(time() - $indicator->startTime);
+            },
+            'memory' => function () {
+                return Helper::formatMemory(memory_get_usage(true));
+            },
         ];
     }
 }

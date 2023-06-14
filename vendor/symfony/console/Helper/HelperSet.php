@@ -18,15 +18,15 @@ use Symfony\Component\Console\Exception\InvalidArgumentException;
  *
  * @author Fabien Potencier <fabien@symfony.com>
  *
- * @implements \IteratorAggregate<string, HelperInterface>
+ * @implements \IteratorAggregate<string, Helper>
  */
 class HelperSet implements \IteratorAggregate
 {
-    /** @var array<string, HelperInterface> */
+    /** @var array<string, Helper> */
     private array $helpers = [];
 
     /**
-     * @param HelperInterface[] $helpers
+     * @param Helper[] $helpers An array of helper
      */
     public function __construct(array $helpers = [])
     {
@@ -35,9 +35,6 @@ class HelperSet implements \IteratorAggregate
         }
     }
 
-    /**
-     * @return void
-     */
     public function set(HelperInterface $helper, string $alias = null)
     {
         $this->helpers[$helper->getName()] = $helper;

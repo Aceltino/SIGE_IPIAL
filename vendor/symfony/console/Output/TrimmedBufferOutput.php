@@ -46,7 +46,7 @@ class TrimmedBufferOutput extends Output
     }
 
     /**
-     * @return void
+     * {@inheritdoc}
      */
     protected function doWrite(string $message, bool $newline)
     {

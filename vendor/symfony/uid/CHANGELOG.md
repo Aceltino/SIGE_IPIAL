@@ -1,13 +1,6 @@
 CHANGELOG
 =========
 
-6.2
----
-
- * Add `UuidV7` and `UuidV8`
- * Add `TimeBasedUidInterface` to describe UIDs that embed a timestamp
- * Add `MaxUuid` and `MaxUlid`
-
 5.4
 ---
 

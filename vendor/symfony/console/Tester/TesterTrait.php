@@ -23,10 +23,10 @@ use Symfony\Component\Console\Tester\Constraint\CommandIsSuccessful;
  */
 trait TesterTrait
 {
-    private StreamOutput $output;
+    private $output;
     private array $inputs = [];
     private bool $captureStreamsIndependently = false;
-    private InputInterface $input;
+    private $input;
     private int $statusCode;
 
     /**
@@ -128,7 +128,7 @@ trait TesterTrait
      *  * verbosity:                 Sets the output verbosity flag
      *  * capture_stderr_separately: Make output of stdOut and stdErr separately available
      */
-    private function initOutput(array $options): void
+    private function initOutput(array $options)
     {
         $this->captureStreamsIndependently = \array_key_exists('capture_stderr_separately', $options) && $options['capture_stderr_separately'];
         if (!$this->captureStreamsIndependently) {
@@ -152,10 +152,12 @@ trait TesterTrait
 
             $reflectedOutput = new \ReflectionObject($this->output);
             $strErrProperty = $reflectedOutput->getProperty('stderr');
+            $strErrProperty->setAccessible(true);
             $strErrProperty->setValue($this->output, $errorOutput);
 
             $reflectedParent = $reflectedOutput->getParentClass();
             $streamProperty = $reflectedParent->getProperty('stream');
+            $streamProperty->setAccessible(true);
             $streamProperty->setValue($this->output, fopen('php://memory', 'w', false));
         }
     }

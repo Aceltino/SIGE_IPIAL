@@ -26,10 +26,9 @@ use MongoDB\Collection;
  */
 class MongoDbSessionHandler extends AbstractSessionHandler
 {
-    private Client $mongo;
-    private Collection $collection;
+    private $mongo;
+    private $collection;
     private array $options;
-    private int|\Closure|null $ttl;
 
     /**
      * Constructor.
@@ -40,8 +39,7 @@ class MongoDbSessionHandler extends AbstractSessionHandler
      *  * id_field: The field name for storing the session id [default: _id]
      *  * data_field: The field name for storing the session data [default: data]
      *  * time_field: The field name for storing the timestamp [default: time]
-     *  * expiry_field: The field name for storing the expiry-timestamp [default: expires_at]
-     *  * ttl: The time to live in seconds.
+     *  * expiry_field: The field name for storing the expiry-timestamp [default: expires_at].
      *
      * It is strongly recommended to put an index on the `expiry_field` for
      * garbage-collection. Alternatively it's possible to automatically expire
@@ -76,7 +74,6 @@ class MongoDbSessionHandler extends AbstractSessionHandler
             'time_field' => 'time',
             'expiry_field' => 'expires_at',
         ], $options);
-        $this->ttl = $this->options['ttl'] ?? null;
     }
 
     public function close(): bool
@@ -84,7 +81,10 @@ class MongoDbSessionHandler extends AbstractSessionHandler
         return true;
     }
 
-    protected function doDestroy(#[\SensitiveParameter] string $sessionId): bool
+    /**
+     * {@inheritdoc}
+     */
+    protected function doDestroy(string $sessionId): bool
     {
         $this->getCollection()->deleteOne([
             $this->options['id_field'] => $sessionId,
@@ -100,10 +100,12 @@ class MongoDbSessionHandler extends AbstractSessionHandler
         ])->getDeletedCount();
     }
 
-    protected function doWrite(#[\SensitiveParameter] string $sessionId, string $data): bool
+    /**
+     * {@inheritdoc}
+     */
+    protected function doWrite(string $sessionId, string $data): bool
     {
-        $ttl = ($this->ttl instanceof \Closure ? ($this->ttl)() : $this->ttl) ?? \ini_get('session.gc_maxlifetime');
-        $expiry = new UTCDateTime((time() + (int) $ttl) * 1000);
+        $expiry = new UTCDateTime((time() + (int) \ini_get('session.gc_maxlifetime')) * 1000);
 
         $fields = [
             $this->options['time_field'] => new UTCDateTime(),
@@ -120,10 +122,9 @@ class MongoDbSessionHandler extends AbstractSessionHandler
         return true;
     }
 
-    public function updateTimestamp(#[\SensitiveParameter] string $sessionId, string $data): bool
+    public function updateTimestamp(string $sessionId, string $data): bool
     {
-        $ttl = ($this->ttl instanceof \Closure ? ($this->ttl)() : $this->ttl) ?? \ini_get('session.gc_maxlifetime');
-        $expiry = new UTCDateTime((time() + (int) $ttl) * 1000);
+        $expiry = new UTCDateTime((time() + (int) \ini_get('session.gc_maxlifetime')) * 1000);
 
         $this->getCollection()->updateOne(
             [$this->options['id_field'] => $sessionId],
@@ -136,7 +137,10 @@ class MongoDbSessionHandler extends AbstractSessionHandler
         return true;
     }
 
-    protected function doRead(#[\SensitiveParameter] string $sessionId): string
+    /**
+     * {@inheritdoc}
+     */
+    protected function doRead(string $sessionId): string
     {
         $dbData = $this->getCollection()->findOne([
             $this->options['id_field'] => $sessionId,

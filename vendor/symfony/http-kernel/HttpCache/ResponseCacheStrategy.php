@@ -37,7 +37,6 @@ class ResponseCacheStrategy implements ResponseCacheStrategyInterface
     private int $embeddedResponses = 0;
     private bool $isNotCacheableResponseEmbedded = false;
     private int $age = 0;
-    private \DateTimeInterface|null|false $lastModified = null;
     private array $flagDirectives = [
         'no-cache' => null,
         'no-store' => null,
@@ -55,7 +54,7 @@ class ResponseCacheStrategy implements ResponseCacheStrategyInterface
     ];
 
     /**
-     * @return void
+     * {@inheritdoc}
      */
     public function add(Response $response)
     {
@@ -91,15 +90,10 @@ class ResponseCacheStrategy implements ResponseCacheStrategyInterface
         $expires = $response->getExpires();
         $expires = null !== $expires ? (int) $expires->format('U') - (int) $response->getDate()->format('U') : null;
         $this->storeRelativeAgeDirective('expires', $expires >= 0 ? $expires : null, 0, $isHeuristicallyCacheable);
-
-        if (false !== $this->lastModified) {
-            $lastModified = $response->getLastModified();
-            $this->lastModified = $lastModified ? max($this->lastModified, $lastModified) : false;
-        }
     }
 
     /**
-     * @return void
+     * {@inheritdoc}
      */
     public function update(Response $response)
     {
@@ -108,16 +102,17 @@ class ResponseCacheStrategy implements ResponseCacheStrategyInterface
             return;
         }
 
-        // Remove Etag since it cannot be merged from embedded responses.
+        // Remove validation related headers of the master response,
+        // because some of the response content comes from at least
+        // one embedded response (which likely has a different caching strategy).
         $response->setEtag(null);
+        $response->setLastModified(null);
 
         $this->add($response);
 
         $response->headers->set('Age', $this->age);
 
         if ($this->isNotCacheableResponseEmbedded) {
-            $response->setLastModified(null);
-
             if ($this->flagDirectives['no-store']) {
                 $response->headers->set('Cache-Control', 'no-cache, no-store, must-revalidate');
             } else {
@@ -126,8 +121,6 @@ class ResponseCacheStrategy implements ResponseCacheStrategyInterface
 
             return;
         }
-
-        $response->setLastModified($this->lastModified ?: null);
 
         $flags = array_filter($this->flagDirectives);
 
@@ -154,7 +147,7 @@ class ResponseCacheStrategy implements ResponseCacheStrategyInterface
 
         if (is_numeric($this->ageDirectives['expires'])) {
             $date = clone $response->getDate();
-            $date = $date->modify('+'.($this->ageDirectives['expires'] + $this->age).' seconds');
+            $date->modify('+'.($this->ageDirectives['expires'] + $this->age).' seconds');
             $response->setExpires($date);
         }
     }
@@ -169,14 +162,17 @@ class ResponseCacheStrategy implements ResponseCacheStrategyInterface
         // RFC2616: A response received with a status code of 200, 203, 300, 301 or 410
         // MAY be stored by a cache […] unless a cache-control directive prohibits caching.
         if ($response->headers->hasCacheControlDirective('no-cache')
-            || $response->headers->hasCacheControlDirective('no-store')
+            || $response->headers->getCacheControlDirective('no-store')
         ) {
             return true;
         }
 
-        // Etag headers cannot be merged, they render the response uncacheable
+        // Last-Modified and Etag headers cannot be merged, they render the response uncacheable
         // by default (except if the response also has max-age etc.).
-        if (null === $response->getEtag() && \in_array($response->getStatusCode(), [200, 203, 300, 301, 410])) {
+        if (\in_array($response->getStatusCode(), [200, 203, 300, 301, 410])
+            && null === $response->getLastModified()
+            && null === $response->getEtag()
+        ) {
             return false;
         }
 
@@ -215,7 +211,7 @@ class ResponseCacheStrategy implements ResponseCacheStrategyInterface
      * as cacheable in a public (shared) cache, but did not provide an explicit lifetime that would serve
      * as an upper bound. In this case, we can proceed and possibly keep the directive on the final response.
      */
-    private function storeRelativeAgeDirective(string $directive, ?int $value, int $age, bool $isHeuristicallyCacheable): void
+    private function storeRelativeAgeDirective(string $directive, ?int $value, int $age, bool $isHeuristicallyCacheable)
     {
         if (null === $value) {
             if ($isHeuristicallyCacheable) {

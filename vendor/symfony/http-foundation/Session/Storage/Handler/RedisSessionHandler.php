@@ -12,7 +12,8 @@
 namespace Symfony\Component\HttpFoundation\Session\Storage\Handler;
 
 use Predis\Response\ErrorInterface;
-use Relay\Relay;
+use Symfony\Component\Cache\Traits\RedisClusterProxy;
+use Symfony\Component\Cache\Traits\RedisProxy;
 
 /**
  * Redis based session storage handler based on the Redis class
@@ -22,6 +23,8 @@ use Relay\Relay;
  */
 class RedisSessionHandler extends AbstractSessionHandler
 {
+    private $redis;
+
     /**
      * Key prefix for shared environments.
      */
@@ -30,7 +33,7 @@ class RedisSessionHandler extends AbstractSessionHandler
     /**
      * Time to live in seconds.
      */
-    private int|\Closure|null $ttl;
+    private ?int $ttl;
 
     /**
      * List of available options:
@@ -39,39 +42,46 @@ class RedisSessionHandler extends AbstractSessionHandler
      *
      * @throws \InvalidArgumentException When unsupported client or options are passed
      */
-    public function __construct(
-        private \Redis|Relay|\RedisArray|\RedisCluster|\Predis\ClientInterface $redis,
-        array $options = [],
-    ) {
+    public function __construct(\Redis|\RedisArray|\RedisCluster|\Predis\ClientInterface|RedisProxy|RedisClusterProxy $redis, array $options = [])
+    {
         if ($diff = array_diff(array_keys($options), ['prefix', 'ttl'])) {
             throw new \InvalidArgumentException(sprintf('The following options are not supported "%s".', implode(', ', $diff)));
         }
 
+        $this->redis = $redis;
         $this->prefix = $options['prefix'] ?? 'sf_s';
         $this->ttl = $options['ttl'] ?? null;
     }
 
-    protected function doRead(#[\SensitiveParameter] string $sessionId): string
+    /**
+     * {@inheritdoc}
+     */
+    protected function doRead(string $sessionId): string
     {
         return $this->redis->get($this->prefix.$sessionId) ?: '';
     }
 
-    protected function doWrite(#[\SensitiveParameter] string $sessionId, string $data): bool
+    /**
+     * {@inheritdoc}
+     */
+    protected function doWrite(string $sessionId, string $data): bool
     {
-        $ttl = ($this->ttl instanceof \Closure ? ($this->ttl)() : $this->ttl) ?? \ini_get('session.gc_maxlifetime');
-        $result = $this->redis->setEx($this->prefix.$sessionId, (int) $ttl, $data);
+        $result = $this->redis->setEx($this->prefix.$sessionId, (int) ($this->ttl ?? \ini_get('session.gc_maxlifetime')), $data);
 
         return $result && !$result instanceof ErrorInterface;
     }
 
-    protected function doDestroy(#[\SensitiveParameter] string $sessionId): bool
+    /**
+     * {@inheritdoc}
+     */
+    protected function doDestroy(string $sessionId): bool
     {
         static $unlink = true;
 
         if ($unlink) {
             try {
                 $unlink = false !== $this->redis->unlink($this->prefix.$sessionId);
-            } catch (\Throwable) {
+            } catch (\Throwable $e) {
                 $unlink = false;
             }
         }
@@ -83,6 +93,9 @@ class RedisSessionHandler extends AbstractSessionHandler
         return true;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     #[\ReturnTypeWillChange]
     public function close(): bool
     {
@@ -94,10 +107,8 @@ class RedisSessionHandler extends AbstractSessionHandler
         return 0;
     }
 
-    public function updateTimestamp(#[\SensitiveParameter] string $sessionId, string $data): bool
+    public function updateTimestamp(string $sessionId, string $data): bool
     {
-        $ttl = ($this->ttl instanceof \Closure ? ($this->ttl)() : $this->ttl) ?? \ini_get('session.gc_maxlifetime');
-
-        return $this->redis->expire($this->prefix.$sessionId, (int) $ttl);
+        return $this->redis->expire($this->prefix.$sessionId, (int) ($this->ttl ?? \ini_get('session.gc_maxlifetime')));
     }
 }

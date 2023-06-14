@@ -25,7 +25,7 @@ final class Dsn
     private ?int $port;
     private array $options;
 
-    public function __construct(string $scheme, string $host, string $user = null, #[\SensitiveParameter] string $password = null, int $port = null, array $options = [])
+    public function __construct(string $scheme, string $host, string $user = null, string $password = null, int $port = null, array $options = [])
     {
         $this->scheme = $scheme;
         $this->host = $host;
@@ -35,18 +35,18 @@ final class Dsn
         $this->options = $options;
     }
 
-    public static function fromString(#[\SensitiveParameter] string $dsn): self
+    public static function fromString(string $dsn): self
     {
         if (false === $parsedDsn = parse_url($dsn)) {
-            throw new InvalidArgumentException('The mailer DSN is invalid.');
+            throw new InvalidArgumentException(sprintf('The "%s" mailer DSN is invalid.', $dsn));
         }
 
         if (!isset($parsedDsn['scheme'])) {
-            throw new InvalidArgumentException('The mailer DSN must contain a scheme.');
+            throw new InvalidArgumentException(sprintf('The "%s" mailer DSN must contain a scheme.', $dsn));
         }
 
         if (!isset($parsedDsn['host'])) {
-            throw new InvalidArgumentException('The mailer DSN must contain a host (use "default" by default).');
+            throw new InvalidArgumentException(sprintf('The "%s" mailer DSN must contain a host (use "default" by default).', $dsn));
         }
 
         $user = '' !== ($parsedDsn['user'] ?? '') ? urldecode($parsedDsn['user']) : null;
@@ -82,7 +82,7 @@ final class Dsn
         return $this->port ?? $default;
     }
 
-    public function getOption(string $key, mixed $default = null): mixed
+    public function getOption(string $key, mixed $default = null)
     {
         return $this->options[$key] ?? $default;
     }
