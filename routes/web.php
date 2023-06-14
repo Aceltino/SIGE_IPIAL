@@ -321,8 +321,8 @@ Route::prefix('comunicado')->middleware(['auth'])->group(function(){
     Route::get('consultar-comunicado', [comunicadosController::class, 'index'])->name('comunicado.index');
     Route::get('criar-comunicado', [comunicadosController::class, 'create'])->name('comunicado.create');
     Route::post('criar-comunicado', [comunicadosController::class, 'store'])->name('comunicado.store');
-    Route::get('/{comunicado_id}/editar-comunicado', [comunicadosController::class, 'edit'])->name('comunicado.edit');
-    Route::put('/{comunicado_id}', [comunicadosController::class, 'update'])->where('comunicado_id', '[0-9]+')->name('comunicado.update');
+    Route::get('editar-comunicado/{comunicado_id}', [comunicadosController::class, 'edit'])->where('comunicado_id', '[0-9]+')->name('comunicado.edit');
+    Route::post('editar-comunicado/{comunicado_id}', [comunicadosController::class, 'update'])->where('comunicado_id', '[0-9]+')->name('comunicado.update');
 
 });
 

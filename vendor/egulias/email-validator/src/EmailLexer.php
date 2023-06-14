@@ -197,6 +197,7 @@ class EmailLexer extends AbstractLexer
      */
     public function moveNext(): bool
     {
+<<<<<<< HEAD
         if ($this->hasToRecord && $this->previous === $this->nullToken) {
             $this->accumulator .= $this->current->value;
         }
@@ -205,13 +206,27 @@ class EmailLexer extends AbstractLexer
 
         if ($this->lookahead === null) {
             $this->lookahead = $this->nullToken;
+=======
+        if ($this->hasToRecord && $this->previous === self::$nullToken) {
+            $this->accumulator .= ((array) $this->token)['value'];
+        }
+
+        $this->previous = (array) $this->token;
+
+        if($this->lookahead === null) {
+            $this->lookahead = self::$nullToken;
+>>>>>>> 1d002a34be5bf26a32fb28e3e6cd9084bb28d107
         }
 
         $hasNext = parent::moveNext();
         $this->current = $this->token ?? $this->nullToken;
 
         if ($this->hasToRecord) {
+<<<<<<< HEAD
             $this->accumulator .= $this->current->value;
+=======
+            $this->accumulator .= ((array) $this->token)['value'];
+>>>>>>> 1d002a34be5bf26a32fb28e3e6cd9084bb28d107
         }
 
         return $hasNext;

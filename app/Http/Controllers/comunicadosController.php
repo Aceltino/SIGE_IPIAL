@@ -4,16 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Comunicado;
+use App\Models\{ Comunicado, User, Ano_lectivo, Pessoa };
 use Illuminate\Support\Facades\Auth;
 
 class comunicadosController extends Controller
 {
-    //
     public function index()
     {
         $comunicados = Comunicado::all();
-        return view('comunicado.comunicado')->with('comunicados',$comunicados);
+        return view('comunicado.comunicado')->with('comunicados', $comunicados);
     }
     public function create()
     {
@@ -21,29 +20,35 @@ class comunicadosController extends Controller
     }
     public function store(Request $request)
     {
-        $pessoaId = Auth::pesssoa_id();
+        $ano_lectivo = Ano_lectivo::where('status_ano_lectivo', 1)->first();
+        $pessoa      = Pessoa::where('pessoa_id', Auth::user()->pessoa_id)->first();
         $comunicados = new Comunicado();
-        $comunicados->pessoaId = $pessoaId;
-        $comunicados->titulo_com = $request->titulo_com;
-        $comunicados->conteudo_com = $request->conteudo_com;
+        $comunicados->titulo_com = $request->titulo;
+        $comunicados->conteudo_com = $request->conteudo;
+        $comunicados->ano_lectivo_id = $ano_lectivo->ano_lectivo_id;
+        $comunicados->pessoa_id = $pessoa->pessoa_id;
         $comunicados->save();
-         return redirect()->route('comunicado.index',$comunicados->pessoa_id);
+
+        return redirect()->route('comunicado.index',$comunicados);
     }
     public function edit($comunicado_id)
     {
-        $comunicados = Comunicado::where('comunicado_id',$comunicado_id)->first();
+        $comunicados = Comunicado::where('comunicado_id', $comunicado_id)->firstOrFail();
         if(!empty($comunicados))
         {
-            return view('comunicado.editar-comunicado')->with('comunicados',$comunicados);
+            return view('comunicado.editar-comunicado', ['comunicados' => $comunicados]);
         }
         else{
-                return redirect()->route('comunicado.index');
+            return redirect()->route('comunicado.index');
         }
     }
     public function update(Request $request, $comunicado_id)
     {
-        $comunicados = Comunicado::findOrFail($comunicado_id);
-        $comunicados->update($request->all());
+        $comunicados = Comunicado::where('comunicado_id', $comunicado_id)->firstOrFail();
+        $comunicados->update([
+            'titulo_com' => $request->titulo_com,
+            'conteudo_com' => $request->conteudo_com
+        ]);
         return redirect()->route('comunicado.index');
 
     }

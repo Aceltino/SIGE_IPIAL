@@ -176,12 +176,12 @@
         </a>
         <ul id="comunicado-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="comunicado/criar-comunicado">
+            <a href={{ route('comunicado.create') }}>
               <i class="bi bi-circle"></i><span>Criar comunicado</span>
             </a>
           </li>
           <li>
-            <a href="comunicado/comunicado">
+            <a href={{ route('comunicado.index') }}>
               <i class="bi bi-circle"></i><span>Comunicados</span>
             </a>
           </li>
@@ -207,7 +207,7 @@
       <a class="nav-link collapsed" data-bs-target="#mini-pauta-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-calendar-week"></i></i><span>Mini-Pauta</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
-      <ul id="mini-pauta-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+      <ul id="mini-pauta-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
         <li>
           <a href={{ route('mini-pauta') }}>
             <i class="bi bi-circle"></i><span>Mini-Pautas</span>

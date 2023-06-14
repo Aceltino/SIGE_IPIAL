@@ -3,7 +3,11 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
+<<<<<<< HEAD
         'reference' => 'd439739c7a48c04e5c25f70ce1b883c6ec38206c',
+=======
+        'reference' => 'e2d648b857c1db9fd6736b1e688cf77dc3de4f26',
+>>>>>>> 1d002a34be5bf26a32fb28e3e6cd9084bb28d107
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -86,9 +90,9 @@
             'dev_requirement' => true,
         ),
         'doctrine/event-manager' => array(
-            'pretty_version' => '2.0.0',
-            'version' => '2.0.0.0',
-            'reference' => '750671534e0241a7c50ea5b43f67e23eb5c96f32',
+            'pretty_version' => '1.2.0',
+            'version' => '1.2.0.0',
+            'reference' => '95aa4cb529f1e96576f3fda9f5705ada4056a520',
             'type' => 'library',
             'install_path' => __DIR__ . '/../doctrine/event-manager',
             'aliases' => array(),
@@ -131,9 +135,15 @@
             'dev_requirement' => false,
         ),
         'egulias/email-validator' => array(
+<<<<<<< HEAD
             'pretty_version' => '4.0.1',
             'version' => '4.0.1.0',
             'reference' => '3a85486b709bc384dae8eb78fb2eec649bdb64ff',
+=======
+            'pretty_version' => '3.2.6',
+            'version' => '3.2.6.0',
+            'reference' => 'e5997fa97e8790cdae03a9cbd5e78e45e3c7bda7',
+>>>>>>> 1d002a34be5bf26a32fb28e3e6cd9084bb28d107
             'type' => 'library',
             'install_path' => __DIR__ . '/../egulias/email-validator',
             'aliases' => array(),
@@ -484,7 +494,11 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
+<<<<<<< HEAD
             'reference' => 'd439739c7a48c04e5c25f70ce1b883c6ec38206c',
+=======
+            'reference' => 'e2d648b857c1db9fd6736b1e688cf77dc3de4f26',
+>>>>>>> 1d002a34be5bf26a32fb28e3e6cd9084bb28d107
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

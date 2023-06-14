@@ -154,6 +154,7 @@ class AuthController extends Controller
         ];
         $pessoa_id= $this->storePessoa($dadosPessoa, $dadosEndereco);
 
+<<<<<<< HEAD
         $dadosUser=[
             'nome_usuario'=>$abreNome.count(User::all()).$abreSobreNome,
             'email'=>$request->email,
@@ -165,8 +166,11 @@ class AuthController extends Controller
         ];
 
         $user=UserController::store($dadosUser);
+=======
+        $user = UserController::store($dadosUser);
+>>>>>>> 1d002a34be5bf26a32fb28e3e6cd9084bb28d107
         if(!$user){
-            $msg="Lamentamos! Dados não Cadastrado, tente este processo mais tarde...";
+            $msg = "Lamentamos! Dados não Cadastrado, tente este processo mais tarde...";
             return redirect()->back()->with("erroCadastroUser",$msg);
         }
 

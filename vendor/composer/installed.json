@@ -509,32 +509,33 @@
         },
         {
             "name": "doctrine/event-manager",
-            "version": "2.0.0",
-            "version_normalized": "2.0.0.0",
+            "version": "1.2.0",
+            "version_normalized": "1.2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/event-manager.git",
-                "reference": "750671534e0241a7c50ea5b43f67e23eb5c96f32"
+                "reference": "95aa4cb529f1e96576f3fda9f5705ada4056a520"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/event-manager/zipball/750671534e0241a7c50ea5b43f67e23eb5c96f32",
-                "reference": "750671534e0241a7c50ea5b43f67e23eb5c96f32",
+                "url": "https://api.github.com/repos/doctrine/event-manager/zipball/95aa4cb529f1e96576f3fda9f5705ada4056a520",
+                "reference": "95aa4cb529f1e96576f3fda9f5705ada4056a520",
                 "shasum": ""
             },
             "require": {
-                "php": "^8.1"
+                "doctrine/deprecations": "^0.5.3 || ^1",
+                "php": "^7.1 || ^8.0"
             },
             "conflict": {
                 "doctrine/common": "<2.9"
             },
             "require-dev": {
-                "doctrine/coding-standard": "^10",
-                "phpstan/phpstan": "^1.8.8",
-                "phpunit/phpunit": "^9.5",
-                "vimeo/psalm": "^4.28"
+                "doctrine/coding-standard": "^9 || ^10",
+                "phpstan/phpstan": "~1.4.10 || ^1.8.8",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5",
+                "vimeo/psalm": "^4.24"
             },
-            "time": "2022-10-12T20:59:15+00:00",
+            "time": "2022-10-12T20:51:15+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -583,7 +584,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/event-manager/issues",
-                "source": "https://github.com/doctrine/event-manager/tree/2.0.0"
+                "source": "https://github.com/doctrine/event-manager/tree/1.2.0"
             },
             "funding": [
                 {
@@ -914,6 +915,7 @@
         },
         {
             "name": "egulias/email-validator",
+<<<<<<< HEAD
             "version": "4.0.1",
             "version_normalized": "4.0.1.0",
             "source": {
@@ -925,6 +927,19 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/3a85486b709bc384dae8eb78fb2eec649bdb64ff",
                 "reference": "3a85486b709bc384dae8eb78fb2eec649bdb64ff",
+=======
+            "version": "3.2.6",
+            "version_normalized": "3.2.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/egulias/EmailValidator.git",
+                "reference": "e5997fa97e8790cdae03a9cbd5e78e45e3c7bda7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/e5997fa97e8790cdae03a9cbd5e78e45e3c7bda7",
+                "reference": "e5997fa97e8790cdae03a9cbd5e78e45e3c7bda7",
+>>>>>>> 1d002a34be5bf26a32fb28e3e6cd9084bb28d107
                 "shasum": ""
             },
             "require": {
@@ -939,7 +954,11 @@
             "suggest": {
                 "ext-intl": "PHP Internationalization Libraries are required to use the SpoofChecking validation"
             },
+<<<<<<< HEAD
             "time": "2023-01-14T14:17:03+00:00",
+=======
+            "time": "2023-06-01T07:04:22+00:00",
+>>>>>>> 1d002a34be5bf26a32fb28e3e6cd9084bb28d107
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -972,7 +991,11 @@
             ],
             "support": {
                 "issues": "https://github.com/egulias/EmailValidator/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/egulias/EmailValidator/tree/4.0.1"
+=======
+                "source": "https://github.com/egulias/EmailValidator/tree/3.2.6"
+>>>>>>> 1d002a34be5bf26a32fb28e3e6cd9084bb28d107
             },
             "funding": [
                 {

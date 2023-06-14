@@ -36,19 +36,33 @@ class DoubleQuote extends PartParser
 
         $this->lexer->moveNext();
 
+<<<<<<< HEAD
         while (!$this->lexer->current->isA(EmailLexer::S_DQUOTE) && !$this->lexer->current->isA(EmailLexer::S_EMPTY)) {
             if (isset($special[$this->lexer->current->type]) && $setSpecialsWarning) {
                 $this->warnings[CFWSWithFWS::CODE] = new CFWSWithFWS();
                 $setSpecialsWarning = false;
             }
             if ($this->lexer->current->isA(EmailLexer::S_BACKSLASH) && $this->lexer->isNextToken(EmailLexer::S_DQUOTE)) {
+=======
+        while (((array) $this->lexer->token)['type'] !== EmailLexer::S_DQUOTE && null !== ((array) $this->lexer->token)['type']) {
+            if (isset($special[((array) $this->lexer->token)['type']]) && $setSpecialsWarning) {
+                $this->warnings[CFWSWithFWS::CODE] = new CFWSWithFWS();
+                $setSpecialsWarning = false;
+            }
+            if (((array) $this->lexer->token)['type'] === EmailLexer::S_BACKSLASH && $this->lexer->isNextToken(EmailLexer::S_DQUOTE)) {
+>>>>>>> 1d002a34be5bf26a32fb28e3e6cd9084bb28d107
                 $this->lexer->moveNext();
             }
 
             $this->lexer->moveNext();
 
+<<<<<<< HEAD
             if (!$this->escaped() && isset($invalid[$this->lexer->current->type])) {
                 return new InvalidEmail(new ExpectingATEXT("Expecting ATEXT between DQUOTE"), $this->lexer->current->value);
+=======
+            if (!$this->escaped() && isset($invalid[((array) $this->lexer->token)['type']])) {
+                return new InvalidEmail(new ExpectingATEXT("Expecting ATEXT between DQUOTE"), ((array) $this->lexer->token)['value']);
+>>>>>>> 1d002a34be5bf26a32fb28e3e6cd9084bb28d107
             }
         }
 
@@ -59,8 +73,13 @@ class DoubleQuote extends PartParser
             if ($validQuotedString->isInvalid()) return $validQuotedString;
         }
 
+<<<<<<< HEAD
         if (!$this->lexer->isNextToken(EmailLexer::S_AT) && !$prev->isA(EmailLexer::S_BACKSLASH)) {
             return new InvalidEmail(new ExpectingATEXT("Expecting ATEXT between DQUOTE"), $this->lexer->current->value);
+=======
+        if (!$this->lexer->isNextToken(EmailLexer::S_AT) && $prev['type'] !== EmailLexer::S_BACKSLASH) {
+            return new InvalidEmail(new ExpectingATEXT("Expecting ATEXT between DQUOTE"), ((array) $this->lexer->token)['value']);
+>>>>>>> 1d002a34be5bf26a32fb28e3e6cd9084bb28d107
         }
 
         return new ValidEmail();
@@ -72,15 +91,25 @@ class DoubleQuote extends PartParser
 
         if ($this->lexer->isNextToken(EmailLexer::GENERIC) && $previous->isA(EmailLexer::GENERIC)) {
             $description = 'https://tools.ietf.org/html/rfc5322#section-3.2.4 - quoted string should be a unit';
+<<<<<<< HEAD
             return new InvalidEmail(new ExpectingATEXT($description), $this->lexer->current->value);
+=======
+            return new InvalidEmail(new ExpectingATEXT($description), ((array) $this->lexer->token)['value']);
+>>>>>>> 1d002a34be5bf26a32fb28e3e6cd9084bb28d107
         }
 
         try {
             $this->lexer->find(EmailLexer::S_DQUOTE);
         } catch (\Exception $e) {
+<<<<<<< HEAD
             return new InvalidEmail(new UnclosedQuotedString(), $this->lexer->current->value);
         }
         $this->warnings[QuotedString::CODE] = new QuotedString($previous->value, $this->lexer->current->value);
+=======
+            return new InvalidEmail(new UnclosedQuotedString(), ((array) $this->lexer->token)['value']);
+        }
+        $this->warnings[QuotedString::CODE] = new QuotedString($previous['value'], ((array) $this->lexer->token)['value']);
+>>>>>>> 1d002a34be5bf26a32fb28e3e6cd9084bb28d107
 
         return new ValidEmail();
     }
