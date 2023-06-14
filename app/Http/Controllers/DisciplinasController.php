@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Disciplina;
 use App\Models\Curso;
-use App\Models\Curso;
 
 class DisciplinasController extends Controller
 {
