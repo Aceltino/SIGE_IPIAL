@@ -30,7 +30,7 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <textarea style="border: 1px solid; border-color: rgb(204, 204, 204); border-radius: 5px; outline: none" class="w-100 "  rows="13" name="conteudo_com"  id="area" placeholder="Escreve aqui o conteúdo do Comunicado" >{{ $comunicados->conteudo_com }}</textarea>
+                    <textarea style="border: 1px solid; border-color: rgb(204, 204, 204); border-radius: 5px; outline: none" class="w-100 "  rows="13" name="conteudo_com"  id="area" placeholder="Escreve aqui o conteúdo do Comunicado" value="{{ $comunicados->conteudo_com }}" ></textarea>
                 </div>
             </div>
         
