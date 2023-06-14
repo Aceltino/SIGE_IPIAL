@@ -14,8 +14,6 @@ class DisciplinasController extends Controller
        $disciplinas = Disciplina::all();
        $cursos = Curso::all(['nome_curso']);
         return view('disciplina.disciplinas', ['disciplinas'=>$disciplinas, 'cursos'=>$cursos]);
-       $cursos = Curso::all(['nome_curso']);
-        return view('disciplina.disciplinas', ['disciplinas'=>$disciplinas, 'cursos'=>$cursos]);
     }
     public function create()
     {
