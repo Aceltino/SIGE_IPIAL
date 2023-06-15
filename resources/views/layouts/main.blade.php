@@ -57,7 +57,17 @@
   <script src={{{URL::asset("vendor/quill/quill.min.js")}}}></script>
   <script src={{{URL::asset("vendor/tinymce/tinymce.min.js")}}}></script>
 
-  <!-- /	Link do js main do projeto -->
+  <!-- /	Link do js Validações do projeto -->
+  <script src={{{URL::asset("js/paineis/inputnumero.js")}}}></script>
+  <script src={{{URL::asset("js/paineis/inscricacao/Inputbi.js")}}}></script>
+  <script src={{{URL::asset("js/paineis/inscricacao/selectcurso.js")}}}></script>
+  <script src={{{URL::asset("js/paineis/inscricacao/inputidade.js")}}}></script>
+  <script src={{{URL::asset("js/paineis/telefone.js")}}}></script>
+  <script src={{{URL::asset("js/paineis/disciplina/disciplina.js")}}}></script>
+  <script src={{{URL::asset("js/paineis/horario/horario.js")}}}></script>
+  <script src={{{URL::asset("js/paineis/ano-lectivo/criar-ano-lectivo.js")}}}></script>
+
+   <!-- /	Link do js main do projeto -->
   <script src={{{URL::asset("js/axios.min.js")}}}></script>
   <script src={{{URL::asset("js/script.js")}}}></script>
   <script src={{{URL::asset("js/form.js")}}}></script>
@@ -66,11 +76,9 @@
   <script src={{{URL::asset("Datatables/datatables.min.js")}}}></script>
   <script src={{{URL::asset("js/form.js")}}}></script>
   <script src={{{URL::asset("js/clone-contato.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/disciplina/disciplina.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/horario/horario.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/ano-lectivo/criar-ano-lectivo.js")}}}></script>
   <script src={{{URL::asset("tooltipster/dist/js/tooltipster.bundle.min.js")}}}></script>
   <script src={{{URL::asset("js/tab.js")}}}></script>
+  
 
 
 </body>

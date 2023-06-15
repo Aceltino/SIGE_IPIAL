@@ -227,7 +227,7 @@
 
                 <div class="col">
                     <div class="form-group">
-                        <input type="text" value ="{{ $candidato['Numero_Aluno'] }}" name="num_aluno" oninput="this.className = ''">
+                        <input type="text" id="numeroinput" value ="{{ $candidato['Numero_Aluno'] }}" name="num_aluno" oninput="this.className = ''">
                     </div>
                 </div>
 
@@ -241,7 +241,7 @@
 
             <div class="row">
                 <div class=" form-group">
-                    <input type="text" name="num_processo" value ="{{ $candidato['Numero_Processo'] }}" oninput="this.className = ''">
+                    <input type="text" id="numeroinput1" name="num_processo" value ="{{ $candidato['Numero_Processo'] }}" oninput="this.className = ''">
                 </div>
             </div>
 
