@@ -23,7 +23,6 @@
       <tr style=" text-align: center;">
         <th scope="col">Titulo do comunicado</th>
         <th scope="col">Conteudo do comunicado</th>
-        <th scope="col">Destinatario</th>
         <th scope="col"></th>
       </tr> 
     </thead>
@@ -32,11 +31,13 @@
         <tr style=" text-align: center;">
           <th scope="row">{{ $com->titulo_com }}</th>
           <td>{{ $com->conteudo_com }}</td>
-          <td>Antonio</td>
-          <td>
-            <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
+          <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
             <a href="{{ route('comunicado.edit', ['comunicado_id' => $com->comunicado_id]) }}"><i class="bi bi-pencil"></i></a>
-            <i class="bi bi-trash-fill"></i>
+            <form action="{{ route('comunicado.destroy', ['comunicado_id' => $com->comunicado_id] }}" method="POST">
+            @csrf
+            @method('destroy')
+          <button type="submit" class="bi bi-trash-fill"></button>
+          </form>
             <i class="bi bi-check-square-fill"></i>
           </td>
         </tr>

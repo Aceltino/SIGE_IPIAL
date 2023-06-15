@@ -53,6 +53,7 @@
                      $j++;
                  @endphp
                   @endforeach
+
                             <div class="col">
                      <input type="time" style=" text-align: center;" name="tempo_prova"  oninput="this.className = ''">
                  </div>
