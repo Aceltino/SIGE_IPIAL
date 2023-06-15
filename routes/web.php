@@ -20,7 +20,7 @@ use App\Http\Controllers\{
     DisciplinasController,
     ProcessoController,
 };
-7
+
 
 /*
 |--------------------------------------------------------------------------
