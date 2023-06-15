@@ -4,6 +4,7 @@ use App\Http\Controllers\{
      AdmissaoController,
     //Classes das Controllers
     AuthController,
+    AlunoTurmaController,
     CandidatoController,
     MatriculaController,
     InscricaoController,
@@ -32,6 +33,8 @@ use GuzzleHttp\Client;
 |
 */
 
+// Rota apenas de teste... Não apague -> ACELTINO
+Route::get('validar-aluno', [AlunoTurmaController::class, 'SelecionarTurma']);
 
 //Rotas inicial do Painel
 Route::get('/', function () {
@@ -40,9 +43,6 @@ Route::get('/', function () {
 
  //Rota final do painel
  Route::get('logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
-
-// Rota apenas de teste... Não apague -> ACELTINO
-Route::get('validar-aluno', [CandidatoController::class, 'pegarDadosCandidatos']);
 
 //Routas para Autenticação no Sistema
 Route::prefix('autenticacao')->group(function(){
@@ -321,8 +321,8 @@ Route::prefix('comunicado')->middleware(['auth'])->group(function(){
     Route::get('consultar-comunicado', [comunicadosController::class, 'index'])->name('comunicado.index');
     Route::get('criar-comunicado', [comunicadosController::class, 'create'])->name('comunicado.create');
     Route::post('criar-comunicado', [comunicadosController::class, 'store'])->name('comunicado.store');
-    Route::get('/{comunicado_id}/editar-comunicado', [comunicadosController::class, 'edit'])->name('comunicado.edit');
-    Route::put('/{comunicado_id}', [comunicadosController::class, 'update'])->where('comunicado_id', '[0-9]+')->name('comunicado.update');
+    Route::get('editar-comunicado/{comunicado_id}', [comunicadosController::class, 'edit'])->where('comunicado_id', '[0-9]+')->name('comunicado.edit');
+    Route::post('editar-comunicado/{comunicado_id}', [comunicadosController::class, 'update'])->where('comunicado_id', '[0-9]+')->name('comunicado.update');
 
 });
 

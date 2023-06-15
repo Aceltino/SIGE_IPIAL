@@ -5,9 +5,9 @@
 @section('conteudo')
 <main id="main" class="main" >
 
-    <form id="regFormh" action="" class="formulario-layout" method="POST" >
+    <form id="regFormh" action="{{ route('disciplina.update', ['disciplina_id' => $disciplinas->disciplina_id]) }}" class="formulario-layout" method="POST" >
       @csrf
-
+      @method('PUT')
         <div style="text-align:center;margin-top:10px;">
         <span class="step"></span>
         </div>
@@ -41,25 +41,20 @@
                   <option value="I"> Cientificas</option>
                 </select>
               </div>
+              @php
+                  $j=1;
+             @endphp
               <div class="row">
                 <div class="col">
+                  @foreach($cursos as $curso)
                   <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                    <label class="form-check-label" for="flexSwitchCheckDefault">Tecnico de Informática</label>
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="curso{{$j}}">
+                    <label class="form-check-label" for="flexSwitchCheckDefault" value="{{$curso['nome_curso']}}">{{$curso['nome_curso']}}</label>
                   </div>
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
-                    <label class="form-check-label" for="flexSwitchCheckChecked">Instalaçoes electricas</label>
-                  </div>
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDisabled" >
-                    <label class="form-check-label" for="flexSwitchCheckDisabled">Desenho tecnico</label>
-                  </div>
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDisabled" >
-                    <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Electronica e automaçao</label>
-                  </div>
-                 </div>
+                  @php
+                     $j++;
+                 @endphp
+                  @endforeach
                 <div class="col">
                      <input type="time" style=" text-align: center;" name="tempo_prova" value="{{ $disciplinas->tempo_prova }}"  oninput="this.className = ''">
                  </div>

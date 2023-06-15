@@ -196,7 +196,6 @@ class InscricaoController extends Controller
     $dadosCandidato=[
         'nome_pai_cand'=>$request['nome_pai_cand'],
         'nome_mae_cand'=>$request['nome_mae_cand'],
-        'ano_lectivo_id' => $request['ultimo_anoLectivo'],
         'candidato_id' => $request['id']
     ];
     $candidato = CandidatoController::updateCandidato($dadosCandidato);
