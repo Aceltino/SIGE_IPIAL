@@ -330,7 +330,7 @@ Route::prefix('comunicado')->middleware(['auth'])->group(function(){
  * Rotas do cadastro de usuário
  */
 /* cadastrar usuario*/
-Route::prefix('usuario')->middleware(['auth','checkcargo'])->group(function(){
+Route::prefix('usuario')->group(function(){
 
     Route::get('use_cadastro', function () {
         return view('usuario/use_cadastro');

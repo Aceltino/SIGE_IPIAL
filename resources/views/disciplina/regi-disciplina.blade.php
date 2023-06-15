@@ -31,9 +31,9 @@
         </div> <br>
 
               <div class="form-group">
-                <select oninput="this.className = ''" class="form-select">
+                <select oninput="this.className = ''" class="form-select" id="componente">
                   <option selected disabled> Componetes</option>
-                  <option  value="c.T">Técnicas </option>
+                  <option  value="C.T">Técnicas </option>
                   <option value="I.E"> Socio-culturais</option>
                   <option value="I"> Cientificas</option>
                 </select>
