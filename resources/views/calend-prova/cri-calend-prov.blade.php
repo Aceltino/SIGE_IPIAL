@@ -4,7 +4,8 @@
 
 @section('conteudo')
 <main id="main" class="main">
-    <form method="POST" action="" id="regForm" class="form-nscricao">
+    <form method="POST" action="" id="regForm" class="form-nscricao" method ="POST">
+    @csrf
         <div style="text-align:center;margin-top:0px;">
             <span class="step"></span>
             <span class="step"></span>
@@ -22,7 +23,7 @@
                 <span class="subtitulo-calend">Selecione o curso, a classe e o turno</span>
             </div>
 
-
+        <!-- Tras de forma dinamica-->
             <div class="form-group">
                 <select oninput="this.className = ''" class="form-select">
                     <option selected disabled>Curso</option>
@@ -32,7 +33,7 @@
                     <option value="E.T">Electronica e Telecomunicação - E.T</option>
                 </select>
             </div>
-
+<!-- Tras de forma dinamica-->
             <div class="form-group">
                 <select oninput="this.className = ''" class="form-select">
                     <option selected disabled>Classe</option>
@@ -42,7 +43,7 @@
                     <option value="13">13</option>
                 </select>
             </div>
-            
+            <!-- Tras de forma dinamica-->
             <div class="form-group">
                 <select oninput="this.className = ''" class="form-select">
                     <option selected disabled>Turno</option>
@@ -51,7 +52,7 @@
                     <option value="noite">Noite</option>
                 </select>
             </div>
-
+<!-- Tras de forma dinamica-->
             <div class="form-group">
                 <select oninput="this.className = ''" class="form-select">
                     <option selected disabled>Tipo de Prova</option>
@@ -66,18 +67,18 @@
             <div class="row dv-com-span">
                 <div class="col-lg-6">
                     <span class="span-calend">Data da primeira prova</span>
-                    <input type="date" oninput="this.className = ''">
+                    <input type="date" oninput="this.className = ''" name="dataI">
                 </div>
 
                 
                 <div class="col-lg-6">
                     <span class="span-calend">Data da ultima prova</span>
-                    <input type="date" oninput="this.className = ''">
+                    <input type="date" oninput="this.className = ''" name="dataU">
                 </div>
             </div>
 
             <br>
-
+        <!--Envia esse manbo para tabela horario-->
             <div class="row dv-com-span">
                 <div class="col-lg-6">
                     <span class="span-calend">Horário da primeira prova</span>
@@ -99,7 +100,7 @@
                     </div>
                 </div>
 
-                
+                <!--Envia esse manbo para tabela horario-->
                 <div class="col-lg-6">
                     <span class="span-calend">Horário da segunda prova</span>
                     <div class="row">
@@ -133,10 +134,10 @@
             <div class="row dv-sel-dias">
                 <div class="col-lg-6">
                     <span class="span-calend">Data da prova</span>  
-                    <input type="date" oninput="this.className = ''">
+                    <input type="date" oninput="this.className = ''" name="DataP">
                 </div>
 
-                
+              <!--Trazer de forma dinamica-->  
                 <div class="col-lg-6">
                     <span class="span-calend">.</span>  
                     <div class="form-group">
@@ -158,6 +159,7 @@
                 <div class="col-lg-6">
                     <span class="span-calend">Primeira prova</span>  
                     <div class="form-group">
+                        <!--Trazer de forma dinamica-->
                         <select oninput="this.className = ''" class="form-select form-control">
                             <option selected disabled>Disciplina</option>
                             <option>Português</option>
@@ -179,6 +181,7 @@
                 <div class="col-lg-6">
                     <span class="span-calend">Segunda prova</span>
                     <div class="form-group">
+                        <!--Trazer de forma dinamica-->
                         <select oninput="this.className = ''" class="form-select form-control">
                             <option selected disabled>Disciplina</option>
                             <option>Português</option>
@@ -211,7 +214,7 @@
                     <input type="date" oninput="this.className = ''">
                 </div>
 
-                
+                <!--Trazer de forma dinamica-->
                 <div class="col-lg-6">
                     <span class="span-calend">.</span>  
                     <div class="form-group">
@@ -228,7 +231,7 @@
             
             </div>
 
-
+        <!--Trazer de forma dinamica-->
             <div class="row dv-sel-dias">
                 <div class="col-lg-6">
                     <span class="span-calend">Primeira prova</span>  
@@ -250,7 +253,7 @@
                     </div>
                 </div>
 
-                
+                <!--Trazer de forma dinamica-->
                 <div class="col-lg-6">
                     <span class="span-calend">Segunda prova</span>
                     <div class="form-group">
@@ -286,7 +289,7 @@
                     <input type="date" oninput="this.className = ''">
                 </div>
 
-                
+                <!--Trazer de forma dinamica-->
                 <div class="col-lg-6">
                     <span class="span-calend">.</span>  
                     <div class="form-group">
@@ -303,7 +306,7 @@
             
             </div>
 
-
+            <!--Trazer de forma dinamica-->
             <div class="row dv-sel-dias">
                 <div class="col-lg-6">
                     <span class="span-calend">Primeira prova</span>  
@@ -325,7 +328,7 @@
                     </div>
                 </div>
 
-                
+                <!--Trazer de forma dinamica-->
                 <div class="col-lg-6">
                     <span class="span-calend">Segunda prova</span>
                     <div class="form-group">
@@ -354,14 +357,14 @@
                 <h2>Quarto dia</h2>
                 <span class="subtitulo-calend">Selecione as disciplinas e as horas(de inicio das provas respectivamente)</span>
             </div>
-
+            <!--Trazer de forma dinamica-->
             <div class="row dv-sel-dias">
                 <div class="col-lg-6">
                     <span class="span-calend">Data da prova</span>  
                     <input type="date" oninput="this.className = ''">
                 </div>
 
-                
+                <!--Trazer de forma dinamica-->
                 <div class="col-lg-6">
                     <span class="span-calend">.</span>  
                     <div class="form-group">
@@ -378,7 +381,7 @@
             
             </div>
 
-
+            <!--Trazer de forma dinamica-->
             <div class="row dv-sel-dias">
                 <div class="col-lg-6">
                     <span class="span-calend">Primeira prova</span>  
@@ -400,7 +403,7 @@
                     </div>
                 </div>
 
-                
+                <!--Trazer de forma dinamica-->
                 <div class="col-lg-6">
                     <span class="span-calend">Segunda prova</span>
                     <div class="form-group">
@@ -429,14 +432,14 @@
                 <h2>Quinto dia</h2>
                 <span class="subtitulo-calend">Selecione as disciplinas e as horas(de inicio das provas respectivamente)</span>
             </div>
-
+            <!--Trazer de forma dinamica-->
             <div class="row dv-sel-dias">
                 <div class="col-lg-6">
                     <span class="span-calend">Data da prova</span>  
                     <input type="date" oninput="this.className = ''">
                 </div>
 
-                
+                <!--Trazer de forma dinamica-->
                 <div class="col-lg-6">
                     <span class="span-calend">.</span>  
                     <div class="form-group">
@@ -453,7 +456,7 @@
             
             </div>
 
-
+            <!--Trazer de forma dinamica-->
             <div class="row dv-sel-dias">
                 <div class="col-lg-6">
                     <span class="span-calend">Primeira prova</span>  
@@ -475,7 +478,7 @@
                     </div>
                 </div>
 
-                
+                <!--Trazer de forma dinamica-->
                 <div class="col-lg-6">
                     <span class="span-calend">Segunda prova</span>
                     <div class="form-group">
@@ -498,7 +501,7 @@
             </div>
 
         </div>
-
+        <!--Trazer de forma dinamica-->
         <div class="tab">
             <div class="card-titulo-calend">
                 <h2>Sexto dia</h2>
@@ -511,7 +514,7 @@
                     <input type="date" oninput="this.className = ''">
                 </div>
 
-                
+                <!--Trazer de forma dinamica-->
                 <div class="col-lg-6">
                     <span class="span-calend">.</span>  
                     <div class="form-group">
@@ -528,7 +531,7 @@
             
             </div>
 
-
+            <!--Trazer de forma dinamica-->
             <div class="row dv-sel-dias">
                 <div class="col-lg-6">
                     <span class="span-calend">Primeira prova</span>  
@@ -550,7 +553,7 @@
                     </div>
                 </div>
 
-                
+                <!--Trazer de forma dinamica-->
                 <div class="col-lg-6">
                     <span class="span-calend">Segunda prova</span>
                     <div class="form-group">
@@ -586,7 +589,7 @@
                     <input type="date" oninput="this.className = ''">
                 </div>
 
-                
+                <!--Trazer de forma dinamica-->
                 <div class="col-lg-6">
                     <span class="span-calend">.</span>  
                     <div class="form-group">
@@ -603,7 +606,7 @@
             
             </div>
 
-
+            <!--Trazer de forma dinamica-->
             <div class="row dv-sel-dias">
                 <div class="col-lg-6">
                     <span class="span-calend">Primeira prova</span>  
@@ -625,7 +628,7 @@
                     </div>
                 </div>
 
-                
+                    <!--Trazer de forma dinamica-->
                 <div class="col-lg-6">
                     <span class="span-calend">Segunda prova</span>
                     <div class="form-group">
