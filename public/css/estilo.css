@@ -1070,3 +1070,20 @@ transform: scale(0.50);
   width: 40px;
   height: 10px;
 }
+ .numeroinvalido{
+  border: 2px solid red;
+
+ }
+
+ .erro {
+  border-color: red;
+}
+
+.mensagem-erro {
+  color: red;
+display: none;
+}
+.aa{
+  display: flex;
+  flex-direction: column;
+}
