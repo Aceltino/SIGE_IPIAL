@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Avaliacao_aluno;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Professor;
+use App\Traits\AvaliacaoTrait;
 
 class AvaliacaoAlunoController extends Controller
 {
@@ -15,8 +17,12 @@ class AvaliacaoAlunoController extends Controller
      */
     public function index()
     {
-        $notas = Avaliacao_aluno::all()->toArray();
-        //dd($notas);
+        $disciplinas = [1, 2];
+        $turmas = [1, 2];
+        //$professor = Professor::with('disciplina')->find(1);
+        $notas = AvaliacaoTrait::notas($disciplinas, $turmas);
+        //$alunos->load('candidato');
+        dd($notas);
         return view('avaliac-aluno/avaliacoes-aluno');
     }
 

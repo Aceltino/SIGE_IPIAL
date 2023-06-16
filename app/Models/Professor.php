@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\UuidTrait; 
+use App\Traits\UuidTrait;
 
 class Professor extends Model
 {
     use HasFactory, UuidTrait;
 
     protected $table = 'professores';
-    
+
     // Criei essa nova relação > Augusto Kussema
     public function pessoa()
     {
@@ -43,4 +43,14 @@ class Professor extends Model
             $model->uuid = static::gerarUuid();
         });
     }*/
+
+    public function disciplina(){
+        return $this->belongsToMany(Disciplina::class, 'professor_disciplina', 'professor_id', 'disciplina_id');
+    }
+    public function turmas(){
+        return $this->belongsToMany(Turma::class, 'professor_turma', 'professor_id', 'disciplina_id');
+    }
+    public function professor_disciplina(){
+        return $this->hasMany(Disciplina::class, 'disciplina_id');
+    }
 }

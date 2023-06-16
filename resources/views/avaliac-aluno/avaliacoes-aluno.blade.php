@@ -7,9 +7,9 @@
   <div class="pagetitle">
     <div class="row">
           <div class="col">
-              <h1>Avaliação de Aluno</h1>      
+              <h1>Avaliação de Aluno</h1>
           </div>
-      
+
           <div class="col-lg-2">
             <select class="btn-sel form-select" id="filtro10">
               <option  disabled>Curso</option>
@@ -18,7 +18,7 @@
               <option value="construção civil">construção civil</option>
               <option value="Electronica e Telecomunicação">Electronica e Telecomunicação</option>
             </select>
-          </div> 
+          </div>
 
           <div class="col-lg-2">
             <select class="btn-sel form-select" id="filtro11">
@@ -27,7 +27,7 @@
               <option value="Técnicas de Linguagem de Programação">Técnicas de Linguagem de Programação</option>
               <option value="Língua Portuguêsa">Língua Portuguêsa</option>
             </select>
-          </div> 
+          </div>
 
           <div class="col-lg-2">
             <select class="btn-sel form-select" id="filtro12">
@@ -37,13 +37,13 @@
               <option value="I12AT">I12AT</option>
               <option value="I12BT">I12BT</option>
             </select>
-          </div> 
+          </div>
     </div>
 
     <div class="procurar">
     <form class="proc-form d-flex align-items-center">
         <input id="pesquisa" type="text" placeholder="Digite o Número ou o Nome do Aluno que Procuras" name="" class="campo-pesq">
-        <button id="pesquisa" type="submit" title="Search"><i class="bi bi-search"></i></button>   
+        <button id="pesquisa" type="submit" title="Search"><i class="bi bi-search"></i></button>
     </form>
     </div>
   </div>
@@ -51,7 +51,7 @@
     <div class="pagetitle">
         <div class="row">
             <div class="col" style="padding-left: 25px; padding-top: 15px;">
-                <h4 style="text-align: center">Data:21-03-2023</h3>
+                <h4 style="text-align: center">Data: {{date('d/m/Y')}}</h3>
             </div>
         </div>
     </div>
@@ -121,7 +121,7 @@
           <td style="text-align: center">
             <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade" >Avaliar aluno</a>
           </td>
-          
+
           <td style="text-align: center">
             <a href="editar-avaliacao-aluno" class="btn linkeditar">Editar Avaliação</a>
           </td>
@@ -251,7 +251,7 @@
               <button type="button" class="btn-close"data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            
+
               <div class="row">
                 <div class="col-lg-10">
                     <div class="nomenumeroalunoinfo">
@@ -263,7 +263,7 @@
                         <h5 class="nomenumeroalunoinfo"> <b>Nº:</b> 12</h5>
                     </div>
                 </div>
-              </div> 
+              </div>
             <div class="bortabelasemscroll">
               <!-- /  Inicio da tabela  -->
               <table class="table table-striped" style="margin-top: 20px; width: 100%;" >
@@ -303,6 +303,6 @@
       </div>
     </form>
 <!-- Fím da modal -->
-    
+
 </main>
 @endsection

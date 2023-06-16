@@ -46,4 +46,8 @@ class Candidato extends Model
     {
         return $this->belongsToMany(Curso::class, 'candidato_curso', 'candidato_id', 'curso_id')->withPivot('preferencia');
     }
+    public function aluno()
+    {
+        return $this->hasOne(Aluno::class);
+    }
 }

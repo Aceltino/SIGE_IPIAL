@@ -22,13 +22,13 @@ class Curso extends Model
     ];
 
     public function coordenador(){
-        return $this->hasOne(Professor::class, 'professor_id', 'curso_id');
+        return $this->hasOne(Professor::class, 'professor_id');
     }
 
     public function areaFormacao(){
         return $this->hasOne(Area_formacao::class, 'professor_id', 'curso_id');
     }
-    
+
     public function Candidato()
     {
         return $this->belongsToMany(Candidato::class, 'candidato_seleciona_curso', 'curso_id', 'candidato_id');
