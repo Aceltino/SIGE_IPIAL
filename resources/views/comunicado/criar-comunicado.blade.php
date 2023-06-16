@@ -5,7 +5,7 @@
 @section('conteudo')
 <main id="main" class="main" >
 
-    <form id="regFormh" action="{{ route('comunicado-store') }}" class="formulario-layout" method="POST">
+    <form id="regFormh" action="{{ route('comunicado.store') }}" class="formulario-layout" method="POST">
     @csrf
         <div style="text-align:center;margin-top:10px;">
         <span class="step"></span>

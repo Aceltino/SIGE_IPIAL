@@ -31,11 +31,18 @@ class Curso extends Model
 
     public function Candidato()
     {
-        return $this->belongsToMany(Candidato::class, 'candidato_seleciona_curso', 'curso_id', 'candidato_id');
+        return $this->belongsToMany(Candidato::class, 'candidato_curso', 'curso_id', 'candidato_id');
     }
 
     public function turma()
     {
         return $this->hasMany(Turma::class, 'curso_id', 'turma_id');
     }
+
+    public function aluno()
+    {
+        return $this->hasMany(Aluno::class, 'curso_id');
+    }
+
+
 }

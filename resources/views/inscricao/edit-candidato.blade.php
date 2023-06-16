@@ -120,19 +120,11 @@
             <label>Tel-1: </label><input type="text"  name="num_tel" value ="{{ $candidato['Telefone'] }}" >
 
           </div>
-
-          <div class="col area-input form-group" style="margin-left: 10px;">
-            {{-- <label>Tel-2: </label><input type="text" name="" value="998 766 656"> --}}
-
-          </div>
         </div>
       </div>
 
       <div class="container">
         <div class="row">
-          <div class="col area-input form-group">
-            {{-- <label>Tel-3: </label><input type="text" name="" value="998 766 656"> --}}
-          </div>
 
           <div class="col form-group" style="margin-left: 10px;">
             <button class="btn-imprimir accordion-buttons collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style="border: none; padding: 5px; width: 230px; height: 40px;">
@@ -185,7 +177,7 @@
               </div>
 
               <div class="col area-input form-group" style="margin-left: 10px;">
-                <label>Ano lectivo: </label><input type="text" class="form-control" disabled name="ultimo_anoLectivo" value ="{{ $candidato['Ultimo_AnoLectivo'] }}" readonly="true" >
+                <label>Ano lectivo: </label><input type="text" class="form-control" name="ultimo_anoLectivo" value ="{{ $candidato['Ultimo_AnoLectivo'] }}" >
 
               </div>
             </div>
@@ -193,55 +185,43 @@
 
           <div class="container">
             <div class="row">
-              <div class="col area-input form-group">
+              <div class="col area-input form-group" >
                 <label>Língua Poertuguesa: </label><input type="text" value ="{{ $candidato['Lingua_Portuguesa'] }}" name="LinguaP">
-
               </div>
               <div class="col area-input form-group" style="margin-left: 10px;">
-                <label>1º Curso: </label><input type="text" name="curso1" value ="{{ $candidato['Cursos'][0] }}">
-
-              </div>
-            </div>
-          </div>
-
-          <div class="container">
-            <div class="row">
-              <div class="col area-input form-group">
                 <label>Matemática: </label><input type="text" value ="{{ $candidato['Matematica'] }}" name="Matematic" >
-
               </div>
               <div class="col area-input form-group" style="margin-left: 10px;">
-                <label>2º Curso: </label><input type="text"  value ="{{ $candidato['Cursos'][1] }}" name="curso2">
-
-              </div>
-            </div>
-          </div>
-
-          <div class="container">
-            <div class="row">
-              <div class="col area-input form-group">
                 <label>Química: </label><input type="text" name="Quimic" value ="{{ $candidato['Quimica'] }}">
 
               </div>
               <div class="col area-input form-group" style="margin-left: 10px;">
-                <label>3º Curso: </label><input type="text" name="curso3"  value ="{{ $candidato['Cursos'][2] }}">
-
+                <label>Física: </label><input type="text" name="Fisic" value ="{{ $candidato['Fisica'] }}">
               </div>
+
+
             </div>
           </div>
 
           <div class="container">
             <div class="row">
-              <div class="col area-input form-group">
-                <label>Física: </label><input type="text" name="Fisic" value ="{{ $candidato['Fisica'] }}">
-{{-- Apresentar os cursos dinamicamente --}}
-              </div>
+
+             
+            @php
+                $a=1;
+            @endphp
+              @foreach($cursos as $curso)
               <div class="col area-input form-group" style="margin-left: 10px;">
-                <label>4º Curso: </label><input type="text" name="curso4" value ="{{ $candidato['Cursos'][3] }}">
-
-                <input type="hidden" name="id" value ="{{  $candidato['Id_inscricao'] }}">
-
+                <label>{{$a}}º Curso: </label><input type="text"  value ="{{$Curso['nome_curso']}}" name="curso2">
               </div>
+              @php
+              $a++;
+             @endphp
+              @endforeach
+             
+
+      
+             
             </div>
           </div>
 

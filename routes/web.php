@@ -4,6 +4,7 @@ use App\Http\Controllers\{
      AdmissaoController,
     //Classes das Controllers
     AuthController,
+    AlunoTurmaController,
     CandidatoController,
     MatriculaController,
     InscricaoController,
@@ -16,6 +17,7 @@ use App\Http\Controllers\{
     AnoLectivoController,
     MiniPautaController,
     PautaController,
+    DisciplinasController,
 };
 use Illuminate\Support\Facades\Route;
 use GuzzleHttp\Client;
@@ -31,6 +33,8 @@ use GuzzleHttp\Client;
 |
 */
 
+// Rota apenas de teste... Não apague -> ACELTINO
+Route::get('validar-aluno', [AlunoTurmaController::class, 'SelecionarTurma']);
 
 //Rotas inicial do Painel
 Route::get('/', function () {
@@ -39,9 +43,6 @@ Route::get('/', function () {
 
  //Rota final do painel
  Route::get('logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
-
-// Rota apenas de teste... Não apague -> ACELTINO
-Route::get('validar-aluno', [CandidatoController::class, 'pegarDadosCandidatos']);
 
 //Routas para Autenticação no Sistema
 Route::prefix('autenticacao')->group(function(){
@@ -54,20 +55,13 @@ Route::prefix('autenticacao')->group(function(){
     Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar');
     Route::post('registrar', [AuthController::class,'store'])->name('registrar');
 
-    //CODIFICANDO...
-    Route::get('lembrar', [AuthController::class,'lembrar'])->name('recuperar-senha')->middleware('guest');
-
-    //rota para envio de email para redifinição de senha
+    //Rota para envio de email para redifinição de senha
     Route::get('reset', [AuthController::class,'resetForm'])->name('recuperar-senha')->middleware('guest');
-    Route::post('reset/email', [AuthController::class, 'envioLinkEmail'])->name('password-email')->middleware('guest');
+    Route::post('reset/link', [AuthController::class, 'envioLinkEmail'])->name('password-email')->middleware('guest');
 
-    //rota para redifinição de senha
-    Route::get('lembrar/reset/{token}', [AuthController::class, 'resetPasswordForm'])->name('nova-password');
-    Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password-update');
-
-    Route::get('/reset-password/{token}', function ($token) {
-        return view('auth.reset-password', ['token' => $token]);
-    })->middleware('guest')->name('password.reset');
+    //Rota para redifinição de senha
+    Route::get('reset/{token}', [AuthController::class, 'resetPasswordForm'])->name('nova-password')->middleware('guest');
+    Route::post('reset',[AuthController::class, 'processarRedefinicaoPassword'])->name('password-update')->middleware('guest');
 
 });
 
@@ -127,8 +121,6 @@ Route::prefix('inscricao')->group(function(){
 /******************************************
  * Rotas das matriculas
  */
-    //Rota de Login
-
 
 
 Route::prefix('matricula')->group(function(){
@@ -140,7 +132,7 @@ Route::prefix('matricula')->group(function(){
 
     /*Matricular aluno */
     Route::get('matricular-aluno/{candidato}',  [MatriculaController::class, 'create'])->name('matricula-view');
-    Route::put('matricular-aluno/{candidato}', [MatriculaController::class, 'store'])->name('matricula-store');
+    Route::post('matricular-aluno/{candidato}', [MatriculaController::class, 'store'])->name('matricula-store');
 
     /*Editar matricula */
     Route::get('editar-matricula', function () {
@@ -178,7 +170,7 @@ Route::prefix('matricula')->group(function(){
 /******************************************
  * Rotas de professor
  */
-Route::prefix('professor')->group(function(){
+Route::prefix('professor')->middleware(['auth','checkcargo'])->group(function(){
 
     Route::get('rota/{segmento}', [ProfessorController::class, 'editarProfessor'])->name('prof.rota');
 
@@ -230,7 +222,7 @@ Route::get('editar-turma', function () {
 /******************************************
  * Rotas de aluno
  */
-Route::prefix('aluno')->group(function(){
+Route::prefix('aluno')->middleware(['auth'])->group(function(){
 
     Route::get('boletim-notas', function () {
         return view('boletim/boletim-notas');
@@ -243,11 +235,10 @@ Route::prefix('aluno')->group(function(){
 /******************************************
  * Rotas de curso
  */
-Route::prefix('curso')->group(function(){
+Route::prefix('curso')->middleware(['auth'])->group(function(){
 
     Route::get('criar-curso', [CursoController::class, 'indexCadastro'])->name('cadastro.curso');
     Route::post('criar-curso/cadastrar', [CursoController::class, 'store'])->name('cadastrar.curso');
-
 
     Route::get('cursos', [CursoController::class, 'index'])->name('consultar.cursos');
 
@@ -260,13 +251,12 @@ Route::prefix('curso')->group(function(){
 /**<!--Fim Rotas curso--> */
 
 /******************************************
- * Rotas do ano-lectivo
+ * Rotas do ano-lectivo ->middleware(['auth','checkcargo'])
  */
 Route::prefix('ano-lectivo')->group(function(){
 
     Route::get('criar-ano-letivo', [AnoLectivoController::class, 'indexCadastroAnoLectivo'])->name('cadastro.ano.lectivo');
     Route::post('criar-ano-letivo/cadastrar', [AnoLectivoController::class, 'store'])->name('cadastrar.ano.lectivo');
-
 
     Route::get('ano-letivo', [AnoLectivoController::class, 'index'])->name('ano.lectivo');
 
@@ -282,9 +272,10 @@ Route::prefix('ano-lectivo')->group(function(){
 /**
  * Rota do perfil de usuario
  */
+
 Route::get('perfil', function () {
     return view('perfil/perfil');
-})->name('perfil');
+})->name('perfil')->middleware(['auth']);
 
 /******************************************
  * Rotas da ficha biografica-lectivo
@@ -310,7 +301,7 @@ Route::prefix('processo')->group(function(){
 /******************************************
  * Rotas de pauta
  */
-Route::prefix('pauta')->group(function(){
+Route::prefix('pauta')->middleware(['auth'])->group(function(){
     Route::get('pautas', [PautaController::class, 'index'])->name('pauta');
     Route::get('ver-pauta', [PautaController::class, 'show'])->name('pauta.show');
 });
@@ -325,13 +316,13 @@ Route::prefix('mini-pauta')->group(function(){
 /******************************************
  * Rotas do Comunicado
  */
-Route::prefix('comunicado')->group(function(){
+Route::prefix('comunicado')->middleware(['auth'])->group(function(){
 
     Route::get('consultar-comunicado', [comunicadosController::class, 'index'])->name('comunicado.index');
     Route::get('criar-comunicado', [comunicadosController::class, 'create'])->name('comunicado.create');
     Route::post('criar-comunicado', [comunicadosController::class, 'store'])->name('comunicado.store');
-    Route::get('/{comunicado_id}/editar-comunicado', [comunicadosController::class, 'edit'])->name('comunicado.edit');
-    Route::put('/{comunicado_id}', [comunicadosController::class, 'update'])->where('comunicado_id', '[0-9]+')->name('comunicado.update');
+    Route::get('editar-comunicado/{comunicado_id}', [comunicadosController::class, 'edit'])->where('comunicado_id', '[0-9]+')->name('comunicado.edit');
+    Route::post('editar-comunicado/{comunicado_id}', [comunicadosController::class, 'update'])->where('comunicado_id', '[0-9]+')->name('comunicado.update');
 
 });
 
@@ -421,20 +412,12 @@ Route::get('/editar-horario', function () {
 */
 
 /*Cadastrar disciplina*/
-Route::get('/regi-disciplina', function () {
-    return view('disciplina/regi-disciplina');
+Route::prefix('disciplina')->group(function(){
+        Route::get('disciplinas', [DisciplinasController::class,'index'])->name('consultar.disciplina');
+        Route::get('regi-disciplina',[DisciplinasController::class, 'create'])->name('criar.disciplina');
+        Route::post('regi-disciplina', [DisciplinasController::class, 'store'])->name('disciplina.store');
+        Route::get('edit-disciplina', [DisciplinasController::class, 'edit'])->name('disciplina.edit');
+        Route::put('edit-disciplina/{disciplina_id}', [DisciplinasController::class, 'update'])->where('disciplina_id', '[0-9]+')->name('disciplina.update');
+        Route::delete('{disciplina_id}', [DisciplinasController::class, 'destroy'])->where('disciplina_id', '[0-9]+')->name('disciplina.delete');
 });
 
-/*Ver as disciplinas*/
-Route::get('/disciplinas', function () {
-    return view('disciplina/disciplinas');
-});
-
-/*Editar disciplina*/
-Route::get('/edit-disciplina', function () {
-    return view('disciplina/edit-disciplina');
-});
-/*painel para nova senha*/
-Route::get('/nova_senha', function () {
-    return view('autenticacao/nova_senha');
-});

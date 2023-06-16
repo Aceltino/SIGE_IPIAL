@@ -101,7 +101,22 @@
                    @php
                       $endereco = Auth::user()->belongPessoa->belongEndereco;
                    @endphp
-                   <div class="col-lg-8 col-md-8">{{--{{ $endereco->numero_casa }}, {{ $endereco->zona }}, {{ $endereco->bairro }}, {{ $endereco->municipio }}--}}</div>
+                   <div class="col-lg-8 col-md-8">
+                    @php 
+                      if($endereco===null){
+                        echo "Sem Endereço";
+                      }else {
+                        echo "<strong>Municipio:</strong> ".$municipio= $endereco->municipio;
+                        echo " , ";
+                        echo "<strong>Bairro:</strong> ".$bairro= $endereco->bairro;
+                        echo "<br>";
+                        echo "<strong>Zona:</strong> ".$zona= $endereco->zona;
+                        echo " , ";
+                        echo "<strong>Número da Casa:</strong> ".$numero_casa= $endereco->numero_casa;
+                      }  
+                    @endphp
+                      {{-- {{ $municipio=null ? " " : $municipio}},{{$bairro=""}},{{$zona=""}},{{$numero_casa=""}} --}}
+                    </div> 
                  </div>
 
                </div>
@@ -110,17 +125,6 @@
                  
                 <!-- Form Editar perfil -->
                 <form>
-
-                 <div class="row mb-3">
-                   <label for="foto-perfil" class="col-md-4 col-lg-4 col-form-label">Foto</label>
-                   <div class="col-md-8 col-lg-8">
-                     <div class="pt-2">
-                        <label for="foto-perf"><span class="btn btn-warning btn-sm" title="Atualizar foto de perfil"><i class="bi bi-upload"></i></span></label>
-                         <input type="file" id="foto-perf" hidden>
-                        
-                      </div>
-                    </div>
-                  </div>
                   
 
                    <div class="row mb-3">
@@ -173,25 +177,22 @@
                      </div>
                    </div>
 
-                   <div class="row mb-3">
-                     <label for="Endereco" class="col-md-4 col-lg-4 col-form-label">Endereço</label>
-                     <div class="col-md-8 col-lg-8">
-                        <div class="row">
-                          <div class="col-lg-3">
-                            <input type="text" class="form-control" name="municipio" placeholder="Municipio">
-                          </div>
-                          <div class="col-lg-3">
-                            <input type="text" class="form-control" name="bairro" placeholder="Bairro">
-                          </div>
-                          <div class="col-lg-3">
-                            <input type="text" class="form-control" name="zona" placeholder="Zona">
-                          </div>
-                          <div class="col-lg-3">                          
-                            <input type="number" class="form-control"  name="num_casa" placeholder="Casa Nº">
-                          </div>
-                        </div>
-                     </div>
-                   </div>
+                   <div class="col-md-8 mt-3" style=" display: flex; justify-content: flex-end;align-items: center; gap: 10px;">
+                    <h5>Endereço</h5>
+                      <div class="form-group">
+                        <input name='municipio' type="text" placeholder="Municipio" required='false' oninput="this.className = ''">
+                      </div> 
+                      <div class="form-group">
+                        <input name='bairro' type="text" placeholder="Bairro" required='false' oninput="this.className = ''">
+                      </div> 
+                      <div class="form-group">
+                        <input name='zona' type="text" placeholder="Zona" required='false' oninput="this.className = ''">
+                      </div> 
+                      <div class="form-group">
+                        <input name='numero_casa' type="number" placeholder="Nº Casa" required='false' oninput="this.className = ''">
+                      </div> 
+                    </div>
+                  </div>
 
                    <div class="text-center">
                      <button type="submit" class="btn" style="margin-top: 10px; background-color: #174183; color: #fff;">Atualizar Dados</button>

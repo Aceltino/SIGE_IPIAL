@@ -12,7 +12,6 @@ use App\Models\{Pessoa, Endereco};
 class User extends Model implements Authenticatable,CanResetPassword
 {
 
-
     use HasFactory, AuthenticatableTrait;
 
     public function getEmailForPasswordReset()
@@ -27,9 +26,8 @@ class User extends Model implements Authenticatable,CanResetPassword
 
     protected $table = 'users';
     protected $primaryKey= 'usuario_id';
-
     protected $fillable = [
-        'usuario_id',
+
         'nome_usuario',
         'password',
         'email',
@@ -38,6 +36,7 @@ class User extends Model implements Authenticatable,CanResetPassword
         'imagem_usuario',
         'pessoa_id',
     ];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -56,15 +55,19 @@ class User extends Model implements Authenticatable,CanResetPassword
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+         
     ];
 
     public function pessoa()
     {
-        return $this->belongsTo(Pessoa::class, 'usuario_id');
+        return $this->belongsTo(Pessoa::class, 'pessoa_id', 'usuario_id');
     }
 
     public function belongPessoa()
     {
         return $this->belongsTo(Pessoa::class, 'pessoa_id');
+
     }
+
+
 }

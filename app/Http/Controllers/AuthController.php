@@ -4,18 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Traits\PessoaTrait;
 use App\Models\User;
-use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{
-    Auth,
-    Validator,
-    Password
+    Auth,Validator,Mail,DB,Hash,Session
 };
-use Laravel\Fortify\Fortify;
+use PhpParser\Node\Stmt\Return_;
 
 class AuthController extends Controller
 {
     use PessoaTrait;
+
+    //Metodo que retorna o formulario de login
     public function loginForm(){
         $user= User::all();
 
@@ -24,17 +24,15 @@ class AuthController extends Controller
         }
         return view('autenticacao.login');
     }
+
+    //Metodo que retorna o formulario de cadastro(registro)
     public function registrarForm(){
        return view('autenticacao.registrar');
     }
-    public function resetForm(){
-        return view('autenticacao.recuperar-senha');
-    } 
-    public function resetPasswordForm($token){
-        return view('autenticacao.nova_senha', ['token' => $token]);
-    }
+
+    //Metodo de Check de Login
     public function loginCheck(Request $request){
-       
+
         $credencias= [
             'nome_usuario'=>$request->username,
             'password'=>$request->password,
@@ -59,6 +57,8 @@ class AuthController extends Controller
 
         return redirect()->intended('/');
     }
+
+    //Metodo de Armazenamento dos usuario,pessoa e endereço
     public function store(Request $request){
 
         //Criando o nome do Usuario
@@ -157,48 +157,142 @@ class AuthController extends Controller
         $dadosUser=[
             'nome_usuario'=>$abreNome.count(User::all()).$abreSobreNome,
             'email'=>$request->email,
-            'password'=>bcrypt($request->password),
-            'num_telefone'=>$request->num_telefone,
-            'cargo_usuario'=>$request->cargo,
+            'password'=>bcrypt($request->num_telefone),
+            'cargo_usuario'=> $request->cargo,
+            'num_telefone' =>$request->num_telefone,
             'status_usuario'=>1,
-            'pessoa_id'=>$pessoa_id,
+            'pessoa_id'=> $pessoa_id
         ];
 
         $user=UserController::store($dadosUser);
         if(!$user){
-            $msg="Lamentamos! Dados não Cadastrado, tente este processo mais tarde...";
+            $msg = "Lamentamos! Dados não Cadastrado, tente este processo mais tarde...";
             return redirect()->back()->with("erroCadastroUser",$msg);
         }
-
-        //Depois deve se fazer mudanças basicas nem todo cadastro deve lhe reencaminhar no Login.
 
         $msg=$request->cargo." Cadastrado com Sucesso. Por favor entre com os seus dados";
         return view('autenticacao.login')->with('registrado',$msg);
     }
+
+    //Metodo que termina o inicio de sessão
     public function logout(){
         Auth::logout();
         Session::invalidate();
-        return redirect()->route("login");      
+        return redirect()->route("login");
     }
 
-    public function envioLinkEmail(Request $request){
 
+    //Metodo que retorna o formulario de recuperação de senha
+    public function resetForm(){
+        return view('autenticacao.recuperar-senha');
+    }
+
+    //Metodo que retorna o formulario de reposição de uma nova senha
+    public function resetPasswordForm($token){
+        return view('autenticacao.nova_senha', ['token' => $token]);
+    }
+
+    //Metodo que envia o link de recuperação de senha no email do usuario
+    public function envioLinkEmail(Request $request)
+    {
         $request->validate(['email' => 'required|email']);
 
-        $consutEmail= User::where('email',$request->email)->first();
-        if(!$consutEmail) {
-            $msg="Lamentamos! este email não esta atrelado a conta do usuario";
-            return redirect()->back()->with('erro_email_001',$msg);
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            $msg = "Lamentamos! Este e-mail não está vinculado a uma conta de usuário.";
+            return redirect()->back()->with('erro_email_001', $msg);
         }
-        $status = Password::sendResetLink(
-            $request->only('email')
-        );
-        
-        return $status === Password::RESET_LINK_SENT
-                    ? back()->with(['status' => __("Enviamos seu link de redefinição de senha por e-mail!")])
-                    : back()->withErrors(['email' => __($status)]);
+
+        // Gerar o token de redefinição de senha
+        $token = app('auth.password.broker')->createToken($user);
+
+        // Construir o URL de redefinição de senha
+        $resetUrl = url('autenticacao/reset', $token);
+
+        // Enviar o e-mail
+        Mail::send('Mail.resetPassword', ['resetUrl' => $resetUrl], function ($message) use ($user) {
+            $message->to($user->email);
+            $message->subject('SIGE-IPIAL (Redefinição de senha)');
+        });
+
+        return back()->with(['status' => 'Enviamos o link de redefinição de senha por e-mail!']);
 
     }
 
-   
-}   
+    //Metodo que processa redifinição de senha na db com base ao link
+    public function processarRedefinicaoPassword(Request $request)
+    {
+        switch($request->password) {
+            case $request->password_confirmation:
+                goto conti_salvar;
+            default:
+            $msg = "A confirmação da senha não correspondem.";
+            return redirect()->back()->with('erro_senha_001', $msg)->withInput();
+        }
+
+        conti_salvar:
+        $dados=[
+            'token'=>$request->token,
+            'email'=>$request->email,
+            'password'=>$request->password,
+        ];
+        $regras=[
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:6',
+        ];
+        $msg_erro=[
+            '*.required'=>'Este campo deve ser preenchido',
+            'email.email'=>'Este campo deve conter um email valido',
+            'password.min'=>'A senha deve conter no minimo 6 letras',
+        ];
+
+        $validator= Validator::make($dados,$regras,$msg_erro);
+
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            $msg = "Lamentamos! Este e-mail não está vinculado a uma conta de usuário.";
+            return redirect()->back()->with('erro_email_001', $msg)->withInput();
+        }
+
+        conti_expire:
+        $resetPassword = DB::table('password_resets')
+        ->where('email', $request->email)
+        ->first();
+
+        if (!$resetPassword) {
+            return redirect()->back()->with('erro_link_001','Link inválido de redefinição de senha.')->withInput();
+        }
+
+        $dataCarbon = Carbon::parse($resetPassword->created_at);
+        $dataAtual = Carbon::now();
+
+        // Verifique se a data armazenada já passou 5 minutos em relação à data atual
+        if($dataCarbon->diffInMinutes($dataAtual) >= 5) {
+            // Remover o token de redefinição de senha após 5min
+            DB::table('password_resets')->where('email', $request->email)->delete();
+            goto conti_expire;
+        }
+
+        $resetPassword=Hash::check($request->token, $resetPassword->token);
+        if (!$resetPassword) {
+            return back()->with('erro_link_001', 'Link inválido de redefinição de senha.')->withInput();
+        }
+
+        $user->password = bcrypt($request->password);
+        $user->save();
+
+        // Remover o token de redefinição de senha após a alteração
+        DB::table('password_resets')->where('email', $request->email)->delete();
+
+        return redirect()->route('login')->with('success_reset_001','Senha redefinida com sucesso! Faça login com sua nova senha.');
+
+    }
+
+}

@@ -101,11 +101,12 @@
 
       <div class="row">
         <div class="col">
-          <p><input type="date" value="{{ old('data_nascimento') }}" name="data_nascimento" oninput="this.className = ''"></p>
+          <input type="date" value="{{ old('data_nascimento') }}" id="datainput" name="data_nascimento" oninput="this.className = ''">
         </div>
 
         <div class="col">
-          <input type="text" class="form-control" readonly="true" value="00" disabled>
+          <input type="text" class="form-control" id="idadeinput" style="text-align: center;" readonly="true" value="Idade" disabled>
+          <div id="mensagem" style="color: red;"></div>
         </div>
         <div class="col">
           <input type="text" placeholder="Naturalidade" value="{{ old('naturalidade_cand') }}" name="naturalidade_cand" oninput="this.className = ''">
@@ -122,16 +123,25 @@
 
         <div class="col">
           <div class="form-group">
-            <input type="text" placeholder="Número do bilhete de identidade"  name="num_bi" oninput="this.className = ''">
+            <input type="text" style="margin-top: 15px;" placeholder="Número do Bilhete de identidade" id="bi_input" name="num_bi" oninput="this.className = ''">
+            <div id="mensagem1" style="color: red;"></div>
           </div>
         </div>
       </div>
 
       <div class="row">
-        <div id="clone1"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
-          <span style="color: #777;">+244</span>
-          <input type="text" value="" placeholder="Telefone" value="{{ old('num_tel') }}" name="num_tel" oninput="this.className = ''">
+        <div id="clone1"class="col-lg-3  gap-1 justify-content-center align-items-center">
+          <div>
+            <span style="color: #777;">Telefone (+244):</span>
+          </div>
+          <div class=" col aa" style="display: flex; flex-direction: column;">
+            <input type="text" value="" id="telefoneinput" placeholder="Telefone"  value="{{ old('num_tel') }}" name="num_tel" oninput="this.className = ''">
+            <div class="mensagem-erro" style="width: 100%;"></div>
+          </div>
+          
         </div>
+       
+       
       </div>
     </div>
 
@@ -143,7 +153,7 @@
 
       <div class="row">
         <div class="form-group col">
-          <select oninput="this.className = ''" class="form-select" value="{{ old('turno') }}" name="turno">
+          <select oninput="this.className = ''" class="form-select"  value="{{ old('turno') }}" name="turno">
             <option selected>Manhã</option>
             <option>Tarde</option>
             <option>Noite</option>
@@ -151,7 +161,7 @@
         </div>
 
         <div class="form-group col">
-          <input type="text" placeholder="Nº de estudante" value="{{ old('num_aluno') }}" name="num_aluno" oninput="this.className = ''">
+          <input id="numeroinput1" type="text" placeholder="Nº de estudante" value="{{ old('num_aluno') }}" name="num_aluno" oninput="this.className = ''">
         </div>
 
         <div class="form-group col">
@@ -162,7 +172,7 @@
 
       <div class="row">
         <div class="form-group col">
-          <input type="text" placeholder="Processo nº" value="{{ old('num_processo') }}" name="num_processo" oninput="this.className = ''">
+          <input id="numeroinput" type="text" placeholder="Processo nº" value="{{ old('num_processo') }}" name="num_processo" oninput="this.className = ''">
         </div>
 
         <div class="form-group col">
@@ -180,7 +190,7 @@
         @endphp
           @foreach($cursos as $curso)
           <div class="form-group">
-          <select oninput="this.className = ''" class="form-select" name="curso{{$a}}">
+          <select oninput="this.className = ''" class="form-select" id="select" name="curso{{$a}}">
           <option selected disabled>Escolha a {{$a}}ª opção</option>
           @foreach ($cursos as $Curso )
           <option value="{{$Curso['nome_curso']}}">{{$Curso['nome_curso']}}</option>
