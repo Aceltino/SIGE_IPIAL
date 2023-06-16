@@ -38,7 +38,6 @@ class AdmissaoController extends Controller
         $quantCursos = CursoController::quantidadeCurso();
         $cursoNome = CursoController::pegarNomeCurso();
         $classe = ClasseController::pegarIdClasse("10ª");
-        $vagaTurma = [];
 
         for ($i = 0; $i < $quantCursos; $i++) {
             $curso[$i] = CursoController::pegarIdCurso($cursoNome[$i]);
@@ -54,7 +53,6 @@ class AdmissaoController extends Controller
             }
         }
 
-        dd($vagaCurso);
         return $vagaCurso;
     }
 

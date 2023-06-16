@@ -31,7 +31,8 @@ class AlunoController extends Controller
             [
                 'aluno_id' => $aluno->aluno_id,
                 'curso' => $aluno->candidato->cursoAdmitido,
-                'data_nasc' => $aluno->candidato->pessoa->data_nascimento
+                'data_nasc' => $aluno->candidato->pessoa->data_nascimento,
+                'idCurso' => CursoController::pegarIdCurso($aluno->candidato->cursoAdmitido),
             ];
         }
         return $Alunos;
