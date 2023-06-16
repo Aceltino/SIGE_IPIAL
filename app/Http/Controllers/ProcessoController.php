@@ -11,6 +11,6 @@ class ProcessoController extends Controller
     public function index()
     {
         $candidatos = Candidato::where('status','=', 'Admitidos')->get();
-        return view('processo.processos',[' candidatos'=> $candidatos]);
+        return view('processo.processos',compact(['candidatos']));
     }
 }

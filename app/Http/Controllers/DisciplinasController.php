@@ -12,7 +12,7 @@ class DisciplinasController extends Controller
     public function index()
     {
        $disciplinas = Disciplina::all();
-       $cursos = Curso::all(['nome_curso']);
+       $cursos = Curso::all(['curso_id', 'nome_curso']);
         return view('disciplina.disciplinas', ['disciplinas'=>$disciplinas, 'cursos'=>$cursos]);
     }
     public function create()
