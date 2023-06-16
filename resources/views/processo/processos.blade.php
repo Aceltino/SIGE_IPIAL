@@ -44,19 +44,20 @@
           </tr>
       </thead>
       <tbody>
+      @foreach($candidatos as $candidato)
           <tr  style=" text-align: center;">
-          <th scope="row">0000000KJ000098</th>
-          <td>Fernando Exemplo</td>
-          <td>3944040</td>
-          <td>I13AT</td>
-          <td>Informática</td>
-          <td>Manhã</td>
+          <th scope="row">{{ $candidato->num_bi }}</th>
+          <td>{{ $candidato->nome_completo }}</td>
+          <td>{{ $candidato->num_processo }}</td>
+          <td>{{ $candidato->nome_turma }}</td>
+          <td>{{ $candidato->nome_curso }}</td>
+          <td>{{ $candidato->nome_turno }}</td>
           <td>
           <a href="#" class="btn btn-cor-sg-a" data-bs-toggle="modal" data-bs-target="#ExtralargeModal">Ver Processo</a>
           <i class="bi bi-trash-fill"></i>
           </td>
           </tr>
-          
+        @endforeach  
           <tr  style=" text-align: center;">
           <th scope="row">0000000KJ000098</th>
           <td>Fernando Exemplo</td>

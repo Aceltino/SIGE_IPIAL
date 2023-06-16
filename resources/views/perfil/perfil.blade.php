@@ -24,8 +24,8 @@
 
          <div class="card">
            <div class="card-body perfil-card pt-4 d-flex flex-column align-items-center">
-
-             <img src={{URL::asset("img/foto-perfil.jpg")}} alt="perfil" class="l">
+            
+             <img src={{URL::asset(Auth::user()->imagem_usuario)}} alt="perfil" class="l">
              <h2>{{ Auth::user()->belongPessoa->nome_completo }}</h2>
              <h3>{{ Auth::user()->cargo_usuario }}</h3>
            </div>
@@ -38,6 +38,43 @@
 
          <div class="card">
            <div class="card-body pt-3">
+
+            @if(session('success'))
+              <div class="alert alert-success">
+                  {{session('success')}}
+              </div>
+            @endif
+            @if(session('success_imagem_001'))
+            <div class="alert alert-success">
+                {{session('success_imagem_001')}}
+              </div>
+            @endif
+            @if(session('erro_Update_001'))
+              <div class="alert alert-danger">
+                  {{session('erro_Update_001')}}
+              </div>
+            @endif
+            @if(session('erro_Update_002'))
+              <div class="alert alert-danger">
+                  {{session('erro_Update_002')}}
+              </div>
+            @endif
+            @if(session('erro_imagem_001'))
+            <div class="alert alert-danger">
+                {{session('erro_imagem_001')}}
+              </div>
+            @endif
+            @if(session('erro_imagem_002'))
+            <div class="alert alert-danger">
+                {{session('erro_imagem_002')}}
+              </div>
+            @endif
+            @if(session('erro_imagem_003'))
+            <div class="alert alert-danger">
+                {{session('erro_imagem_003')}}
+              </div>
+            @endif
+            
              <!-- Bordered Tabs -->
              <ul class="nav nav-tabs nav-tabs-bordered">
 
@@ -115,76 +152,98 @@
                         echo "<strong>Número da Casa:</strong> ".$numero_casa= $endereco->numero_casa;
                       }  
                     @endphp
-                      {{-- {{ $municipio=null ? " " : $municipio}},{{$bairro=""}},{{$zona=""}},{{$numero_casa=""}} --}}
+                      
                     </div> 
                  </div>
 
                </div>
 
                <div class="tab-pane fade perfil-edit pt-3" id="edit-perfil">
-                 
+                
+
                 <!-- Form Editar perfil -->
-                <form>
+                <form action={{ route('perfil-update') }} method="post" enctype="multipart/form-data">
+                  @csrf
+                  @method('PUT')
 
                  <div class="row mb-3">
                    <label for="foto-perfil" class="col-md-4 col-lg-4 col-form-label">Foto</label>
                    <div class="col-md-8 col-lg-8">
                      <div class="pt-2">
                         <label for="foto-perf"><span class="btn btn-warning btn-sm" title="Atualizar foto de perfil"><i class="bi bi-upload"></i></span></label>
-                         <input type="file" id="foto-perf" hidden>
-                        
+                         <input type="file" id="foto-perf" value="{{old('imagem_update')}}" name="imagem_update">
                       </div>
                     </div>
                   </div>
-                  
+                  @error('imagem_update')
+                    <div class="alert alert-danger">{{$message}}</div>
+                  @enderror
 
                    <div class="row mb-3">
                      <label for="nomeComp" class="col-md-4 col-lg-4 col-form-label">Nome Completo</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="nomeComp" value="{{ Auth::user()->belongPessoa->nome_completo }}">
+                       <input type="text" class="form-control" id="nomeComp" name="nome_completo_update" value="{{ Auth::user()->belongPessoa->nome_completo }}">
                      </div>
                    </div>
-
+                    @error('nome_completo_update')
+                      <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
 
                    <div class="row mb-3">
                      <label for="genero" class="col-md-4 col-lg- col-form-label">Gênero</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="genero" value="{{ Auth::user()->belongPessoa->genero }}">
+                       <input type="text" class="form-control" id="genero" name="genero_update" value="{{ Auth::user()->belongPessoa->genero }}">
                      </div>
                    </div>
+                   @error('genero_update')
+                    <div class="alert alert-danger">{{$message}}</div>
+                  @enderror
 
                    <div class="row mb-3">
                      <label for="dtNascimento" class="col-md-4 col-lg-4 col-form-label">Data de nascimento</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="dtNascimento" value="{{ Auth::user()->belongPessoa->data_nascimento }}">
+                       <input type="text" class="form-control" id="dtNascimento" name="data_nascimento_update" value="{{ Auth::user()->belongPessoa->data_nascimento }}">
                      </div>
                    </div>
+                   @error('data_nascimento_update')
+                    <div class="alert alert-danger">{{$message}}</div>
+                   @enderror
 
                    <div class="row mb-3">
                      <label for="nBI" class="col-md-4 col-lg-4 col-form-label">Número do BI</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="nBI" value="{{ Auth::user()->belongPessoa->num_bi }}">
+                       <input type="text" class="form-control" id="nBI" name="num_bi_update" value="{{ Auth::user()->belongPessoa->num_bi }}">
                      </div>
                    </div>
+                   @error('num_bi_update')
+                    <div class="alert alert-danger">{{$message}}</div>
+                   @enderror
 
                    <div class="row mb-3">
                      <label for="Email" class="col-md-4 col-lg-4 col-form-label">E-mail</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="Email" value="{{ Auth::user()->email }}">
+                       <input type="text" class="form-control" id="Email" name="email_update" value="{{ Auth::user()->email }}">
                      </div>
                    </div>
+                   @error('email_update')
+                    <div class="alert alert-danger">{{$message}}</div>  
+                   @enderror
+                    
 
                    <div class="row mb-3">
                      <label for="Telefone1" class="col-md-4 col-lg-4 col-form-label">Número telefone</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="Telefone1" value="{{ Auth::user()->belongPessoa->telefone }}090">
+                       <input type="text" class="form-control" id="Telefone1" name="telefone_update" value="{{ Auth::user()->belongPessoa->telefone }}">
                      </div>
                    </div>
+                   @error('telefone_update')
+                    <div class="alert alert-danger">{{$message}}</div>  
+                   @enderror
 
                    <div class="row mb-3">
                      <label for="Cargo" class="col-md-4 col-lg-4 col-form-label">Cargo</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="Cargo" value="{{ Auth::user()->cargo_usuario }}">
+                       <input type="text" class="form-control" id="Cargo" disabled value="{{ Auth::user()->cargo_usuario }}">
                      </div>
                    </div>
 
@@ -193,17 +252,33 @@
                      <div class="col-md-8 col-lg-8">
                         <div class="row">
                           <div class="col-lg-3">
-                            <input type="text" class="form-control" name="municipio" placeholder="Municipio">
+                            <input type="text" class="form-control" name="municipio_update" value="{{ $municipio= $endereco->municipio }}" placeholder="Municipio">
                           </div>
+                          @error('municipio_update')
+                            <div class="alert alert-danger">{{$message}}</div>  
+                          @enderror
+
                           <div class="col-lg-3">
-                            <input type="text" class="form-control" name="bairro" placeholder="Bairro">
+                            <input type="text" class="form-control" name="bairro_update" value="{{$municipio= $endereco->bairro }}" placeholder="Bairro">
                           </div>
+                          @error('bairro_update')
+                            <div class="alert alert-danger">{{$message}}</div>  
+                          @enderror
+
                           <div class="col-lg-3">
-                            <input type="text" class="form-control" name="zona" placeholder="Zona">
+                            <input type="text" class="form-control" name="zona_update" value="{{ $municipio= $endereco->zona }}" placeholder="Zona">
                           </div>
+                          @error('zona_update')
+                            <div class="alert alert-danger">{{$message}}</div>  
+                          @enderror
+
                           <div class="col-lg-3">                          
-                            <input type="number" class="form-control"  name="num_casa" placeholder="Casa Nº">
+                            <input type="number" class="form-control" name="num_casa_update" value="{{ $numero_casa= $endereco->numero_casa }}" placeholder="Casa Nº">
                           </div>
+                          @error('num_casa_update')
+                            <div class="alert alert-danger">{{$message}}</div>  
+                          @enderror
+
                         </div>
                      </div>
                    </div>

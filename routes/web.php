@@ -16,6 +16,10 @@ use App\Http\Controllers\{
     AnoLectivoController,
     MiniPautaController,
     PautaController,
+    PerfilUserController,
+    DisciplinasController,
+    ProcessosController,
+
 };
 use Illuminate\Support\Facades\Route;
 use GuzzleHttp\Client;
@@ -51,8 +55,8 @@ Route::prefix('autenticacao')->group(function(){
     Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck')->middleware('guest');
 
     //Rota de Cadastro
-    Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar')->middleware('checkcargo');
-    Route::post('registrar', [AuthController::class,'store'])->name('registrar')->middleware(['checkcargo']);
+    Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar')->middleware(['guest','checkcargo']);
+    Route::post('registrar', [AuthController::class,'store'])->name('registrar')->middleware('guest');
 
     //Rota para envio de email para redifinição de senha
     Route::get('reset', [AuthController::class,'resetForm'])->name('recuperar-senha')->middleware('guest');
@@ -63,6 +67,17 @@ Route::prefix('autenticacao')->group(function(){
     Route::post('reset',[AuthController::class, 'processarRedefinicaoPassword'])->name('password-update')->middleware('guest');
 
 });
+
+/*****************************
+ ** Rota do perfil de usuario **
+ ******************************/
+
+ Route::prefix('Perfil')->group(function(){
+
+    Route::get('/',[PerfilUserController::class,'index'])->name('perfil')->middleware(['auth']);
+    Route::put('update',[PerfilUserController::class,'update'])->name('perfil-update')->middleware(['auth']);
+
+ });
 
 
 /******************************************
@@ -185,14 +200,12 @@ Route::prefix('professor')->middleware(['auth','checkcargo'])->group(function(){
     Route::get('horario/{id}', [ProfessorController::class, 'horarioProf'])->name('horarioProfessor');
     Route::get('avaliacao/{id}', [ProfessorController::class, 'avaliacao'])->name('avaliacao');
 });
-
 /**<!--Fim Rotas de Professor--> */
 
 
 /******************************************
  * Rotas das turmas
  */
-
 Route::prefix('turma')->group(function(){
 
     /* Criar turma*/
@@ -252,7 +265,7 @@ Route::prefix('curso')->middleware(['auth'])->group(function(){
 /******************************************
  * Rotas do ano-lectivo
  */
-Route::prefix('ano-lectivo')->middleware(['auth','checkcargo'])->group(function(){
+Route::prefix('ano-lectivo')->middleware(['auth'])->group(function(){
 
     Route::get('criar-ano-letivo', [AnoLectivoController::class, 'indexCadastroAnoLectivo'])->name('cadastro.ano.lectivo');
     Route::post('criar-ano-letivo/cadastrar', [AnoLectivoController::class, 'store'])->name('cadastrar.ano.lectivo');
@@ -268,13 +281,6 @@ Route::prefix('ano-lectivo')->middleware(['auth','checkcargo'])->group(function(
 
 /**<!--Fim Rotas ano lectivo--> */
 
-/**
- * Rota do perfil de usuario
- */
-
-Route::get('perfil', function () {
-    return view('perfil/perfil');
-})->name('perfil')->middleware(['auth']);
 
 /******************************************
  * Rotas da ficha biografica-lectivo
@@ -293,9 +299,7 @@ Route::prefix('ficha-biog')->group(function(){
  * Rotas do processo do Aluno
  */
 Route::prefix('processo')->group(function(){
-    Route::get('processos', function () {
-        return view('processo/processos');
-    });
+    Route::get('processos',[ProcessosController::class,'index'])->name('consultar.processo');
 });
 /******************************************
  * Rotas de pauta
@@ -320,9 +324,9 @@ Route::prefix('comunicado')->middleware(['auth'])->group(function(){
     Route::get('consultar-comunicado', [comunicadosController::class, 'index'])->name('comunicado.index');
     Route::get('criar-comunicado', [comunicadosController::class, 'create'])->name('comunicado.create');
     Route::post('criar-comunicado', [comunicadosController::class, 'store'])->name('comunicado.store');
-    Route::get('/{comunicado_id}/editar-comunicado', [comunicadosController::class, 'edit'])->name('comunicado.edit');
-    Route::put('/{comunicado_id}', [comunicadosController::class, 'update'])->where('comunicado_id', '[0-9]+')->name('comunicado.update');
-
+    Route::get('editar-comunicado/{comunicado_id}', [comunicadosController::class, 'edit'])->where('comunicado_id', '[0-9]+')->name('comunicado.edit');
+    Route::put('{comunicado_id}', [comunicadosController::class, 'update'])->where('comunicado_id', '[0-9]+')->name('comunicado.update');
+    Route::delete('{comunicado_id}', [comunicadosController::class, 'destroy'])->where('comunicado_id', '[0-9]+')->name('comunicado.destroy');
 });
 
 /******************************************
@@ -406,21 +410,18 @@ Route::get('/horario-turma', function () {
 Route::get('/editar-horario', function () {
     return view('horario/editar-horario');
 });
+
+
 /******************************************
  * Rotas disciplina
 */
 
 /*Cadastrar disciplina*/
-Route::get('/regi-disciplina', function () {
-    return view('disciplina/regi-disciplina');
-});
-
-/*Ver as disciplinas*/
-Route::get('/disciplinas', function () {
-    return view('disciplina/disciplinas');
-});
-
-/*Editar disciplina*/
-Route::get('/edit-disciplina', function () {
-    return view('disciplina/edit-disciplina');
+Route::prefix('disciplina')->group(function(){
+        Route::get('disciplinas', [DisciplinasController::class,'index'])->name('consultar.disciplina');
+        Route::get('regi-disciplina',[DisciplinasController::class, 'create'])->name('criar.disciplina');
+        Route::post('regi-disciplina', [DisciplinasController::class, 'store'])->name('disciplina.store');
+        Route::get('edit-disciplina', [DisciplinasController::class, 'edit'])->name('disciplina.edit');
+        Route::put('edit-disciplina/{disciplina_id}', [DisciplinasController::class, 'update'])->where('disciplina_id', '[0-9]+')->name('disciplina.update');
+        Route::delete('{disciplina_id}', [DisciplinasController::class, 'destroy'])->where('disciplina_id', '[0-9]+')->name('disciplina.delete');
 });

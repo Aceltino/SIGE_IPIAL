@@ -20,26 +20,31 @@
   <!-- /  Inicio da tabela de inscritos -->
   <table class="table table-striped table-custom" id="matricula-tab">
     <thead>
-    @foreach ($comunicados as $comunicado)
-       <tr style=" text-align: center;">
-          <th scope="col">{{ $comunicado->comunicado_id }}</th>
-          <th scope="col">{{ $comunicado->titulo_com }}</th>
-          <th scope="col">{{ $comunicado->conteudo_com  }}</th>
-      </tr>
-     @endforeach
-       </thead>
-    <tbody>
       <tr style=" text-align: center;">
+        <th scope="col">Titulo do comunicado</th>
+        <th scope="col">Conteudo do comunicado</th>
+        <th scope="col"></th>
+      </tr> 
+    </thead>
+    <tbody>
+      @foreach ($comunicados as $com)
+        <tr style=" text-align: center;">
+          <th scope="row">{{ $com->titulo_com }}</th>
+          <td>{{ $com->conteudo_com }}</td>
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-          <a href="{{ route('comunicado.edit') }}"><i class="bi bi-pencil"></i></a>
-          <i class="bi bi-trash-fill"></i>
-          <i class="bi bi-check-square-fill"></i>
-        </td>
-      </tr>
-
-
+            <a href="{{ route('comunicado.edit', ['comunicado_id' => $com->comunicado_id]) }}"><i class="bi bi-pencil"></i></a>
+            <form action="{{ route('comunicado.destroy', ['comunicado_id' => $com->comunicado_id] }}" method="POST">
+            @csrf
+            @method('destroy')
+          <button type="submit" class="bi bi-trash-fill"></button>
+          </form>
+            <i class="bi bi-check-square-fill"></i>
+          </td>
+        </tr>
+      @endforeach
     </tbody>
   </table>
+  
   <!-- Termina a tabela de matriculas -->
 
       <!--Inicio da modal ver inscrito-->

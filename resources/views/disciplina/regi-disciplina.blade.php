@@ -5,12 +5,13 @@
 @section('conteudo')
 <main id="main" class="main" >
 
-    <form id="regFormh" action="" class="formulario-layout">
+<form id="regFormh" action="{{ route('disciplina.store') }}" class="formulario-layout" method ="POST">
+      @csrf
         <div style="text-align:center;margin-top:10px;">
         <span class="step"></span>
         </div>
 
-        <div class="tab">     
+        <div class="tab">
 
             <div class="row" >
                 <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
@@ -23,51 +24,46 @@
             </div>
         <div class="row">
            <div class="col">
-                <input type="text" style=" text-align: center;" placeholder="Nome da disciplina" name="" oninput="this.className = ''">
+                <input type="text" style=" text-align: center;" placeholder="Nome da disciplina" name="nome_disciplina" oninput="this.className = ''">
             </div>
            <div class="col">
-                <input type="text" style=" text-align: center;" placeholder="Sigla" name=""  oninput="this.className = ''">
+                <input type="text" style=" text-align: center;" placeholder="Sigla" name="sigla"  oninput="this.className = ''">
             </div>
         </div> <br>
 
-           
               <div class="form-group">
-                <select oninput="this.className = ''" class="form-select">
+                <select oninput="this.className = ''" class="form-select" name="componente">
                   <option selected disabled> Componetes</option>
                   <option  value="c.T">Técnicas </option>
                   <option value="I.E"> Socio-culturais</option>
                   <option value="I"> Cientificas</option>
                 </select>
               </div>
+              @php
+                  $j=1;
+             @endphp
               <div class="row">
                 <div class="col">
+                  @foreach($cursos as $curso)
                   <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                    <label class="form-check-label" for="flexSwitchCheckDefault">Tecnico de Informática</label>
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="curso{{$j}}">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">{{$curso['nome_curso']}}</label>
                   </div>
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
-                    <label class="form-check-label" for="flexSwitchCheckChecked">Instalaçoes electricas</label>
-                  </div>
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDisabled" >
-                    <label class="form-check-label" for="flexSwitchCheckDisabled">Desenho tecnico</label>
-                  </div>
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDisabled" >
-                    <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Electronica e automaçao</label>
-                  </div>
-                 </div>
-                <div class="col">
+                  @php
+                     $j++;
+                 @endphp
+                  @endforeach
+
+                            <div class="col">
                      <input type="time" style=" text-align: center;" name="tempo_prova"  oninput="this.className = ''">
                  </div>
              </div>
-              
+
             <div style="text-align:center;margin-top:40px;">
                 <div>
                     <button type="button" class="btn btn-success">Cadastrar</button>
                 </div>
-            </div>    
+            </div>
         </div>
     </form>
 </main>

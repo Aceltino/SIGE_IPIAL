@@ -43,28 +43,42 @@
   <!-- /  Inicio da tabela de disciplina -->
   <table class="table table-striped display" style="margin-top: 10px;" id="Inscricoes-tab">
     <thead>
-      <tr style=" text-align: center;">
+    <tr style=" text-align: center;">
         <th scope="col">Nome da disciplina</th>
-        <th scope="col">Componente</th>
+        <th scope="col">Sigla</th>
+        <th scope="col">Compoente</th>
+        <th scope="col">Tempo de Prova</th>
         <th scope="col">Curso</th>
         <th scope="col"></th>
-     
+
       </tr>
     </thead>
     <tbody>
+    @foreach($disciplinas as $disciplina)
       <tr style=" text-align: center;">
-        <th scope="row">Empreendedorismo</th>
-        <td>Socio-culturais</td>
-        <td>Todos os curos</td>
-      
-     
+        <td>{{ $disciplina->nome_disciplina }}</td>
+        <td>{{ $disciplina->sigla		}}</td>
+        <td>{{ $disciplina->componente	}}</td>
+        <td>{{ $disciplina->tempo_prov }}</td>
+        @foreach($cursos as $curso)
+        @if($cursos == null)
+        <td>Todos os cursos</td>
+        @else
+        <td>{{ $curso->nome_curso }}</td>
+        @endif
+        @endforeach
         <td>
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-          <a href="/edit-disciplina"><i class="bi bi-pencil"></i></a>
-          <i class="bi bi-trash-fill"></i>
-        
+          <a href="{{ route('disciplina.edit', ['disciplina_id',$disciplinas->disciplina_id])}}"><i class="bi bi-pencil"></i></a>
+
+          <form action="{{ route('disciplina.delete', ['disciplina_id',$disciplinas->disciplina_id]) }}" method="POST">
+            @csrf
+            @method('destroy')
+          <button type="submit" class="bi bi-trash-fill"></button>
+          </form>
         </td>
       </tr>
+      @endforeach
       <tr style=" text-align: center;">
         <th scope="row">Programação</th>
         <td>Técnicas</td>
