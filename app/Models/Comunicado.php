@@ -14,9 +14,9 @@ class Comunicado extends Model
        'titulo_com',
        'conteudo_com',
     ];
-    public function pessoa()
+    public function  User()
     {
-        return $this->belongsTo(Pessoa::class,'pessoa_id');
+        return $this->belongsTo(Pessoa::class);
     }
     public function ano_lectivo()
     {
