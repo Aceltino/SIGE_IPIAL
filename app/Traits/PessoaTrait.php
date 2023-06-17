@@ -3,7 +3,11 @@
 namespace App\Traits;
 
 use App\Http\Controllers\EnderecoController;
-use App\Models\Pessoa;
+use App\Models\{
+    Candidato, Endereco, Pessoa,User
+};
+use Illuminate\Support\Facades\Auth;
+
 
 trait PessoaTrait
 {
@@ -16,6 +20,73 @@ trait PessoaTrait
         }
         $pessoaCriada = Pessoa::create($dadosPessoa);
         return $pessoaCriada->pessoa_id;
+    }
+
+   
+    public static function updatePessoa_ACTUALIZADO($dadosPessoa,$dadosEndereco=null)
+    {   
+
+        $pessoas= Pessoa::all();
+        $pessoa=  Pessoa::find(session('pessoa_id'));
+        $contador= 0;
+        $id=$pessoa->endereco_id;
+
+        // $dadosEndereco=null;
+        // // dd($dadosEndereco);
+
+        $pessoa->nome_completo= $dadosPessoa['nome_completo'];
+        $pessoa->num_bi= $dadosPessoa['num_bi'];
+        $pessoa->data_nascimento= $dadosPessoa['data_nascimento'];
+        $pessoa->genero= $dadosPessoa['genero'];
+        $pessoa->telefone= $dadosPessoa['telefone'];
+
+        if(!$pessoa->save()){
+            $statePessoa= false;
+        }else{
+            $statePessoa=true;
+        }
+
+        if(!$dadosEndereco==null){ 
+
+            //Neste caso atrela o endereço existente ao usuario, para evitar redundancia
+            $consultEndereco= EnderecoController::consultEndereco($dadosEndereco);
+            if(!$consultEndereco==null){
+                $pessoa->endereco_id= $consultEndereco['endereco_id'];
+                if(!$pessoa->save()){
+                    return false;
+                }
+                return true;
+            }
+      
+            foreach($pessoas as $pessoa){
+                if($pessoa->endereco_id === session('endereco_id')){
+                    $contador++;
+                }
+            }
+
+            if($contador > 1){
+
+                //Neste caso cria-se novo endereço
+                $endereco_id_update=EnderecoController::store($dadosEndereco);
+                $pessoa->endereco_id= $endereco_id_update;
+
+                if(!$pessoa->save()){
+                    return false;
+                }
+                return true;
+
+            }else{
+
+            //Neste caso actualiza-se o endereço existente
+            if(!EnderecoController::update($id ,$dadosEndereco)){
+                    return false;
+            }
+            return true;
+
+            }
+        }
+        return $statePessoa;
+
     }
 
     public static function updatePessoa($dadosPessoa, $dadosEndereco = null)

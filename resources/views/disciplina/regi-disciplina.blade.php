@@ -47,7 +47,10 @@
                   @foreach($cursos as $curso)
                   <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="curso{{$j}}">
+
+                    <label class="form-check-label" for="flexSwitchCheckDefault">{{$curso['nome_curso']}}</label>
                     <label class="form-check-label" for="flexSwitchCheckDefault" value="{{$curso['nome_curso']}}">{{$curso['nome_curso']}}</label>
+
                   </div>
                   @php
                      $j++;
