@@ -43,15 +43,7 @@ class DisciplinasController extends Controller
     }
     public function update(Request $request, $disciplina_id)
     {
-<<<<<<< HEAD
-        // $data = [
-        //     ''
-        //     ''
-        //     ''
-        //     ''
-        // ];
-        // return redirect()->route('disciplina.index');
-=======
+
         $dado = [
             'nome_disciplina' =>$request->nome_disciplina,
             'componente' =>$request->componente,
@@ -60,8 +52,6 @@ class DisciplinasController extends Controller
         ];
         Disciplina::where('disciplina_id',$disciplina_id)->update($dado);
         return redirect()->route('disciplina.index');
->>>>>>> 1d002a34be5bf26a32fb28e3e6cd9084bb28d107
-
     }
 
 

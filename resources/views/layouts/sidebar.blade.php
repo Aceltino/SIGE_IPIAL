@@ -3,7 +3,7 @@
 
 {{-- Administrador ou Subdirector Pedagogico ----- / Menu do Administrador ou Subdirector Pedagogico --}}
 @if(Auth::user()->cargo_usuario == "Administrador" || Auth::user()->cargo_usuario == "Subdirector")
-  
+
   <ul class="sidebar-nav" id="sidebar-nav">
 
     <!-- /	Nav Pagina inicial-->
@@ -62,7 +62,7 @@
         <li>
           <a href={{route('inscricao-view')}}>
             <i class="bi bi-circle"></i><span>Inscrever candidato</span>
-          </a>
+          </a> 
         </li>
         <li>
           <a href={{route('inscricao-index')}}>
@@ -336,7 +336,7 @@
 
   {{-- DIRETOR GERAL ----- / Menu do Diretor Geral --}}
   @elseif(Auth::user()->cargo_usuario == "Director")
-   
+
     <ul class="sidebar-nav" id="sidebar-nav">
       <!-- /  Nav Pagina inicial-->
       <li class="nav-item">
@@ -374,7 +374,7 @@
         </ul>
       </li>
 
-      <!-- /  Nav Professor-->      
+      <!-- /  Nav Professor-->
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#professor-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-person-lines-fill"></i><span>Professor</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -532,7 +532,7 @@
           </li>
         </ul>
       </li>
-    
+
       <!-- /  Nav Perfil-->
       <li class="nav-item">
         <a class="nav-link collapsed" href="perfil">
@@ -540,8 +540,8 @@
           <span>Perfil</span>
         </a>
       </li>
-    </ul><!--Fim do menu do Diretor Geral-->  
-  
+    </ul><!--Fim do menu do Diretor Geral-->
+
   {{-- SECRETARIA PEDAGÓGICA -----   / Menu de secretrio Pedagógico --}}
   @elseif(Auth::user()->cargo_usuario == "Secretaria")
     <ul class="sidebar-nav" id="sidebar-nav">
@@ -661,7 +661,7 @@
         </a>
       </li>
     </ul><!--Fim do menu do Secretario Pedagogico-->
-  
+
   {{-- COORDENADOR -----  /  Menu de Coordenador de curso --}}
   @elseif(Auth::user()->cargo_usuario == "Coordenacao")
     <ul class="sidebar-nav" id="sidebar-nav">
@@ -671,7 +671,7 @@
           <i class="bi bi-ui-radios"></i>
           <span>Página inicial</span>
         </a>
-      </li>      
+      </li>
 
       <!-- /  Nav Matricula-->
       <li class="nav-item">
@@ -730,7 +730,7 @@
         </ul>
       </li>
 
-      <!-- /  Nav Professor-->      
+      <!-- /  Nav Professor-->
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#professor-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-person-lines-fill"></i><span>Professor</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -820,7 +820,7 @@
           <i class="bi bi-person"></i>
           <span>Perfil</span>
         </a>
-      </li>      
+      </li>
     </ul><!--Fim do menu do Coordenador de curso-->
 
   {{-- PROFESSOR ----- / Menu de Professor --}}
@@ -953,10 +953,10 @@
           <span>Perfil</span>
         </a>
       </li>
-    </ul><!--Fim do menu do Professor--> 
-    
+    </ul><!--Fim do menu do Professor-->
+
   {{-- ALUNO ----- / Menu de Aluno --}}
-  @elseif(Auth::user()->cargo_usuario == "Aluno") 
+  @elseif(Auth::user()->cargo_usuario == "Aluno")
     <ul class="sidebar-nav" id="sidebar-nav">
       <!-- /  Nav Pagina inicial-->
       <li class="nav-item">
@@ -1043,7 +1043,7 @@
           <span>Perfil</span>
         </a>
       </li>
-    </ul><!--Fim do menu do Aluno-->  
+    </ul><!--Fim do menu do Aluno-->
 
   {{-- Usuario - Inscrição ----- / Menu de Usuario - Inscrição --}}
   @elseif(Auth::user()->cargo_usuario == "insc_user")
@@ -1098,7 +1098,7 @@
           <span>Página inicial</span>
         </a>
       </li>
-      
+
       <!-- /	Nav Matricula-->
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#matricula-nav" data-bs-toggle="collapse" href="#">
@@ -1128,7 +1128,7 @@
       </li>
     </ul><!-- Fim do menu de Usuario - Matricula-->
   @else
-    
+
   @endif
 
   </aside><!-- Termina Sidebar-->
