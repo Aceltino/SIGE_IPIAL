@@ -155,12 +155,14 @@ class InscricaoController extends Controller
         return redirect()->back()->with("ErroCurso",$msg);
     }
 
+    $candidato = Candidato::find($request['id']);
+    $pessoa_id = $candidato->pessoa_id;
     $dadosPessoa = [
         'nome_completo'=> $request['nome_completo'],
         'data_nascimento'=> $request['data_nascimento'],
         'genero'=> $request['genero'],
         'telefone' => $request['num_tel'],
-        'id' => $request['id']
+        'pessoa_id' => $pessoa_id
     ];
 
     $idPessoa = $this->updatePessoa($dadosPessoa);
@@ -170,17 +172,20 @@ class InscricaoController extends Controller
         return redirect()->back()->with("ErroPessoa",$msg);
     }
 
+    $escola_id = $candidato->escola_proveniencia_id;
     $dadosEscola = [
         'nome_escola'=>$request['nome_escola'],
         'turno'=>$request['turno'],
         'num_aluno'=>$request['num_aluno'],
+        'ultimo_anoLectivo'=>$request['ultimo_anoLectivo'],
         'turma_aluno' =>$request['turma_aluno'],
         'ling_port'   => $request['LinguaP'],
         'matematica'  => $request['Matematic'],
         'fisica' =>  $request['Fisic'],
         'quimica' => $request['Quimic'],
-        'id' => $request['id']
+        'escola_proveniencia_id' => $escola_id
     ];
+
     $idEscola = EscolaController::updateEscola($dadosEscola);
     if(!$idEscola)
     {
@@ -188,20 +193,10 @@ class InscricaoController extends Controller
         return redirect()->back()->with("ErroCadastro",$msg);
     }
 
-    $idAnolectivo = AnoLectivoController::pegarIdAnoLectivo();
-    if(!$idAnolectivo)
-    {
-        $msg="Lamentamos! Dados não cadastrado, tente este processo mais tarde...";
-        return redirect()->back()->with("ErroCadastro",$msg);
-    }
-
     $dadosCandidato=[
         'nome_pai_cand'=>$request['nome_pai_cand'],
         'nome_mae_cand'=>$request['nome_mae_cand'],
-        'pessoa_id' => $idPessoa,
-        'ano_lectivo_id' => $idAnolectivo,
-        'escola_proveniencia_id' => $idEscola,
-        'id' => $request['id']
+        'candidato_id' => $request['id']
     ];
     $candidato = CandidatoController::updateCandidato($dadosCandidato);
     if(!$candidato)

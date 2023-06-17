@@ -32,9 +32,14 @@
           <th scope="row">{{ $com->titulo_com }}</th>
           <td>{{ $com->conteudo_com }}</td>
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-            <a href=" {{ route('comunicado.edit', ['comunicado_id' => $comunicados->comunicado_id]) }}"><i class="bi bi-pencil"></i></a>
+
+ 
 
             <form method="POST" action=" {{ route('comunicado.destroy', ['comunicado_id' => $comunicados->comunicado_id] }}" >
+
+            <a href="{{ route('comunicado.edit', ['comunicado_id' => $com->comunicado_id]) }}"><i class="bi bi-pencil"></i></a>
+            <form action="{{ route('comunicado.destroy', ['comunicado_id' => $com->comunicado_id] }}" method="POST">
+
             @csrf
             @method('destroy')
           <button type="submit" class="bi bi-trash-fill"></button>
@@ -47,7 +52,6 @@
   </table>
   
   <!-- Termina a tabela de matriculas -->
-
       <!--Inicio da modal ver inscrito-->
       <div class="modal fade" id="ExtralargeModal" tabindex="-1" data-bs-backdrop="false">
         <div class="modal-dialog modal-xl">
@@ -86,9 +90,9 @@
                       <div class="footer-modal" style="text-align: center;">
 
                         <div class="jnt">
-                            <a href="{{ route('comunicado.index') }}" class="btn" style="background-color: #070b17; color: #fff;">Retrocer aos Comunicados</a>
+                            <a href="#" class="btn" style="background-color: #070b17; color: #fff;">Retrocer aos Comunicados</a>
 
-                            <a href="{{ route('comunicado.edit', ['id'=>$comunicado->comunicado_id]) }}" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
+                            <a href="#" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
                         </div>
                       </div>
 
@@ -98,9 +102,8 @@
           </div>
         </div>
       </div>
-
       <!--  / Termina a modal ver inscrito-->
-
 </main>
 @endsection
-@for
+<!-- o meu objectivo é ver se o codigo do controller esta a funcionar na tua maquina, se esta a pegar o id do usuario logado e o ano lectivo -->
+<!--  -->

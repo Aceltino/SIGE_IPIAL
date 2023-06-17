@@ -23,17 +23,8 @@ class InscricaoRequest extends FormRequest
      */
     public function rules()
     {
-        // dd($this->request->all());
-        // dd($this->request->get('curso'. 1));
-
         $rules = [];
 
-
-
-        // for()
-        // {
-
-        // }
         $rules = [
             //Formulario candidato
             'nome_pai_cand'=>'required|string|max:100|min:2',
@@ -46,9 +37,6 @@ class InscricaoRequest extends FormRequest
             'num_bi'=>'nullable|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi',
             'genero' => 'required|string',
             'turno' => 'required|string',
-
-            //Cursos escolhidos pelos candidato
-
 
             //Notas das disciplinas
             'LinguaP' => 'required|numeric',
@@ -66,6 +54,8 @@ class InscricaoRequest extends FormRequest
             //Dados Telefone
             'num_tel'=>'required|size:9'
         ];
+
+        //Cursos escolhidos pelos candidato
         $count = 1;
         for($i = 1; $i <= count($this->request->all()); $i++)
         {
@@ -104,8 +94,8 @@ class InscricaoRequest extends FormRequest
             'nome_completo.min'=>'O nome não deve ter menos de 2 letras',
             'data_nascimento.date' => 'O campo data:attribute deve ser uma data válida.',
             'data_nascimento.before'=> 'O campo data de nascimento deve ser uma data posterior à data atual.',
-            'num_bi.size'=> 'Número de identificação esta incorrecto',
             'num_bi.unique'=> 'Número de identificação já esta a ser usado',
+            'num_bi'=> 'Número de identificação inválido',
 
             //Formulario Escola proveniente
             'nome_escola.max'=>'Nome da escola não pode conter mais de 100 letras',

@@ -45,8 +45,10 @@ class CandidatoController extends Controller
     {
         $candidatos = Candidato::with('pessoa', 'escola')
         ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
-        ->where('status', 'Admitido')
-        ->get();
+        ->where(function ($query) {
+            $query->where('status', 'admitido')
+                ->orWhere('status', 'matriculado');
+        })->get();
 
         $candAdmitidos = count($candidatos);
 
@@ -79,7 +81,11 @@ class CandidatoController extends Controller
 
         $candidatos = Candidato::with( 'pessoa', 'escola', 'ano_lectivo')
         ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
-        ->get();
+        ->where(function ($query) {
+            $query->where('status', 'não admitido')
+                ->orWhere('status', 'pendente')
+                ->orWhere('status', 'admitido');
+        })->get();
 
         foreach ($candidatos as &$candidato)
         {
@@ -205,13 +211,30 @@ class CandidatoController extends Controller
 
     public static function updateCandidato($dadosCandidato)
     {
-        $candidato = Candidato::find($dadosCandidato['id']);
-
-        $candidato->nome_pai_cand = $dadosCandidato['nome_pai_cand'];
-        $candidato->nome_mae_cand = $dadosCandidato['nome_mae_cand'];
+        $candidato = Candidato::find($dadosCandidato['candidato_id']);
+        foreach ($dadosCandidato as $campo => $valor)
+        {
+            $candidato->$campo = $valor;
+        }
         $candidatoAtualizado = $candidato->save();
 
         return $candidatoAtualizado;
+
+        // $escola = Escola_proveniencia::find($dadosEscola['escola_proveniencia_id']);
+        // foreach ($dadosEscola as $campo => $valor)
+        // {
+        //     $escola->$campo = $valor;
+        // }
+        // $escolaAtualizado = $escola->save();
+        // return $escolaAtualizado;
+    }
+
+    public static function atualizarMatriculado($candidatoStatus) //Atualizar status
+    {
+        // Atualizar os dados
+        $candidato = Candidato::find($candidatoStatus['id']);
+        $candidato->status = "Matriculado";
+        $candidato->save();
     }
 
 }

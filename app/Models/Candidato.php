@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Candidato extends Model
 {
-    use HasFactory;
-
     protected $table = 'Candidatos';
     protected $primaryKey = 'candidato_id';
 
@@ -45,5 +43,10 @@ class Candidato extends Model
     public function curso()
     {
         return $this->belongsToMany(Curso::class, 'candidato_curso', 'candidato_id', 'curso_id')->withPivot('preferencia');
+    }
+
+    public function aluno()
+    {
+        $this->hasOne(Aluno::class,'aluno_id');
     }
 }

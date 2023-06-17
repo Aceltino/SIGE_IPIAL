@@ -21,7 +21,7 @@
 
   <div class="procurar">
     <form class="proc-form d-flex align-items-center">
-      <input id="pesquisa" type="text" name="" class="campo-pesq">
+      <input id="pesquisa" type="text" name="" class="campo-pesq" placeholder="Digite o nome do usuário">
       <button type="submit" title="procurar"><i class="bi bi-search"></i></button>   
     </form>
   </div>
@@ -48,7 +48,7 @@
         <td> <a href="#" class="btn btn-cor-sg-a w-48 bg-red">Inactivar</a> </td>
         <td>
             <i class="bi bi-eye-fill"></i>
-            <a href="/use_editar"><i class="bi bi-pencil"></i></a>
+            <a href="use_editar"><i class="bi bi-pencil"></i></a>
             <i class="bi bi-trash-fill"></i>
             
           </td>

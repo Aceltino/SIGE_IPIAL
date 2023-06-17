@@ -4,6 +4,7 @@ use App\Http\Controllers\{
      AdmissaoController,
     //Classes das Controllers
     AuthController,
+    AlunoTurmaController,
     CandidatoController,
     MatriculaController,
     InscricaoController,
@@ -19,10 +20,8 @@ use App\Http\Controllers\{
     PerfilUserController,
     DisciplinasController,
     ProcessosController,
-
 };
-use Illuminate\Support\Facades\Route;
-use GuzzleHttp\Client;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,16 +35,18 @@ use GuzzleHttp\Client;
 */
 
 
+// Rota apenas de teste... Não apague -> ACELTINO
+Route::get('validar-aluno', [AlunoTurmaController::class, 'SelecionarTurma']);
+
+
 //Rotas inicial do Painel
+
 Route::get('/', function () {
     return view('pagina-inicial');
 })->name('inicio')->middleware('auth');
 
  //Rota final do painel
  Route::get('logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
-
-// Rota apenas de teste... Não apague -> ACELTINO
-Route::get('validar-aluno', [CandidatoController::class, 'pegarDadosCandidatos']);
 
 //Routas para Autenticação no Sistema
 Route::prefix('autenticacao')->group(function(){
@@ -55,8 +56,10 @@ Route::prefix('autenticacao')->group(function(){
     Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck')->middleware('guest');
 
     //Rota de Cadastro
+
     Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar')->middleware(['guest','checkcargo']);
     Route::post('registrar', [AuthController::class,'store'])->name('registrar')->middleware('guest');
+
 
     //Rota para envio de email para redifinição de senha
     Route::get('reset', [AuthController::class,'resetForm'])->name('recuperar-senha')->middleware('guest');
@@ -83,7 +86,7 @@ Route::prefix('autenticacao')->group(function(){
 /******************************************
  * Rotas de inscricao
  */
-Route::prefix('inscricao')->middleware(['auth','checkcargo'])->group(function(){
+Route::prefix('inscricao')->group(function(){
 
     /*Inscricoes ou alunos inscritos */
     // Route::get('inscricoes', [ConsumoApiController::class, 'consumoinscricao']);
@@ -137,7 +140,7 @@ Route::prefix('inscricao')->middleware(['auth','checkcargo'])->group(function(){
  */
 
 
-Route::prefix('matricula')->middleware(['auth','checkcargo'])->group(function(){
+Route::prefix('matricula')->group(function(){
 
     /* Matriculas*/
     Route::get('matriculas', function () {
@@ -146,7 +149,7 @@ Route::prefix('matricula')->middleware(['auth','checkcargo'])->group(function(){
 
     /*Matricular aluno */
     Route::get('matricular-aluno/{candidato}',  [MatriculaController::class, 'create'])->name('matricula-view');
-    Route::put('matricular-aluno/{candidato}', [MatriculaController::class, 'store'])->name('matricula-store');
+    Route::post('matricular-aluno/{candidato}', [MatriculaController::class, 'store'])->name('matricula-store');
 
     /*Editar matricula */
     Route::get('editar-matricula', function () {
@@ -263,9 +266,11 @@ Route::prefix('curso')->middleware(['auth'])->group(function(){
 /**<!--Fim Rotas curso--> */
 
 /******************************************
- * Rotas do ano-lectivo
+ * Rotas do ano-lectivo ->middleware(['auth','checkcargo'])
  */
+
 Route::prefix('ano-lectivo')->middleware(['auth'])->group(function(){
+
 
     Route::get('criar-ano-letivo', [AnoLectivoController::class, 'indexCadastroAnoLectivo'])->name('cadastro.ano.lectivo');
     Route::post('criar-ano-letivo/cadastrar', [AnoLectivoController::class, 'store'])->name('cadastrar.ano.lectivo');
@@ -299,7 +304,11 @@ Route::prefix('ficha-biog')->group(function(){
  * Rotas do processo do Aluno
  */
 Route::prefix('processo')->group(function(){
+
     Route::get('processos',[ProcessosController::class,'index'])->name('consultar.processo');
+
+    Route::get('processos',[ProcessoController::class, 'index'])->name('processo.consultar');
+
 });
 /******************************************
  * Rotas de pauta
@@ -333,7 +342,7 @@ Route::prefix('comunicado')->middleware(['auth'])->group(function(){
  * Rotas do cadastro de usuário
  */
 /* cadastrar usuario*/
-Route::prefix('usuario')->middleware(['auth','checkcargo'])->group(function(){
+Route::prefix('usuario')->group(function(){
 
     Route::get('use_cadastro', function () {
         return view('usuario/use_cadastro');
@@ -425,3 +434,4 @@ Route::prefix('disciplina')->group(function(){
         Route::put('edit-disciplina/{disciplina_id}', [DisciplinasController::class, 'update'])->where('disciplina_id', '[0-9]+')->name('disciplina.update');
         Route::delete('{disciplina_id}', [DisciplinasController::class, 'destroy'])->where('disciplina_id', '[0-9]+')->name('disciplina.delete');
 });
+

@@ -15,7 +15,7 @@ class AuthController extends Controller
 {
     use PessoaTrait;
 
-    //Metodo que retorna o formulario de login 
+    //Metodo que retorna o formulario de login
     public function loginForm(){
         $user= User::all();
 
@@ -25,15 +25,14 @@ class AuthController extends Controller
         return view('autenticacao.login');
     }
 
-    //Metodo que retorna o formulario de cadastro(registro) 
+    //Metodo que retorna o formulario de cadastro(registro)
     public function registrarForm(){
        return view('autenticacao.registrar');
     }
-    
+
     //Metodo de Check de Login
-    public function loginCheck(Request $request):mixed
-    {
-       
+    public function loginCheck(Request $request){
+
         $credencias= [
             'nome_usuario'=>$request->username,
             'password'=>$request->password,
@@ -155,16 +154,16 @@ class AuthController extends Controller
         $dadosUser=[
             'nome_usuario'=>$abreNome.count(User::all()).$abreSobreNome,
             'email'=>$request->email,
-            'password'=>bcrypt($request->password),
-            'num_telefone'=>$request->num_telefone,
-            'cargo_usuario'=>$request->cargo,
+            'password'=>bcrypt($request->num_telefone),
+            'cargo_usuario'=> $request->cargo,
+            'num_telefone' =>$request->num_telefone,
             'status_usuario'=>1,
-            'pessoa_id'=>$pessoa_id,
+            'pessoa_id'=> $pessoa_id
         ];
 
         $user=UserController::store($dadosUser);
         if(!$user){
-            $msg="Lamentamos! Dados não Cadastrado, tente este processo mais tarde...";
+            $msg = "Lamentamos! Dados não Cadastrado, tente este processo mais tarde...";
             return redirect()->back()->with("erroCadastroUser",$msg);
         }
 
@@ -176,18 +175,19 @@ class AuthController extends Controller
     public function logout(){
         Auth::logout();
         Session::invalidate();
-        return redirect()->route("login");      
+        return redirect()->route("login");
     }
 
-    //Metodo que retorna o formulario de recuperação de senha 
-    public function resetForm():mixed
-    {
-        return view('autenticacao.recuperar-senha');
-    } 
+    //Metodo que retorna o formulario de recuperação de senha
+    public function resetForm(){
 
-    //Metodo que retorna o formulario de reposição de uma nova senha 
-    public function resetPasswordForm($token):mixed
-    {
+        return view('autenticacao.recuperar-senha');
+    }
+
+
+    //Metodo que retorna o formulario de reposição de uma nova senha
+    public function resetPasswordForm($token){
+
         return view('autenticacao.nova_senha', ['token' => $token]);
     }
 
@@ -205,7 +205,7 @@ class AuthController extends Controller
 
         // Gerar o token de redefinição de senha
         $token = app('auth.password.broker')->createToken($user);
-      
+
         // Construir o URL de redefinição de senha
         $resetUrl = url('autenticacao/reset', $token);
 
@@ -216,8 +216,8 @@ class AuthController extends Controller
         });
 
         return back()->with(['status' => 'Enviamos o link de redefinição de senha por e-mail!']);
-   
-    }   
+
+    }
 
     //Metodo que processa redifinição de senha na db com base ao link
     public function processarRedefinicaoPassword(Request $request):mixed
@@ -229,7 +229,7 @@ class AuthController extends Controller
             $msg = "A confirmação da senha não correspondem.";
             return redirect()->back()->with('erro_senha_001', $msg)->withInput();
         }
-        
+
         conti_salvar:
         $dados=[
             'token'=>$request->token,
@@ -252,7 +252,7 @@ class AuthController extends Controller
         if($validator->fails()){
             return redirect()->back()->withErrors($validator)->withInput();
         }
-    
+
         $user = User::where('email', $request->email)->first();
 
         if (!$user) {
@@ -277,7 +277,7 @@ class AuthController extends Controller
             // Remover o token de redefinição de senha após 10min
             DB::table('password_resets')->where('email', $request->email)->delete();
             goto conti_expire;
-        } 
+        }
 
         $resetPassword=Hash::check($request->token, $resetPassword->token);
         if (!$resetPassword) {
@@ -293,5 +293,7 @@ class AuthController extends Controller
         return redirect()->route('login')->with('success_reset_001','Senha redefinida com sucesso! Faça login com sua nova senha.');
 
     }
-    
+
+
 }
+

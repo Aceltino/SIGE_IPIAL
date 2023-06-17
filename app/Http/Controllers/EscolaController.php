@@ -19,16 +19,11 @@ class EscolaController extends Controller
 
     public static function updateEscola($dadosEscola)
     {
-        $candidato = Candidato::find($dadosEscola['id']);
-        $escola = $candidato->escola;
-        $escola->nome_escola = $dadosEscola['nome_escola'];
-        $escola->turno = $dadosEscola['turno'];
-        $escola->turma_aluno = $dadosEscola['turma_aluno'];
-        $escola->ling_port = $dadosEscola['ling_port'];
-        $escola->matematica = $dadosEscola['matematica'];
-        $escola->fisica = $dadosEscola['fisica'];
-        $escola->quimica = $dadosEscola['quimica'];
-
+        $escola = Escola_proveniencia::find($dadosEscola['escola_proveniencia_id']);
+        foreach ($dadosEscola as $campo => $valor)
+        {
+            $escola->$campo = $valor;
+        }
         $escolaAtualizado = $escola->save();
         return $escolaAtualizado;
     }

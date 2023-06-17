@@ -5,7 +5,9 @@
 @section('conteudo')
 <main id="main" class="main" >
 
-<form id="regFormh" action="{{ route('disciplina.update', ['disciplina_id' => $disciplinas->disciplina_id]) }}" class="formulario-layout" method="POST" >
+
+    <form id="regFormh" action="{{ route('disciplina.update', ['disciplina_id' => $disciplinas->disciplina_id]) }}" class="formulario-layout" method="POST" >
+
       @csrf
       @method('PUT')
         <div style="text-align:center;margin-top:10px;">

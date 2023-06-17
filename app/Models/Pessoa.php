@@ -35,6 +35,10 @@ class Pessoa extends Model
         $this->hasOne(Candidato::class,'candidato_id');
     }
 
+    public function encarregado(){
+        $this->hasOne(Encarregado::class,'encarregado_id');
+    }
+
 	/**
 	 * @return mixed
 	 */

@@ -162,6 +162,7 @@
                 
 
                 <!-- Form Editar perfil -->
+
                 <form action={{ route('perfil-update') }} method="post" enctype="multipart/form-data">
                   @csrf
                   @method('PUT')
@@ -178,6 +179,10 @@
                   @error('imagem_update')
                     <div class="alert alert-danger">{{$message}}</div>
                   @enderror
+
+                <form>
+                  
+
 
                    <div class="row mb-3">
                      <label for="nomeComp" class="col-md-4 col-lg-4 col-form-label">Nome Completo</label>
@@ -248,6 +253,7 @@
                        <input type="text" class="form-control" id="Cargo" disabled value="{{ Auth::user()->cargo_usuario }}">
                      </div>
                    </div>
+
                    
                    <div class="row mb-3">
                      <label for="Endereco" class="col-md-4 col-lg-4 col-form-label">Endereço</label>
@@ -284,6 +290,25 @@
                         </div>
                      </div>
                    </div>
+
+
+                   <div class="col-md-8 mt-3" style=" display: flex; justify-content: flex-end;align-items: center; gap: 10px;">
+                    <h5>Endereço</h5>
+                      <div class="form-group">
+                        <input name='municipio' type="text" placeholder="Municipio" required='false' oninput="this.className = ''">
+                      </div> 
+                      <div class="form-group">
+                        <input name='bairro' type="text" placeholder="Bairro" required='false' oninput="this.className = ''">
+                      </div> 
+                      <div class="form-group">
+                        <input name='zona' type="text" placeholder="Zona" required='false' oninput="this.className = ''">
+                      </div> 
+                      <div class="form-group">
+                        <input name='numero_casa' type="number" placeholder="Nº Casa" required='false' oninput="this.className = ''">
+                      </div> 
+                    </div>
+                  </div>
+
 
                    <div class="text-center">
                      <button type="submit" class="btn" style="margin-top: 10px; background-color: #174183; color: #fff;">Atualizar Dados</button>

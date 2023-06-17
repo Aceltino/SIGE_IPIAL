@@ -70,7 +70,9 @@ class User extends Model implements Authenticatable,CanResetPassword
     }
     public function comunicados()
     {
+
         return $this->hasMany(Comunicado::class);
+
     }
 
 }

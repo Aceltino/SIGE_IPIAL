@@ -8,6 +8,7 @@ use App\Models\{
 };
 use Illuminate\Support\Facades\Auth;
 
+
 trait PessoaTrait
 {
     public static function storePessoa($dadosPessoa, $dadosEndereco = null)
@@ -90,12 +91,11 @@ trait PessoaTrait
 
     public static function updatePessoa($dadosPessoa, $dadosEndereco = null)
     {
-        $candidato = Candidato::find($dadosPessoa['id']);
-        $pessoa = $candidato->pessoa;
-        $pessoa->nome_completo = $dadosPessoa['nome_completo'];
-        $pessoa->data_nascimento = $dadosPessoa['data_nascimento'];
-        $pessoa->genero = $dadosPessoa['genero'];
-        $pessoa->telefone = $dadosPessoa['telefone'];
+        $pessoa = Pessoa::find($dadosPessoa['pessoa_id']);
+        foreach ($dadosPessoa as $campo => $valor)
+        {
+            $pessoa->$campo = $valor;
+        }
         $pessoaAtualizado = $pessoa->save();
         // if($dadosEndereco)  ----- Antes de descomentar tens de criar o metodo update na controller endereço
         // {

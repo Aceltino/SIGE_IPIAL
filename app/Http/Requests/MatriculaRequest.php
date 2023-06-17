@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Candidato;
+use App\Models\Pessoa;
 use Illuminate\Foundation\Http\FormRequest;
 
 class MatriculaRequest extends FormRequest
@@ -23,46 +25,57 @@ class MatriculaRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $candidato = Candidato::find($this->request->get('id'));
+        $rules = [
             //Formulario candidato
             'nome_pai_cand'=>'required|string|max:100|min:2',
             'nome_mae_cand'=>'required|string|max:100|min:2',
             'naturalidade_cand'=>'required|string|max:100|min:2',
+            'id' => 'required',
 
             //Formulario da Pessoa
             'nome_completo'=>'required|string|min:2|max:100',
-            'data_nascimento'=>'required|date|before:'.now()->format('d-m-Y'),
-            'num_bi'=>'nullable|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi',
             'genero' => 'required|string',
-            'turno' => 'required|string',
-
-            //Notas das disciplinas
-            'LinguaP' => 'required|numeric',
-            'Matematic' => 'required|numeric',
-            'Fisic' => 'required|numeric',
-            'Quimic' => 'required|numeric',
-            'id' => 'required',
+            'num_tel'=>'required|size:9',
+            'num_bi' =>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi,'.$candidato->pessoa_id.',pessoa_id',
+           //User
+            'email'=>'required|email',
+            'curso_escolhido' =>'required|string',
 
             //Formulario escola proveniente
             'nome_escola'=>'required|max:100|min:2',
             'num_processo'=>'required|int|min:2',
             'num_aluno'=>'required|int|min:1',
-            'ultimo_anoLectivo'=>'required|numeric|min:2',
             'turma_aluno' => 'required|string',
+            'turno' => 'required|string',
+            'ultimo_anoLectivo' => 'required|string',
 
-            //Dados Telefone
-            'num_tel'=>'required|size:9',
-
-            //Outros
-            'email'=>'required|email',
-            'grau2'=>'required|string',
-            'grau3'=>'required|string',
-
-            //Telefone encarregado
+            //encarregado 1
             'telefone1'=>'required|size:9',
+            'grau1'=>'required|string',
+            'nome_enc1' => 'required|string|max:100|min:2',
+            'data_nascimento_enc1' => 'required|date|before:'.now()->format('d-m-Y'),
+            'genero1' =>'required|string',
+            'num_bi_enc1' =>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi',
+
+            //encarregado 2
             'telefone2'=>'required|size:9',
+            'grau2'=>'required|string',
+            'nome_enc2' => 'required|string|max:100|min:2',
+            'data_nascimento_enc2' => 'required|date|before:'.now()->format('d-m-Y'),
+            'genero2' =>'required|string',
+            'num_bi_enc2' =>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi',
+
+            //encarregado 3
             'telefone3'=>'required|size:9',
+            'grau3'=>'required|string',
+            'nome_enc3' => 'required|string|max:100|min:2',
+            'data_nascimento_enc3' => 'required|date|before:'.now()->format('d-m-Y'),
+            'genero3' =>'required|string',
+            'num_bi_enc3' =>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi',
         ];
+        // dd($this->request->all());
+        return $rules;
     }
 
     public function messages()
@@ -83,18 +96,42 @@ class MatriculaRequest extends FormRequest
             //Formulario Pessoa
             'nome_completo.max'=>'O nome não deve ter mais de 100 letras.',
             'nome_completo.min'=>'O nome não deve ter menos de 2 letras',
-            'data_nascimento.date' => 'O campo data:attribute deve ser uma data válida.',
+            'data_nascimento.date' => 'O campo data deve ser uma data válida.',
             'data_nascimento.before'=> 'O campo data de nascimento deve ser uma data posterior à data atual.',
-            'num_bi.size'=> 'Número de identificação esta incorrecto',
             'num_bi.unique'=> 'Número de identificação já esta a ser usado',
+            'num_bi'=> 'Número de identificação inválido',
+            'num_tel'=> 'Número de telefone esta incorrecto',
+            // Usuario
+            'email' => 'Email inválido',
 
             //Formulario Escola proveniente
             'nome_escola.max'=>'Nome da escola não pode conter mais de 100 letras',
             'nome_escola.min'=>'Nome da escola não pode conter menos de 2 letras',
             'num_aluno.numeric'=>'Número do aluno deve conter apenas digitos validos.',
 
-            //Formulario Telefone
-            'num_tel.size'=> 'Número de telefone esta incorrecto'
+            //Dados encarregado 1
+            'telefone1'=> 'Número de telefone esta incorrecto',
+            'nome_enc1'=>'O nome não deve ter mais de 100 letras.',
+            'data_nascimento_enc1.date' => 'O campo data:attribute deve ser uma data válida.',
+            'data_nascimento_enc1.before'=> 'O campo data de nascimento deve ser uma data posterior à data atual.',
+            'num_bi_enc1.unique'=> 'Número de identificação já esta a ser usado',
+            'num_bi_enc1'=>'Número de identificação inválido',
+
+            //Dados encarregado 2
+            'telefone2'=> 'Número de telefone esta incorrecto',
+            'nome_enc2'=>'O nome não deve ter mais de 100 letras.',
+            'data_nascimento_enc2.date' => 'O campo data:attribute deve ser uma data válida.',
+            'data_nascimento_enc2.before'=> 'O campo data de nascimento deve ser uma data posterior à data atual.',
+            'num_bi_enc2.unique'=> 'Número de identificação já esta a ser usado',
+            'num_bi_enc2'=>'Número de identificação inválido',
+
+            //Dados encarregado 3
+            'telefone3'=> 'Número de telefone esta incorrecto',
+            'nome_enc3'=>'O nome não deve ter mais de 100 letras.',
+            'data_nascimento_enc3.date' => 'O campo data:attribute deve ser uma data válida.',
+            'data_nascimento_enc3.before'=> 'O campo data de nascimento deve ser uma data posterior à data atual.',
+            'num_bi_enc3.unique'=> 'Número de identificação já esta a ser usado',
+            'num_bi_enc3'=>'Número de identificação inválido',
         ];
     }
 }

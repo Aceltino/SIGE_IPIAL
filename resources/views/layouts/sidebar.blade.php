@@ -40,12 +40,12 @@
       </a>
       <ul id="ano-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="ano-lectivo/criar-ano-letivo">
+          <a href={{route('cadastro.ano.lectivo')}}>
             <i class="bi bi-circle"></i><span>Criar ano lectivo</span>
           </a>
         </li>
         <li>
-          <a href="ano-lectivo/ano-letivo">
+          <a href={{route('ano.lectivo')}}>
             <i class="bi bi-circle"></i><span>Ano lectivo</span>
           </a>
         </li>
@@ -60,12 +60,12 @@
       </a>
       <ul id="inscriacao-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="inscricao/inscrever">
+          <a href={{route('inscricao-view')}}>
             <i class="bi bi-circle"></i><span>Inscrever candidato</span>
           </a>
         </li>
         <li>
-          <a href="inscricao/inscricoes">
+          <a href={{route('inscricao-index')}}>
             <i class="bi bi-circle"></i><span>Inscrições</span>
           </a>
         </li>
@@ -119,12 +119,12 @@
       </a>
       <ul id="professor-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href={{ route('professor.cadastrar') }}>
+          <a href={{route('professor.cadastrar')}}>
             <i class="bi bi-circle"></i><span>Cadastrar Professores</span>
           </a>
         </li>
         <li>
-          <a href={{ route('professor') }}>
+          <a href={{route('professor')}}>
             <i class="bi bi-circle"></i><span>Professores</span>
           </a>
         </li>
@@ -138,7 +138,7 @@
       </a>
       <ul id="turma-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="turma/cri-turma">
+          <a href="turma/criar-turma">
             <i class="bi bi-circle"></i><span>Criar turma</span>
           </a>
         </li>
@@ -157,12 +157,12 @@
       </a>
       <ul id="curso-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="curso/criar-curso">
+          <a href={{route('cadastro.curso')}}>
             <i class="bi bi-circle"></i><span>Criar curso</span>
           </a>
         </li>
         <li>
-          <a href="curso/cursos">
+          <a href={{route('consultar.cursos')}}>
             <i class="bi bi-circle"></i><span>Cursos</span>
           </a>
         </li>
@@ -207,7 +207,7 @@
       <a class="nav-link collapsed" data-bs-target="#mini-pauta-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-calendar-week"></i></i><span>Mini-Pauta</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
-      <ul id="mini-pauta-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+      <ul id="mini-pauta-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
         <li>
           <a href={{ route('mini-pauta') }}>
             <i class="bi bi-circle"></i><span>Mini-Pautas</span>
@@ -270,23 +270,12 @@
       </a>
       <ul id="processo-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
+
           <a href={{ route('consultar.processo') }}>
+
+          <a href={{route('processo.consultar')}}>
+
             <i class="bi bi-circle"></i><span>Processos</span>
-          </a>
-        </li>
-
-      </ul>
-    </li>
-
-    <!-- /	Nav aluno-professor-->
-    <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#aluno-professor-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-clipboard"></i><span>Aluno</span><i class="bi bi-chevron-down ms-auto"></i>
-      </a>
-      <ul id="aluno-professor-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        <li>
-          <a href="/alunos">
-            <i class="bi bi-circle"></i><span>Alunos</span>
           </a>
         </li>
 
@@ -300,21 +289,21 @@
       </a>
       <ul id="avaliacao-aluno-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="/avaliar-aluno">
+          <a href={{route('avaliacao.aluno')}}>
             <i class="bi bi-circle"></i><span>Avaliar Avaliação</span>
           </a>
         </li>
       </ul>
     </li>
 
-    <!-- /	Nav assiduidade-professor-->
+    <!-- /	Nav assiduidade-aluno-->
     <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#assiduidade-professor-nav" data-bs-toggle="collapse" href="#">
+      <a class="nav-link collapsed" data-bs-target="#assiduidade-aluno-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-clipboard"></i><span>Assuiduidade</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
-      <ul id="assiduidade-professor-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+      <ul id="assiduidade-aluno-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="/assiduidade_aluno">
+          <a href={{route('assiduidade')}}>
             <i class="bi bi-circle"></i><span>Assiduidades</span>
           </a>
         </li>
@@ -527,7 +516,10 @@
         </a>
         <ul id="processo-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
+
             <a href={{ route('consultar.processo') }}>
+            <a href={{route('processo.consultar')}}>
+
               <i class="bi bi-circle"></i><span>Processos</span>
             </a>
           </li>
@@ -660,7 +652,11 @@
           </a>
           <ul id="processo-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
+
               <a href={{ route('consultar.processo') }}>
+
+              <a href={{route('processo.consultar')}}>
+
                 <i class="bi bi-circle"></i><span>Processos</span>
               </a>
             </li>
