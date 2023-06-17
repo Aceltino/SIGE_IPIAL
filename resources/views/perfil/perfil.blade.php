@@ -140,7 +140,7 @@
                    @endphp
                    <div class="col-lg-8 col-md-8">
                     @php 
-                      if($endereco===null){
+                      if($endereco==null){
                         echo "Sem Endereço";
                       }else {
                         echo "<strong>Municipio:</strong> ".$municipio= $endereco->municipio;
@@ -233,12 +233,14 @@
                    <div class="row mb-3">
                      <label for="Telefone1" class="col-md-4 col-lg-4 col-form-label">Número telefone</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="Telefone1" name="telefone_update" value="{{ Auth::user()->belongPessoa->telefone }}">
+                       <input type="text" class="form-control" id="Telefone1" name="telefone_update" value="{{ Auth::user()->pessoa->telefone }}">
                      </div>
                    </div>
                    @error('telefone_update')
                     <div class="alert alert-danger">{{$message}}</div>  
                    @enderror
+
+                
 
                    <div class="row mb-3">
                      <label for="Cargo" class="col-md-4 col-lg-4 col-form-label">Cargo</label>
@@ -246,34 +248,34 @@
                        <input type="text" class="form-control" id="Cargo" disabled value="{{ Auth::user()->cargo_usuario }}">
                      </div>
                    </div>
-
+                   
                    <div class="row mb-3">
                      <label for="Endereco" class="col-md-4 col-lg-4 col-form-label">Endereço</label>
                      <div class="col-md-8 col-lg-8">
                         <div class="row">
                           <div class="col-lg-3">
-                            <input type="text" class="form-control" name="municipio_update" value="{{ $municipio= $endereco->municipio }}" placeholder="Municipio">
+                            <input type="text" class="form-control" name="municipio_update" value="{{ isset($endereco->municipio) ? $endereco->municipio : '' }}" placeholder="Municipio">
                           </div>
                           @error('municipio_update')
                             <div class="alert alert-danger">{{$message}}</div>  
                           @enderror
 
                           <div class="col-lg-3">
-                            <input type="text" class="form-control" name="bairro_update" value="{{$municipio= $endereco->bairro }}" placeholder="Bairro">
+                            <input type="text" class="form-control" name="bairro_update" value="{{ isset($endereco->bairro) ? $endereco->bairro : '' }}" placeholder="Bairro">
                           </div>
                           @error('bairro_update')
                             <div class="alert alert-danger">{{$message}}</div>  
                           @enderror
 
                           <div class="col-lg-3">
-                            <input type="text" class="form-control" name="zona_update" value="{{ $municipio= $endereco->zona }}" placeholder="Zona">
+                            <input type="text" class="form-control" name="zona_update" value="{{ isset($endereco->zona) ? $endereco->zona : '' }}" placeholder="Zona">
                           </div>
                           @error('zona_update')
                             <div class="alert alert-danger">{{$message}}</div>  
                           @enderror
 
                           <div class="col-lg-3">                          
-                            <input type="number" class="form-control" name="num_casa_update" value="{{ $numero_casa= $endereco->numero_casa }}" placeholder="Casa Nº">
+                            <input type="number" class="form-control" name="num_casa_update" value="{{ isset($endereco->numero_casa) ? $endereco->numero_casa : '' }}" placeholder="Casa Nº">
                           </div>
                           @error('num_casa_update')
                             <div class="alert alert-danger">{{$message}}</div>  
