@@ -3,6 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
+
         'reference' => '51f9f855010fc83e7db901f08e7756a9ac622ed9',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
@@ -412,6 +413,7 @@
                 0 => 'v9.52.9',
             ),
         ),
+
         'inertiajs/inertia-laravel' => array(
             'pretty_version' => 'v0.6.9',
             'version' => '0.6.9.0',
@@ -439,6 +441,7 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+
         'kitloong/laravel-migrations-generator' => array(
             'pretty_version' => 'v6.10.0',
             'version' => '6.10.0.0',
@@ -472,18 +475,10 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'laravel/jetstream' => array(
-            'pretty_version' => 'v3.0.2',
-            'version' => '3.0.2.0',
-            'reference' => '2af8f166436bf73c946f7187055d2df317d3e981',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../laravel/jetstream',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
+
             'reference' => '51f9f855010fc83e7db901f08e7756a9ac622ed9',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
@@ -577,15 +572,6 @@
             'reference' => 'ff6248ea87a9f116e78edd6002e39e5128a0d4dd',
             'type' => 'library',
             'install_path' => __DIR__ . '/../league/mime-type-detection',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
-        'mobiledetect/mobiledetectlib' => array(
-            'pretty_version' => '2.8.41',
-            'version' => '2.8.41.0',
-            'reference' => 'fc9cccd4d3706d5a7537b562b59cc18f9e4c0cb1',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../mobiledetect/mobiledetectlib',
             'aliases' => array(),
             'dev_requirement' => false,
         ),

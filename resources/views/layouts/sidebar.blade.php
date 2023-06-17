@@ -270,7 +270,11 @@
       </a>
       <ul id="processo-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="processos">
+
+          <a href={{ route('consultar.processo') }}>
+
+          <a href={{route('processo.consultar')}}>
+
             <i class="bi bi-circle"></i><span>Processos</span>
           </a>
         </li>
@@ -313,12 +317,12 @@
       </a>
       <ul id="disciplina-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="/regi-disciplina">
+          <a href={{ route('criar.disciplina')}}>
             <i class="bi bi-circle"></i><span>Cadastrar disciplina</span>
           </a>
         </li>
         <li>
-          <a href="/disciplinas">
+          <a href={{ route('consultar.disciplina')}}>
             <i class="bi bi-circle"></i><span>Disciplina</span>
           </a>
         </li>
@@ -327,7 +331,7 @@
 
     <!-- /	Nav Perfil-->
     <li class="nav-item">
-      <a class="nav-link collapsed" href="perfil">
+      <a class="nav-link collapsed" href={{route('perfil')}}>
         <i class="bi bi-person"></i>
         <span>Perfil</span>
       </a>
@@ -423,12 +427,12 @@
         </a>
         <ul id="comunicado-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="comunicado/criar-comunicado">
+            <a href={{ route('comunicado.create') }}>
               <i class="bi bi-circle"></i><span>Criar comunicado</span>
             </a>
           </li>
           <li>
-            <a href="comunicado/comunicado">
+            <a href={{ route('comunicado.index') }}>
               <i class="bi bi-circle"></i><span>Comunicados</span>
             </a>
           </li>
@@ -512,7 +516,10 @@
         </a>
         <ul id="processo-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="processos">
+
+            <a href={{ route('consultar.processo') }}>
+            <a href={{route('processo.consultar')}}>
+
               <i class="bi bi-circle"></i><span>Processos</span>
             </a>
           </li>
@@ -535,7 +542,7 @@
 
       <!-- /  Nav Perfil-->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="perfil">
+        <a class="nav-link collapsed" href={{route('perfil')}}>
           <i class="bi bi-person"></i>
           <span>Perfil</span>
         </a>
@@ -645,7 +652,11 @@
           </a>
           <ul id="processo-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
-              <a href="processos">
+
+              <a href={{ route('consultar.processo') }}>
+
+              <a href={{route('processo.consultar')}}>
+
                 <i class="bi bi-circle"></i><span>Processos</span>
               </a>
             </li>
@@ -655,7 +666,7 @@
 
       <!-- /  Nav Perfil-->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="perfil">
+        <a class="nav-link collapsed" href={{route('perfil')}}>
           <i class="bi bi-person"></i>
           <span>Perfil</span>
         </a>
@@ -793,7 +804,7 @@
         </a>
         <ul id="disciplina-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="/assiduidade_aluno">
+            <a href={{ route('consultar.disciplina')}}>
               <i class="bi bi-circle"></i><span>Disciplinas</span>
             </a>
           </li>
@@ -816,7 +827,7 @@
 
       <!-- /  Nav Perfil-->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="perfil">
+        <a class="nav-link collapsed" href={{route('perfil')}}>
           <i class="bi bi-person"></i>
           <span>Perfil</span>
         </a>
@@ -939,7 +950,7 @@
         </a>
         <ul id="disciplina-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="/assiduidade_aluno">
+            <a href={{ route('consultar.disciplina')}}>
               <i class="bi bi-circle"></i><span>Disciplinas</span>
             </a>
           </li>
@@ -948,7 +959,7 @@
 
       <!-- /  Nav Perfil-->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="perfil">
+        <a class="nav-link collapsed" href={{route('perfil')}}>
           <i class="bi bi-person"></i>
           <span>Perfil</span>
         </a>

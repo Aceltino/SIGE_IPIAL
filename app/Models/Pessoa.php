@@ -26,20 +26,17 @@ class Pessoa extends Model
     }
 
     public function endereco(){
-        $this->belongsTo(Endereco::class, 'endereco_id','pessoa_id');
+       return $this->belongsTo(Endereco::class, 'endereco_id');
     }
     public function user(){
-        $this->hasOne(User::class, 'usuario_id');
+        $this->hasOne(User::class, 'pessoa_id');
     }
     public function candidato(){
         $this->hasOne(Candidato::class,'candidato_id');
     }
+
     public function encarregado(){
         $this->hasOne(Encarregado::class,'encarregado_id');
-    }
-    public function comunicados()
-    {
-        return $this-> hasMany(Comunicado::class);
     }
 
 	/**
@@ -59,6 +56,6 @@ class Pessoa extends Model
 	}
 
     public function professor(){
-        $this->hasMany(Professor::class, 'professor_id','pessoa_id');
+        $this->hasMany(Professor::class, 'professor_id');
     }
 }
