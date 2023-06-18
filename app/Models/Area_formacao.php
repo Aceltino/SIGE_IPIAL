@@ -9,8 +9,9 @@ class Area_formacao extends Model
 {
     use HasFactory;
     protected $table = 'area_formacao';
+    protected $primaryKey = 'area_formacao_id';
 
     public function curso(){
-        return $this->hasMany(Curso::class, 'curso_id', 'area_formacao_id');
+        return $this->hasMany(Curso::class, 'curso_id');
     }
 }

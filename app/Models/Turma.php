@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Turma extends Model
 {
     use HasFactory;
@@ -27,12 +28,20 @@ class Turma extends Model
 
     public function classe()
     {
-        return $this->belongsTo(Classe::class,'classe_id');
+        return $this->belongsTo(Classe::class, 'turma_id', 'classe_id');
     }
+
+    public function alunos(){
+        return $this->belongsToMany(Aluno::class, 'aluno_turma', 'aluno_id');
+    }
+    public function nota(){
+        return $this->hasMany(Nota::class, 'trimestre_id', 'nota_id');
+    }
+
 
     public function turno()
     {
         return $this->belongsTo(Turno::class, 'turno_id');
     }
-    
+
 }

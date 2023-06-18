@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
      AdmissaoController,
     //Classes das Controllers
@@ -31,7 +31,6 @@ use App\Http\Controllers\{
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 
 // Rota apenas de teste... Não apague -> ACELTINO
 Route::get('validar-aluno', [AlunoTurmaController::class, 'SelecionarTurma']);
@@ -396,9 +395,7 @@ Route::get('/editar_assiduidade', function () {
 Route::get('/avaliar-aluno', [AvaliacaoAlunoController::class, 'index'])->name('avaliacao.aluno');
 
 /*editar Avaliação de Aluno*/
-Route::get('/editar-avaliacao-aluno', function () {
-    return view('avaliac-aluno/edit-valiac-aluno');
-});
+Route::get('/editar-avaliacao-aluno/{id}', [AvaliacaoAlunoController::class, 'indexUpdate'])->name('editar.avaliacao.aluno');
 
 /******************************************
  * Rotas do horário
