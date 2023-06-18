@@ -4,17 +4,14 @@
 
 @section('conteudo')
 <main id="main" class="main" >
-
-
-    <form id="regFormh" method="POST" action="{{ route('comunicado.update', ['comunicado_id' => $comunicados->comunicado_id]) }}" class="formulario-layout">
-
+<form id="regFormh" method="POST" action="{{ route('comunicado.update', ['comunicado_id' => $comunicados->comunicado_id]) }}" class="formulario-layout">
     @csrf
-    @method('put')
+    @method('PUT')
         <div style="text-align:center;margin-top:10px;">
         <span class="step"></span>
         </div>
 
-        <div class="tab">
+        <div class="tab"> 
 
             <div class="row" >
                 <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
