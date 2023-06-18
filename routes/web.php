@@ -186,7 +186,7 @@ Route::prefix('matricula')->group(function(){
 /******************************************
  * Rotas de professor
  */
-Route::prefix('professor')->middleware(['auth','checkcargo'])->group(function(){
+Route::prefix('professor')->group(function(){
 
     Route::get('rota/{segmento}', [ProfessorController::class, 'editarProfessor'])->name('prof.rota');
 
@@ -282,6 +282,7 @@ Route::prefix('ano-lectivo')->middleware(['auth'])->group(function(){
     Route::delete('apagar-ano-lectivo/{id}', [AnoLectivoController::class, 'delete'])->name('apagar.ano.lectivo');
 
 });
+
 
 /**<!--Fim Rotas ano lectivo--> */
 
