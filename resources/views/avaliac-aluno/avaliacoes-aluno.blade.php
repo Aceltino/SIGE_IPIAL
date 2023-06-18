@@ -1,9 +1,18 @@
 @extends('layouts.main')
 
 @section('title', 'Avaliar Aluno')
-
 @section('conteudo')
 <main id="main" class="main">
+    @if (session()->has('erro'))
+    <div class="alert alert-danger">
+        {{session('erro')}}
+    </div>
+    @endif
+    @if (session()->has('sucesso'))
+    <div class="alert alert-success">
+        {{session('sucesso')}}
+    </div>
+    @endif
   <div class="pagetitle">
     <div class="row">
           <div class="col">
@@ -23,7 +32,7 @@
           <div class="col-lg-2">
             <select class="btn-sel form-select" id="filtro11">
               <option disabled >Disciplina</option>
-              <option value="Desenho técnico">Desenho técnico</option>
+              <option value="Desenho técnico">MATEMÁTICA</option>
               <option value="Técnicas de Linguagem de Programação">Técnicas de Linguagem de Programação</option>
               <option value="Língua Portuguêsa">Língua Portuguêsa</option>
             </select>
@@ -33,7 +42,7 @@
             <select class="btn-sel form-select" id="filtro12">
               <option disabled >Turma</option>
               <option value="I10AM" selected>I10AM</option>
-              <option value="I11AM">I11AM</option>
+              <option value="I11AM">CT10AM</option>
               <option value="I12AT">I12AT</option>
               <option value="I12BT">I12BT</option>
             </select>
@@ -74,170 +83,30 @@
         </tr>
       </thead>
       <tbody>
-        <tr style="text-align: center;">
-          <th scope="row">1</th>
-          <td>Fulano fulano fu...</td>
-          <td>12</td>
-          <td>10</td>
-          <td>0</td>
-          <td>0</td>
-          <td>19</td>
-          <td style="text-align: center">
-            <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade" >Avaliar aluno</a>
-          </td>
-          <td style="text-align: center">
-            <a href="editar-avaliacao-aluno" class="btn linkeditar">Editar Avaliação</a>
-          </td>
-          <td hidden>Informática</td>
-          <td hidden>Desenho técnico</td>
-          <td hidden>I12BT</td>
-        </tr>
-        <tr style="text-align: center;">
-          <th scope="row">1</th>
-          <td>Fulano fulano fu...</td>
-          <td>12</td>
-          <td>10</td>
-          <td>0</td>
-          <td>0</td>
-          <td>19</td>
-          <td style="text-align: center">
-            <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade" >Avaliar aluno</a>
-          </td>
-          <td style="text-align: center">
-            <a href="editar-avaliacao-aluno" class="btn linkeditar">Editar Avaliação</a>
-          </td>
-          <td hidden>Informática</td>
-          <td hidden>Técnicas de Linguagem de Programação</td>
-          <td hidden>I12BT</td>
-        </tr>
-        <tr style="text-align: center;">
-          <th scope="row">1</th>
-          <td>Fulano fulano fu...</td>
-          <td>12</td>
-          <td>10</td>
-          <td>0</td>
-          <td>0</td>
-          <td>19</td>
-          <td style="text-align: center">
-            <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade" >Avaliar aluno</a>
-          </td>
+          @for ($i = 0; $i < count($aluno); $i++)
+            @for ($j = 0; $j < count($aluno[$i]); $j++)
+                <tr style="text-align: center;">
+                    <th scope="row">{{$aluno[$i][$j]['numero_aluno']}}</th>
+                    <td>{{$aluno[$i][$j]['nome']}}</td>
+                    <td>{{$aluno[$i][$j]['mac']}}</td>
+                    <td>{{$aluno[$i][$j]['npp']}}</td>
+                    <td>{{$aluno[$i][$j]['npt']}}</td>
+                    <td>{{$aluno[$i][$j]['exame']}}</td>
+                    <td>{{$aluno[$i][$j]['exame_recurso']}}</td>
+                    <td style="text-align: center">
+                    <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade" >Avaliar aluno</a>
+                    </td>
+                    <td style="text-align: center">
+                    <a href="{{route('editar.avaliacao.aluno', $aluno[$i][$j]['aluno_id'])}}" class="btn linkeditar">Editar Avaliação</a>
+                    </td>
+                    <td hidden>{{$aluno[$i][$j]['curso']}}</td>
+                    <td hidden>{{$aluno[$i][$j]['nome_disciplina']}}</td>
+                    <td hidden>{{$aluno[$i][$j]['nome_turma']}}</td>
+                </tr>
+            @endfor
+          @endfor
 
-          <td style="text-align: center">
-            <a href="editar-avaliacao-aluno" class="btn linkeditar">Editar Avaliação</a>
-          </td>
-          <td hidden>Informática</td>
-          <td hidden>Técnicas de Linguagem de Programação</td>
-          <td hidden>I12BT</td>
-        </tr>
-        <tr style="text-align: center;">
-          <th scope="row">1</th>
-          <td>Fulano fulano fu...</td>
-          <td>12</td>
-          <td>10</td>
-          <td>0</td>
-          <td>0</td>
-          <td>19</td>
-          <td style="text-align: center">
-            <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade" >Avaliar aluno</a>
-          </td>
-          <td style="text-align: center">
-            <a href="editar-avaliacao-aluno" class="btn linkeditar">Editar Avaliação</a>
-          </td>
-          <td hidden>Informática</td>
-          <td hidden>Técnicas de Linguagem de Programação</td>
-          <td hidden>I12BT</td>
-        </tr>
-        <tr style="text-align: center;">
-          <th scope="row">1</th>
-          <td>Fulano fulano fu...</td>
-          <td>12</td>
-          <td>10</td>
-          <td>0</td>
-          <td>0</td>
-          <td>19</td>
-          <td style="text-align: center">
-            <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade" >Avaliar aluno</a>
-          </td>
-          <td style="text-align: center">
-            <a href="editar-avaliacao-aluno" class="btn linkeditar">Editar Avaliação</a>
-          </td>
-          <td hidden>Informática</td>
-          <td hidden>Técnicas de Linguagem de Programação</td>
-          <td hidden>I12BT</td>
-        </tr>
-        <tr style="text-align: center;">
-          <th scope="row">1</th>
-          <td>Fulano fulano fu...</td>
-          <td>12</td>
-          <td>10</td>
-          <td>0</td>
-          <td>0</td>
-          <td>19</td>
-          <td style="text-align: center">
-            <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade" >Avaliar aluno</a>
-          </td>
-          <td style="text-align: center">
-            <a href="editar-avaliacao-aluno" class="btn linkeditar">Editar Avaliação</a>
-          </td>
-          <td hidden>Informática</td>
-          <td hidden>Técnicas de Linguagem de Programação</td>
-          <td hidden>I12BT</td>
-        </tr>
-        <tr style="text-align: center;">
-          <th scope="row">1</th>
-          <td>Fulano fulano fu...</td>
-          <td>12</td>
-          <td>10</td>
-          <td>0</td>
-          <td>0</td>
-          <td>19</td>
-          <td style="text-align: center">
-            <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade" >Avaliar aluno</a>
-          </td>
-          <td style="text-align: center">
-            <a href="editar-avaliacao-aluno" class="btn linkeditar">Editar Avaliação</a>
-          </td>
-          <td hidden>Informática</td>
-          <td hidden>Técnicas de Linguagem de Programação</td>
-          <td hidden>I12BT</td>
-        </tr>
-        <tr style="text-align: center;">
-          <th scope="row">1</th>
-          <td>Fulano fulano fu...</td>
-          <td>12</td>
-          <td>10</td>
-          <td>0</td>
-          <td>0</td>
-          <td>19</td>
-          <td style="text-align: center">
-            <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade" >Avaliar aluno</a>
-          </td>
-          <td style="text-align: center">
-            <a href="editar-avaliacao-aluno" class="btn linkeditar">Editar Avaliação</a>
-          </td>
-          <td hidden>Informática</td>
-          <td hidden>Lingua Portuguêsa</td>
-          <td hidden>I12BT</td>
-        </tr>
-        <tr style="text-align: center;">
-          <th scope="row">1</th>
-          <td>Fulano fulano fu...</td>
-          <td>12</td>
-          <td>10</td>
-          <td>0</td>
-          <td>0</td>
-          <td>19</td>
-          <td style="text-align: center">
-            <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade" >Avaliar aluno</a>
-          </td>
-          <td style="text-align: center">
-            <a href="editar-avaliacao-aluno" class="btn linkeditar">Editar Avaliação</a>
-          </td>
-          <td hidden>Informática</td>
-          <td hidden>Língua Portuguêsa</td>
-          <td hidden>I12BT</td>
-        </tr>
-      </tbody>
+        </tbody>
     </table>
   </div>
   <!-- Termina a tabela -->

@@ -2,93 +2,49 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Avaliacao_aluno;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Professor;
+use App\Models\Nota;
 use App\Traits\AvaliacaoTrait;
 
 class AvaliacaoAlunoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $disciplinas = [1, 2];
+        $disciplinas = [3, 4];
         $turmas = [1, 2];
         //$professor = Professor::with('disciplina')->find(1);
-        $notas = AvaliacaoTrait::notas($disciplinas, $turmas);
+        $aluno = AvaliacaoTrait::pegarNotaAluno($disciplinas);
+        $professor = AvaliacaoTrait::pegarProfessor();
         //$alunos->load('candidato');
-        dd($notas);
-        return view('avaliac-aluno/avaliacoes-aluno');
+        //dd($notas[0]);
+        // $dados = AvaliacaoTrait::calcularNotas($notas);
+         //dd($aluno);
+         //dd(count($notas));
+        return view('avaliac-aluno/avaliacoes-aluno', compact('aluno'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function indexUpdate($id){
+        $notas = Nota::with('aluno.candidato.pessoa', 'aluno.turmas')->where('aluno_id', $id)->where('disciplina_id', 3)->get();
+        //dd($notas[0]);
+        if(count($notas) < 1){
+            return redirect()->back()->with('erro', "Nenhuma avaliação encontrada!");
+        }
+
+        return view('avaliac-aluno/edit-valiac-aluno', compact('notas'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Avaliacao_aluno  $avaliacao_aluno
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Avaliacao_aluno $avaliacao_aluno)
+
+    public function update(Request $request, Nota $nota)
     {
-        //
+        $nota->nota_aluno = $request->nota;
+        $nota->save();
+        return redirect()->back()->with('sucesso', "Nota alterada com sucesso!");
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Avaliacao_aluno  $avaliacao_aluno
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Avaliacao_aluno $avaliacao_aluno)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Avaliacao_aluno  $avaliacao_aluno
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Avaliacao_aluno $avaliacao_aluno)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Avaliacao_aluno  $avaliacao_aluno
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Avaliacao_aluno $avaliacao_aluno)
-    {
-        //
-    }
 }

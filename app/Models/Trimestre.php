@@ -23,7 +23,7 @@ class Trimestre extends Model
     ];
 
     public function anoLectivo(){
-        return $this->belongsTo(Ano_lectivo::class, 'ano_lectivo_id', 'trimestre_id');
+        return $this->belongsTo(Ano_lectivo::class, 'ano_lectivo_id');
     }
     public function nota(){
         return $this->hasMany(Nota::class, 'nota_id');

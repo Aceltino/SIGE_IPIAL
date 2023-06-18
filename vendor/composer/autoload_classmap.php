@@ -17,6 +17,7 @@ return array(
     'App\\Http\\Controllers\\AssiduidadeAlunoController' => $baseDir . '/app/Http/Controllers/AssiduidadeAlunoController.php',
     'App\\Http\\Controllers\\AuthController' => $baseDir . '/app/Http/Controllers/AuthController.php',
     'App\\Http\\Controllers\\AvaliacaoAlunoController' => $baseDir . '/app/Http/Controllers/AvaliacaoAlunoController.php',
+    'App\\Http\\Controllers\\CalendarioController' => $baseDir . '/app/Http/Controllers/CalendarioController.php',
     'App\\Http\\Controllers\\CandidatoController' => $baseDir . '/app/Http/Controllers/CandidatoController.php',
     'App\\Http\\Controllers\\CandidatoCursoController' => $baseDir . '/app/Http/Controllers/CandidatoCursoController.php',
     'App\\Http\\Controllers\\ClasseController' => $baseDir . '/app/Http/Controllers/ClasseController.php',
@@ -27,14 +28,13 @@ return array(
     'App\\Http\\Controllers\\EnderecoController' => $baseDir . '/app/Http/Controllers/EnderecoController.php',
     'App\\Http\\Controllers\\EscolaController' => $baseDir . '/app/Http/Controllers/EscolaController.php',
     'App\\Http\\Controllers\\InscricaoController' => $baseDir . '/app/Http/Controllers/InscricaoController.php',
+    'App\\Http\\Controllers\\LoginController' => $baseDir . '/app/Http/Controllers/LoginController.php',
     'App\\Http\\Controllers\\MatriculaController' => $baseDir . '/app/Http/Controllers/MatriculaController.php',
     'App\\Http\\Controllers\\MiniPautaController' => $baseDir . '/app/Http/Controllers/MiniPautaController.php',
     'App\\Http\\Controllers\\PautaController' => $baseDir . '/app/Http/Controllers/PautaController.php',
+    'App\\Http\\Controllers\\ProcessoController' => $baseDir . '/app/Http/Controllers/ProcessoController.php',
     'App\\Http\\Controllers\\ProfessorController' => $baseDir . '/app/Http/Controllers/ProfessorController.php',
-<<<<<<< HEAD
-=======
     'App\\Http\\Controllers\\TurmaController' => $baseDir . '/app/Http/Controllers/TurmaController.php',
->>>>>>> 9c55d4d8cb28b44919ad6352da7157ce830e6d95
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
     'App\\Http\\Controllers\\comunicadosController' => $baseDir . '/app/Http/Controllers/comunicadosController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
@@ -54,29 +54,28 @@ return array(
     'App\\Http\\Requests\\MatriculaRequest' => $baseDir . '/app/Http/Requests/MatriculaRequest.php',
     'App\\Mail\\ResetPassword' => $baseDir . '/app/Mail/ResetPassword.php',
     'App\\Models\\Aluno' => $baseDir . '/app/Models/Aluno.php',
-<<<<<<< HEAD
-=======
     'App\\Models\\AlunoEncarregado' => $baseDir . '/app/Models/AlunoEncarregado.php',
     'App\\Models\\AlunoTurma' => $baseDir . '/app/Models/AlunoTurma.php',
+    'App\\Models\\Aluno_turma' => $baseDir . '/app/Models/Aluno_turma.php',
     'App\\Models\\AnoTurmaCood' => $baseDir . '/app/Models/AnoTurmaCood.php',
->>>>>>> 9c55d4d8cb28b44919ad6352da7157ce830e6d95
     'App\\Models\\Ano_lectivo' => $baseDir . '/app/Models/Ano_lectivo.php',
+    'App\\Models\\Ano_turma_coord' => $baseDir . '/app/Models/Ano_turma_coord.php',
     'App\\Models\\Area_formacao' => $baseDir . '/app/Models/Area_formacao.php',
     'App\\Models\\Assiduidade_aluno' => $baseDir . '/app/Models/Assiduidade_aluno.php',
     'App\\Models\\Avaliacao_aluno' => $baseDir . '/app/Models/Avaliacao_aluno.php',
+    'App\\Models\\Calendario' => $baseDir . '/app/Models/Calendario.php',
     'App\\Models\\Candidato' => $baseDir . '/app/Models/Candidato.php',
     'App\\Models\\Classe' => $baseDir . '/app/Models/Classe.php',
     'App\\Models\\Comunicado' => $baseDir . '/app/Models/Comunicado.php',
     'App\\Models\\Curso' => $baseDir . '/app/Models/Curso.php',
     'App\\Models\\Disciplina' => $baseDir . '/app/Models/Disciplina.php',
-<<<<<<< HEAD
-=======
     'App\\Models\\Encarregado' => $baseDir . '/app/Models/Encarregado.php',
->>>>>>> 9c55d4d8cb28b44919ad6352da7157ce830e6d95
     'App\\Models\\Endereco' => $baseDir . '/app/Models/Endereco.php',
     'App\\Models\\Escola_proveniencia' => $baseDir . '/app/Models/Escola_proveniencia.php',
+    'App\\Models\\Nota' => $baseDir . '/app/Models/Nota.php',
     'App\\Models\\Pessoa' => $baseDir . '/app/Models/Pessoa.php',
     'App\\Models\\Professor' => $baseDir . '/app/Models/Professor.php',
+    'App\\Models\\Professor_disciplina' => $baseDir . '/app/Models/Professor_disciplina.php',
     'App\\Models\\Trimestre' => $baseDir . '/app/Models/Trimestre.php',
     'App\\Models\\Turma' => $baseDir . '/app/Models/Turma.php',
     'App\\Models\\Turno' => $baseDir . '/app/Models/Turno.php',
@@ -87,10 +86,7 @@ return array(
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'App\\Traits\\AnoLectivoTrait' => $baseDir . '/app/Traits/AnoLectivoTrait.php',
-<<<<<<< HEAD
     'App\\Traits\\AvaliacaoTrait' => $baseDir . '/app/Traits/AvaliacaoTrait.php',
-=======
->>>>>>> 9c55d4d8cb28b44919ad6352da7157ce830e6d95
     'App\\Traits\\CursoTrait' => $baseDir . '/app/Traits/CursoTrait.php',
     'App\\Traits\\PessoaTrait' => $baseDir . '/app/Traits/PessoaTrait.php',
     'App\\Traits\\UuidTrait' => $baseDir . '/app/Traits/UuidTrait.php',

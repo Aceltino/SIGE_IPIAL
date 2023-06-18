@@ -26,7 +26,7 @@ class Curso extends Model
     }
 
     public function areaFormacao(){
-        return $this->hasOne(Area_formacao::class, 'professor_id', 'curso_id');
+        return $this->belongsTo(Area_formacao::class, 'area_formacao_id');
     }
 
     public function Candidato()

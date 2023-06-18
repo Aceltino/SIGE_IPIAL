@@ -25,7 +25,7 @@ class Professor extends Model
 
 
     public function curso(){
-        return $this->belongsTo(Curso::class, 'curso_id', 'professor_id');
+        return $this->belongsTo(Curso::class, 'curso_id');
     }
     protected $primaryKey = 'professor_id';
 

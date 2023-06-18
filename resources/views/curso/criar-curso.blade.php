@@ -33,7 +33,7 @@
             </div>
 
             <div class="form-group">
-                <input type="text" style=" text-align: center;" value="" placeholder="Nome do Curso" name="nome_curso" oninput="this.className = ''" required>
+                <input type="text" style=" text-align: center;" value="{{old('nome_curso')}}" placeholder="Nome do Curso" name="nome_curso" oninput="this.className = ''" required>
             </div>
 
             <div class="row">
@@ -49,8 +49,8 @@
                 <div class=" col form-group">
                     <select name="coordenador" id="opcoes" oninput="this.className = ''" class="form-select" >
                         <option selected disabled>Coordenador:</option>
-                        @foreach ($dados as $coord)
-                            <option value="{{$coord['coordenador_id']}}">{{$coord['nome_completo']}}</option>
+                        @foreach ($coordenador as $coord)
+                            <option value="{{$coord['professor_id']}}">{{$coord['pessoa']['nome_completo']}}</option>
                         @endforeach
 
                     </select>
@@ -59,7 +59,7 @@
             </div>
 
             <div class="form-group">
-                <input type="text" style=" text-align: center;" value="" placeholder="Sigla do Curso" name="sigla_curso" oninput="this.className = ''" maxlength="4" required>
+                <input type="text" style=" text-align: center;" value="{{old('sigla_curso')}}" placeholder="Sigla do Curso" name="sigla_curso" oninput="this.className = ''" maxlength="4" required>
             </div>
 
             <div style="text-align:center;margin-top:10px;">
