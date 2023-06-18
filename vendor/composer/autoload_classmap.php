@@ -32,13 +32,9 @@ return array(
     'App\\Http\\Controllers\\MatriculaController' => $baseDir . '/app/Http/Controllers/MatriculaController.php',
     'App\\Http\\Controllers\\MiniPautaController' => $baseDir . '/app/Http/Controllers/MiniPautaController.php',
     'App\\Http\\Controllers\\PautaController' => $baseDir . '/app/Http/Controllers/PautaController.php',
-<<<<<<< HEAD
-    'App\\Http\\Controllers\\ProcessoController' => $baseDir . '/app/Http/Controllers/ProcessoController.php',
-=======
     'App\\Http\\Controllers\\PerfilUserController' => $baseDir . '/app/Http/Controllers/PerfilUserController.php',
     'App\\Http\\Controllers\\ProcessoController' => $baseDir . '/app/Http/Controllers/ProcessoController.php',
     'App\\Http\\Controllers\\ProcessosController' => $baseDir . '/app/Http/Controllers/ProcessosController.php',
->>>>>>> b1744675e8278921548e78b59012e3c455d0ea66
     'App\\Http\\Controllers\\ProfessorController' => $baseDir . '/app/Http/Controllers/ProfessorController.php',
     'App\\Http\\Controllers\\TurmaController' => $baseDir . '/app/Http/Controllers/TurmaController.php',
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',

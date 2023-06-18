@@ -5,6 +5,7 @@ use App\Http\Controllers\{
     //Classes das Controllers
     AuthController,
     AlunoTurmaController,
+    AlunoController,
     CandidatoController,
     MatriculaController,
     InscricaoController,
@@ -36,6 +37,8 @@ use App\Http\Controllers\{
 
 // Rota apenas de teste... Não apague -> ACELTINO
 Route::get('validar-aluno', [AlunoTurmaController::class, 'SelecionarTurma']);
+// Route::get('validar-aluno', [AlunoController::class, 'pegarIdUser']);
+
 
 
 //Rotas inicial do Painel
@@ -142,9 +145,7 @@ Route::prefix('inscricao')->group(function(){
 Route::prefix('matricula')->group(function(){
 
     /* Matriculas*/
-    Route::get('matriculas', function () {
-        return view('matricula/matriculas');
-    });
+    Route::get('matriculas',  [MatriculaController::class, 'index'])->name('matriculas');
 
     /*Matricular aluno */
     Route::get('matricular-aluno/{candidato}',  [MatriculaController::class, 'create'])->name('matricula-view');
