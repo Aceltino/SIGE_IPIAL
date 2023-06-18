@@ -62,7 +62,7 @@
         <li>
           <a href={{route('inscricao-view')}}>
             <i class="bi bi-circle"></i><span>Inscrever candidato</span>
-          </a> 
+          </a>
         </li>
         <li>
           <a href={{route('inscricao-index')}}>
@@ -271,7 +271,7 @@
       <ul id="processo-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
 
-          <a href={{ route('consultar.processo') }}>
+          {{-- <a href={{ route('consultar.processo') }}> --}}
 
           <a href={{route('processo.consultar')}}>
 

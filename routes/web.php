@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
      AdmissaoController,
     //Classes das Controllers
@@ -33,7 +33,6 @@ use App\Http\Controllers\{
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 
 // Rota apenas de teste... Não apague -> ACELTINO
 Route::get('validar-aluno', [AlunoTurmaController::class, 'SelecionarTurma']);

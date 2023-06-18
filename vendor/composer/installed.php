@@ -3,8 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-
-        'reference' => '51f9f855010fc83e7db901f08e7756a9ac622ed9',
+        'reference' => '48055cc04ea7788c0e1b15301e402efdeca2c292',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -96,9 +95,9 @@
             'dev_requirement' => true,
         ),
         'doctrine/inflector' => array(
-            'pretty_version' => '2.0.6',
-            'version' => '2.0.6.0',
-            'reference' => 'd9d313a36c872fd6ee06d9a6cbcf713eaa40f024',
+            'pretty_version' => '2.0.8',
+            'version' => '2.0.8.0',
+            'reference' => 'f9301a5b2fb1216b2b08f02ba04dc45423db6bff',
             'type' => 'library',
             'install_path' => __DIR__ . '/../doctrine/inflector',
             'aliases' => array(),
@@ -413,7 +412,6 @@
                 0 => 'v9.52.9',
             ),
         ),
-
         'inertiajs/inertia-laravel' => array(
             'pretty_version' => 'v0.6.9',
             'version' => '0.6.9.0',
@@ -423,25 +421,6 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'jaybizzle/crawler-detect' => array(
-            'pretty_version' => 'v1.2.115',
-            'version' => '1.2.115.0',
-            'reference' => '4531e4a70d55d10cbe7d41ac1ff0d75a5fe2ef1e',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../jaybizzle/crawler-detect',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
-        'jenssegers/agent' => array(
-            'pretty_version' => 'v2.6.4',
-            'version' => '2.6.4.0',
-            'reference' => 'daa11c43729510b3700bc34d414664966b03bffe',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../jenssegers/agent',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
-
         'kitloong/laravel-migrations-generator' => array(
             'pretty_version' => 'v6.10.0',
             'version' => '6.10.0.0',
@@ -478,8 +457,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-
-            'reference' => '51f9f855010fc83e7db901f08e7756a9ac622ed9',
+            'reference' => '48055cc04ea7788c0e1b15301e402efdeca2c292',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
