@@ -3,7 +3,15 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
+<<<<<<< HEAD
         'reference' => 'a24691707a279bc342a60787a5b64bcd36fbd2fa',
+=======
+<<<<<<< HEAD
+        'reference' => '48055cc04ea7788c0e1b15301e402efdeca2c292',
+=======
+        'reference' => '17f0df262fb4b87fd13eb693aaa572cc7cb9bc57',
+>>>>>>> ef6ffa13eb97cc218e517f2aeb40ef0d388063b1
+>>>>>>> b1744675e8278921548e78b59012e3c455d0ea66
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -421,24 +429,6 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'jaybizzle/crawler-detect' => array(
-            'pretty_version' => 'v1.2.115',
-            'version' => '1.2.115.0',
-            'reference' => '4531e4a70d55d10cbe7d41ac1ff0d75a5fe2ef1e',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../jaybizzle/crawler-detect',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
-        'jenssegers/agent' => array(
-            'pretty_version' => 'v2.6.4',
-            'version' => '2.6.4.0',
-            'reference' => 'daa11c43729510b3700bc34d414664966b03bffe',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../jenssegers/agent',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
         'kitloong/laravel-migrations-generator' => array(
             'pretty_version' => 'v6.10.0',
             'version' => '6.10.0.0',
@@ -472,19 +462,18 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'laravel/jetstream' => array(
-            'pretty_version' => 'v3.0.2',
-            'version' => '3.0.2.0',
-            'reference' => '2af8f166436bf73c946f7187055d2df317d3e981',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../laravel/jetstream',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
+<<<<<<< HEAD
             'reference' => 'a24691707a279bc342a60787a5b64bcd36fbd2fa',
+=======
+<<<<<<< HEAD
+            'reference' => '48055cc04ea7788c0e1b15301e402efdeca2c292',
+=======
+            'reference' => '17f0df262fb4b87fd13eb693aaa572cc7cb9bc57',
+>>>>>>> ef6ffa13eb97cc218e517f2aeb40ef0d388063b1
+>>>>>>> b1744675e8278921548e78b59012e3c455d0ea66
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -577,15 +566,6 @@
             'reference' => 'ff6248ea87a9f116e78edd6002e39e5128a0d4dd',
             'type' => 'library',
             'install_path' => __DIR__ . '/../league/mime-type-detection',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
-        'mobiledetect/mobiledetectlib' => array(
-            'pretty_version' => '2.8.41',
-            'version' => '2.8.41.0',
-            'reference' => 'fc9cccd4d3706d5a7537b562b59cc18f9e4c0cb1',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../mobiledetect/mobiledetectlib',
             'aliases' => array(),
             'dev_requirement' => false,
         ),

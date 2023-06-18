@@ -32,8 +32,14 @@
           <th scope="row">{{ $com->titulo_com }}</th>
           <td>{{ $com->conteudo_com }}</td>
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
+
+ 
+
+            <form method="POST" action=" {{ route('comunicado.destroy', ['comunicado_id' => $comunicados->comunicado_id] }}" >
+
             <a href="{{ route('comunicado.edit', ['comunicado_id' => $com->comunicado_id]) }}"><i class="bi bi-pencil"></i></a>
             <form action="{{ route('comunicado.destroy', ['comunicado_id' => $com->comunicado_id] }}" method="POST">
+
             @csrf
             @method('destroy')
           <button type="submit" class="bi bi-trash-fill"></button>
@@ -44,6 +50,7 @@
       @endforeach
     </tbody>
   </table>
+  
   <!-- Termina a tabela de matriculas -->
       <!--Inicio da modal ver inscrito-->
       <div class="modal fade" id="ExtralargeModal" tabindex="-1" data-bs-backdrop="false">

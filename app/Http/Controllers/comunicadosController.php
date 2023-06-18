@@ -21,7 +21,8 @@ class comunicadosController extends Controller
     public function store(Request $request)
     {
         $ano_lectivo = Ano_lectivo::where('status_ano_lectivo', 1)->first();
-        $UsuarioId      = User::where('usuario_id', Auth::user()->usuario_id)->first();
+
+        $UsuarioId = User::where('usuario_id', Auth::user()->usuario_id)->first();
         $comunicados = new Comunicado();
         $comunicados->titulo_com = $request->titulo;
         $comunicados->conteudo_com = $request->conteudo;
@@ -44,6 +45,7 @@ class comunicadosController extends Controller
     }
     public function update(Request $request, $comunicado_id)
     {
+
         $comunicados = Comunicado::where('comunicado_id', $comunicado_id)->firstOrFail();
         $comunicados->update([
             'titulo_com' => $request->titulo_com,

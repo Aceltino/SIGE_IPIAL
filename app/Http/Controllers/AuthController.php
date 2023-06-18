@@ -53,13 +53,12 @@ class AuthController extends Controller
 
         Session::start();
         $request->session()->regenerate();
-        session(['user'=>$user]);
-
         return redirect()->intended('/');
     }
 
     //Metodo de Armazenamento dos usuario,pessoa e endereço
-    public function store(Request $request){
+    public function store(Request $request):mixed
+    {
 
         //Criando o nome do Usuario
         $posicao = 0; // posição do caractere desejado(Onde começa a contagem do caracter)
@@ -70,13 +69,13 @@ class AuthController extends Controller
 
             //Formulario da Pessoa
             'nome'=>'required|string|min:2|max:50',
-            'sobre_nome'=>'required|string|min:5|max:50',
+            'sobre_nome'=>'required|string|min:2|max:50',
             'data_nascimento'=>'required|date|before:'.now()->format('d-m-Y'),
             'num_bi'=>'required|size:14|unique:pessoas,num_bi',
 
             //Formulario do user
             'email'=>'required|email|max:200|unique:users,email',
-            'password'=>'required|min:5|max:32',
+            'password'=>'required|min:6',
             'num_telefone'=>'required|size:9',
 
             //Formulario do endereço
@@ -105,8 +104,6 @@ class AuthController extends Controller
             'email.max'=>'Lamentamos! Digita um email com menos caracter(letra)',
             'email.unique'=>'Lamentamos, este email já esta em uso',
             'password.min'=>'A password deve conter no minimo 6 letras',
-            'password.max'=>'A password deve conter no maximo 32 letras',
-            //'password.confirmed'=>'A confirmação da senha não corresponde.',
             'num_telefone'=>'Digite um número de telefone valido',
 
             //Formulario do endereço
@@ -152,7 +149,7 @@ class AuthController extends Controller
             'zona'=>$request->zona,
             'numero_casa'=>$request->num_casa,
         ];
-        $pessoa_id= $this->storePessoa($dadosPessoa, $dadosEndereco);
+        $pessoa_id= $this->storePessoa($dadosPessoa, $dadosEndereco);//retorna id da pessoa
 
         $dadosUser=[
             'nome_usuario'=>$abreNome.count(User::all()).$abreSobreNome,
@@ -170,7 +167,7 @@ class AuthController extends Controller
             return redirect()->back()->with("erroCadastroUser",$msg);
         }
 
-        $msg=$request->cargo." Cadastrado com Sucesso. Por favor entre com os seus dados";
+        $msg="Adminstrador do sSistema Cadastrado com Sucesso. Por favor entre com os seus dados";
         return view('autenticacao.login')->with('registrado',$msg);
     }
 
@@ -181,19 +178,21 @@ class AuthController extends Controller
         return redirect()->route("login");
     }
 
-
     //Metodo que retorna o formulario de recuperação de senha
     public function resetForm(){
+
         return view('autenticacao.recuperar-senha');
     }
 
+
     //Metodo que retorna o formulario de reposição de uma nova senha
     public function resetPasswordForm($token){
+
         return view('autenticacao.nova_senha', ['token' => $token]);
     }
 
     //Metodo que envia o link de recuperação de senha no email do usuario
-    public function envioLinkEmail(Request $request)
+    public function envioLinkEmail(Request $request):mixed
     {
         $request->validate(['email' => 'required|email']);
 
@@ -221,7 +220,7 @@ class AuthController extends Controller
     }
 
     //Metodo que processa redifinição de senha na db com base ao link
-    public function processarRedefinicaoPassword(Request $request)
+    public function processarRedefinicaoPassword(Request $request):mixed
     {
         switch($request->password) {
             case $request->password_confirmation:
@@ -273,9 +272,9 @@ class AuthController extends Controller
         $dataCarbon = Carbon::parse($resetPassword->created_at);
         $dataAtual = Carbon::now();
 
-        // Verifique se a data armazenada já passou 5 minutos em relação à data atual
-        if($dataCarbon->diffInMinutes($dataAtual) >= 5) {
-            // Remover o token de redefinição de senha após 5min
+        // Verifique se a data armazenada já passou 10 minutos em relação à data atual
+        if($dataCarbon->diffInMinutes($dataAtual) >= 10) {
+            // Remover o token de redefinição de senha após 10min
             DB::table('password_resets')->where('email', $request->email)->delete();
             goto conti_expire;
         }
@@ -295,4 +294,6 @@ class AuthController extends Controller
 
     }
 
+
 }
+

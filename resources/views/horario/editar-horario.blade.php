@@ -13,45 +13,24 @@
           
             <div class="row mb-3">
                 <div class="col">
-                    <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Área de formação">
-                            <option value="Informática">Informática</option>
-                            <option value="Contrução civil">Electricidade</option>
-                            <option value="Eletronica">Electrônica</option>
-                            <option value="Contrução civil">Construção civil</option>
-                        </optgroup>
-                    </select>
+                    <input type="text" oninput="this.className = ''" value="Contrução civil" disabled>
                 </div>
             </div>
 
 
             <div class="row mb-3">
                 <div class="col">
-                    <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Curso">
-                        <option value="Desenhador Projectista">Desenhador Projetista</option>
-                        <option value="Técnico de Energia e Instalações Eléctricas">Técnico de Energia e Instalações Eléctricas</option>
-                        <option value="Técnico de Informática ">Técnico de Informática</option>
-                        <option value="Electrônica e Telecomunicação">Electrônica e Telecomunicação</option>
-                        </optgroup>
-                    </select>
+                    <input type="text" oninput="this.className = ''" value="Desenhador Projectista" disabled>
                 </div>
             </div>
 
             <div class="row mb-3">
                 <div class="col">
-                    <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Turma">
-                        <option value="I10AM">I10AM</option>
-                        <option value="I10BM">I10BM</option>
-                        <option value="I10CM">I10CM</option>
-                        <option value="I10DM">I10DM</option>
-                        </optgroup>
-                    </select>
+                    <input type="text" oninput="this.className = ''" value="EI10AN" id="input-editar-horario-turma" disabled>
                 </div>
             </div>
 
-            <div class="row mb-3">
+            <div class="row mb-3" id="editar-horario-div-que-pode-desaparecer-1">
                 <div class="col-sm-6">
                     <select oninput="this.className = ''" class="form-select">
                         <optgroup label="Primeiro dia de Educação Física">
@@ -73,7 +52,7 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row" id="editar-horario-div-que-pode-desaparecer-2">
                 <div class="col-sm-6">
                     <select oninput="this.className = ''" class="form-select">
                         <optgroup label="Primeiro dia de Educação Física">

@@ -3,7 +3,7 @@
 
 {{-- Administrador ou Subdirector Pedagogico ----- / Menu do Administrador ou Subdirector Pedagogico --}}
 @if(Auth::user()->cargo_usuario == "Administrador" || Auth::user()->cargo_usuario == "Subdirector")
-  
+
   <ul class="sidebar-nav" id="sidebar-nav">
 
     <!-- /	Nav Pagina inicial-->
@@ -270,7 +270,11 @@
       </a>
       <ul id="processo-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
+
+          {{-- <a href={{ route('consultar.processo') }}> --}}
+
           <a href={{route('processo.consultar')}}>
+
             <i class="bi bi-circle"></i><span>Processos</span>
           </a>
         </li>
@@ -313,12 +317,12 @@
       </a>
       <ul id="disciplina-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="/regi-disciplina">
+          <a href={{ route('criar.disciplina')}}>
             <i class="bi bi-circle"></i><span>Cadastrar disciplina</span>
           </a>
         </li>
         <li>
-          <a href="/disciplinas">
+          <a href={{ route('consultar.disciplina')}}>
             <i class="bi bi-circle"></i><span>Disciplina</span>
           </a>
         </li>
@@ -327,7 +331,7 @@
 
     <!-- /	Nav Perfil-->
     <li class="nav-item">
-      <a class="nav-link collapsed" href="perfil">
+      <a class="nav-link collapsed" href={{route('perfil')}}>
         <i class="bi bi-person"></i>
         <span>Perfil</span>
       </a>
@@ -336,7 +340,7 @@
 
   {{-- DIRETOR GERAL ----- / Menu do Diretor Geral --}}
   @elseif(Auth::user()->cargo_usuario == "Director")
-   
+
     <ul class="sidebar-nav" id="sidebar-nav">
       <!-- /  Nav Pagina inicial-->
       <li class="nav-item">
@@ -374,7 +378,7 @@
         </ul>
       </li>
 
-      <!-- /  Nav Professor-->      
+      <!-- /  Nav Professor-->
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#professor-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-person-lines-fill"></i><span>Professor</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -423,12 +427,12 @@
         </a>
         <ul id="comunicado-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="comunicado/criar-comunicado">
+            <a href={{ route('comunicado.create') }}>
               <i class="bi bi-circle"></i><span>Criar comunicado</span>
             </a>
           </li>
           <li>
-            <a href="comunicado/comunicado">
+            <a href={{ route('comunicado.index') }}>
               <i class="bi bi-circle"></i><span>Comunicados</span>
             </a>
           </li>
@@ -512,7 +516,10 @@
         </a>
         <ul id="processo-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
+
+            <a href={{ route('consultar.processo') }}>
             <a href={{route('processo.consultar')}}>
+
               <i class="bi bi-circle"></i><span>Processos</span>
             </a>
           </li>
@@ -532,16 +539,16 @@
           </li>
         </ul>
       </li>
-    
+
       <!-- /  Nav Perfil-->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="perfil">
+        <a class="nav-link collapsed" href={{route('perfil')}}>
           <i class="bi bi-person"></i>
           <span>Perfil</span>
         </a>
       </li>
-    </ul><!--Fim do menu do Diretor Geral-->  
-  
+    </ul><!--Fim do menu do Diretor Geral-->
+
   {{-- SECRETARIA PEDAGÓGICA -----   / Menu de secretrio Pedagógico --}}
   @elseif(Auth::user()->cargo_usuario == "Secretaria")
     <ul class="sidebar-nav" id="sidebar-nav">
@@ -645,7 +652,11 @@
           </a>
           <ul id="processo-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
+
+              <a href={{ route('consultar.processo') }}>
+
               <a href={{route('processo.consultar')}}>
+
                 <i class="bi bi-circle"></i><span>Processos</span>
               </a>
             </li>
@@ -655,13 +666,13 @@
 
       <!-- /  Nav Perfil-->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="perfil">
+        <a class="nav-link collapsed" href={{route('perfil')}}>
           <i class="bi bi-person"></i>
           <span>Perfil</span>
         </a>
       </li>
     </ul><!--Fim do menu do Secretario Pedagogico-->
-  
+
   {{-- COORDENADOR -----  /  Menu de Coordenador de curso --}}
   @elseif(Auth::user()->cargo_usuario == "Coordenacao")
     <ul class="sidebar-nav" id="sidebar-nav">
@@ -671,7 +682,7 @@
           <i class="bi bi-ui-radios"></i>
           <span>Página inicial</span>
         </a>
-      </li>      
+      </li>
 
       <!-- /  Nav Matricula-->
       <li class="nav-item">
@@ -730,7 +741,7 @@
         </ul>
       </li>
 
-      <!-- /  Nav Professor-->      
+      <!-- /  Nav Professor-->
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#professor-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-person-lines-fill"></i><span>Professor</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -793,7 +804,7 @@
         </a>
         <ul id="disciplina-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="/assiduidade_aluno">
+            <a href={{ route('consultar.disciplina')}}>
               <i class="bi bi-circle"></i><span>Disciplinas</span>
             </a>
           </li>
@@ -816,11 +827,11 @@
 
       <!-- /  Nav Perfil-->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="perfil">
+        <a class="nav-link collapsed" href={{route('perfil')}}>
           <i class="bi bi-person"></i>
           <span>Perfil</span>
         </a>
-      </li>      
+      </li>
     </ul><!--Fim do menu do Coordenador de curso-->
 
   {{-- PROFESSOR ----- / Menu de Professor --}}
@@ -939,7 +950,7 @@
         </a>
         <ul id="disciplina-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="/assiduidade_aluno">
+            <a href={{ route('consultar.disciplina')}}>
               <i class="bi bi-circle"></i><span>Disciplinas</span>
             </a>
           </li>
@@ -948,15 +959,15 @@
 
       <!-- /  Nav Perfil-->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="perfil">
+        <a class="nav-link collapsed" href={{route('perfil')}}>
           <i class="bi bi-person"></i>
           <span>Perfil</span>
         </a>
       </li>
-    </ul><!--Fim do menu do Professor--> 
-    
+    </ul><!--Fim do menu do Professor-->
+
   {{-- ALUNO ----- / Menu de Aluno --}}
-  @elseif(Auth::user()->cargo_usuario == "Aluno") 
+  @elseif(Auth::user()->cargo_usuario == "Aluno")
     <ul class="sidebar-nav" id="sidebar-nav">
       <!-- /  Nav Pagina inicial-->
       <li class="nav-item">
@@ -1043,7 +1054,7 @@
           <span>Perfil</span>
         </a>
       </li>
-    </ul><!--Fim do menu do Aluno-->  
+    </ul><!--Fim do menu do Aluno-->
 
   {{-- Usuario - Inscrição ----- / Menu de Usuario - Inscrição --}}
   @elseif(Auth::user()->cargo_usuario == "insc_user")
@@ -1098,7 +1109,7 @@
           <span>Página inicial</span>
         </a>
       </li>
-      
+
       <!-- /	Nav Matricula-->
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#matricula-nav" data-bs-toggle="collapse" href="#">
@@ -1128,7 +1139,7 @@
       </li>
     </ul><!-- Fim do menu de Usuario - Matricula-->
   @else
-    
+
   @endif
 
   </aside><!-- Termina Sidebar-->

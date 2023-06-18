@@ -44,7 +44,9 @@
           </tr>
       </thead>
       <tbody>
+
         @foreach($candidatos as $candidato)
+
           <tr  style=" text-align: center;">
           <th scope="row">{{ $candidato->num_bi }}</th>
           <td>{{ $candidato->nome_completo }}</td>

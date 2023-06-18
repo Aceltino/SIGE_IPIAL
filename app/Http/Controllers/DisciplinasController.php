@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Curso;
 use App\Models\Disciplina;
 use App\Models\Curso;
 
@@ -12,7 +13,11 @@ class DisciplinasController extends Controller
     public function index()
     {
        $disciplinas = Disciplina::all();
+
+       $cursos = Curso::all(['nome_curso']);
+
        $cursos = Curso::all(['curso_id', 'nome_curso']);
+
         return view('disciplina.disciplinas', ['disciplinas'=>$disciplinas, 'cursos'=>$cursos]);
     }
     public function create()
@@ -43,6 +48,13 @@ class DisciplinasController extends Controller
     }
     public function update(Request $request, $disciplina_id)
     {
+        // $data = [
+        //     ''
+        //     ''
+        //     ''
+        //     ''
+        // ];
+        // return redirect()->route('disciplina.index');
         $dado = [
             'nome_disciplina' =>$request->nome_disciplina,
             'componente' =>$request->componente,
@@ -51,12 +63,9 @@ class DisciplinasController extends Controller
             'curso_id' => $request->curso[$j],
         ];
         Disciplina::where('disciplina_id',$disciplina_id)->update($dado);
+
         return redirect()->route('disciplina.index');
-    }
-    public function destroy($disciplina_id)
-    {
-        Disciplina::where('disciplina_id',$disciplina_id)->delete();
-        return redirect()->route('disciplina.index');
+
     }
 
 

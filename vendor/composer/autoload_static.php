@@ -130,17 +130,11 @@ class ComposerStaticInitd687848da1c8e5b0effdcf829e99ed56
             'Laravel\\SerializableClosure\\' => 28,
             'Laravel\\Sanctum\\' => 16,
             'Laravel\\Sail\\' => 13,
-            'Laravel\\Jetstream\\' => 18,
             'Laravel\\Fortify\\' => 16,
         ),
         'K' => 
         array (
             'KitLoong\\MigrationsGenerator\\' => 29,
-        ),
-        'J' => 
-        array (
-            'Jenssegers\\Agent\\' => 17,
-            'Jaybizzle\\CrawlerDetect\\' => 24,
         ),
         'I' => 
         array (
@@ -459,10 +453,6 @@ class ComposerStaticInitd687848da1c8e5b0effdcf829e99ed56
         array (
             0 => __DIR__ . '/..' . '/laravel/sail/src',
         ),
-        'Laravel\\Jetstream\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/laravel/jetstream/src',
-        ),
         'Laravel\\Fortify\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/fortify/src',
@@ -470,14 +460,6 @@ class ComposerStaticInitd687848da1c8e5b0effdcf829e99ed56
         'KitLoong\\MigrationsGenerator\\' => 
         array (
             0 => __DIR__ . '/..' . '/kitloong/laravel-migrations-generator/src',
-        ),
-        'Jenssegers\\Agent\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/jenssegers/agent/src',
-        ),
-        'Jaybizzle\\CrawlerDetect\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src',
         ),
         'Inertia\\' => 
         array (
@@ -602,16 +584,6 @@ class ComposerStaticInitd687848da1c8e5b0effdcf829e99ed56
         ),
     );
 
-    public static $prefixesPsr0 = array (
-        'D' => 
-        array (
-            'Detection' => 
-            array (
-                0 => __DIR__ . '/..' . '/mobiledetect/mobiledetectlib/namespaced',
-            ),
-        ),
-    );
-
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
@@ -639,7 +611,13 @@ class ComposerStaticInitd687848da1c8e5b0effdcf829e99ed56
         'App\\Http\\Controllers\\MatriculaController' => __DIR__ . '/../..' . '/app/Http/Controllers/MatriculaController.php',
         'App\\Http\\Controllers\\MiniPautaController' => __DIR__ . '/../..' . '/app/Http/Controllers/MiniPautaController.php',
         'App\\Http\\Controllers\\PautaController' => __DIR__ . '/../..' . '/app/Http/Controllers/PautaController.php',
+<<<<<<< HEAD
         'App\\Http\\Controllers\\ProcessoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProcessoController.php',
+=======
+        'App\\Http\\Controllers\\PerfilUserController' => __DIR__ . '/../..' . '/app/Http/Controllers/PerfilUserController.php',
+        'App\\Http\\Controllers\\ProcessoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProcessoController.php',
+        'App\\Http\\Controllers\\ProcessosController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProcessosController.php',
+>>>>>>> b1744675e8278921548e78b59012e3c455d0ea66
         'App\\Http\\Controllers\\ProfessorController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfessorController.php',
         'App\\Http\\Controllers\\TurmaController' => __DIR__ . '/../..' . '/app/Http/Controllers/TurmaController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
@@ -905,7 +883,6 @@ class ComposerStaticInitd687848da1c8e5b0effdcf829e99ed56
         'DeepCopy\\TypeFilter\\Spl\\SplDoublyLinkedListFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/Spl/SplDoublyLinkedListFilter.php',
         'DeepCopy\\TypeFilter\\TypeFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/TypeFilter.php',
         'DeepCopy\\TypeMatcher\\TypeMatcher' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeMatcher/TypeMatcher.php',
-        'Detection\\MobileDetect' => __DIR__ . '/..' . '/mobiledetect/mobiledetectlib/namespaced/Detection/MobileDetect.php',
         'Dflydev\\DotAccessData\\Data' => __DIR__ . '/..' . '/dflydev/dot-access-data/src/Data.php',
         'Dflydev\\DotAccessData\\DataInterface' => __DIR__ . '/..' . '/dflydev/dot-access-data/src/DataInterface.php',
         'Dflydev\\DotAccessData\\Exception\\DataException' => __DIR__ . '/..' . '/dflydev/dot-access-data/src/Exception/DataException.php',
@@ -3280,14 +3257,6 @@ class ComposerStaticInitd687848da1c8e5b0effdcf829e99ed56
         'Inertia\\Testing\\Concerns\\Matching' => __DIR__ . '/..' . '/inertiajs/inertia-laravel/src/Testing/Concerns/Matching.php',
         'Inertia\\Testing\\Concerns\\PageObject' => __DIR__ . '/..' . '/inertiajs/inertia-laravel/src/Testing/Concerns/PageObject.php',
         'Inertia\\Testing\\TestResponseMacros' => __DIR__ . '/..' . '/inertiajs/inertia-laravel/src/Testing/TestResponseMacros.php',
-        'Jaybizzle\\CrawlerDetect\\CrawlerDetect' => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src/CrawlerDetect.php',
-        'Jaybizzle\\CrawlerDetect\\Fixtures\\AbstractProvider' => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src/Fixtures/AbstractProvider.php',
-        'Jaybizzle\\CrawlerDetect\\Fixtures\\Crawlers' => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src/Fixtures/Crawlers.php',
-        'Jaybizzle\\CrawlerDetect\\Fixtures\\Exclusions' => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src/Fixtures/Exclusions.php',
-        'Jaybizzle\\CrawlerDetect\\Fixtures\\Headers' => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src/Fixtures/Headers.php',
-        'Jenssegers\\Agent\\Agent' => __DIR__ . '/..' . '/jenssegers/agent/src/Agent.php',
-        'Jenssegers\\Agent\\AgentServiceProvider' => __DIR__ . '/..' . '/jenssegers/agent/src/AgentServiceProvider.php',
-        'Jenssegers\\Agent\\Facades\\Agent' => __DIR__ . '/..' . '/jenssegers/agent/src/Facades/Agent.php',
         'KitLoong\\MigrationsGenerator\\DBAL\\DBALSchema' => __DIR__ . '/..' . '/kitloong/laravel-migrations-generator/src/DBAL/DBALSchema.php',
         'KitLoong\\MigrationsGenerator\\DBAL\\Models\\DBALColumn' => __DIR__ . '/..' . '/kitloong/laravel-migrations-generator/src/DBAL/Models/DBALColumn.php',
         'KitLoong\\MigrationsGenerator\\DBAL\\Models\\DBALCustomColumn' => __DIR__ . '/..' . '/kitloong/laravel-migrations-generator/src/DBAL/Models/DBALCustomColumn.php',
@@ -3536,73 +3505,6 @@ class ComposerStaticInitd687848da1c8e5b0effdcf829e99ed56
         'Laravel\\Fortify\\Rules\\Password' => __DIR__ . '/..' . '/laravel/fortify/src/Rules/Password.php',
         'Laravel\\Fortify\\TwoFactorAuthenticatable' => __DIR__ . '/..' . '/laravel/fortify/src/TwoFactorAuthenticatable.php',
         'Laravel\\Fortify\\TwoFactorAuthenticationProvider' => __DIR__ . '/..' . '/laravel/fortify/src/TwoFactorAuthenticationProvider.php',
-        'Laravel\\Jetstream\\Actions\\UpdateTeamMemberRole' => __DIR__ . '/..' . '/laravel/jetstream/src/Actions/UpdateTeamMemberRole.php',
-        'Laravel\\Jetstream\\Actions\\ValidateTeamDeletion' => __DIR__ . '/..' . '/laravel/jetstream/src/Actions/ValidateTeamDeletion.php',
-        'Laravel\\Jetstream\\ConfirmsPasswords' => __DIR__ . '/..' . '/laravel/jetstream/src/ConfirmsPasswords.php',
-        'Laravel\\Jetstream\\Console\\InstallCommand' => __DIR__ . '/..' . '/laravel/jetstream/src/Console/InstallCommand.php',
-        'Laravel\\Jetstream\\Contracts\\AddsTeamMembers' => __DIR__ . '/..' . '/laravel/jetstream/src/Contracts/AddsTeamMembers.php',
-        'Laravel\\Jetstream\\Contracts\\CreatesTeams' => __DIR__ . '/..' . '/laravel/jetstream/src/Contracts/CreatesTeams.php',
-        'Laravel\\Jetstream\\Contracts\\DeletesTeams' => __DIR__ . '/..' . '/laravel/jetstream/src/Contracts/DeletesTeams.php',
-        'Laravel\\Jetstream\\Contracts\\DeletesUsers' => __DIR__ . '/..' . '/laravel/jetstream/src/Contracts/DeletesUsers.php',
-        'Laravel\\Jetstream\\Contracts\\InvitesTeamMembers' => __DIR__ . '/..' . '/laravel/jetstream/src/Contracts/InvitesTeamMembers.php',
-        'Laravel\\Jetstream\\Contracts\\RemovesTeamMembers' => __DIR__ . '/..' . '/laravel/jetstream/src/Contracts/RemovesTeamMembers.php',
-        'Laravel\\Jetstream\\Contracts\\UpdatesTeamNames' => __DIR__ . '/..' . '/laravel/jetstream/src/Contracts/UpdatesTeamNames.php',
-        'Laravel\\Jetstream\\Events\\AddingTeam' => __DIR__ . '/..' . '/laravel/jetstream/src/Events/AddingTeam.php',
-        'Laravel\\Jetstream\\Events\\AddingTeamMember' => __DIR__ . '/..' . '/laravel/jetstream/src/Events/AddingTeamMember.php',
-        'Laravel\\Jetstream\\Events\\InvitingTeamMember' => __DIR__ . '/..' . '/laravel/jetstream/src/Events/InvitingTeamMember.php',
-        'Laravel\\Jetstream\\Events\\RemovingTeamMember' => __DIR__ . '/..' . '/laravel/jetstream/src/Events/RemovingTeamMember.php',
-        'Laravel\\Jetstream\\Events\\TeamCreated' => __DIR__ . '/..' . '/laravel/jetstream/src/Events/TeamCreated.php',
-        'Laravel\\Jetstream\\Events\\TeamDeleted' => __DIR__ . '/..' . '/laravel/jetstream/src/Events/TeamDeleted.php',
-        'Laravel\\Jetstream\\Events\\TeamEvent' => __DIR__ . '/..' . '/laravel/jetstream/src/Events/TeamEvent.php',
-        'Laravel\\Jetstream\\Events\\TeamMemberAdded' => __DIR__ . '/..' . '/laravel/jetstream/src/Events/TeamMemberAdded.php',
-        'Laravel\\Jetstream\\Events\\TeamMemberRemoved' => __DIR__ . '/..' . '/laravel/jetstream/src/Events/TeamMemberRemoved.php',
-        'Laravel\\Jetstream\\Events\\TeamMemberUpdated' => __DIR__ . '/..' . '/laravel/jetstream/src/Events/TeamMemberUpdated.php',
-        'Laravel\\Jetstream\\Events\\TeamUpdated' => __DIR__ . '/..' . '/laravel/jetstream/src/Events/TeamUpdated.php',
-        'Laravel\\Jetstream\\Features' => __DIR__ . '/..' . '/laravel/jetstream/src/Features.php',
-        'Laravel\\Jetstream\\HasProfilePhoto' => __DIR__ . '/..' . '/laravel/jetstream/src/HasProfilePhoto.php',
-        'Laravel\\Jetstream\\HasTeams' => __DIR__ . '/..' . '/laravel/jetstream/src/HasTeams.php',
-        'Laravel\\Jetstream\\Http\\Controllers\\CurrentTeamController' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Controllers/CurrentTeamController.php',
-        'Laravel\\Jetstream\\Http\\Controllers\\Inertia\\ApiTokenController' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Controllers/Inertia/ApiTokenController.php',
-        'Laravel\\Jetstream\\Http\\Controllers\\Inertia\\Concerns\\ConfirmsTwoFactorAuthentication' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Controllers/Inertia/Concerns/ConfirmsTwoFactorAuthentication.php',
-        'Laravel\\Jetstream\\Http\\Controllers\\Inertia\\CurrentUserController' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Controllers/Inertia/CurrentUserController.php',
-        'Laravel\\Jetstream\\Http\\Controllers\\Inertia\\OtherBrowserSessionsController' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Controllers/Inertia/OtherBrowserSessionsController.php',
-        'Laravel\\Jetstream\\Http\\Controllers\\Inertia\\PrivacyPolicyController' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Controllers/Inertia/PrivacyPolicyController.php',
-        'Laravel\\Jetstream\\Http\\Controllers\\Inertia\\ProfilePhotoController' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Controllers/Inertia/ProfilePhotoController.php',
-        'Laravel\\Jetstream\\Http\\Controllers\\Inertia\\TeamController' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Controllers/Inertia/TeamController.php',
-        'Laravel\\Jetstream\\Http\\Controllers\\Inertia\\TeamMemberController' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Controllers/Inertia/TeamMemberController.php',
-        'Laravel\\Jetstream\\Http\\Controllers\\Inertia\\TermsOfServiceController' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Controllers/Inertia/TermsOfServiceController.php',
-        'Laravel\\Jetstream\\Http\\Controllers\\Inertia\\UserProfileController' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Controllers/Inertia/UserProfileController.php',
-        'Laravel\\Jetstream\\Http\\Controllers\\Livewire\\ApiTokenController' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Controllers/Livewire/ApiTokenController.php',
-        'Laravel\\Jetstream\\Http\\Controllers\\Livewire\\PrivacyPolicyController' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Controllers/Livewire/PrivacyPolicyController.php',
-        'Laravel\\Jetstream\\Http\\Controllers\\Livewire\\TeamController' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Controllers/Livewire/TeamController.php',
-        'Laravel\\Jetstream\\Http\\Controllers\\Livewire\\TermsOfServiceController' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Controllers/Livewire/TermsOfServiceController.php',
-        'Laravel\\Jetstream\\Http\\Controllers\\Livewire\\UserProfileController' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Controllers/Livewire/UserProfileController.php',
-        'Laravel\\Jetstream\\Http\\Controllers\\TeamInvitationController' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Controllers/TeamInvitationController.php',
-        'Laravel\\Jetstream\\Http\\Livewire\\ApiTokenManager' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Livewire/ApiTokenManager.php',
-        'Laravel\\Jetstream\\Http\\Livewire\\CreateTeamForm' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Livewire/CreateTeamForm.php',
-        'Laravel\\Jetstream\\Http\\Livewire\\DeleteTeamForm' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Livewire/DeleteTeamForm.php',
-        'Laravel\\Jetstream\\Http\\Livewire\\DeleteUserForm' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Livewire/DeleteUserForm.php',
-        'Laravel\\Jetstream\\Http\\Livewire\\LogoutOtherBrowserSessionsForm' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Livewire/LogoutOtherBrowserSessionsForm.php',
-        'Laravel\\Jetstream\\Http\\Livewire\\NavigationMenu' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Livewire/NavigationMenu.php',
-        'Laravel\\Jetstream\\Http\\Livewire\\TeamMemberManager' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Livewire/TeamMemberManager.php',
-        'Laravel\\Jetstream\\Http\\Livewire\\TwoFactorAuthenticationForm' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Livewire/TwoFactorAuthenticationForm.php',
-        'Laravel\\Jetstream\\Http\\Livewire\\UpdatePasswordForm' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Livewire/UpdatePasswordForm.php',
-        'Laravel\\Jetstream\\Http\\Livewire\\UpdateProfileInformationForm' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Livewire/UpdateProfileInformationForm.php',
-        'Laravel\\Jetstream\\Http\\Livewire\\UpdateTeamNameForm' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Livewire/UpdateTeamNameForm.php',
-        'Laravel\\Jetstream\\Http\\Middleware\\AuthenticateSession' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Middleware/AuthenticateSession.php',
-        'Laravel\\Jetstream\\Http\\Middleware\\ShareInertiaData' => __DIR__ . '/..' . '/laravel/jetstream/src/Http/Middleware/ShareInertiaData.php',
-        'Laravel\\Jetstream\\InertiaManager' => __DIR__ . '/..' . '/laravel/jetstream/src/InertiaManager.php',
-        'Laravel\\Jetstream\\InteractsWithBanner' => __DIR__ . '/..' . '/laravel/jetstream/src/InteractsWithBanner.php',
-        'Laravel\\Jetstream\\Jetstream' => __DIR__ . '/..' . '/laravel/jetstream/src/Jetstream.php',
-        'Laravel\\Jetstream\\JetstreamServiceProvider' => __DIR__ . '/..' . '/laravel/jetstream/src/JetstreamServiceProvider.php',
-        'Laravel\\Jetstream\\Mail\\TeamInvitation' => __DIR__ . '/..' . '/laravel/jetstream/src/Mail/TeamInvitation.php',
-        'Laravel\\Jetstream\\Membership' => __DIR__ . '/..' . '/laravel/jetstream/src/Membership.php',
-        'Laravel\\Jetstream\\OwnerRole' => __DIR__ . '/..' . '/laravel/jetstream/src/OwnerRole.php',
-        'Laravel\\Jetstream\\RedirectsActions' => __DIR__ . '/..' . '/laravel/jetstream/src/RedirectsActions.php',
-        'Laravel\\Jetstream\\Role' => __DIR__ . '/..' . '/laravel/jetstream/src/Role.php',
-        'Laravel\\Jetstream\\Rules\\Role' => __DIR__ . '/..' . '/laravel/jetstream/src/Rules/Role.php',
-        'Laravel\\Jetstream\\Team' => __DIR__ . '/..' . '/laravel/jetstream/src/Team.php',
-        'Laravel\\Jetstream\\TeamInvitation' => __DIR__ . '/..' . '/laravel/jetstream/src/TeamInvitation.php',
         'Laravel\\Sail\\Console\\AddCommand' => __DIR__ . '/..' . '/laravel/sail/src/Console/AddCommand.php',
         'Laravel\\Sail\\Console\\Concerns\\InteractsWithDockerComposeServices' => __DIR__ . '/..' . '/laravel/sail/src/Console/Concerns/InteractsWithDockerComposeServices.php',
         'Laravel\\Sail\\Console\\InstallCommand' => __DIR__ . '/..' . '/laravel/sail/src/Console/InstallCommand.php',
@@ -4009,7 +3911,6 @@ class ComposerStaticInitd687848da1c8e5b0effdcf829e99ed56
         'League\\MimeTypeDetection\\GeneratedExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/GeneratedExtensionToMimeTypeMap.php',
         'League\\MimeTypeDetection\\MimeTypeDetector' => __DIR__ . '/..' . '/league/mime-type-detection/src/MimeTypeDetector.php',
         'League\\MimeTypeDetection\\OverridingExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/OverridingExtensionToMimeTypeMap.php',
-        'Mobile_Detect' => __DIR__ . '/..' . '/mobiledetect/mobiledetectlib/Mobile_Detect.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegration' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegration.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegrationAssertPostConditions' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegrationAssertPostConditions.php',
         'Mockery\\Adapter\\Phpunit\\MockeryTestCase' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryTestCase.php',
@@ -6755,7 +6656,6 @@ class ComposerStaticInitd687848da1c8e5b0effdcf829e99ed56
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitd687848da1c8e5b0effdcf829e99ed56::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitd687848da1c8e5b0effdcf829e99ed56::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitd687848da1c8e5b0effdcf829e99ed56::$prefixesPsr0;
             $loader->classMap = ComposerStaticInitd687848da1c8e5b0effdcf829e99ed56::$classMap;
 
         }, null, ClassLoader::class);

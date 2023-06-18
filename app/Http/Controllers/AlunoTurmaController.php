@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aluno;
+use App\Models\AlunoTurma;
 use App\Models\AnoTurmaCood;
 use Illuminate\Http\Request;
 
@@ -11,7 +12,12 @@ class AlunoTurmaController extends Controller
     public static function SelecionarTurma() //10ª Classe
     {
        $alunos = AlunoController::alunosSemturma();
-       $vagas = AdmissaoController::Vagas();
+
+       if(!$alunos)
+       {
+            return "Todos os alunos matriculados atualmente estão nas suas devidas turmas.";
+       }
+       $alunoTurma = [];
 
 
        usort($alunos, function ($a, $b)
@@ -29,43 +35,62 @@ class AlunoTurmaController extends Controller
 
         for($i = 0; $i < count($alunos); $i++)
         {
-        $turmas = AlunoTurmaController::pegarTurmasCurso($alunos[$i]['curso']);
+            $turmas = AlunoTurmaController::pegarTurmasCurso($alunos[$i]['curso']);
 
-        usort($turmas, function ($a, $b) {
-            $identificadorA = substr($a['turma'], -1);
-            $identificadorB = substr($b['turma'], -1);
-            $turnos = ['M' => 3, 'T' => 2, 'N' => 1];
+            usort($turmas, function ($a, $b)
+            {
+                $identificadorA = substr($a['turma'], -1);
+                $identificadorB = substr($b['turma'], -1);
+                $turnos = ['M' => 3, 'T' => 2, 'N' => 1];
 
-            if ($identificadorA != $identificadorB) {
-                return $turnos[$identificadorB] - $turnos[$identificadorA];
+                if ($identificadorA != $identificadorB)
+                {
+                    return $turnos[$identificadorB] - $turnos[$identificadorA];
+                }
+
+                return strcmp($identificadorA, $identificadorB);
+            });
+
+            foreach ($turmas as $turma)
+            {
+                if($turma['num_vaga'] > 0)
+                {
+                    $alunoTurma[] = [
+                    'turma' => $turma['TurmaAno_id'],
+                    'aluno' => $alunos[$i]['aluno_id'],
+                    'nome' => $alunos[$i]['nome']
+                    ];
+
+                    $vaga = $turma['num_vaga'] - 1;
+                    $vagaUpdate = [
+                    'id' => $turma['TurmaAno_id'],
+                    'vaga' => $vaga
+                    ];
+                    AlunoController::updateStatusTrue($alunos[$i]['aluno_id']);
+                    AlunoTurmaController::atualizarVaga($vagaUpdate);
+                    break;
+                }
             }
+        }
 
-            return strcmp($identificadorA, $identificadorB);
+        usort($alunoTurma, function($a, $b) {
+            return strcmp($a['nome'], $b['nome']);
         });
-
-        // Exibir turmas em ordem crescente com prioridade de turno
-        foreach ($turmas as $turma) {
-            if($turma['num_vaga'] > 0)
+        $alunosOrdemTurma = [];
+        foreach($alunoTurma as $aluno)
+        {
+            if( !in_array($aluno['aluno'], $alunosOrdemTurma) )
             {
 
-            $aluno = Aluno::find($alunos[$i]['aluno_id']);
-            $aluno->Anoturma()->attach($turma['TurmaAno_id'],[
-                'numero_aluno' => 1
+            $qtdAlunos = AlunoTurmaController::quantidadeTurma($aluno['turma']);
+            $alunoA = Aluno::find($aluno['aluno']);
+            $alunoA->Anoturma()->attach($aluno['turma'],[
+                'numero_aluno' => $qtdAlunos + 1
             ]);
-
-                $vagasTurma = [
-                $turma['turma'],
-                $turma['num_vaga'] - 1
-                ];
+            $alunosOrdemTurma[] = $aluno['aluno'];
             }
-            dd($vagasTurma);
         }
-
-
-        }
-
-        //
-        dd($alunos, $vagas);
+dd($alunosOrdemTurma);
     }
 
     public static function pegarTurmasCurso($curso) //Pegar turmas 10ª Classe
@@ -82,14 +107,24 @@ class AlunoTurmaController extends Controller
 
         foreach ($turmas as $turmaA)
         {
-            $Turmas[] =
-            [
-                'turma' => $turmaA->turma->nome_turma,
-                'TurmaAno_id' => $turmaA->turmaAno_id,
-                'num_vaga' => $turmaA->num_vagas
-            ];
+            if($turmaA->num_vagas > 0)
+            {
+                $Turmas[] =
+                [
+                    'turma' => $turmaA->turma->nome_turma,
+                    'TurmaAno_id' => $turmaA->turmaAno_id,
+                    'num_vaga' => $turmaA->num_vagas
+                ];
+            }
         }
         return $Turmas;
+    }
+
+    public static function quantidadeTurma($turma) //Pegar turmas 10ª Classe deste ano lectivo
+    {
+        $turmas = AlunoTurma::all()
+        ->where('turmaAno_id', $turma);
+        return count($turmas);
     }
 
     public static function atualizarVaga($turmaAno)
