@@ -25,7 +25,8 @@
          <div class="card">
            <div class="card-body perfil-card pt-4 d-flex flex-column align-items-center">
             
-             <img src={{URL::asset(Auth::user()->imagem_usuario)}} alt="perfil" class="l">
+             <img src= {{ URL::asset( isset(Auth::user()->imagem_usuario) ? Auth::user()->imagem_usuario : '' ) }} alt="perfil" class="l">
+
              <h2>{{ Auth::user()->belongPessoa->nome_completo }}</h2>
              <h3>{{ Auth::user()->cargo_usuario }}</h3>
            </div>
@@ -292,22 +293,7 @@
                    </div>
 
 
-                   <div class="col-md-8 mt-3" style=" display: flex; justify-content: flex-end;align-items: center; gap: 10px;">
-                    <h5>Endereço</h5>
-                      <div class="form-group">
-                        <input name='municipio' type="text" placeholder="Municipio" required='false' oninput="this.className = ''">
-                      </div> 
-                      <div class="form-group">
-                        <input name='bairro' type="text" placeholder="Bairro" required='false' oninput="this.className = ''">
-                      </div> 
-                      <div class="form-group">
-                        <input name='zona' type="text" placeholder="Zona" required='false' oninput="this.className = ''">
-                      </div> 
-                      <div class="form-group">
-                        <input name='numero_casa' type="number" placeholder="Nº Casa" required='false' oninput="this.className = ''">
-                      </div> 
-                    </div>
-                  </div>
+                
 
 
                    <div class="text-center">

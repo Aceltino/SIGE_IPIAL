@@ -611,13 +611,13 @@ class ComposerStaticInitd687848da1c8e5b0effdcf829e99ed56
         'App\\Http\\Controllers\\MatriculaController' => __DIR__ . '/../..' . '/app/Http/Controllers/MatriculaController.php',
         'App\\Http\\Controllers\\MiniPautaController' => __DIR__ . '/../..' . '/app/Http/Controllers/MiniPautaController.php',
         'App\\Http\\Controllers\\PautaController' => __DIR__ . '/../..' . '/app/Http/Controllers/PautaController.php',
-<<<<<<< HEAD
+
         'App\\Http\\Controllers\\ProcessoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProcessoController.php',
-=======
+
         'App\\Http\\Controllers\\PerfilUserController' => __DIR__ . '/../..' . '/app/Http/Controllers/PerfilUserController.php',
         'App\\Http\\Controllers\\ProcessoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProcessoController.php',
         'App\\Http\\Controllers\\ProcessosController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProcessosController.php',
->>>>>>> b1744675e8278921548e78b59012e3c455d0ea66
+
         'App\\Http\\Controllers\\ProfessorController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfessorController.php',
         'App\\Http\\Controllers\\TurmaController' => __DIR__ . '/../..' . '/app/Http/Controllers/TurmaController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',

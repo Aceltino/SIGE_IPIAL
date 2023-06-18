@@ -21,12 +21,12 @@
       </a>
       <ul id="usuario-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="use_cadastro">
+          <a href={{ route('createUsuario') }}>
             <i class="bi bi-circle"></i><span>Cadastrar usuário</span>
           </a>
         </li>
         <li>
-          <a href="usuarios">
+          <a href={{ route('consultUsuario') }}>
             <i class="bi bi-circle"></i><span>Usuários</span>
           </a>
         </li>
@@ -256,7 +256,7 @@
       </a>
       <ul id="biografica-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="aluno/ficha-biog">
+          <a href={{ route('fichaBiografica') }}>
             <i class="bi bi-circle"></i><span>Fichas Biográficas</span>
           </a>
         </li>
@@ -270,6 +270,7 @@
       </a>
       <ul id="processo-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
+
 
           {{-- <a href={{ route('consultar.processo') }}> --}}
 
