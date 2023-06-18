@@ -12,28 +12,33 @@
     </div>
 
     @if (session()->has('erro'))
+    <div class="alert alert-danger">
     {{session('erro')}}
+    </div>
     @endif
     @if (session()->has('sucesso'))
+    <div class="alert alert-success">
         {{session('sucesso')}}
+    </div>
     @endif
-    <form class="form-inativo" action="{{route('editar.dados.curso', $dd['curso_id'])}}" method="POST">
+    
+    <form class="form-inativo" action="{{route('editar.dados.curso', $coordenador_actual[0]['curso_id'])}}" method="POST">
         @csrf
         @method('put')
         <div class="dados-pessoais">
             <div class="area-input form-group">
-                <label>Nome Do Curso: </label><input type="text" name="nome_curso" value="{{$dd['nome_curso']}}">
+                <label>Nome Do Curso: </label><input type="text" name="nome_curso" value="{{$coordenador_actual[0]['curso']['nome_curso']}}">
             </div>
 
             <div class="area-input form-group">
-                <label>Sigla do curso: </label><input type="text" name="sigla_curso" value="{{$dd['sigla']}}">
+                <label>Sigla do curso: </label><input type="text" name="sigla_curso" value="{{$coordenador_actual[0]['curso']['sigla']}}">
             </div>
             <div class="form-group">
                <label for="">Area de Formação:</label>
                <select name="area_formacao" id="opcoes" oninput="this.className = ''" class="form-select">
                     <option disabled>Area de Formação:</option>
                     @foreach ($areaFormacao as $af)
-                        @if ($af['area_formacao_id'] == $dd['area_formacao_id'])
+                        @if ($af['area_formacao_id'] == $coordenador_actual[0]['curso']['area_formacao_id'])
                             <option value="{{$af['area_formacao_id']}}" selected>{{$af['nome_area_formacao']}}</option>
                         @else
                             <option value="{{$af['area_formacao_id']}}" >{{$af['nome_area_formacao']}}</option>
@@ -47,13 +52,9 @@
                 <label for="">Coordenador:</label>
                 <select name="coordenador" id="opcoes" oninput="this.className = ''" class="form-select">
                     <option  disabled>Coordenador:</option>
-                    @foreach ($valores as $coord)
-                        @if ($coord['coordenador_id'] == $dd['coordenador_id'])
-                            <option value="{{$coord['coordenador_id']}}" selected>{{$coord['nome_completo']}}</option>
-                        @else
-                            <option value="{{$coord['coordenador_id']}}">{{$coord['nome_completo']}}</option>
-                        @endif
-
+                        <option value="{{$coordenador_actual[0]['professor_id']}}" selected>{{$coordenador_actual[0]['pessoa']['nome_completo']}}</option>
+                    @foreach ($coordenador_disponivel as $coord)
+                        <option value="{{$coord['professor_id']}}">{{$coord['pessoa']['nome_completo']}}</option>
                     @endforeach
 
                 </select>
@@ -62,7 +63,7 @@
                     <div class="jnt">
                         <a href="{{route('consultar.cursos')}}" class="btn" style="background-color: #070b17; color: #fff;">Cancelar edição</a>
 
-                        <button type="submit" class="btn" style="background-color: #26dd35; color: #fff;" name="id" value="{{$dd['curso_id']}}">Atualizar</button>
+                        <button type="submit" class="btn" style="background-color: #26dd35; color: #fff;" name="id" value="{{$coordenador_actual[0]['curso_id']}}">Atualizar</button>
                     </div>
                 </div>
 
