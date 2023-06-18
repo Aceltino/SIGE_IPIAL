@@ -22,7 +22,7 @@
 
           <div class="row" >
                 <div class="col">
-                    <p>Designação do ano lectivo<input type="text" id="descricao-do-ano-lectivo" name="ano_lectivo" class="form-control" value="{{old('data_fim_matricula')}}" oninput="this.className = ''" ></p>
+                    <p>Designação do ano lectivo<input type="text" id="descricao-do-ano-lectivo" name="ano_lectivo" class="form-control" value="{{old('data_fim_matricula')}}" oninput="this.className = ''" disabled readonly></p>
                     @error('ano_lectivo')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
