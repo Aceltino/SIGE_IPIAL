@@ -32,7 +32,7 @@ class Aluno extends Model
         return $this->belongsToMany(Encarregado::class, 'aluno_encarregado', 'aluno_id', 'encarregado_id');
     }
 
-    public function Anoturma()
+    public function anoturma()
     {
         return $this->belongsToMany(AnoTurmaCood::class, 'aluno_turma', 'aluno_id', 'turmaAno_id');
     }
