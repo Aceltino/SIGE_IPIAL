@@ -14,6 +14,14 @@ class AlunoController extends Controller
         return $alunoCriado->aluno_id;
     }
 
+    public static function updateStatusTrue($idAluno) // Atualizr status para admitido
+    {
+        $alunoCriado = Aluno::find($idAluno);
+        $alunoCriado->status =1;
+        $alunoCriado->save();
+        return $alunoCriado;
+    }
+
     public static function alunosSemturma() // 10ª Classe
     {
         $alunos = Aluno::with('candidato', 'curso', 'encarregado')
@@ -31,7 +39,9 @@ class AlunoController extends Controller
             [
                 'aluno_id' => $aluno->aluno_id,
                 'curso' => $aluno->candidato->cursoAdmitido,
-                'data_nasc' => $aluno->candidato->pessoa->data_nascimento
+                'data_nasc' => $aluno->candidato->pessoa->data_nascimento,
+                'nome' => $aluno->candidato->pessoa->nome_completo,
+                'idCurso' => CursoController::pegarIdCurso($aluno->candidato->cursoAdmitido),
             ];
         }
         return $Alunos;

@@ -10,7 +10,6 @@
         "inertiajs/inertia-laravel": "^0.6.9",
         "laravel/fortify": "^1.17",
         "laravel/framework": "^9.19",
-        "laravel/jetstream": "^3.0",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "nesbot/carbon": "^2.67"

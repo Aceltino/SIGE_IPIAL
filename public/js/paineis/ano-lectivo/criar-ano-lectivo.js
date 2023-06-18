@@ -89,24 +89,11 @@
 
             return dataFormatada;
         }
-    //Função para atribuir datas aos inputs type date
-        function atribuirDataAoInput(inputTypeDate, data){
-            inputTypeDate.value = data;
-        }
 
     //Função para não permitir datas anteriores à data de hoje
         function naoPermitirDatasAnterioresADataDeHoje(inputTypeDate){
             inputTypeDate.setAttribute('min', retornarADataActual());
         }
-    //Função que compara se o valor do input é inferior à data introduzida
-    function verificarSeOvalorDoInputEUmaDataMaiorOuIgualQueARecebidaComoParametro(inputTypeDate, dataRecebidaComoParametro){
-        const valorDaInput = new Date(inputTypeDate.value);
-        const dataRecebida = new Date(dataRecebidaComoParametro);
-
-        const retorno = valorDaInput >= dataRecebida ?  true :  false;
-
-        return retorno;
-    }
     //Função para limitar os caracteres da input
         function limitarOsCaracteresDaInput(input, quantidadeMaximaDeCaracteres){
             if(input.value.length > quantidadeMaximaDeCaracteres){
@@ -114,70 +101,30 @@
             }
         }
     //Função para limitar os valores máximos e mínimos da input
-    function limitarOsValoresMinimosEMaximosDaInput(input, valorMinimo, valorMaximo){
-        if(input.value < valorMinimo){
-            input.value = valorMinimo;
-        }
+        function limitarOsValoresMinimosEMaximosDaInput(input, valorMinimo, valorMaximo){
+            if(input.value < valorMinimo){
+                input.value = valorMinimo;
+            }
 
-        if(input.value > valorMaximo){
-            input.value = valorMaximo;
+            if(input.value > valorMaximo){
+                input.value = valorMaximo;
+            }
         }
-    }
     //Função para impedir que os intervalos menores sejam maiores que os intervalos maiores
-    //Função para ocultar as validações se os campos estiverem vazios
-    function ocultarAsValidacoesSeOsCamposEstiveremVazios(input, textoDeValidacao){
-        if(!textoDeValidacao.classList.contains("d-none") && input.value === ''){
-            textoDeValidacao.classList.add("d-none");
-        }
-    }
+    
     //Função para apresentar as mensagens de erro
-    function apresentarMensagemDeErro(paragrafoDeValidacao, textoASerApresentado){
-        paragrafoDeValidacao.innerHTML = textoASerApresentado;
-        paragrafoDeValidacao.remove("d-none");
-    }
+        function apresentarMensagemDeErro(paragrafoDeValidacao, textoASerApresentado){
+            paragrafoDeValidacao.innerHTML = textoASerApresentado;
+            paragrafoDeValidacao.classList.remove("d-none");
+        }
     //Função para ocultar as mensagens de erro
-    function ocultarMensagemDeErro(paragrafoDeValidacao){
-        paragrafoDeValidacao.add("d-none");
-    }
+        function ocultarMensagemDeErro(paragrafoDeValidacao){
+            paragrafoDeValidacao.classList.add("d-none");
+        }
 //Término das funções diversas
 
 //Definições que devem ser tomadas de imediato
-    //Ocultar as validações se os campos estiverem vazios
-        //Primeiro step
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(dataDeInicioDoAnoLectivo, paragrafoDeValidacaoDaDataDeInicioDoAnoLectivo);
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(dataDeFimDoAnoLectivo, paragrafoDeValidacaoDaDataDeFimDoAnoLectivo);
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(dataDeInicioDasInscricoes, paragrafoDeValidacaoDaDataDeInicioDasInscricoes);
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(dataDeFimDasInscricoes, paragrafoDeValidacaoDaDataDeFimDasInscricoes);
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(dataDeInicioDasMatriculas, paragrafoDeValidacaoDaDataDeInicioDasMatriculas);
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(dataDeFimDasMatriculas, paragrafoDeValidacaoDaDataDeFimDasMatriculas);
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(numeroMaximoDeAlunosNasTurmas, paragrafoDeValidacaoDoNumeroMaximoDeAlunosNasTurmas);
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(numeroMaximoDeSalas, paragrafoDeValidacaoDoNumeroMaximoDeSalas);
-        //Segundo step
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(dataDeInicioDoPrimeiroTrimestre, paragrafoDeValidacaoDaDataDeInicioDoPrimeiroTrimestre);
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(dataDeFimDoPrimeiroTrimestre, paragrafoDeValidacaoDaDataDeFimDoPrimeiroTrimestre);
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(dataDeInicioDoSegundoTrimestre, paragrafoDeValidacaoDaDataDeInicioDoSegundoTrimestre);
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(dataDeFimDoSegundoTrimestre, paragrafoDeValidacaoDaDataDeFimDoSegundoTrimestre);
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(dataDeInicioDoTerceiroTrimestre, paragrafoDeValidacaoDaDataDeInicioDoTerceiroTrimestre);
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(dataDeFimDoTerceiroTrimestre, paragrafoDeValidacaoDaDataDeFimDoTerceiroTrimestre);
-        //Terceiro step
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(horaDeInicioDasAulasNoPeriodoDaManha, paragrafoDeValidacaoDaHoraDeInicioDasAulasNoPeriodoDaManha);
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(horaDeFimDasAulasNoPeriodoDaManha, paragrafoDeValidacaoDaHoraDeFimDasAulasNoPeriodoDaManha);
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(duracaoDoTempoDeAulaNoPeriodoDaManha, paragrafoDeValidacaoDaDuracaoDoTempoDeAulaNoPeriodoDaManha);
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(duracaoDoIntervaloMenorNoPeriodoDaManha, paragrafoDeValidacaoDaDuracaoDoIntervaloMenorNoPeriodoDaManha);
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(duracaoDoIntervaloMaiorNoPeriodoDaManha, paragrafoDeValidacaoDaDuracaoDoIntervaloMaiorNoPeriodoDaManha);
-        //Quarto step
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(horaDeInicioDasAulasNoPeriodoDaTarde, paragrafoDeValidacaoDaHoraDeInicioDasAulasNoPeriodoDaTarde);
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(horaDeFimDasAulasNoPeriodoDaTarde, paragrafoDeValidacaoDaHoraDeFimDasAulasNoPeriodoDaTarde);
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(duracaoDoTempoDeAulaNoPeriodoDaTarde, paragrafoDeValidacaoDaDuracaoDoTempoDeAulaNoPeriodoDaTarde);
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(duracaoDoIntervaloMenorNoPeriodoDaTarde, paragrafoDeValidacaoDaDuracaoDoIntervaloMenorNoPeriodoDaTarde);
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(duracaoDoIntervaloMaiorNoPeriodoDaTarde, paragrafoDeValidacaoDaDuracaoDoIntervaloMaiorNoPeriodoDaTarde);
-        //Quinto step
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(horaDeInicioDasAulasNoPeriodoDaNoite, paragrafoDeValidacaoDaHoraDeInicioDasAulasNoPeriodoDaNoite);
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(horaDeFimDasAulasNoPeriodoDaNoite, paragrafoDeValidacaoDaHoraDeFimDasAulasNoPeriodoDaNoite);
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(duracaoDoTempoDeAulaNoPeriodoDaNoite, paragrafoDeValidacaoDaDuracaoDoTempoDeAulaNoPeriodoDaNoite);
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(duracaoDoIntervaloMenorNoPeriodoDaNoite, paragrafoDeValidacaoDaDuracaoDoIntervaloMenorNoPeriodoDaNoite);
-            ocultarAsValidacoesSeOsCamposEstiveremVazios(duracaoDoIntervaloMaiorNoPeriodoDaNoite, paragrafoDeValidacaoDaDuracaoDoIntervaloMaiorNoPeriodoDaNoite);
-    //Término de ocultar as validações se os campos estiverem vazios
+    
     //Não permitir datas passadas
         //Primeiro step
             naoPermitirDatasAnterioresADataDeHoje(dataDeInicioDoAnoLectivo);
@@ -194,47 +141,122 @@
             naoPermitirDatasAnterioresADataDeHoje(dataDeInicioDoTerceiroTrimestre);
             naoPermitirDatasAnterioresADataDeHoje(dataDeFimDoTerceiroTrimestre);
     //Término da negação de datas passadas
-
-    //Atribuir datas aos inputs
+    
+    //Impedir a inserção da vírgula
         //Primeiro step
-            atribuirDataAoInput(dataDeInicioDoAnoLectivo, retornarADataActual());
-            atribuirDataAoInput(dataDeFimDoAnoLectivo, retornarADataActual());
-            atribuirDataAoInput(dataDeInicioDasInscricoes, retornarADataActual());
-            atribuirDataAoInput(dataDeFimDasInscricoes, retornarADataActual());
-            atribuirDataAoInput(dataDeInicioDasMatriculas, retornarADataActual());
-            atribuirDataAoInput(dataDeFimDasMatriculas, retornarADataActual());
-                //Descrição
-                    //Transformar a string recebida como valor da input em Date
-                        var valorDoAnoLectivoInicio = new Date(dataDeInicioDoAnoLectivo.value);
-                    //Armazenar o início do ano lectivo
-                        anoDeInicioDoAnoLectivo = valorDoAnoLectivoInicio.getFullYear();
-                    //Transformar a string recebida como valor da input em Date
-                        var valorDoAnoLectivoFim = new Date(dataDeFimDoAnoLectivo.value);
-                    //Armazenar o fim do ano lectivo
-                        anoDeFimDoAnoLectivo = valorDoAnoLectivoFim.getFullYear();
-                //Apresentar descrição
-                descricaoDoAnoLectivo.value = anoDeInicioDoAnoLectivo +"-"+ anoDeFimDoAnoLectivo;
-        //Segundo step
-            atribuirDataAoInput(dataDeInicioDoPrimeiroTrimestre, retornarADataActual());
-            atribuirDataAoInput(dataDeFimDoPrimeiroTrimestre, retornarADataActual());
-            atribuirDataAoInput(dataDeInicioDoSegundoTrimestre, retornarADataActual());
-            atribuirDataAoInput(dataDeFimDoSegundoTrimestre, retornarADataActual());
-            atribuirDataAoInput(dataDeInicioDoTerceiroTrimestre, retornarADataActual());
-            atribuirDataAoInput(dataDeFimDoTerceiroTrimestre, retornarADataActual());
-    //Término da atribuição de datas
-        
-        
+            impedirAInsercaoDaVirgulaNoInput(numeroMaximoDeAlunosNasTurmas);
+            impedirAInsercaoDaVirgulaNoInput(numeroMaximoDeSalas);
+    //Término do impedimento da inserção da vírgula
 //Término das definições que devem ser tomadas de imediato
 
-//Validações - Primeiro step (Informações do sistema)
-    //Ao alterar o valor da input da data de início do ano lectivo
-    dataDeInicioDoAnoLectivo.addEventListener("input",()=>{
-        if(!verificarSeOvalorDoInputEUmaDataMaiorOuIgualQueARecebidaComoParametro(dataDeInicioDoAnoLectivo, retornarADataActual())){
-            apresentarMensagemDeErro(paragrafoDeValidacaoDaDataDeInicioDoAnoLectivo, "A data não pode ser anterior à de hoje.");
-            dataDeInicioDoAnoLectivo.value = retornarADataActual();
-            ocultarMensagemDeErro(paragrafoDeValidacaoDaDataDeInicioDoAnoLectivo);
-        }
+//Funções para retorno
+    //Retornar a data de início do Ano Lectivo
+    function retornarADataDeInicioDoAnoLectivo(){
+        //Transformar a string recebida como valor da input em Date
+        var valorDoAnoLectivoInicio = new Date(dataDeInicioDoAnoLectivo.value);
+        
+        return valorDoAnoLectivoInicio;
+    }
+    //Término do retorno da data de início do Ano Lectivo
+    //Retornar a data de fim do Ano Lectivo
+    function retornarADataDeFimDoAnoLectivo(){
+        //Transformar a string recebida como valor da input em Date
+        var valorDoAnoLectivoFim = new Date(dataDeFimDoAnoLectivo.value);
+        
+        return valorDoAnoLectivoFim;
+    }
+    //Término do retorno da data de fim do Ano Lectivo
 
+    //Retornar a data de início das inscrições
+    function retornarADataDeInicioDasInscricoes(){
+        //Transformar a string recebida como valor da input em Date
+        var valorDaDataDeInicioDasInscricoes = new Date(dataDeInicioDasInscricoes.value);
+        
+        return valorDaDataDeInicioDasInscricoes;
+    }
+    //Término do retorno da data de início das inscrições
+    //Retornar a data de fim das inscrições
+    function retornarADataDeFimDasInscricoes(){
+        //Transformar a string recebida como valor da input em Date
+        var valorDaDataDeFimDasInscricoes = new Date(dataDeFimDasInscricoes.value);
+        
+        return valorDaDataDeFimDasInscricoes;
+    }
+    //Término do retorno da data de fim das inscrições
+
+    //Retornar a data de início das matrículas
+    function retornarADataDeInicioDasMatriculas(){
+        //Transformar a string recebida como valor da input em Date
+        var valorDaDataDeInicioDasMatriculas = new Date(dataDeInicioDasMatriculas.value);
+        
+        return valorDaDataDeInicioDasMatriculas;
+    }
+    //Término do retorno da data de início das matrículas
+    //Retorno da data de fim das matrículas
+    function retornarADataDeFimDasMatriculas(){
+        //Transformar a string recebida como valor da input em Date
+        var valorDaDataDeFimDasMatriculas = new Date(dataDeFimDasMatriculas.value);
+        
+        return valorDaDataDeFimDasMatriculas;
+    }
+    //Término do retorno da data de fim das matrículas
+
+    //Retornar a data de início do primeiro trimestre
+    function retornarADataDeInicioDoPrimeiroTrimestre(){
+        //Transformar a string recebida como valor da input em Date
+        var valorDaDataDeInicioDoPrimeiroTrimestre = new Date(dataDeInicioDoPrimeiroTrimestre.value);
+        
+        return valorDaDataDeInicioDoPrimeiroTrimestre;
+    }
+    //Término do retorno da data do primeiro trimestre
+    //Retorno da data de fim do primeiro trimestre
+    function retornarADataDeFimDoPrimeiroTrimestre(){
+        //Transformar a string recebida como valor da input em Date
+        var valorDaDataDeFimDoPrimeiroTrimestre = new Date(dataDeFimDoPrimeiroTrimestre.value);
+        
+        return valorDaDataDeFimDoPrimeiroTrimestre;
+    }
+    //Término do retorno da data de fim do primeiro trimestre
+
+    //Retornar a data de início do segundo trimestre
+    function retornarADataDeInicioDoSegundoTrimestre(){
+        //Transformar a string recebida como valor da input em Date
+        var valorDaDataDeInicioDoSegundoTrimestre = new Date(dataDeInicioDoSegundoTrimestre.value);
+        
+        return valorDaDataDeInicioDoSegundoTrimestre;
+    }
+    //Término do retorno da data do segundo trimestre
+    //Retorno da data de fim do segundo trimestre
+    function retornarADataDeFimDoSegundoTrimestre(){
+        //Transformar a string recebida como valor da input em Date
+        var valorDaDataDeFimDoSegundoTrimestre = new Date(dataDeFimDoSegundoTrimestre.value);
+        
+        return valorDaDataDeFimDoSegundoTrimestre;
+    }
+    //Término do retorno da data de fim do segundo trimestre
+
+    //Retornar a data de início do terceiro trimestre
+    function retornarADataDeInicioDoTerceiroTrimestre(){
+        //Transformar a string recebida como valor da input em Date
+        var valorDaDataDeInicioDoTerceiroTrimestre = new Date(dataDeInicioDoTerceiroTrimestre.value);
+        
+        return valorDaDataDeInicioDoTerceiroTrimestre;
+    }
+    //Término do retorno da data do terceiro trimestre
+    //Retorno da data de fim do terceiro trimestre
+    function retornarADataDeFimDoTerceiroTrimestre(){
+        //Transformar a string recebida como valor da input em Date
+        var valorDaDataDeFimDoTerceiroTrimestre = new Date(dataDeFimDoTerceiroTrimestre.value);
+        
+        return valorDaDataDeFimDoTerceiroTrimestre;
+    }
+    //Término do retorno da data de fim do terceiro trimestre
+//Fim das funções para retorno
+
+//Funções para validações
+    //Validar a data de início do Ano Lectivo
+    function validarADataDeInicioDoAnoLectivo(){
+        dataDeInicioDoAnoLectivo.setAttribute("min", retornarADataActual());
         //Transformar a string recebida como valor da input em Date
         var valorDoAnoLectivoInicio = new Date(dataDeInicioDoAnoLectivo.value);
 
@@ -242,12 +264,22 @@
         anoDeInicioDoAnoLectivo = valorDoAnoLectivoInicio.getFullYear();
 
         //Apresentar descrição
-        descricaoDoAnoLectivo.value = dataDeFimDoAnoLectivo.value === "" ? anoDeInicioDoAnoLectivo: anoDeInicioDoAnoLectivo +"-"+ anoDeFimDoAnoLectivo;
-    });
-
-    //Ao alterar o valor da input da data de fim do ano lectivo
-    dataDeFimDoAnoLectivo.addEventListener("input",()=>{
+        descricaoDoAnoLectivo.value = dataDeFimDoAnoLectivo.value === "" ? anoDeInicioDoAnoLectivo : anoDeInicioDoAnoLectivo +"-"+ anoDeFimDoAnoLectivo;
         
+        //Não permitir que a data de término seja anterior à de início do ano lectivo
+        if(retornarADataDeInicioDoAnoLectivo() !== '' && retornarADataDeFimDoAnoLectivo() <= retornarADataDeInicioDoAnoLectivo()){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDoAnoLectivo, "A data de término não pode ser anterior ou igual à data de início");
+            dataDeFimDoAnoLectivo.value = "";
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDoAnoLectivo);
+        }
+        //Remover a mensagem de erro se a data de fim suceder à de início
+        if(retornarADataDeFimDoAnoLectivo() > retornarADataDeInicioDoAnoLectivo()){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDoAnoLectivo);
+        }
+    }
+    //Término da validação da data de início do Ano Lectivo
+    //Validar a data de fim do Ano Lectivo
+    function validarADataDeFimDoAnoLectivo(){
         //Transformar a string recebida como valor da input em Date
         var valorDoAnoLectivoFim = new Date(dataDeFimDoAnoLectivo.value);
 
@@ -255,8 +287,156 @@
         anoDeFimDoAnoLectivo = valorDoAnoLectivoFim.getFullYear();
 
         //Apresentar descrição
-        descricaoDoAnoLectivo.value = dataDeInicioDoAnoLectivo.value === "" ? anoDeFimDoAnoLectivo: anoDeInicioDoAnoLectivo +"-"+ anoDeFimDoAnoLectivo;
-    
+        descricaoDoAnoLectivo.value = dataDeInicioDoAnoLectivo.value === "" ? anoDeFimDoAnoLectivo : anoDeInicioDoAnoLectivo +"-"+ anoDeFimDoAnoLectivo;
+        
+        //Não permitir que a data de término seja anterior à de início do ano lectivo
+        if(retornarADataDeInicioDoAnoLectivo() !== '' && valorDoAnoLectivoFim <= retornarADataDeInicioDoAnoLectivo()){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDoAnoLectivo, "A data de término não pode ser anterior ou igual à data de início");
+            dataDeFimDoAnoLectivo.value = "";
+        }
+        //Remover a mensagem de erro se a data de fim suceder à de início
+        if(retornarADataDeFimDoAnoLectivo() > retornarADataDeInicioDoAnoLectivo()){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDoAnoLectivo);
+        }
+    }
+    //Término da validação da data de início do Ano Lectivo
+    //Impedir a inserção da vírgula nos inputs type number
+        function impedirAInsercaoDaVirgulaNoInput(input){
+            input.addEventListener('keydown', function(event){
+                if(event.keyCode === 188){
+                    event.preventDefault();
+                }
+            })
+        }
+    //Término do impedimento da inserção da vírgula nos inputs type number
+//Fim das funções para validações
+//Validações - Primeiro step (Informações do sistema)
+    //Ao alterar o valor da input da data de início do ano lectivo
+    dataDeInicioDoAnoLectivo.addEventListener("input", validarADataDeInicioDoAnoLectivo);
+
+    //Ao alterar o valor da input da data de fim do ano lectivo
+    dataDeFimDoAnoLectivo.addEventListener("input", validarADataDeFimDoAnoLectivo);
+
+    //Ao alterar o valor da input da data de início das inscrições
+    dataDeInicioDasInscricoes.addEventListener("input", ()=>{  
+        //Não permitir que a data de início do ano lectivo seja posterior à de início das inscrições
+        if(retornarADataDeInicioDoAnoLectivo() !== '' && retornarADataDeInicioDasInscricoes() < retornarADataDeInicioDoAnoLectivo()){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDataDeInicioDasInscricoes, "A data de início das inscrições não pode ser anterior à data de início do ano lectivo");
+            dataDeInicioDasInscricoes.value = "";
+        }
+        //Remover a mensagem de erro se a data de fim suceder à de início
+        if(retornarADataDeInicioDasInscricoes() > retornarADataDeInicioDoAnoLectivo()){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDataDeInicioDasInscricoes);
+        }
+
+        //Não permitir que a data de início das inscrições seja após a data de fim do ano lectivo
+        if(retornarADataDeFimDoAnoLectivo() !== '' && retornarADataDeFimDoAnoLectivo() < retornarADataDeInicioDasInscricoes()){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDataDeInicioDasInscricoes, "As inscrições não podem começar após o fim do ano lectivo");
+            dataDeInicioDasInscricoes.value = "";
+        }
+        //Remover a mensagem de erro se a data de fim suceder à de início
+        if(retornarADataDeInicioDasInscricoes() < retornarADataDeFimDoAnoLectivo()){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDataDeInicioDasInscricoes);
+        }
+
+        //Não permitir que a data de término seja anterior à de início 
+        if(retornarADataDeInicioDasInscricoes() !== '' && retornarADataDeFimDasInscricoes() <= retornarADataDeInicioDasInscricoes()){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDasInscricoes, "A data de término não pode ser anterior ou igual à data de início");
+            dataDeFimDasInscricoes.value = "";
+        }
+        //Remover a mensagem de erro se a data de fim suceder à de início
+        if(retornarADataDeFimDasInscricoes() > retornarADataDeInicioDasInscricoes()){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDasInscricoes);
+        }
+    });
+
+    //Ao alterar o valor da input da data de fim das inscrições
+    dataDeFimDasInscricoes.addEventListener("input", ()=>{  
+        //Não permitir que a data de início das inscrições seja após a data de fim do ano lectivo
+        if(retornarADataDeFimDoAnoLectivo() !== '' && retornarADataDeFimDoAnoLectivo() < retornarADataDeFimDasInscricoes()){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDasInscricoes, "As inscrições não podem terminar após o fim do ano lectivo");
+            dataDeFimDasInscricoes.value = "";
+        }
+        //Remover a mensagem de erro se a data de fim suceder à de início
+        if(retornarADataDeFimDasInscricoes() < retornarADataDeFimDoAnoLectivo()){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDasInscricoes);
+        }
+
+        //Não permitir que a data de término seja anterior à de início do ano lectivo
+        if(retornarADataDeInicioDasInscricoes() !== '' && retornarADataDeFimDasInscricoes() <= retornarADataDeInicioDasInscricoes()){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDasInscricoes, "A data de término não pode ser anterior ou igual à data de início");
+            dataDeFimDasInscricoes.value = "";
+        }
+        //Remover a mensagem de erro se a data de fim suceder à de início
+        if(retornarADataDeFimDasInscricoes() > retornarADataDeInicioDasInscricoes()){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDasInscricoes);
+        }
+    });
+
+    //Ao alterar o valor da input da data de início das matrículas
+    dataDeInicioDasMatriculas.addEventListener("input", ()=>{  
+        //Não permitir que a data de início das matrículas seja anterior à de início do ano lectivo
+        if(retornarADataDeInicioDoAnoLectivo() !== '' && retornarADataDeInicioDasMatriculas() <= retornarADataDeInicioDoAnoLectivo()){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDataDeInicioDasMatriculas, "As matrículas não podem começar antes ou no dia da abertura do ano lectivo");
+            dataDeInicioDasMatriculas.value = "";
+        }
+        //Remover a mensagem de erro se a data de início das matrículas suceder à de início do ano lectivo 
+        if(retornarADataDeInicioDasMatriculas() > retornarADataDeInicioDoAnoLectivo()){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDasMatriculas);
+        } 
+
+        //Não permitir que a data de início das matrículas seja após à de fim do ano lectivo
+        if(retornarADataDeFimDoAnoLectivo() !== '' && retornarADataDeInicioDasMatriculas() >= retornarADataDeFimDoAnoLectivo()){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDataDeInicioDasMatriculas, "As matrículas não podem começar no dia ou após o término do ano lectivo");
+            dataDeInicioDasMatriculas.value = "";
+        }
+        //Remover a mensagem de erro se a data de início das matrículas anteceder à de término do ano lectivo
+        if(retornarADataDeInicioDasMatriculas() < retornarADataDeFimDoAnoLectivo() ){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDataDeInicioDasMatriculas);
+        } 
+
+        //Não permitir que a data de início das matrículas seja anterior à de fim das inscrições
+        if(retornarADataDeFimDasInscricoes() !== '' && retornarADataDeInicioDasMatriculas() <= retornarADataDeFimDasInscricoes()){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDataDeInicioDasMatriculas, "As matrículas não podem começar antes das inscrições terminarem");
+            dataDeInicioDasMatriculas.value = "";
+        }
+        //Remover a mensagem de erro se a data de início das matrículas suceder à de fim das inscrições
+        if(retornarADataDeFimDasMatriculas() > retornarADataDeInicioDasMatriculas()){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDasMatriculas);
+        } 
+
+        //Não permitir que a data de término das matrículas seja anterior à de início das matrículas
+        if(retornarADataDeFimDasMatriculas() !== '' && retornarADataDeFimDasMatriculas() <= retornarADataDeInicioDasMatriculas()){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDasMatriculas, "A data de término não pode ser anterior ou igual à data de início");
+            dataDeFimDasMatriculas.value = "";
+        }
+        //Remover a mensagem de erro se a data de fim suceder à de início
+        if(retornarADataDeFimDasMatriculas() > retornarADataDeInicioDasMatriculas()){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDasMatriculas);
+        } 
+    });
+
+    //Ao alterar o valor da input da data de fim das matrículas
+    dataDeFimDasMatriculas.addEventListener("input", ()=>{  
+        //Não permitir que a data de fim das matrículas seja após à de fim do ano lectivo
+        if(retornarADataDeFimDoAnoLectivo() !== '' && retornarADataDeFimDasMatriculas() >= retornarADataDeFimDoAnoLectivo()){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDasMatriculas, "As matrículas não podem terminar no dia ou após do término do ano lectivo");
+            dataDeFimDasMatriculas.value = "";
+        }
+        //Remover a mensagem de erro se a data de início das matrículas suceder à de início do ano lectivo e anteceder à de término
+        if(retornarADataDeFimDasMatriculas() < retornarADataDeFimDoAnoLectivo() ){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDasMatriculas);
+        } 
+
+        //Não permitir que a data de término seja anterior à de início 
+        if(retornarADataDeInicioDasMatriculas() !== '' && retornarADataDeFimDasMatriculas() <= retornarADataDeInicioDasMatriculas()){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDasMatriculas, "A data de término não pode ser anterior ou igual à data de início");
+            dataDeFimDasMatriculas.value = "";
+        }
+        //Remover a mensagem de erro se a data de fim suceder à de início
+        if(retornarADataDeFimDasMatriculas() > retornarADataDeInicioDasMatriculas()){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDasMatriculas);
+        }
     });
 
     //Ao alterar o valor da input de número máximo de alunos nas turmas
@@ -276,6 +456,143 @@
     });
 
 //Validações - Segundo step (Trimestres)
+    //Ao alterar o valor da input da data de início do primeiro trimestre
+    dataDeInicioDoPrimeiroTrimestre.addEventListener('input',()=>{
+        //Não permitir que a data de início do primeiro trimestre seja anterior à de término das matrículas
+        if(retornarADataDeInicioDoPrimeiroTrimestre() <= retornarADataDeFimDasMatriculas()){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDataDeInicioDoPrimeiroTrimestre, "O primeiro trimestre não pode começar antes ou na data do término das matrículas");
+            dataDeInicioDoPrimeiroTrimestre.value = "";
+        }
+        //Remover a mensagem de erro se a data de início do primeiro trimestre suceder à de término das matrículas
+        if(retornarADataDeInicioDoPrimeiroTrimestre() > retornarADataDeFimDasMatriculas() ){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDataDeInicioDoPrimeiroTrimestre);
+        } 
+
+        //Não permitir que a data de início do primeiro trimestre seja após à de fim do ano lectivo
+        if(retornarADataDeInicioDoPrimeiroTrimestre() >= retornarADataDeFimDoAnoLectivo()){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDataDeInicioDoPrimeiroTrimestre, "O primeiro trimestre não pode começar no dia ou após do término do ano lectivo");
+            dataDeInicioDoPrimeiroTrimestre.value = "";
+        }
+        //Remover a mensagem de erro se a data de início do primeiro trimestre anteceder à de término
+        if(retornarADataDeInicioDoPrimeiroTrimestre() < retornarADataDeFimDoAnoLectivo() ){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDataDeInicioDoPrimeiroTrimestre);
+        } 
+    });
+
+    //Ao alterar o valor da input da data de fim do primeiro trimestre
+    dataDeFimDoPrimeiroTrimestre.addEventListener('input',()=>{
+        //Não permitir que a data de fim do primeiro trimestre seja anterior à de início 
+        if(retornarADataDeFimDoPrimeiroTrimestre() <= retornarADataDeInicioDoPrimeiroTrimestre()){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDoPrimeiroTrimestre, "O primeiro trimestre não pode terminar antes ou no dia do início");
+            dataDeFimDoPrimeiroTrimestre.value = "";
+        }
+        //Remover a mensagem de erro se a data de fim do primeiro trimestre suceder à de início
+        if(retornarADataDeInicioDoPrimeiroTrimestre() < retornarADataDeFimDoPrimeiroTrimestre() ){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDoPrimeiroTrimestre);
+        } 
+
+        //Não permitir que a data de fim do primeiro trimestre seja após à de fim do ano lectivo
+        if(retornarADataDeFimDoPrimeiroTrimestre() >= retornarADataDeFimDoAnoLectivo()){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDoPrimeiroTrimestre, "O primeiro trimestre não pode terminar após o término do ano lectivo");
+            dataDeFimDoPrimeiroTrimestre.value = "";
+        }
+        //Remover a mensagem de erro se a data de fim do primeiro trimestre anteceder à de término do ano lectivo
+        if(retornarADataDeFimDoPrimeiroTrimestre() < retornarADataDeFimDoAnoLectivo() ){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDoPrimeiroTrimestre);
+        } 
+    });
+
+    //Ao alterar o valor da input da data de início do segundo trimestre
+    dataDeInicioDoSegundoTrimestre.addEventListener('input',()=>{
+        //Não permitir que a data de início do segundo trimestre seja anterior à de término do primeiro trimestre
+        if(retornarADataDeInicioDoSegundoTrimestre() < retornarADataDeFimDoPrimeiroTrimestre()){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDataDeInicioDoSegundoTrimestre, "O segundo trimestre não pode começar antes do término do primeiro");
+            dataDeInicioDoSegundoTrimestre.value = "";
+        }
+        //Remover a mensagem de erro se a data de início do segundo trimestre suceder à de término do primeiro trimestre
+        if(retornarADataDeInicioDoSegundoTrimestre() >= retornarADataDeFimDoPrimeiroTrimestre() ){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDataDeInicioDoSegundoTrimestre);
+        } 
+
+        //Não permitir que a data de início do segundo trimestre seja após à de fim do ano lectivo
+        if(retornarADataDeInicioDoSegundoTrimestre() >= retornarADataDeFimDoAnoLectivo()){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDataDeInicioDoSegundoTrimestre, "O segundo trimestre não pode começar no dia ou após do término do ano lectivo");
+            dataDeInicioDoSegundoTrimestre.value = "";
+        }
+        //Remover a mensagem de erro se a data de início do segundo trimestre anteceder à de término do ano lectivo
+        if(retornarADataDeInicioDoSegundoTrimestre() < retornarADataDeFimDoAnoLectivo() ){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDataDeInicioDoSegundoTrimestre);
+        } 
+    });
+
+    //Ao alterar o valor da input da data de fim do segundo trimestre
+    dataDeFimDoSegundoTrimestre.addEventListener('input',()=>{
+        //Não permitir que a data de fim do segundo trimestre seja anterior à de início 
+        if(retornarADataDeFimDoSegundoTrimestre() <= retornarADataDeInicioDoSegundoTrimestre()){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDoSegundoTrimestre, "O segundo trimestre não pode terminar antes ou no dia do início");
+            dataDeFimDoSegundoTrimestre.value = "";
+        }
+        //Remover a mensagem de erro se a data de fim do segundo trimestre suceder à de início
+        if(retornarADataDeInicioDoSegundoTrimestre() < retornarADataDeFimDoSegundoTrimestre() ){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDoSegundoTrimestre);
+        } 
+
+        //Não permitir que a data de fim do segundo trimestre seja após à de fim do ano lectivo
+        if(retornarADataDeFimDoSegundoTrimestre() >= retornarADataDeFimDoAnoLectivo()){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDoSegundoTrimestre, "O segundo trimestre não pode terminar após o término do ano lectivo");
+            dataDeFimDoSegundoTrimestre.value = "";
+        }
+        //Remover a mensagem de erro se a data de fim do segundo trimestre anteceder à de término do ano lectivo
+        if(retornarADataDeFimDoSegundoTrimestre() < retornarADataDeFimDoAnoLectivo() ){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDoSegundoTrimestre);
+        } 
+    });
+
+    //Ao alterar o valor da input da data de início do terceiro trimestre
+    dataDeInicioDoTerceiroTrimestre.addEventListener('input',()=>{
+        //Não permitir que a data de início do terceiro trimestre seja anterior à de término do segundo trimestre
+        if(retornarADataDeInicioDoTerceiroTrimestre() < retornarADataDeFimDoSegundoTrimestre()){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDataDeInicioDoTerceiroTrimestre, "O terceiro trimestre não pode começar antes do término do segundo");
+            dataDeInicioDoTerceiroTrimestre.value = "";
+        }
+        //Remover a mensagem de erro se a data de início do terceiro trimestre suceder à de término do segundo trimestre
+        if(retornarADataDeInicioDoTerceiroTrimestre() >= retornarADataDeFimDoSegundoTrimestre() ){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDataDeInicioDoTerceiroTrimestre);
+        } 
+
+        //Não permitir que a data de início do terceiro trimestre seja após à de fim do ano lectivo
+        if(retornarADataDeInicioDoTerceiroTrimestre() >= retornarADataDeFimDoAnoLectivo()){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDataDeInicioDoTerceiroTrimestre, "O terceiro trimestre não pode começar no dia ou após do término do ano lectivo");
+            dataDeInicioDoTerceiroTrimestre.value = "";
+        }
+        //Remover a mensagem de erro se a data de início do terceiro trimestre anteceder à de término do ano lectivo
+        if(retornarADataDeInicioDoTerceiroTrimestre() < retornarADataDeFimDoAnoLectivo() ){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDataDeInicioDoTerceiroTrimestre);
+        } 
+    });
+
+    //Ao alterar o valor da input da data de fim do terceiro trimestre
+    dataDeFimDoTerceiroTrimestre.addEventListener('input',()=>{
+        //Não permitir que a data de fim do terceiro trimestre seja anterior à de início 
+        if(retornarADataDeFimDoTerceiroTrimestre() <= retornarADataDeInicioDoTerceiroTrimestre()){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDoTerceiroTrimestre, "O terceiro trimestre não pode terminar antes ou no dia do início");
+            dataDeFimDoTerceiroTrimestre.value = "";
+        }
+        //Remover a mensagem de erro se a data de fim do terceiro trimestre suceder à de início
+        if(retornarADataDeInicioDoTerceiroTrimestre() < retornarADataDeFimDoTerceiroTrimestre() ){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDoTerceiroTrimestre);
+        } 
+
+        //Não permitir que a data de fim do terceiro trimestre seja após à de fim do ano lectivo
+        if(retornarADataDeFimDoTerceiroTrimestre() >= retornarADataDeFimDoAnoLectivo()){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDoTerceiroTrimestre, "O terceiro trimestre não pode terminar após o término do ano lectivo");
+            dataDeFimDoTerceiroTrimestre.value = "";
+        }
+        //Remover a mensagem de erro se a data de fim do terceiro trimestre anteceder à de término do ano lectivo
+        if(retornarADataDeFimDoTerceiroTrimestre() < retornarADataDeFimDoAnoLectivo() ){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDoTerceiroTrimestre);
+        } 
+    });
 //Validações - Terceiro step (Manhã)
     //Ao alterar o valor da input de duração do tempo de aula no período da manhã
     duracaoDoTempoDeAulaNoPeriodoDaManha.addEventListener("input", ()=>{

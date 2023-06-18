@@ -13,5 +13,5 @@ class ClasseController extends Controller
         $idClasse = Classe::where('classe', $nomeClasse)->pluck('classe_id')->first();
         return $idClasse;
     }
-    
+
 }

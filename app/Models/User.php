@@ -60,7 +60,7 @@ class User extends Model implements Authenticatable,CanResetPassword
 
     public function pessoa()
     {
-        return $this->belongsTo(Pessoa::class, 'pessoa_id', 'usuario_id');
+        return $this->belongsTo(Pessoa::class, 'pessoa_id');
     }
 
     public function belongPessoa()
@@ -68,6 +68,11 @@ class User extends Model implements Authenticatable,CanResetPassword
         return $this->belongsTo(Pessoa::class, 'pessoa_id');
 
     }
+    public function comunicados()
+    {
 
+        return $this->hasMany(Comunicado::class);
+
+    }
 
 }
