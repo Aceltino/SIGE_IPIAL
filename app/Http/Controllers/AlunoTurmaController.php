@@ -6,6 +6,7 @@ use App\Models\Aluno;
 use App\Models\AlunoTurma;
 use App\Models\AnoTurmaCood;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class AlunoTurmaController extends Controller
 {
@@ -76,6 +77,7 @@ class AlunoTurmaController extends Controller
         usort($alunoTurma, function($a, $b) {
             return strcmp($a['nome'], $b['nome']);
         });
+
         $alunosOrdemTurma = [];
         foreach($alunoTurma as $aluno)
         {
@@ -87,10 +89,28 @@ class AlunoTurmaController extends Controller
             $alunoA->Anoturma()->attach($aluno['turma'],[
                 'numero_aluno' => $qtdAlunos + 1
             ]);
+
+            $userId = AlunoController::pegarIdUser($aluno['aluno']);
+            $dadosUser=[
+                'usuario_id'=> $userId,
+                'status_usuario'=>1,
+            ];
+            $user = UserController::updateUser($dadosUser);
+            if(!$user)
+            {
+                return "Algum problema com o aluno ".$aluno['nome'].", tente mais tarde.";
+            }
+            $alunoTurma = [];
+
+            
             $alunosOrdemTurma[] = $aluno['aluno'];
             }
+
+
         }
-dd($alunosOrdemTurma);
+
+        $msg="Os alunos foram atribuidas as suas turmas com sucesso!";
+        return Redirect::route('matriculas')->with("Sucesso",$msg);
     }
 
     public static function pegarTurmasCurso($curso) //Pegar turmas 10ª Classe

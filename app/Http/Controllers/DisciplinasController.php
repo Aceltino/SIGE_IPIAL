@@ -6,19 +6,16 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Curso;
 use App\Models\Disciplina;
-use App\Models\Curso;
+
 
 class DisciplinasController extends Controller
 {
     public function index()
     {
        $disciplinas = Disciplina::all();
+       $cursos = Curso::puck('nome_curso','curso_id' );
 
-       $cursos = Curso::all(['nome_curso']);
-
-       $cursos = Curso::all(['curso_id', 'nome_curso']);
-
-        return view('disciplina.disciplinas', ['disciplinas'=>$disciplinas, 'cursos'=>$cursos]);
+        return view('disciplina.disciplinas', compact('disciplinas','cursos'));
     }
     public function create()
     {
@@ -31,9 +28,9 @@ class DisciplinasController extends Controller
         $disciplinas->componente = $request->componente;
         $disciplinas->tempo_prova = $request-> tempo_prova;
         $disciplinas->sigla = $request->sigla;
-        $disciplinas->curso_id = $request->curso[$j];
+        $disciplinas->curso_id = $request->curso;
         $disciplinas->save();
-         return redirect()->route('disciplina.index');
+         return redirect()->route('disciplina.index')->with('sucess','Dados salvos com sucesso');
     }
     public function edit($disciplina_id)
     {
@@ -48,24 +45,15 @@ class DisciplinasController extends Controller
     }
     public function update(Request $request, $disciplina_id)
     {
-        // $data = [
-        //     ''
-        //     ''
-        //     ''
-        //     ''
-        // ];
-        // return redirect()->route('disciplina.index');
         $dado = [
             'nome_disciplina' =>$request->nome_disciplina,
             'componente' =>$request->componente,
             'tempo_prova' =>$request->tempo_prova,
             'sigla' => $request->sigla,
-            'curso_id' => $request->curso[$j],
+            'curso_id' => $request->curso,
         ];
         Disciplina::where('disciplina_id',$disciplina_id)->update($dado);
-
         return redirect()->route('disciplina.index');
-
     }
 
 

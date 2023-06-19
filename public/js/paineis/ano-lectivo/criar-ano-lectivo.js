@@ -121,6 +121,7 @@
         function ocultarMensagemDeErro(paragrafoDeValidacao){
             paragrafoDeValidacao.classList.add("d-none");
         }
+
 //Término das funções diversas
 
 //Definições que devem ser tomadas de imediato
@@ -146,6 +147,18 @@
         //Primeiro step
             impedirAInsercaoDaVirgulaNoInput(numeroMaximoDeAlunosNasTurmas);
             impedirAInsercaoDaVirgulaNoInput(numeroMaximoDeSalas);
+        //Terceiro step
+            impedirAInsercaoDaVirgulaNoInput(duracaoDoTempoDeAulaNoPeriodoDaManha);
+            impedirAInsercaoDaVirgulaNoInput(duracaoDoIntervaloMenorNoPeriodoDaManha);
+            impedirAInsercaoDaVirgulaNoInput(duracaoDoIntervaloMaiorNoPeriodoDaManha);
+        //Quarto step
+            impedirAInsercaoDaVirgulaNoInput(duracaoDoTempoDeAulaNoPeriodoDaTarde);
+            impedirAInsercaoDaVirgulaNoInput(duracaoDoIntervaloMenorNoPeriodoDaTarde);
+            impedirAInsercaoDaVirgulaNoInput(duracaoDoIntervaloMaiorNoPeriodoDaTarde);
+        //Quinto step
+            impedirAInsercaoDaVirgulaNoInput(duracaoDoTempoDeAulaNoPeriodoDaNoite);
+            impedirAInsercaoDaVirgulaNoInput(duracaoDoIntervaloMenorNoPeriodoDaNoite);
+            impedirAInsercaoDaVirgulaNoInput(duracaoDoIntervaloMaiorNoPeriodoDaNoite);
     //Término do impedimento da inserção da vírgula
 //Término das definições que devem ser tomadas de imediato
 
@@ -452,7 +465,7 @@
         //Impedir mais de 2 caracteres na input
         limitarOsCaracteresDaInput(numeroMaximoDeSalas, 2);
         //Impedir menos de 1 mais de 30 salas
-        limitarOsValoresMinimosEMaximosDaInput(numeroMaximoDeSalas, 1, 22);
+        limitarOsValoresMinimosEMaximosDaInput(numeroMaximoDeSalas, 1, 30);
     });
 
 //Validações - Segundo step (Trimestres)
@@ -594,6 +607,26 @@
         } 
     });
 //Validações - Terceiro step (Manhã)
+    //Ao alterar o valor da input de hora de início das aulas
+    horaDeInicioDasAulasNoPeriodoDaManha.addEventListener("input", ()=>{
+        if(horaDeInicioDasAulasNoPeriodoDaManha.value < '05:00' || horaDeInicioDasAulasNoPeriodoDaManha.value > '09:00'){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaHoraDeInicioDasAulasNoPeriodoDaManha, horaDeInicioDasAulasNoPeriodoDaManha.validationMessage);
+            horaDeInicioDasAulasNoPeriodoDaManha.value = "";
+        }else{
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaHoraDeInicioDasAulasNoPeriodoDaManha);
+        }
+    });
+
+    //Ao alterar o valor da input de hora de fim das aulas
+    horaDeFimDasAulasNoPeriodoDaManha.addEventListener("input", ()=>{
+        if(horaDeFimDasAulasNoPeriodoDaManha.value < '11:00' || horaDeFimDasAulasNoPeriodoDaManha.value > '13:00'){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaHoraDeFimDasAulasNoPeriodoDaManha, horaDeFimDasAulasNoPeriodoDaManha.validationMessage);
+            horaDeFimDasAulasNoPeriodoDaManha.value = "";
+        }else{
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaHoraDeFimDasAulasNoPeriodoDaManha);
+        }
+    });
+
     //Ao alterar o valor da input de duração do tempo de aula no período da manhã
     duracaoDoTempoDeAulaNoPeriodoDaManha.addEventListener("input", ()=>{
         //Impedir mais de 2 caracteres na input
@@ -609,8 +642,13 @@
         //Impedir menos de 1 e mais de 10 minutos de tempo de intervalo menor no período da manhã
         limitarOsValoresMinimosEMaximosDaInput(duracaoDoIntervaloMenorNoPeriodoDaManha, 0, 10);
 
+        //O intervalo maior não pode durar menos do que o menor
         if(duracaoDoIntervaloMaiorNoPeriodoDaManha.value <= duracaoDoIntervaloMenorNoPeriodoDaManha.value){
-            duracaoDoIntervaloMaiorNoPeriodoDaManha.value = 0;
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDuracaoDoIntervaloMaiorNoPeriodoDaManha, "O intervalo maior tem de durar mais tempo que o menor");
+            duracaoDoIntervaloMaiorNoPeriodoDaManha.value = "";
+        }
+        if(duracaoDoIntervaloMaiorNoPeriodoDaManha.value > duracaoDoIntervaloMenorNoPeriodoDaManha.value){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDuracaoDoIntervaloMaiorNoPeriodoDaManha);
         }
     });
 
@@ -620,11 +658,138 @@
         limitarOsCaracteresDaInput(duracaoDoIntervaloMaiorNoPeriodoDaManha, 2);
         //Impedir menos de 1 e mais de 30 minutos de tempo de intervalo maior no período da manhã
         limitarOsValoresMinimosEMaximosDaInput(duracaoDoIntervaloMaiorNoPeriodoDaManha, 0, 30);
-        
+
+        //O intervalo maior não pode durar menos do que o menor
         if(duracaoDoIntervaloMaiorNoPeriodoDaManha.value <= duracaoDoIntervaloMenorNoPeriodoDaManha.value){
-            duracaoDoIntervaloMaiorNoPeriodoDaManha.value = 0;
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDuracaoDoIntervaloMaiorNoPeriodoDaManha, "O intervalo maior tem de durar mais tempo que o menor");
+            duracaoDoIntervaloMaiorNoPeriodoDaManha.value = "";
         }
-        
+        if(duracaoDoIntervaloMaiorNoPeriodoDaManha.value > duracaoDoIntervaloMenorNoPeriodoDaManha.value){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDuracaoDoIntervaloMaiorNoPeriodoDaManha);
+        }
     });
+
 //Validações - Quarto step (Tarde)
-//Validações - Quinto step (Tarde)
+    //Ao alterar o valor da input de hora de início das aulas
+    horaDeInicioDasAulasNoPeriodoDaTarde.addEventListener("input", ()=>{
+        if(horaDeInicioDasAulasNoPeriodoDaTarde.value < '12:00' || horaDeInicioDasAulasNoPeriodoDaTarde.value > '13:30'){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaHoraDeInicioDasAulasNoPeriodoDaTarde, horaDeInicioDasAulasNoPeriodoDaTarde.validationMessage);
+            horaDeInicioDasAulasNoPeriodoDaTarde.value = "";
+        }else{
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaHoraDeInicioDasAulasNoPeriodoDaTarde);
+        }
+    });
+
+    //Ao alterar o valor da input de hora de fim das aulas
+    horaDeFimDasAulasNoPeriodoDaTarde.addEventListener("input", ()=>{
+        if(horaDeFimDasAulasNoPeriodoDaTarde.value < '17:00' || horaDeFimDasAulasNoPeriodoDaTarde.value > '18:50'){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaHoraDeFimDasAulasNoPeriodoDaTarde, horaDeFimDasAulasNoPeriodoDaTarde.validationMessage);
+            horaDeFimDasAulasNoPeriodoDaTarde.value = "";
+        }else{
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaHoraDeFimDasAulasNoPeriodoDaTarde);
+        }
+    });
+
+    //Ao alterar o valor da input de duração do tempo de aula no período da tarde
+    duracaoDoTempoDeAulaNoPeriodoDaTarde.addEventListener("input", ()=>{
+        //Impedir mais de 2 caracteres na input
+        limitarOsCaracteresDaInput(duracaoDoTempoDeAulaNoPeriodoDaTarde, 2);
+        //Impedir menos de 1 e mais de 60 minutos de tempo de aula no período da tarde
+        limitarOsValoresMinimosEMaximosDaInput(duracaoDoTempoDeAulaNoPeriodoDaTarde, 1, 60);
+    });
+
+    //Ao alterar o valor da input de duração do tempo de intervalo menor no período da tarde
+    duracaoDoIntervaloMenorNoPeriodoDaTarde.addEventListener("input", ()=>{
+        //Impedir mais de 2 caracteres na input
+        limitarOsCaracteresDaInput(duracaoDoIntervaloMenorNoPeriodoDaTarde, 2);
+        //Impedir menos de 1 e mais de 10 minutos de tempo de intervalo menor no período da tarde
+        limitarOsValoresMinimosEMaximosDaInput(duracaoDoIntervaloMenorNoPeriodoDaTarde, 0, 10);
+
+        //O intervalo maior não pode durar menos do que o menor
+        if(duracaoDoIntervaloMaiorNoPeriodoDaTarde.value <= duracaoDoIntervaloMenorNoPeriodoDaTarde.value){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDuracaoDoIntervaloMaiorNoPeriodoDaTarde, "O intervalo maior tem de durar mais tempo que o menor");
+            duracaoDoIntervaloMaiorNoPeriodoDaTarde.value = "";
+        }
+        if(duracaoDoIntervaloMaiorNoPeriodoDaTarde.value > duracaoDoIntervaloMenorNoPeriodoDaTarde.value){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDuracaoDoIntervaloMaiorNoPeriodoDaTarde);
+        }
+    });
+
+    //Ao alterar o valor da input de duração do tempo de intervalo maior no período da tarde
+    duracaoDoIntervaloMaiorNoPeriodoDaTarde.addEventListener("input", ()=>{
+        //Impedir mais de 2 caracteres na input
+        limitarOsCaracteresDaInput(duracaoDoIntervaloMaiorNoPeriodoDaTarde, 2);
+        //Impedir menos de 1 e mais de 30 minutos de tempo de intervalo maior no período da tarde
+        limitarOsValoresMinimosEMaximosDaInput(duracaoDoIntervaloMaiorNoPeriodoDaTarde, 0, 30);
+
+        //O intervalo maior não pode durar menos do que o menor
+        if(duracaoDoIntervaloMaiorNoPeriodoDaTarde.value <= duracaoDoIntervaloMenorNoPeriodoDaTarde.value){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDuracaoDoIntervaloMaiorNoPeriodoDaTarde, "O intervalo maior tem de durar mais tempo que o menor");
+            duracaoDoIntervaloMaiorNoPeriodoDaTarde.value = "";
+        }
+        if(duracaoDoIntervaloMaiorNoPeriodoDaTarde.value > duracaoDoIntervaloMenorNoPeriodoDaTarde.value){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDuracaoDoIntervaloMaiorNoPeriodoDaTarde);
+        }
+    });
+//Validações - Quinto step (Noite)
+    //Ao alterar o valor da input de hora de início das aulas
+    horaDeInicioDasAulasNoPeriodoDaNoite.addEventListener("input", ()=>{
+        if(horaDeInicioDasAulasNoPeriodoDaNoite.value < '17:00' || horaDeInicioDasAulasNoPeriodoDaNoite.value > '19:00'){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaHoraDeInicioDasAulasNoPeriodoDaNoite, horaDeInicioDasAulasNoPeriodoDaNoite.validationMessage);
+            horaDeInicioDasAulasNoPeriodoDaNoite.value = "";
+        }else{
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaHoraDeInicioDasAulasNoPeriodoDaNoite);
+        }
+    });
+
+    //Ao alterar o valor da input de hora de fim das aulas
+    horaDeFimDasAulasNoPeriodoDaNoite.addEventListener("input", ()=>{
+        if(horaDeFimDasAulasNoPeriodoDaNoite.value < '21:00' || horaDeFimDasAulasNoPeriodoDaNoite.value > '23:00'){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaHoraDeFimDasAulasNoPeriodoDaNoite, horaDeFimDasAulasNoPeriodoDaNoite.validationMessage);
+            horaDeFimDasAulasNoPeriodoDaNoite.value = "";
+        }else{
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaHoraDeFimDasAulasNoPeriodoDaNoite);
+        }
+    });
+
+    //Ao alterar o valor da input de duração do tempo de aula no período da noite
+    duracaoDoTempoDeAulaNoPeriodoDaNoite.addEventListener("input", ()=>{
+        //Impedir mais de 2 caracteres na input
+        limitarOsCaracteresDaInput(duracaoDoTempoDeAulaNoPeriodoDaNoite, 2);
+        //Impedir menos de 1 e mais de 60 minutos de tempo de aula no período da noite
+        limitarOsValoresMinimosEMaximosDaInput(duracaoDoTempoDeAulaNoPeriodoDaNoite, 1, 60);
+    });
+
+    //Ao alterar o valor da input de duração do tempo de intervalo menor no período da noite
+    duracaoDoIntervaloMenorNoPeriodoDaNoite.addEventListener("input", ()=>{
+        //Impedir mais de 2 caracteres na input
+        limitarOsCaracteresDaInput(duracaoDoIntervaloMenorNoPeriodoDaNoite, 2);
+        //Impedir menos de 1 e mais de 10 minutos de tempo de intervalo menor no período da noite
+        limitarOsValoresMinimosEMaximosDaInput(duracaoDoIntervaloMenorNoPeriodoDaNoite, 0, 10);
+
+        //O intervalo maior não pode durar menos do que o menor
+        if(duracaoDoIntervaloMaiorNoPeriodoDaNoite.value <= duracaoDoIntervaloMenorNoPeriodoDaNoite.value){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDuracaoDoIntervaloMaiorNoPeriodoDaNoite, "O intervalo maior tem de durar mais tempo que o menor");
+            duracaoDoIntervaloMaiorNoPeriodoDaNoite.value = "";
+        }
+        if(duracaoDoIntervaloMaiorNoPeriodoDaNoite.value > duracaoDoIntervaloMenorNoPeriodoDaNoite.value){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDuracaoDoIntervaloMaiorNoPeriodoDaNoite);
+        }
+    });
+
+    //Ao alterar o valor da input de duração do tempo de intervalo maior no período da noite
+    duracaoDoIntervaloMaiorNoPeriodoDaNoite.addEventListener("input", ()=>{
+        //Impedir mais de 2 caracteres na input
+        limitarOsCaracteresDaInput(duracaoDoIntervaloMaiorNoPeriodoDaNoite, 2);
+        //Impedir menos de 1 e mais de 30 minutos de tempo de intervalo maior no período da noite
+        limitarOsValoresMinimosEMaximosDaInput(duracaoDoIntervaloMaiorNoPeriodoDaNoite, 0, 30);
+
+        //O intervalo maior não pode durar menos do que o menor
+        if(duracaoDoIntervaloMaiorNoPeriodoDaNoite.value <= duracaoDoIntervaloMenorNoPeriodoDaNoite.value){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDuracaoDoIntervaloMaiorNoPeriodoDaNoite, "O intervalo maior tem de durar mais tempo que o menor");
+            duracaoDoIntervaloMaiorNoPeriodoDaNoite.value = "";
+        }
+        if(duracaoDoIntervaloMaiorNoPeriodoDaNoite.value > duracaoDoIntervaloMenorNoPeriodoDaNoite.value){
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDuracaoDoIntervaloMaiorNoPeriodoDaNoite);
+        }
+    });
