@@ -25,10 +25,10 @@
         <th scope="col">Conteudo do comunicado</th>
         <th scope="col"></th>
       </tr> 
-    </thead>
-    <tbody> 
+    </thead> 
+    <tbody>
     @foreach ($comunicados as $com)
-        <tr style=" text-align: center;">
+        <tr style=" text-align: center;"> 
           <th scope="row">{{ $com->titulo_com }}</th>
           <td>{{ $com->conteudo_com }}</td>
           <td>
@@ -36,8 +36,8 @@
           <a href="{{ route('comunicado.edit', ['comunicado_id' => $com->comunicado_id] )}}"><i class="bi bi-pencil"></i></a>
           <form action="{{ route('comunicado.destroy', ['comunicado_id' => $com->comunicado_id] ) }}" method="POST">
             @csrf
-            @method('destroy')
-          <button type="submit" class="bi bi-trash-fill"></button>
+            @method('delete')
+          <button type="submit" class="bi bi-trash-fill" style="border: none; background: none;"></button>
           </form>
         </td>
       </tr>
@@ -69,13 +69,13 @@
               <form class="form-inativo">
                 <div class="dados-pessoais">
                     <div class="area-input form-group">
-                        <label>Título do Comunicado: </label><input class="form-control" type="text" name="" value="Defesas dos Finalistas 2023" readonly disabled>
+                        <label>Título do Comunicado: </label><input class="form-control" type="text" name="" value="{{ $com->titulo_com }}" readonly disabled>
                     </div>
                 </div>
 
                     <div class="row">
                         <div class="col">
-                            <textarea class="form-control" style="border: 1px solid; border-color: rgb(204, 204, 204); border-radius: 5px; outline: none" class="w-100 "  rows="13" name="conteudo"  id="area" placeholder="Escreve aqui o conteúdo do Comunicado" readonly disabled>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi architecto placeat quidem sapiente quis ex porro laborum, delectus officiis, in debitis quibusdam blanditiis qui possimus maiores ipsum earum amet corporis! Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam beatae, accusantium modi fuga ratione itaque illo, adipisci suscipit pariatur non ut necessitatibus, dolore at unde voluptates eligendi natus tempore quam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum quae veniam animi magni quos, voluptatum porro? Accusantium blanditiis, tempora deleniti quidem repudiandae corporis adipisci voluptatem eos? Quis nihil consequatur quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat qui tenetur fuga distinctio a dolor esse sapiente ratione possimus quis aperiam numquam reprehenderit, autem quos laudantium sit eius excepturi consequuntur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem illo similique, placeat dolorum, quo consectetur eius ducimus nobis, inventore quisquam dolores! Illum, saepe voluptates. Eaque odit ex cum molestias nulla? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto fuga impedit magnam voluptates harum velit error quo optio distinctio ab nihil enim, id totam accusantium quod vel in? Sed, architecto!</textarea>
+                            <textarea class="form-control" style="border: 1px solid; border-color: rgb(204, 204, 204); border-radius: 5px; outline: none" class="w-100 "  rows="13" name="conteudo"  id="area" placeholder="Escreve aqui o conteúdo do Comunicado" readonly disabled>{{ $com->conteudo_com }} </textarea>
                         </div>
                     </div>
 
@@ -83,9 +83,9 @@
                       <div class="footer-modal" style="text-align: center;">
 
                         <div class="jnt">
-                            <a href="#" class="btn" style="background-color: #070b17; color: #fff;">Retrocer aos Comunicados</a>
+                            <a href="{{ route('comunicado.index')}}" class="btn" style="background-color: #070b17; color: #fff;">Retrocer aos Comunicados</a>
 
-                            <a href="#" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
+                            <a href="{{ route('comunicado.edit', ['comunicado_id' => $com->comunicado_id] )}}" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
                         </div>
                       </div>
 
