@@ -37,18 +37,14 @@ class CursoController extends Controller
     public function indexCadastro()
     {
         //Retorno dos dados para o preenchimento dos selects na view do cadastro do curso
-        $coordenador = Professor::where('cargo', "Coordenador")->get()->toArray();
-        $pessoa = Pessoa::all()->toArray();
+        $coordenador = Professor::with('pessoa')->where('cargo', "Coordenador Curso")
+        ->where('curso_id', null)
+        ->where('area_formacao_id', null)
+        ->get()->toArray();
+        //dd($coordenador);
         $areaFormacao = Area_formacao::all();
-        for ($i=0; $i < count($coordenador); $i++) {
-            for ($j=0; $j <= count($coordenador); $j++) {
-                if ($coordenador[$i]['pessoa_id'] == $pessoa[$j]['pessoa_id']) {
-                    $dados[$i]['coordenador_id'] = $coordenador[$i]['professor_id'];
-                    $dados[$i]['nome_completo'] = $pessoa[$j]['nome_completo'];
-                }
-            }
-        }
-        return view('curso/criar-curso', compact(['dados', 'areaFormacao']));
+
+        return view('curso/criar-curso', compact(['coordenador', 'areaFormacao']));
     }
 
     public function store(Request $request){
@@ -68,21 +64,25 @@ class CursoController extends Controller
                     if(isset($sigla['sigla'])) {
                         $sg = $sigla['sigla'];
                         $dados = Curso::where('nome_curso', $curso['curso'])->get()->toArray();
-                        //dd($dados);
+                        $sigla = Curso::where('sigla', $sg)->get();
                         if(count($dados) > 0){
                             return redirect()->back()->with("erro", "Este curso já se encontra cadastrado!");
+                        }elseif(count($sigla) > 0){
+                            return redirect()->back()->with("erro", "Esta sigla já se encontra cadastrada!");
                         } else{
-                            $dados = Curso::where('professor_id', $request->coordenador)->get()->toArray();
-                            if(count($dados) > 0){
+                            $dados = Professor::where('professor_id', $request->coordenador)->get()->toArray();
+                            if(count($dados) > 0 && ($dados[0]['curso_id'] > 0 || ($dados[0]['area_formacao_id'] > 0))){
                                 return redirect()->back()->with("erro", "Este coordenador já coordena um departamento!");
                             } else{
                                 $dados = [
                                     'nome_curso' => $cr['nome'],
                                     'sigla' => $sg['sigla'],
                                     'area_formacao_id' => $request->area_formacao,
-                                    'professor_id' => $request->coordenador
                                 ];
-                                Curso::create($dados);
+                                $curso = Curso::create($dados);
+                                $professor = Professor::find($request->coordenador);
+                                $professor->curso_id = $curso->curso_id;
+                                $professor->save();
                                 return redirect()->back()->with("sucesso", "Curso criado com sucesso!");
                             }
                         }
@@ -97,67 +97,26 @@ class CursoController extends Controller
     }
 
     public function index(){
-        $coordenador = Professor::where('cargo', "Coordenador")->get()->toArray();
-        $pessoa = Pessoa::all()->toArray();
+        $coordenador = Professor::with('pessoa', 'curso.areaFormacao')
+        ->where('cargo', "Coordenador Curso")
+        ->get()->toArray();
         $areaFormacao = Area_formacao::all();
-        $cursos = Curso::all()->toArray();
-        //dd($cursos->toArray());
-        for ($i=0; $i < count($coordenador); $i++) {
-            for ($j=0; $j <= count($coordenador); $j++) {
-                if ($coordenador[$i]['pessoa_id'] == $pessoa[$j]['pessoa_id']) {
-                    $dados[$i]['coordenador_id'] = $coordenador[$i]['professor_id'];
-                    $dados[$i]['nome_completo'] = $pessoa[$j]['nome_completo'];
-                }
-            }
-        }
+        $curso = Curso::all();
 
-        for ($i=0; $i < count($cursos); $i++) {
-            $dd[$i]['curso_id'] = $cursos[$i]['curso_id'];
-            $dd[$i]['nome_curso'] = $cursos[$i]['nome_curso'];
-            $dd[$i]['sigla'] = $cursos[$i]['sigla'];
-            $dd[$i]['area_formacao_id'] = $cursos[$i]['area_formacao_id'];
-            $dd[$i]['coordenador_id'] = $cursos[$i]['professor_id'];
-            $areaForm = Area_formacao::where('area_formacao_id', $dd[$i]['area_formacao_id'])->get()->toArray();
-            $dd[$i]['nome_area_formacao'] = $areaForm[0]['nome_area_formacao'];
-            $prof = Professor::where('professor_id', $dd[$i]['coordenador_id'])->get()->toArray();
-            $pess = Pessoa::where('pessoa_id', $prof[0]['pessoa_id'])->get()->toArray();
-            $dd[$i]['nome_coordenador'] = $pess[0]['nome_completo'];
-        }
-        $cursoGeral = $dd;
-
-        return view('curso/cursos', compact(['dados', 'areaFormacao', 'cursoGeral']));
+        return view('curso/cursos', compact(['curso', 'areaFormacao', 'coordenador']));
     }
 
     public function indexEditar($id){
-
-        $coordenador = Professor::where('cargo', "Coordenador")->get()->toArray();
-        $pessoa = Pessoa::all()->toArray();
+        $coordenador_disponivel = Professor::with('pessoa')->where('cargo', "Coordenador Curso")
+        ->where('curso_id', null)
+        ->where('area_formacao_id', null)
+        //->where('curso_id', $id)
+        ->get()->toArray();
+        $coordenador_actual = Professor::with('pessoa', 'curso.areaFormacao')->where('curso_id', $id)->get()->toArray();
+        //dd($coordenador_actual);
         $areaFormacao = Area_formacao::all();
-        $cursos = Curso::all()->toArray();
-        //dd($cursos->toArray());
-        for ($i=0; $i < count($coordenador); $i++) {
-            for ($j=0; $j <= count($coordenador); $j++) {
-                if ($coordenador[$i]['pessoa_id'] == $pessoa[$j]['pessoa_id']) {
-                    $valores[$i]['coordenador_id'] = $coordenador[$i]['professor_id'];
-                    $valores[$i]['nome_completo'] = $pessoa[$j]['nome_completo'];
-                }
-            }
-        }
 
-        $dados = Curso::where('curso_id', $id)->get();
-        $dd['curso_id'] = $dados[0]['curso_id'];
-
-        $dd['nome_curso'] = $dados[0]['nome_curso'];
-        $dd['sigla'] = $dados[0]['sigla'];
-        $dd['area_formacao_id'] = $dados[0]['area_formacao_id'];
-        $dd['coordenador_id'] = $dados[0]['professor_id'];
-        $areaForm = Area_formacao::where('area_formacao_id', $dados[0]['area_formacao_id'])->get()->toArray();
-        $dd['nome_area_formacao'] = $areaForm[0]['nome_area_formacao'];
-        $prof = Professor::where('professor_id', $dados[0]['professor_id'])->get()->toArray();
-        $pess = Pessoa::where('pessoa_id', $prof[0]['pessoa_id'])->get()->toArray();
-        $dd['nome_coordenador'] = $pess[0]['nome_completo'];
-        //dd($dd);
-        return view('curso/edit-curso', compact(['valores', 'areaFormacao', 'dd']));
+        return view('curso/edit-curso', compact(['coordenador_disponivel', 'areaFormacao', 'coordenador_actual']));
     }
 
     public function update(Request $request){
@@ -175,24 +134,31 @@ class CursoController extends Controller
                     }
                     if(isset($sigla['sigla'])) {
                         $sg = $sigla['sigla'];
+                        $sigla = Curso::where('sigla', $sg)->get();
                         $dados = Curso::where('nome_curso', $curso['curso']['nome'])->get()->toArray();
                         if(count($dados) > 0 && $dados[0]['curso_id'] != $request->id){
                             return redirect()->back()->with("erro", "Este curso já se encontra cadastrado!");
+                        }elseif(count($sigla) > 0 && $sigla[0]->curso_id != $request->id){
+                            return redirect()->back()->with("erro", "Esta sigla já se encontra cadastrada!");
                         } else{
-                            $dados = Curso::where('professor_id', $request->coordenador)->get()->toArray();
-                            if(count($dados) > 0 && $dados[0]['curso_id'] != $request->id){
-                                return redirect()->back()->with("erro", "Este coordenador já coordena um departamento!");
-                            } else{
                                 $dados = [
                                     'nome_curso' => $cr['nome'],
                                     'sigla' => $sg['sigla'],
                                     'area_formacao_id' => $request->area_formacao,
-                                    'professor_id' => $request->coordenador
                                 ];
-
-                                Curso::where('curso_id', $request->id)->update($dados);
-                                return redirect()->route('consultar.cursos')->with('sucesso', "Curso actualizado com sucesso!");
-                            }
+                                $coordenador_actual = Professor::where('curso_id', $request->id)->get();
+                                //dd($request->coordenador);
+                                if($coordenador_actual[0]->professor_id != $request->coordenador){
+                                    $professor1 = ['curso_id' => null];
+                                    $professor2 = ['curso_id' => $request->id];
+                                    Professor::where('professor_id', $coordenador_actual[0]->professor_id)->update($professor1);
+                                    Professor::where('professor_id', $request->coordenador)->update($professor2);
+                                    Curso::where('curso_id', $request->id)->update($dados);
+                                    return redirect()->route('consultar.cursos')->with('sucesso', "Curso actualizado com sucesso!");
+                                } else{
+                                    Curso::where('curso_id', $request->id)->update($dados);
+                                    return redirect()->route('consultar.cursos')->with('sucesso', "Curso actualizado com sucesso!");
+                                }
                         }
 
                     }
@@ -206,6 +172,8 @@ class CursoController extends Controller
 
     public function delete($id, Request $request){
         if(isset($request->_method)){
+            $professor = ['curso_id' => null];
+            Professor::where('curso_id', $id)->update($professor);
             Curso::where('curso_id', $id)->delete();
             return redirect()->back()->with('sucesso', "Curso eliminado com sucesso!");
 

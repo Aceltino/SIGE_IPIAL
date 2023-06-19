@@ -46,4 +46,17 @@ class AlunoController extends Controller
         }
         return $Alunos;
     }
+
+    public static function pegarIdUser($idAluno)
+    {
+        $alunos = Aluno::with('candidato.pessoa.user')
+        ->where('aluno_id', $idAluno)
+        ->get();
+
+        foreach ($alunos as $aluno) {
+            $userId = $aluno->candidato->pessoa->user->usuario_id;
+        }
+
+        return $userId;
+    }
 }

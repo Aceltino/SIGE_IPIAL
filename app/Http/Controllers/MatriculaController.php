@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Redirect;
 class MatriculaController extends Controller
 {
     use PessoaTrait;
+
+    public function index(){
+        return view('matricula/matriculas');
+    }
     public function create($id)
     {
         $candidato = CandidatoController::pegarDadosCandidato($id);

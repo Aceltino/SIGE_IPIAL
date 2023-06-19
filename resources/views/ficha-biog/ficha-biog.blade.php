@@ -74,7 +74,7 @@
           <td>Informática</td>
           <td>Manhã</td>
           <td>
-              <a href="fichas-biograficas-doc" class="btn btn-cor-sg-a" data-bs-toggle="modal" data-bs-target="#ExtralargeModal">Ver Ficha Biográfica</a>
+              <a href={{ route('formFichaBiografica') }} class="btn btn-cor-sg-a" data-bs-toggle="modal" data-bs-target="#ExtralargeModal">Ver Ficha Biográfica</a>
           </td>
           </tr>
       </tbody>
