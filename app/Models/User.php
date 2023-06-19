@@ -55,7 +55,7 @@ class User extends Model implements Authenticatable,CanResetPassword
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-         
+
     ];
 
     public function pessoa()

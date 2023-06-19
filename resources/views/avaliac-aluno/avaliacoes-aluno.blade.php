@@ -1,15 +1,24 @@
 @extends('layouts.main')
 
 @section('title', 'Avaliar Aluno')
-
 @section('conteudo')
 <main id="main" class="main">
+    @if (session()->has('erro'))
+    <div class="alert alert-danger">
+        {{session('erro')}}
+    </div>
+    @endif
+    @if (session()->has('sucesso'))
+    <div class="alert alert-success">
+        {{session('sucesso')}}
+    </div>
+    @endif
   <div class="pagetitle">
     <div class="row">
           <div class="col">
-              <h1>Avaliação de Aluno</h1>      
+              <h1>Avaliação de Aluno</h1>
           </div>
-      
+
           <div class="col-lg-2">
             <select class="btn-sel form-select" id="filtro10">
               <option  disabled>Curso</option>
@@ -18,32 +27,32 @@
               <option value="construção civil">construção civil</option>
               <option value="Electronica e Telecomunicação">Electronica e Telecomunicação</option>
             </select>
-          </div> 
+          </div>
 
           <div class="col-lg-2">
             <select class="btn-sel form-select" id="filtro11">
               <option disabled >Disciplina</option>
-              <option value="Desenho técnico">Desenho técnico</option>
+              <option value="Desenho técnico">MATEMÁTICA</option>
               <option value="Técnicas de Linguagem de Programação">Técnicas de Linguagem de Programação</option>
               <option value="Língua Portuguêsa">Língua Portuguêsa</option>
             </select>
-          </div> 
+          </div>
 
           <div class="col-lg-2">
             <select class="btn-sel form-select" id="filtro12">
               <option disabled >Turma</option>
               <option value="I10AM" selected>I10AM</option>
-              <option value="I11AM">I11AM</option>
+              <option value="I11AM">CT10AM</option>
               <option value="I12AT">I12AT</option>
               <option value="I12BT">I12BT</option>
             </select>
-          </div> 
+          </div>
     </div>
 
     <div class="procurar">
     <form class="proc-form d-flex align-items-center">
         <input id="pesquisa" type="text" placeholder="Digite o Número ou o Nome do Aluno que Procuras" name="" class="campo-pesq">
-        <button id="pesquisa" type="submit" title="Search"><i class="bi bi-search"></i></button>   
+        <button id="pesquisa" type="submit" title="Search"><i class="bi bi-search"></i></button>
     </form>
     </div>
   </div>
@@ -51,7 +60,7 @@
     <div class="pagetitle">
         <div class="row">
             <div class="col" style="padding-left: 25px; padding-top: 15px;">
-                <h4 style="text-align: center">Data:21-03-2023</h3>
+                <h4 style="text-align: center">Data: {{date('d/m/Y')}}</h3>
             </div>
         </div>
     </div>
@@ -74,170 +83,30 @@
         </tr>
       </thead>
       <tbody>
-        <tr style="text-align: center;">
-          <th scope="row">1</th>
-          <td>Fulano fulano fu...</td>
-          <td>12</td>
-          <td>10</td>
-          <td>0</td>
-          <td>0</td>
-          <td>19</td>
-          <td style="text-align: center">
-            <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade" >Avaliar aluno</a>
-          </td>
-          <td style="text-align: center">
-            <a href="editar-avaliacao-aluno" class="btn linkeditar">Editar Avaliação</a>
-          </td>
-          <td hidden>Informática</td>
-          <td hidden>Desenho técnico</td>
-          <td hidden>I12BT</td>
-        </tr>
-        <tr style="text-align: center;">
-          <th scope="row">1</th>
-          <td>Fulano fulano fu...</td>
-          <td>12</td>
-          <td>10</td>
-          <td>0</td>
-          <td>0</td>
-          <td>19</td>
-          <td style="text-align: center">
-            <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade" >Avaliar aluno</a>
-          </td>
-          <td style="text-align: center">
-            <a href="editar-avaliacao-aluno" class="btn linkeditar">Editar Avaliação</a>
-          </td>
-          <td hidden>Informática</td>
-          <td hidden>Técnicas de Linguagem de Programação</td>
-          <td hidden>I12BT</td>
-        </tr>
-        <tr style="text-align: center;">
-          <th scope="row">1</th>
-          <td>Fulano fulano fu...</td>
-          <td>12</td>
-          <td>10</td>
-          <td>0</td>
-          <td>0</td>
-          <td>19</td>
-          <td style="text-align: center">
-            <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade" >Avaliar aluno</a>
-          </td>
-          
-          <td style="text-align: center">
-            <a href="editar-avaliacao-aluno" class="btn linkeditar">Editar Avaliação</a>
-          </td>
-          <td hidden>Informática</td>
-          <td hidden>Técnicas de Linguagem de Programação</td>
-          <td hidden>I12BT</td>
-        </tr>
-        <tr style="text-align: center;">
-          <th scope="row">1</th>
-          <td>Fulano fulano fu...</td>
-          <td>12</td>
-          <td>10</td>
-          <td>0</td>
-          <td>0</td>
-          <td>19</td>
-          <td style="text-align: center">
-            <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade" >Avaliar aluno</a>
-          </td>
-          <td style="text-align: center">
-            <a href="editar-avaliacao-aluno" class="btn linkeditar">Editar Avaliação</a>
-          </td>
-          <td hidden>Informática</td>
-          <td hidden>Técnicas de Linguagem de Programação</td>
-          <td hidden>I12BT</td>
-        </tr>
-        <tr style="text-align: center;">
-          <th scope="row">1</th>
-          <td>Fulano fulano fu...</td>
-          <td>12</td>
-          <td>10</td>
-          <td>0</td>
-          <td>0</td>
-          <td>19</td>
-          <td style="text-align: center">
-            <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade" >Avaliar aluno</a>
-          </td>
-          <td style="text-align: center">
-            <a href="editar-avaliacao-aluno" class="btn linkeditar">Editar Avaliação</a>
-          </td>
-          <td hidden>Informática</td>
-          <td hidden>Técnicas de Linguagem de Programação</td>
-          <td hidden>I12BT</td>
-        </tr>
-        <tr style="text-align: center;">
-          <th scope="row">1</th>
-          <td>Fulano fulano fu...</td>
-          <td>12</td>
-          <td>10</td>
-          <td>0</td>
-          <td>0</td>
-          <td>19</td>
-          <td style="text-align: center">
-            <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade" >Avaliar aluno</a>
-          </td>
-          <td style="text-align: center">
-            <a href="editar-avaliacao-aluno" class="btn linkeditar">Editar Avaliação</a>
-          </td>
-          <td hidden>Informática</td>
-          <td hidden>Técnicas de Linguagem de Programação</td>
-          <td hidden>I12BT</td>
-        </tr>
-        <tr style="text-align: center;">
-          <th scope="row">1</th>
-          <td>Fulano fulano fu...</td>
-          <td>12</td>
-          <td>10</td>
-          <td>0</td>
-          <td>0</td>
-          <td>19</td>
-          <td style="text-align: center">
-            <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade" >Avaliar aluno</a>
-          </td>
-          <td style="text-align: center">
-            <a href="editar-avaliacao-aluno" class="btn linkeditar">Editar Avaliação</a>
-          </td>
-          <td hidden>Informática</td>
-          <td hidden>Técnicas de Linguagem de Programação</td>
-          <td hidden>I12BT</td>
-        </tr>
-        <tr style="text-align: center;">
-          <th scope="row">1</th>
-          <td>Fulano fulano fu...</td>
-          <td>12</td>
-          <td>10</td>
-          <td>0</td>
-          <td>0</td>
-          <td>19</td>
-          <td style="text-align: center">
-            <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade" >Avaliar aluno</a>
-          </td>
-          <td style="text-align: center">
-            <a href="editar-avaliacao-aluno" class="btn linkeditar">Editar Avaliação</a>
-          </td>
-          <td hidden>Informática</td>
-          <td hidden>Lingua Portuguêsa</td>
-          <td hidden>I12BT</td>
-        </tr>
-        <tr style="text-align: center;">
-          <th scope="row">1</th>
-          <td>Fulano fulano fu...</td>
-          <td>12</td>
-          <td>10</td>
-          <td>0</td>
-          <td>0</td>
-          <td>19</td>
-          <td style="text-align: center">
-            <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade" >Avaliar aluno</a>
-          </td>
-          <td style="text-align: center">
-            <a href="editar-avaliacao-aluno" class="btn linkeditar">Editar Avaliação</a>
-          </td>
-          <td hidden>Informática</td>
-          <td hidden>Língua Portuguêsa</td>
-          <td hidden>I12BT</td>
-        </tr>
-      </tbody>
+          @for ($i = 0; $i < count($aluno); $i++)
+            @for ($j = 0; $j < count($aluno[$i]); $j++)
+                <tr style="text-align: center;">
+                    <th scope="row">{{$aluno[$i][$j]['numero_aluno']}}</th>
+                    <td>{{$aluno[$i][$j]['nome']}}</td>
+                    <td>{{$aluno[$i][$j]['mac']}}</td>
+                    <td>{{$aluno[$i][$j]['npp']}}</td>
+                    <td>{{$aluno[$i][$j]['npt']}}</td>
+                    <td>{{$aluno[$i][$j]['exame']}}</td>
+                    <td>{{$aluno[$i][$j]['exame_recurso']}}</td>
+                    <td style="text-align: center">
+                    <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade" >Avaliar aluno</a>
+                    </td>
+                    <td style="text-align: center">
+                    <a href="{{route('editar.avaliacao.aluno', $aluno[$i][$j]['aluno_id'])}}" class="btn linkeditar">Editar Avaliação</a>
+                    </td>
+                    <td hidden>{{$aluno[$i][$j]['curso']}}</td>
+                    <td hidden>{{$aluno[$i][$j]['nome_disciplina']}}</td>
+                    <td hidden>{{$aluno[$i][$j]['nome_turma']}}</td>
+                </tr>
+            @endfor
+          @endfor
+
+        </tbody>
     </table>
   </div>
   <!-- Termina a tabela -->
@@ -251,7 +120,7 @@
               <button type="button" class="btn-close"data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            
+
               <div class="row">
                 <div class="col-lg-10">
                     <div class="nomenumeroalunoinfo">
@@ -263,7 +132,7 @@
                         <h5 class="nomenumeroalunoinfo"> <b>Nº:</b> 12</h5>
                     </div>
                 </div>
-              </div> 
+              </div>
             <div class="bortabelasemscroll">
               <!-- /  Inicio da tabela  -->
               <table class="table table-striped" style="margin-top: 20px; width: 100%;" >
@@ -303,6 +172,6 @@
       </div>
     </form>
 <!-- Fím da modal -->
-    
+
 </main>
 @endsection

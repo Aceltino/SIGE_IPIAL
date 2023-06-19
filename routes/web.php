@@ -5,12 +5,12 @@ use App\Http\Controllers\{
     //Classes das Controllers
     AuthController,
     AlunoTurmaController,
+    AlunoController,
     CandidatoController,
     MatriculaController,
     InscricaoController,
     ProfessorController,
     comunicadosController,
-    CandidatoCursoController,
     CursoController,
     AssiduidadeAlunoController,
     AvaliacaoAlunoController,
@@ -36,6 +36,8 @@ use App\Http\Controllers\{
 
 // Rota apenas de teste... Não apague -> ACELTINO
 Route::get('validar-aluno', [AlunoTurmaController::class, 'SelecionarTurma']);
+// Route::get('validar-aluno', [AlunoController::class, 'pegarIdUser']);
+
 
 
 //Rotas inicial do Painel
@@ -142,9 +144,7 @@ Route::prefix('inscricao')->group(function(){
 Route::prefix('matricula')->group(function(){
 
     /* Matriculas*/
-    Route::get('matriculas', function () {
-        return view('matricula/matriculas');
-    });
+    Route::get('matriculas',  [MatriculaController::class, 'index'])->name('matriculas');
 
     /*Matricular aluno */
     Route::get('matricular-aluno/{candidato}',  [MatriculaController::class, 'create'])->name('matricula-view');
@@ -186,7 +186,7 @@ Route::prefix('matricula')->group(function(){
 /******************************************
  * Rotas de professor
  */
-Route::prefix('professor')->middleware(['auth','checkcargo'])->group(function(){
+Route::prefix('professor')->group(function(){
 
     Route::get('rota/{segmento}', [ProfessorController::class, 'editarProfessor'])->name('prof.rota');
 
@@ -283,6 +283,7 @@ Route::prefix('ano-lectivo')->middleware(['auth'])->group(function(){
 
 });
 
+
 /**<!--Fim Rotas ano lectivo--> */
 
 
@@ -293,10 +294,11 @@ Route::prefix('ficha-biog')->group(function(){
 
     Route::get('fichas-biograficas', function () {
         return view('ficha-biog/ficha-biog');
-    });
-    Route::get('fichas-biograficas-doc', function () {
-        return view('ficha-biog/ficha-biografica-doc');
-    });
+    })->name('fichaBiografica');
+
+    Route::get('fichasBio', function () {
+        return view('ficha-biog.ficha-biografica-doc');
+    })->name('formFichaBiografica');
 });
 
 /******************************************
@@ -345,12 +347,12 @@ Route::prefix('usuario')->group(function(){
 
     Route::get('use_cadastro', function () {
         return view('usuario/use_cadastro');
-    });
+    })->name('createUsuario');
 
     /*Matricular aluno */
     Route::get('usuarios', function () {
         return view('usuario/usuarios');
-    });
+    })->name('consultUsuario');
 
     /*Editar matricula */
     Route::get('use_editar', function () {
@@ -396,9 +398,7 @@ Route::get('/editar_assiduidade', function () {
 Route::get('/avaliar-aluno', [AvaliacaoAlunoController::class, 'index'])->name('avaliacao.aluno');
 
 /*editar Avaliação de Aluno*/
-Route::get('/editar-avaliacao-aluno', function () {
-    return view('avaliac-aluno/edit-valiac-aluno');
-});
+Route::get('/editar-avaliacao-aluno/{id}', [AvaliacaoAlunoController::class, 'indexUpdate'])->name('editar.avaliacao.aluno');
 
 /******************************************
  * Rotas do horário
@@ -433,4 +433,3 @@ Route::prefix('disciplina')->group(function(){
         Route::put('edit-disciplina/{disciplina_id}', [DisciplinasController::class, 'update'])->where('disciplina_id', '[0-9]+')->name('disciplina.update');
         Route::delete('{disciplina_id}', [DisciplinasController::class, 'destroy'])->where('disciplina_id', '[0-9]+')->name('disciplina.delete');
 });
-
