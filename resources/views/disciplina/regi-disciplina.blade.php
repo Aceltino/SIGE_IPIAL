@@ -39,28 +39,18 @@
                   <option value="I"> Cientificas</option>
                 </select>
               </div>
-              @php
-                  $j=1;
-             @endphp
               <div class="row">
                 <div class="col">
-                  @foreach($cursos as $curso)
+                  @foreach($cursos as $curso_id => $nome_curso)
                   <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="curso{{$j}}">
-
-                    <label class="form-check-label" for="flexSwitchCheckDefault">{{$curso['nome_curso']}}</label>
-                    <label class="form-check-label" for="flexSwitchCheckDefault" value="{{$curso['nome_curso']}}">{{$curso['nome_curso']}}</label>
-
-                  </div>
-                  @php
-                     $j++;
-                 @endphp
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="curso">
+                    <label class="form-check-label" for="flexSwitchCheckDefault" value="{{ $curso_id }}">{{ $nome_curso }}</label>
+                 </div>
                   @endforeach
-
                             <div class="col">
                      <input type="time" style=" text-align: center;" name="tempo_prova"  oninput="this.className = ''">
                  </div>
-             </div>
+             </div> 
 
             <div style="text-align:center;margin-top:40px;">
                 <div>
