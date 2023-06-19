@@ -45,21 +45,33 @@
       </thead>
       <tbody>
 
+      <table  id="matricula-tab" class="table table-striped" style="margin-top: 20px;" >
+      <thead  style=" text-align: center;">
+          <tr>
+          <th scope="col">Número do BI</th>
+          <th scope="col">Nome do Candidato</th>
+          <th scope="col">Processo</th>
+          <th scope="col">Turma</th>
+          <th scope="col">Curso</th>
+          <th scope="col">Período</th>
+          <th scope="col"></th>
+          </tr>
+      </thead>
+      <tbody>
         @foreach($candidatos as $candidato)
-
           <tr  style=" text-align: center;">
-          <th scope="row">{{ $candidato->num_bi }}</th>
-          <td>{{ $candidato->nome_completo }}</td>
-          <td>{{ $candidato->num_processo }}</td>
-          <td>{{ $candidato->nome_turma }}</td>
-          <td>{{ $candidato->nome_curso }}</td>
-          <td>{{ $candidato->nome_turno }}</td>
+          <th scope="row">{{ $candidato['num_bi'] }}</th>
+          <td>{{ $candidato['nome_completo'] }}</td>
+          <td>{{ $candidato['num_processo'] }}</td>
+          <td>{{ $candidato['nome_turma'] }}</td>
+          <td>{{ $candidato['nome_curso'] }}</td>
+          <td>{{ $candidato['nome_turno'] }}</td>
           <td>
           <a href="#" class="btn btn-cor-sg-a" data-bs-toggle="modal" data-bs-target="#ExtralargeModal">Ver Processo</a>
           <i class="bi bi-trash-fill"></i>
           </td>
           </tr>
-        @endforeach  
+        @endforeach   
           <tr  style=" text-align: center;">
           <th scope="row">0000000KJ000098</th>
           <td>Fernando Exemplo</td>

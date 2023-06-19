@@ -5,6 +5,8 @@ use App\Http\Controllers\{
     //Classes das Controllers
     AuthController,
     AlunoTurmaController,
+    AlunoController,
+    CandidatoController,
     MatriculaController,
     InscricaoController,
     ProfessorController,
@@ -34,6 +36,8 @@ use Doctrine\DBAL\Driver\Middleware;
 
 // Rota apenas de teste... Não apague -> ACELTINO
 Route::get('validar-aluno', [AlunoTurmaController::class, 'SelecionarTurma']);
+// Route::get('validar-aluno', [AlunoController::class, 'pegarIdUser']);
+
 
 
 //Rotas inicial do Painel
@@ -141,9 +145,7 @@ Route::prefix('inscricao')->group(function(){
 Route::prefix('matricula')->group(function(){
 
     /* Matriculas*/
-    Route::get('matriculas', function () {
-        return view('matricula/matriculas');
-    });
+    Route::get('matriculas',  [MatriculaController::class, 'index'])->name('matriculas');
 
     /*Matricular aluno */
     Route::get('matricular-aluno/{candidato}',  [MatriculaController::class, 'create'])->name('matricula-view');
@@ -185,7 +187,7 @@ Route::prefix('matricula')->group(function(){
 /******************************************
  * Rotas de professor
  */
-Route::prefix('professor')->middleware(['auth','checkcargo'])->group(function(){
+Route::prefix('professor')->group(function(){
 
     Route::get('rota/{segmento}', [ProfessorController::class, 'editarProfessor'])->name('prof.rota');
 
@@ -284,6 +286,7 @@ Route::prefix('ano-lectivo')->middleware(['auth'])->group(function(){
     Route::delete('apagar-ano-lectivo/{id}', [AnoLectivoController::class, 'delete'])->name('apagar.ano.lectivo');
 
 });
+
 
 /**<!--Fim Rotas ano lectivo--> */
 
@@ -434,4 +437,3 @@ Route::prefix('disciplina')->group(function(){
         Route::put('edit-disciplina/{disciplina_id}', [DisciplinasController::class, 'update'])->where('disciplina_id', '[0-9]+')->name('disciplina.update');
         Route::delete('{disciplina_id}', [DisciplinasController::class, 'destroy'])->where('disciplina_id', '[0-9]+')->name('disciplina.delete');
 });
-

@@ -4,6 +4,7 @@
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
         'reference' => 'b8566cd39f01f85e06c5836abfcb4a4b4c8e4868',
+
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -458,6 +459,7 @@
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
             'reference' => 'b8566cd39f01f85e06c5836abfcb4a4b4c8e4868',
+
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
