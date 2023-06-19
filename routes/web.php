@@ -187,7 +187,7 @@ Route::prefix('matricula')->group(function(){
 /******************************************
  * Rotas de professor
  */
-Route::prefix('professor')->middleware(['auth','checkcargo'])->group(function(){
+Route::prefix('professor')->group(function(){
 
     Route::get('rota/{segmento}', [ProfessorController::class, 'editarProfessor'])->name('prof.rota');
 
