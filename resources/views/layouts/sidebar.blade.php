@@ -1050,7 +1050,7 @@
 
       <!-- /  Nav Perfil-->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="perfil">
+        <a class="nav-link collapsed" href={{route('perfil')}}>
           <i class="bi bi-person"></i>
           <span>Perfil</span>
         </a>

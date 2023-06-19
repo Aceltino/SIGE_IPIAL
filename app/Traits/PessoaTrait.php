@@ -24,15 +24,16 @@ trait PessoaTrait
 
    
     public static function updatePessoa_ACTUALIZADO($dadosPessoa,$dadosEndereco=null)
-    {   
+    {      
 
+        // $consultEndereco= EnderecoController::consultEndereco($dadosEndereco);
+        
+        // dd($consultEndereco->endereco_id);
+        
         $pessoas= Pessoa::all();
         $pessoa=  Pessoa::find(session('pessoa_id'));
         $contador= 0;
         $id=$pessoa->endereco_id;
-
-        // $dadosEndereco=null;
-        // // dd($dadosEndereco);
 
         $pessoa->nome_completo= $dadosPessoa['nome_completo'];
         $pessoa->num_bi= $dadosPessoa['num_bi'];
@@ -50,8 +51,8 @@ trait PessoaTrait
 
             //Neste caso atrela o endereço existente ao usuario, para evitar redundancia
             $consultEndereco= EnderecoController::consultEndereco($dadosEndereco);
-            if(!$consultEndereco==null){
-                $pessoa->endereco_id= $consultEndereco['endereco_id'];
+            if(!empty($consultEndereco)){
+                $pessoa->endereco_id= $consultEndereco->endereco_id;
                 if(!$pessoa->save()){
                     return false;
                 }
@@ -85,6 +86,7 @@ trait PessoaTrait
 
             }
         }
+
         return $statePessoa;
 
     }

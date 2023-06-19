@@ -9,13 +9,13 @@ class EnderecoController extends Controller
 {
     public static function store($dadosEndereco)
     {
-        $enderecoCriado = Endereco::create($dadosEndereco);
+        $enderecoCriado= Endereco::create($dadosEndereco);
         return $enderecoCriado->endereco_id;
     }
 
     public static function update($id, $dadosEndereco)
     {
-            
+
         $endereco= Endereco::find($id);
 
         $endereco->municipio=$dadosEndereco['municipio'];
@@ -28,15 +28,14 @@ class EnderecoController extends Controller
         }
         return true;
     }
-
+    
     public static function consultEndereco($dadosEndereco){
 
-        $endereco= Endereco::where('municipio', $dadosEndereco['municipio'])
+        return Endereco::where('municipio', $dadosEndereco['municipio'])
                             ->where('bairro', $dadosEndereco['bairro'])
                             ->where('zona',$dadosEndereco['zona'])
                             ->where('numero_casa',$dadosEndereco['numero_casa'])->first();
 
-        return $endereco;
     }
 
 

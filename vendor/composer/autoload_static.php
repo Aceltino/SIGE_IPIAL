@@ -585,6 +585,11 @@ class ComposerStaticInitd687848da1c8e5b0effdcf829e99ed56
     );
 
     public static $classMap = array (
+        'App\\Actions\\Fortify\\CreateNewUser' => __DIR__ . '/../..' . '/app/Actions/Fortify/CreateNewUser.php',
+        'App\\Actions\\Fortify\\PasswordValidationRules' => __DIR__ . '/../..' . '/app/Actions/Fortify/PasswordValidationRules.php',
+        'App\\Actions\\Fortify\\ResetUserPassword' => __DIR__ . '/../..' . '/app/Actions/Fortify/ResetUserPassword.php',
+        'App\\Actions\\Fortify\\UpdateUserPassword' => __DIR__ . '/../..' . '/app/Actions/Fortify/UpdateUserPassword.php',
+        'App\\Actions\\Fortify\\UpdateUserProfileInformation' => __DIR__ . '/../..' . '/app/Actions/Fortify/UpdateUserProfileInformation.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AdmissaoController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdmissaoController.php',
@@ -611,13 +616,9 @@ class ComposerStaticInitd687848da1c8e5b0effdcf829e99ed56
         'App\\Http\\Controllers\\MatriculaController' => __DIR__ . '/../..' . '/app/Http/Controllers/MatriculaController.php',
         'App\\Http\\Controllers\\MiniPautaController' => __DIR__ . '/../..' . '/app/Http/Controllers/MiniPautaController.php',
         'App\\Http\\Controllers\\PautaController' => __DIR__ . '/../..' . '/app/Http/Controllers/PautaController.php',
-
-        'App\\Http\\Controllers\\ProcessoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProcessoController.php',
-
         'App\\Http\\Controllers\\PerfilUserController' => __DIR__ . '/../..' . '/app/Http/Controllers/PerfilUserController.php',
         'App\\Http\\Controllers\\ProcessoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProcessoController.php',
         'App\\Http\\Controllers\\ProcessosController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProcessosController.php',
-
         'App\\Http\\Controllers\\ProfessorController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfessorController.php',
         'App\\Http\\Controllers\\TurmaController' => __DIR__ . '/../..' . '/app/Http/Controllers/TurmaController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
@@ -669,6 +670,7 @@ class ComposerStaticInitd687848da1c8e5b0effdcf829e99ed56
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
+        'App\\Providers\\FortifyServiceProvider' => __DIR__ . '/../..' . '/app/Providers/FortifyServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Traits\\AnoLectivoTrait' => __DIR__ . '/../..' . '/app/Traits/AnoLectivoTrait.php',
         'App\\Traits\\AvaliacaoTrait' => __DIR__ . '/../..' . '/app/Traits/AvaliacaoTrait.php',

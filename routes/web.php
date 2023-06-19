@@ -19,7 +19,7 @@ use App\Http\Controllers\{
     DisciplinasController,
     ProcessosController,
 };
-
+use Doctrine\DBAL\Driver\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,12 +72,13 @@ Route::prefix('autenticacao')->group(function(){
  ** Rota do perfil de usuario **
  ******************************/
 
- Route::prefix('Perfil')->group(function(){
+Route::prefix('Perfil')->middleware(['auth'])->group(function(){
+    Route::get('/',[PerfilUserController::class,'index'])->name('perfil');
+    Route::put('update',[PerfilUserController::class,'update'])->name('perfil-update');
+    Route::patch('password',[PerfilUserController::class,'changePassword'])->name('updatePassword');
+    
+});
 
-    Route::get('/',[PerfilUserController::class,'index'])->name('perfil')->middleware(['auth']);
-    Route::put('update',[PerfilUserController::class,'update'])->name('perfil-update')->middleware(['auth']);
-
- });
 
 
 /******************************************
@@ -224,6 +225,9 @@ Route::prefix('turma')->group(function(){
     });
 });
 /**<!--Fim Rotas turma--> */
+
+
+
 
 
 /*Editar turma */
