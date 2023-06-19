@@ -5,12 +5,10 @@ use App\Http\Controllers\{
     //Classes das Controllers
     AuthController,
     AlunoTurmaController,
-    CandidatoController,
     MatriculaController,
     InscricaoController,
     ProfessorController,
     comunicadosController,
-    CandidatoCursoController,
     CursoController,
     AssiduidadeAlunoController,
     AvaliacaoAlunoController,
@@ -294,10 +292,11 @@ Route::prefix('ficha-biog')->group(function(){
 
     Route::get('fichas-biograficas', function () {
         return view('ficha-biog/ficha-biog');
-    });
-    Route::get('fichas-biograficas-doc', function () {
-        return view('ficha-biog/ficha-biografica-doc');
-    });
+    })->name('fichaBiografica');
+
+    Route::get('fichasBio', function () {
+        return view('ficha-biog.ficha-biografica-doc');
+    })->name('formFichaBiografica');
 });
 
 /******************************************
@@ -346,12 +345,12 @@ Route::prefix('usuario')->group(function(){
 
     Route::get('use_cadastro', function () {
         return view('usuario/use_cadastro');
-    });
+    })->name('createUsuario');
 
     /*Matricular aluno */
     Route::get('usuarios', function () {
         return view('usuario/usuarios');
-    });
+    })->name('consultUsuario');
 
     /*Editar matricula */
     Route::get('use_editar', function () {
