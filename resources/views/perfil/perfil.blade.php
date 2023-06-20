@@ -186,9 +186,11 @@
                  <div class="row mb-3">
                    <label for="foto-perfil" class="col-md-4 col-lg-4 col-form-label">Foto</label>
                    <div class="col-md-8 col-lg-8">
+                      <img src={{ URL::asset( isset(Auth::user()->imagem_usuario) ? Auth::user()->imagem_usuario : "" ) }} id="img-escolhida">
+                    
                      <div class="pt-2">
-                        <label for="foto-perf"><span class="btn btn-warning btn-sm" title="Atualizar foto de perfil"><i class="bi bi-upload"></i></span></label>
-                         <input type="file" id="foto-perf" value="{{old('imagem_update')}}" name="imagem_update">
+                        <label for="btn-upload"><span class="btn btn-warning btn-sm" title="Atualizar foto de perfil"><i class="bi bi-upload"></i></span></label>
+                         <input type="file" id="btn-upload" value="{{old('imagem_update')}}" name="imagem_update" accept="image/*" style="display: none;">
                       </div>
                     </div>
                   </div>
@@ -223,7 +225,7 @@
                    <div class="row mb-3">
                      <label for="dtNascimento" class="col-md-4 col-lg-4 col-form-label">Data de nascimento</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="dtNascimento" name="data_nascimento_update" value="{{ Auth::user()->belongPessoa->data_nascimento }}">
+                       <input type="date" class="form-control" id="dtNascimento" name="data_nascimento_update" value="{{ Auth::user()->belongPessoa->data_nascimento }}">
                      </div>
                    </div>
                    @error('data_nascimento_update')
@@ -233,7 +235,8 @@
                    <div class="row mb-3">
                      <label for="nBI" class="col-md-4 col-lg-4 col-form-label">Número do BI</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="nBI" name="num_bi_update" value="{{ Auth::user()->belongPessoa->num_bi }}">
+                       <input type="text" class="form-control" id="bi_input" name="num_bi_update" value="{{ Auth::user()->belongPessoa->num_bi }}" oninput="this.className = ''">
+                       <div id="mensagem1" style="color: red;"></div>
                      </div>
                    </div>
                    @error('num_bi_update')
@@ -254,7 +257,8 @@
                    <div class="row mb-3">
                      <label for="Telefone1" class="col-md-4 col-lg-4 col-form-label">Número telefone</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="Telefone1" name="telefone_update" value="{{ Auth::user()->pessoa->telefone }}">
+                       <input type="text" class="form-control" id="telefoneinput" name="telefone_update" value="{{ Auth::user()->pessoa->telefone }}" oninput="this.className = ''">
+                       <div class="mensagem-erro" style="width: 100%;"></div>
                      </div>
                    </div>
                    @error('telefone_update')
