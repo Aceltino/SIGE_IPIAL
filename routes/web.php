@@ -80,7 +80,7 @@ Route::prefix('Perfil')->middleware(['auth'])->group(function(){
     Route::get('/',[PerfilUserController::class,'index'])->name('perfil');
     Route::put('update',[PerfilUserController::class,'update'])->name('perfil-update');
     Route::patch('password',[PerfilUserController::class,'changePassword'])->name('updatePassword');
-    
+
 });
 
 
@@ -402,7 +402,7 @@ Route::get('/editar_assiduidade', function () {
 Route::get('/avaliar-aluno', [AvaliacaoAlunoController::class, 'index'])->name('avaliacao.aluno');
 
 /*editar Avaliação de Aluno*/
-Route::get('/editar-avaliacao-aluno/{id}', [AvaliacaoAlunoController::class, 'indexUpdate'])->name('editar.avaliacao.aluno');
+Route::get('/editar-avaliacao-aluno/{id_aluno}/{id_disciplina}', [AvaliacaoAlunoController::class, 'indexUpdate'])->name('editar.avaliacao.aluno');
 
 /******************************************
  * Rotas do horário

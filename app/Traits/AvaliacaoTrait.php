@@ -36,10 +36,10 @@ trait AvaliacaoTrait
                 $exame_especial = null;
 
                 $nota = Nota::where('aluno_id', $aluno[$i]->aluno_id)
-                ->where('id_trimestre', $trimestre[0]->trimestre_id)
+                ->where('trimestre_id', $trimestre[0]->trimestre_id)
                 ->where('disciplina_id', $disciplinas[$inc])->get();
                 $ac = Nota::with(['disciplina'])->where('aluno_id', $aluno[$i]->aluno_id)
-                ->where('id_trimestre', $trimestre[0]->trimestre_id)
+                ->where('trimestre_id', $trimestre[0]->trimestre_id)
                 ->where('tipo_prova', 'AvaliacaoContinua')
                 ->where('disciplina_id', $disciplinas[$inc])->get();
                 //dd($nota);

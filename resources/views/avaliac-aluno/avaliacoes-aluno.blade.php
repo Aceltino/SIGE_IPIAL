@@ -97,7 +97,7 @@
                     <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade" >Avaliar aluno</a>
                     </td>
                     <td style="text-align: center">
-                    <a href="{{route('editar.avaliacao.aluno', $aluno[$i][$j]['aluno_id'])}}" class="btn linkeditar">Editar Avaliação</a>
+                    <a href="{{route('editar.avaliacao.aluno', [$aluno[$i][$j]['aluno_id'], $aluno[$i][$j]['disciplina_id']])}}" class="btn linkeditar">Editar Avaliação</a>
                     </td>
                     <td hidden>{{$aluno[$i][$j]['curso']}}</td>
                     <td hidden>{{$aluno[$i][$j]['nome_disciplina']}}</td>
