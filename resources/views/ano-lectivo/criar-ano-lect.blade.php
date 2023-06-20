@@ -220,7 +220,7 @@
 
           <div class="row" >
                 <div class="col">
-                    <p>Hora do início das aulas<input type="time" name="hora_inicio_tarde" id="hora-de-inicio-das-aulas-no-periodo-da-tarde" value="{{old('hora_inicio_tarde')}}" oninput="this.className = ''" required></p>
+                    <p>Hora do início das aulas<input type="time" name="hora_inicio_tarde" id="hora-de-inicio-das-aulas-no-periodo-da-tarde" value="{{old('hora_inicio_tarde')}}" min="12:00" max="13:30"  oninput="this.className = ''" required></p>
                     @error('hora_inicio_tarde')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
@@ -228,7 +228,7 @@
                 </div>
 
                 <div class="col">
-                    <p>Hora do fim das aulas<input type="time" name="hora_fim_tarde" id="hora-de-fim-das-aulas-no-periodo-da-tarde" value="{{old('hora_fim_tarde')}}" oninput="this.className = ''" required></p>
+                    <p>Hora do fim das aulas<input type="time" name="hora_fim_tarde" id="hora-de-fim-das-aulas-no-periodo-da-tarde" value="{{old('hora_fim_tarde')}}" min="17:00" max="18:50"  oninput="this.className = ''" required></p>
                     @error('hora_fim_tarde')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
@@ -271,7 +271,7 @@
 
           <div class="row" >
                 <div class="col">
-                    <p>Hora do início das aulas<input type="time" name="hora_inicio_noite" id="hora-de-inicio-das-aulas-no-periodo-da-noite" value="{{old('hora_inicio_noite')}}" oninput="this.className = ''" required></p>
+                    <p>Hora do início das aulas<input type="time" name="hora_inicio_noite" id="hora-de-inicio-das-aulas-no-periodo-da-noite" value="{{old('hora_inicio_noite')}}" min="17:00" max="19:00" oninput="this.className = ''" required></p>
                     @error('hora_inicio_noite')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror
@@ -279,7 +279,7 @@
                 </div>
 
                 <div class="col">
-                    <p>Hora do fim das aulas<input type="time" name="hora_fim_noite" id="hora-de-fim-das-aulas-no-periodo-da-noite" value="{{old('hora_fim_noite')}}" oninput="this.className = ''" required></p>
+                    <p>Hora do fim das aulas<input type="time" name="hora_fim_noite" id="hora-de-fim-das-aulas-no-periodo-da-noite" value="{{old('hora_fim_noite')}}" min="21:00" max="23:00" oninput="this.className = ''" required></p>
                     @error('hora_fim_noite')
                         <p class="alert alert-danger" role="alert">{{$message}}</p>
                     @enderror

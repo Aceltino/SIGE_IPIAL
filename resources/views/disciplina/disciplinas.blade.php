@@ -56,18 +56,18 @@
     <tbody>
     @foreach($disciplinas as $disciplina)
       <tr style=" text-align: center;">
-        <td>{{ $disciplina->nome_disciplina }}</td>
-        <td>{{ $disciplina->sigla		}}</td>
-        <td>{{ $disciplina->componente	}}</td>
-        <td>{{ $disciplina->tempo_prov }}</td>
+        <td>{{ $disciplina['nome_disciplina'] }}</td>
+        <td>{{ $disciplina['sigla']		}}</td>
+        <td>{{ $disciplina['componente']	}}</td>
+        <td>{{ $disciplina['tempo_prov'] }}</td>
         @foreach($cursos as $curso)
         @if($cursos == null)
         <td>Todos os cursos</td>
         @else
-        <td>{{ $curso->nome_curso }}</td>
-        @endif
+        <td>{{ $curso['nome_curso'] }}</td>
+        @endif 
         @endforeach
-        <td>
+        <td> 
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
           <a href="{{ route('disciplina.edit', ['disciplina_id',$disciplinas->disciplina_id])}}"><i class="bi bi-pencil"></i></a>
 

@@ -25,7 +25,8 @@
          <div class="card">
            <div class="card-body perfil-card pt-4 d-flex flex-column align-items-center">
             
-             <img src={{URL::asset(Auth::user()->imagem_usuario)}} alt="perfil" class="l">
+             <img src= {{ URL::asset( isset(Auth::user()->imagem_usuario) ? Auth::user()->imagem_usuario : '' ) }} alt="perfil" class="l">
+
              <h2>{{ Auth::user()->belongPessoa->nome_completo }}</h2>
              <h3>{{ Auth::user()->cargo_usuario }}</h3>
            </div>
@@ -72,6 +73,21 @@
             @if(session('erro_imagem_003'))
             <div class="alert alert-danger">
                 {{session('erro_imagem_003')}}
+              </div>
+            @endif
+            @if(session('erro_senha_001'))
+              <div class="alert alert-danger">
+                {{session('erro_senha_001')}}
+              </div>
+            @endif
+            @if(session('erro_senha_002'))
+              <div class="alert alert-danger">
+                {{session('erro_senha_002')}}
+              </div>
+            @endif
+            @if(session('success_updatePassword_001'))
+              <div class="alert alert-success">
+                {{session('success_updatePassword_001')}}
               </div>
             @endif
             
@@ -166,7 +182,7 @@
                 <form action={{ route('perfil-update') }} method="post" enctype="multipart/form-data">
                   @csrf
                   @method('PUT')
-
+  
                  <div class="row mb-3">
                    <label for="foto-perfil" class="col-md-4 col-lg-4 col-form-label">Foto</label>
                    <div class="col-md-8 col-lg-8">
@@ -291,59 +307,63 @@
                      </div>
                    </div>
 
-
-                   <div class="col-md-8 mt-3" style=" display: flex; justify-content: flex-end;align-items: center; gap: 10px;">
-                    <h5>Endereço</h5>
-                      <div class="form-group">
-                        <input name='municipio' type="text" placeholder="Municipio" required='false' oninput="this.className = ''">
-                      </div> 
-                      <div class="form-group">
-                        <input name='bairro' type="text" placeholder="Bairro" required='false' oninput="this.className = ''">
-                      </div> 
-                      <div class="form-group">
-                        <input name='zona' type="text" placeholder="Zona" required='false' oninput="this.className = ''">
-                      </div> 
-                      <div class="form-group">
-                        <input name='numero_casa' type="number" placeholder="Nº Casa" required='false' oninput="this.className = ''">
-                      </div> 
-                    </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn" style="margin-top: 10px; background-color: #174183; color: #fff;">
+                      Atualizar Dados
+                    </button>
                   </div>
-
-
-                   <div class="text-center">
-                     <button type="submit" class="btn" style="margin-top: 10px; background-color: #174183; color: #fff;">Atualizar Dados</button>
-                   </div>
                  </form><!-- Fim Form Editar Perfil -->
 
                </div>
 
                <div class="tab-pane fade pt-3" id="alterar-senha">
-                 <!-- Form Alterar Password -->
-                 <form>
 
-                   <div class="row mb-3">
+              
+                @if(session('success_updatePassword_001'))
+                  <div class="alert alert-success">
+                    {{session('success_updatePassword_001')}}
+                  </div>
+                @endif
+
+
+                 <!-- Form Alterar Password -->
+                 <form  action= {{route('updatePassword')}} method="POST">
+                  @csrf
+                  @method('PATCH')
+                  <div class="row mb-3">
                      <label for="SenhaAtual" class="col-md-4 col-lg-3 col-form-label">Senha atual</label>
                      <div class="col-md-8 col-lg-9">
-                       <input type="password" class="form-control" id="SenhaAtual">
+                       <input type="password" name="password_old" value="{{old('password_old')}}" class="form-control" id="SenhaAtual">
                      </div>
-                   </div>
+                  </div>
+                    @error('password_old')
+                      <div class="alert alert-danger">{{$message}}</div>  
+                    @enderror
 
-                   <div class="row mb-3">
+                  <div class="row mb-3">
                      <label for="NovaSenha" class="col-md-4 col-lg-3 col-form-label">Nova senha</label>
                      <div class="col-md-8 col-lg-9">
-                       <input type="password" class="form-control" id="NovaSenha">
+                       <input type="password" name="password" value="{{old('password')}}" form-control id="NovaSenha">
                      </div>
-                   </div>
+                  </div>
+                  @error('password')
+                    <div class="alert alert-danger">{{$message}}</div>  
+                  @enderror
 
-                   <div class="row mb-3">
-                     <label for="ConfSenha" class="col-md-4 col-lg-3 col-form-label">Repetir a senha</label>
+                  <div class="row mb-3">
+                     <label for="ConfSenha" class="col-md-4 col-lg-3 col-form-label">Confirmar a senha</label>
                      <div class="col-md-8 col-lg-9">
-                       <input type="password" class="form-control" id="ConfSenha">
+                       <input type="password" name="password_confirmation" value="{{old('password_confirmation')}}" form-control id="ConfSenha">
                      </div>
-                   </div>
+                  </div>
+                  @error('password_confirmation')
+                    <div class="alert alert-danger">{{$message}}</div>  
+                  @enderror
 
                    <div class="text-center">
-                     <button type="submit" class="btn" style="margin-top: 10px; background-color: #174183; color: #fff;">Alterar Senha</button>
+                     <button type="submit" class="btn" style="margin-top: 10px; background-color: #174183; color: #fff;">
+                        Alterar Senha
+                      </button>
                    </div>
                  </form><!-- Fim Form Alterar Password -->
 
