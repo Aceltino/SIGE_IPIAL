@@ -553,6 +553,7 @@
   {{-- SECRETARIA PEDAGÓGICA -----   / Menu de secretrio Pedagógico --}}
   @elseif(Auth::user()->cargo_usuario == "Secretaria")
     <ul class="sidebar-nav" id="sidebar-nav">
+
       <!-- /  Nav Pagina inicial-->
       <li class="nav-item">
         <a class="nav-link " href={{route('inicio')}}>
