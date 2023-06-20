@@ -31,9 +31,10 @@
   <table class="table table-striped table-custom" id="matricula-tab">
     <thead>
       <tr style=" text-align: center;">
-          <th scope="col">Nome do usuário</th>
-          <th scope="col">Email</th>
-          <th scope="col">Genero</th>
+          <th scope="col">#</th>
+          <th scope="col">Nome Compleo</th>
+          <th scope="col">E-mail</th>
+          <th scope="col">Gênero</th>
           <th scope="col">Cargo</th>
           <th scope="col">Estado</th>
           <th></th>
@@ -41,16 +42,15 @@
     </thead>
     <tbody>
       <tr style=" text-align: center;">
+        <td>1</td>
         <th scope="row">Maria Paulo André</th>
         <td>MariaPauloAndré</td>
         <td>Femenina</td>
         <td>professora</td>
-        <td> <a href="#" class="btn btn-cor-sg-a w-48 bg-red">Inactivar</a> </td>
+        <td> <a href="#" class="btn btn-cor-sg-a w-48 bg-red">Bloquear</a> </td>
         <td>
             <i class="bi bi-eye-fill"></i>
-            <a href="use_editar"><i class="bi bi-pencil"></i></a>
-            <i class="bi bi-trash-fill"></i>
-            
+            <a href="use_editar"><i class="bi bi-pencil"></i></a> 
           </td>
       </tr>
       

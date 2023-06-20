@@ -133,9 +133,9 @@ trait AvaliacaoTrait
         return $dados;
     }
 
-    public static function pegarProfessor(){
-        $prof = Auth::user();
-        $pessoa = Pessoa::with('professor')->find($prof->pessoa_id);
-        dd($pessoa);
-    }
+   // public static function pegarProfessor(){
+      //  $prof = Auth::user();
+       // $pessoa = Pessoa::with('professor')->find($prof->pessoa_id);
+       // dd($pessoa);
+   // }
 }
