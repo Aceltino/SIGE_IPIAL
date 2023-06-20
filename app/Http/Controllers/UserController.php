@@ -10,17 +10,26 @@ use App\Http\Controllers\{
 
 class UserController extends Controller
 {
+
+    //Metodo que retorna a views do cadastro de usuario
+    public function usuarioFormCadastro(){
+        return view('usuario/use_cadastro');
+    }
+
+
     public static function index()
     {
         return User::all();
     }
+    
+
     public static function store($dados)
     {
         return User::create($dados);
     }
+
     public static function show($id)
     {
-
         // User::with('pessoa')->findOrFail($id);
         $user = User::findOrFail($id)->findOrFail();
         return $user;
