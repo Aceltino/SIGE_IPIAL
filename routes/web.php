@@ -20,8 +20,9 @@ use App\Http\Controllers\{
     PerfilUserController,
     DisciplinasController,
     ProcessosController,
+    UserController,
 };
-
+use Doctrine\DBAL\Driver\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,9 +58,8 @@ Route::prefix('autenticacao')->group(function(){
     Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck')->middleware('guest');
 
     //Rota de Cadastro
-
     Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar')->middleware(['guest','checkcargo']);
-    Route::post('registrar', [AuthController::class,'store'])->name('registrar')->middleware('guest');
+    Route::post('registrar', [AuthController::class,'storeInicio'])->name('registrar')->middleware('guest');
 
 
     //Rota para envio de email para redifinição de senha
@@ -76,12 +76,11 @@ Route::prefix('autenticacao')->group(function(){
  ** Rota do perfil de usuario **
  ******************************/
 
- Route::prefix('Perfil')->group(function(){
-
-    Route::get('/',[PerfilUserController::class,'index'])->name('perfil')->middleware(['auth']);
-    Route::put('update',[PerfilUserController::class,'update'])->name('perfil-update')->middleware(['auth']);
-
- });
+Route::prefix('Perfil')->middleware(['auth'])->group(function(){
+    Route::get('/',[PerfilUserController::class,'index'])->name('perfil');
+    Route::put('update',[PerfilUserController::class,'update'])->name('perfil-update');
+    Route::patch('password',[PerfilUserController::class,'changePassword'])->name('updatePassword');
+});
 
 
 /******************************************
@@ -228,6 +227,9 @@ Route::prefix('turma')->group(function(){
 /**<!--Fim Rotas turma--> */
 
 
+
+
+
 /*Editar turma */
 Route::get('editar-turma', function () {
     return view('turma/edit-turma');
@@ -297,7 +299,7 @@ Route::prefix('ficha-biog')->group(function(){
     })->name('fichaBiografica');
 
     Route::get('fichasBio', function () {
-        return view('ficha-biog.ficha-biografica-doc');
+        return view('ficha-biog/ficha-biografica-doc');
     })->name('formFichaBiografica');
 });
 
@@ -339,22 +341,21 @@ Route::prefix('comunicado')->middleware(['auth'])->group(function(){
     Route::delete('{comunicado_id}', [comunicadosController::class, 'destroy'])->where('comunicado_id', '[0-9]+')->name('comunicado.destroy');
 });
 
+
 /******************************************
- * Rotas do cadastro de usuário
- */
-/* cadastrar usuario*/
-Route::prefix('usuario')->group(function(){
+ * Rotas do usuário
+ ****************************************/
 
-    Route::get('use_cadastro', function () {
-        return view('usuario/use_cadastro');
-    })->name('createUsuario');
+Route::prefix('usuario')->middleware(['auth','checkcargo'])->group(function(){
 
-    /*Matricular aluno */
+    Route::get('cadastro',[UserController::class,'usuarioFormCadastro' ])->name('createUsuario');
+    Route::post('cadastro',[AuthController::class,'store'])->name('storeUsuario');
+
+ 
     Route::get('usuarios', function () {
         return view('usuario/usuarios');
     })->name('consultUsuario');
 
-    /*Editar matricula */
     Route::get('use_editar', function () {
         return view('usuario/use_editar');
     });

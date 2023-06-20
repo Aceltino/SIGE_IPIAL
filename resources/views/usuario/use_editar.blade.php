@@ -20,7 +20,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col area-input form-group">
-                        <label>Data de nascimento: </label><input type="text" name="" value="05/10/2020">
+                        <label>Data de nascimento: </label><input type="date" id="datainput" class="form-control" style=" text-align: start;" placeholder="" name="" value="2000-01-01" oninput="this.className = ''">
+                        <div id="mensagem" style="color: red;"></div>
                 
                     </div>
                     
@@ -28,7 +29,11 @@
                         <label>Idade: </label><input type="text" class="form-control" readonly="true" disabled name="" value="16">
                     </div>
                     <div class="col area-input form-group" style="margin-left: 10px;">
-                        <label>Genero: </label><input type="text" class="form-control" readonly="true"  name="" value="Masculino">
+                            <label class="me-3">Sexo:</label>
+                            <input type="radio" id="masculino" name="genero" value="Masculino" checked>
+                            <label for="masculino" class="me-2"> Masculino</label>
+                            <input type="radio" id="feminino" name="genero" value="Feminino" >
+                            <label for="feminino"> Feminino</label>
                     </div>
                     
                    
@@ -74,7 +79,7 @@
 
                     <div class="col form-group" style="margin-left: 10px; justify-items: center">
                         <button class="btn-imprimir accordion-buttons collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style="border: none; padding: 5px; width: 230px; height: 40px;">
-                        Informações do Instituto: <i class="bi bi-row"></i>
+                        Informações do Usuário: <i class="bi bi-row"></i>
                         </button>
                     </div>
                 </div>
@@ -83,30 +88,28 @@
             <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                 <div class="dados-academicos">
                     <div class="row">
-                     
-
+                    
                     <br>
 
                     <div class="area-input form-group">
                         <label>Email: </label><input type="text" name="" value="mauroantonio@gmail.com">
                     </div>
 
-                    <div class="container">
-                        <div class="row">
-                        <div class="col area-input form-group">
-                    <label>password: </label><input type="password" name="" value="">
-                    
-                    </div>
-                    <div class="col area-input form-group" style="margin-left: 10px;">
-                    <label>Nova password: </label><input type="password" name="" value="">
-                    
-                    </div>
-                    <div class="col area-input form-group" style="margin-left: 10px;">
-                    <label>Confirme: </label>
-                    <input type="password" name="" value="">
-                </div>
+                    <div class="form-group">
+                        <select oninput="this.className = ''" class="form-select" name="Fisic">
+                          <option disabled>Cargo</option>
+                          <option value="Professor">Professor</option>
+                          <option value="Subdirector">Subdirector Pedagogico</option>
+                          <option value="Secretaria">Secretaria Pedagogica</option>
+                          <option value="Director" selected>Director Geral</option>
+                          <option value="Coordenacao">Coordenador</option>
+                          <option value="insc_user">Colaborador-Inscrição</option>
+                          <option value="matri_user">Colaborador-Matricula</option>
+                        </select>
+                      </div>
+    
                 </div>              
-                </div>
+            </div>
 
                 <div class="footer-modal" style="text-align: center; margin-top: 50px;">
                     <div class="jnt">

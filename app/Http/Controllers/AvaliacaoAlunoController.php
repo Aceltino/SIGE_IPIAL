@@ -11,11 +11,11 @@ class AvaliacaoAlunoController extends Controller
 {
     public function index()
     {
-        $disciplinas = [3, 4];
+        $disciplinas = [1, 2];
         $turmas = [1, 2];
         //$professor = Professor::with('disciplina')->find(1);
         $aluno = AvaliacaoTrait::pegarNotaAluno($disciplinas);
-        $professor = AvaliacaoTrait::pegarProfessor();
+        //$professor = AvaliacaoTrait::pegarProfessor();
         //$alunos->load('candidato');
         //dd($notas[0]);
         // $dados = AvaliacaoTrait::calcularNotas($notas);
@@ -25,7 +25,7 @@ class AvaliacaoAlunoController extends Controller
     }
 
     public function indexUpdate($id){
-        $notas = Nota::with('aluno.candidato.pessoa', 'aluno.turmas')->where('aluno_id', $id)->where('disciplina_id', 3)->get();
+        $notas = Nota::with('aluno.candidato.pessoa', 'aluno.turmas')->where('aluno_id', $id)->where('disciplina_id', 1)->get();
         //dd($notas[0]);
         if(count($notas) < 1){
             return redirect()->back()->with('erro', "Nenhuma avaliação encontrada!");
@@ -38,7 +38,6 @@ class AvaliacaoAlunoController extends Controller
     {
 
     }
-
 
     public function update(Request $request, Nota $nota)
     {

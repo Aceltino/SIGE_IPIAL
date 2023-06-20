@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CheckUserCargo
 {
@@ -16,8 +17,7 @@ class CheckUserCargo
      */
     public function handle(Request $request, Closure $next)
     {
-
-        if ($request->user() && $request->user()->cargo_usuario !=="Administrador" || $request->user()->cargo_usuario !== "Subdirector" ) {
+        if (Auth::user()->cargo_usuario !=="Administrador" && Auth::user()->cargo_usuario !== "Subdirector" ) {
             abort(404);
         }
         return $next($request);
