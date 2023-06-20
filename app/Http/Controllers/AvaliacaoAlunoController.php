@@ -39,7 +39,6 @@ class AvaliacaoAlunoController extends Controller
 
     }
 
-
     public function update(Request $request, Nota $nota)
     {
         $nota->nota_aluno = $request->nota;
