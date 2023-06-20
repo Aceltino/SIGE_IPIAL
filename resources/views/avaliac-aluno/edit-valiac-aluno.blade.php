@@ -53,7 +53,6 @@
           <th scope="col">Data</th>
           <th scope="col">Tipo de Nota</th>
           <th scope="col">Nota</th>
-          <th scope="col">Estado</th>
           <th scope="col">Editar</th>
         </tr>
       </thead>
@@ -63,9 +62,8 @@
                 <th scope="row">{{$nota->data_avaliacao}}</th>
                 <td>{{$nota->tipo_prova}}</td>
                 <td>{{$nota->nota_aluno}}</td>
-                <td>Original</td>
                 <td style="text-align: center">
-                <a class="btn linkeditar" data-bs-toggle="modal" data-bs-target="#modal_assiduidade">Editar Nota do Aluno</a>
+                <a class="btn linkeditar" data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$nota['nota_id']}}">Editar Nota do Aluno</a>
                 </td>
             </tr>
         @endforeach
@@ -76,8 +74,9 @@
   <!-- Termina a tabela -->
 
     <!-- Início da Modal -->
+    @foreach ($notas as $nota)
     <form method="POST" action="">
-      <div class="modal" id="modal_assiduidade" tabindex="-1" data-bs-backdrop="false" >
+      <div class="modal" id="modal_assiduidade{{$nota['nota_id']}}" tabindex="-1" data-bs-backdrop="false" >
           <div class="modal-dialog modal-xl">
           <div class="modal-content">
           <div class="modal-header">
@@ -89,12 +88,12 @@
               <div class="row">
                 <div class="col-lg-10">
                     <div class="nomenumeroalunoinfo">
-                        <h5 style="margin-left: 3px;"> <b>Nome:</b> Fualno Fulano Fulano Fulano</h5>
+                        <h5 style="margin-left: 3px;"> <b>Nome:</b> {{$notas[0]->aluno->candidato->pessoa->nome_completo}}</h5>
                     </div>
                 </div>
                 <div class="col-lg-2">
                     <div class="nofimnomenumeroaluno">
-                        <h5 class="nomenumeroalunoinfo"> <b>Nº:</b> 12</h5>
+                        <h5 class="nomenumeroalunoinfo"> <b>Nº:</b> {{$notas[0]->aluno->turmas[0]->numero_aluno}}</h5>
                     </div>
                 </div>
               </div>
@@ -113,9 +112,9 @@
                 </thead>
                 <tbody>
                   <tr style="text-align: center;">
-                    <td>21/06/2023</td>
-                    <td>AC</td>
-                    <td><input class=" form-control innota" value="18" type="text" name="" maxlength="2"></td>
+                    <td>{{$nota->data_avaliacao}}</td>
+                    <td>{{$nota->tipo_prova}}</td>
+                    <td><input class=" form-control innota" value="{{$nota->nota_aluno}}" type="text" name="" maxlength="2"></td>
                     <td hidden>Informática</td>
                     <td hidden>Desenho técnico</td>
                     <td hidden>I12BT</td>
@@ -132,6 +131,7 @@
       </div>
       </div>
     </form>
+    @endforeach
 <!-- Fím da modal -->
 
 </main>

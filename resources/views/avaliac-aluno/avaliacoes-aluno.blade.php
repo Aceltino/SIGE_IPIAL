@@ -94,7 +94,7 @@
                     <td>{{$aluno[$i][$j]['exame']}}</td>
                     <td>{{$aluno[$i][$j]['exame_recurso']}}</td>
                     <td style="text-align: center">
-                    <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade" >Avaliar aluno</a>
+                    <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$aluno[$i][$j]['aluno_id']}}" >Avaliar aluno</a>
                     </td>
                     <td style="text-align: center">
                     <a href="{{route('editar.avaliacao.aluno', $aluno[$i][$j]['aluno_id'])}}" class="btn linkeditar">Editar Avaliação</a>
@@ -103,16 +103,19 @@
                     <td hidden>{{$aluno[$i][$j]['nome_disciplina']}}</td>
                     <td hidden>{{$aluno[$i][$j]['nome_turma']}}</td>
                 </tr>
+                             <!-- Início da Modal -->
+
+          <!-- Fím da modal -->
+        
             @endfor
           @endfor
 
         </tbody>
     </table>
-  </div>
-  <!-- Termina a tabela -->
-    <!-- Início da Modal -->
+    @for ($i = 0; $i < count($aluno); $i++)
+            @for ($j = 0; $j < count($aluno[$i]); $j++)
     <form method="POST" action="">
-      <div class="modal" id="modal_assiduidade" tabindex="-1" data-bs-backdrop="false" >
+      <div class="modal" id="modal_assiduidade{{$aluno[$i][$j]['aluno_id']}}" tabindex="-1" data-bs-backdrop="false" >
           <div class="modal-dialog modal-xl">
           <div class="modal-content">
           <div class="modal-header">
@@ -120,16 +123,16 @@
               <button type="button" class="btn-close"data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-
+  
               <div class="row">
                 <div class="col-lg-10">
                     <div class="nomenumeroalunoinfo">
-                        <h5 style="margin-left: 3px;"> <b>Nome:</b> Fualno Fulano Fulano Fulano</h5>
+                        <h5 style="margin-left: 3px;"> <b>Nome:</b> {{$aluno[$i][$j]['nome']}}</h5>
                     </div>
                 </div>
                 <div class="col-lg-2">
                     <div class="nofimnomenumeroaluno">
-                        <h5 class="nomenumeroalunoinfo"> <b>Nº:</b> 12</h5>
+                        <h5 class="nomenumeroalunoinfo"> <b>Nº:</b>{{$aluno[$i][$j]['numero_aluno']}}</h5>
                     </div>
                 </div>
               </div>
@@ -143,24 +146,20 @@
                     <th scope="col">NPT</th>
                     <th scope="col">Exame</th>
                     <th scope="col">E.Recurso</th>
-                    <th scope="col" hidden>curso</th>
-                    <th scope="col" hidden>Disciplina</th>
-                    <th scope="col" hidden>Turma</th>
+
                   </tr>
                 </thead>
                 <tbody>
-                  <tr style="text-align: center;">
+                  
                     <td><input class=" form-control innota" type="text" name="" maxlength="2"></td>
                     <td><input class=" form-control innota " type="text" name="" maxlength="2"></td>
                     <td><input class=" form-control innota" type="text" name="" maxlength="2"></td>
                     <td><input class=" form-control innota" type="text" name="" maxlength="2"></td>
                     <td><input class=" form-control innota" type="text" name="" maxlength="2"></td>
-                    <td hidden>Informática</td>
-                    <td hidden>Desenho técnico</td>
-                    <td hidden>I12BT</td>
                   </tr>
                 </tbody>
               </table>
+
             </div>
           </div>
           <div class="modal-footer" style="display: flex; justify-content: center; align-items: center;">
@@ -171,7 +170,12 @@
       </div>
       </div>
     </form>
-<!-- Fím da modal -->
+    @endfor
+    @endfor
+  </div>
+  <!-- Termina a tabela -->
+
+   
 
 </main>
 @endsection
