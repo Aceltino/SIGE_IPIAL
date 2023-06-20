@@ -171,9 +171,11 @@
                  <div class="row mb-3">
                    <label for="foto-perfil" class="col-md-4 col-lg-4 col-form-label">Foto</label>
                    <div class="col-md-8 col-lg-8">
+                      <img src={{ URL::asset( isset(Auth::user()->imagem_usuario) ? Auth::user()->imagem_usuario : "" ) }} id="img-escolhida">
+                    
                      <div class="pt-2">
-                        <label for="foto-perf"><span class="btn btn-warning btn-sm" title="Atualizar foto de perfil"><i class="bi bi-upload"></i></span></label>
-                         <input type="file" id="foto-perf" value="{{old('imagem_update')}}" name="imagem_update">
+                        <label for="btn-upload"><span class="btn btn-warning btn-sm" title="Atualizar foto de perfil"><i class="bi bi-upload"></i></span></label>
+                         <input type="file" id="btn-upload" value="{{old('imagem_update')}}" name="imagem_update" accept="image/*" style="display: none;">
                       </div>
                     </div>
                   </div>
