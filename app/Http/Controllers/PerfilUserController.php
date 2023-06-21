@@ -177,15 +177,12 @@ class PerfilUserController extends Controller
             }
             unlink($imagem_antiga);
         }
-        
         return redirect()->back()->with('success_imagem_001', 'Imagem atualizada com sucesso.');
-        
-    
     }
 
     //Metodo para Actualizar Senha
-    public static function changePassword(Request $request){
-
+    public static function changePassword(Request $request)
+    {
         switch($request->password) {
             case $request->password_confirmation:
                 goto conti_salvar;
@@ -224,7 +221,6 @@ class PerfilUserController extends Controller
         if($user->save()){
             return redirect()->back()->with('success_updatePassword_001','Senha redefinida com sucesso!');
         }
-
     }
 
 
