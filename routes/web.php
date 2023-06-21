@@ -19,7 +19,7 @@ use App\Http\Controllers\{
     PautaController,
     PerfilUserController,
     DisciplinasController,
-    ProcessosController,
+    ProcessoController,
     UserController,
 };
 use Doctrine\DBAL\Driver\Middleware;
@@ -307,8 +307,6 @@ Route::prefix('ficha-biog')->group(function(){
  * Rotas do processo do Aluno
  */
 Route::prefix('processo')->group(function(){
-
-    Route::get('processos',[ProcessosController::class,'index'])->name('consultar.processo');
 
     Route::get('processos',[ProcessoController::class, 'index'])->name('processo.consultar');
 
