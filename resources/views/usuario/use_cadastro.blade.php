@@ -21,7 +21,7 @@
         </div>
       @endif
 
-      <form action={{route('storeUsuario')}} method="POST" formulario-layout>
+      <form action={{route('storeUsuario')}} method="POST" id="regForm" class="form-nscricao">
         @csrf
         <div style="text-align:center;margin-top:40px;">
           <span class="step"></span>
@@ -62,7 +62,7 @@
                   <label for="feminino"> Feminino</label>
                 </div>
             </div>
-            <div class="col-md-8 mt-3" style=" display: flex; justify-content: flex-end;align-items: center; gap: 10px;">
+            <div class="col-8" style=" display: flex; justify-content: flex-end;align-items: center; gap: 10px;">
               <h5>Endereço</h5>
               <div class="form-group">
                 <input name='municipio' type="text" placeholder="Municipio" value="{{old('municipio')}}"  oninput="this.className = ''">

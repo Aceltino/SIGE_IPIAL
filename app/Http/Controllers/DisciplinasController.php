@@ -19,7 +19,8 @@ class DisciplinasController extends Controller
     }
     public function create()
     {
-        return view('disciplina.regi-disciplina');
+        $cursos = Curso::all();
+        return view('disciplina.regi-disciplina', compact('cursos'));
     }
     public function store(Request $request)
     {
