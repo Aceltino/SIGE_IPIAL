@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{
     Auth,Validator,Mail,DB,Hash,Session
 };
+use Illuminate\Support\Str;
 use PhpParser\Node\Stmt\Return_;
 
 class AuthController extends Controller
@@ -57,7 +58,7 @@ class AuthController extends Controller
     }
 
     //Metodo de Armazenamento dos usuario,pessoa e endereço
-    public function store(Request $request):mixed
+    public function storeInicio(Request $request):mixed
     {
 
         //Criando o nome do Usuario
@@ -72,11 +73,11 @@ class AuthController extends Controller
             'sobre_nome'=>'required|string|min:2|max:50',
             'data_nascimento'=>'required|date|before:'.now()->format('d-m-Y'),
             'num_bi'=>'required|size:14|unique:pessoas,num_bi',
+            'num_telefone'=>'required|size:9',
 
             //Formulario do user
             'email'=>'required|email|max:200|unique:users,email',
             'password'=>'required|min:6',
-            'num_telefone'=>'required|size:9',
 
             //Formulario do endereço
             'municipio'=>'required|string|min:2',
@@ -171,6 +172,95 @@ class AuthController extends Controller
         return view('autenticacao.login')->with('registrado',$msg);
     }
 
+    public function store(Request $request):mixed
+    {
+
+        //Gerar Password
+        $hexAleatorio = Str::random(8);
+        dd($hexAleatorio);
+        //Criando o nome do Usuario
+        $posicao = 0; // posição do caractere desejado(Onde começa a contagem do caracter)
+        $abreNome = substr($request->nome, $posicao,2);
+        $abreSobreNome = substr($request->sobre_nome, $posicao,2);
+
+        $regras_gerais=[
+
+            //Formulario da Pessoa
+            'nome_completo'=>'required|string|min:3',
+            'data_nascimento'=>'required|date|before:'.now()->format('d-m-Y'),
+            'num_bi'=>'required|size:14|unique:pessoas,num_bi',
+            'num_telefone'=>'required|size:9|unique:pessoas,telefone',
+
+            //Formulario do user
+            'email'=>'required|email|max:250|unique:users,email',
+            
+            //Formulario do endereço
+            'municipio'=>'required|string|min:2',
+            'bairro'=>'required|string',
+            'zona'=>'required|string',
+            'num_casa'=>'required|numeric',
+        ];
+       
+        $dadosFiltrados=[
+
+            //Dados da Pessoa
+            'nome_completo'=>$request->nome_completo,
+            'data_nascimento'=>$request->data_nascimento,
+            'num_bi'=>$request->num_bi,
+            'num_telefone'=>$request->num_telefone,
+
+           //Dados do user
+            'email'=>$request->email,
+
+            //Dados do endereço
+            'municipio'=>$request->municipio,
+            'bairro'=>$request->bairro,
+            'zona'=>$request->zona,
+            'num_casa'=>$request->num_casa,
+
+        ];
+
+        $validator= Validator::make($dadosFiltrados,$regras_gerais);
+        if ($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $dadosPessoa=[
+            'nome_completo'=>ucfirst($request->nome)." ".ucfirst($request->sobre_nome),
+            'data_nascimento'=>$request->data_nascimento,
+            'num_bi'=> strtoupper($request->num_bi),
+            'genero'=>$request->genero,
+            'telefone'=>$request->num_telefone
+        ];
+        $dadosEndereco=[
+            'municipio'=>$request->municipio,
+            'bairro'=>$request->bairro,
+            'zona'=>$request->zona,
+            'numero_casa'=>$request->num_casa,
+        ];
+        $pessoa_id= $this->storePessoa($dadosPessoa, $dadosEndereco);//retorna id da pessoa
+
+        $dadosUser=[
+            'nome_usuario'=>$abreNome.count(User::all()).$abreSobreNome,
+            'email'=>$request->email,
+            'password'=>bcrypt($hexAleatorio),
+            'cargo_usuario'=> $request->cargo,
+            'num_telefone' =>$request->num_telefone,
+            'status_usuario'=>1,
+            'pessoa_id'=> $pessoa_id
+        ];
+
+        $user=UserController::store($dadosUser);
+        if(!$user){
+            $msg = "Lamentamos! Dados não Cadastrado, tente este processo mais tarde...";
+            return redirect()->back()->with("erroCadastroUser",$msg);
+        }
+
+        $msg="Adminstrador do sSistema Cadastrado com Sucesso. Por favor entre com os seus dados";
+        return view('autenticacao.login')->with('registrado',$msg);
+    }
+
+
     //Metodo que termina o inicio de sessão
     public function logout(){
         Auth::logout();
@@ -180,14 +270,13 @@ class AuthController extends Controller
 
     //Metodo que retorna o formulario de recuperação de senha
     public function resetForm(){
-
         return view('autenticacao.recuperar-senha');
     }
 
 
     //Metodo que retorna o formulario de reposição de uma nova senha
-    public function resetPasswordForm($token){
-
+    public function resetPasswordForm($token)
+    {
         return view('autenticacao.nova_senha', ['token' => $token]);
     }
 

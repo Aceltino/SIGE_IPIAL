@@ -553,6 +553,7 @@
   {{-- SECRETARIA PEDAGÓGICA -----   / Menu de secretrio Pedagógico --}}
   @elseif(Auth::user()->cargo_usuario == "Secretaria")
     <ul class="sidebar-nav" id="sidebar-nav">
+
       <!-- /  Nav Pagina inicial-->
       <li class="nav-item">
         <a class="nav-link " href={{route('inicio')}}>
@@ -654,7 +655,7 @@
           <ul id="processo-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
 
-              <a href={{ route('consultar.processo') }}>
+              
 
               <a href={{route('processo.consultar')}}>
 
@@ -1050,7 +1051,7 @@
 
       <!-- /  Nav Perfil-->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="perfil">
+        <a class="nav-link collapsed" href={{route('perfil')}}>
           <i class="bi bi-person"></i>
           <span>Perfil</span>
         </a>

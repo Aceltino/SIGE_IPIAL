@@ -75,6 +75,21 @@
                 {{session('erro_imagem_003')}}
               </div>
             @endif
+            @if(session('erro_senha_001'))
+              <div class="alert alert-danger">
+                {{session('erro_senha_001')}}
+              </div>
+            @endif
+            @if(session('erro_senha_002'))
+              <div class="alert alert-danger">
+                {{session('erro_senha_002')}}
+              </div>
+            @endif
+            @if(session('success_updatePassword_001'))
+              <div class="alert alert-success">
+                {{session('success_updatePassword_001')}}
+              </div>
+            @endif
             
              <!-- Bordered Tabs -->
              <ul class="nav nav-tabs nav-tabs-bordered">
@@ -164,16 +179,18 @@
 
                 <!-- Form Editar perfil -->
 
-                <form action={{ route('perfil-update') }} method="post" enctype="multipart/form-data">
+                <form action={{ route('perfil-update') }} method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
                   @csrf
                   @method('PUT')
-
+  
                  <div class="row mb-3">
                    <label for="foto-perfil" class="col-md-4 col-lg-4 col-form-label">Foto</label>
                    <div class="col-md-8 col-lg-8">
+                      <img src={{ URL::asset( isset(Auth::user()->imagem_usuario) ? Auth::user()->imagem_usuario : "" ) }} id="img-escolhida">
+                    
                      <div class="pt-2">
-                        <label for="foto-perf"><span class="btn btn-warning btn-sm" title="Atualizar foto de perfil"><i class="bi bi-upload"></i></span></label>
-                         <input type="file" id="foto-perf" value="{{old('imagem_update')}}" name="imagem_update">
+                        <label for="btn-upload"><span class="btn btn-warning btn-sm" title="Atualizar foto de perfil"><i class="bi bi-upload"></i></span></label>
+                         <input type="file" id="btn-upload" value="{{old('imagem_update')}}" name="imagem_update" accept="image/*" style="display: none;">
                       </div>
                     </div>
                   </div>
@@ -181,14 +198,11 @@
                     <div class="alert alert-danger">{{$message}}</div>
                   @enderror
 
-                <form>
-                  
-
-
                    <div class="row mb-3">
                      <label for="nomeComp" class="col-md-4 col-lg-4 col-form-label">Nome Completo</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="nomeComp" name="nome_completo_update" value="{{ Auth::user()->belongPessoa->nome_completo }}">
+                       <input type="text" class="form-control" id="nomeComp" name="nome_completo_update" value="{{ Auth::user()->belongPessoa->nome_completo }}" required>
+                       <div class="invalid-feedback">Por favor insere o nome completo!</div>
                      </div>
                    </div>
                     @error('nome_completo_update')
@@ -198,7 +212,8 @@
                    <div class="row mb-3">
                      <label for="genero" class="col-md-4 col-lg- col-form-label">Gênero</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="genero" name="genero_update" value="{{ Auth::user()->belongPessoa->genero }}">
+                       <input type="text" class="form-control" id="genero" name="genero_update" value="{{ Auth::user()->belongPessoa->genero }}" required>
+                       <div class="invalid-feedback">Por favor insere um Gênero!</div>
                      </div>
                    </div>
                    @error('genero_update')
@@ -208,7 +223,8 @@
                    <div class="row mb-3">
                      <label for="dtNascimento" class="col-md-4 col-lg-4 col-form-label">Data de nascimento</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="dtNascimento" name="data_nascimento_update" value="{{ Auth::user()->belongPessoa->data_nascimento }}">
+                       <input type="date" class="form-control" id="dtNascimento" name="data_nascimento_update" value="{{ Auth::user()->belongPessoa->data_nascimento }}" required>
+                       <div class="invalid-feedback">Por favor insere uma data!</div>
                      </div>
                    </div>
                    @error('data_nascimento_update')
@@ -218,7 +234,8 @@
                    <div class="row mb-3">
                      <label for="nBI" class="col-md-4 col-lg-4 col-form-label">Número do BI</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="nBI" name="num_bi_update" value="{{ Auth::user()->belongPessoa->num_bi }}">
+                       <input type="text" class="form-control" id="bi_input" name="num_bi_update" value="{{ Auth::user()->belongPessoa->num_bi }}" oninput="this.className = ''" maxlength="14">
+                       <div id="mensagem1" style="color: red;"></div>
                      </div>
                    </div>
                    @error('num_bi_update')
@@ -228,7 +245,8 @@
                    <div class="row mb-3">
                      <label for="Email" class="col-md-4 col-lg-4 col-form-label">E-mail</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="Email" name="email_update" value="{{ Auth::user()->email }}">
+                       <input type="text" class="form-control" id="Email" name="email_update" value="{{ Auth::user()->email }}" required>
+                       <div class="invalid-feedback">Por favor insere um e-mail!</div>
                      </div>
                    </div>
                    @error('email_update')
@@ -239,7 +257,8 @@
                    <div class="row mb-3">
                      <label for="Telefone1" class="col-md-4 col-lg-4 col-form-label">Número telefone</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="Telefone1" name="telefone_update" value="{{ Auth::user()->pessoa->telefone }}">
+                       <input type="text" class="form-control" id="telefoneinput" name="telefone_update" value="{{ Auth::user()->pessoa->telefone }}" oninput="this.className = ''">
+                       <div class="mensagem-erro" style="width: 100%;"></div>
                      </div>
                    </div>
                    @error('telefone_update')
@@ -261,28 +280,32 @@
                      <div class="col-md-8 col-lg-8">
                         <div class="row">
                           <div class="col-lg-3">
-                            <input type="text" class="form-control" name="municipio_update" value="{{ isset($endereco->municipio) ? $endereco->municipio : '' }}" placeholder="Municipio">
+                            <input type="text" class="form-control" name="municipio_update" value="{{ isset($endereco->municipio) ? $endereco->municipio : '' }}" placeholder="Municipio" required>
+                            <div class="invalid-feedback">Por favor insere um Municipio!</div>
                           </div>
                           @error('municipio_update')
                             <div class="alert alert-danger">{{$message}}</div>  
                           @enderror
 
                           <div class="col-lg-3">
-                            <input type="text" class="form-control" name="bairro_update" value="{{ isset($endereco->bairro) ? $endereco->bairro : '' }}" placeholder="Bairro">
+                            <input type="text" class="form-control" name="bairro_update" value="{{ isset($endereco->bairro) ? $endereco->bairro : '' }}" placeholder="Bairro" required>
+                            <div class="invalid-feedback">Por favor insere um Bairro!</div>
                           </div>
                           @error('bairro_update')
                             <div class="alert alert-danger">{{$message}}</div>  
                           @enderror
 
                           <div class="col-lg-3">
-                            <input type="text" class="form-control" name="zona_update" value="{{ isset($endereco->zona) ? $endereco->zona : '' }}" placeholder="Zona">
+                            <input type="text" class="form-control" name="zona_update" value="{{ isset($endereco->zona) ? $endereco->zona : '' }}" placeholder="Zona" required>
+                            <div class="invalid-feedback">Por favor insere uma Zona!</div>
                           </div>
                           @error('zona_update')
                             <div class="alert alert-danger">{{$message}}</div>  
                           @enderror
 
                           <div class="col-lg-3">                          
-                            <input type="number" class="form-control" name="num_casa_update" value="{{ isset($endereco->numero_casa) ? $endereco->numero_casa : '' }}" placeholder="Casa Nº">
+                            <input type="number" class="form-control" name="num_casa_update" value="{{ isset($endereco->numero_casa) ? $endereco->numero_casa : '' }}" placeholder="Casa Nº" required>
+                            <div class="invalid-feedback">Por favor insere o nº da Casa!</div>
                           </div>
                           @error('num_casa_update')
                             <div class="alert alert-danger">{{$message}}</div>  
@@ -292,44 +315,66 @@
                      </div>
                    </div>
 
-
-                
-
-
-                   <div class="text-center">
-                     <button type="submit" class="btn" style="margin-top: 10px; background-color: #174183; color: #fff;">Atualizar Dados</button>
-                   </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn" style="margin-top: 10px; background-color: #174183; color: #fff;">
+                      Atualizar Dados
+                    </button>
+                  </div>
                  </form><!-- Fim Form Editar Perfil -->
 
                </div>
 
                <div class="tab-pane fade pt-3" id="alterar-senha">
-                 <!-- Form Alterar Password -->
-                 <form>
 
-                   <div class="row mb-3">
+              
+                @if(session('success_updatePassword_001'))
+                  <div class="alert alert-success">
+                    {{session('success_updatePassword_001')}}
+                  </div>
+                @endif
+
+
+                 <!-- Form Alterar Password -->
+                 <form  action= {{route('updatePassword')}} method="POST" class="needs-validation" novalidate>
+                  @csrf
+                  @method('PATCH')
+                  <div class="row mb-3">
                      <label for="SenhaAtual" class="col-md-4 col-lg-3 col-form-label">Senha atual</label>
                      <div class="col-md-8 col-lg-9">
-                       <input type="password" class="form-control" id="SenhaAtual">
+                       <input type="password" name="password_old" value="{{old('password_old')}}" class="form-control" id="SenhaAtual" required>
+                       <div class="invalid-feedback">Por favor insere a Senha atual!</div>
                      </div>
-                   </div>
+                  </div>
+                    @error('password_old')
+                      <div class="alert alert-danger">{{$message}}</div>  
+                    @enderror
 
-                   <div class="row mb-3">
+                  <div class="row mb-3">
                      <label for="NovaSenha" class="col-md-4 col-lg-3 col-form-label">Nova senha</label>
                      <div class="col-md-8 col-lg-9">
-                       <input type="password" class="form-control" id="NovaSenha">
+                       <input type="password" name="password" value="{{old('password')}}" class="form-control" id="NovaSenha" required>
+                       <div class="invalid-feedback">Por favor insere a Nova senha!</div>
                      </div>
-                   </div>
+                  </div>
+                  @error('password')
+                    <div class="alert alert-danger">{{$message}}</div>  
+                  @enderror
 
-                   <div class="row mb-3">
-                     <label for="ConfSenha" class="col-md-4 col-lg-3 col-form-label">Repetir a senha</label>
+                  <div class="row mb-3">
+                     <label for="ConfSenha" class="col-md-4 col-lg-3 col-form-label">Confirmar a senha</label>
                      <div class="col-md-8 col-lg-9">
-                       <input type="password" class="form-control" id="ConfSenha">
+                       <input type="password" name="password_confirmation" value="{{old('password_confirmation')}}" class="form-control" id="ConfSenha" required>
+                       <div class="invalid-feedback">Por favor confirme a senha!</div>
                      </div>
-                   </div>
+                  </div>
+                  @error('password_confirmation')
+                    <div class="alert alert-danger">{{$message}}</div>  
+                  @enderror
 
                    <div class="text-center">
-                     <button type="submit" class="btn" style="margin-top: 10px; background-color: #174183; color: #fff;">Alterar Senha</button>
+                     <button type="submit" class="btn" style="margin-top: 10px; background-color: #174183; color: #fff;">
+                        Alterar Senha
+                      </button>
                    </div>
                  </form><!-- Fim Form Alterar Password -->
 
