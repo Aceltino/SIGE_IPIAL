@@ -98,7 +98,7 @@ axios.get('/api/matriculados')
                             </div>
         
                             <div class="col area-input form-group" style="margin-left: 10px;">
-                                <label>Naturalidade: </label><input type="text" name="" value="Falta passar a Naturalidade na API">
+                                <label>Naturalidade: </label><input type="text" name="" value="Falta passar a Naturalidade na API"disabled>
         
                             </div>
                         </div>
@@ -107,7 +107,7 @@ axios.get('/api/matriculados')
                     <div class="container">
                         <div class="row">
                             <div class="col area-input form-group">
-                                <label>Tel-1: </label><input type="text" name="" value="${registro.tel_aluno}">
+                                <label>Telefone: </label><input type="text" name="" value="${registro.tel_aluno}"disabled>
                             </div>
                         </div>
                     </div>
@@ -134,22 +134,22 @@ axios.get('/api/matriculados')
                             <br>
         
                             <div class="area-input form-group">
-                                <label>Escola de proveniência: </label><input type="text" name="" value="${registro.escola_prov}">
+                                <label>Escola de proveniência: </label><input type="text" name="" value="${registro.escola_prov}" disabled>
                             </div>
         
                             <div class="container">
                                 <div class="row">
                                 <div class="col area-input form-group">
-                            <label>Turno: </label><input type="text" name="" value="${registro.turno_prov}">
+                            <label>Turno: </label><input type="text" name="" value="${registro.turno_prov}"disabled>
         
                             </div>
                             <div class="col area-input form-group" style="margin-left: 10px;">
-                            <label>Turma: </label><input type="text" name="" value="${registro.turma_prov}">
+                            <label>Turma: </label><input type="text" name="" value="${registro.turma_prov}"disabled>
         
                             </div>
                             <div class="col area-input form-group" style="margin-left: 10px;">
                             <label>Nº aluno: </label>
-                            <input type="text" name="" value="${registro.N_aluno_prov}">
+                            <input type="text" name="" value="${registro.N_aluno_prov}"disabled>
                         </div>
                         </div>
                         </div>
