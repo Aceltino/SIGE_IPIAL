@@ -7,6 +7,6 @@ $(document).ready(function() {
       $("select option[value='" + selectedOption + "']").not(":selected").prop("disabled", true);
       
       // Desabilita o select inteiro
-      $(this).prop("disabled", true);
+     
     });
   });
