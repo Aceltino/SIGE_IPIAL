@@ -28,6 +28,19 @@ class MatriculaController extends Controller
         ]);
     }
 
+    public function atribuirTurma()
+    {
+        $alunos = AlunoTurmaController::situacaoAluno(); // Atribuir turmas aos alunos da 11ª em diante.
+        // $alunos = AlunoTurmaController::SelecionarTurma(); // Atribuir turmas aos recém matriculado da 10ª classe.
+
+        if($alunos !== true)
+        {
+            return redirect()->back()->with("ErroMatricula", $alunos);
+        }
+            $msg = "Os alunos foram atribuidas as suas turmas com sucesso!";
+            return Redirect::route('matricula-index')->with("Sucesso", $msg);
+    }
+// BOTÃO ATRIBUIR TURMA
     public function store(MatriculaRequest $input)
     {
         $request = $input->validated(); // Inputs validadas
