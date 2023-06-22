@@ -83,10 +83,6 @@
                 <span style="color: #777;">+244</span>
                 <input name='num_tel' type="text" name="" placeholder="Telefone" oninput="this.className = ''">
               </div>
-
-              <div class="col-3">
-                  <i id="clonebtn1"class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>    
-              </div>
           </div>
         </div>
 
@@ -117,9 +113,9 @@
           </div>
 
           <div class="row">
-            <div class="form-group col">
-              <select oninput="this.className = ''" class="form-select">
-                <optgroup label="Disciplina">
+            <div class="form-group col-12 mb-3 w-100" id="div-disciplina-1">
+              <select oninput="this.className = ''" class="form-select" id="disciplina-1">
+                <optgroup label="Primeira disciplina">
                   <option>Educação Física</option>
                   <option>Electrotecnia</option>
                   <option>Empreendedorismo</option>
@@ -141,22 +137,125 @@
                 </optgroup>
               </select>
             </div>
+
+            <div class="form-group col-12 mb-3 w-100 d-none" id="div-disciplina-2">
+              <select oninput="this.className = ''" class="form-select" id="disciplina-2">
+                <optgroup label="Segunda disciplina">
+                  <option>Educação Física</option>
+                  <option>Electrotecnia</option>
+                  <option>Empreendedorismo</option>
+                  <option>Física</option>
+                  <option>Formação de Atitudes Integradoras</option>
+                  <option>Língua Portuguesa</option>
+                  <option>Língua Estrangeira</option>
+                  <option>Geometria Descritiva</option>
+                  <option>Matemática</option>
+                  <option>Máquinas Eléctricas</option>
+                  <option>Organização e Gestão Industrial</option>
+                  <option>Práticas Oficinais</option>
+                  <option>Projecto Tecnológico</option>
+                  <option>Química</option>
+                  <option>Sistemas de Exploração e Arquitectura de Computadores</option>
+                  <option>Técnicas e Linguagens de Programação</option>
+                  <option>Técnicas de Reparação de Equipamentos Informáticos</option>
+                  <option>Tecnologias de Informação e Comunicação</option>
+                </optgroup>
+              </select>
+            </div>
+
+            <div class="form-group col-12 mb-3 w-100 d-none" id="div-disciplina-3">
+              <select oninput="this.className = ''" class="form-select" id="disciplina-3">
+                <optgroup label="Terceira disciplina">
+                  <option>Educação Física</option>
+                  <option>Electrotecnia</option>
+                  <option>Empreendedorismo</option>
+                  <option>Física</option>
+                  <option>Formação de Atitudes Integradoras</option>
+                  <option>Língua Portuguesa</option>
+                  <option>Língua Estrangeira</option>
+                  <option>Geometria Descritiva</option>
+                  <option>Matemática</option>
+                  <option>Máquinas Eléctricas</option>
+                  <option>Organização e Gestão Industrial</option>
+                  <option>Práticas Oficinais</option>
+                  <option>Projecto Tecnológico</option>
+                  <option>Química</option>
+                  <option>Sistemas de Exploração e Arquitectura de Computadores</option>
+                  <option>Técnicas e Linguagens de Programação</option>
+                  <option>Técnicas de Reparação de Equipamentos Informáticos</option>
+                  <option>Tecnologias de Informação e Comunicação</option>
+                </optgroup>
+              </select>
+            </div>
+
+            <div class="form-group col-12 mb-3 w-100 d-none" id="div-disciplina-4">
+              <select oninput="this.className = ''" class="form-select" id="disciplina-4">
+                <optgroup label="Quarta disciplina">
+                  <option>Educação Física</option>
+                  <option>Electrotecnia</option>
+                  <option>Empreendedorismo</option>
+                  <option>Física</option>
+                  <option>Formação de Atitudes Integradoras</option>
+                  <option>Língua Portuguesa</option>
+                  <option>Língua Estrangeira</option>
+                  <option>Geometria Descritiva</option>
+                  <option>Matemática</option>
+                  <option>Máquinas Eléctricas</option>
+                  <option>Organização e Gestão Industrial</option>
+                  <option>Práticas Oficinais</option>
+                  <option>Projecto Tecnológico</option>
+                  <option>Química</option>
+                  <option>Sistemas de Exploração e Arquitectura de Computadores</option>
+                  <option>Técnicas e Linguagens de Programação</option>
+                  <option>Técnicas de Reparação de Equipamentos Informáticos</option>
+                  <option>Tecnologias de Informação e Comunicação</option>
+                </optgroup>
+              </select>
+            </div>
+
+            <div class="form-group col-12 mb-3 w-100">
+              <input type="number" placeholder="Quantidade de disciplinas" id="quantidade-de-disciplinas" min="1" value="1" max="4" required='false'>
+            </div>
           </div>
         </div>
 
         <div class="tab">
           <h2 class="text-uppercase text-center my-3 color-blue-principal">informações importantes para o instituto</h2>
 
+          <div class="form-group col">
+            <select oninput="this.className = ''" class="form-select" id="select-cargo-cadastrar-professor">
+              <optgroup label="Cargo">
+                <option>Professor</option>
+                <option>Coordenador do curso</option>
+                <option>Coordenador da área de formação</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div class="col mb-3 d-none" id="div-do-select-do-curso">
+            <select oninput="this.className = ''" class="form-select">
+              <optgroup label="Curso">
+                <option value="Desenhador Projectista">Desenhador Projetista</option>
+                <option value="Técnico de Energia e Instalações Eléctricas">Técnico de Energia e Instalações Eléctricas</option>
+                <option value="Técnico de Informática ">Técnico de Informática</option>
+                <option value="Electrônica e Telecomunicação">Electrônica e Telecomunicação</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div class="col mb-3 d-none" id="div-do-select-da-area-de-formacao">
+            <select oninput="this.className = ''" class="form-select">
+              <optgroup label="Área de formação">
+                  <option value="Informática">Informática</option>
+                  <option value="Contrução civil">Electricidade</option>
+                  <option value="Eletronica">Electrônica</option>
+                  <option value="Contrução civil">Construção civil</option>
+              </optgroup>
+            </select>
+          </div>
+
           <div class="form-group">
             <input type="email" placeholder="E-mail do professor" oninput="this.className = ''">
-          </div>
-
-          <div class="form-group">
-            <input type="text" placeholder="Username do professor (Auto-preenchimento)" oninput="this.className = ''">
-          </div>
-
-          <div class="form-group">
-            <input type="password" placeholder="Password do professor (Auto-preenchimento)" oninput="this.className = ''">
           </div>
         </div>
 

@@ -1,7 +1,7 @@
   <!-- /	Footer -->
   <footer id="footer" class="footer fixed-bottom">
     <div class="copyright">
-      &copy;. Todos os direitos reservados <strong>SIGE - IPIAL.</strong>Desenvolvido por <a href="#">IPIAL's DEVS TEAM</a> 2022 - 2023
+      &copy;. Todos os direitos reservados <strong>SIGE - IPIAL.</strong> Desenvolvido por <a href="#">IPIAL's DEVS TEAM</a> 2022 - 2023
     </div>
 
   </footer><!-- Termina Footer -->
