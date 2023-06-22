@@ -81,11 +81,13 @@
                   <button type="submit" class="btn btn-success">Desbloquear</button>
                 @endif
             </form> 
-        </td>
+          </td>
+
           <td>
               <i class="bi bi-eye-fill"></i>
               <a href={{ route('editUser', ['id'=>$user->usuario_id]) }}><i class="bi bi-pencil"></i></a> 
           </td>
+          
         </tr>
     
       @endforeach
