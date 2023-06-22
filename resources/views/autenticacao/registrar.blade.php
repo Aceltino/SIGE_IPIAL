@@ -8,18 +8,18 @@
     <div class="area-logo">
       <img src={{URL::asset("img/logo.png")}}><br>
       <span>SIGE - IPIAL</span><br>
-      <span>Cadastro de Usuario</span>
     </div>
 
-
-    <form method="POST" action={{route('registrar')}} id="regForm" class="row g-3 needs-validation">
+    <form method="POST" action={{route('registrar')}} id="regForm" class="form-nscricao">
       @csrf
-      <div style="text-align:center;margin-top:40px;">
+      <div style="text-align:center;">
         <span class="step"></span>
         <span class="step"></span>
         <span class="step"></span>
       </div>
-
+      <div class="area-logo">
+        <span style="font-size: 20px;">Cadastro de Usuario</span>
+      </div>
       @if(session('erroCadastroPessoa'))
         <div class="alert alert-success">
           {{session('erroCadastroPessoa')}}
@@ -39,10 +39,14 @@
       {{-- Dados da Pessoa - Apagar em Produção --}}
       <div class="tab">
 
-        <div class="input-group has-validation">
-          <input type="text" autocomplete="off" value="{{old('nome')}}" name="nome" class="form-control" placeholder="Nome" required>
-          <input type="text" autocomplete="off" value="{{old('sobre_nome')}}" name="sobre_nome" class="form-control" placeholder="Sobre-nome" required>
-          <div class="invalid-feedback">Por favor insira o Nome Completo</div>
+        <div class="row form-group">
+          <div class="col-lg-6">
+            <input type="text" value="{{old('nome')}}" name="nome" class="campo-registrar" placeholder="Nome" oninput="this.className = ''">
+          </div>
+          <div class="col-lg-6">
+            <input type="text" value="{{old('sobre_nome')}}" name="sobre_nome" class="campo-registrar" placeholder="Apelido" oninput="this.className = ''">
+
+          </div>
         </div>
         @error('nome')
           <div class="alert alert-danger">{{$message}}</div>
@@ -51,30 +55,37 @@
           <div class="alert alert-danger">{{$message}}</div>
         @enderror
 
-
-        <div class="col">
-            <div class="input-group has-validation">
-              <input type="text" autocomplete="off" value="{{old('num_bi')}}" name="num_bi" class="form-control" placeholder="Nº BI" required>
-              <div class="invalid-feedback">Por favor insira o Número de BI.</div>
-            </div>
-        </div>
-        @error('num_bi')
-          <div class="alert alert-danger">{{$message}}</div>
-        @enderror
-
-        <div class="input-group has-validation">
+        <div class="input-group">
           <select class="form-select" name="genero">
             <option value="Masculino" selected>Masculino</option>
             <option value="Femenino">Femenino</option>
           </select>
         </div>
 
+        <div class="col">
+          <div class="input-group">
+            <input type="text" value="{{old('num_bi')}}" name="num_bi" class="campo-registrar" placeholder="Nº BI" oninput="this.className = ''">
+          </div>
+        </div>
+        @error('num_bi')
+          <div class="alert alert-danger">{{$message}}</div>
+        @enderror
+
+        <div class="input-group">
+          <input type="text" value="{{old('num_telefone')}}" id="telefoneinput" name="num_telefone" class="campo-registrar" placeholder="Nº Telefone" oninput="this.className = ''">
+          <div class="mensagem-erro" style="width: 100%;"></div>
+        </div>
+        @error('num_telefone')
+          <div class="alert alert-danger">{{$message}}</div>
+        @enderror
+
+        
+
         <span style="color: rgb(88, 85, 85);">
           Data de Nascimento
           <div class="col">
-            <div class="input-group has-validation">
-              <input type="date" autocomplete="off" value="{{old('data_nascimento')}}" name="data_nascimento" class="form-control" placeholder="Data de Nascimento" required>
-              <div class="invalid-feedback">Por favor insira a Data de Nascimento.</div>
+            <div class="input-group">
+              <input type="date" value="{{old('data_nascimento')}}" name="data_nascimento" class="campo-registrar" placeholder="Data de Nascimento" oninput="this.className = ''">
             </div>
             @error('data_nascimento')
               <div class="alert alert-danger">{{$message}}</div>
@@ -87,33 +98,29 @@
       {{--  Dados do Endereço - Apagar em Produção--}}
       <div class="tab">
 
-        <div class="input-group has-validation">
-          <input type="text" autocomplete="off" value="{{old('municipio')}}" name="municipio" class="form-control" placeholder="Municipio" required>
-          <div class="invalid-feedback">Por favor insira um Nome Completo</div>
+        <div class="input-group">
+          <input type="text" value="{{old('municipio')}}" name="municipio" class="campo-registrar" placeholder="Municipio" oninput="this.className = ''">
         </div>
         @error('municipio')
           <div class="alert alert-danger">{{$message}}</div>
         @enderror
 
-        <div class="input-group has-validation">
-          <input type="text" autocomplete="off" value="{{old('bairro')}}" name="bairro" class="form-control" placeholder="Bairro" required>
-          <div class="invalid-feedback">Por favor insira um Nome Completo</div>
+        <div class="input-group">
+          <input type="text" value="{{old('bairro')}}" name="bairro" class="campo-registrar" placeholder="Bairro" oninput="this.className = ''">
         </div>
         @error('bairro')
           <div class="alert alert-danger">{{$message}}</div>
         @enderror
 
-        <div class="input-group has-validation">
-          <input type="text" autocomplete="off" value="{{old('zona')}}" name="zona" class="form-control" placeholder="Zona" required>
-          <div class="invalid-feedback">Por favor insira um Nome Completo</div>
+        <div class="input-group">
+          <input type="text" value="{{old('zona')}}" name="zona" class="campo-registrar" placeholder="Zona" oninput="this.className = ''">
         </div>
         @error('zona')
           <div class="alert alert-danger">{{$message}}</div>
         @enderror
 
-        <div class="input-group has-validation">
-          <input type="number" autocomplete="off" value="{{old('num_casa')}}" name="num_casa" class="form-control" placeholder="Casa Nº" required>
-          <div class="invalid-feedback">Por favor insira um Nome Completo</div>
+        <div class="input-group">
+          <input type="number" value="{{old('num_casa')}}" name="num_casa" class="campo-registrar" placeholder="Casa Nº" oninput="this.className = ''">
         </div>
         @error('num_casa')
           <div class="alert alert-danger">{{$message}}</div>
@@ -123,47 +130,22 @@
 
       {{-- Dados do Usuario - Apagar em Produção --}}
       <div class="tab">
-
-        <div class="input-group has-validation">
-          <input type="number" autocomplete="off" value="{{old('num_telefone')}}" name='num_telefone' class="form-control" placeholder="Telefone Nº" required>
-          <div class="invalid-feedback">Por favor insira um Número de Telefone</div>
-        </div>
-        @error('num_telefone')
-          <div class="alert alert-danger">{{$message}}</div>
-        @enderror
-
-        <div class="input-group has-validation">
-          <select name="cargo" class="form-select">
-            <option value="Administrador" selected>Administrador</option>
-            <option value="Professor">Professor</option>
-            <option value="Subdirector">Subdirector Pedagogico</option>
-            <option value="Secretaria">Secretaria Pedagogica</option>
-            <option value="Director">Director Geral</option>
-            <option value="Coordenacao">Coordenação</option>
-            <option value="insc_user">Usuario - Inscrição</option>
-            <option value="matri_user">Usuario - Matricula</option>
-          </select>
-        </div>
-
-        <div class="input-group has-validation">
-          <input type="email" autocomplete="off" value="{{old('email')}}" name="email" class="form-control" placeholder="Email" required>
-          <div class="invalid-feedback">Por favor insira um Email</div>
+        <div class="input-group">
+          <input type="email" value="{{old('email')}}" name="email" class="campo-registrar" placeholder="Email" oninput="this.className = ''">
         </div>
         @error('email')
           <div class="alert alert-danger">{{$message}}</div>
         @enderror
 
-        <div class="input-group has-validation">
-          <input type="password" autocomplete="off" value="{{old('password')}}" name="password" class="form-control" placeholder="Senha" required>
-          <div class="invalid-feedback">Por favor insira uma Senha</div>
+        <div class="input-group">
+          <input type="password" value="{{old('password')}}" name="password" class="campo-registrar" placeholder="Senha" oninput="this.className = ''">
         </div>
         @error('password')
           <div class="alert alert-danger">{{$message}}</div>
         @enderror
 
-        <div class="input-group has-validation">
-          <input type="password" autocomplete="off" value="{{old('password_confirmation')}}" name='password_confirmation' class="form-control" placeholder="Confirmação da Senha" required>
-          <div class="invalid-feedback">Por favor insira a confirmação da senha</div>
+        <div class="input-group">
+          <input type="password" value="{{old('password_confirmation')}}" name='password_confirmation' class="campo-registrar" placeholder="Confirmação da Senha" oninput="this.className = ''">
         </div>
         @error('password_confirmation')
           <div class="alert alert-danger">{{$message}}</div>
