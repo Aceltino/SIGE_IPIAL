@@ -19,7 +19,8 @@ use App\Http\Controllers\{
     PautaController,
     PerfilUserController,
     DisciplinasController,
-    ProcessosController,
+    ProcessoController,
+    UserController,
 };
 use Doctrine\DBAL\Driver\Middleware;
 
@@ -35,8 +36,8 @@ use Doctrine\DBAL\Driver\Middleware;
 */
 
 // Rota apenas de teste... Não apague -> ACELTINO
-Route::get('validar-aluno', [AlunoTurmaController::class, 'SelecionarTurma']);
-// Route::get('validar-aluno', [AlunoController::class, 'pegarIdUser']);
+// Route::get('validar-aluno', [AlunoTurmaController::class, 'situacaoAluno']);
+Route::get('validar-aluno', [AlunoController::class, 'pegarDadosMatriculados']);
 
 
 
@@ -57,9 +58,8 @@ Route::prefix('autenticacao')->group(function(){
     Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck')->middleware('guest');
 
     //Rota de Cadastro
-
     Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar')->middleware(['guest','checkcargo']);
-    Route::post('registrar', [AuthController::class,'store'])->name('registrar')->middleware('guest');
+    Route::post('registrar', [AuthController::class,'storeInicio'])->name('registrar')->middleware('guest');
 
     //Rota para envio de email para redifinição de senha
     Route::get('reset', [AuthController::class,'resetForm'])->name('recuperar-senha')->middleware('guest');
@@ -79,9 +79,7 @@ Route::prefix('Perfil')->middleware(['auth'])->group(function(){
     Route::get('/',[PerfilUserController::class,'index'])->name('perfil');
     Route::put('update',[PerfilUserController::class,'update'])->name('perfil-update');
     Route::patch('password',[PerfilUserController::class,'changePassword'])->name('updatePassword');
-    
 });
-
 
 
 /******************************************
@@ -144,7 +142,10 @@ Route::prefix('inscricao')->group(function(){
 Route::prefix('matricula')->group(function(){
 
     /* Matriculas*/
-    Route::get('matriculas',  [MatriculaController::class, 'index'])->name('matriculas');
+    Route::get('matriculas', [MatriculaController::class, 'index'])->name('matricula-index');
+    Route::get('matricula-turma',  [MatriculaController::class, 'atribuirTurma'])->name('matricula-validarTurma');
+
+    //
 
     /*Matricular aluno */
     Route::get('matricular-aluno/{candidato}',  [MatriculaController::class, 'create'])->name('matricula-view');
@@ -228,9 +229,6 @@ Route::prefix('turma')->group(function(){
 /**<!--Fim Rotas turma--> */
 
 
-
-
-
 /*Editar turma */
 Route::get('editar-turma', function () {
     return view('turma/edit-turma');
@@ -300,7 +298,7 @@ Route::prefix('ficha-biog')->group(function(){
     })->name('fichaBiografica');
 
     Route::get('fichasBio', function () {
-        return view('ficha-biog.ficha-biografica-doc');
+        return view('ficha-biog/ficha-biografica-doc');
     })->name('formFichaBiografica');
 });
 
@@ -308,8 +306,6 @@ Route::prefix('ficha-biog')->group(function(){
  * Rotas do processo do Aluno
  */
 Route::prefix('processo')->group(function(){
-
-    Route::get('processos',[ProcessosController::class,'index'])->name('consultar.processo');
 
     Route::get('processos',[ProcessoController::class, 'index'])->name('processo.consultar');
 
@@ -342,25 +338,23 @@ Route::prefix('comunicado')->middleware(['auth'])->group(function(){
     Route::delete('{comunicado_id}', [comunicadosController::class, 'destroy'])->where('comunicado_id', '[0-9]+')->name('comunicado.destroy');
 });
 
+
 /******************************************
- * Rotas do cadastro de usuário
- */
-/* cadastrar usuario*/
-Route::prefix('usuario')->group(function(){
+ * Rotas do usuário
+ ****************************************/
 
-    Route::get('use_cadastro', function () {
-        return view('usuario/use_cadastro');
-    })->name('createUsuario');
+Route::prefix('usuario')->middleware(['auth','checkcargo'])->group(function(){
 
-    /*Matricular aluno */
-    Route::get('usuarios', function () {
-        return view('usuario/usuarios');
-    })->name('consultUsuario');
+    Route::get('cadastro',[UserController::class,'usuarioFormCadastro' ])->name('createUsuario');
+    Route::post('cadastro',[AuthController::class,'store'])->name('storeUsuario');
 
-    /*Editar matricula */
+    Route::get('/', [UserController::class,'index'])->name('consultUsuario');
+
+    Route::patch('estado/{id}',[UserController::class,'userStateChange'])->name('stateChange');
+
     Route::get('use_editar', function () {
         return view('usuario/use_editar');
-    });
+    })->name('editUser');
 });
 /**************************************************
  * Rotas do Calendario de provas

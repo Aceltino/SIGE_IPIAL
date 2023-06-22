@@ -205,7 +205,7 @@
         <div class="row">
 
           <!-- Card Alunos -->
-          <div class="col-xxl-4 col-xl-12">
+          <div class="col-lg-12">
 
             <div class="card info-card">
 
@@ -254,7 +254,7 @@
           </div><!-- Fim Card Alunos -->
 
           <!-- Card Turmas -->
-          <div class="col-xxl-4 col-xl-12">
+          <div class="col-lg-12">
 
             <div class="card info-card">
 
@@ -533,7 +533,7 @@
           <div class="row">
 
             <!-- Card Alunos -->
-            <div class="col-xxl-4 col-xl-12">
+            <div class="col-lg-12">
 
               <div class="card info-card">
 
@@ -582,7 +582,7 @@
             </div><!-- Fim Card Alunos -->
 
             <!-- Card Turmas -->
-            <div class="col-xxl-4 col-xl-12">
+            <div class="col-lg-12">
 
               <div class="card info-card">
 
@@ -751,7 +751,7 @@
           <div class="row">
 
             <!-- Card Alunos -->
-            <div class="col-xxl-4 col-xl-12">
+            <div class="col-lg-12">
 
               <div class="card info-card">
 
@@ -800,7 +800,7 @@
             </div><!-- Fim Card Alunos -->
 
             <!-- Card Turmas -->
-            <div class="col-xxl-4 col-xl-12">
+            <div class="col-lg-12">
 
               <div class="card info-card">
 
@@ -969,7 +969,7 @@
           <div class="row">
 
             <!-- Card Alunos -->
-            <div class="col-xxl-4 col-xl-12">
+            <div class="col-lg-12">
 
               <div class="card info-card">
 
@@ -1018,7 +1018,7 @@
             </div><!-- Fim Card Alunos -->
 
             <!-- Card Turmas -->
-            <div class="col-xxl-4 col-xl-12">
+            <div class="col-lg-12">
 
               <div class="card info-card">
 
@@ -1165,7 +1165,7 @@
           <div class="row">
 
             <!-- Card Turmas -->
-            <div class="col-xxl-4 col-xl-12">
+            <div class="col-lg-12">
 
               <div class="card info-card">
 
@@ -1321,7 +1321,7 @@
             </div><!-- Termina Anolectivo Trimestre -->
 
             <!-- Card Calendario de prova-->
-            <div class="col-xxl-4 col-xl-12">
+            <div class="col-lg-12">
 
               <div class="card info-card">
 
@@ -1336,7 +1336,7 @@
             </div><!-- Fim do Card Calendario de prova -->
 
             <!-- Card Horaio de aula -->
-            <div class="col-12">
+            <div class="col-lg-12">
               <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">Horário <span>| I10AM</span></h5>
@@ -1756,7 +1756,7 @@
           <div class="row">
 
             <!-- Card Alunos -->
-            <div class="col-xxl-4 col-xl-12">
+            <div class="col-lg-12">
               <div class="alert alert-warning bg-warning border-0 alert-dismissible fade show" role="alert">
                   Mensagem importante!
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -1853,7 +1853,7 @@
           <div class="row">
 
             <!-- Card Alunos -->
-            <div class="col-xxl-4 col-xl-12">
+            <div class="col-lg-12">
 
               <div class="card info-card">
 

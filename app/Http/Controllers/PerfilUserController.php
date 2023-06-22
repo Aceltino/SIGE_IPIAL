@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{
-    Auth,Validator,Storage,Hash,
+    Auth,Validator,Hash,File,
 };
 use App\Traits\PessoaTrait;
 
@@ -25,7 +25,7 @@ class PerfilUserController extends Controller
     {   
     
         $user= Auth::user();
-        $user= User::findOrFail($user->usuario_id)->firstOrFail();
+        $user= User::findOrFail($user->usuario_id);
 
         if(!$request->hasFile('imagem_update')) {
             goto contiUpdate;   
@@ -137,7 +137,7 @@ class PerfilUserController extends Controller
     public function atualizarImagem($request)
     {   
         $user= Auth::user();
-        $user=User::findOrFail($user->usuario_id)->firstOrFail();
+        $user=User::findOrFail($user->usuario_id);
         
         $imagem= $request->file('imagem_update');
         $extensao= $imagem->getClientOriginalExtension(); 
@@ -171,21 +171,19 @@ class PerfilUserController extends Controller
             return redirect()->back()->with('erro_imagem_003', 'Lamentamos! Detectamos um erro desconhecido ao carregar a imagem.');
         }  
 
-        if (file_exists($imagem_antiga)) {
-            if (!is_writable($imagem_antiga)) {
+        if (File::exists($imagem_antiga)) {
+            try {
+                File::delete($imagem_antiga);
+            } catch (\Exception $e) {
                 return redirect()->back()->with('erro_imagem_004', 'Lamentamos! Não foi possível excluir a imagem antiga.');
             }
-            unlink($imagem_antiga);
         }
-        
         return redirect()->back()->with('success_imagem_001', 'Imagem atualizada com sucesso.');
-        
-    
     }
 
     //Metodo para Actualizar Senha
-    public static function changePassword(Request $request){
-
+    public static function changePassword(Request $request)
+    {
         switch($request->password) {
             case $request->password_confirmation:
                 goto conti_salvar;
@@ -224,7 +222,6 @@ class PerfilUserController extends Controller
         if($user->save()){
             return redirect()->back()->with('success_updatePassword_001','Senha redefinida com sucesso!');
         }
-
     }
 
 

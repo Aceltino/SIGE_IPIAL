@@ -4,13 +4,21 @@
 
 @section('conteudo')
 
-@if(session()->has('Sucesso'))
-<div class="alert alert-success">
-{{session('Sucesso')}}
-</div>
-@endif
-
 <main id="main" class="main">
+
+    @if(session()->has('ErroMatricula'))
+    <div class="alert alert-danger">
+    {{session('ErroMatricula')}}
+    </div>
+    @endif
+
+    @if(session()->has('Sucesso'))
+    <div class="alert alert-success">
+    {{session('Sucesso')}}
+    </div>
+    @endif
+    
+
   <div class="row">
     <div class="col">
       <h2>Matriculas</h2>
@@ -46,6 +54,9 @@
 
   <div style="display: flex; justify-content: flex-end; align-items: center;">
     <button class="btn-imprimir">Imprimir <i class="bi bi-file-earmark-pdf-fill"></i></button>
+  </div>
+  <div >
+    <a href="{{ route('matricula-validarTurma') }}" class="bth btnadmitir">Distribuir turma</a>
   </div>
 
   <!-- /  Inicio da tabela de inscritos -->

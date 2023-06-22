@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\CandidatoController;
+use App\Http\Controllers\AlunoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,8 +17,9 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('candidatos', [CandidatoController::class, 'pegarDadosCandidatos']);
 
+Route::get('matriculados', [AlunoController::class, 'pegarDadosMatriculados']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
- 

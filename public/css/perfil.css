@@ -45,8 +45,8 @@
   }
   
   .perfil .perfil-card img {
-    max-width: 140px;
-    max-height: 140px;
+    width: 140px;
+    height: 140px;
     border-radius: 10px;
   }
   
@@ -102,8 +102,8 @@
   }
   
   .perfil .perfil-edit img {
-    max-width: 120px;
-    max-height: 120px;
+    width: 120px;
+    height: 120px;
   }
   
   
