@@ -89,45 +89,47 @@
 
             <div class="row mb-3" id="horario-div-que-pode-desaparecer-1">
                 <div class="col-sm-6">
-                    <select oninput="this.className = ''" class="form-select" id="horario-select-primeiro-dia-de-educacao-fisica">
+                    <select oninput="this.className = ''" class="form-select" id="criar-horario-select-primeiro-dia-de-educacao-fisica">
                         <optgroup label="Primeiro dia de Educação Física">
-                        <option value="Segunda-Feira">Segunda-Feira</option>
-                        <option value="Terça-Feira">Terça-Feira</option>
-                        <option value="Quarta-Feira">Quarta-Feira</option>
-                        <option value="Quinta-Feira">Quinta-Feira</option>
-                        <option value="Sexta-Feira">Sexta-Feira</option>
+                            <option value="Nenhum">Nenhum</option>
+                            <option value="Segunda-Feira">Segunda-Feira</option>
+                            <option value="Terça-Feira">Terça-Feira</option>
+                            <option value="Quarta-Feira">Quarta-Feira</option>
+                            <option value="Quinta-Feira">Quinta-Feira</option>
+                            <option value="Sexta-Feira">Sexta-Feira</option>
                         </optgroup>
                     </select>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="time" title="Hora de início da Educação Física" name="" oninput="this.className = ''" required>
+                    <input type="time" title="Hora de início da Educação Física" class="form-control" value="00:00" id="criar-horario-hora-de-inicio-da-educacao-fisica-no-primeiro-dia" name="" oninput="this.className = ''" required>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="time" title="Hora de fim da Educação Física" name="" oninput="this.className = ''" required>
+                    <input type="time" title="Hora de fim da Educação Física" class="form-control" value="00:00" id="criar-horario-hora-de-fim-da-educacao-fisica-no-primeiro-dia" name="" oninput="this.className = ''" required>
                 </div>
             </div>
 
             <div class="row" id="horario-div-que-pode-desaparecer-2">
                 <div class="col-sm-6">
-                    <select oninput="this.className = ''" class="form-select" id="horario-select-segundo-dia-de-educacao-fisica">
+                    <select oninput="this.className = ''" class="form-select" id="criar-horario-select-segundo-dia-de-educacao-fisica">
                         <optgroup label="Segundo dia de Educação Física">
-                        <option value="Segunda-Feira">Segunda-Feira</option>
-                        <option value="Terça-Feira">Terça-Feira</option>
-                        <option value="Quarta-Feira">Quarta-Feira</option>
-                        <option value="Quinta-Feira">Quinta-Feira</option>
-                        <option value="Sexta-Feira">Sexta-Feira</option>
+                            <option value="Nenhum">Nenhum</option>
+                            <option value="Segunda-Feira">Segunda-Feira</option>
+                            <option value="Terça-Feira">Terça-Feira</option>
+                            <option value="Quarta-Feira">Quarta-Feira</option>
+                            <option value="Quinta-Feira">Quinta-Feira</option>
+                            <option value="Sexta-Feira">Sexta-Feira</option>
                         </optgroup>
                     </select>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="time" title="Hora de início da Educação Física" class="" name="" oninput="this.className = ''" required>
+                    <input type="time" title="Hora de início da Educação Física" class="form-control" value="00:00" id="criar-horario-hora-de-inicio-da-educacao-fisica-no-segundo-dia" name="" oninput="this.className = ''" required>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="time" title="Hora de fim da Educação Física" class="form-control" name="" oninput="this.className = ''" required>
+                    <input type="time" title="Hora de fim da Educação Física" class="form-control" value="00:00" id="criar-horario-hora-de-fim-da-educacao-fisica-no-segundo-dia" name="" oninput="this.className = ''" required>
                 </div>
             </div>
         </div>
@@ -357,7 +359,7 @@
         <h2 class="text-uppercase text-center my-3 color-blue-principal">Segunda-Feira</h2>
           <h6 class="text-uppercase text-center my-4 color-blue-principal">Selecione as disciplinas e as salas em que as mesmas serão lecionadas, respectivamente.</h6>
           
-          <div class="row">
+          <div class="row mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>1º TEMPO</strong></p>
                 </div>
