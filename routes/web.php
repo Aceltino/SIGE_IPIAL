@@ -36,8 +36,8 @@ use Doctrine\DBAL\Driver\Middleware;
 */
 
 // Rota apenas de teste... Não apague -> ACELTINO
-Route::get('validar-aluno', [AlunoTurmaController::class, 'SelecionarTurma']);
-// Route::get('validar-aluno', [AlunoController::class, 'pegarIdUser']);
+// Route::get('validar-aluno', [AlunoTurmaController::class, 'situacaoAluno']);
+Route::get('validar-aluno', [AlunoController::class, 'pegarDadosMatriculados']);
 
 
 
@@ -143,7 +143,10 @@ Route::prefix('inscricao')->group(function(){
 Route::prefix('matricula')->group(function(){
 
     /* Matriculas*/
-    Route::get('matriculas',  [MatriculaController::class, 'index'])->name('matriculas');
+    Route::get('matriculas', [MatriculaController::class, 'index'])->name('matricula-index');
+    Route::get('matricula-turma',  [MatriculaController::class, 'atribuirTurma'])->name('matricula-validarTurma');
+
+    //
 
     /*Matricular aluno */
     Route::get('matricular-aluno/{candidato}',  [MatriculaController::class, 'create'])->name('matricula-view');
@@ -225,9 +228,6 @@ Route::prefix('turma')->group(function(){
     });
 });
 /**<!--Fim Rotas turma--> */
-
-
-
 
 
 /*Editar turma */
@@ -349,14 +349,13 @@ Route::prefix('usuario')->middleware(['auth','checkcargo'])->group(function(){
     Route::get('cadastro',[UserController::class,'usuarioFormCadastro' ])->name('createUsuario');
     Route::post('cadastro',[AuthController::class,'store'])->name('storeUsuario');
 
- 
-    Route::get('usuarios', function () {
-        return view('usuario/usuarios');
-    })->name('consultUsuario');
+    Route::get('/', [UserController::class,'index'])->name('consultUsuario');
+
+    Route::patch('estado/{id}',[UserController::class,'userStateChange'])->name('stateChange');
 
     Route::get('use_editar', function () {
         return view('usuario/use_editar');
-    });
+    })->name('editUser');
 });
 /**************************************************
  * Rotas do Calendario de provas
