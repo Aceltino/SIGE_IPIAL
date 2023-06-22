@@ -35,8 +35,8 @@ use App\Http\Controllers\{
 */
 
 // Rota apenas de teste... Não apague -> ACELTINO
-Route::get('validar-aluno', [AlunoTurmaController::class, 'SelecionarTurma']);
-// Route::get('validar-aluno', [AlunoController::class, 'pegarIdUser']);
+// Route::get('validar-aluno', [AlunoTurmaController::class, 'situacaoAluno']);
+Route::get('validar-aluno', [AlunoController::class, 'pegarDadosMatriculados']);
 
 
 
@@ -144,7 +144,10 @@ Route::prefix('inscricao')->group(function(){
 Route::prefix('matricula')->group(function(){
 
     /* Matriculas*/
-    Route::get('matriculas',  [MatriculaController::class, 'index'])->name('matriculas');
+    Route::get('matriculas', [MatriculaController::class, 'index'])->name('matricula-index');
+    Route::get('matricula-turma',  [MatriculaController::class, 'atribuirTurma'])->name('matricula-validarTurma');
+
+    //
 
     /*Matricular aluno */
     Route::get('matricular-aluno/{candidato}',  [MatriculaController::class, 'create'])->name('matricula-view');
