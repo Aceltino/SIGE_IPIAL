@@ -10,6 +10,21 @@
         </div>
         
     </div>
+    @if(session('erro_Update_001'))
+        <div class="alert alert-danger">
+            {{session('serro_Update_001')}}
+        </div>
+    @endif
+    @if(session('erro_Update_002'))
+        <div class="alert alert-danger">
+            {{session('erro_Update_002')}}
+        </div>
+    @endif
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{session('success')}}
+        </div>
+    @endif
 
     <form action={{route('updateUser',['id'=>$user->usuario_id])}} method="POST" class="form-inativo">
         @csrf
@@ -51,7 +66,7 @@
             <div class="container">
                 <div class="row">
                     <div class=" col area-input form-group" >
-                        <label>Número do BI: </label><input type="text" class="form-control" readonly="true" disabled name="num_bi_update" value="{{$user->pessoa->num_bi}}">
+                        <label>Número do BI: </label><input type="text" class="form-control" name="num_bi_update" value="{{$user->pessoa->num_bi}}">
                     </div>
                     @error('num_bi_update')
                         <div class="alert alert-danger">{{$message}}</div>
@@ -98,11 +113,9 @@
                 </div>              
             </div>
 
-  
-
                     <div class="col form-group" style="margin-left: 10px; justify-items: center">
                         <button class="btn-imprimir accordion-buttons collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style="border: none; padding: 5px; width: 230px; height: 40px;">
-                        Informações do Usuário: <i class="bi bi-row"></i>
+                            Informações do Usuário: <i class="bi bi-row"></i>
                         </button>
                     </div>
                 </div>
@@ -140,7 +153,7 @@
 
                 <div class="footer-modal" style="text-align: center; margin-top: 50px;">
                     <div class="jnt">
-                        <a href="use_editar" class="btn" style="background-color: #070b17; color: #fff;">Cancelar edição</a>
+                        <a href="/usuario" class="btn" style="background-color: #070b17; color: #fff;">Cancelar edição</a>
                         <button type="submit" class="btn" style="background-color: #4caf54; color: #fff;">Atualizar</button>
                     </div>
                 </div>

@@ -32,7 +32,7 @@
     </div>
   @endif
   @if(session('success_status_001'))
-  <div class="alert alert-warning">
+  <div class="alert alert-success">
     {{session('success_status_001')}}
     </div>
   @endif
@@ -42,7 +42,7 @@
   </div>
   @endif
   @if(session('sucess_status_002'))
-  <div class="alert alert-warning">
+  <div class="alert alert-danger">
     {{session('sucess_status_002')}}
   </div>
   @endif

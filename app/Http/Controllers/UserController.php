@@ -7,12 +7,16 @@ use App\Models\{
 use App\Http\Controllers\{
     Controller
 };
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\{
+    Validator,
+};
+use Illuminate\Http\Request;
+use App\Traits\PessoaTrait;
 
 class UserController extends Controller
 {
 
+    use PessoaTrait;
     //Metodo que retorna a views do cadastro de usuario
     public function usuarioFormCadastro(){
         return view('usuario/use_cadastro');
@@ -53,8 +57,6 @@ class UserController extends Controller
     {   
         
         $user= User::findOrFail($id);
-        dd($user);
-
 
         $regras_gerais=[
 
@@ -85,8 +87,9 @@ class UserController extends Controller
             'data_nascimento_update.date' => 'O campo :attribute deve ser uma data válida.',
             'data_nascimento_update.before'=> 'O campo :attribute deve ser uma data posterior à data atual.',
             'num_bi_update.size'=> 'Número de identificação esta incorrecto',
-            'num_bi_update.unique'=> 'Número de identificação Já esta a ser usado',
-            'telefone_update'=>'Digite um número de telefone valido',
+            'num_bi_update.unique'=> 'Número de identificação(BI) já esta a ser usado',
+            'telefone_update.unique'=>'Número de telefone já esta sendo usado',
+            'telefone.update.size'=> 'Número de telefone esta incorrecto',
 
             //Formulario do user
             'email_update.email'=>'Este campo deve conter um email valido',
@@ -107,6 +110,7 @@ class UserController extends Controller
 
             //Dados do user
             'email_update'=>$request->email_update,
+            'cargo_usuario_update'=>$request->cargo_usuario_update,
 
             //Dados do endereço
             'municipio_update'=>$request->municipio_update,
@@ -143,17 +147,19 @@ class UserController extends Controller
             'telefone'=>$request->telefone_update,
         ];              
 
+        //Update dos dados da Pessoa e Endereço
         if(!$this->updatePessoa_ACTUALIZADO($dadosPessoa,$dadosEndereco)){
-            return redirect()->route('perfil')->with('erro_Update_001', 'Lamentamos! Erro na actualização de alguns dados.');
+            return redirect()->back()->with('erro_Update_001', 'Lamentamos! Erro na actualização de alguns dados.');
         }
 
-        //Update do Usuário
+        //Update dos dados do Usuario
         $user->email=$request->email_update;
+        $user->cargo_usuario=$request->cargo_usuario_update;
         if (!$user->save()){
-            return redirect()->route('perfil')->with('erro_Update_002', 'Lamentamos! Erro na actualização do Email.');
+            return redirect()->back()->with('erro_Update_002', 'Lamentamos! Erro na actualização do Email.');
         }
         
-        return redirect()->route('perfil')->with('success', 'Dados actualizados com sucesso!');
+        return redirect()->back()->with('success', 'Dados actualizados com sucesso!');
     }
 
     //Metodo para mudar o estado do usuario.

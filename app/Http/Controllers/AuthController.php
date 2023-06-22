@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\{
     Auth,Validator,Mail,DB,Hash,Session
 };
 use Illuminate\Support\Str;
-use PhpParser\Node\Stmt\Return_;
+
 
 class AuthController extends Controller
 {
@@ -177,7 +177,7 @@ class AuthController extends Controller
     public function store(Request $request)
     {   
         $num_registo=count(User::all());
-        $numId= $num_registo+1;
+        // $numId= $num_registo+1;
     
         //Gerar uma senha temporária aleatória
         $hexAleatorio = Str::random(8);
@@ -217,7 +217,7 @@ class AuthController extends Controller
             'data_nascimento.before'=> 'O campo :attribute deve ser uma data posterior à data atual.',
             'num_bi.size'=> 'Número de identificação esta incorrecto',
             'num_bi.unique'=> 'Número de identificação Já esta a ser usado',
-            'num_telefone'=>'Digite um número de telefone valido',
+            'num_telefone.size'=>'Digite um número de telefone valido',
             'num_telefone.unique'=>'Lamentamos, este número de telefone já esta em uso',
 
             //Formulario do user
@@ -269,7 +269,7 @@ class AuthController extends Controller
         $pessoa_id= $this->storePessoa($dadosPessoa, $dadosEndereco);//retorna id da pessoa
 
         $dadosUser=[
-            'nome_usuario'=>$abreNome.$numId.$abreSobreNome,
+            'nome_usuario'=>$abreNome.$num_registo.$abreSobreNome,
             'email'=>$request->email,
             'password'=>bcrypt($hexAleatorio),
             'cargo_usuario'=> $request->cargo,
