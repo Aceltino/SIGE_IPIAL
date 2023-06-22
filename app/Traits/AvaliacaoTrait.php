@@ -157,12 +157,14 @@ trait AvaliacaoTrait
         //dd($anoturma);
         $user = Auth::user();
         $professor = Professor::with('pessoa')->where('pessoa_id', $user->pessoa_id)->get();
+        dd($user);
         $ano_lectivo = self::pegarAnoLectivo();
         $disciplinas = Professor_disciplina::with('disciplina')->where('professor_id', $professor[0]->professor_id)
         ->where('ano_lectivo_id', $ano_lectivo[0]->ano_lectivo_id)->get();
+        dd($professor);
         for ($i = 0; $i < count($disciplinas); $i++) {
           //$disc = $disciplinas[$i]->
         }
-        dd($disciplinas);
+
     }
 }

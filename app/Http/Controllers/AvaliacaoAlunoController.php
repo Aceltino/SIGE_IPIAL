@@ -19,8 +19,8 @@ class AvaliacaoAlunoController extends Controller
         $turmas[1] = [9, 10];
         //$aluno = Aluno::with(['candidato.pessoa', 'turmas', 'anoturma.turma'])->where('status', 1)->get();
         //dd($aluno);
-        //$aluno = AvaliacaoTrait::pegarProfessor();
-        $aluno = AvaliacaoTrait::pegarNotaAluno($disciplinas, $turmas);
+        $aluno = AvaliacaoTrait::pegarProfessor();
+        //$aluno = AvaliacaoTrait::pegarNotaAluno($disciplinas, $turmas);
 
         return view('avaliac-aluno/avaliacoes-aluno', compact('aluno'));
     }

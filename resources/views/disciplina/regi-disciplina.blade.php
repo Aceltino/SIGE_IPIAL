@@ -41,10 +41,10 @@
               </div>
               <div class="row">
                 <div class="col">
-                  @foreach($cursos as $curso_id => $nome_curso)
+                  @foreach($cursos as $curso)
                   <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="curso">
-                    <label class="form-check-label" for="flexSwitchCheckDefault" value="{{ $curso_id }}">{{ $nome_curso }}</label>
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="curso" value="{{$curso['nome_curso']}}">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">{{$curso['nome_curso']}}</label>
                  </div>
                   @endforeach
                             <div class="col">
@@ -56,7 +56,7 @@
                 <div>
                     <button type="button" class="btn btn-success">Cadastrar</button>
                 </div>
-            </div>
+            </div> 
         </div>
     </form>
 </main>

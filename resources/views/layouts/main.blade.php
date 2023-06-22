@@ -67,11 +67,11 @@
   <script src={{{URL::asset("js/paineis/horario/horario.js")}}}></script>
   <script src={{{URL::asset("js/paineis/perfil/perfil.js")}}}></script>
   <script src={{{URL::asset("js/paineis/ano-lectivo/criar-ano-lectivo.js")}}}></script>
+  <script src={{{URL::asset("js/paineis/professor/professor.js")}}}></script>
 
    <!-- /	Link do js main do projeto -->
   <script src={{{URL::asset("js/axios.min.js")}}}></script>
   <script src={{{URL::asset("js/script.js")}}}></script>
-  <script src={{{URL::asset("js/form.js")}}}></script>
   <script src={{{URL::asset("js/select.js")}}}></script>
   <script src={{{URL::asset("js/APIconsumo.js")}}}></script>
   <script src={{{URL::asset("Datatables/datatables.min.js")}}}></script>

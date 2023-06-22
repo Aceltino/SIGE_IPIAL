@@ -31,7 +31,7 @@
       <input type="hidden" name="token" value="{{ $token }}">
       
       <div class="input-group col-12">
-        <span class="input-group-addon" id="inputGroupPrepend"><i class="bi bi-key-fill"></i></span>
+        <span class="input-group-addon" id="inputGroupPrepend"><i class="bi bi-at"></i></span>
         <input type="email" name="email" placeholder="Email" value="{{old('email')}}" class="form-control" required>
         <div class="invalid-feedback">Por favor insere o seu email!</div>
       </div> 

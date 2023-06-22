@@ -7,7 +7,7 @@ use App\Models\Endereco;
 
 class EnderecoController extends Controller
 {
-    public static function store($dadosEndereco)
+    public static function store($dadosEndereco):int
     {
         $enderecoCriado= Endereco::create($dadosEndereco);
         return $enderecoCriado->endereco_id;
