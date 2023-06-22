@@ -29,12 +29,12 @@ class InscricaoRequest extends FormRequest
             //Formulario candidato
             'nome_pai_cand'=>'required|string|max:100|min:2',
             'nome_mae_cand'=>'required|string|max:100|min:2',
-            'naturalidade_cand'=>'nullable|string|max:100|min:2',
+            'naturalidade_cand'=>'required|string|max:100|min:2',
 
             //Formulario da Pessoa
             'nome_completo'=>'required|string|min:2|max:100',
             'data_nascimento'=>'required|date|before:'.now()->format('d-m-Y'),
-            'num_bi'=>'nullable|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi',
+            'num_bi'=>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi',
             'genero' => 'required|string',
             'turno' => 'required|string',
 
@@ -62,8 +62,6 @@ class InscricaoRequest extends FormRequest
             if( in_array($this->request->get('curso'.$i), $this->request->all()) )
             {
                 $rules['curso'.$i] = 'required|string';
-
-
             } else
             {
                 break;

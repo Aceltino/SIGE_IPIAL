@@ -66,12 +66,12 @@
         <th scope="col">Nome do Candidato</th>
         <th scope="col">Média</th>
         <th scope="col">Idade</th>
-        <th scope="col">Curso</th>
+        <th scope="col">Curso</th>  
         <th scope="col">Situação</th>
         <th scope="col">Matricular</th>
         <th scope="col">Ações</th>
       </tr>
-    </thead> 
+    </thead>
     <tbody>
     </tbody>
   </table>
@@ -80,7 +80,7 @@
 
 
   <!--Inicio da modal ver inscrito-->
- 
+
 
   <!--  / Termina a modal ver inscrito-->
 

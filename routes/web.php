@@ -153,6 +153,10 @@ Route::prefix('matricula')->group(function(){
     Route::post('matricular-aluno/{candidato}', [MatriculaController::class, 'store'])->name('matricula-store');
 
     /*Editar matricula */
+
+    Route::get('editar-aluno/{aluno}/editar', [InscricaoController::class, 'edit'])->name('matricula-edit');
+    Route::put('editar-candidato/{aluno}', [InscricaoController::class, 'update'])->name('matricula-update');
+
     Route::get('editar-matricula', function () {
         return view('matricula/edit-matricula');
     });
@@ -352,7 +356,7 @@ Route::prefix('usuario')->middleware(['auth','checkcargo'])->group(function(){
     Route::get('cadastro',[UserController::class,'usuarioFormCadastro' ])->name('createUsuario');
     Route::post('cadastro',[AuthController::class,'store'])->name('storeUsuario');
 
- 
+
     Route::get('usuarios', function () {
         return view('usuario/usuarios');
     })->name('consultUsuario');
