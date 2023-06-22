@@ -23,7 +23,7 @@ use Symfony\Component\DependencyInjection\Reference;
 class AddMimeTypeGuesserPass implements CompilerPassInterface
 {
     /**
-     * @return void
+     * {@inheritdoc}
      */
     public function process(ContainerBuilder $container)
     {

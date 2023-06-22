@@ -34,9 +34,6 @@ abstract class AbstractHeader implements HeaderInterface
         $this->name = $name;
     }
 
-    /**
-     * @return void
-     */
     public function setCharset(string $charset)
     {
         $this->charset = $charset;
@@ -51,8 +48,6 @@ abstract class AbstractHeader implements HeaderInterface
      * Set the language used in this Header.
      *
      * For example, for US English, 'en-us'.
-     *
-     * @return void
      */
     public function setLanguage(string $lang)
     {
@@ -69,9 +64,6 @@ abstract class AbstractHeader implements HeaderInterface
         return $this->name;
     }
 
-    /**
-     * @return void
-     */
     public function setMaxLineLength(int $lineLength)
     {
         $this->lineLength = $lineLength;
@@ -239,7 +231,9 @@ abstract class AbstractHeader implements HeaderInterface
      */
     protected function toTokens(string $string = null): array
     {
-        $string ??= $this->getBodyAsString();
+        if (null === $string) {
+            $string = $this->getBodyAsString();
+        }
 
         $tokens = [];
         // Generate atoms; split at all invisible boundaries followed by WSP
@@ -269,8 +263,8 @@ abstract class AbstractHeader implements HeaderInterface
         // Build all tokens back into compliant header
         foreach ($tokens as $i => $token) {
             // Line longer than specified maximum or token was just a new line
-            if (("\r\n" === $token)
-                || ($i > 0 && \strlen($currentLine.$token) > $this->lineLength)
+            if (("\r\n" === $token) ||
+                ($i > 0 && \strlen($currentLine.$token) > $this->lineLength)
                 && '' !== $currentLine) {
                 $headerLines[] = '';
                 $currentLine = &$headerLines[$lineCount++];

@@ -16,11 +16,11 @@ namespace Symfony\Component\Uid;
  *
  * @author Grégoire Pineau <lyrixx@lyrixx.info>
  */
-class UuidV1 extends Uuid implements TimeBasedUidInterface
+class UuidV1 extends Uuid
 {
     protected const TYPE = 1;
 
-    private static string $clockSeq;
+    private static ?string $clockSeq = null;
 
     public function __construct(string $uuid = null)
     {
@@ -49,13 +49,13 @@ class UuidV1 extends Uuid implements TimeBasedUidInterface
             if ($node) {
                 // use clock_seq from the node
                 $seq = substr($node->uid, 19, 4);
-            } elseif (!$seq = self::$clockSeq ?? '') {
+            } else {
                 // generate a static random clock_seq to prevent any collisions with the real one
                 $seq = substr($uuid, 19, 4);
 
-                do {
+                while (null === self::$clockSeq || $seq === self::$clockSeq) {
                     self::$clockSeq = sprintf('%04x', random_int(0, 0x3FFF) | 0x8000);
-                } while ($seq === self::$clockSeq);
+                }
 
                 $seq = self::$clockSeq;
             }

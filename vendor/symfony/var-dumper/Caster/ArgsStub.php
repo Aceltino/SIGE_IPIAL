@@ -57,7 +57,7 @@ class ArgsStub extends EnumStub
 
         try {
             $r = null !== $class ? new \ReflectionMethod($class, $function) : new \ReflectionFunction($function);
-        } catch (\ReflectionException) {
+        } catch (\ReflectionException $e) {
             return [null, null];
         }
 
