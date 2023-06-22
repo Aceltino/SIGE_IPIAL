@@ -15,9 +15,15 @@ trait PessoaTrait
     {
         if($dadosEndereco)
         {
+            $consultEndereco= EnderecoController::consultEndereco($dadosEndereco);
+            if(!empty($consultEndereco)){
+                $dadosPessoa['endereco_id']= $consultEndereco->endereco_id;
+                goto contPessoa;
+            }
             $enderecoId = EnderecoController::store($dadosEndereco);
             $dadosPessoa['endereco_id']= $enderecoId;
         }
+        contPessoa:
         $pessoaCriada = Pessoa::create($dadosPessoa);
         return $pessoaCriada->pessoa_id;
     }
@@ -26,10 +32,6 @@ trait PessoaTrait
     public static function updatePessoa_ACTUALIZADO($dadosPessoa,$dadosEndereco=null)
     {      
 
-        // $consultEndereco= EnderecoController::consultEndereco($dadosEndereco);
-        
-        // dd($consultEndereco->endereco_id);
-        
         $pessoas= Pessoa::all();
         $pessoa=  Pessoa::find(session('pessoa_id'));
         $contador= 0;
@@ -68,21 +70,17 @@ trait PessoaTrait
             if($contador > 1){
 
                 //Neste caso cria-se novo endereço
-                $endereco_id_update=EnderecoController::store($dadosEndereco);
-                $pessoa->endereco_id= $endereco_id_update;
-
-                if(!$pessoa->save()){
+                if(EnderecoController::store($dadosEndereco)){
+                    goto update;  
+                }
+                return false;  
+            }else{
+                update:
+                //Neste caso actualiza-se o endereço existente
+                if(!EnderecoController::update($id, $dadosEndereco)){
                     return false;
                 }
                 return true;
-
-            }else{
-
-            //Neste caso actualiza-se o endereço existente
-            if(!EnderecoController::update($id ,$dadosEndereco)){
-                    return false;
-            }
-            return true;
 
             }
         }

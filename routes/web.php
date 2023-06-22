@@ -230,9 +230,6 @@ Route::prefix('turma')->group(function(){
 /**<!--Fim Rotas turma--> */
 
 
-
-
-
 /*Editar turma */
 Route::get('editar-turma', function () {
     return view('turma/edit-turma');
@@ -352,14 +349,13 @@ Route::prefix('usuario')->middleware(['auth','checkcargo'])->group(function(){
     Route::get('cadastro',[UserController::class,'usuarioFormCadastro' ])->name('createUsuario');
     Route::post('cadastro',[AuthController::class,'store'])->name('storeUsuario');
 
- 
-    Route::get('usuarios', function () {
-        return view('usuario/usuarios');
-    })->name('consultUsuario');
+    Route::get('/', [UserController::class,'index'])->name('consultUsuario');
+
+    Route::patch('estado/{id}',[UserController::class,'userStateChange'])->name('stateChange');
 
     Route::get('use_editar', function () {
         return view('usuario/use_editar');
-    });
+    })->name('editUser');
 });
 /**************************************************
  * Rotas do Calendario de provas

@@ -26,7 +26,27 @@
     </form>
   </div>
 
-  
+  @if(session('erro_status_001'))
+    <div class="alert alert-danger">
+      {{session('erro_status_001')}}
+    </div>
+  @endif
+  @if(session('success_status_001'))
+  <div class="alert alert-warning">
+    {{session('success_status_001')}}
+    </div>
+  @endif
+  @if(session('erro_status_002'))
+  <div class="alert alert-danger">
+    {{session('erro_status_002')}}
+  </div>
+  @endif
+  @if(session('sucess_status_002'))
+  <div class="alert alert-warning">
+    {{session('sucess_status_002')}}
+  </div>
+  @endif
+
   <!-- /  Inicio da tabela de usuários-->
   <table class="table table-striped table-custom" id="matricula-tab">
     <thead>
@@ -41,20 +61,34 @@
       </tr>
     </thead>
     <tbody>
-      <tr style=" text-align: center;">
-        <td>1</td>
-        <th scope="row">Maria Paulo André</th>
-        <td>MariaPauloAndré</td>
-        <td>Femenina</td>
-        <td>professora</td>
-        <td> <a href="#" class="btn btn-cor-sg-a w-48 bg-red">Bloquear</a> </td>
-        <td>
-            <i class="bi bi-eye-fill"></i>
-            <a href="use_editar"><i class="bi bi-pencil"></i></a> 
-          </td>
-      </tr>
       
+        @foreach ($users as $user)
 
+          <tr style=" text-align: center;">
+
+          <td>{{$loop->index + 1}}</td>
+          <th scope="row">{{$user->pessoa->nome_completo}}</th>
+          <td>{{$user->email}}</td>
+          <td>{{$user->pessoa->genero}}</td>
+          <td>{{$user->cargo_usuario}}</td>
+          <td>  
+            <form action={{ route('stateChange', ['id'=>$user->usuario_id]) }} method="post">
+              @csrf
+              @method("PATCH")
+                @if($user->status_usuario===1)
+                  <button type="submit" class="btn btn-danger">Bloquear</button>
+                @else
+                  <button type="submit" class="btn btn-success">Desbloquear</button>
+                @endif
+            </form> 
+        </td>
+          <td>
+              <i class="bi bi-eye-fill"></i>
+              <a href={{ route('editUser', ['id'=>$user->usuario_id]) }}><i class="bi bi-pencil"></i></a> 
+          </td>
+        </tr>
+    
+      @endforeach
       
     </tbody>
   </table>
