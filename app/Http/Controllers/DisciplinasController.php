@@ -13,7 +13,7 @@ class DisciplinasController extends Controller
     public function index()
     {
        $disciplinas = Disciplina::all();
-       $cursos = Curso::puck('nome_curso','curso_id' );
+       $cursos = Curso::all();
 
         return view('disciplina.disciplinas', compact('disciplinas','cursos'));
     }
@@ -54,6 +54,11 @@ class DisciplinasController extends Controller
             'curso_id' => $request->curso,
         ];
         Disciplina::where('disciplina_id',$disciplina_id)->update($dado);
+        return redirect()->route('disciplina.index');
+    }
+    public function destroy($disciplina_id)
+    {
+        Disciplina::where('disciplina_id',$disciplina_id)->delete();
         return redirect()->route('disciplina.index');
     }
 

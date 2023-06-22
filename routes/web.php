@@ -427,7 +427,7 @@ Route::prefix('disciplina')->group(function(){
         Route::get('disciplinas', [DisciplinasController::class,'index'])->name('consultar.disciplina');
         Route::get('regi-disciplina',[DisciplinasController::class, 'create'])->name('criar.disciplina');
         Route::post('regi-disciplina', [DisciplinasController::class, 'store'])->name('disciplina.store');
-        Route::get('edit-disciplina', [DisciplinasController::class, 'edit'])->name('disciplina.edit');
+        Route::get('edit-disciplina', [DisciplinasController::class, 'edit'])->where('disciplina_id','[0-9]+')->name('disciplina.edit');
         Route::put('edit-disciplina/{disciplina_id}', [DisciplinasController::class, 'update'])->where('disciplina_id', '[0-9]+')->name('disciplina.update');
         Route::delete('{disciplina_id}', [DisciplinasController::class, 'destroy'])->where('disciplina_id', '[0-9]+')->name('disciplina.delete');
 });
