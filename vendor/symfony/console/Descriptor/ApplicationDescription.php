@@ -24,7 +24,7 @@ class ApplicationDescription
 {
     public const GLOBAL_NAMESPACE = '_global';
 
-    private Application $application;
+    private $application;
     private ?string $namespace;
     private bool $showHidden;
     private array $namespaces;
@@ -79,7 +79,7 @@ class ApplicationDescription
         return $this->commands[$name] ?? $this->aliases[$name];
     }
 
-    private function inspectApplication(): void
+    private function inspectApplication()
     {
         $this->commands = [];
         $this->namespaces = [];

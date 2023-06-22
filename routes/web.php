@@ -61,7 +61,6 @@ Route::prefix('autenticacao')->group(function(){
     Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar')->middleware(['guest','checkcargo']);
     Route::post('registrar', [AuthController::class,'store'])->name('registrar')->middleware('guest');
 
-
     //Rota para envio de email para redifinição de senha
     Route::get('reset', [AuthController::class,'resetForm'])->name('recuperar-senha')->middleware('guest');
     Route::post('reset/link', [AuthController::class, 'envioLinkEmail'])->name('password-email')->middleware('guest');

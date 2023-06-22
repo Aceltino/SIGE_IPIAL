@@ -30,7 +30,7 @@ use Symfony\Component\Console\Formatter\OutputFormatterInterface;
 abstract class Output implements OutputInterface
 {
     private int $verbosity;
-    private OutputFormatterInterface $formatter;
+    private $formatter;
 
     /**
      * @param int|null                      $verbosity The verbosity level (one of the VERBOSITY constants in OutputInterface)
@@ -45,66 +45,87 @@ abstract class Output implements OutputInterface
     }
 
     /**
-     * @return void
+     * {@inheritdoc}
      */
     public function setFormatter(OutputFormatterInterface $formatter)
     {
         $this->formatter = $formatter;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getFormatter(): OutputFormatterInterface
     {
         return $this->formatter;
     }
 
     /**
-     * @return void
+     * {@inheritdoc}
      */
     public function setDecorated(bool $decorated)
     {
         $this->formatter->setDecorated($decorated);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isDecorated(): bool
     {
         return $this->formatter->isDecorated();
     }
 
     /**
-     * @return void
+     * {@inheritdoc}
      */
     public function setVerbosity(int $level)
     {
         $this->verbosity = $level;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getVerbosity(): int
     {
         return $this->verbosity;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isQuiet(): bool
     {
         return self::VERBOSITY_QUIET === $this->verbosity;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isVerbose(): bool
     {
         return self::VERBOSITY_VERBOSE <= $this->verbosity;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isVeryVerbose(): bool
     {
         return self::VERBOSITY_VERY_VERBOSE <= $this->verbosity;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isDebug(): bool
     {
         return self::VERBOSITY_DEBUG <= $this->verbosity;
     }
 
     /**
-     * @return void
+     * {@inheritdoc}
      */
     public function writeln(string|iterable $messages, int $options = self::OUTPUT_NORMAL)
     {
@@ -112,7 +133,7 @@ abstract class Output implements OutputInterface
     }
 
     /**
-     * @return void
+     * {@inheritdoc}
      */
     public function write(string|iterable $messages, bool $newline = false, int $options = self::OUTPUT_NORMAL)
     {
@@ -148,8 +169,6 @@ abstract class Output implements OutputInterface
 
     /**
      * Writes a message to the output.
-     *
-     * @return void
      */
     abstract protected function doWrite(string $message, bool $newline);
 }

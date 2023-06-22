@@ -6,13 +6,12 @@ use Egulias\EmailValidator\EmailLexer;
 use Egulias\EmailValidator\MessageIDParser;
 use Egulias\EmailValidator\Result\InvalidEmail;
 use Egulias\EmailValidator\Result\Reason\ExceptionFound;
-use Egulias\EmailValidator\Warning\Warning;
 
 class MessageIDValidation implements EmailValidation
 {
 
     /**
-     * @var Warning[]
+     * @var array
      */
     private $warnings = [];
 
@@ -40,9 +39,6 @@ class MessageIDValidation implements EmailValidation
         return true;
     }
 
-    /**
-     * @return Warning[]
-     */
     public function getWarnings(): array
     {
         return $this->warnings;
