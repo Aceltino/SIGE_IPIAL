@@ -40,7 +40,7 @@
         <div class="input-group has-validation">
           <span class="input-group-addon" id="inputGroupPrepend"><i class="bi bi-person"></i></span>
           <input type="text" name="username" autocomplete="off" placeholder="Inserir nome de usuário" class="form-control" required>
-          <div class="invalid-feedback">Por favor insere o Nome do Usuario!</div>
+          <div class="invalid-feedback">Por favor insere o Nome de Usuario!</div>
         </div>
       </div>
 

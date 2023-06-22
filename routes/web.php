@@ -58,7 +58,7 @@ Route::prefix('autenticacao')->group(function(){
     Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck')->middleware('guest');
 
     //Rota de Cadastro
-    Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar')->middleware(['guest','checkcargo']);
+    Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar')->middleware('guest');
     Route::post('registrar', [AuthController::class,'storeInicio'])->name('registrar')->middleware('guest');
 
 

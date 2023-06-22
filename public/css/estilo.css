@@ -474,16 +474,16 @@ a.color-white{
   }
 
   .sidebar::-webkit-scrollbar {
-    width: 12px;
+    width: 15px;
     height: 100px;
-    border: 1px solid #000;
+    border: none;
     border-radius: 20px;
-    background-color: #fff;
+    background-color: var(--bs-cor-principal);
   }
   
   .sidebar::-webkit-scrollbar-thumb {
     border-radius: 35px;
-    background-color: #0a1018;
+    background-color: #0b0338;
   }
   
   @media (min-width: 1200px) {
