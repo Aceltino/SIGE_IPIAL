@@ -22,7 +22,7 @@
     <form action={{route('password-email')}} method="post" class="row g-3 needs-validation" novalidate>
     @csrf
       <div class="input-group col-12">
-        <span class="input-group-addon" id="inputGroupPrepend"><i class="bi bi-lock-fill"></i></span>
+        <span class="input-group-addon" id="inputGroupPrepend"><i class="bi bi-at"></i></span>
         <input type="email" name="email" value="{{old('email')}}" placeholder="Inserir o e-mail" class="form-control" required autofocus> 
 
         @error('email')

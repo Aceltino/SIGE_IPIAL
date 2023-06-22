@@ -13,20 +13,20 @@
           
             <div class="row mb-3">
                 <div class="col">
-                    <input type="text" oninput="this.className = ''" value="Contrução civil" disabled>
+                    <input type="text" oninput="this.className = ''" class="form-control" value="Contrução civil" disabled>
                 </div>
             </div>
 
 
             <div class="row mb-3">
                 <div class="col">
-                    <input type="text" oninput="this.className = ''" value="Desenhador Projectista" disabled>
+                    <input type="text" oninput="this.className = ''" class="form-control" value="Desenhador Projectista" disabled>
                 </div>
             </div>
 
             <div class="row mb-3">
                 <div class="col">
-                    <input type="text" oninput="this.className = ''" value="EI10AN" id="input-editar-horario-turma" disabled>
+                    <input type="text" oninput="this.className = ''" class="form-control" value="EI10AN" id="input-editar-horario-turma" disabled>
                 </div>
             </div>
 
@@ -34,21 +34,22 @@
                 <div class="col-sm-6">
                     <select oninput="this.className = ''" class="form-select">
                         <optgroup label="Primeiro dia de Educação Física">
-                        <option value="Segunda-Feira">Segunda-Feira</option>
-                        <option value="Terça-Feira">Terça-Feira</option>
-                        <option value="Quarta-Feira">Quarta-Feira</option>
-                        <option value="Quinta-Feira">Quinta-Feira</option>
-                        <option value="Sexta-Feira">Sexta-Feira</option>
+                            <option value="Nenhum">Nenhum</option>
+                            <option value="Segunda-Feira">Segunda-Feira</option>
+                            <option value="Terça-Feira">Terça-Feira</option>
+                            <option value="Quarta-Feira">Quarta-Feira</option>
+                            <option value="Quinta-Feira">Quinta-Feira</option>
+                            <option value="Sexta-Feira">Sexta-Feira</option>
                         </optgroup>
                     </select>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="time" title="Hora de início da Educação Física" name="" oninput="this.className = ''" required>
+                    <input type="time" title="Hora de início da Educação Física" class="form-control" id="editar-horario-hora-de-inicio-da-educacao-fisica-no-primeiro-dia" name="" oninput="this.className = ''" required>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="time" title="Hora de fim da Educação Física" name="" oninput="this.className = ''" required>
+                    <input type="time" title="Hora de fim da Educação Física" class="form-control" id="editar-horario-hora-de-fim-da-educacao-fisica-no-primeiro-dia" name="" oninput="this.className = ''" required>
                 </div>
             </div>
 
@@ -56,21 +57,22 @@
                 <div class="col-sm-6">
                     <select oninput="this.className = ''" class="form-select">
                         <optgroup label="Primeiro dia de Educação Física">
-                        <option value="Segunda-Feira">Segunda-Feira</option>
-                        <option value="Terça-Feira">Terça-Feira</option>
-                        <option value="Quarta-Feira">Quarta-Feira</option>
-                        <option value="Quinta-Feira">Quinta-Feira</option>
-                        <option value="Sexta-Feira">Sexta-Feira</option>
+                            <option value="Nenhum">Nenhum</option>
+                            <option value="Segunda-Feira">Segunda-Feira</option>
+                            <option value="Terça-Feira">Terça-Feira</option>
+                            <option value="Quarta-Feira">Quarta-Feira</option>
+                            <option value="Quinta-Feira">Quinta-Feira</option>
+                            <option value="Sexta-Feira">Sexta-Feira</option>
                         </optgroup>
                     </select>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="time" title="Hora de início da Educação Física" class="" name="" oninput="this.className = ''" required>
+                    <input type="time" title="Hora de início da Educação Física" class="form-control" id="editar-horario-hora-de-inicio-da-educacao-fisica-no-segundo-dia" name="" oninput="this.className = ''" required>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="time" title="Hora de fim da Educação Física" class="form-control" name="" oninput="this.className = ''" required>
+                    <input type="time" title="Hora de fim da Educação Física" class="form-control" id="editar-horario-hora-de-fim-da-educacao-fisica-no-segundo-dia" name="" oninput="this.className = ''" required>
                 </div>
             </div>
         
@@ -298,7 +300,7 @@
         
             <h4 class="text-uppercase text-center my-3 color-blue-principal">Segunda-Feira</h4>
           
-            <div class="row">
+            <div class="row mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>1º TEMPO</strong></p>
                 </div>

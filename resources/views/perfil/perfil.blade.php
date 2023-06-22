@@ -265,15 +265,12 @@
                     <div class="alert alert-danger">{{$message}}</div>  
                    @enderror
 
-                
-
                    <div class="row mb-3">
                      <label for="Cargo" class="col-md-4 col-lg-4 col-form-label">Cargo</label>
                      <div class="col-md-8 col-lg-8">
                        <input type="text" class="form-control" id="Cargo" disabled value="{{ Auth::user()->cargo_usuario }}">
                      </div>
                    </div>
-
                    
                    <div class="row mb-3">
                      <label for="Endereco" class="col-md-4 col-lg-4 col-form-label">Endereço</label>
@@ -325,7 +322,6 @@
                </div>
 
                <div class="tab-pane fade pt-3" id="alterar-senha">
-
               
                 @if(session('success_updatePassword_001'))
                   <div class="alert alert-success">

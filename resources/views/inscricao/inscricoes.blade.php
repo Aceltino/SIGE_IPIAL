@@ -30,14 +30,6 @@
 
       </select>
   </div>
-
-    <div class="col-lg-2">
-      <select class="btn-sel form-select" id="filtro">
-        <option selected disabled>Situação</option>
-        <option>A/Admitido</option>
-        <option>N/Admitido</option>
-      </select>
-    </div>
   </div>
 
   <div class="procurar">
@@ -51,14 +43,14 @@
       <button class="btn-imprimir">Imprimir<i class="bi bi-file-earmark-pdf"></i></button>
     </div>
     <!-- / Adicionar a condição se a data atual for menor a da final de matricula aparece o botão -->
-    <div >
-      <a href="{{ route('admitir-inscritos') }}" class="bth btnadmitir">Ativar Admitido</a>
-    </div>
+   
     <!-- / Adicionar a condição se a data atual for menor a da final de matricula aparece o botão fin do coment+ario -->
 
   </div>
   <!-- /  Inicio da tabela de inscritos -->
-
+  <div style="margin-top: 10px;" >
+    <a href="{{ route('admitir-inscritos') }}" class="btn btn-success" style="  text-align: center">Ativar Admitido</a>
+  </div>
   <table class="table table-striped display" style="margin-top: 10px; text-align: center;" id="Inscricoes">
     <thead>
       <tr style=" text-align: center;">

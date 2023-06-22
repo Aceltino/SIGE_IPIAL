@@ -45,6 +45,8 @@
     <script src={{URL::asset("vendor/php-email-form/validate.js")}}></script>
 
     <!-- /  Link do js main do projeto -->
+    <script src={{{URL::asset("js/paineis/inscricacao/Inputbi.js")}}}></script>
+    <script src={{{URL::asset("js/paineis/telefone.js")}}}></script>
     <script src={{URL::asset("js/script.js")}}></script>
     <script src={{{URL::asset("js/form.js")}}}></script>
 </body>

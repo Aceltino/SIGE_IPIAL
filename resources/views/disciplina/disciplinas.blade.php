@@ -59,7 +59,7 @@
         <td>{{ $disciplina['nome_disciplina'] }}</td>
         <td>{{ $disciplina['sigla']		}}</td>
         <td>{{ $disciplina['componente']	}}</td>
-        <td>{{ $disciplina['tempo_prov'] }}</td>
+        <td>{{ $disciplina['tempo_prova'] }}</td>
         @foreach($cursos as $curso)
         @if($cursos == null)
         <td>Todos os cursos</td>
@@ -77,34 +77,9 @@
           <button type="submit" class="bi bi-trash-fill"></button>
           </form>
         </td>
-      </tr>
+      </tr> 
       @endforeach
-      <tr style=" text-align: center;">
-        <th scope="row">Programação</th>
-        <td>Técnicas</td>
-        <td>Técnico de Informática</td>
-
-
-        <td>
-          <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-          <a href="/edit-disciplina"><i class="bi bi-pencil"></i></a>
-          <i class="bi bi-trash-fill"></i>
-
-        </td>
-      </tr>
-      <tr style=" text-align: center;">
-        <th scope="row">Empreendedorismo</th>
-        <td>Socio-culturais</td>
-        <td>Todos os curos</td>
-
-
-        <td>
-          <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-          <a href="/edit-disciplina"><i class="bi bi-pencil"></i></a>
-          <i class="bi bi-trash-fill"></i>
-
-        </td>
-      </tr>
+            </tr>
     </tbody>
   </table>
   <!-- Termina a tabela de disciplina -->
@@ -128,30 +103,28 @@
                   <h1>Dados da discplina</h1>
                 </div>
                   <div class="corpo-modal" >
-              <form class="form-inativo">
+                  <form class="form-inativo">
                 <div class="dados da disciplina">
                 <div class="area-input form-group" style="border: none;">
-                <label>Nome da disciplina: </label><input type="text" name="" value=" Matemática" disabled>
+                <label>Nome da disciplina: </label><input type="text" name="" value="{{ $disciplina->nome_disciplina }}" disabled>
             </div>
             <div class="area-input form-group" style="border: none; ">
-                <label>Sigla: </label><input type="text" name="" value="MAT" disabled>
+                <label>Sigla: </label><input type="text" name="" value="{{ $disciplina->sigla }}" disabled>
             </div>
 
             <div class="area-input form-group" style="border: none; ">
-                <label>Componete: </label><input type="text" name="socio-culturais" value="socio-culturais" disabled>
+                <label>Componete: </label><input type="text" name="socio-culturais" value="{{ $disciplina->componente }}" disabled>
             </div>
             <div class="area-input form-group" style="border: none; ">
-                <label>Curso: </label><input type="text" name="socio-culturais" value="Instalaçoes electricas/Electronica e automaçao" disabled>
+                <label>Curso: </label><input type="text" name="socio-culturais" value="{{ $cursos->nome_curso }}" disabled>
             </div>
-
   <div class="area-input form-group" style="border: none; ">
-                <label>Tempo de prova: </label><input type="text" name="tempo_prova" value="01:30" disabled>
+                <label>Tempo de prova: </label><input type="text" name="tempo_prova" value="{{ $disciplina->tempo_prova }}" disabled>
             </div>
                       <div class="footer-modal" style="text-align: center;">
                         <a href="/edit-disciplina" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
 
-                      </div>
-
+                      </div> 
               </form>
             </div>
 

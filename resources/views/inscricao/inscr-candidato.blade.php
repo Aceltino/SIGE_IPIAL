@@ -190,7 +190,7 @@
         @endphp
           @foreach($cursos as $curso)
           <div class="form-group">
-          <select oninput="this.className = ''" class="form-select" id="select" name="curso{{$a}}">
+          <select oninput="this.className = ''" class="form-select"  name="curso{{$a}}">
           <option selected disabled>Escolha a {{$a}}ª opção</option>
           @foreach ($cursos as $Curso )
           <option value="{{$Curso['nome_curso']}}">{{$Curso['nome_curso']}}</option>
