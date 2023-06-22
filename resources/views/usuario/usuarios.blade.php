@@ -32,7 +32,7 @@
     </div>
   @endif
   @if(session('success_status_001'))
-  <div class="alert alert-warning">
+  <div class="alert alert-success">
     {{session('success_status_001')}}
     </div>
   @endif
@@ -42,7 +42,7 @@
   </div>
   @endif
   @if(session('sucess_status_002'))
-  <div class="alert alert-warning">
+  <div class="alert alert-danger">
     {{session('sucess_status_002')}}
   </div>
   @endif
@@ -81,11 +81,13 @@
                   <button type="submit" class="btn btn-success">Desbloquear</button>
                 @endif
             </form> 
-        </td>
+          </td>
+
           <td>
               <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
               <a href={{ route('editUser', ['id'=>$user->usuario_id]) }}><i class="bi bi-pencil"></i></a> 
           </td>
+          
         </tr>
     
       @endforeach

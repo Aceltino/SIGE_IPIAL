@@ -345,17 +345,17 @@ Route::prefix('comunicado')->middleware(['auth'])->group(function(){
  ****************************************/
 
 Route::prefix('usuario')->middleware(['auth','checkcargo'])->group(function(){
+    
+    
+    Route::get('/', [UserController::class,'index'])->name('consultUsuario');
 
     Route::get('cadastro',[UserController::class,'usuarioFormCadastro' ])->name('createUsuario');
     Route::post('cadastro',[AuthController::class,'store'])->name('storeUsuario');
 
-    Route::get('/', [UserController::class,'index'])->name('consultUsuario');
-
     Route::patch('estado/{id}',[UserController::class,'userStateChange'])->name('stateChange');
 
-    Route::get('use_editar', function () {
-        return view('usuario/use_editar');
-    })->name('editUser');
+    Route::get('editar/{id}', [UserController::class,'show'])->name('editUser');
+    Route::put('update/{id}',[UserController::class,'updateUser'])->name('updateUser');
 });
 /**************************************************
  * Rotas do Calendario de provas
