@@ -3,13 +3,21 @@
 namespace App\Traits;
 use App\Models\Trimestre;
 use App\Models\Nota;
-use App\Models\Aluno;
 use App\Models\Disciplina;
 use App\Models\Professor;
+use App\Models\Professor_disciplina;
+use App\Models\Ano_turma_coord;
+use App\Models\AlunoTurma;
+use App\Models\Ano_lectivo;
 use Illuminate\Support\Facades\Auth;
 
 trait AvaliacaoTrait
 {
+    public static function pegarAnoLectivo()
+    {
+        $ano_lectivo = Ano_lectivo::where('status_ano_lectivo', 1)->get();
+        return $ano_lectivo;
+    }
     public static function pegarTrimestre()
     {
         $trimestre = Trimestre::with('anoLectivo')->where('status', 1)->get();
@@ -17,13 +25,22 @@ trait AvaliacaoTrait
     }
 
 
-    public static function pegarNotaAluno($disciplinas){
+    public static function pegarNotaAluno($disciplinas, $turma){
         $trimestre = self::pegarTrimestre();
-        //dd($trimestre);
-        $aluno = Aluno::with(['candidato.pessoa', 'turmas', 'anoturma.turma'])->where('status', 1)->get();
+
         for ($inc = 0; $inc < count($disciplinas); $inc++) {
+            for ($ii = 0; $ii < count($turma[$inc]); $ii++) {
+
+                $aluno = AlunoTurma::with(['aluno.candidato.pessoa', 'aluno.turmas', 'aluno.anoturma.turma'])
+                ->where('turmaAno_id', $turma[$inc][$ii])->get();
+                //dd($aluno[0]->aluno->candidato->pessoa->nome_completo);
             $dis = Disciplina::find($disciplinas[$inc]);
-            //dd($dis->nome_disciplina);
+            //dd($aluno);
+            if(empty($aluno) || empty($dis)){
+                return false;
+            } elseif(count($aluno) < 1 || count($dis) < 1){
+                return false;
+            }
             for($i = 0; $i < count($aluno); $i++){
                 $mac = null;
                 $med = null;
@@ -46,10 +63,10 @@ trait AvaliacaoTrait
                 if(count($nota) < 1){
                     $dados[$inc][$i] = [
                         'aluno_id' => $aluno[$i]->aluno_id,
-                        'nome' => $aluno[$i]->candidato->pessoa->nome_completo,
-                        'numero_aluno' => $aluno[$i]->turmas[0]->numero_aluno,
-                        'turma_id' => $aluno[0]->anoturma[0]->turma->turma_id,
-                        'nome_turma' => $aluno[0]->anoturma[0]->turma->nome_turma,
+                        'nome' => $aluno[$i]->aluno->candidato->pessoa->nome_completo,
+                        'numero_aluno' => $aluno[$i]->aluno->turmas[0]->numero_aluno,
+                        'turma_id' => $aluno[$i]->aluno->anoturma[0]->turma->turma_id,
+                        'nome_turma' => $aluno[$i]->aluno->anoturma[0]->turma->nome_turma,
                         'trimestre_id' => $trimestre[0]->trimestre_id,
                         'trimestre' => $trimestre[0]->trimestre,
                         'mac' => $mac,
@@ -62,7 +79,7 @@ trait AvaliacaoTrait
                         'exame_especial' => $exame_especial,
                         'disciplina_id' => $dis->disciplina_id,
                         'nome_disciplina' => $dis->nome_disciplina,
-                        'curso' => $aluno[0]->anoturma[0]->turma->curso->nome_curso,
+                        'curso' => $aluno[$i]->aluno->anoturma[0]->turma->curso->nome_curso,
                     ];
                 } else{
                     for($j = 0; $j < count($ac); $j++){
@@ -108,11 +125,11 @@ trait AvaliacaoTrait
                         }
                     }
                     $dados[$inc][$i] = [
-                        'aluno_id' => $aluno[$i]->aluno_id,
-                        'nome' => $aluno[$i]->candidato->pessoa->nome_completo,
-                        'numero_aluno' => $aluno[$i]->turmas[0]->numero_aluno,
-                        'turma_id' => $aluno[0]->anoturma[0]->turma->turma_id,
-                        'nome_turma' => $aluno[0]->anoturma[0]->turma->nome_turma,
+                        'aluno_id' => $aluno[$i]->aluno->aluno_id,
+                        'nome' => $aluno[$i]->aluno->candidato->pessoa->nome_completo,
+                        'numero_aluno' => $aluno[$i]->aluno->turmas[0]->numero_aluno,
+                        'turma_id' => $aluno[$i]->aluno->anoturma[0]->turma->turma_id,
+                        'nome_turma' => $aluno[$i]->aluno->anoturma[0]->turma->nome_turma,
                         'trimestre_id' => $trimestre[0]->trimestre_id,
                         'trimestre' => $trimestre[0]->trimestre,
                         'mac' => $mac,
@@ -125,18 +142,27 @@ trait AvaliacaoTrait
                         'exame_especial' => $exame_especial,
                         'disciplina_id' => $dis->disciplina_id,
                         'nome_disciplina' => $dis->nome_disciplina,
-                        'curso' => $aluno[0]->anoturma[0]->turma->curso->nome_curso,
+                        'curso' => $aluno[$i]->aluno->anoturma[0]->turma->curso->nome_curso,
                     ];
                 }
             }
         }
-        //dd($dados);
+    }
+
         return $dados;
     }
 
     public static function pegarProfessor(){
-        $prof = Auth::user();
-        $pessoa = Professor::with('pessoa')->where('pessoa_id', $prof->pessoa_id)->get();
-        dd($pessoa);
+        $anoturma = Ano_turma_coord::with('turma')->get();
+        //dd($anoturma);
+        $user = Auth::user();
+        $professor = Professor::with('pessoa')->where('pessoa_id', $user->pessoa_id)->get();
+        $ano_lectivo = self::pegarAnoLectivo();
+        $disciplinas = Professor_disciplina::with('disciplina')->where('professor_id', $professor[0]->professor_id)
+        ->where('ano_lectivo_id', $ano_lectivo[0]->ano_lectivo_id)->get();
+        for ($i = 0; $i < count($disciplinas); $i++) {
+          //$disc = $disciplinas[$i]->
+        }
+        dd($disciplinas);
     }
 }

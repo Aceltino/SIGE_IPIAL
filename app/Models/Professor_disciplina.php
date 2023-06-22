@@ -17,5 +17,8 @@ class Professor_disciplina extends Model
     public function turmaAnoCoord(){
         return $this->hasMany(Turma::class, 'turma_id');
     }
+    public function disciplina(){
+        return $this->belongsTo(Disciplina::class, 'disciplina_id');
+    }
 
 }

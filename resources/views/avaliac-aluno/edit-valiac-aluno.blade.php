@@ -4,6 +4,16 @@
 
 @section('conteudo')
 <main id="main" class="main">
+    @if (session()->has('erro'))
+    <div class="alert alert-danger">
+    {{session('erro')}}
+    </div>
+    @endif
+    @if (session()->has('sucesso'))
+    <div class="alert alert-success">
+        {{session('sucesso')}}
+    </div>
+    @endif
   <div class="pagetitle">
     <div class="row">
         <div class="col">
@@ -59,7 +69,7 @@
       <tbody>
         @foreach ($notas as $nota)
             <tr style="text-align: center;">
-                <th scope="row">{{$nota->data_avaliacao}}</th>
+                <th scope="row">{{date('d/m/Y', strtotime($nota->data_avaliacao))}}</th>
                 <td>{{$nota->tipo_prova}}</td>
                 <td>{{$nota->nota_aluno}}</td>
                 <td style="text-align: center">
@@ -75,7 +85,9 @@
 
     <!-- Início da Modal -->
     @foreach ($notas as $nota)
-    <form method="POST" action="">
+    <form method="POST" action="{{route('update.nota.aluno', $nota['nota_id'])}}">
+        @csrf
+        @method('put')
       <div class="modal" id="modal_assiduidade{{$nota['nota_id']}}" tabindex="-1" data-bs-backdrop="false" >
           <div class="modal-dialog modal-xl">
           <div class="modal-content">
@@ -112,9 +124,9 @@
                 </thead>
                 <tbody>
                   <tr style="text-align: center;">
-                    <td>{{$nota->data_avaliacao}}</td>
+                    <td>{{date('d-m-Y', strtotime($nota->data_avaliacao))}}</td>
                     <td>{{$nota->tipo_prova}}</td>
-                    <td><input class=" form-control innota" value="{{$nota->nota_aluno}}" type="text" name="" maxlength="2"></td>
+                    <td><input class=" form-control innota" value="{{$nota->nota_aluno}}" type="text" name="nota_aluno" maxlength="2"></td>
                     <td hidden>Informática</td>
                     <td hidden>Desenho técnico</td>
                     <td hidden>I12BT</td>
