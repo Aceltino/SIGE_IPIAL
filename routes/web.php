@@ -314,7 +314,7 @@ Route::prefix('ficha-biog')->group(function(){
  */
 Route::prefix('processo')->group(function(){
     Route::get('processos',[ProcessoController::class, 'index'])->name('processo.consultar');
-
+    Route::delete('{candidato_id}',[ProcessoController::class, 'destroy'])->where('candidato_id', '[0-9]+')->name('processo.deletar');
 });
 /******************************************
  * Rotas de pauta
