@@ -359,6 +359,14 @@ Route::prefix('usuario')->middleware(['auth','checkcargo'])->group(function(){
     Route::get('cadastro',[UserController::class,'usuarioFormCadastro' ])->name('createUsuario');
     Route::post('cadastro',[AuthController::class,'store'])->name('storeUsuario');
 
+
+    Route::get('usuarios', function () {
+        return view('usuario/usuarios');
+    })->name('consultUsuario');
+
+    Route::get('use_editar', function () {
+        return view('usuario/use_editar');
+    });
     Route::patch('estado/{id}',[UserController::class,'userStateChange'])->name('stateChange');
 
     Route::get('editar/{id}', [UserController::class,'show'])->name('editUser');
@@ -401,9 +409,12 @@ Route::get('/editar_assiduidade', function () {
 
 /*Avaliação de Aluno*/
 Route::get('/avaliar-aluno', [AvaliacaoAlunoController::class, 'index'])->name('avaliacao.aluno');
+Route::post('/avaliar-aluno/cadastrar{id_disciplina}', [AvaliacaoAlunoController::class, 'store'])->name('avaliar.aluno');
+
 
 /*editar Avaliação de Aluno*/
-Route::get('/editar-avaliacao-aluno/{id}', [AvaliacaoAlunoController::class, 'indexUpdate'])->name('editar.avaliacao.aluno');
+Route::get('/editar-avaliacao-aluno/{id_aluno}/{id_disciplina}', [AvaliacaoAlunoController::class, 'indexUpdate'])->name('editar.avaliacao.aluno');
+Route::put('/editar-avaliacao-aluno/update/{id_nota}', [AvaliacaoAlunoController::class, 'update'])->name('update.nota.aluno');
 
 /******************************************
  * Rotas do horário
