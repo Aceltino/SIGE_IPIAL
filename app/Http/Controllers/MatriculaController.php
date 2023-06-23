@@ -28,10 +28,19 @@ class MatriculaController extends Controller
         ]);
     }
 
+    public function edit($id)
+    {
+        $aluno = AlunoController::pegarDadosMatriculado($id);
+        dd($aluno);
+        return view('matricula.edit-matricula',[
+            'aluno' => $aluno[0]
+        ]);
+    }
+
     public function atribuirTurma()
     {
-        $alunos = AlunoTurmaController::situacaoAluno(); // Atribuir turmas aos alunos da 11ª em diante.
-        // $alunos = AlunoTurmaController::SelecionarTurma(); // Atribuir turmas aos recém matriculado da 10ª classe.
+       // $alunos = AlunoTurmaController::situacaoAluno(); // Atribuir turmas aos alunos da 11ª em diante.
+         $alunos = AlunoTurmaController::SelecionarTurma(); // Atribuir turmas aos recém matriculado da 10ª classe.
 
         if($alunos !== true)
         {

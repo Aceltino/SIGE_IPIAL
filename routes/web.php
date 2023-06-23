@@ -153,6 +153,10 @@ Route::prefix('matricula')->group(function(){
     Route::post('matricular-aluno/{candidato}', [MatriculaController::class, 'store'])->name('matricula-store');
 
     /*Editar matricula */
+
+    Route::get('editar-aluno/{aluno}/editar', [InscricaoController::class, 'edit'])->name('matricula-edit');
+    Route::put('editar-candidato/{aluno}', [InscricaoController::class, 'update'])->name('matricula-update');
+
     Route::get('editar-matricula', function () {
         return view('matricula/edit-matricula');
     });

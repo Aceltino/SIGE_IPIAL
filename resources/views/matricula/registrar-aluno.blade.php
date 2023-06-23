@@ -12,7 +12,6 @@
             <span class="step"></span>
             <span class="step"></span>
             <span class="step"></span>
-            <span class="step"></span>
         </div>
 
         <div class="tab">     
@@ -174,330 +173,6 @@
             </div>      
         </div>
 
-        <div class="tab">     
-            <!--  //  //  Inicio do formulario da ficha biografica  //  //--> 
-            <div class="volta-tabela" id="assiduidades">
-
-                <div class="form-ficha">
-                <!--1a Disiciplina-->
-                <div class="assidd-diciplina" style="padding-top: 10px;">     
-
-                    <div class="container">
-                        <div class="row">
-                        <div class="col-lg-3">
-                            <div class="area-input-fb form-group">
-                            <label>Classe: </label><input type="text" readonly="true" disabled name="" value="10ª Classe">
-                            </div>
-                            
-                        </div>
-
-                        <div class="col-lg-2">
-                            <div class="area-input-fb form-group">
-                            <label>Turma: </label><input type="text" name="">
-                            </div>
-                            
-                        </div>
-
-                        <div class="col">
-                            <div class="area-input-fb form-group">
-                            <label>Numero: </label><input type="text" placeholder="Numero do aluno" name="">
-                            </div>
-                            
-                        </div>
-
-                        <div class="col">
-                            <div class="area-input-fb form-group">
-                            <label>Anolec: </label><input type="text" placeholder="Ano lectivo" name="">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                            <div class="area-input-fb form-group">
-                                <label>Escola: </label><input type="text" placeholder="Nome da escola de proveniência" name="">
-                            </div>
-                            
-                            </div>
-
-                            <div class="col-lg-1">
-                            <div class="accordion">
-                            <a href="#" class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseUm" aria-expanded="true" aria-controls="collapseUm" style="padding: 0;background-color: transparent; color: #fff;"></a>
-                                
-                            </div>
-                            
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-
-                    <div id="collapseUm" class="accordion-collapse collapse show" aria-labelledby="headingUm" data-bs-parent="#assiduidades">
-                        <!-- /  Inicio da tabela de ficha biografica -->
-                        <table class="tabelassd">
-                        <thead>
-                            <tr style="background-color: var(--bs-cor-principal); color: #fff;">
-                            <th scope="col" style="text-align: left;">Disciplina</th>
-                            <th scope="col">1ºT</th>
-                            <th scope="col">2ºT</th>                  
-                            <th scope="col">3ºT</th>                  
-                            <th scope="col">CF</th>
-                            <th scope="col">CF</th>                  
-                            <th scope="col">PG</th>
-                            <th scope="col">PG</th>                                   
-                            <th scope="col">CA</th>                  
-                            <th scope="col">F-1ºT</th>
-                            <th scope="col">F-2ºT</th>
-                            <th scope="col">F-3ºT</th>
-                            <th scope="col">1ºE</th>                  
-                            <th scope="col">2ºE</th>                  
-                            <th scope="col">3ºE</th>                  
-                            <th scope="col">CDF</th>      
-                            </tr>
-                        </thead>
-                        <tbody>
-            
-                            <tr>
-                            <td style="text-align: left;">Lingua Portuguesa</td>
-                            <td><input type="text" name="" maxlength="2"></td>
-                            <td><input type="text" name="" maxlength="2"></td>
-                            <td><input type="text" name="" maxlength="2"></td>
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>
-                            
-                            </tr>
-
-                            <tr>
-                            <td style="text-align: left;">Matematica</td>
-                            <td><input type="text" name="" maxlength="2"></td>
-                            <td><input type="text" name="" maxlength="2"></td>
-                            <td><input type="text" name="" maxlength="2"></td>
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>
-                            
-                            </tr>
-
-                            <tr>
-                            <td style="text-align: left;">Projecto Tecnologico</td>
-                            <td><input type="text" name="" maxlength="2"></td>
-                            <td><input type="text" name="" maxlength="2"></td>
-                            <td><input type="text" name="" maxlength="2"></td>
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>
-                            
-                            </tr>
-
-                        
-
-                            <tr>
-                            <td colspan="15" style="text-align: left; background-color: #96abce;">
-                                
-                                <span class="tb-negrito">Situação Final do Aluno: </span><span class="tb-azul">Transferido</span>
-                            </td>
-                            </tr>
-                            
-
-                        </tbody>
-                        </table>
-                        <!-- Termina a tabela de ficha biogrfica -->
-                        
-                    </div>
-                    
-                    
-                </div>
-        
-                <!--Selecacao das classes-->
-                <div class="assidd-diciplina">
-                    <div class="container">
-                        <div class="row" style="padding-top: 10px;">
-                        <div class="col-lg-3">
-                            <div class="area-input-fb form-group">
-                            <label>Classe: </label><input type="text" readonly="true" disabled name="" value="11ª Classe">
-                            </div>
-                            
-                        </div>
-
-                        <div class="col">
-                            <div class="accordion">
-                            <a href="#" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDois" aria-expanded="false" aria-controls="collapseDois" style="background-color: transparent;"></a>
-                                
-                            </div>
-                            
-                        </div>
-
-
-                        </div>
-                        
-                    </div> 
-
-                    <div id="collapseDois" class="accordion-collapse collapse" aria-labelledby="headingDois" data-bs-parent="#assiduidades">
-                    <div class="row" style="padding-top: 10px;">
-                        
-                        <div class="col-lg-2">
-                            <div class="area-input-fb form-group">
-                            <label>Turma: </label><input type="text" name="">
-                            </div>
-                            
-                        </div>
-
-                        <div class="col">
-                            <div class="area-input-fb form-group">
-                            <label>Numero: </label><input type="text" placeholder="Numero do aluno" name="">
-                            </div>
-                            
-                        </div>
-
-                        <div class="col">
-                            <div class="area-input-fb form-group">
-                            <label>Anolec: </label><input type="text" placeholder="Ano lectivo" name="">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                            <div class="area-input-fb form-group">
-                                <label>Escola: </label><input type="text" placeholder="Nome da escola de proveniência" name="">
-                            </div>
-                            
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <!-- /  Inicio da tabela de ficha biografica -->
-                    <table class="tabelassd">
-                        <thead>
-                        <tr style="background-color: var(--bs-cor-principal); color: #fff;">
-                            <th scope="col" style="text-align: left;">Disciplina</th>
-                            <th scope="col">1ºT</th>
-                            <th scope="col">2ºT</th>                  
-                            <th scope="col">3ºT</th>                  
-                            <th scope="col">CF</th>
-                            <th scope="col">CF</th>                  
-                            <th scope="col">PG</th>
-                            <th scope="col">PG</th>                                   
-                            <th scope="col">CA</th>                  
-                            <th scope="col">F-1ºT</th>
-                            <th scope="col">F-2ºT</th>
-                            <th scope="col">F-3ºT</th>
-                            <th scope="col">1ºE</th>                  
-                            <th scope="col">2ºE</th>                  
-                            <th scope="col">3ºE</th>                  
-                            <th scope="col">CDF</th>      
-                        </tr>
-                        </thead>
-                        <tbody>
-            
-                        <tr>
-                            <td style="text-align: left;">Lingua Portuguesa</td>
-                            <td><input type="text" name="" maxlength="2"></td>
-                            <td><input type="text" name="" maxlength="2"></td>
-                            <td><input type="text" name="" maxlength="2"></td>
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>
-                        
-                        </tr>
-
-                        <tr>
-                            <td style="text-align: left;">Matematica</td>
-                            <td><input type="text" name="" maxlength="2"></td>
-                            <td><input type="text" name="" maxlength="2"></td>
-                            <td><input type="text" name="" maxlength="2"></td>
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>
-                        
-                        </tr>
-
-                        <tr>
-                            <td style="text-align: left;">Projecto Tecnologico</td>
-                            <td><input type="text" name="" maxlength="2"></td>
-                            <td><input type="text" name="" maxlength="2"></td>
-                            <td><input type="text" name="" maxlength="2"></td>
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>                  
-                            <td><input type="text" name="" maxlength="2"></td>
-                        
-                        </tr>
-
-                    
-
-                        <tr>
-                            <td colspan="15" style="text-align: left; background-color: #96abce;">
-                            
-                            <span class="tb-negrito">Situação Final do Aluno: </span><span class="tb-azul">Transferido</span>
-                            </td>
-                        </tr>
-                        
-
-                        </tbody>
-                    </table>
-                    <!-- Termina a tabela de ficha biogrfica -->              
-                    
-                    </div>
-                </div>
-
-                </div>
-            </div> 
-            <!-- /// Fim do formulario da ficha biografica-->
-        </div>
-
         <div class="tab"> 
 
             <div class="row" >
@@ -507,70 +182,162 @@
                     </div>
                 </div>
             </div>
-       
-            <div class="form-group">
-                <input type="email" placeholder="Digite o E-mail do Aluno" name="" oninput="this.className = ''">
-            </div>
-
-            <div class="form-group">
-                <input type="text" placeholder="User name" name="" oninput="this.className = ''">
-            </div>
-
-            <div class="form-group">
-                <input type="password" placeholder="Passoword" name="" oninput="this.className = ''">
-            </div>
 
             <div class="row">
-                
-                <div class="col-4 form-group gap-1 ">
-                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
-                        <option disabled>Familiares</option>
-                        <option  value="Pai"selected>Pai</option>
-                        <option value="mãe">Mãe</option>
-                        <option value="outro">Outro</option>
+
+                <div class="col-3 form-group gap-1 ">
+                    <select name="grau1" id="opcoes" oninput="this.className = ''" class="form-select">
+                        <option disabled>Familiares:</option>
+                        <option value="Pai"selected>Pai</option>
+                        <option value="Mãe">Mãe</option>
+                        <option value="Outro">Outro</option>
                     </select>
                 </div>
 
-                <div class="col-4 d-flex gap-1 justify-content-center align-items-center">
+                <div id="clone3"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
                     <span style="color: #777;">+244</span>
-                    <input type="text" name=""  placeholder=" Telefone" oninput="this.className = ''"><i class="bi bi-plus-circle" style=" font-size: 30px; cursor: pointer;"></i> 
-                </div> 
+                    <input type="text" name="telefone1" value="{{ old('telefone1') }}" placeholder="Telefone" oninput="this.className = ''">
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                    <input type="text" placeholder="Nome do Primeiro encarregado" name="nome_enc1" value ="3456789"  oninput="this.className = ''">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p><input type="date" value="{{ old('data_nascimento_enc1') }}" name="data_nascimento_enc1" oninput="this.className = ''"></p>
+                </div>
+
+                <div class="col">
+                    <input type="text" class="form-control" readonly="true" value="00" disabled>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col">
+                    <div class="form-group">
+                      <input type="radio" id="masculino" name="genero1" value="Masculino" checked><label for="masculino"> Masculino</label>
+                      <input type="radio" id="feminino" name="genero1" value="Femenino"><label for="feminino"> Feminino</label>
+                    </div>
+                  </div>
+
+                <div class="col-8">
+                    <div class="form-group">
+                        <input type="text" placeholder="Número do bilhete de identidade"  name="num_bi_enc1" value="{{ old('num_bi_enc1') }}" oninput="this.className = ''">
+                    </div>
+                </div>
             </div>
 
             <div class="row">
-
-                <div class="col-4 form-group gap-1 ">
-                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
-                        <option disabled>Familiares</option>
+                <div class="col-lg-3 form-group gap-1 ">
+                    <select name="grau2" id="opcoes" oninput="this.className = ''" class="form-select">
+                        <option disabled>Familiares:</option>
                         <option value="Pai">Pai</option>
-                        <option value="mãe" selected>Mãe</option>
-                        <option value="outro">Outro</option>
+                        <option value="Mãe" selected>Mãe</option>
+                        <option value="Outro">Outro</option>
                     </select>
                 </div>
-        
 
-                <div class="col-4 d-flex gap-1 justify-content-center align-items-center">
+                <div id="clone2"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
                     <span style="color: #777;">+244</span>
-                    <input type="text" name="" placeholder=" Telefone" oninput="this.className = ''"><i class="bi bi-plus-circle" style=" font-size: 30px; cursor: pointer;"></i> 
+                    <input type="text" name="telefone2" placeholder="Telefone" oninput="this.className = ''">
                 </div>
             </div>
-            
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                    <input type="text" placeholder="Nome do Segundo encarregado" value ="" name="nome_enc2" oninput="this.className = ''">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <p><input type="date" value="" name="data_nascimento_enc2" oninput="this.className = ''"></p>
+                </div>
+
+                <div class="col">
+                    <input type="text" class="form-control" readonly="true" value="00" disabled>
+                </div>
+            </div>
             <div class="row">
 
-                <div class="col-4 form-group gap-1 ">
-                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
-                        <option disabled>Familiares</option>
+                <div class="col">
+                    <div class="form-group">
+                      <input type="radio" id="masculino" name="genero2" value="Masculino" checked><label for="masculino"> Masculino</label>
+                      <input type="radio" id="feminino" name="genero2" value="Femenino"><label for="feminino"> Feminino</label>
+                    </div>
+                  </div>
+
+                <div class="col-8">
+                    <div class="form-group">
+                        <input type="text" placeholder="Número do bilhete de identidade"  name="num_bi_enc2" value="" oninput="this.className = ''">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-3 form-group gap-1 ">
+                    <select name="grau3" id="opcoes" oninput="this.className = ''" class="form-select">
+                        <option disabled>Familiares:</option>
                         <option value="Pai">Pai</option>
-                        <option value="mãe">Mãe</option>
-                        <option value="outro"selected>Outro</option>
+                        <option value="Mãe">Mãe</option>
+                        <option value="Outro"selected>Outro</option>
                     </select>
                 </div>
 
-                <div class="col-4 d-flex gap-1 justify-content-center align-items-center">
+                <div id="clone" class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
                     <span style="color: #777;">+244</span>
-                    <input type="text" name="" placeholder=" Telefone" oninput="this.className = ''"><i class="bi bi-plus-circle" style=" font-size: 30px; cursor: pointer;"></i> 
+                    <input type="text" name="telefone3" placeholder="Telefone" oninput="this.className = ''">
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                    <input type="text" placeholder="Nome do Terceiro encarregado" value="" name="nome_enc3" oninput="this.className = ''">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <p><input type="date" value="" name="data_nascimento_enc3" oninput="this.className = ''"></p>
+                </div>
+
+                <div class="col">
+                    <input type="text" class="form-control" readonly="true" value="00" disabled>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                      <input type="radio" id="masculino" name="genero3" value="Masculino" checked><label for="masculino"> Masculino</label>
+                      <input type="radio" id="feminino" name="genero3" value="Femenino"><label for="feminino"> Feminino</label>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="form-group">
+                        <input type="text" placeholder="Número do bilhete de identidade"  name="num_bi_enc3" value="" oninput="this.className = ''">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class=" col form-group">
+                    <input type="email" placeholder="Digite o E-mail do Aluno" name="email"  value="" oninput="this.className = ''">
+                </div>
+                <div class="col form-group">
+                    <input type="hidden" name="id" value ="123456"> {{-- Input para recuperar o id --}}
+                </div>
+            </div>
+
         </div>  
         <div style="text-align:center;margin-top:10px;">
             <div>

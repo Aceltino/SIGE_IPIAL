@@ -23,6 +23,7 @@ class InscricaoController extends Controller
     }
     public function create(){
         $cursos = Curso::all();
+
         return view('inscricao/inscr-candidato',compact('cursos'));
     }
 

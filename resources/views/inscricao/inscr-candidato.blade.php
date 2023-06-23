@@ -138,10 +138,10 @@
             <input type="text" value="" id="telefoneinput" placeholder="Telefone"  value="{{ old('num_tel') }}" name="num_tel" oninput="this.className = ''">
             <div class="mensagem-erro" style="width: 100%;"></div>
           </div>
-          
+
         </div>
-       
-       
+
+
       </div>
     </div>
 
@@ -190,7 +190,7 @@
         @endphp
           @foreach($cursos as $curso)
           <div class="form-group">
-          <select oninput="this.className = ''" class="form-select" id="select" name="curso{{$a}}">
+          <select oninput="this.className = ''" class="form-select"  name="curso{{$a}}">
           <option selected disabled>Escolha a {{$a}}ª opção</option>
           @foreach ($cursos as $Curso )
           <option value="{{$Curso['nome_curso']}}">{{$Curso['nome_curso']}}</option>
@@ -202,14 +202,13 @@
           </div>
           @endforeach
 
-
     </div>
 
     <div class="tab">
       <h2>Digite as médias para cada disciplina solicitada</h2>
       <div class="form-group">
         <select oninput="this.className = ''" class="form-select" name="LinguaP">
-          <option selected disabled>Língua Portuguesa</option>
+          <option selected >Língua Portuguesa</option>
           <option value="10">10</option>
           <option value="11">11</option>
           <option value="12">12</option>
