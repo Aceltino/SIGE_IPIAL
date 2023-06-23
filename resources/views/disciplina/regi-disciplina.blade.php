@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'editar disciplina')
+@section('title', 'Cadastrardisciplina')
 
 @section('conteudo')
 <main id="main" class="main" >
@@ -17,7 +17,7 @@
                 <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
 
                     <div style="  text-align: center;">
-                        <h2>CADASTrAR DISCIPLINA</h2>
+                        <h2>CADASTRAR DISCIPLINA</h2>
                     </div>
 
                 </div>
@@ -37,7 +37,7 @@
                   <option  value="C.T">Técnicas </option>
                   <option value="I.E"> Socio-culturais</option>
                   <option value="I"> Cientificas</option>
-                </select>
+                </select> 
               </div>
               <div class="row">
                 <div class="col">
@@ -45,9 +45,10 @@
                   <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="curso" value="{{$curso['nome_curso']}}">
                     <label class="form-check-label" for="flexSwitchCheckDefault">{{$curso['nome_curso']}}</label>
-                 </div>
+                 </div> 
                   @endforeach
                             <div class="col">
+                                <label for="">Tempo de prova:</label>
                      <input type="time" style=" text-align: center;" name="tempo_prova"  oninput="this.className = ''">
                  </div>
              </div> 

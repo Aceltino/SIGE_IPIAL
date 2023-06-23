@@ -268,7 +268,7 @@
 
           {{-- <a href={{ route('consultar.processo') }}> --}}
 
-          <a href={{route('processo.consultar')}}>
+          {{-- <a href={{route('processo.consultar')}}> --}}
 
             <i class="bi bi-circle"></i><span>Processos</span>
           </a>
@@ -512,7 +512,7 @@
         <ul id="processo-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
 
-            <a href={{ route('consultar.processo') }}>
+           
             <a href={{route('processo.consultar')}}>
 
               <i class="bi bi-circle"></i><span>Processos</span>

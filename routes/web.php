@@ -58,7 +58,7 @@ Route::prefix('autenticacao')->group(function(){
     Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck')->middleware('guest');
 
     //Rota de Cadastro
-    Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar')->middleware('guest');
+    // Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar')->middleware('guest');
     Route::post('registrar', [AuthController::class,'storeInicio'])->name('registrar')->middleware('guest');
 
 
@@ -350,19 +350,16 @@ Route::prefix('comunicado')->middleware(['auth'])->group(function(){
 
 Route::prefix('usuario')->middleware(['auth','checkcargo'])->group(function(){
 
-
-    Route::get('/', [UserController::class,'index'])->name('consultUsuario');
-
-
     Route::get('/', [UserController::class,'index'])->name('consultUsuario');
 
     Route::get('cadastro',[UserController::class,'usuarioFormCadastro' ])->name('createUsuario');
     Route::post('cadastro',[AuthController::class,'store'])->name('storeUsuario');
 
-    Route::patch('estado/{id}',[UserController::class,'userStateChange'])->name('stateChange');
-
     Route::get('editar/{id}', [UserController::class,'show'])->name('editUser');
-    Route::put('update/{id}',[UserController::class,'updateUser'])->name('updateUser');
+    Route::put('update/{id}',[UserController::class,'updateUser'])->name('updateUser');   
+    
+    Route::patch('estado/{id}',[UserController::class,'userStateChange'])->name('stateChange');
+    Route::post('resgate/{id}',[AuthController::class,'reenviarCredencias'])->name("reenviarCredencias");
 });
 /**************************************************
  * Rotas do Calendario de provas
