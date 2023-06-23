@@ -8,21 +8,46 @@ use App\Models\Nota;
 use App\Traits\AvaliacaoTrait;
 use App\Models\Trimestre;
 use App\Models\Aluno;
+use Illuminate\Support\Facades\Auth;
 
 
 class AvaliacaoAlunoController extends Controller
 {
     public function index()
     {
-        $disciplinas = [1, 2];
-        $turmas[0] = [9, 10];
-        $turmas[1] = [9, 10];
-        //$aluno = Aluno::with(['candidato.pessoa', 'turmas', 'anoturma.turma'])->where('status', 1)->get();
-        //dd($aluno);
-        $aluno = AvaliacaoTrait::pegarProfessor();
-        //$aluno = AvaliacaoTrait::pegarNotaAluno($disciplinas, $turmas);
+        $user = Auth::user();
+        $professor = AvaliacaoTrait::pegarProfessor($user);
 
-        return view('avaliac-aluno/avaliacoes-aluno', compact('aluno'));
+        $inc = 0;
+        for ($i = 0; $i < count($professor); $i++) {
+            $disciplina_id[$i] = $professor[$i]['disciplina_id'];
+            $nome_disciplina[$i] = $professor[$i]['nome_disciplina'];
+            for ($j = 0; $j < (count($professor[$i]) - 2); $j++) {
+                $turma =  AvaliacaoTrait::pegarAnoTurmaCoord($professor[$i][$j]['turma_id']);
+                $n_turma = $professor[$i][$j]['nome_turma'];
+                if($j === 0){
+                    $turmas[$i][$j] = $turma;
+                }
+                if($inc === 0){
+                    $nome_turma[$j] = $n_turma;
+                    $inc++;
+                }
+                if(!in_array($n_turma, $nome_turma)){
+                    $nome_turma[$inc] = $n_turma;
+                    $inc++;
+                }
+                if(!in_array($turma, $turmas[$i])){
+                    $turmas[$i][$j] = $turma;
+                }
+
+            }
+        }
+        //dd($nome_turma);
+        $aluno = AvaliacaoTrait::pegarNotaAluno($disciplina_id, $turmas);
+
+        //dd($aluno);
+
+        return view('avaliac-aluno/avaliacoes-aluno', compact(['aluno', 'nome_disciplina', 'nome_turma']));
     }
 
     public function indexUpdate($id_aluno, $id_disciplina){
@@ -55,6 +80,7 @@ class AvaliacaoAlunoController extends Controller
                 'data_avaliacao' => date('Y-m-d'),
                 'nota_aluno' => $request->ac,
                 'tipo_prova' => "AvaliacaoContinua",
+                'descricao_nota' => null,
                 'aluno_id' => $request->aluno_id,
                 'disciplina_id' => $disciplina_id,
                 'trimestre_id' => $trimestre[0]->trimestre_id
@@ -73,6 +99,7 @@ class AvaliacaoAlunoController extends Controller
                     'data_avaliacao' => date('Y-m-d'),
                     'nota_aluno' => $request->npp,
                     'tipo_prova' => "Prova Professor",
+                    'descricao_nota' => null,
                     'aluno_id' => $request->aluno_id,
                     'disciplina_id' => $disciplina_id,
                     'trimestre_id' => $trimestre[0]->trimestre_id
@@ -92,6 +119,7 @@ class AvaliacaoAlunoController extends Controller
                     'data_avaliacao' => date('Y-m-d'),
                     'nota_aluno' => $request->npt,
                     'tipo_prova' => "ProvaTrimestre",
+                    'descricao_nota' => null,
                     'aluno_id' => $request->aluno_id,
                     'disciplina_id' => $disciplina_id,
                     'trimestre_id' => $trimestre[0]->trimestre_id
@@ -111,6 +139,7 @@ class AvaliacaoAlunoController extends Controller
                     'data_avaliacao' => date('Y-m-d'),
                     'nota_aluno' => $request->exame,
                     'tipo_prova' => "Exame",
+                    'descricao_nota' => null,
                     'aluno_id' => $request->aluno_id,
                     'disciplina_id' => $disciplina_id,
                     'trimestre_id' => $trimestre[0]->trimestre_id
@@ -130,6 +159,7 @@ class AvaliacaoAlunoController extends Controller
                     'data_avaliacao' => date('Y-m-d'),
                     'nota_aluno' => $request->exame_recurso,
                     'tipo_prova' => "Exame Recurso",
+                    'descricao_nota' => null,
                     'aluno_id' => $request->aluno_id,
                     'disciplina_id' => $disciplina_id,
                     'trimestre_id' => $trimestre[0]->trimestre_id

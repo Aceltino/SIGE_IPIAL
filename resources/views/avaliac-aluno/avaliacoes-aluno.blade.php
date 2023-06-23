@@ -32,19 +32,22 @@
           <div class="col-lg-2">
             <select class="btn-sel form-select" id="filtro11">
               <option disabled >Disciplina</option>
-              <option value="MATEMÁTICA">MATEMÁTICA</option>
-              <option value="Programação">Técnicas de Linguagem de Programação</option>
-              <option value="Língua Portuguêsa">Língua Portuguêsa</option>
+              @if (isset($nome_disciplina))
+                @foreach ($nome_disciplina as $disciplina)
+                    <option value="{{$disciplina}}">{{$disciplina}}</option>
+                @endforeach
+              @endif
             </select>
           </div>
 
           <div class="col-lg-2">
             <select class="btn-sel form-select" id="filtro12">
               <option disabled >Turma</option>
-              <option value="I10AM" selected>I10AM</option>
-              <option value="I10BM">I10BM</option>
-              <option value="IE10BM">IE10BM</option>
-              <option value="CT10AM">CT10AM</option>
+              @if (isset($nome_turma))
+                @foreach ($nome_turma as $turma)
+                    <option value="{{$turma}}">{{$turma}}</option>
+                @endforeach
+              @endif
             </select>
           </div>
     </div>

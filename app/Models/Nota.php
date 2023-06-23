@@ -14,6 +14,7 @@ class Nota extends Model
         'data_avaliacao',
         'nota_aluno',
         'tipo_prova',
+        'descricao_nota',
         'aluno_id',
         'disciplina_id',
         'trimestre_id',

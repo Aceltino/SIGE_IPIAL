@@ -6,10 +6,10 @@ use App\Models\Nota;
 use App\Models\Disciplina;
 use App\Models\Professor;
 use App\Models\Professor_disciplina;
-use App\Models\Ano_turma_coord;
+use App\Models\AnoTurmaCood;
 use App\Models\AlunoTurma;
 use App\Models\Ano_lectivo;
-use Illuminate\Support\Facades\Auth;
+
 
 trait AvaliacaoTrait
 {
@@ -38,7 +38,7 @@ trait AvaliacaoTrait
             //dd($aluno);
             if(empty($aluno) || empty($dis)){
                 return false;
-            } elseif(count($aluno) < 1 || count($dis) < 1){
+            } elseif($aluno == null || $dis == null){
                 return false;
             }
             for($i = 0; $i < count($aluno); $i++){
@@ -148,23 +148,35 @@ trait AvaliacaoTrait
             }
         }
     }
-
         return $dados;
     }
 
-    public static function pegarProfessor(){
-        $anoturma = Ano_turma_coord::with('turma')->get();
-        //dd($anoturma);
-        $user = Auth::user();
-        $professor = Professor::with('pessoa')->where('pessoa_id', $user->pessoa_id)->get();
-        dd($user);
-        $ano_lectivo = self::pegarAnoLectivo();
-        $disciplinas = Professor_disciplina::with('disciplina')->where('professor_id', $professor[0]->professor_id)
-        ->where('ano_lectivo_id', $ano_lectivo[0]->ano_lectivo_id)->get();
-        dd($professor);
-        for ($i = 0; $i < count($disciplinas); $i++) {
-          //$disc = $disciplinas[$i]->
-        }
+    public static function pegarProfessor($user){
 
+        $professor = Professor::with('pessoa')->where('pessoa_id', $user->pessoa_id)->get();
+        $ano_lectivo = self::pegarAnoLectivo($professor);
+        $disciplinas = Professor_disciplina::with('disciplina', 'horario.turma.anoturmaCood')->where('professor_id', $professor[0]->professor_id)
+        ->where('ano_lectivo_id', $ano_lectivo[0]->ano_lectivo_id)->get();
+
+        for ($i = 0; $i < count($disciplinas); $i++) {
+            $dados[$i] = [
+                'nome_disciplina' =>  $disciplinas[$i]->disciplina->nome_disciplina,
+                'disciplina_id' => $disciplinas[$i]->disciplina->disciplina_id,
+            ];
+          for ($j = 0; $j < count($disciplinas[$i]->horario); $j++) {
+            $dados[$i][$j] = [
+                'turma_id' => $disciplinas[$i]->horario[$j]->turma_id,
+                'nome_turma' => $disciplinas[$i]->horario[$j]->turma->nome_turma,
+            ];
+          }
+        }
+        return $dados;
+    }
+
+    public static function pegarAnoTurmaCoord($turma_id) : int {
+        $ano_lectivo = self::pegarAnoLectivo();
+        $ano_turma = AnoTurmaCood::where('turma_id', $turma_id)
+        ->where('ano_lectivo_id', $ano_lectivo[0]->ano_lectivo_id)->get();
+        return $ano_turma[0]->turmaAno_id;
     }
 }
