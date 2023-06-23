@@ -162,9 +162,6 @@ class AlunoTurmaController extends Controller
     {
 
         $alunosAdmitidos = [];
-
-        $alunosNAdmitidos = [];
-
         $alunos = AlunoController::alunosTurma();
 
         foreach( $alunos as $aluno )
@@ -174,7 +171,7 @@ class AlunoTurmaController extends Controller
                 $alunosAdmitidos[] = $aluno;
                 continue;
             }
-            $alunosNAdmitidos[] = $aluno;
+            // $alunosNAdmitidos[] = $aluno;
         }
 
         if(!$alunosAdmitidos)

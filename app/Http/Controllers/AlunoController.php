@@ -188,9 +188,6 @@ class AlunoController extends Controller
         ->whereHas('candidato', function ($query) {
             $query->where('status', 'Matriculado');
         })
-        ->whereHas('anoturma', function ($query) {
-            $query->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo());
-        })
         ->where('aluno_id', $id)
         ->get();
 
@@ -204,35 +201,55 @@ class AlunoController extends Controller
 
         $Alunos = [];
 
-        foreach ($alunos as $aluno) {
-                $Alunos[] = [
-                    'N_processo' => $aluno->aluno_id,
-                    'nome' => $aluno->candidato->pessoa->nome_completo,
-                    'idade' => $aluno->idade,
-                    'pai' => $aluno->candidato->nome_pai_cand,
-                    'mae' => $aluno->candidato->nome_mae_cand,
-                    'data_nasc' => $aluno->candidato->pessoa->data_nascimento,
-                    'num_bi' => $aluno->candidato->pessoa->num_bi,
-                    'genero' => $aluno->candidato->pessoa->genero,
-                    'tel_aluno' => $aluno->candidato->pessoa->telefone,
-                    'escola_prov' => $aluno->candidato->escola->escola_prov,
-                    'turno_prov' => $aluno->candidato->escola->turno,
-                    'turma_prov' => $aluno->candidato->escola->turma_aluno,
-                    'ano_prov' => $aluno->candidato->ano_lectivo->ano_lectivo,
-                    'processo_prov' => $aluno->candidato->escola->num_processo,
-                    'N_aluno_prov' => $aluno->candidato->escola->num_aluno,
-                    'curso' => $aluno->candidato->cursoAdmitido,
-                    'enc_grau_1'=>$aluno->encarregado[0]->grau_parentensco_enc,
-                    'tel_grau_1'=>$aluno->encarregado[0]->pessoa->telefone,
-                    'enc_grau_2'=>$aluno->encarregado[1]->grau_parentensco_enc,
-                    'tel_grau_2'=>$aluno->encarregado[1]->pessoa->telefone,
-                    'enc_grau_3'=>$aluno->encarregado[2]->grau_parentensco_enc,
-                    'tel_grau_3'=>$aluno->encarregado[2]->pessoa->telefone
-                ];
+        foreach ($alunos as $aluno)
+        {
+            foreach ($aluno->anoturma as $anoturma)
+            {
+                $turmaAtual = $anoturma->turma->nome_turma;
+                $turnoAtual = $anoturma->turma->turno->nome_turno;
+                $classeAtual = $anoturma->turma->classe->classe;
+                $numAlun_Atual = $anoturma->pivot->numero_aluno;
+                if ($anoturma->ano_lectivo_id === AnoLectivoController::pegarIdAnoLectivo()) {
+                    $turmaAtual = $anoturma->turma->nome_turma;
+                    $turnoAtual = $anoturma->turma->turno->nome_turno;
+                    $classeAtual = $anoturma->turma->classe->classe;
+                    $numAlun_Atual = $anoturma->pivot->numero_aluno;
+                    break;
+                }
+            }
+            $Alunos[] = [
+                'N_processo' => $aluno->aluno_id,
+                'nome' => $aluno->candidato->pessoa->nome_completo,
+                'idade' => $aluno->idade,
+                'cod_inscr' => $aluno->candidato->candidato_id,
+                'pai' => $aluno->candidato->nome_pai_cand,
+                'mae' => $aluno->candidato->nome_mae_cand,
+                'data_nasc' => $aluno->candidato->pessoa->data_nascimento,
+                'num_bi' => $aluno->candidato->pessoa->num_bi,
+                'genero' => $aluno->candidato->pessoa->genero,
+                'tel_aluno' => $aluno->candidato->pessoa->telefone,
+                'escola_prov' => $aluno->candidato->escola->nome_escola,
+                'turno_prov' => $aluno->candidato->escola->turno,
+                'naturalidade' => $aluno->candidato->naturalidade_cand,
+                'turma_prov' => $aluno->candidato->escola->turma_aluno,
+                'ano_prov' => $aluno->candidato->ano_lectivo->ano_lectivo,
+                'processo_prov' => $aluno->candidato->escola->num_processo,
+                'N_aluno_prov' => $aluno->candidato->escola->num_aluno,
+                'turno' => $turnoAtual,
+                'classe' => $classeAtual,
+                'N_aluno' => $numAlun_Atual,
+                'turma' => $turmaAtual,
+                'anoLectivoA' => $anoturma->ano_lectivo->ano_lectivo,
+                'curso' => $aluno->candidato->cursoAdmitido,
+                'enc_grau_1'=>$aluno->encarregado[0]->grau_parentensco_enc,
+                'tel_grau_1'=>$aluno->encarregado[0]->pessoa->telefone,
+                'enc_grau_2'=>$aluno->encarregado[1]->grau_parentensco_enc,
+                'tel_grau_2'=>$aluno->encarregado[1]->pessoa->telefone,
+                'enc_grau_3'=>$aluno->encarregado[2]->grau_parentensco_enc,
+                'tel_grau_3'=>$aluno->encarregado[2]->pessoa->telefone
+            ];
         }
-        dd($Alunos);
         return $Alunos;
-
     }
 //
 }
