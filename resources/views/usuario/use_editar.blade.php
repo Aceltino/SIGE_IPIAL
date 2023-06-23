@@ -146,7 +146,7 @@
                           <option value="insc_user" {{$user->cargo_usuario=='insc_user'? "selected" : ""}}>Colaborador-Inscrição</option>
                           <option value="matri_user" {{$user->cargo_usuario=='matri_user'? "selected" : ""}}>Colaborador-Matricula</option>
                         </select>
-                      </div>
+                    </div>
     
                 </div>              
             </div>
