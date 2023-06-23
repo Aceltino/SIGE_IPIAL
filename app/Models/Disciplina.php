@@ -29,14 +29,6 @@ class Disciplina extends Model
         return $this->hasMany(Nota::class, 'disciplina_id', 'nota_id');
     }
 
-    /*
-     * @author Augusto Kussema
-     * @comment Por favor Não altere aqui
-     */
-    public function curso() {
-        return $this->belongsTo(Curso::class, 'curso_id', 'curso_id');
-    }
-
     public function turmas()
     {
         return $this->belongsToMany(Turma::class, 'classe_disciplina', 'disciplina_id', 'classe_id');

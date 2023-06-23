@@ -11,6 +11,13 @@ class Professor_disciplina extends Model
     protected $table = 'professor_disciplina';
     protected $primaryKey = 'professor_disciplina_id';
 
+    protected $fillable = [
+        'disciplina_id',
+        'professor_id',
+        'ano_lectivo_id',
+        'prioridade'
+    ];
+
     public function turma(){
         return $this->hasMany(Turma::class, 'turma_id');
     }

@@ -13,7 +13,7 @@ class DisciplinasController extends Controller
     public function index()
     {
        $disciplinas = Disciplina::all();
-       $cursos = Curso::puck('nome_curso','curso_id' );
+       $cursos = Curso::pluck('nome_curso','curso_id' );
 
         return view('disciplina.disciplinas', compact('disciplinas','cursos'));
     }

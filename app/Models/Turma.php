@@ -26,9 +26,19 @@ class Turma extends Model
         return $this->belongsTo(Curso::class, 'curso_id');
     }
 
+    public function turmaCurso()
+    {
+        return $this->belongsTo(Curso::class, 'curso_id');
+    }
+
     public function classe()
     {
         return $this->belongsTo(Classe::class, 'classe_id');
+    }
+
+    public function belongerCurso()
+    {
+        return $this->belongsTo(Curso::class, 'curso_id', 'curso_id');
     }
 
     /*

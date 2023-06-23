@@ -15,4 +15,18 @@ class AlunoTurma extends Model
         'updated_at',
         'created_at',
     ];
+
+    public function turmaAno()
+    {
+        return $this->belongsTo(AnoTurmaCood::class, 'turmaAno_id');
+    }
+
+    public function aluno(){
+        return $this->belongsTo(Aluno::class, 'aluno_id');
+    }
+
+    public function anoTurmaCood()
+    {
+        return $this->belongsTo(AnoTurmaCood::class, 'turmaAno_id');
+    }
 }

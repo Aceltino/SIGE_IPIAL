@@ -7,7 +7,7 @@
     <div class="container no-print">
         <div class="row">
             <div class="col" style="display: flex; justify-content: flex-start; align-items: center;">
-                <a href="/mini-pauta"><i class="voltar bi bi-arrow-left-circle-fill"></i></a>
+                <a href={{ route('mini-pauta') }}><i class="voltar bi bi-arrow-left-circle-fill"></i></a>
 
                 <h1>Mini pauta</h1>      
             </div>
@@ -53,22 +53,22 @@
                     <span>Disciplina</span>
                 </th>
                 <th class="coluna-tab-mp">
-                    <span>MAT</span>
+                    <span>{{ $disciplina->nome_disciplina }}</span>
                 </th>
                 <th class="coluna-tab-mp" colspan="12">
-                    <span>Prof.(a): Osvaldo de Carvalho da Silva Neto</span>
+                    <span>Prof.(a): {{ $professor->pessoa->nome_completo }}</span>
                 </th>
                 <th class="coluna-tab-mp" colspan="6">
-                    <span>Turno: Tarde</span>
+                    <span>Turno: {{ $turma->turno->nome_turno }}</span>
                 </th>
                 <th class="coluna-tab-mp" colspan="7">
-                    Ano Lectivo: <span class="largura-18">2022/2023</span>
+                    Ano Lectivo: <span class="largura-18">{{ $anoturmacoord->ano_lectivo->ano_lectivo }}</span>
                 </th>
             </tr>
 
             <tr class="linha-tab-mp">
                 <th class="coluna-tab-mp" colspan="3" rowspan="2">
-                    <span class="largura-24">Turma: I12AT</span>
+                    <span class="largura-24">Turma: {{ $turma->nome_turma }}</span>
                 </th>
                 <th class="coluna-tab-mp" colspan="25">
                     <span class="nota-pos" style="font-size: 12pt;">CLASSIFICAÇÃO</span>
@@ -228,104 +228,157 @@
                 </th>            
             </tr>
 
-            <tr class="linha-tab-mp">
-                <td class="coluna-tab-mp">1</td>
-                <td class="sm-cor"></td>
-                <td class="coluna-tab-mp" style="font-size: 11pt;">Ana Maria Lopes Bliss</td>
-                <td class="coluna-tab-mp">
-                    <span class="largura-10">17</span>
-                </td>
-                <td class="coluna-tab-mp">
-                    <span class="largura-10">F</span>
-                </td>
-                <td class="coluna-tab-mp">
-                    <span class="nota-pos largura-10">16</span>
-                </td>
-                <td class="coluna-tab-mp">
-                    <span class="nota-pos largura-10">19</span>
-                </td>
-                <td class="coluna-tab-mp">
-                    <span class="nota-neg largura-10">8</span>
-                </td>
-                <td class="coluna-tab-mp">
-                    <span class="nota-pos largura-10">13</span>
-                </td>            
-                <td class="coluna-tab-mp">
-                    <span class="largura-10">
-                    
-                    </span>
-                </td>            
-                <td class="coluna-tab-mp">
-                    <span class="largura-10">
-                    
-                    </span>
-                </td>
-                <td class="coluna-tab-mp">
-                    <span class="nota-pos largura-10">11</span>
-                </td>
-                <td class="coluna-tab-mp">
-                    <span class="nota-pos largura-10">10</span>
-                </td>
-                <td class="coluna-tab-mp">
-                    <span class="nota-pos largura-10">17</span>
-                </td>
-                <td class="coluna-tab-mp">
-                    <span class="nota-neg largura-10">6</span>
-                </td>
-                <td class="coluna-tab-mp">
-                    <span class="largura-10">
-                    
-                    </span>
-                </td>            
-                <td class="coluna-tab-mp">
-                    <span class="largura-10">
-                    
-                    </span>
-                </td>        
-                <td class="coluna-tab-mp">
-                    <span class="nota-pos largura-10">14</span>
-                </td>
-                <td class="coluna-tab-mp">
-                    <span class="nota-pos largura-10">12</span>
-                </td>
-                <td class="coluna-tab-mp">
-                    <span class="nota-pos largura-10">14</span>
-                </td>
-                <td class="coluna-tab-mp">
-                    <span class="nota-pos largura-10">18</span>
-                </td>
-                <td class="coluna-tab-mp">
-                    <span class="largura-10">
-                    
-                    </span>
-                </td>        
-                <td class="coluna-tab-mp">
-                    <span class="largura-10">
-                    
-                    </span>
-                </td>            
-                <td class="coluna-tab-mp">
-                    <span class="largura-10">
-                    
-                    </span>
-                </td>
-                <td class="coluna-tab-mp">
-                    <span class="nota-pos largura-10">16</span>
-                </td>
-                <td class="coluna-tab-mp">
-                    <span class="nota-pos largura-10">11</span>
-                </td>            
-                <td class="coluna-tab-mp">
-                    <span class="largura-10">
-                    
-                    </span>
-                </td>            
-                <td class="coluna-tab-mp">
-                    <span class="nota-pos decide-mp">Transita</span>
-                </td>            
-            </tr>
+            @foreach($alunoTurma as $at)
+                <tr class="linha-tab-mp">
+                    {{-- Posicao na lista --}}
+                    <td class="coluna-tab-mp">{{ $at->numero_aluno }}</td>
 
-            <tr class="linha-tab-mp">
+                    <td class="sm-cor"></td>
+                    <td class="coluna-tab-mp" style="font-size: 11pt;">{{ $at->aluno->candidato->pessoa->nome_completo }}{{-- -$aluno->aluno->candidato->pessoa->nome_completo --}}</td>
+
+                    {{-- Idade --}}
+                    <td class="coluna-tab-mp">
+                        <span class="largura-10">{{ getIdade($at->aluno->candidato->pessoa->data_nascimento) }}</span>
+                    </td>
+
+                    {{-- Genero --}}
+                    <td class="coluna-tab-mp">
+                        <span class="largura-10">{{ getGenero($at->aluno->candidato->pessoa->genero) }}</span>
+                    </td>
+
+                    {{-- MAC --}}
+                    <td class="coluna-tab-mp">
+                        <span class="nota-pos largura-10">0</span>
+                    </td>
+
+                    {{-- NPP --}}
+                    <td class="coluna-tab-mp">
+                        <span class="nota-pos largura-10">0</span>
+                    </td>
+
+                    <td class="coluna-tab-mp">
+                        <span class="nota-neg largura-10">0</span>
+                    </td>
+
+                    {{-- NPT --}}
+                    <td class="coluna-tab-mp">
+                        <span class="nota-pos largura-10">0</span>
+                    </td>            
+
+                    {{-- FNJ --}}
+                    <td class="coluna-tab-mp">
+                        <span class="largura-10">
+                        
+                        </span>
+                    </td>            
+
+                    {{-- FJ --}}
+                    <td class="coluna-tab-mp">
+                        <span class="largura-10">
+                        
+                        </span>
+                    </td>
+
+                    {{-- MAC 2 --}}
+                    <td class="coluna-tab-mp">
+                        <span class="nota-pos largura-10">0</span>
+                    </td>
+
+                    {{-- NPP 2 --}}
+                    <td class="coluna-tab-mp">
+                        <span class="nota-pos largura-10">0</span>
+                    </td>
+
+                    {{-- NPT 2 --}}
+                    <td class="coluna-tab-mp">
+                        <span class="nota-pos largura-10">0</span>
+                    </td>
+
+                    {{-- MT 2 --}}
+                    <td class="coluna-tab-mp">
+                        <span class="nota-neg largura-10">0</span>
+                    </td>
+
+                    {{-- Faltas FNJ 2--}}
+                    <td class="coluna-tab-mp">
+                        <span class="largura-10">
+                        
+                        </span>
+                    </td>            
+
+                    {{-- FJ 2--}}
+                    <td class="coluna-tab-mp">
+                        <span class="largura-10">
+                        
+                        </span>
+                    </td>        
+
+                    {{-- MAC 3--}}
+                    <td class="coluna-tab-mp">
+                        <span class="nota-pos largura-10">0</span>
+                    </td>
+
+                    {{--  NPP 3--}}
+                    <td class="coluna-tab-mp">
+                        <span class="nota-pos largura-10">0</span>
+                    </td>
+
+                    {{-- NPT 3--}}
+                    <td class="coluna-tab-mp">
+                        <span class="nota-pos largura-10">0</span>
+                    </td>
+                    
+                    {{--  MT3 3  --}}
+                    <td class="coluna-tab-mp">
+                        <span class="nota-pos largura-10">0</span>
+                    </td>
+
+                    {{--  FNJ 3  --}}
+                    <td class="coluna-tab-mp">
+                        <span class="largura-10">
+                        
+                        </span>
+                    </td>      
+
+                    {{--  TOTAL 3  --}}  
+                    <td class="coluna-tab-mp">
+                        <span class="largura-10">
+                        
+                        </span>
+                    </td>         
+
+                    {{--  EXAME 3  --}}   
+                    <td class="coluna-tab-mp">
+                        <span class="largura-10">
+                        
+                        </span>
+                    </td>
+
+                    {{--  MFD 3  --}}
+                    <td class="coluna-tab-mp">
+                        <span class="nota-pos largura-10">0</span>
+                    </td>
+
+                    {{--  MF 3  --}}
+                    <td class="coluna-tab-mp">
+                        <span class="nota-pos largura-10">0</span>
+                    </td>     
+
+                    {{--  E. RECURSO 3  --}}       
+                    <td class="coluna-tab-mp">
+                        <span class="largura-10">
+                        
+                        </span>
+                    </td>         
+
+                    {{--  OBS  --}}   
+                    <td class="coluna-tab-mp">
+                        <span class="nota-pos decide-mp" style="color: red">{{ $at->situacao }}</span>
+                    </td>            
+                </tr>
+            @endforeach
+
+            <!--<tr class="linha-tab-mp">
                 <td class="coluna-tab-mp">2</td>
                 <td class="sm-cor"></td>
                 <td class="coluna-tab-mp" style="font-size: 11pt;">Beto Domigos Afonso</td>
@@ -426,7 +479,7 @@
                 <td class="coluna-tab-mp">
                     <span class="nota-neg decide-mp">N/Transita</span>
                 </td>            
-            </tr>
+            </tr> -->
         </tbody>
     </table>
     <!--Fim da mini-pauta-->
@@ -543,7 +596,7 @@
                 <td class="coluna-tab-mp">0</td>
                 <td class="coluna-tab-mp">0</td>
                 <td class="coluna-tab-mp" colspan="2" rowspan="2">
-                    <span class="nome-prof" style="font-size: 12pt;">Osvaldo de Carvalho da Silva Neto</span>
+                    <span class="nome-prof" style="font-size: 12pt;">{{ $professor->pessoa->nome_completo }}</span>
                 </td>
             </tr>
 

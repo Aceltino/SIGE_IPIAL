@@ -26,4 +26,9 @@ class ClasseDisciplina extends Model
     {
         return $this->belongsTo(Disciplina::class, 'disciplina_id', 'disciplina_id');
     }
+
+    public function belongDisciplina()
+    {
+        return $this->belongsTo(Disciplina::class, 'disciplina_id');
+    }
 }

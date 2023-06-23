@@ -323,6 +323,7 @@ Route::prefix('pauta')->middleware(['auth'])->group(function(){
 Route::prefix('mini-pauta')->group(function(){
     Route::get('mini-pauta', [MiniPautaController::class, 'index'])->name('mini-pauta');
     Route::get('ver-mini-pauta', [MiniPautaController::class, 'show'])->name('mini-pauta.show');
+    Route::get('{turma}/{prof_id}/{disciplina}', [MiniPautaController::class, 'view'])->name('mini-pauta.view');
 
 });
 /******************************************

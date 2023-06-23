@@ -9,11 +9,11 @@
         <div style="text-align:center;margin-top:40px;">
           <span class="step"></span>
           <span class="step"></span>
-          <span class="step"></span>
+          <!-- <span class="step"></span> -->
         </div>
  
         <div class="tab">
-          <h2 class="text-uppercase text-center my-3 color-blue-principal">introduza os dados pessoais</h2>
+          <h2 class="text-uppercase text-center my-3 color-blue-principal">introduza os dados pessoais </h2>
           
           @if($errors->any())
             <div class="alert alert-danger">
@@ -25,8 +25,18 @@
             </div>
           @endif
 
-          <div class="form-group">
-            <input name='nome_completo' type="text" class="input-sm" placeholder="Nome Completo do professor" name="" oninput="this.className = ''">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                  <input name='nome_completo' type="text" class="input-sm" placeholder="Nome Completo do professor" name="" oninput="this.className = ''">
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <input name='formacao' type="text" class="input-sm" placeholder="Formação do professor" oninput="this.className = ''">
+              </div>
+            </div>
           </div>
           
           <div class="row">
@@ -56,7 +66,7 @@
                 <label class="me-3">Sexo:</label>
                 <input type="radio" id="masculino" name="genero" value="Masculino" {{ old('genero') == 'Masculino' ? 'checked' : '' }}>
                 <label for="masculino" class="me-2"> Masculino</label>
-                <input type="radio" id="feminino" name="genero" value="Feminino" {{ old('genero') == 'Feminino' ? 'checked' : '' }}>
+                <input type="radio" id="feminino" name="genero" value="Femenino" {{ old('genero') == 'Femenino' ? 'checked' : '' }}>
                 <label for="feminino"> Feminino</label>
               </div>
             </div>
@@ -81,7 +91,7 @@
           <div class="row">
             <div id="clone1"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
                 <span style="color: #777;">+244</span>
-                <input name='num_tel' type="text" name="" placeholder="Telefone" oninput="this.className = ''">
+                <input name='telefone' type="text" placeholder="Telefone" oninput="this.className = ''">
               </div>
 
               <div class="col-3">
@@ -93,11 +103,11 @@
         <div class="tab">
           <h2 class="text-uppercase text-center my-3 color-blue-principal">disciplinas a lecionar</h2>
           <div class="form-group">
-            <select name='formacao' oninput="this.className = ''" class="form-select">
+            <select name='curso' oninput="this.className = ''" class="form-select">
               <optgroup label="Curso">
 
                 @foreach ($cursos as $curso)
-                  <option value="{{ $curso->sigla }}">{{ $curso->nome_curso }}</option>
+                  <option value="{{ $curso->curso_id }}">{{ $curso->nome_curso }}</option>
                 @endforeach
                 
               </optgroup>
@@ -118,37 +128,22 @@
 
           <div class="row">
             <div class="form-group col">
-              <select oninput="this.className = ''" class="form-select">
-                <optgroup label="Disciplina">
-                  <option>Educação Física</option>
-                  <option>Electrotecnia</option>
-                  <option>Empreendedorismo</option>
-                  <option>Física</option>
-                  <option>Formação de Atitudes Integradoras</option>
-                  <option>Língua Portuguesa</option>
-                  <option>Língua Estrangeira</option>
-                  <option>Geometria Descritiva</option>
-                  <option>Matemática</option>
-                  <option>Máquinas Eléctricas</option>
-                  <option>Organização e Gestão Industrial</option>
-                  <option>Práticas Oficinais</option>
-                  <option>Projecto Tecnológico</option>
-                  <option>Química</option>
-                  <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                  <option>Técnicas e Linguagens de Programação</option>
-                  <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                  <option>Tecnologias de Informação e Comunicação</option>
+              <select name='disciplina' oninput="this.className = ''" class="form-select">
+                <optgroup label="Disciplinas">
+                  @foreach($disciplinas as $disciplina)
+                    <option value="{{ $disciplina->disciplina_id }}">{{ $disciplina->nome_disciplina }}</option>
+                  @endforeach
                 </optgroup>
               </select>
             </div>
           </div>
         </div>
 
-        <div class="tab">
+        <!--<div class="tab">
           <h2 class="text-uppercase text-center my-3 color-blue-principal">informações importantes para o instituto</h2>
 
           <div class="form-group">
-            <input type="email" placeholder="E-mail do professor" oninput="this.className = ''">
+            <input name="email_professor" type="email" placeholder="E-mail do professor" oninput="this.className = ''">
           </div>
 
           <div class="form-group">
@@ -158,7 +153,7 @@
           <div class="form-group">
             <input type="password" placeholder="Password do professor (Auto-preenchimento)" oninput="this.className = ''">
           </div>
-        </div>
+        </div> -->
 
         <div style="text-align:center;margin-top:40px;">
           <div>
