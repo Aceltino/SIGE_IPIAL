@@ -31,7 +31,6 @@ class Professor extends Model
 
     protected $fillable = [
         'formacao',
-        'uuid',
         'pessoa_id',
     ];
 

@@ -24,16 +24,19 @@ use Symfony\Component\Console\Formatter\OutputFormatterInterface;
  */
 class NullOutput implements OutputInterface
 {
-    private NullOutputFormatter $formatter;
+    private $formatter;
 
     /**
-     * @return void
+     * {@inheritdoc}
      */
     public function setFormatter(OutputFormatterInterface $formatter)
     {
         // do nothing
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getFormatter(): OutputFormatterInterface
     {
         // to comply with the interface we must return a OutputFormatterInterface
@@ -41,53 +44,71 @@ class NullOutput implements OutputInterface
     }
 
     /**
-     * @return void
+     * {@inheritdoc}
      */
     public function setDecorated(bool $decorated)
     {
         // do nothing
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isDecorated(): bool
     {
         return false;
     }
 
     /**
-     * @return void
+     * {@inheritdoc}
      */
     public function setVerbosity(int $level)
     {
         // do nothing
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getVerbosity(): int
     {
         return self::VERBOSITY_QUIET;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isQuiet(): bool
     {
         return true;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isVerbose(): bool
     {
         return false;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isVeryVerbose(): bool
     {
         return false;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function isDebug(): bool
     {
         return false;
     }
 
     /**
-     * @return void
+     * {@inheritdoc}
      */
     public function writeln(string|iterable $messages, int $options = self::OUTPUT_NORMAL)
     {
@@ -95,7 +116,7 @@ class NullOutput implements OutputInterface
     }
 
     /**
-     * @return void
+     * {@inheritdoc}
      */
     public function write(string|iterable $messages, bool $newline = false, int $options = self::OUTPUT_NORMAL)
     {

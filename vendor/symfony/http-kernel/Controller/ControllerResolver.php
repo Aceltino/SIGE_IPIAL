@@ -23,17 +23,22 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ControllerResolver implements ControllerResolverInterface
 {
-    private ?LoggerInterface $logger;
+    private $logger;
 
     public function __construct(LoggerInterface $logger = null)
     {
         $this->logger = $logger;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getController(Request $request): callable|false
     {
         if (!$controller = $request->attributes->get('_controller')) {
-            $this->logger?->warning('Unable to look for the controller as the "_controller" parameter is missing.');
+            if (null !== $this->logger) {
+                $this->logger->warning('Unable to look for the controller as the "_controller" parameter is missing.');
+            }
 
             return false;
         }
@@ -109,7 +114,7 @@ class ControllerResolver implements ControllerResolverInterface
                 if ((new \ReflectionMethod($class, $method))->isStatic()) {
                     return $class.'::'.$method;
                 }
-            } catch (\ReflectionException) {
+            } catch (\ReflectionException $reflectionException) {
                 throw $e;
             }
 
@@ -197,6 +202,8 @@ class ControllerResolver implements ControllerResolverInterface
     {
         $methods = get_class_methods($classOrObject);
 
-        return array_filter($methods, fn (string $method) => 0 !== strncmp($method, '__', 2));
+        return array_filter($methods, function (string $method) {
+            return 0 !== strncmp($method, '__', 2);
+        });
     }
 }

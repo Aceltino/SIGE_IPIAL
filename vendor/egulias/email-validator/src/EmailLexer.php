@@ -5,11 +5,13 @@ namespace Egulias\EmailValidator;
 use Doctrine\Common\Lexer\AbstractLexer;
 use Doctrine\Common\Lexer\Token;
 
-/** @extends AbstractLexer<int, string> */
+/**
+ * @extends AbstractLexer<int, string>
+ */
 class EmailLexer extends AbstractLexer
 {
     //ASCII values
-    public const S_EMPTY            = -1;
+    public const S_EMPTY            = null;
     public const C_NUL              = 0;
     public const S_HTAB             = 9;
     public const S_LF               = 10;
@@ -48,7 +50,7 @@ class EmailLexer extends AbstractLexer
     public const S_CLOSECURLYBRACES = 125;
     public const S_TILDE            = 126;
     public const C_DEL              = 127;
-    public const INVERT_QUESTIONMARK = 168;
+    public const INVERT_QUESTIONMARK= 168;
     public const INVERT_EXCLAMATION = 173;
     public const GENERIC            = 300;
     public const S_IPV6TAG          = 301;
@@ -133,21 +135,38 @@ class EmailLexer extends AbstractLexer
     protected $hasInvalidTokens = false;
 
     /**
-     * @var Token<int, string>
+     * @var array
+     *
+     * @psalm-var array{value:string, type:null|int, position:int}|array<empty, empty>
      */
-    protected Token $previous;
+    protected $previous = [];
 
     /**
      * The last matched/seen token.
      *
-     * @var Token<int, string>
+     * @var array|Token
+     *
+     * @psalm-suppress NonInvariantDocblockPropertyType
+     * @psalm-var array{value:string, type:null|int, position:int}|Token<int, string>
      */
-    public Token $current;
+    public $token;
 
     /**
-     * @var Token<int, string>
+     * The next token in the input.
+     *
+     * @var array|Token|null
+     *
+     * @psalm-suppress NonInvariantDocblockPropertyType
+     * @psalm-var array{position: int, type: int|null|string, value: int|string}|Token<int, string>|null
      */
-    private Token $nullToken;
+    public $lookahead;
+
+    /** @psalm-var array{value:'', type:null, position:0} */
+    private static $nullToken = [
+        'value' => '',
+        'type' => null,
+        'position' => 0,
+    ];
 
     /** @var string */
     private $accumulator = '';
@@ -157,19 +176,15 @@ class EmailLexer extends AbstractLexer
 
     public function __construct()
     {
-        /** @var Token<int, string> $nullToken */
-        $nullToken = new Token('', self::S_EMPTY, 0);
-        $this->nullToken = $nullToken;
-
-        $this->current = $this->previous = $this->nullToken;
+        $this->previous = $this->token = self::$nullToken;
         $this->lookahead = null;
     }
 
-    public function reset(): void
+    public function reset() : void
     {
         $this->hasInvalidTokens = false;
         parent::reset();
-        $this->current = $this->previous = $this->nullToken;
+        $this->previous = $this->token = self::$nullToken;
     }
 
     /**
@@ -179,7 +194,7 @@ class EmailLexer extends AbstractLexer
      *
      * @psalm-suppress InvalidScalarArgument
      */
-    public function find($type): bool
+    public function find($type) : bool
     {
         $search = clone $this;
         $search->skipUntil($type);
@@ -195,23 +210,22 @@ class EmailLexer extends AbstractLexer
      *
      * @return boolean
      */
-    public function moveNext(): bool
+    public function moveNext() : bool
     {
-        if ($this->hasToRecord && $this->previous === $this->nullToken) {
-            $this->accumulator .= $this->current->value;
+        if ($this->hasToRecord && $this->previous === self::$nullToken) {
+            $this->accumulator .= ((array) $this->token)['value'];
         }
 
-        $this->previous = $this->current;
+        $this->previous = (array) $this->token;
 
-        if ($this->lookahead === null) {
-            $this->lookahead = $this->nullToken;
+        if($this->lookahead === null) {
+            $this->lookahead = self::$nullToken;
         }
 
         $hasNext = parent::moveNext();
-        $this->current = $this->token ?? $this->nullToken;
 
         if ($this->hasToRecord) {
-            $this->accumulator .= $this->current->value;
+            $this->accumulator .= ((array) $this->token)['value'];
         }
 
         return $hasNext;
@@ -224,7 +238,7 @@ class EmailLexer extends AbstractLexer
      * @throws \InvalidArgumentException
      * @return integer
      */
-    protected function getType(&$value): int
+    protected function getType(&$value)
     {
         $encoded = $value;
 
@@ -245,30 +259,31 @@ class EmailLexer extends AbstractLexer
             return self::INVALID;
         }
 
-        return self::GENERIC;
+
+        return  self::GENERIC;
     }
 
-    protected function isValid(string $value): bool
+    protected function isValid(string $value) : bool
     {
         return isset($this->charValue[$value]);
     }
 
-    protected function isNullType(string $value): bool
+    protected function isNullType(string $value) : bool
     {
         return $value === "\0";
     }
 
-    protected function isInvalidChar(string $value): bool
+    protected function isInvalidChar(string $value) : bool
     {
         return !preg_match(self::INVALID_CHARS_REGEX, $value);
     }
 
-    protected function isUTF8Invalid(string $value): bool
+    protected function isUTF8Invalid(string $value) : bool
     {
         return preg_match(self::VALID_UTF8_REGEX, $value) !== false;
     }
 
-    public function hasInvalidTokens(): bool
+    public function hasInvalidTokens() : bool
     {
         return $this->hasInvalidTokens;
     }
@@ -276,9 +291,9 @@ class EmailLexer extends AbstractLexer
     /**
      * getPrevious
      *
-     * @return Token<int, string>
+     * @return array
      */
-    public function getPrevious(): Token
+    public function getPrevious() : array
     {
         return $this->previous;
     }
@@ -288,7 +303,7 @@ class EmailLexer extends AbstractLexer
      *
      * @return string[]
      */
-    protected function getCatchablePatterns(): array
+    protected function getCatchablePatterns() : array
     {
         return self::CATCHABLE_PATTERNS;
     }
@@ -298,32 +313,32 @@ class EmailLexer extends AbstractLexer
      *
      * @return string[]
      */
-    protected function getNonCatchablePatterns(): array
+    protected function getNonCatchablePatterns() : array
     {
         return self::NON_CATCHABLE_PATTERNS;
     }
 
-    protected function getModifiers(): string
+    protected function getModifiers() : string
     {
         return self::MODIFIERS;
     }
 
-    public function getAccumulatedValues(): string
+    public function getAccumulatedValues() : string
     {
         return $this->accumulator;
     }
 
-    public function startRecording(): void
+    public function startRecording() : void
     {
         $this->hasToRecord = true;
     }
 
-    public function stopRecording(): void
+    public function stopRecording() : void
     {
         $this->hasToRecord = false;
     }
 
-    public function clearRecorded(): void
+    public function clearRecorded() : void
     {
         $this->accumulator = '';
     }

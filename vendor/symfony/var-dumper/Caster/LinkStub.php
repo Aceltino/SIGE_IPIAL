@@ -27,7 +27,10 @@ class LinkStub extends ConstStub
     {
         $this->value = $label;
 
-        if (!\is_string($href ??= $label)) {
+        if (null === $href) {
+            $href = $label;
+        }
+        if (!\is_string($href)) {
             return;
         }
         if (str_starts_with($href, 'file://')) {
@@ -60,7 +63,7 @@ class LinkStub extends ConstStub
         }
     }
 
-    private function getComposerRoot(string $file, bool &$inVendor): string|false
+    private function getComposerRoot(string $file, bool &$inVendor)
     {
         if (!isset(self::$vendorRoots)) {
             self::$vendorRoots = [];

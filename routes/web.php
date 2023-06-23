@@ -61,7 +61,6 @@ Route::prefix('autenticacao')->group(function(){
     // Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar')->middleware('guest');
     Route::post('registrar', [AuthController::class,'storeInicio'])->name('registrar')->middleware('guest');
 
-
     //Rota para envio de email para redifinição de senha
     Route::get('reset', [AuthController::class,'resetForm'])->name('recuperar-senha')->middleware('guest');
     Route::post('reset/link', [AuthController::class, 'envioLinkEmail'])->name('password-email')->middleware('guest');
@@ -329,6 +328,7 @@ Route::prefix('pauta')->middleware(['auth'])->group(function(){
 Route::prefix('mini-pauta')->group(function(){
     Route::get('mini-pauta', [MiniPautaController::class, 'index'])->name('mini-pauta');
     Route::get('ver-mini-pauta', [MiniPautaController::class, 'show'])->name('mini-pauta.show');
+    Route::get('{turma}/{prof_id}/{disciplina}', [MiniPautaController::class, 'view'])->name('mini-pauta.view');
 
 });
 /******************************************

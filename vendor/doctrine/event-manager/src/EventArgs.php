@@ -15,8 +15,10 @@ class EventArgs
 {
     /**
      * Single instance of EventArgs.
+     *
+     * @var EventArgs|null
      */
-    private static EventArgs|null $emptyEventArgsInstance = null;
+    private static $_emptyEventArgsInstance;
 
     /**
      * Gets the single, empty and immutable EventArgs instance.
@@ -29,9 +31,15 @@ class EventArgs
      *
      * @link https://msdn.microsoft.com/en-us/library/system.eventargs.aspx
      * @see EventManager::dispatchEvent
+     *
+     * @return EventArgs
      */
-    public static function getEmptyInstance(): EventArgs
+    public static function getEmptyInstance()
     {
-        return self::$emptyEventArgsInstance ??= new EventArgs();
+        if (! self::$_emptyEventArgsInstance) {
+            self::$_emptyEventArgsInstance = new EventArgs();
+        }
+
+        return self::$_emptyEventArgsInstance;
     }
 }

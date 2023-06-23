@@ -37,8 +37,7 @@ class SmtpTransport extends AbstractTransport
     private int $restartCounter = 0;
     private int $pingThreshold = 100;
     private float $lastMessageTime = 0;
-    private AbstractStream $stream;
-    private string $mtaResult = '';
+    private $stream;
     private string $domain = '[127.0.0.1]';
 
     public function __construct(AbstractStream $stream = null, EventDispatcherInterface $dispatcher = null, LoggerInterface $logger = null)
@@ -139,7 +138,7 @@ class SmtpTransport extends AbstractTransport
             if ($this->started) {
                 try {
                     $this->executeCommand("RSET\r\n", [250]);
-                } catch (TransportExceptionInterface) {
+                } catch (TransportExceptionInterface $_) {
                     // ignore this exception as it probably means that the server error was final
                 }
             }
@@ -147,29 +146,9 @@ class SmtpTransport extends AbstractTransport
             throw $e;
         }
 
-        if ($this->mtaResult && $messageId = $this->parseMessageId($this->mtaResult)) {
-            $message->setMessageId($messageId);
-        }
-
         $this->checkRestartThreshold();
 
         return $message;
-    }
-
-    protected function parseMessageId(string $mtaResult): string
-    {
-        $regexps = [
-            '/250 Ok (?P<id>[0-9a-f-]+)\r?$/mis',
-            '/250 Ok:? queued as (?P<id>[A-Z0-9]+)\r?$/mis',
-        ];
-        $matches = [];
-        foreach ($regexps as $regexp) {
-            if (preg_match($regexp, $mtaResult, $matches)) {
-                return $matches['id'];
-            }
-        }
-
-        return '';
     }
 
     public function __toString(): string
@@ -193,6 +172,8 @@ class SmtpTransport extends AbstractTransport
      * @param int[] $codes
      *
      * @throws TransportException when an invalid response if received
+     *
+     * @internal
      */
     public function executeCommand(string $command, array $codes): string
     {
@@ -234,7 +215,7 @@ class SmtpTransport extends AbstractTransport
                 $this->getLogger()->debug(sprintf('Email transport "%s" stopped', __CLASS__));
                 throw $e;
             }
-            $this->mtaResult = $this->executeCommand("\r\n.\r\n", [250]);
+            $this->executeCommand("\r\n.\r\n", [250]);
             $message->appendDebug($this->stream->getDebug());
             $this->lastMessageTime = microtime(true);
         } catch (TransportExceptionInterface $e) {
@@ -244,11 +225,6 @@ class SmtpTransport extends AbstractTransport
         }
     }
 
-    /**
-     * @internal since version 6.1, to be made private in 7.0
-     *
-     * @final since version 6.1, to be made private in 7.0
-     */
     protected function doHeloCommand(): void
     {
         $this->executeCommand(sprintf("HELO %s\r\n", $this->domain), [250]);
@@ -264,7 +240,7 @@ class SmtpTransport extends AbstractTransport
         $this->executeCommand(sprintf("RCPT TO:<%s>\r\n", $address), [250, 251, 252]);
     }
 
-    public function start(): void
+    private function start(): void
     {
         if ($this->started) {
             return;
@@ -281,14 +257,7 @@ class SmtpTransport extends AbstractTransport
         $this->getLogger()->debug(sprintf('Email transport "%s" started', __CLASS__));
     }
 
-    /**
-     * Manually disconnect from the SMTP server.
-     *
-     * In most cases this is not necessary since the disconnect happens automatically on termination.
-     * In cases of long-running scripts, this might however make sense to avoid keeping an open
-     * connection to the SMTP server in between sending emails.
-     */
-    public function stop(): void
+    private function stop(): void
     {
         if (!$this->started) {
             return;
@@ -298,7 +267,7 @@ class SmtpTransport extends AbstractTransport
 
         try {
             $this->executeCommand("QUIT\r\n", [221]);
-        } catch (TransportExceptionInterface) {
+        } catch (TransportExceptionInterface $e) {
         } finally {
             $this->stream->terminate();
             $this->started = false;
@@ -314,7 +283,7 @@ class SmtpTransport extends AbstractTransport
 
         try {
             $this->executeCommand("NOOP\r\n", [250]);
-        } catch (TransportExceptionInterface) {
+        } catch (TransportExceptionInterface $e) {
             $this->stop();
         }
     }

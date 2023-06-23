@@ -38,11 +38,17 @@ trait ServiceLocatorTrait
         $this->factories = $factories;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function has(string $id): bool
     {
         return isset($this->factories[$id]);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function get(string $id): mixed
     {
         if (!isset($this->factories[$id])) {
@@ -65,6 +71,9 @@ trait ServiceLocatorTrait
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getProvidedServices(): array
     {
         if (!isset($this->providedTypes)) {

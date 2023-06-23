@@ -38,15 +38,15 @@ final class MailboxListHeader extends AbstractHeader
      *
      * @throws RfcComplianceException
      */
-    public function setBody(mixed $body): void
+    public function setBody(mixed $body)
     {
         $this->setAddresses($body);
     }
 
     /**
-     * @return Address[]
-     *
      * @throws RfcComplianceException
+     *
+     * @return Address[]
      */
     public function getBody(): array
     {
@@ -60,7 +60,7 @@ final class MailboxListHeader extends AbstractHeader
      *
      * @throws RfcComplianceException
      */
-    public function setAddresses(array $addresses): void
+    public function setAddresses(array $addresses)
     {
         $this->addresses = [];
         $this->addAddresses($addresses);
@@ -73,7 +73,7 @@ final class MailboxListHeader extends AbstractHeader
      *
      * @throws RfcComplianceException
      */
-    public function addAddresses(array $addresses): void
+    public function addAddresses(array $addresses)
     {
         foreach ($addresses as $address) {
             $this->addAddress($address);
@@ -83,7 +83,7 @@ final class MailboxListHeader extends AbstractHeader
     /**
      * @throws RfcComplianceException
      */
-    public function addAddress(Address $address): void
+    public function addAddress(Address $address)
     {
         $this->addresses[] = $address;
     }
@@ -99,9 +99,9 @@ final class MailboxListHeader extends AbstractHeader
     /**
      * Gets the full mailbox list of this Header as an array of valid RFC 2822 strings.
      *
-     * @return string[]
-     *
      * @throws RfcComplianceException
+     *
+     * @return string[]
      */
     public function getAddressStrings(): array
     {

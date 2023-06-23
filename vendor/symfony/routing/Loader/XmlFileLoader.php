@@ -62,8 +62,6 @@ class XmlFileLoader extends FileLoader
     /**
      * Parses a node from a loaded XML file.
      *
-     * @return void
-     *
      * @throws \InvalidArgumentException When the XML is invalid
      */
     protected function parseNode(RouteCollection $collection, \DOMElement $node, string $path, string $file)
@@ -94,6 +92,9 @@ class XmlFileLoader extends FileLoader
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function supports(mixed $resource, string $type = null): bool
     {
         return \is_string($resource) && 'xml' === pathinfo($resource, \PATHINFO_EXTENSION) && (!$type || 'xml' === $type);
@@ -101,8 +102,6 @@ class XmlFileLoader extends FileLoader
 
     /**
      * Parses a route and adds it to the RouteCollection.
-     *
-     * @return void
      *
      * @throws \InvalidArgumentException When the XML is invalid
      */
@@ -151,23 +150,12 @@ class XmlFileLoader extends FileLoader
     /**
      * Parses an import and adds the routes in the resource to the RouteCollection.
      *
-     * @return void
-     *
      * @throws \InvalidArgumentException When the XML is invalid
      */
     protected function parseImport(RouteCollection $collection, \DOMElement $node, string $path, string $file)
     {
-        /** @var \DOMElement $resourceElement */
-        if (!($resource = $node->getAttribute('resource') ?: null) && $resourceElement = $node->getElementsByTagName('resource')[0] ?? null) {
-            $resource = [];
-            /** @var \DOMAttr $attribute */
-            foreach ($resourceElement->attributes as $attribute) {
-                $resource[$attribute->name] = $attribute->value;
-            }
-        }
-
-        if (!$resource) {
-            throw new \InvalidArgumentException(sprintf('The <import> element in file "%s" must have a "resource" attribute or element.', $path));
+        if ('' === $resource = $node->getAttribute('resource')) {
+            throw new \InvalidArgumentException(sprintf('The <import> element in file "%s" must have a "resource" attribute.', $path));
         }
 
         $type = $node->getAttribute('type');
@@ -290,8 +278,6 @@ class XmlFileLoader extends FileLoader
                     break;
                 case 'condition':
                     $condition = trim($n->textContent);
-                    break;
-                case 'resource':
                     break;
                 default:
                     throw new \InvalidArgumentException(sprintf('Unknown tag "%s" used in file "%s". Expected "default", "requirement", "option" or "condition".', $n->localName, $path));

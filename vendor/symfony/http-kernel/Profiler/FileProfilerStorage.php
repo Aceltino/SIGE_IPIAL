@@ -42,6 +42,9 @@ class FileProfilerStorage implements ProfilerStorageInterface
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function find(?string $ip, ?string $url, ?int $limit, ?string $method, int $start = null, int $end = null, string $statusCode = null): array
     {
         $file = $this->getIndexFilename();
@@ -88,7 +91,7 @@ class FileProfilerStorage implements ProfilerStorageInterface
     }
 
     /**
-     * @return void
+     * {@inheritdoc}
      */
     public function purge()
     {
@@ -105,12 +108,17 @@ class FileProfilerStorage implements ProfilerStorageInterface
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function read(string $token): ?Profile
     {
         return $this->doRead($token);
     }
 
     /**
+     * {@inheritdoc}
+     *
      * @throws \RuntimeException
      */
     public function write(Profile $profile): bool
@@ -130,7 +138,9 @@ class FileProfilerStorage implements ProfilerStorageInterface
         // when there are errors in sub-requests, the parent and/or children tokens
         // may equal the profile token, resulting in infinite loops
         $parentToken = $profile->getParentToken() !== $profileToken ? $profile->getParentToken() : null;
-        $childrenToken = array_filter(array_map(fn (Profile $p) => $profileToken !== $p->getToken() ? $p->getToken() : null, $profile->getChildren()));
+        $childrenToken = array_filter(array_map(function (Profile $p) use ($profileToken) {
+            return $profileToken !== $p->getToken() ? $p->getToken() : null;
+        }, $profile->getChildren()));
 
         // Store profile
         $data = [
@@ -166,15 +176,11 @@ class FileProfilerStorage implements ProfilerStorageInterface
                 $profile->getIp(),
                 $profile->getMethod(),
                 $profile->getUrl(),
-                $profile->getTime() ?: time(),
+                $profile->getTime(),
                 $profile->getParentToken(),
                 $profile->getStatusCode(),
             ]);
             fclose($file);
-
-            if (1 === mt_rand(1, 10)) {
-                $this->removeExpiredProfiles();
-            }
         }
 
         return true;
@@ -245,9 +251,6 @@ class FileProfilerStorage implements ProfilerStorageInterface
         return '' === $line ? null : $line;
     }
 
-    /**
-     * @return Profile
-     */
     protected function createProfileFromData(string $token, array $data, Profile $parent = null)
     {
         $profile = new Profile($token);
@@ -296,30 +299,5 @@ class FileProfilerStorage implements ProfilerStorageInterface
         }
 
         return $this->createProfileFromData($token, $data, $profile);
-    }
-
-    private function removeExpiredProfiles(): void
-    {
-        $minimalProfileTimestamp = time() - 2 * 86400;
-        $file = $this->getIndexFilename();
-        $handle = fopen($file, 'r');
-
-        if ($offset = is_file($file.'.offset') ? (int) file_get_contents($file.'.offset') : 0) {
-            fseek($handle, $offset);
-        }
-
-        while ($line = fgets($handle)) {
-            [$csvToken, , , , $csvTime] = str_getcsv($line);
-
-            if ($csvTime >= $minimalProfileTimestamp) {
-                break;
-            }
-
-            @unlink($this->getFilename($csvToken));
-            $offset += \strlen($line);
-        }
-        fclose($handle);
-
-        file_put_contents($file.'.offset', $offset);
     }
 }
