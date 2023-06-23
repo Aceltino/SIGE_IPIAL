@@ -12,10 +12,8 @@ class DisciplinasController extends Controller
 {
     public function index()
     {
-       $disciplinas = Disciplina::all();
-       $cursos = Curso::all();
-
-        return view('disciplina.disciplinas', compact('disciplinas','cursos'));
+        $disciplinas = Disciplina::has('curso')->get();
+        return view('disciplina.disciplinas', ['disciplinas'=>$disciplinas]);
     }
     public function create()
     {
@@ -31,17 +29,18 @@ class DisciplinasController extends Controller
         $disciplinas->sigla = $request->sigla;
         $disciplinas->curso_id = $request->curso;
         $disciplinas->save();
-         return redirect()->route('disciplina.index')->with('sucess','Dados salvos com sucesso');
+         return redirect()->route('consultar.disciplina')->with('sucess','Dados salvos com sucesso');
     }
     public function edit($disciplina_id)
     {
+        $cursos = Curso::all();
         $disciplinas = Disciplina::where('disciplina_id',$disciplina_id)->first();
         if(!empty($disciplinas))
         {
-            return view('disciplina.edit-disciplina', ['disciplinas'=>$disciplinas]);
+            return view('disciplina.edit-disciplina', compact('disciplinas', 'cursos'));
         }
         else{
-                return redirect()->route('disciplina.index');
+                return redirect()->route('consultar.disciplina');
         }
     }
     public function update(Request $request, $disciplina_id)
@@ -54,14 +53,11 @@ class DisciplinasController extends Controller
             'curso_id' => $request->curso,
         ];
         Disciplina::where('disciplina_id',$disciplina_id)->update($dado);
-        return redirect()->route('disciplina.index');
+        return redirect()->route('consultar.disciplina');
     }
     public function destroy($disciplina_id)
     {
         Disciplina::where('disciplina_id',$disciplina_id)->delete();
-        return redirect()->route('disciplina.index');
+        return redirect()->route('consultar.disciplina');
     }
-
-
-
 }
