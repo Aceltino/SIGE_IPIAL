@@ -163,7 +163,7 @@ class AlunoTurmaController extends Controller
 
         $alunosAdmitidos = [];
 
-        // $alunosNAdmitidos = [];
+        $alunosNAdmitidos = [];
 
         $alunos = AlunoController::alunosTurma();
 
@@ -268,12 +268,11 @@ class AlunoTurmaController extends Controller
                  'usuario_id'=> $userId,
                  'status_usuario'=>1,
              ];
-             $user = UserController::updateUser($dadosUser);
+             $user = UserController::updateAluno($dadosUser);
              if(!$user)
              {
                  return "Algum problema com o aluno ".$aluno['nome'].", tente mais tarde.";
              }
-
              $alunosOrdemTurma[] = $aluno['aluno'];
              }
 

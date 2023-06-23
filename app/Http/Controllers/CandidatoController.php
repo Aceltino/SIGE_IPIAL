@@ -143,7 +143,6 @@ class CandidatoController extends Controller
                 'Curso' => $candidato->cursoAdmitido,
                 'cursosEscolhidos' => $cursoEscolhido,
 
-
                 'Pai' => $candidato->nome_pai_cand,
                 'Mae' => $candidato->nome_mae_cand,
                 'Naturalidade' => $candidato->naturalidade_cand,

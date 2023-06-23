@@ -64,7 +64,7 @@ class AlunoController extends Controller
                 'status_usuario'=>0,
             ];
 
-            UserController::updateUser($dadosUser);
+            UserController::updateAluno($dadosUser);
             $Alunos[] =
             [
                 $aluno->status = 0,
@@ -109,12 +109,19 @@ class AlunoController extends Controller
         $Alunos = [];
 
         foreach ($alunos as $aluno) {
+            $turmaAtual = null;
             foreach ($aluno->anoturma as $anoturma) {
+                if ($anoturma->ano_lectivo_id === AnoLectivoController::pegarIdAnoLectivo()) {
+                    $turmaAtual = $anoturma->turma->nome_turma;
+                    break;
+                }
+            }
                 $Alunos[] = [
                     'N_processo' => $aluno->aluno_id,
                     'estado' => $aluno->status,
                     'nome' => $aluno->candidato->pessoa->nome_completo,
-                    'nomeTurma' => $anoturma->turma->nome_turma,
+                    'naturalidade' => $aluno->candidato->naturalidade_cand,
+                    'nomeTurma' => $turmaAtual,
                     'idade' => $aluno->idade,
                     'pai' => $aluno->candidato->nome_pai_cand,
                     'mae' => $aluno->candidato->nome_mae_cand,
@@ -131,7 +138,6 @@ class AlunoController extends Controller
                     'cod_inscr' => $aluno->candidato->candidato_id,
                     'anoLectivo' => $anoturma->ano_lectivo->ano_lectivo,
                     'turno' => $anoturma->turma->turno->nome_turno,
-                    'nomeTurma' => $anoturma->turma->nome_turma,
                     'classe' => $anoturma->turma->classe->classe,
                     'N_aluno' => $anoturma->pivot->numero_aluno,
                     'curso' => $aluno->candidato->cursoAdmitido,
@@ -144,10 +150,7 @@ class AlunoController extends Controller
                     'situacao'=>$anoturma->pivot->situacao,
                 ];
             }
-        }
-        dd($Alunos);
         return $Alunos;
-
     }
 //
     public static function alunosTurma() // Função chamada no AlunoTurmacontroller para saber a situação doa aluno no ano anterior
