@@ -58,7 +58,7 @@ Route::prefix('autenticacao')->group(function(){
     Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck')->middleware('guest');
 
     //Rota de Cadastro
-    Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar')->middleware(['guest','checkcargo']);
+    // Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar')->middleware('guest');
     Route::post('registrar', [AuthController::class,'storeInicio'])->name('registrar')->middleware('guest');
 
     //Rota para envio de email para redifinição de senha
@@ -152,6 +152,12 @@ Route::prefix('matricula')->group(function(){
     Route::post('matricular-aluno/{candidato}', [MatriculaController::class, 'store'])->name('matricula-store');
 
     /*Editar matricula */
+
+    Route::get('editar-aluno/{aluno}/editar', [MatriculaController::class, 'edit'])->name('matricula-edit');
+    Route::put('editar-aluno/{aluno}', [MatriculaController::class, 'update'])->name('matricula-update');
+
+
+
     Route::get('editar-matricula', function () {
         return view('matricula/edit-matricula');
     });
@@ -306,9 +312,8 @@ Route::prefix('ficha-biog')->group(function(){
  * Rotas do processo do Aluno
  */
 Route::prefix('processo')->group(function(){
-
     Route::get('processos',[ProcessoController::class, 'index'])->name('processo.consultar');
-
+    Route::delete('{candidato_id}',[ProcessoController::class, 'destroy'])->where('candidato_id', '[0-9]+')->name('processo.deletar');
 });
 /******************************************
  * Rotas de pauta
@@ -346,16 +351,16 @@ Route::prefix('comunicado')->middleware(['auth'])->group(function(){
 
 Route::prefix('usuario')->middleware(['auth','checkcargo'])->group(function(){
 
+    Route::get('/', [UserController::class,'index'])->name('consultUsuario');
+
     Route::get('cadastro',[UserController::class,'usuarioFormCadastro' ])->name('createUsuario');
     Route::post('cadastro',[AuthController::class,'store'])->name('storeUsuario');
 
-    Route::get('/', [UserController::class,'index'])->name('consultUsuario');
-
+    Route::get('editar/{id}', [UserController::class,'show'])->name('editUser');
+    Route::put('update/{id}',[UserController::class,'updateUser'])->name('updateUser');   
+    
     Route::patch('estado/{id}',[UserController::class,'userStateChange'])->name('stateChange');
-
-    Route::get('use_editar', function () {
-        return view('usuario/use_editar');
-    })->name('editUser');
+    Route::post('resgate/{id}',[AuthController::class,'reenviarCredencias'])->name("reenviarCredencias");
 });
 /**************************************************
  * Rotas do Calendario de provas
@@ -394,9 +399,12 @@ Route::get('/editar_assiduidade', function () {
 
 /*Avaliação de Aluno*/
 Route::get('/avaliar-aluno', [AvaliacaoAlunoController::class, 'index'])->name('avaliacao.aluno');
+Route::post('/avaliar-aluno/cadastrar{id_disciplina}', [AvaliacaoAlunoController::class, 'store'])->name('avaliar.aluno');
+
 
 /*editar Avaliação de Aluno*/
-Route::get('/editar-avaliacao-aluno/{id}', [AvaliacaoAlunoController::class, 'indexUpdate'])->name('editar.avaliacao.aluno');
+Route::get('/editar-avaliacao-aluno/{id_aluno}/{id_disciplina}', [AvaliacaoAlunoController::class, 'indexUpdate'])->name('editar.avaliacao.aluno');
+Route::put('/editar-avaliacao-aluno/update/{id_nota}', [AvaliacaoAlunoController::class, 'update'])->name('update.nota.aluno');
 
 /******************************************
  * Rotas do horário
@@ -427,7 +435,7 @@ Route::prefix('disciplina')->group(function(){
         Route::get('disciplinas', [DisciplinasController::class,'index'])->name('consultar.disciplina');
         Route::get('regi-disciplina',[DisciplinasController::class, 'create'])->name('criar.disciplina');
         Route::post('regi-disciplina', [DisciplinasController::class, 'store'])->name('disciplina.store');
-        Route::get('edit-disciplina', [DisciplinasController::class, 'edit'])->name('disciplina.edit');
-        Route::put('edit-disciplina/{disciplina_id}', [DisciplinasController::class, 'update'])->where('disciplina_id', '[0-9]+')->name('disciplina.update');
+        Route::get('edit-disciplina', [DisciplinasController::class, 'edit'])->where('disciplina_id','[0-9]+')->name('disciplina.edit');
+        Route::put('{disciplina_id}', [DisciplinasController::class, 'update'])->where('disciplina_id', '[0-9]+')->name('disciplina.update');
         Route::delete('{disciplina_id}', [DisciplinasController::class, 'destroy'])->where('disciplina_id', '[0-9]+')->name('disciplina.delete');
 });

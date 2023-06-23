@@ -11,17 +11,17 @@ class Professor_disciplina extends Model
     protected $table = 'professor_disciplina';
     protected $primaryKey = 'professor_disciplina_id';
 
-    protected $fillable = [
-        'disciplina_id',
-        'professor_id',
-        'ano_lectivo_id',
-        'prioridade'
-    ];
-
     public function turma(){
         return $this->hasMany(Turma::class, 'turma_id');
     }
     public function turmaAnoCoord(){
         return $this->hasMany(Turma::class, 'turma_id');
     }
+    public function disciplina(){
+        return $this->belongsTo(Disciplina::class, 'disciplina_id');
+    }
+    public function horario(){
+        return $this->hasMany(Horario::class, 'disc_professor_id');
+    }
+
 }

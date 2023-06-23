@@ -92,12 +92,6 @@
       <ul id="matricula-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 
         <li>
-          <a href="matricula/matricular-aluno">
-            <i class="bi bi-circle"></i><span>Matricular aluno</span>
-          </a>
-        </li>
-
-        <li>
           <a href="matricula/matriculas">
             <i class="bi bi-circle"></i><span>Matriculas</span>
           </a>
@@ -274,7 +268,7 @@
 
           {{-- <a href={{ route('consultar.processo') }}> --}}
 
-          <a href={{route('processo.consultar')}}>
+          {{-- <a href={{route('processo.consultar')}}> --}}
 
             <i class="bi bi-circle"></i><span>Processos</span>
           </a>
@@ -518,7 +512,7 @@
         <ul id="processo-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
 
-            <a href={{ route('consultar.processo') }}>
+           
             <a href={{route('processo.consultar')}}>
 
               <i class="bi bi-circle"></i><span>Processos</span>
@@ -1118,13 +1112,7 @@
           <i class="bi bi-journal-text"></i><span>Matrícula</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="matricula-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-
-          <li>
-            <a href="matricula/matricular-aluno">
-              <i class="bi bi-circle"></i><span>Matricular aluno</span>
-            </a>
-          </li>
-
+          
           <li>
             <a href="matricula/matriculas">
               <i class="bi bi-circle"></i><span>Matriculas</span>

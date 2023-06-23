@@ -64,7 +64,7 @@ class AlunoController extends Controller
                 'status_usuario'=>0,
             ];
 
-            UserController::updateUser($dadosUser);
+            UserController::updateAluno($dadosUser);
             $Alunos[] =
             [
                 $aluno->status = 0,
@@ -89,14 +89,13 @@ class AlunoController extends Controller
     // API MATRICULADOS... http://127.0.0.1:8000/api/matriculados
     public static function pegarDadosMatriculados()
     {
-
         $alunos = Aluno::with('candidato', 'anoturma')
         ->whereHas('candidato', function ($query) {
             $query->where('status', 'Matriculado');
         })
-        ->whereHas('anoturma', function ($query) {
-            $query->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo());
-        })
+       // ->whereHas('anoturma', function ($query) {
+           // $query->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo());
+       // })
         ->get();
 
         $dataAtual = Carbon::now();
@@ -110,12 +109,19 @@ class AlunoController extends Controller
         $Alunos = [];
 
         foreach ($alunos as $aluno) {
+            $turmaAtual = null;
             foreach ($aluno->anoturma as $anoturma) {
+                if ($anoturma->ano_lectivo_id === AnoLectivoController::pegarIdAnoLectivo()) {
+                    $turmaAtual = $anoturma->turma->nome_turma;
+                    break;
+                }
+            }
                 $Alunos[] = [
                     'N_processo' => $aluno->aluno_id,
                     'estado' => $aluno->status,
                     'nome' => $aluno->candidato->pessoa->nome_completo,
-                    'nomeTurma' => $anoturma->turma->nome_turma,
+                    'naturalidade' => $aluno->candidato->naturalidade_cand,
+                    'nomeTurma' => $turmaAtual,
                     'idade' => $aluno->idade,
                     'pai' => $aluno->candidato->nome_pai_cand,
                     'mae' => $aluno->candidato->nome_mae_cand,
@@ -123,7 +129,7 @@ class AlunoController extends Controller
                     'num_bi' => $aluno->candidato->pessoa->num_bi,
                     'genero' => $aluno->candidato->pessoa->genero,
                     'tel_aluno' => $aluno->candidato->pessoa->telefone,
-                    'escola_prov' => $aluno->candidato->escola->escola_prov,
+                    'escola_prov' => $aluno->candidato->escola->nome_escola,
                     'turno_prov' => $aluno->candidato->escola->turno,
                     'turma_prov' => $aluno->candidato->escola->turma_aluno,
                     'ano_prov' => $aluno->candidato->ano_lectivo->ano_lectivo,
@@ -132,21 +138,19 @@ class AlunoController extends Controller
                     'cod_inscr' => $aluno->candidato->candidato_id,
                     'anoLectivo' => $anoturma->ano_lectivo->ano_lectivo,
                     'turno' => $anoturma->turma->turno->nome_turno,
-                    'nomeTurma' => $anoturma->turma->nome_turma,
                     'classe' => $anoturma->turma->classe->classe,
-                    'N_aluno' =>  $anoturma->pivot->numero_aluno,
+                    'N_aluno' => $anoturma->pivot->numero_aluno,
                     'curso' => $aluno->candidato->cursoAdmitido,
                     'enc_grau_1'=>$aluno->encarregado[0]->grau_parentensco_enc,
                     'tel_grau_1'=>$aluno->encarregado[0]->pessoa->telefone,
                     'enc_grau_2'=>$aluno->encarregado[1]->grau_parentensco_enc,
                     'tel_grau_2'=>$aluno->encarregado[1]->pessoa->telefone,
                     'enc_grau_3'=>$aluno->encarregado[2]->grau_parentensco_enc,
-                    'tel_grau_3'=>$aluno->encarregado[2]->pessoa->telefone
+                    'tel_grau_3'=>$aluno->encarregado[2]->pessoa->telefone,
+                    'situacao'=>$anoturma->pivot->situacao,
                 ];
             }
-        }
         return $Alunos;
-
     }
 //
     public static function alunosTurma() // Função chamada no AlunoTurmacontroller para saber a situação doa aluno no ano anterior
@@ -174,6 +178,76 @@ class AlunoController extends Controller
                     'nomeTurma' => $anoturma->turma->nome_turma
                 ];
             }
+        }
+        return $Alunos;
+    }
+
+    public static function pegarDadosMatriculado($id)
+    {
+        $alunos = Aluno::with('candidato', 'anoturma')
+        ->whereHas('candidato', function ($query) {
+            $query->where('status', 'Matriculado');
+        })
+        ->where('aluno_id', $id)
+        ->get();
+
+        $dataAtual = Carbon::now();
+        foreach ($alunos as &$aluno)
+        {
+            $dataNascimento = Carbon::parse($aluno->candidato->pessoa->data_nascimento);
+            $idade = $dataAtual->diffInYears($dataNascimento);
+            $aluno['idade'] = $idade;
+        }
+
+        $Alunos = [];
+
+        foreach ($alunos as $aluno)
+        {
+            foreach ($aluno->anoturma as $anoturma)
+            {
+                $turmaAtual = $anoturma->turma->nome_turma;
+                $turnoAtual = $anoturma->turma->turno->nome_turno;
+                $classeAtual = $anoturma->turma->classe->classe;
+                $numAlun_Atual = $anoturma->pivot->numero_aluno;
+                if ($anoturma->ano_lectivo_id === AnoLectivoController::pegarIdAnoLectivo()) {
+                    $turmaAtual = $anoturma->turma->nome_turma;
+                    $turnoAtual = $anoturma->turma->turno->nome_turno;
+                    $classeAtual = $anoturma->turma->classe->classe;
+                    $numAlun_Atual = $anoturma->pivot->numero_aluno;
+                    break;
+                }
+            }
+            $Alunos[] = [
+                'N_processo' => $aluno->aluno_id,
+                'nome' => $aluno->candidato->pessoa->nome_completo,
+                'idade' => $aluno->idade,
+                'cod_inscr' => $aluno->candidato->candidato_id,
+                'pai' => $aluno->candidato->nome_pai_cand,
+                'mae' => $aluno->candidato->nome_mae_cand,
+                'data_nasc' => $aluno->candidato->pessoa->data_nascimento,
+                'num_bi' => $aluno->candidato->pessoa->num_bi,
+                'genero' => $aluno->candidato->pessoa->genero,
+                'tel_aluno' => $aluno->candidato->pessoa->telefone,
+                'escola_prov' => $aluno->candidato->escola->nome_escola,
+                'turno_prov' => $aluno->candidato->escola->turno,
+                'naturalidade' => $aluno->candidato->naturalidade_cand,
+                'turma_prov' => $aluno->candidato->escola->turma_aluno,
+                'ano_prov' => $aluno->candidato->ano_lectivo->ano_lectivo,
+                'processo_prov' => $aluno->candidato->escola->num_processo,
+                'N_aluno_prov' => $aluno->candidato->escola->num_aluno,
+                'turno' => $turnoAtual,
+                'classe' => $classeAtual,
+                'N_aluno' => $numAlun_Atual,
+                'turma' => $turmaAtual,
+                'anoLectivoA' => $anoturma->ano_lectivo->ano_lectivo,
+                'curso' => $aluno->candidato->cursoAdmitido,
+                'enc_grau_1'=>$aluno->encarregado[0]->grau_parentensco_enc,
+                'tel_grau_1'=>$aluno->encarregado[0]->pessoa->telefone,
+                'enc_grau_2'=>$aluno->encarregado[1]->grau_parentensco_enc,
+                'tel_grau_2'=>$aluno->encarregado[1]->pessoa->telefone,
+                'enc_grau_3'=>$aluno->encarregado[2]->grau_parentensco_enc,
+                'tel_grau_3'=>$aluno->encarregado[2]->pessoa->telefone
+            ];
         }
         return $Alunos;
     }

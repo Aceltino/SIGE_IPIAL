@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\{
     Auth,Validator,Mail,DB,Hash,Session
 };
 use Illuminate\Support\Str;
-use PhpParser\Node\Stmt\Return_;
+
 
 class AuthController extends Controller
 {
@@ -50,7 +50,6 @@ class AuthController extends Controller
         }
         $user = Auth::user();
         if(!$user->status_usuario){
-
             Auth::logout();
             return redirect()->back()->with('erro_login_003', 'Usuario Bloqueado, Entre em contacto com a instituição');
         }
@@ -170,14 +169,14 @@ class AuthController extends Controller
         }
 
         $msg="Adminstrador do sistema cadastrado com Sucesso. Por favor entre com os seus dados";
-        return view('autenticacao.login')->with('registrado',$msg);
+        return redirect()->route('login')->with('registrado',$msg);
     }
 
     //Metodo de cadastro dos usuario
     public function store(Request $request)
     {   
         $num_registo=count(User::all());
-        $numId= $num_registo+1;
+        // $numId= $num_registo+1;
     
         //Gerar uma senha temporária aleatória
         $hexAleatorio = Str::random(8);
@@ -217,7 +216,7 @@ class AuthController extends Controller
             'data_nascimento.before'=> 'O campo :attribute deve ser uma data posterior à data atual.',
             'num_bi.size'=> 'Número de identificação esta incorrecto',
             'num_bi.unique'=> 'Número de identificação Já esta a ser usado',
-            'num_telefone'=>'Digite um número de telefone valido',
+            'num_telefone.size'=>'Digite um número de telefone valido',
             'num_telefone.unique'=>'Lamentamos, este número de telefone já esta em uso',
 
             //Formulario do user
@@ -269,7 +268,7 @@ class AuthController extends Controller
         $pessoa_id= $this->storePessoa($dadosPessoa, $dadosEndereco);//retorna id da pessoa
 
         $dadosUser=[
-            'nome_usuario'=>$abreNome.$numId.$abreSobreNome,
+            'nome_usuario'=>$abreNome.$num_registo.$abreSobreNome,
             'email'=>$request->email,
             'password'=>bcrypt($hexAleatorio),
             'cargo_usuario'=> $request->cargo,
@@ -285,13 +284,15 @@ class AuthController extends Controller
         }
 
         //Metodo que envia as credencias de acesso ao email do usuario
-        $this->envioCredenciasEmail($user,$hexAleatorio);
+        if($this->envioCredenciasEmail($user,$hexAleatorio)){
+            return redirect()->route('createUsuario')->with('status','Cadastro Concluido! Enviamos as credencias de acesso ao sistema no email inserido!');
+        }
 
     }
 
     //Metodo que envia o email das credencias de acesso do usuario cadastrado
     public function envioCredenciasEmail($user,$senha):mixed
-    {   
+    {  
         // Construir o URLpara logar com os novos dados 
         $urlLogin = url('autenticacao/login');
 
@@ -301,7 +302,32 @@ class AuthController extends Controller
             $message->to($user->email);
             $message->subject('SIGE-IPIAL (Credencias de Acesso)');
         });
-        return redirect()->back()->with('status','Cadastro Concluido! Enviamos as credencias de acesso ao sistema no email inserido!');
+        return true;
+    }
+
+    public function reenviarCredencias($id){
+
+        $user= User::findOrFail($id);
+      
+        //URL para logar 
+        $urlLogin = url('autenticacao/login');
+
+        //URL para recuperar senha 
+        $urlSenhaEsquecida = url('autenticacao/reset');
+
+        try {
+            // Enviar o e-mail
+            Mail::send('Mail.reenvioUsername', ['urlLogin' => $urlLogin,'nome_usuario'=>$user->nome_usuario,'urlSenhaEsquecida'=> $urlSenhaEsquecida], 
+            function ($message) use ($user) {
+                $message->to($user->email);
+                $message->subject('SIGE-IPIAL (Reenvio de Nome do Usuário)');
+            });
+            return redirect()->back()->with('succes_reenvio','Foi feito o Reenvio de Nome de Usuario no E-mail do usuario.');
+
+        }catch (\Exception $e) {
+            return redirect()->back()->with('erro_reenvio','Lamentamos! Nome de Usuário não foi Reenviado, Tente novamente mas tarde');
+        }
+
     }
 
     //Metodo que termina o inicio de sessão

@@ -22,8 +22,8 @@
           <div class="col-lg-2">
             <select class="btn-sel form-select" id="filtro10">
               <option  disabled>Curso</option>
-              <option value="Informática">Informática</option>
-              <option value="Técnico de Energia e Instalações Electricas">Técnico de Energia e Instalações Electricas</option>
+              <option value="Tecnico de Informática">Informática</option>
+              <option value="Instalaçoes electricas">Técnico de Energia e Instalações Electricas</option>
               <option value="construção civil">construção civil</option>
               <option value="Electronica e Telecomunicação">Electronica e Telecomunicação</option>
             </select>
@@ -32,19 +32,22 @@
           <div class="col-lg-2">
             <select class="btn-sel form-select" id="filtro11">
               <option disabled >Disciplina</option>
-              <option value="Desenho técnico">MATEMÁTICA</option>
-              <option value="Técnicas de Linguagem de Programação">Técnicas de Linguagem de Programação</option>
-              <option value="Língua Portuguêsa">Língua Portuguêsa</option>
+              @if (isset($nome_disciplina))
+                @foreach ($nome_disciplina as $disciplina)
+                    <option value="{{$disciplina}}">{{$disciplina}}</option>
+                @endforeach
+              @endif
             </select>
           </div>
 
           <div class="col-lg-2">
             <select class="btn-sel form-select" id="filtro12">
               <option disabled >Turma</option>
-              <option value="I10AM" selected>I10AM</option>
-              <option value="I11AM">CT10AM</option>
-              <option value="I12AT">I12AT</option>
-              <option value="I12BT">I12BT</option>
+              @if (isset($nome_turma))
+                @foreach ($nome_turma as $turma)
+                    <option value="{{$turma}}">{{$turma}}</option>
+                @endforeach
+              @endif
             </select>
           </div>
     </div>
@@ -83,6 +86,7 @@
         </tr>
       </thead>
       <tbody>
+        @if (!empty($aluno))
           @for ($i = 0; $i < count($aluno); $i++)
             @for ($j = 0; $j < count($aluno[$i]); $j++)
                 <tr style="text-align: center;">
@@ -97,7 +101,7 @@
                     <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$aluno[$i][$j]['aluno_id']}}" >Avaliar aluno</a>
                     </td>
                     <td style="text-align: center">
-                    <a href="{{route('editar.avaliacao.aluno', $aluno[$i][$j]['aluno_id'])}}" class="btn linkeditar">Editar Avaliação</a>
+                    <a href="{{route('editar.avaliacao.aluno', [$aluno[$i][$j]['aluno_id'], $aluno[$i][$j]['disciplina_id']])}}" class="btn linkeditar">Editar Avaliação</a>
                     </td>
                     <td hidden>{{$aluno[$i][$j]['curso']}}</td>
                     <td hidden>{{$aluno[$i][$j]['nome_disciplina']}}</td>
@@ -106,7 +110,7 @@
                              <!-- Início da Modal -->
 
           <!-- Fím da modal -->
-        
+
             @endfor
           @endfor
 
@@ -114,7 +118,8 @@
     </table>
     @for ($i = 0; $i < count($aluno); $i++)
             @for ($j = 0; $j < count($aluno[$i]); $j++)
-    <form method="POST" action="">
+    <form method="POST" action="{{route('avaliar.aluno', $aluno[$i][$j]['disciplina_id'])}}">
+        @csrf
       <div class="modal" id="modal_assiduidade{{$aluno[$i][$j]['aluno_id']}}" tabindex="-1" data-bs-backdrop="false" >
           <div class="modal-dialog modal-xl">
           <div class="modal-content">
@@ -123,7 +128,7 @@
               <button type="button" class="btn-close"data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-  
+
               <div class="row">
                 <div class="col-lg-10">
                     <div class="nomenumeroalunoinfo">
@@ -150,12 +155,12 @@
                   </tr>
                 </thead>
                 <tbody>
-                  
-                    <td><input class=" form-control innota" type="text" name="" maxlength="2"></td>
-                    <td><input class=" form-control innota " type="text" name="" maxlength="2"></td>
-                    <td><input class=" form-control innota" type="text" name="" maxlength="2"></td>
-                    <td><input class=" form-control innota" type="text" name="" maxlength="2"></td>
-                    <td><input class=" form-control innota" type="text" name="" maxlength="2"></td>
+
+                    <td><input class=" form-control innota" type="text" name="ac" maxlength="2"></td>
+                    <td><input class=" form-control innota " type="text" name="npp" maxlength="2"></td>
+                    <td><input class=" form-control innota" type="text" name="npt" maxlength="2"></td>
+                    <td><input class=" form-control innota" type="text" name="exame" maxlength="2"></td>
+                    <td><input class=" form-control innota" type="text" name="exame_recurso" maxlength="2"></td>
                   </tr>
                 </tbody>
               </table>
@@ -164,7 +169,7 @@
           </div>
           <div class="modal-footer" style="display: flex; justify-content: center; align-items: center;">
               <button type="button" class="btn botaovermelhonota" data-bs-dismiss="modal">Cancelar</button>
-              <button type="subimit" class="btn botaoazulnota" >Avaliar Aluno</button>
+              <button type="subimit" name="aluno_id" class="btn botaoazulnota" value="{{$aluno[$i][$j]['aluno_id']}}" >Avaliar Aluno</button>
           </div>
           </div>
       </div>
@@ -173,9 +178,10 @@
     @endfor
     @endfor
   </div>
+  @endif
   <!-- Termina a tabela -->
 
-   
+
 
 </main>
 @endsection

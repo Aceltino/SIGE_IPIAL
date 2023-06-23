@@ -69,7 +69,24 @@ body{
 	border-color: #174183;
 	outline: 0;
 	box-shadow: 0 0 0 1px rgb(23, 65, 131, 0.25);
-  }
+}
+
+/***********************************************************/
+/*Estilizacao dos campos da tela de cadastro
+**********************************************************/
+.login-form .campo-registrar{
+	box-sizing: border-box;
+	padding: 6px;
+	transition: border-color 0s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.login-form .campo-registrar:focus, .login-form .form-select:focus {
+	color: #212529;
+	background-color: rgb(255, 255, 255, 0.5);
+	border-color: #174183;
+	outline: 0;
+	box-shadow: 0 0 0 1px rgb(23, 65, 131, 0.25);
+}
 
 .botao-log, .botao-log:hover{
 	color: #fff;

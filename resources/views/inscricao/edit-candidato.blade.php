@@ -90,7 +90,7 @@
       <div class="container">
           <div class="row">
             <div class="col area-input form-group">
-              <label>Data de nascimento: </label><input type="text" name="data_nascimento" value ="{{ $candidato['Data_Nascimento'] }}" >
+              <label>Data de nascimento: </label><input type="date" name="data_nascimento" value ="{{ $candidato['Data_Nascimento'] }}" >
             </div>
 
             <div class="col area-input form-group" style="margin-left: 10px;">
@@ -99,7 +99,13 @@
               </div>
 
             <div class="col area-input form-group" style="margin-left: 10px;">
-              <label>Gênero: </label><input type="text" name="genero" value ="{{ $candidato['Genero'] }}">
+              
+                <label class="tua clas">Sexo:</label>
+                <input type="radio" id="masculino" name="genero" value="Masculino" checked>
+                <label for="masculino" class="tua class"> Masculino</label>
+                <input type="radio" id="feminino" name="genero" value="Feminino" >
+                <label for="feminino"> Feminino</label>
+             
 
             </div>
           </div>
@@ -205,15 +211,21 @@
 
           <div class="container">
             <div class="row">
-
              
             @php
                 $a=1;
             @endphp
-              @foreach($cursos as $curso)
-              <div class="col area-input form-group" style="margin-left: 10px;">
-                <label>{{$a}}º Curso: </label><input type="text"  value ="{{$Curso['nome_curso']}}" name="curso2">
-              </div>
+              @foreach($candidato['Cursos'] as $cursocand)
+              
+                <div class="form-group col">
+                  <select disabled oninput="this.className = ''" class="form-select" name="coloca aqui o teu Name">
+                    <option  selected>{{$cursocand}}</option>
+                    @foreach($candidato['Cursos'] as $cursocand)
+                    <option value="{{$cursocand}}" >{{$cursocand}}</option>
+                    @endforeach
+                  </select>
+                </div>
+             
               @php
               $a++;
              @endphp

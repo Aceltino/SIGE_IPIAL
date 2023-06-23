@@ -29,4 +29,8 @@ class AlunoTurma extends Model
     {
         return $this->belongsTo(AnoTurmaCood::class, 'turmaAno_id');
     }
+
+    public function aluno(){
+        return $this->belongsTo(Aluno::class, 'aluno_id');
+    }
 }
