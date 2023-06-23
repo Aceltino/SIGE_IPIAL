@@ -25,15 +25,15 @@ class AnoLectivoController extends Controller
     }
 
     public function indexCadastroAnoLectivo(){
+
         return view('ano-lectivo/criar-ano-lect');
     }
 
     public function store(AnoLectivoRequest $req){
         $request = $req->validated();
-        $anoLectivo = Ano_lectivo::all();
-        //dd($request);
+        //dd(date('Y', strtotime($request['data_inicio_ano_lectivo'])) . "-" . date('Y', strtotime($request['data_fim_ano_lectivo'])));
         $anoLectivo = [
-            'ano_lectivo' => $request['ano_lectivo'],
+            'ano_lectivo' => date('Y', strtotime($request['data_inicio_ano_lectivo'])) . "-" . date('Y', strtotime($request['data_fim_ano_lectivo'])),
             'status_ano_lectivo' => 1,
             'data_inicio_ano_lectivo' => $request['data_inicio_ano_lectivo'],
             'data_fim_ano_lectivo' => $request['data_fim_ano_lectivo'],
@@ -60,32 +60,46 @@ class AnoLectivoController extends Controller
             'duracao_int_maior_noite' => $request['duracao_int_maior_noite'],
         ];
 
+        $al = Ano_lectivo::where('status_ano_lectivo', 1)->first();
+        if($al){
+            $al->status_ano_lectivo = 0;
+            $al->save();
+        }
+
         $id = Ano_Lectivo::create($anoLectivo);
         //dd($id->ano_lectivo_id);
         $trimestre[0] = [
-            'trimestre' => 1,
+            'trimestre' => "1º",
             'status' => 0,
             'data_inicio' => $request['data_inicio1'],
             'data_fim' => $request['data_fim1'],
             'ano_lectivo_id' => $id->ano_lectivo_id
         ];
         $trimestre[1] = [
-            'trimestre' => 2,
+            'trimestre' => "2º",
             'status' => 0,
             'data_inicio' => $request['data_inicio2'],
             'data_fim' => $request['data_fim2'],
             'ano_lectivo_id' => $id->ano_lectivo_id
         ];
         $trimestre[2] = [
-            'trimestre' => 3,
+            'trimestre' => "3º",
             'status' => 0,
             'data_inicio' => $request['data_inicio3'],
             'data_fim' => $request['data_fim3'],
             'ano_lectivo_id' => $id->ano_lectivo_id
         ];
+
+        $tr = Trimestre::where('status', 1)->first();
+        if($tr){
+            $tr->status = 0;
+            $tr->save();
+        }
+
         for($i = 0; $i < count($trimestre); $i++){
             Trimestre::create($trimestre[$i]);
         }
+
         //dd($trimestre);
 
         return redirect()->route('ano.lectivo')->with('sucesso', "Ano lectivo criado com sucesso.");
@@ -142,19 +156,19 @@ class AnoLectivoController extends Controller
             ];
 
             $trimestre[0] = [
-                'trimestre' => 1,
+                'trimestre' => "1º",
                 'status' => 0,
                 'data_inicio' => $request['data_inicio1'],
                 'data_fim' => $request['data_fim1'],
             ];
             $trimestre[1] = [
-                'trimestre' => 2,
+                'trimestre' => "2º",
                 'status' => 0,
                 'data_inicio' => $request['data_inicio2'],
                 'data_fim' => $request['data_fim2'],
             ];
             $trimestre[2] = [
-                'trimestre' => 3,
+                'trimestre' => "3º",
                 'status' => 0,
                 'data_inicio' => $request['data_inicio3'],
                 'data_fim' => $request['data_fim3'],
@@ -171,6 +185,10 @@ class AnoLectivoController extends Controller
     }
 
     public function delete($id){
+        $anoLectivo = Ano_lectivo::where('ano_lectivo_id', $id)->get();
+        if($anoLectivo[0]->status_ano_lectivo === 1){
+            return redirect()->route('ano.lectivo')->with('erro', "Não pode eliminar um ano lectivo em curso!");
+        }
         Ano_lectivo::where('ano_lectivo_id', $id)->delete();
         return redirect()->route('ano.lectivo')->with('sucesso', "Ano lectivo eliminado com sucesso!");
     }

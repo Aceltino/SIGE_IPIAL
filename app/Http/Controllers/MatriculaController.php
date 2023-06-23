@@ -20,20 +20,12 @@ class MatriculaController extends Controller
     public function index(){
         return view('matricula/matriculas');
     }
+
     public function create($id)
     {
         $candidato = CandidatoController::pegarDadosCandidato($id);
         return view('matricula.matricular-aluno',[
             'candidato' => $candidato[0]
-        ]);
-    }
-
-    public function edit($id)
-    {
-        $aluno = AlunoController::pegarDadosMatriculado($id);
-        dd($aluno);
-        return view('matricula.edit-matricula',[
-            'aluno' => $aluno[0]
         ]);
     }
 
@@ -49,6 +41,24 @@ class MatriculaController extends Controller
             $msg = "Os alunos foram atribuidas as suas turmas com sucesso!";
             return Redirect::route('matricula-index')->with("Sucesso", $msg);
     }
+
+    public function edit($id)
+    {
+        $aluno = AlunoController::pegarDadosMatriculado($id);
+
+        return view('matricula.edit-matricula',[
+            'aluno' => $aluno[0]
+        ]);
+    }
+
+    public function update(Request $request)
+    {
+        dd($request);
+    }
+
+
+
+
 // BOTÃO ATRIBUIR TURMA
     public function store(MatriculaRequest $input)
     {

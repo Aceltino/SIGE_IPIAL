@@ -154,8 +154,10 @@ Route::prefix('matricula')->group(function(){
 
     /*Editar matricula */
 
-    Route::get('editar-aluno/{aluno}/editar', [InscricaoController::class, 'edit'])->name('matricula-edit');
-    Route::put('editar-candidato/{aluno}', [InscricaoController::class, 'update'])->name('matricula-update');
+    Route::get('editar-aluno/{aluno}/editar', [MatriculaController::class, 'edit'])->name('matricula-edit');
+    Route::put('editar-aluno/{aluno}', [MatriculaController::class, 'update'])->name('matricula-update');
+
+
 
     Route::get('editar-matricula', function () {
         return view('matricula/edit-matricula');
@@ -311,7 +313,6 @@ Route::prefix('ficha-biog')->group(function(){
  * Rotas do processo do Aluno
  */
 Route::prefix('processo')->group(function(){
-
     Route::get('processos',[ProcessoController::class, 'index'])->name('processo.consultar');
 
 });
@@ -398,9 +399,12 @@ Route::get('/editar_assiduidade', function () {
 
 /*Avaliação de Aluno*/
 Route::get('/avaliar-aluno', [AvaliacaoAlunoController::class, 'index'])->name('avaliacao.aluno');
+Route::post('/avaliar-aluno/cadastrar{id_disciplina}', [AvaliacaoAlunoController::class, 'store'])->name('avaliar.aluno');
+
 
 /*editar Avaliação de Aluno*/
-Route::get('/editar-avaliacao-aluno/{id}', [AvaliacaoAlunoController::class, 'indexUpdate'])->name('editar.avaliacao.aluno');
+Route::get('/editar-avaliacao-aluno/{id_aluno}/{id_disciplina}', [AvaliacaoAlunoController::class, 'indexUpdate'])->name('editar.avaliacao.aluno');
+Route::put('/editar-avaliacao-aluno/update/{id_nota}', [AvaliacaoAlunoController::class, 'update'])->name('update.nota.aluno');
 
 /******************************************
  * Rotas do horário
@@ -432,6 +436,6 @@ Route::prefix('disciplina')->group(function(){
         Route::get('regi-disciplina',[DisciplinasController::class, 'create'])->name('criar.disciplina');
         Route::post('regi-disciplina', [DisciplinasController::class, 'store'])->name('disciplina.store');
         Route::get('edit-disciplina', [DisciplinasController::class, 'edit'])->where('disciplina_id','[0-9]+')->name('disciplina.edit');
-        Route::put('edit-disciplina/{disciplina_id}', [DisciplinasController::class, 'update'])->where('disciplina_id', '[0-9]+')->name('disciplina.update');
+        Route::put('{disciplina_id}', [DisciplinasController::class, 'update'])->where('disciplina_id', '[0-9]+')->name('disciplina.update');
         Route::delete('{disciplina_id}', [DisciplinasController::class, 'destroy'])->where('disciplina_id', '[0-9]+')->name('disciplina.delete');
 });

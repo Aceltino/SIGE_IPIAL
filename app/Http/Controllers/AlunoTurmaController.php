@@ -162,9 +162,6 @@ class AlunoTurmaController extends Controller
     {
 
         $alunosAdmitidos = [];
-
-        // $alunosNAdmitidos = [];
-
         $alunos = AlunoController::alunosTurma();
 
         foreach( $alunos as $aluno )
@@ -174,7 +171,7 @@ class AlunoTurmaController extends Controller
                 $alunosAdmitidos[] = $aluno;
                 continue;
             }
-            $alunosNAdmitidos[] = $aluno;
+            // $alunosNAdmitidos[] = $aluno;
         }
 
         if(!$alunosAdmitidos)
@@ -268,12 +265,11 @@ class AlunoTurmaController extends Controller
                  'usuario_id'=> $userId,
                  'status_usuario'=>1,
              ];
-             $user = UserController::updateUser($dadosUser);
+             $user = UserController::updateAluno($dadosUser);
              if(!$user)
              {
                  return "Algum problema com o aluno ".$aluno['nome'].", tente mais tarde.";
              }
-
              $alunosOrdemTurma[] = $aluno['aluno'];
              }
 

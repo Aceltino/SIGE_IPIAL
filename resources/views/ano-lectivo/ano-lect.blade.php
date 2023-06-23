@@ -4,11 +4,15 @@
 
 @section('conteudo')
 <main id="main" class="main">
-    @if (session()->has('sucesso'))
-        {{session('sucesso')}}
-    @endif
     @if (session()->has('erro'))
-        {{session('erro')}}
+    <div class="alert alert-danger">
+    {{session('erro')}}
+    </div>
+    @endif
+    @if (session()->has('sucesso'))
+    <div class="alert alert-success">
+        {{session('sucesso')}}
+    </div>
     @endif
       <div class="row">
         <div class="col">

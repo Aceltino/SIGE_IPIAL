@@ -56,29 +56,24 @@
     <tbody>
     @foreach($disciplinas as $disciplina)
       <tr style=" text-align: center;">
-        <td>{{ $disciplina['nome_disciplina'] }}</td>
-        <td>{{ $disciplina['sigla']		}}</td>
-        <td>{{ $disciplina['componente']	}}</td>
-        <td>{{ $disciplina['tempo_prova'] }}</td>
-        @foreach($cursos as $curso)
-        @if($cursos == null)
-        <td>Todos os cursos</td>
-        @else
-        <td>{{ $curso['nome_curso'] }}</td>
-        @endif 
-        @endforeach
+        <td>{{ $disciplina->nome_disciplina }}</td>
+        <td>{{ $disciplina->sigla		}}</td>
+        <td>{{ $disciplina->componente	}}</td>
+        <td>{{ $disciplina->tempo_prova }}</td>
+        <td>{{ $disciplina->curso->nome_curso }}</td>
         <td> 
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-          <a href="{{ route('disciplina.edit', ['disciplina_id',$disciplinas->disciplina_id])}}"><i class="bi bi-pencil"></i></a>
+          <a href="{{ route('disciplina.edit', ['disciplina_id' => $disciplina->disciplina_id ])}}"><i class="bi bi-pencil"></i></a>
 
-          <form action="{{ route('disciplina.delete', ['disciplina_id',$disciplinas->disciplina_id]) }}" method="POST">
+          <form action="{{ route('disciplina.delete', ['disciplina_id' => $disciplina->disciplina_id]) }}" method="POST">
             @csrf
-            @method('destroy')
-          <button type="submit" class="bi bi-trash-fill"></button>
+            @method('delete')
+          <button type="submit"  class="bi bi-trash-fill" style="border: none; background: none;"></button>
           </form>
         </td>
-      </tr> 
+      </tr>
       @endforeach
+
             </tr>
     </tbody>
   </table>
@@ -103,7 +98,7 @@
                   <h1>Dados da discplina</h1>
                 </div>
                   <div class="corpo-modal" >
-                  <form class="form-inativo">
+              <form class="form-inativo">
                 <div class="dados da disciplina">
                 <div class="area-input form-group" style="border: none;">
                 <label>Nome da disciplina: </label><input type="text" name="" value="{{ $disciplina->nome_disciplina }}" disabled>
@@ -116,7 +111,7 @@
                 <label>Componete: </label><input type="text" name="socio-culturais" value="{{ $disciplina->componente }}" disabled>
             </div>
             <div class="area-input form-group" style="border: none; ">
-                <label>Curso: </label><input type="text" name="socio-culturais" value="{{ $cursos->nome_curso }}" disabled>
+                <label>Curso: </label><input type="text" name="socio-culturais" value="{{ $disciplina->curso->nome_curso }}" disabled>
             </div>
   <div class="area-input form-group" style="border: none; ">
                 <label>Tempo de prova: </label><input type="text" name="tempo_prova" value="{{ $disciplina->tempo_prova }}" disabled>
@@ -127,8 +122,6 @@
                       </div> 
               </form>
             </div>
-
-
           </div>
         </div>
       </div>

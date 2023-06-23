@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Candidato;
 use Illuminate\Foundation\Http\FormRequest;
 
 class InscricaoUpdateRequest extends FormRequest
@@ -24,7 +25,7 @@ class InscricaoUpdateRequest extends FormRequest
     public function rules()
     {
         $rules = [];
-
+        $candidato = Candidato::find($this->request->get('id'));
         $rules = [
             //Formulario candidato
             'nome_pai_cand'=>'required|string|max:100|min:2',
@@ -34,7 +35,7 @@ class InscricaoUpdateRequest extends FormRequest
             //Formulario da Pessoa
             'nome_completo'=>'required|string|min:2|max:100',
             'data_nascimento'=>'required|date|before:'.now()->format('d-m-Y'),
-            'num_bi'=>'nullable|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi',
+            'num_bi'=>'nullable|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi,'.$candidato->pessoa_id.',pessoa_id',
             'genero' => 'required|string',
             'turno' => 'required|string',
 
@@ -53,7 +54,7 @@ class InscricaoUpdateRequest extends FormRequest
             'turma_aluno' => 'required|string',
 
             //Dados Telefone
-            'num_tel'=>'required|size:9'
+            'num_tel'=>'required|size:9|unique:pessoas,telefone,'.$candidato->pessoa_id.',pessoa_id',
         ];
 
         $count = 1;

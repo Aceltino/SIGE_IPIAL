@@ -5,7 +5,7 @@
 @section('conteudo')
 <main id="main" class="main" >
 
-    <form id="regFormh" action="{{ route('disciplina.store') }}" class="formulario-layout" method ="POST">
+<form id="regFormh" action="{{ route('disciplina.store') }}" class="formulario-layout" method ="POST">
       @csrf
         <div style="text-align:center;margin-top:10px;">
         <span class="step"></span>
@@ -43,21 +43,20 @@
                 <div class="col">
                   @foreach($cursos as $curso)
                   <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="curso" value="{{$curso['nome_curso']}}">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="curso" value="{{$curso['curso_id']}}">
                     <label class="form-check-label" for="flexSwitchCheckDefault">{{$curso['nome_curso']}}</label>
                  </div> 
                   @endforeach
                             <div class="col">
                                 <label for="">Tempo de prova:</label>
                      <input type="time" style=" text-align: center;" name="tempo_prova"  oninput="this.className = ''">
-                 </div>
+                 </div> 
              </div> 
-
-            <div style="text-align:center;margin-top:40px;">
+             <div style="text-align:center;margin-top:10px;">
                 <div>
-                    <button type="button" class="btn btn-success">Cadastrar</button>
+                    <button type="submit" class="btn btn-success">Criar Comunicado</button>
                 </div>
-            </div> 
+            </div>
         </div>
     </form>
 </main>

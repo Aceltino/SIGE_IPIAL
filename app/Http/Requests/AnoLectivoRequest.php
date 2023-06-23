@@ -26,7 +26,7 @@ class AnoLectivoRequest extends FormRequest
     {
         return [
             'ano_lectivo' => [
-                'required',
+                //'required',
                 'string',
                 'min:1',
                 'max:15',
@@ -48,56 +48,56 @@ class AnoLectivoRequest extends FormRequest
             ],
             'data_fim_ano_lectivo' => [
                 'required',
-                function($attribute, $value, $fail){
-                    $ulAno = AnoLectivoTrait::validateFimAnoLectivo($this->data_inicio_ano_lectivo, $value);
-                    if(!$ulAno){
-                        return $fail("A data do fim do ano lectivo deve ser superior a data do início do ano lectivo!");
-                    } elseif($ulAno > 1){
-                        return $fail("O ano lectivo deve terminar em 12 meses!");
-                    }
-                }
+                // function($attribute, $value, $fail){
+                //     $ulAno = AnoLectivoTrait::validateFimAnoLectivo($this->data_inicio_ano_lectivo, $value);
+                //     if(!$ulAno){
+                //         return $fail("A data do fim do ano lectivo deve ser superior a data do início do ano lectivo!");
+                //     } elseif($ulAno > 1){
+                //         return $fail("O ano lectivo deve terminar em 12 meses!");
+                //     }
+                // }
             ],
             'data_inicio_inscricao' => [
                 'required',
-                function($attribute, $value, $fail){
-                    $ulAno = AnoLectivoTrait::validateInicioInscricao($value, $this->data_inicio_ano_lectivo);
-                    if(!$ulAno){
-                        return $fail("A data de início das inscrições deve ser superior a data do início do ano lectivo!");
-                    } elseif($ulAno > 1){
-                        return $fail("As inscrições devem decorrer no mesmo mês e no mesmo ano da abertura do ano lectivo!");
-                    }
-                }
+                // function($attribute, $value, $fail){
+                //     $ulAno = AnoLectivoTrait::validateInicioInscricao($value, $this->data_inicio_ano_lectivo);
+                //     if(!$ulAno){
+                //         return $fail("A data de início das inscrições deve ser superior a data do início do ano lectivo!");
+                //     } elseif($ulAno > 1){
+                //         return $fail("As inscrições devem decorrer no mesmo mês e no mesmo ano da abertura do ano lectivo!");
+                //     }
+                // }
             ],
             'data_fim_inscricao' => [
                 'required',
-                function($attribute, $value, $fail){
-                    $ulAno = AnoLectivoTrait::validateFimInscricao($this->data_inicio_inscricao, $value);
-                    if(!$ulAno){
-                        return $fail("A data do fim das inscrições deve ser superior a data do início das inscrições!");
-                    } elseif($ulAno > 1){
-                        return $fail("As inscrições devem durar no máximo 15 dias!");
-                    }
-                }
+                // function($attribute, $value, $fail){
+                //     $ulAno = AnoLectivoTrait::validateFimInscricao($this->data_inicio_inscricao, $value);
+                //     if(!$ulAno){
+                //         return $fail("A data do fim das inscrições deve ser superior a data do início das inscrições!");
+                //     } elseif($ulAno > 1){
+                //         return $fail("As inscrições devem durar no máximo 15 dias!");
+                //     }
+                // }
             ],
             'data_inicio_matricula' => [
                 'required',
-                function($attribute, $value, $fail){
-                    $ulAno = AnoLectivoTrait::validateInicioMatricula($value, $this->data_fim_inscricao);
-                    if(!$ulAno){
-                        return $fail("A data do início das matriculas deve ser superior a data do fim das inscrições!");
-                    }
-                }
+                // function($attribute, $value, $fail){
+                //     $ulAno = AnoLectivoTrait::validateInicioMatricula($value, $this->data_fim_inscricao);
+                //     if(!$ulAno){
+                //         return $fail("A data do início das matriculas deve ser superior a data do fim das inscrições!");
+                //     }
+                // }
             ],
             'data_fim_matricula' => [
                 'required',
-                function($attribute, $value, $fail){
-                    $ulAno = AnoLectivoTrait::validateFimMatricula($this->data_inicio_matricula, $value);
-                    if(!$ulAno){
-                        return $fail("A data do fim das matriculas deve ser superior a data do início das matriculas!");
-                    } elseif($ulAno > 1){
-                        return $fail("As matriculas devem durar no máximo 15 dias!");
-                    }
-                }
+                // function($attribute, $value, $fail){
+                //     $ulAno = AnoLectivoTrait::validateFimMatricula($this->data_inicio_matricula, $value);
+                //     if(!$ulAno){
+                //         return $fail("A data do fim das matriculas deve ser superior a data do início das matriculas!");
+                //     } elseif($ulAno > 1){
+                //         return $fail("As matriculas devem durar no máximo 15 dias!");
+                //     }
+                // }
             ],
             'num_aluno_na_turma' => [
                 'required',
@@ -122,9 +122,10 @@ class AnoLectivoRequest extends FormRequest
                     $ulAno = AnoLectivoTrait::validateFimTrimestres($this->data_inicio1, $value);
                     if(!$ulAno){
                         return $fail("A data do fim do 1º trimestre deve ser superior a data do início do 1º trimestre!");
-                    } elseif($ulAno > 1){
-                        return $fail("O trimestre deve ter uma duração de 3 meses!");
                     }
+                    // elseif($ulAno > 1){
+                    //     return $fail("O trimestre deve ter uma duração de 3 meses!");
+                    // }
                 }
             ],
             'data_inicio2' => [
@@ -142,9 +143,10 @@ class AnoLectivoRequest extends FormRequest
                     $ulAno = AnoLectivoTrait::validateFimTrimestres($this->data_inicio2, $value);
                     if(!$ulAno){
                         return $fail("A data do fim do 2º trimestre deve ser superior a data do início do 2º trimestre!");
-                    } elseif($ulAno > 1){
-                        return $fail("O trimestre deve ter uma duração de 3 meses!");
                     }
+                    // elseif($ulAno > 1){
+                    //     return $fail("O trimestre deve ter uma duração de 3 meses!");
+                    // }
                 }
             ],
             'data_inicio3' => [
@@ -162,32 +164,33 @@ class AnoLectivoRequest extends FormRequest
                     $ulAno = AnoLectivoTrait::validateFimTrimestres($this->data_inicio3, $value);
                     if(!$ulAno){
                         return $fail("A data do fim do 3º trimestre deve ser superior a data do início do 3º trimestre!");
-                    } elseif($ulAno > 1){
-                        //dd($ulAno);
-                        return $fail("O trimestre deve ter uma duração de 3 meses!");
                     }
+                    // elseif($ulAno > 1){
+                    //     //dd($ulAno);
+                    //     return $fail("O trimestre deve ter uma duração de 3 meses!");
+                    // }
                 }
             ],
             'hora_inicio_manha' => [
                 'required',
-                function($attribute, $value, $fail){
-                    $get = AnoLectivoTrait::verifyHoraManha($value);
-                    if(!$get){
-                        return $fail("Este horário não corresponde ao turno da manhã!");
-                    }
-                }
+                // function($attribute, $value, $fail){
+                //     $get = AnoLectivoTrait::verifyHoraManha($value);
+                //     if(!$get){
+                //         return $fail("Este horário não corresponde ao turno da manhã!");
+                //     }
+                // }
             ],
             'hora_fim_manha' => [
                 'required',
-                function($attribute, $value, $fail){
-                    $get = AnoLectivoTrait::verifyHoraManha($this->hora_fim_manha);
-                    $fim = AnoLectivoTrait::horaFimAula($this->hora_inicio_manha, $value);
-                    if(!$get){
-                        return $fail("Este horário não corresponde ao turno da manhã!");
-                    } elseif(!$fim){
-                        return $fail("A hora do final das aulas deve ser superior a hora de início das aulas!");
-                    }
-                }
+                // function($attribute, $value, $fail){
+                //     $get = AnoLectivoTrait::verifyHoraManha($this->hora_fim_manha);
+                //     $fim = AnoLectivoTrait::horaFimAula($this->hora_inicio_manha, $value);
+                //     if(!$get){
+                //         return $fail("Este horário não corresponde ao turno da manhã!");
+                //     } elseif(!$fim){
+                //         return $fail("A hora do final das aulas deve ser superior a hora de início das aulas!");
+                //     }
+                // }
             ],
             'duracao_tempo_manha' => [
                 'required',
@@ -209,27 +212,27 @@ class AnoLectivoRequest extends FormRequest
             ],
             'hora_inicio_tarde' => [
                 'required',
-                function($attribute, $value, $fail){
-                    $get = AnoLectivoTrait::verifyHoraTarde($value);
-                    $fim = AnoLectivoTrait::horaFimAula($this->hora_fim_manha, $value);
-                    if(!$get){
-                        return $fail("Este horário não corresponde ao turno da tarde!");
-                    } elseif(!$fim){
-                        return $fail("A hora do início das aulas do turno da tarde deve ser superior a hora do final das aulas do turno da manhã!");
-                    }
-                }
+                // function($attribute, $value, $fail){
+                //     $get = AnoLectivoTrait::verifyHoraTarde($value);
+                //     $fim = AnoLectivoTrait::horaFimAula($this->hora_fim_manha, $value);
+                //     if(!$get){
+                //         return $fail("Este horário não corresponde ao turno da tarde!");
+                //     } elseif(!$fim){
+                //         return $fail("A hora do início das aulas do turno da tarde deve ser superior a hora do final das aulas do turno da manhã!");
+                //     }
+                // }
             ],
             'hora_fim_tarde' => [
                 'required',
-                function($attribute, $value, $fail){
-                    $get = AnoLectivoTrait::verifyHoraTarde($value);
-                    $fim = AnoLectivoTrait::horaFimAula($this->hora_inicio_tarde, $value);
-                    if(!$get){
-                        return $fail("Este horário não corresponde ao turno da tarde!");
-                    } elseif(!$fim){
-                        return $fail("A hora do fim das aulas deve ser superior a hora do início das aulas!");
-                    }
-                }
+                // function($attribute, $value, $fail){
+                //     $get = AnoLectivoTrait::verifyHoraTarde($value);
+                //     $fim = AnoLectivoTrait::horaFimAula($this->hora_inicio_tarde, $value);
+                //     if(!$get){
+                //         return $fail("Este horário não corresponde ao turno da tarde!");
+                //     } elseif(!$fim){
+                //         return $fail("A hora do fim das aulas deve ser superior a hora do início das aulas!");
+                //     }
+                // }
             ],
             'duracao_tempo_tarde' => [
                 'required',
@@ -251,27 +254,27 @@ class AnoLectivoRequest extends FormRequest
             ],
             'hora_inicio_noite' => [
                 'required',
-                function($attribute, $value, $fail){
-                    $get = AnoLectivoTrait::verifyHoraNoite($value);
-                    $fim = AnoLectivoTrait::horaFimAula($this->hora_fim_tarde, $value);
-                    if(!$get){
-                        return $fail("Este horário não corresponde ao turno da noite!");
-                    } elseif(!$fim){
-                        return $fail("A hora do início das aulas do turno da noite deve ser superior a hora do final das aulas do turno da tarde!");
-                    }
-                }
+                // function($attribute, $value, $fail){
+                //     $get = AnoLectivoTrait::verifyHoraNoite($value);
+                //     $fim = AnoLectivoTrait::horaFimAula($this->hora_fim_tarde, $value);
+                //     if(!$get){
+                //         return $fail("Este horário não corresponde ao turno da noite!");
+                //     } elseif(!$fim){
+                //         return $fail("A hora do início das aulas do turno da noite deve ser superior a hora do final das aulas do turno da tarde!");
+                //     }
+                // }
             ],
             'hora_fim_noite' => [
                 'required',
-                function($attribute, $value, $fail){
-                    $get = AnoLectivoTrait::verifyHoraNoite($value);
-                    $fim = AnoLectivoTrait::horaFimAula($this->hora_inicio_noite, $value);
-                    if(!$get){
-                        return $fail("Este horário não corresponde ao turno da noite!");
-                    } elseif(!$fim){
-                        return $fail("A hora do fim das aulas deve ser superior a hora do início das aulas!");
-                    }
-                }
+                // function($attribute, $value, $fail){
+                //     $get = AnoLectivoTrait::verifyHoraNoite($value);
+                //     $fim = AnoLectivoTrait::horaFimAula($this->hora_inicio_noite, $value);
+                //     if(!$get){
+                //         return $fail("Este horário não corresponde ao turno da noite!");
+                //     } elseif(!$fim){
+                //         return $fail("A hora do fim das aulas deve ser superior a hora do início das aulas!");
+                //     }
+                // }
             ],
             'duracao_tempo_noite' => [
                 'required',

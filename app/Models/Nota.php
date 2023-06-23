@@ -10,6 +10,18 @@ class Nota extends Model
     use HasFactory;
     protected $table = 'notas';
     protected $primaryKey = 'nota_id';
+    protected $fillable = [
+        'data_avaliacao',
+        'nota_aluno',
+        'tipo_prova',
+        'descricao_nota',
+        'aluno_id',
+        'disciplina_id',
+        'trimestre_id',
+        'created_at',
+        'updated_at'
+
+    ];
 
     public function aluno(){
         return $this->belongsTo(Aluno::class, 'aluno_id');
