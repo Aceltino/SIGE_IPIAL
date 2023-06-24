@@ -32,14 +32,14 @@ use Symfony\Component\HttpKernel\Profiler\Profiler;
  */
 class ProfilerListener implements EventSubscriberInterface
 {
-    private Profiler $profiler;
-    private ?RequestMatcherInterface $matcher;
+    private $profiler;
+    private $matcher;
     private bool $onlyException;
     private bool $onlyMainRequests;
     private ?\Throwable $exception = null;
     /** @var \SplObjectStorage<Request, Profile> */
     private \SplObjectStorage $profiles;
-    private RequestStack $requestStack;
+    private $requestStack;
     private ?string $collectParameter;
     /** @var \SplObjectStorage<Request, Request|null> */
     private \SplObjectStorage $parents;
@@ -63,7 +63,7 @@ class ProfilerListener implements EventSubscriberInterface
     /**
      * Handles the onKernelException event.
      */
-    public function onKernelException(ExceptionEvent $event): void
+    public function onKernelException(ExceptionEvent $event)
     {
         if ($this->onlyMainRequests && !$event->isMainRequest()) {
             return;
@@ -75,7 +75,7 @@ class ProfilerListener implements EventSubscriberInterface
     /**
      * Handles the onKernelResponse event.
      */
-    public function onKernelResponse(ResponseEvent $event): void
+    public function onKernelResponse(ResponseEvent $event)
     {
         if ($this->onlyMainRequests && !$event->isMainRequest()) {
             return;
@@ -87,7 +87,7 @@ class ProfilerListener implements EventSubscriberInterface
 
         $request = $event->getRequest();
         if (null !== $this->collectParameter && null !== $collectParameterValue = $request->get($this->collectParameter)) {
-            true === $collectParameterValue || filter_var($collectParameterValue, \FILTER_VALIDATE_BOOL) ? $this->profiler->enable() : $this->profiler->disable();
+            true === $collectParameterValue || filter_var($collectParameterValue, \FILTER_VALIDATE_BOOLEAN) ? $this->profiler->enable() : $this->profiler->disable();
         }
 
         $exception = $this->exception;
@@ -97,7 +97,7 @@ class ProfilerListener implements EventSubscriberInterface
             return;
         }
 
-        $session = $request->hasPreviousSession() ? $request->getSession() : null;
+        $session = $request->hasPreviousSession() && $request->hasSession() ? $request->getSession() : null;
 
         if ($session instanceof Session) {
             $usageIndexValue = $usageIndexReference = &$session->getUsageIndex();
@@ -119,7 +119,7 @@ class ProfilerListener implements EventSubscriberInterface
         $this->parents[$request] = $this->requestStack->getParentRequest();
     }
 
-    public function onKernelTerminate(TerminateEvent $event): void
+    public function onKernelTerminate(TerminateEvent $event)
     {
         // attach children to parents
         foreach ($this->profiles as $request) {

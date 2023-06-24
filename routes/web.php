@@ -58,9 +58,8 @@ Route::prefix('autenticacao')->group(function(){
     Route::post('login',[AuthController::class,'loginCheck'])->name('loginCheck')->middleware('guest');
 
     //Rota de Cadastro
-    Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar')->middleware('guest');
+    // Route::get('registrar', [AuthController::class,'registrarForm'])->name('registrar')->middleware('guest');
     Route::post('registrar', [AuthController::class,'storeInicio'])->name('registrar')->middleware('guest');
-
 
     //Rota para envio de email para redifinição de senha
     Route::get('reset', [AuthController::class,'resetForm'])->name('recuperar-senha')->middleware('guest');
@@ -313,9 +312,8 @@ Route::prefix('ficha-biog')->group(function(){
  * Rotas do processo do Aluno
  */
 Route::prefix('processo')->group(function(){
-
     Route::get('processos',[ProcessoController::class, 'index'])->name('processo.consultar');
-
+    Route::delete('{candidato_id}',[ProcessoController::class, 'destroy'])->where('candidato_id', '[0-9]+')->name('processo.deletar');
 });
 /******************************************
  * Rotas de pauta
@@ -330,6 +328,7 @@ Route::prefix('pauta')->middleware(['auth'])->group(function(){
 Route::prefix('mini-pauta')->group(function(){
     Route::get('mini-pauta', [MiniPautaController::class, 'index'])->name('mini-pauta');
     Route::get('ver-mini-pauta', [MiniPautaController::class, 'show'])->name('mini-pauta.show');
+    Route::get('{turma}/{prof_id}/{disciplina}', [MiniPautaController::class, 'view'])->name('mini-pauta.view');
 
 });
 /******************************************
@@ -352,27 +351,16 @@ Route::prefix('comunicado')->middleware(['auth'])->group(function(){
 
 Route::prefix('usuario')->middleware(['auth','checkcargo'])->group(function(){
 
-
-    Route::get('/', [UserController::class,'index'])->name('consultUsuario');
-
-
     Route::get('/', [UserController::class,'index'])->name('consultUsuario');
 
     Route::get('cadastro',[UserController::class,'usuarioFormCadastro' ])->name('createUsuario');
     Route::post('cadastro',[AuthController::class,'store'])->name('storeUsuario');
 
-
-    Route::get('usuarios', function () {
-        return view('usuario/usuarios');
-    })->name('consultUsuario');
-
-    Route::get('use_editar', function () {
-        return view('usuario/use_editar');
-    });
-    Route::patch('estado/{id}',[UserController::class,'userStateChange'])->name('stateChange');
-
     Route::get('editar/{id}', [UserController::class,'show'])->name('editUser');
-    Route::put('update/{id}',[UserController::class,'updateUser'])->name('updateUser');
+    Route::put('update/{id}',[UserController::class,'updateUser'])->name('updateUser');   
+    
+    Route::patch('estado/{id}',[UserController::class,'userStateChange'])->name('stateChange');
+    Route::post('resgate/{id}',[AuthController::class,'reenviarCredencias'])->name("reenviarCredencias");
 });
 /**************************************************
  * Rotas do Calendario de provas

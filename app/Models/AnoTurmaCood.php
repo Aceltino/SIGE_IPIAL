@@ -30,6 +30,4 @@ class AnoTurmaCood extends Model
     {
         return $this->belongsToMany(AnoTurmaCood::class, 'aluno_turma', 'turmaAno_id', 'aluno_id')->withPivot('numero_aluno','situacao');
     }
-
-
 }

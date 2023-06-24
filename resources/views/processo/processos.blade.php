@@ -13,9 +13,10 @@
             <div class="col-lg-5">
             <select class="btn-sel form-select" name="opcoes" id="filtro5">
                 <option selected disabled>Curso</option>
-                @foreach($cursos as $curso)
-                <option value="{{$curso['nome_curso']}}">{{$curso['nome_curso']}}</option>
-                @endforeach
+                <option value="Desenhador projetista">Desenhador projetista</option>
+                <option value="T.E.I.E">Técnico de Energia e Instalações Electricas - T.E.I.E</option>
+                <option value="Informática">Informática</option>
+                <option value="E.T">Electronica e Telecomunicação - E.T</option>
             </select>
             </div> 
         
@@ -30,7 +31,7 @@
     </div>
 
     <!-- /  Inicio da tabela de inscritos -->
-      <table  id="matricula-tab" class="table table-striped" style="margin-top: 20px;" >
+    <table  id="matricula-tab" class="table table-striped" style="margin-top: 20px;" >
       <thead  style=" text-align: center;">
           <tr>
           <th scope="col">Número do BI</th>
@@ -45,18 +46,23 @@
       <tbody>
         @foreach($candidatos as $candidato)
           <tr  style=" text-align: center;">
-          <th scope="row">{{ $candidato['num_bi'] }}</th>
-          <td>{{ $candidato['nome_completo'] }}</td>
-          <td>{{ $candidato['num_processo'] }}</td>
-          <td>{{ $candidato['nome_turma'] }}</td>
-          <td>{{ $candidato['nome_curso'] }}</td>
-          <td>{{ $candidato['nome_turno'] }}</td>
+          <th scope="row">{{ $candidato->pessoa->num_bi }}</th>
+          <td>{{ $candidato->pessoa->nome_completo }}</td>
+          <td>{{ $candidato->escola->num_processo }}</td>
+          <td>{{ $candidato->escola->turma_aluno }}</td>
+          <td>{{ $candidato->cursoAdmitido }}</td>
+          <td>{{ $candidato->escola->turno }}</td>
           <td>
           <a href="#" class="btn btn-cor-sg-a" data-bs-toggle="modal" data-bs-target="#ExtralargeModal">Ver Processo</a>
-          <i class="bi bi-trash-fill"></i>
+          <form method="POST" action="{{ route('processo.deletar',['candidato_id' => $candidato->candidato_id ] )}}">
+            @csrf
+            @method('delete')
+            <button class="bi bi-trash-fill" style="border: none; background: none;"></button>
+          </form>
+          <i ></i>
           </td>
           </tr>
-        @endforeach   
+        @endforeach  
       </tbody>
     </table>
     <!-- Termina a tabela de inscritos -->

@@ -4,12 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Curso;
-use App\Models\Pessoa;
-use App\Models\Endereco;
-use App\Models\Professor;
-use App\Models\Telefone;
-use Illuminate\Support\Facades\Validator;
+use App\Models\{
+    Pessoa,
+    Curso,
+    Endereco,
+    Professor,
+    Telefone,
+    Disciplina,
+    Professor_disciplina,
+    Ano_lectivo
+};
+use Illuminate\Support\Facades\{
+    Validator,
+    DB
+};
 use App\Traits\ValidarBITrait;
 
 class ProfessorController extends Controller
@@ -43,7 +51,8 @@ class ProfessorController extends Controller
     public function create()
     {
         $cursos = Curso::all(['nome_curso', 'sigla']);
-        return view('professor.cadastrar-prof', ['cursos' => $cursos]);
+        $disciplinas = Disciplina::all();
+        return view('professor.cadastrar-prof', ['disciplinas' => $disciplinas, 'cursos' => $cursos]);
     }
 
     public function profEditar($uuid)
@@ -92,20 +101,24 @@ class ProfessorController extends Controller
             $validatedPessoa = $request->validate([
                 'nome_completo' => 'required|string|max:255',
                 'num_bi' => 'required|regex:/^\d{9}[A-Z]{2}\d{3}$/',
-                'genero' => 'required|in:Masculino,Feminino',
-                'num_tel' => ['required', 'regex:/^\d{9}$/'],
+                'genero' => 'required|in:Masculino,Femenino',
+                'telefone' => ['required', 'regex:/^\d{9}$/'],
                 'data_nascimento' => 'required|date',
             ]);
-
-            // $num = $request->input('...');
-            // $validarBI = ValidarBITrait::validar($num);
 
             $endereco = Endereco::create($validatedEndereco);
 
             $validatedPessoa['endereco_id'] = $endereco->endereco_id;
             $pessoa = Pessoa::create($validatedPessoa);
 
-            $prof = Professor::create(['formacao' => 'Engenheiro Civil', 'pessoa_id' => $pessoa->pessoa_id]);
+            $prof = Professor::create(['formacao' => $request->input('formacao'), '' => $request->input('curso'), 'pessoa_id' => $pessoa->pessoa_id]);
+            $ano_letivo = Ano_lectivo::latest()->get()->last();
+            Professor_disciplina::create([
+                'disciplina_id' => $request->input('disciplina'),
+                'professor_id'  => $prof->professor_id,
+                'ano_lectivo_id' => $ano_letivo->ano_lectivo_id,
+                'prioridade'    => 1
+            ]);
 
             return redirect()->route('professor')->with('success', 'Registro criado com sucesso!');
         } catch (ValidationException $e) {

@@ -24,7 +24,7 @@ use Symfony\Component\DependencyInjection\Reference;
 class ResettableServicePass implements CompilerPassInterface
 {
     /**
-     * @return void
+     * {@inheritdoc}
      */
     public function process(ContainerBuilder $container)
     {

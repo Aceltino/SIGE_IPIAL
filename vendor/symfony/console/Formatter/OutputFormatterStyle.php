@@ -20,7 +20,7 @@ use Symfony\Component\Console\Color;
  */
 class OutputFormatterStyle implements OutputFormatterStyleInterface
 {
-    private Color $color;
+    private $color;
     private string $foreground;
     private string $background;
     private array $options;
@@ -39,24 +39,18 @@ class OutputFormatterStyle implements OutputFormatterStyleInterface
     }
 
     /**
-     * @return void
+     * {@inheritdoc}
      */
     public function setForeground(string $color = null)
     {
-        if (1 > \func_num_args()) {
-            trigger_deprecation('symfony/console', '6.2', 'Calling "%s()" without any arguments is deprecated, pass null explicitly instead.', __METHOD__);
-        }
         $this->color = new Color($this->foreground = $color ?: '', $this->background, $this->options);
     }
 
     /**
-     * @return void
+     * {@inheritdoc}
      */
     public function setBackground(string $color = null)
     {
-        if (1 > \func_num_args()) {
-            trigger_deprecation('symfony/console', '6.2', 'Calling "%s()" without any arguments is deprecated, pass null explicitly instead.', __METHOD__);
-        }
         $this->color = new Color($this->foreground, $this->background = $color ?: '', $this->options);
     }
 
@@ -66,7 +60,7 @@ class OutputFormatterStyle implements OutputFormatterStyleInterface
     }
 
     /**
-     * @return void
+     * {@inheritdoc}
      */
     public function setOption(string $option)
     {
@@ -75,7 +69,7 @@ class OutputFormatterStyle implements OutputFormatterStyleInterface
     }
 
     /**
-     * @return void
+     * {@inheritdoc}
      */
     public function unsetOption(string $option)
     {
@@ -88,18 +82,20 @@ class OutputFormatterStyle implements OutputFormatterStyleInterface
     }
 
     /**
-     * @return void
+     * {@inheritdoc}
      */
     public function setOptions(array $options)
     {
         $this->color = new Color($this->foreground, $this->background, $this->options = $options);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function apply(string $text): string
     {
         $this->handlesHrefGracefully ??= 'JetBrains-JediTerm' !== getenv('TERMINAL_EMULATOR')
-            && (!getenv('KONSOLE_VERSION') || (int) getenv('KONSOLE_VERSION') > 201100)
-            && !isset($_SERVER['IDEA_INITIAL_DIRECTORY']);
+            && (!getenv('KONSOLE_VERSION') || (int) getenv('KONSOLE_VERSION') > 201100);
 
         if (null !== $this->href && $this->handlesHrefGracefully) {
             $text = "\033]8;;$this->href\033\\$text\033]8;;\033\\";

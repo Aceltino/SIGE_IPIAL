@@ -58,7 +58,7 @@ class Psr6CacheClearer implements CacheClearerInterface
     }
 
     /**
-     * @return void
+     * {@inheritdoc}
      */
     public function clear(string $cacheDir)
     {

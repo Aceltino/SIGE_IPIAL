@@ -98,8 +98,6 @@ class Response
         'proxy_revalidate' => false,
         'max_age' => true,
         's_maxage' => true,
-        'stale_if_error' => true,         // RFC5861
-        'stale_while_revalidate' => true, // RFC5861
         'immutable' => false,
         'last_modified' => true,
         'etag' => true,
@@ -212,13 +210,6 @@ class Response
     ];
 
     /**
-     * Tracks headers already sent in informational responses.
-     */
-    private array $sentHeaders;
-
-    /**
-     * @param int $status The HTTP status code (200 "OK" by default)
-     *
      * @throws \InvalidArgumentException When the HTTP status code is not valid
      */
     public function __construct(?string $content = '', int $status = 200, array $headers = [])
@@ -331,53 +322,20 @@ class Response
     /**
      * Sends HTTP headers.
      *
-     * @param null|positive-int $statusCode The status code to use, override the statusCode property if set and not null
-     *
      * @return $this
      */
-    public function sendHeaders(/* int $statusCode = null */): static
+    public function sendHeaders(): static
     {
         // headers have already been sent by the developer
         if (headers_sent()) {
             return $this;
         }
 
-        $statusCode = \func_num_args() > 0 ? func_get_arg(0) : null;
-        $informationalResponse = $statusCode >= 100 && $statusCode < 200;
-        if ($informationalResponse && !\function_exists('headers_send')) {
-            // skip informational responses if not supported by the SAPI
-            return $this;
-        }
-
         // headers
         foreach ($this->headers->allPreserveCaseWithoutCookies() as $name => $values) {
-            $newValues = $values;
-            $replace = false;
-
-            // As recommended by RFC 8297, PHP automatically copies headers from previous 103 responses, we need to deal with that if headers changed
-            if (103 === $statusCode) {
-                $previousValues = $this->sentHeaders[$name] ?? null;
-                if ($previousValues === $values) {
-                    // Header already sent in a previous response, it will be automatically copied in this response by PHP
-                    continue;
-                }
-
-                $replace = 0 === strcasecmp($name, 'Content-Type');
-
-                if (null !== $previousValues && array_diff($previousValues, $values)) {
-                    header_remove($name);
-                    $previousValues = null;
-                }
-
-                $newValues = null === $previousValues ? $values : array_diff($values, $previousValues);
-            }
-
-            foreach ($newValues  as $value) {
+            $replace = 0 === strcasecmp($name, 'Content-Type');
+            foreach ($values as $value) {
                 header($name.': '.$value, $replace, $this->statusCode);
-            }
-
-            if ($informationalResponse) {
-                $this->sentHeaders[$name] = $values;
             }
         }
 
@@ -386,16 +344,8 @@ class Response
             header('Set-Cookie: '.$cookie, false, $this->statusCode);
         }
 
-        if ($informationalResponse) {
-            headers_send($statusCode);
-
-            return $this;
-        }
-
-        $statusCode ??= $this->statusCode;
-
         // status
-        header(sprintf('HTTP/%s %s %s', $this->version, $statusCode, $this->statusText), true, $statusCode);
+        header(sprintf('HTTP/%s %s %s', $this->version, $this->statusCode, $this->statusText), true, $this->statusCode);
 
         return $this;
     }
@@ -749,7 +699,7 @@ class Response
     {
         try {
             return $this->headers->getDate('Expires');
-        } catch (\RuntimeException) {
+        } catch (\RuntimeException $e) {
             // according to RFC 2616 invalid date formats (e.g. "0" and "-1") must be treated as in the past
             return \DateTime::createFromFormat('U', time() - 172800);
         }
@@ -766,9 +716,6 @@ class Response
      */
     public function setExpires(\DateTimeInterface $date = null): static
     {
-        if (1 > \func_num_args()) {
-            trigger_deprecation('symfony/http-foundation', '6.2', 'Calling "%s()" without any arguments is deprecated, pass null explicitly instead.', __METHOD__);
-        }
         if (null === $date) {
             $this->headers->remove('Expires');
 
@@ -804,10 +751,8 @@ class Response
             return (int) $this->headers->getCacheControlDirective('max-age');
         }
 
-        if (null !== $expires = $this->getExpires()) {
-            $maxAge = (int) $expires->format('U') - (int) $this->getDate()->format('U');
-
-            return max($maxAge, 0);
+        if (null !== $this->getExpires()) {
+            return (int) $this->getExpires()->format('U') - (int) $this->getDate()->format('U');
         }
 
         return null;
@@ -825,38 +770,6 @@ class Response
     public function setMaxAge(int $value): static
     {
         $this->headers->addCacheControlDirective('max-age', $value);
-
-        return $this;
-    }
-
-    /**
-     * Sets the number of seconds after which the response should no longer be returned by shared caches when backend is down.
-     *
-     * This method sets the Cache-Control stale-if-error directive.
-     *
-     * @return $this
-     *
-     * @final
-     */
-    public function setStaleIfError(int $value): static
-    {
-        $this->headers->addCacheControlDirective('stale-if-error', $value);
-
-        return $this;
-    }
-
-    /**
-     * Sets the number of seconds after which the response should no longer return stale content by shared caches.
-     *
-     * This method sets the Cache-Control stale-while-revalidate directive.
-     *
-     * @return $this
-     *
-     * @final
-     */
-    public function setStaleWhileRevalidate(int $value): static
-    {
-        $this->headers->addCacheControlDirective('stale-while-revalidate', $value);
 
         return $this;
     }
@@ -883,7 +796,7 @@ class Response
      *
      * It returns null when no freshness information is present in the response.
      *
-     * When the response's TTL is 0, the response may not be served from cache without first
+     * When the responses TTL is <= 0, the response may not be served from cache without first
      * revalidating with the origin.
      *
      * @final
@@ -892,7 +805,7 @@ class Response
     {
         $maxAge = $this->getMaxAge();
 
-        return null !== $maxAge ? max($maxAge - $this->getAge(), 0) : null;
+        return null !== $maxAge ? $maxAge - $this->getAge() : null;
     }
 
     /**
@@ -950,9 +863,6 @@ class Response
      */
     public function setLastModified(\DateTimeInterface $date = null): static
     {
-        if (1 > \func_num_args()) {
-            trigger_deprecation('symfony/http-foundation', '6.2', 'Calling "%s()" without any arguments is deprecated, pass null explicitly instead.', __METHOD__);
-        }
         if (null === $date) {
             $this->headers->remove('Last-Modified');
 
@@ -991,9 +901,6 @@ class Response
      */
     public function setEtag(string $etag = null, bool $weak = false): static
     {
-        if (1 > \func_num_args()) {
-            trigger_deprecation('symfony/http-foundation', '6.2', 'Calling "%s()" without any arguments is deprecated, pass null explicitly instead.', __METHOD__);
-        }
         if (null === $etag) {
             $this->headers->remove('Etag');
         } else {
@@ -1038,14 +945,6 @@ class Response
 
         if (isset($options['s_maxage'])) {
             $this->setSharedMaxAge($options['s_maxage']);
-        }
-
-        if (isset($options['stale_while_revalidate'])) {
-            $this->setStaleWhileRevalidate($options['stale_while_revalidate']);
-        }
-
-        if (isset($options['stale_if_error'])) {
-            $this->setStaleIfError($options['stale_if_error']);
         }
 
         foreach (self::HTTP_RESPONSE_CACHE_CONTROL_DIRECTIVES as $directive => $hasValue) {

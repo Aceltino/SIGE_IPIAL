@@ -16,6 +16,8 @@ class FatalError extends \Error
     private array $error;
 
     /**
+     * {@inheritdoc}
+     *
      * @param array $error An array as returned by error_get_last()
      */
     public function __construct(string $message, int $code, array $error, int $traceOffset = null, bool $traceArgs = true, array $trace = null)
@@ -71,11 +73,15 @@ class FatalError extends \Error
         ] as $property => $value) {
             if (null !== $value) {
                 $refl = new \ReflectionProperty(\Error::class, $property);
+                $refl->setAccessible(true);
                 $refl->setValue($this, $value);
             }
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getError(): array
     {
         return $this->error;

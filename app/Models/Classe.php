@@ -18,6 +18,11 @@ class Classe extends Model
         'created_at',
     ];
 
+    /*
+     *  Disciplina - nota
+     *  Nota - aluno
+     *  Aluno - ano_turma_coord
+    */
     public function turma()
     {
         return $this->hasMany(Turma::class, 'classe_id', 'turma_id');

@@ -86,7 +86,7 @@ class CompiledRoute implements \Serializable
     /**
      * @internal
      */
-    final public function unserialize(string $serialized): void
+    final public function unserialize(string $serialized)
     {
         $this->__unserialize(unserialize($serialized, ['allowed_classes' => false]));
     }
