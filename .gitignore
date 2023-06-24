@@ -14,5 +14,5 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-/vendor
+vendor/
 /public/img/fotoPerfilUsuario/

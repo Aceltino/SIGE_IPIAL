@@ -29,9 +29,9 @@ class MiniPautaController extends Controller
                         ->select('turmas.*', 'classe_disciplina.*', 'disciplinas.*')
                         ->get();
                         
-                        // Mas há um problema, em  disciplina de SEAC pertence apenas ao curso de Informática
-                        // Mas aparece em todas as classe de todos os cursos
-                        // Está a trazer os alunos com base na turma
+                        // Mas há um problema, em disciplina de SEAC pertence apenas ao de Informática
+                        // Mas aparece em todas as classe de todos os cursos, o problema é selecionar 
+                        //** Ainda não consegui pegar as disciplinas com base o curso
         $dados = ClasseDisciplina::join('turmas', 'turmas.classe_id', '=', 'classe_disciplina.classe_id')
                     ->join('professor_disciplina', 'professor_disciplina.disciplina_id', '=', 'classe_disciplina.disciplina_id')
                     ->select('turmas.*', 'classe_disciplina.*', 'professor_disciplina.*')
@@ -53,7 +53,9 @@ class MiniPautaController extends Controller
             $query->whereHas('turma', function ($query) use ($turma_id) {
                 $query->where('turma_id', $turma_id);
             });
-        })->get();
+        })->orderBy('numero_aluno', 'asc')->get();
+
+        // Já está a pegar os alunos, idade, genero de forma automatica, agora vou pegar nas notas 
 
         return view('mini-pauta.mini-pauta-doc', ['alunos' => $alunos, 'anoturmacoord' => $ano_turma_coord, 'notas' => $notas, 'disciplina' => $disciplina, 'turma' => $turma, 'professor' => $professor]);
     }

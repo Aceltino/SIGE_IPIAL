@@ -41,6 +41,7 @@
               </div>
               <div class="row">
                 <div class="col">
+                
                   @foreach($cursos as $curso)
                   <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="curso" value="{{$curso['curso_id']}}">
