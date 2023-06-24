@@ -31,7 +31,7 @@ class FragmentHandler
 {
     private bool $debug;
     private array $renderers = [];
-    private $requestStack;
+    private RequestStack $requestStack;
 
     /**
      * @param FragmentRendererInterface[] $renderers An array of FragmentRendererInterface instances
@@ -48,6 +48,8 @@ class FragmentHandler
 
     /**
      * Adds a renderer.
+     *
+     * @return void
      */
     public function addRenderer(FragmentRendererInterface $renderer)
     {
