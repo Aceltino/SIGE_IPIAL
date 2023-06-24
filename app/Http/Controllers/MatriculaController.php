@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Models\{
     Candidato,
     User,
+    Curso,
+    Turma,
 };
 use App\Traits\PessoaTrait;
 use Illuminate\Support\Facades\Redirect;
@@ -18,7 +20,9 @@ class MatriculaController extends Controller
     use PessoaTrait;
 
     public function index(){
-        return view('matricula/matriculas');
+        $cursos = Curso::all();
+        $turmas = Turma::all();
+        return view('matricula/matriculas', compact('cursos', 'turmas'));
     }
 
     public function create($id)
