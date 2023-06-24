@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Anos Letivos')
+@section('title', 'Anos Lectivos')
 
 @section('conteudo')
 <main id="main" class="main">
@@ -65,15 +65,14 @@
                 <td>{{$al['data_fim_ano_lectivo']}}</td>
                 <td>{{$al['num_aluno_na_turma']}}</td>
                 <td>{{$al['num_sala_escola']}}</td>
-                <td>
+                <td class="d-flex justify-content-between align-items-center">
                     <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
                     <a href="{{route('editar.ano.lectivo', $al['ano_lectivo_id'])}}"><i class="bi bi-pencil"></i></a>
                     <form action="{{route('apagar.ano.lectivo', $al['ano_lectivo_id'])}}" method="POST">
                         @csrf
                         @method('delete')
-                        <button type="submit"><i class="bi bi-trash-fill" ></i></button>
+                        <button type="submit" class="btn d-flex align-items-center p-0"><i class="bi bi-trash-fill" ></i></button>
                     </form>
-                    <i class="bi bi-check-square-fill"></i>
                 </td>
             </tr>
         @endforeach
