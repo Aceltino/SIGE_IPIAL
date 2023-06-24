@@ -29,9 +29,6 @@ class MiniPautaController extends Controller
                         ->select('turmas.*', 'classe_disciplina.*', 'disciplinas.*')
                         ->get();
                         
-                        // Mas há um problema, em  disciplina de SEAC pertence apenas ao curso de Informática
-                        // Mas aparece em todas as classe de todos os cursos
-                        // Está a trazer os alunos com base na turma
         $dados = ClasseDisciplina::join('turmas', 'turmas.classe_id', '=', 'classe_disciplina.classe_id')
                     ->join('professor_disciplina', 'professor_disciplina.disciplina_id', '=', 'classe_disciplina.disciplina_id')
                     ->select('turmas.*', 'classe_disciplina.*', 'professor_disciplina.*')
