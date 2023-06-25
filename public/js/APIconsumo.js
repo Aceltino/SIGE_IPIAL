@@ -39,8 +39,8 @@ axios.get('/api/candidatos')
                     <td>${registro.Idade}</td>
                     <td>${registro.Curso}</td>
                     <td ${corBotao}> ${registro.Situacao} </td>
-                    <td>${Botao}</td>
-                    <td>
+                    <td class="no-print">${Botao}</td>
+                    <td class="no-print">
                     <i ${botaoVisualizar}></i>
                     <a href="/inscricao/editar-candidato/${registro.Id_inscricao}/editar"><i class="bi bi-pencil"></i></a>
                     </td>
@@ -78,29 +78,29 @@ axios.get('/api/candidatos')
                       <form class="form-inativo">
                         <div class="dados-pessoais">        
                         <div class="area-input form-group">
-                        <label>Nome Completo: </label><input type="text" name="" value="${registro.Nome}">
+                        <label>Nome Completo: </label><input type="text" name="" value="${registro.Nome}" disabled>
                     </div>
                     <div class="area-input form-group">
-                        <label>Nome do Pai: </label><input type="text" name="" value="${registro.Pai}">
+                        <label>Nome do Pai: </label><input type="text" name="" value="${registro.Pai}"disabled>
                     </div>
                     <div class="area-input form-group">
-                        <label>Nome da Mãe: </label><input type="text" name="" value="${registro.Mae}">
+                        <label>Nome da Mãe: </label><input type="text" name="" value="${registro.Mae}"disabled>
                     </div>
         
                     <div class="container">
                         <div class="row">
                             <div class="col area-input form-group">
-                                <label>Data de nascimento: </label><input type="text" name="" value="${registro.Data_Nascimento}">
+                                <label>Data de nascimento: </label><input type="text" name="" value="${registro.Data_Nascimento}"disabled>
                         
                             </div>
                             
                             <div class="col area-input form-group" style="margin-left: 10px;">
-                                <label>Idade: </label><input type="text" class="form-control" readonly="true" disabled name="" value="${registro.Idade}">
+                                <label>Idade: </label><input type="text" class="form-control" readonly="true" disabled name="" value="${registro.Idade}"disabled>
                         
                             </div>
                             
                             <div class="col area-input form-group" style="margin-left: 10px;">
-                                <label>Gênero: </label><input type="text" name="" value="${registro.Genero}">
+                                <label>Gênero: </label><input type="text" name="" value="${registro.Genero}"disabled>
                         
                             </div>
                         </div>
@@ -112,7 +112,7 @@ axios.get('/api/candidatos')
                             </div>
         
                             <div class="col area-input form-group" style="margin-left: 10px;">
-                                <label>Naturalidade: </label><input type="text" name="" value="${registro.Naturalidade}">
+                                <label>Naturalidade: </label><input type="text" name="" value="${registro.Naturalidade}"disabled>
                             
                             </div>
                         </div>
@@ -121,7 +121,7 @@ axios.get('/api/candidatos')
                     <div class="container">
                         <div class="row">
                             <div class="col area-input form-group">
-                                <label>Tel-1: </label><input type="text" name="" value="${registro.Telefone}">
+                                <label>Tel-1: </label><input type="text" name="" value="${registro.Telefone}"disabled>
                             </div>
                             <div class="col form-group" style="margin-left: 10px;">
                             <button class="btn-imprimir accordion-buttons collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style="border: none; padding: 5px; width: 230px; height: 40px;">
@@ -144,22 +144,22 @@ axios.get('/api/candidatos')
                             <br>
         
                             <div class="area-input form-group">
-                                <label>Escola de proveniência: </label><input type="text" name="" value="${registro.Escola}">
+                                <label>Escola de proveniência: </label><input type="text" name="" value="${registro.Escola}"disabled>
                             </div>
         
                             <div class="container">
                                 <div class="row">
                                 <div class="col area-input form-group">
-                            <label>Turno: </label><input type="text" name="" value="${registro.Turno}">
+                            <label>Turno: </label><input type="text" name="" value="${registro.Turno}"disabled>
                             
                             </div>
                             <div class="col area-input form-group" style="margin-left: 10px;">
-                            <label>Turma: </label><input type="text" name="" value="${registro.Turma}">
+                            <label>Turma: </label><input type="text" name="" value="${registro.Turma}"disabled>
                             
                             </div>
                             <div class="col area-input form-group" style="margin-left: 10px;">
                             <label>Nº aluno: </label>
-                            <input type="text" name="" value="${registro.Numero_Aluno}">
+                            <input type="text" name="" value="${registro.Numero_Aluno}"disabled>
                         </div>
                         </div>              
                         </div>
@@ -223,9 +223,9 @@ axios.get('/api/candidatos')
                   </div>
                               
                     <div class="footer-modal" style="text-align: center;">
-                    <a href="href="" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
+                    <a href="/inscricao/editar-candidato/${registro.Id_inscricao}/editar" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
                     <div class="jnt">
-                        <a href="/incricao/inscricoes" class="btn" style="background-color: #070b17; color: #fff;">Retrocer aos inscritos</a>
+                        <a href="/inscricao/inscricoes" class="btn" style="background-color: #070b17; color: #fff;">Retrocer aos inscritos</a>
     
                         <a href="#ExtralargeModal${registro.Id_inscricao}" class="btn" style="background-color: #070b17; color: #fff;">Dados pessoais <i class="bi bi-arrow-up"></i></a>
                     </div>
@@ -277,8 +277,62 @@ axios.get('/api/candidatos')
                     select: true
                     
                 });
+                $('#Imprimir').click(function() {
+                  // Desabilitar o DataTables
+                  $T.destroy();
+                
+                  // Ocultar elementos indesejados antes de imprimir
+                  $('#conteudo .no-print').hide();
+                
+
+                  // Iniciar a impressão
+                  window.print();
+                });
+                
+                $(window).on('afterprint', function() {
+                  // Restaurar a visibilidade dos elementos ocultos após a impressão
+                  $('#conteudo .no-print').show();
+                
+                  // Reativar o DataTables e aplicar as configurações
+                  $T = $("#Inscricoes").DataTable({
+                    initComplete: function(settings, json) {
+                      // Verifica a contagem de registros
+                      if (totalRegistros > 15) {
+                        // Ativa o DataTables
+                        $T.draw();
+                      }
+                    },
+                    // Resto das configurações do DataTables
+                    pageLength: 6,
+                    "dom": '<"top"i>rt<"bottom"lp><"clear">',
+                    lengthChange: false,
+                    ordering: false,
+                    language:{
+                        
+                            "sEmptyTable": "Nenhum registro encontrado",
+                            "sInfo": "",
+                            "sInfoEmpty": "",
+                            "sInfoFiltered": "",
+                            "sInfoPostFix": "",
+                            "sInfoThousands": ".",
+                            "sLengthMenu": "MENU resultados por página",
+                            "sLoadingRecords": "Carregando...",
+                            "sProcessing": "Processando...",
+                            "sZeroRecords": "Nenhum registro encontrado",
+                            "sSearch": "Pesquisar",
+                            "oPaginate": {
+                              "sNext": "Próximo",
+                              "sPrevious": "Anterior",
+                              "sFirst": "Primeiro",
+                              "sLast": "Último"
+                            }
+                    },
+                    select: true
+                  });
+                });
+                 
                
-            
+        
                 $("#filtro").on("change", function() {
                     var filtro = $(this).val(); 
                     $T.column(5).search(filtro).draw(); // Filtra a tabela pela sexta coluna com o valor selecionado

@@ -6,74 +6,85 @@
 
 <main id="main" class="main">
 
+  <div id="conteudo">
+
     @if(session()->has('ErroMatricula'))
-    <div class="alert alert-danger">
+    <div class="alert alert-danger no-print">
     {{session('ErroMatricula')}}
     </div>
     @endif
-
+  
     @if(session()->has('Sucesso'))
-    <div class="alert alert-success">
+    <div class="alert alert-success no-print">
     {{session('Sucesso')}}
     </div>
     @endif
-    
-
-  <div class="row">
-    <div class="col">
-      <h2>Matriculas</h2>
-    </div>
-
-      <div class="col-lg-2">
-        <select class="btn-sel form-select">
-          <option selected>Estado</option>
-        </select>
-      </div>
-
-      <div class="col-lg-2">
-        <select class="btn-sel form-select">
-          <option selected>Turma</option>
-        </select>
-      </div>
-
-      <div class="col-lg-2">
-        <select class="btn-sel form-select">
-          <option selected>Curso</option>
-        </select>
-      </div>
-
-
   </div>
 
-  <div class="procurar">
-    <form class="proc-form d-flex align-items-center">
-      <input id="pesquisa" placeholder='Digite o numéro de processo' type="text" name="" class="campo-pesq">
-      <button type="submit" title="procurar"><i class="bi bi-search"></i></button>
+  <div class="row"id="conteudo">
+    <div class="col no-print">
+      <h2 class="no-print">Matriculas</h2>
+    </div>
+
+      <div class="col-lg-2 no-print">
+        <select class="btn-sel form-select no-print">
+          <option class="no-print" selected disabled>Estado</option>
+          <option class="no-print" >Em curso</option>
+          <option class="no-print" >RPF</option>
+          <option class="no-print" >Anulou a Matricula</option>
+          <option class="no-print" >Não Transita</option>
+        </select>
+      </div>
+
+      <div class="col-lg-2 no-print">
+        <select class="btn-sel form-select no-print" id="filtro3">
+          <option class="no-print" selected disabled>Turma</option>
+          @foreach($turmas as $turma)
+          <option class="no-print" value="{{$turma['nome_turma']}}">{{$turma['nome_turma']}}</option>
+          @endforeach
+        </select>
+      </div>
+
+      <div class="col-lg-2 no-print">
+        <select class="btn-sel form-select no-print" id="filtro">
+          <option class="no-print" selected disabled>Curso</option>
+          @foreach($cursos as $curso)
+          <option class="no-print" value="{{$curso['nome_curso']}}">{{$curso['nome_curso']}}</option>
+          @endforeach
+  
+        </select>
+    </div>
+  </div>
+
+  <div class="procurar" id="conteudo">
+    <form class="proc-form d-flex align-items-center no-print">
+      <input id="pesquisa" placeholder='Digite o numéro de processo' type="text" name="" class="campo-pesq no-print">
+      <button type="submit" title="procurar" class="no-print"><i class="bi bi-search no-print"></i></button>
     </form>
   </div>
 
-  <div style="display: flex; justify-content: flex-end; align-items: center;">
-    <button class="btn-imprimir">Imprimir <i class="bi bi-file-earmark-pdf-fill"></i></button>
+  <div id="conteudo" style="display: flex; justify-content: flex-end; align-items: center;">
+    <button class="btn-imprimir no-print" id="ImprimirMatricula">Imprimir <i class="bi bi-file-earmark-pdf-fill no-print"></i></button>
   </div>
-  <div >
-    <a href="{{ route('matricula-validarTurma') }}" class="btn btn-success">Distribuir turma</a>
+  <div id="conteudo">
+    <a href="{{ route('matricula-validarTurma') }}" class="btn btn-success no-print">Distribuir turma</a>
   </div>
 
   <!-- /  Inicio da tabela de inscritos -->
   <table class="table table-striped table-custom" id="matriculas">
     <thead>
-      <tr style=" text-align: center;">
+      <tr style=" text-align: center;" id="conteudo">
           <th scope="col">Nº Processo</th>
           <th scope="col">Nome do Aluno</th>
           <th scope="col">Turma</th>
           <th scope="col">Idade</th>
-          <th scope="col">Estado</th>
+          <th class="no-print" scope="col">Estado</th>
           <th scope="col">Curso</th>
-          <th scope="col">Ações</th>
-          <th scope="col"></th>
+          <th class="no-print" scope="col">Ações</th>
+          <th class="no-print" scope="col"></th>
       </tr>
     </thead>
-    <tbody style=" text-align: center;">
+    <tbody style=" text-align: center;"  id="conteudo">
 
     </tbody>
   </table>
