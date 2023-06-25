@@ -34,10 +34,15 @@
     <script src={{{URL::asset("js/jquery-3.6.4.min.js")}}}></script>
     <script src={{{URL::asset("js/chart.js")}}}></script>
     <script src={{URL::asset("node_modules/chart.js/dist/chart.js")}}></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     <script src={{{URL::asset("tooltipster/dist/js/tooltipster.bundle.min.js")}}}></script>
     <script src={{{URL::asset("Datatables/datatables.min.js")}}}></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
+    <script src={{{URL::asset("js/gerarpdf.js")}}}></script>
+    
+
+
     
 </head>
 <body>
@@ -83,6 +88,7 @@
   <script src={{{URL::asset("js/clone-contato.js")}}}></script>
   <script src={{{URL::asset("tooltipster/dist/js/tooltipster.bundle.min.js")}}}></script>
   <script src={{{URL::asset("js/tab.js")}}}></script>
+  <script src={{{URL::asset("js/gerarpdf.js")}}}></script>
   
 
 

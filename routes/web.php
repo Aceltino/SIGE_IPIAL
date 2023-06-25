@@ -1,28 +1,15 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
-     AdmissaoController,
     //Classes das Controllers
-    AuthController,
-    AlunoTurmaController,
-    AlunoController,
-    CandidatoController,
-    MatriculaController,
-    InscricaoController,
-    ProfessorController,
-    comunicadosController,
-    CursoController,
-    AssiduidadeAlunoController,
-    AvaliacaoAlunoController,
-    AnoLectivoController,
-    MiniPautaController,
-    PautaController,
-    PerfilUserController,
-    DisciplinasController,
-    ProcessoController,
-    UserController,
+    AuthController,InscricaoController,ProfessorController,
+    AlunoController,MatriculaController,CursoController,
+    comunicadosController,AssiduidadeAlunoController,
+    AvaliacaoAlunoController,AnoLectivoController,
+    MiniPautaController,UserController,PautaController,
+    PerfilUserController,ProcessoController,
+    DisciplinasController, AdmissaoController,
 };
-use Doctrine\DBAL\Driver\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +25,6 @@ use Doctrine\DBAL\Driver\Middleware;
 // Rota apenas de teste... Não apague -> ACELTINO
 // Route::get('validar-aluno', [AlunoTurmaController::class, 'situacaoAluno']);
 Route::get('validar-aluno', [AlunoController::class, 'pegarDadosMatriculados']);
-
 
 
 //Rotas inicial do Painel
@@ -138,11 +124,10 @@ Route::prefix('inscricao')->group(function(){
  * Rotas das matriculas
  */
 
-
 Route::prefix('matricula')->group(function(){
 
     /* Matriculas*/
-    Route::get('matriculas', [MatriculaController::class, 'index'])->name('matricula-index');
+    Route::get('matriculas', [MatriculaController::class, 'index'])->name('Matriculas');
     Route::get('matricula-turma',  [MatriculaController::class, 'atribuirTurma'])->name('matricula-validarTurma');
 
     //
@@ -152,10 +137,8 @@ Route::prefix('matricula')->group(function(){
     Route::post('matricular-aluno/{candidato}', [MatriculaController::class, 'store'])->name('matricula-store');
 
     /*Editar matricula */
-
     Route::get('editar-aluno/{aluno}/editar', [MatriculaController::class, 'edit'])->name('matricula-edit');
     Route::put('editar-aluno/{aluno}', [MatriculaController::class, 'update'])->name('matricula-update');
-
 
 
     Route::get('editar-matricula', function () {
@@ -192,7 +175,7 @@ Route::prefix('matricula')->group(function(){
 
 /******************************************
  * Rotas de professor
- */
+ **/
 Route::prefix('professor')->group(function(){
 
     Route::get('rota/{segmento}', [ProfessorController::class, 'editarProfessor'])->name('prof.rota');

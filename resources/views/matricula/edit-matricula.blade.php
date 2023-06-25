@@ -28,7 +28,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col area-input form-group">
-                        <label>Data de nascimento: </label><input type="date" readonly="true" disabled value="{{ $aluno['data_nasc'] }}">
+                        <label>Data de nascimento: </label><input type="date" readonly="true"  value="{{ $aluno['data_nasc'] }}" disabled>
                     </div>
 
                     <div class="col area-input form-group" style="margin-left: 10px;">
@@ -45,7 +45,7 @@
             <div class="container">
                 <div class="row">
                     <div class=" col area-input form-group" >
-                        <label>Número do BI: </label><input type="text" class="form-control" name="num_bi" value="{{ $aluno['num_bi'] }}">
+                        <label>Número do BI: </label><input type="text" class="form-control" name="num_bi" value="{{ $aluno['num_bi'] }}" disabled>
                     </div>
 
                     <div class="col area-input form-group" style="margin-left: 10px;">
@@ -81,7 +81,7 @@
                     <br>
 
                     <div class="area-input form-group">
-                        <label>Escola de proveniência: </label><input type="text"  readonly="true" disabled value="{{ $aluno['escola_prov'] }}">
+                        <label>Escola de proveniência: </label><input type="text"  readonly="true" disabled value="{{ $aluno['escola_prov'] }}" disabled>
                     </div>
 
                     <div class="container">
@@ -192,8 +192,8 @@
                         </div>
                     </div>
                 </div>
-                <input type="hidden" name="aluno_id" value="{{ $aluno['N_processo'] }}">
-                <input type="hidden" name="id" value="{{ $aluno['cod_inscr'] }}">
+                <input type="hidden" name="aluno_id" value="{{ $aluno['N_processo'] }}"disabled>
+                <input type="hidden" name="id" value="{{ $aluno['cod_inscr'] }}"disabled>
 
 
 

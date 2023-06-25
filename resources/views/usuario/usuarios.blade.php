@@ -144,7 +144,7 @@
         <div class="form-inativo">
           <div class="dados-pessoais">        
             <div class="area-input form-group">
-              <label>Nome Completo: </label><input type="text" readonly="true" disabled name="" value="{{$user->pessoa->nome_completo}}">
+              <label>Nome Completo: </label><input type="text" readonly="true" disabled value="{{$user->pessoa->nome_completo}}">
             </div>
   
             <div class="container">
@@ -156,15 +156,15 @@
                 </div>
                       
                 <div class="col area-input form-group" style="margin-left: 10px;">
-                  <label>Idade: </label><input type="text" class="form-control" readonly="true" disabled name="" value="16">
+                  <label>Idade: </label><input type="text" class="form-control" readonly="true" disabled value="16">
                 </div>
   
                 <div class="col area-input form-group" style="margin-left: 10px;">
                   <label class="me-3">Sexo:</label>
-                  <input type="radio" id="masculino" name="genero" readonly="true" disabled value="Masculino" checked>
+                  <input type="radio" id="masculino" name="genero" readonly="true" disabled value="Masculino" {{$user->pessoa->genero=='Masculino'? "checked" : ""}} >
                   <label for="masculino" class="me-2"> Masculino</label>
-                  <input type="radio" id="feminino" name="genero" readonly="true" disabled value="Feminino" >
-                  <label for="feminino"> Feminino</label>
+                  <input type="radio" id="feminino" name="genero" readonly="true" disabled value="Femenino" {{$user->pessoa->genero=='Femenino'? "checked" : ""}}>
+                  <label for="feminino"> Femenino</label>
                 </div>  
   
               </div>
