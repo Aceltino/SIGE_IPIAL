@@ -32,14 +32,11 @@
           <th scope="row">{{ $com->titulo_com }}</th>
           <td>{{ $com->conteudo_com }}</td>
           <td>
-          <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
+          <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal{{ $com['comunicado_id'] }}"></i>
 
-
-
-            <form method="POST" action=" {{ route('comunicado.destroy', ['comunicado_id' => $comunicados->comunicado_id] }}" >
 
             <a href="{{ route('comunicado.edit', ['comunicado_id' => $com->comunicado_id]) }}"><i class="bi bi-pencil"></i></a>
-            <form action="{{ route('comunicado.destroy', ['comunicado_id' => $com->comunicado_id] }}" method="POST">
+            <form action="{{ route('comunicado.destroy', ['comunicado_id' => $com->comunicado_id]) }}" method="POST">
 
             @csrf
             @method('delete')
@@ -52,8 +49,9 @@
   </table>
 
   <!-- Termina a tabela de matriculas -->
+    @foreach ($comunicados as $com)
       <!--Inicio da modal ver inscrito-->
-      <div class="modal fade" id="ExtralargeModal" tabindex="-1" data-bs-backdrop="false">
+      <div class="modal fade" id="ExtralargeModal{{ $com['comunicado_id'] }}" tabindex="-1" data-bs-backdrop="false">
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
 
@@ -76,13 +74,14 @@
               <form class="form-inativo">
                 <div class="dados-pessoais">
                     <div class="area-input form-group">
-                        <label>Título do Comunicado: </label><input class="form-control" type="text" name="" value="{{ $com->titulo_com }}" readonly disabled>
+                        <label>Título do Comunicado: </label><input class="form-control" type="text" name="" value="{{ $com['titulo_com'] }}" readonly disabled>
                     </div>
                 </div>
 
                     <div class="row">
                         <div class="col">
-                            <textarea class="form-control" style="border: 1px solid; border-color: rgb(204, 204, 204); border-radius: 5px; outline: none" class="w-100 "  rows="13" name="conteudo"  id="area" placeholder="Escreve aqui o conteúdo do Comunicado" readonly disabled>{{ $com->conteudo_com }} </textarea>
+                          
+                            <textarea class="form-control" style="border: 1px solid; border-color: rgb(204, 204, 204); border-radius: 5px; outline: none" class="w-100 "  rows="13" name="conteudo"  id="area" placeholder="Escreve aqui o conteúdo do Comunicado" readonly disabled>{{ $com['conteudo_com'] }} </textarea>
                         </div>
                     </div>
 
@@ -103,6 +102,7 @@
         </div>
       </div>
       <!--  / Termina a modal ver inscrito-->
+      @endforeach
 </main>
 @endsection
 <!-- o meu objectivo é ver se o codigo do controller esta a funcionar na tua maquina, se esta a pegar o id do usuario logado e o ano lectivo -->

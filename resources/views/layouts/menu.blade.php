@@ -6,7 +6,7 @@
       <div class="d-flex justify-content-between">
 
         <div class="d-flex align-items-center" style="background-color: #96abce; padding-left: 30px; border-radius: 10px; padding-right: 100px;">
-          <a href="#" class="logo d-flex align-items-center">
+          <a href={{route('inicio')}} class="logo d-flex align-items-center">
 
             <!--<img src="assets/img/logo.png" alt="">-->
 
@@ -32,55 +32,55 @@
       <nav class="header-nav ms-auto d-flex align-items-center">
         <ul class="d-flex align-items-center">
 
-        	<!-- /	Nav Notificacao-->
-          <li class="nav-item dropdown">
-            <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-              <i class="bi bi-bell"></i>
-              <span class="badge bg-danger badge-number">2</span>
-            </a><!-- Termina icone notificacao -->
+			<!-- /	Nav Notificacao-->
+			<li class="nav-item dropdown">
+			<a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+				<i class="bi bi-bell"></i>
+				<span class="badge bg-danger badge-number">2</span>
+			</a><!-- Termina icone notificacao -->
 
-            	<!-- /	Lista de notificacoes-->
-          	<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-  	            <li class="dropdown-header">
-  	              Chegou novas notificações
-  	              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Mostrar tudo</span></a>
-  	            </li>
-  	            <li>
-  	              <hr class="dropdown-divider">
-  	            </li>
+				<!-- /	Lista de notificacoes-->
+			<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+				<li class="dropdown-header">
+					Chegou novas notificações
+					<a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Mostrar tudo</span></a>
+				</li>
+				<li>
+					<hr class="dropdown-divider">
+				</li>
 
-  	            <li class="notification-item">
-  	              <i class="bi bi-exclamation-circle text-warning"></i>
-  	              <div>
-  	                <h4>Lorem Ipsum</h4>
-  	                <p>Quae dolorem earum veritatis oditseno</p>
-  	                <p>30 min. ago</p>
-  	              </div>
-  	            </li>
+				<li class="notification-item">
+					<i class="bi bi-exclamation-circle text-warning"></i>
+					<div>
+					<h4>Lorem Ipsum</h4>
+					<p>Quae dolorem earum veritatis oditseno</p>
+					<p>30 min. ago</p>
+					</div>
+				</li>
 
-  	            <li>
-  	              <hr class="dropdown-divider">
-  	            </li>
+				<li>
+					<hr class="dropdown-divider">
+				</li>
 
-  	            <li class="notification-item">
-  	              <i class="bi bi-x-circle text-danger"></i>
-  	              <div>
-  	                <h4>Atque rerum nesciunt</h4>
-  	                <p>Quae dolorem earum veritatis oditseno</p>
-  	                <p>1 hr. ago</p>
-  	              </div>
-  	            </li>
+				<li class="notification-item">
+					<i class="bi bi-x-circle text-danger"></i>
+					<div>
+					<h4>Atque rerum nesciunt</h4>
+					<p>Quae dolorem earum veritatis oditseno</p>
+					<p>1 hr. ago</p>
+					</div>
+				</li>
 
-  	            <li>
-  	              <hr class="dropdown-divider">
-  	            </li>
+				<li>
+					<hr class="dropdown-divider">
+				</li>
 
-  	            <li class="dropdown-footer">
-  	              <a href="#">Mostrar tudo</a>
-  	            </li>
-          	</ul><!-- Termina Lista de notificacoes -->
+				<li class="dropdown-footer">
+					<a href="#">Mostrar tudo</a>
+				</li>
+			</ul><!-- Termina Lista de notificacoes -->
 
-          </li><!-- Termina Nav Notificacao -->
+			</li><!-- Termina Nav Notificacao --> 
 
 			<li class="nav-item">
 				<button type="button" class="btn nav-link nav-icon" data-bs-toggle="modal" data-bs-target="#basicModal">
