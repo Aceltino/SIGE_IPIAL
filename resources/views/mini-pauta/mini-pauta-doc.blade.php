@@ -228,22 +228,30 @@
                 </th>            
             </tr>
 
-            @foreach($alunoTurma as $at)
+            {{-- Estou a trabalhar aqui 
+            @foreach ($alunos as $aluno)
+                {{ $aluno->anoTurmaCood->turma->nome_turma }}
+                {{ $aluno->aluno->candidato->pessoa->nome_completo }}
+            @endforeach--}}
+
+            @foreach($alunos as $aluno)
                 <tr class="linha-tab-mp">
                     {{-- Posicao na lista --}}
-                    <td class="coluna-tab-mp">{{ $at->numero_aluno }}</td>
+                    <td class="coluna-tab-mp">{{ $aluno->numero_aluno }}</td>
 
                     <td class="sm-cor"></td>
-                    <td class="coluna-tab-mp" style="font-size: 11pt;">{{ $at->aluno->candidato->pessoa->nome_completo }}{{-- -$aluno->aluno->candidato->pessoa->nome_completo --}}</td>
+                    <td class="coluna-tab-mp" style="font-size: 11pt;">{{ $aluno->aluno->candidato->pessoa->nome_completo }}</td>
+
+                    {{-- Não consigo ver, não sei se estás em que página --}}
 
                     {{-- Idade --}}
                     <td class="coluna-tab-mp">
-                        <span class="largura-10">{{ getIdade($at->aluno->candidato->pessoa->data_nascimento) }}</span>
+                        <span class="largura-10">{{ getIdade($aluno->aluno->candidato->pessoa->data_nascimento) }}</span>
                     </td>
 
                     {{-- Genero --}}
                     <td class="coluna-tab-mp">
-                        <span class="largura-10">{{ getGenero($at->aluno->candidato->pessoa->genero) }}</span>
+                        <span class="largura-10">{{ getGenero($aluno->aluno->candidato->pessoa->genero) }}</span>
                     </td>
 
                     {{-- MAC --}}
@@ -373,7 +381,7 @@
 
                     {{--  OBS  --}}   
                     <td class="coluna-tab-mp">
-                        <span class="nota-pos decide-mp" style="color: red">{{ $at->situacao }}</span>
+                        <span class="nota-pos decide-mp" style="color: red">{{ $aluno->situacao }}</span>
                     </td>            
                 </tr>
             @endforeach
