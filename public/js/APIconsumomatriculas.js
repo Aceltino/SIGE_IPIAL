@@ -7,12 +7,13 @@ axios.get('/api/matriculados')
 
             registros.forEach(function(registro) {
                 const row = tbody.insertRow();
+                const turma = registro.nomeTurma;
 
-                switch (registro.situacao) {
-                    case '':
-                        Botao = `<a href="#" name="" id="" class="btn btn-success"  role="button">Ativar</a>`;
+                switch (registro.nomeTurma) {
+                    case 'Null':
+                        Botao = `<a href="/matricula/registrar-aluno" name="" id="" class="btn btn-success"  role="button">Ativar</a>`;
                         break;
-                    case 'Em curso':
+                    case turma:
                         Botao = `<a href="#" name="" id="" class="btn btn-danger"  role="button">inativar</a>`;
                         break;
                     default:
@@ -24,11 +25,11 @@ axios.get('/api/matriculados')
                     <td>${registro.nome}</td>
                     <td>${registro.nomeTurma}</td>
                     <td>${registro.idade}</td>
-                    <td>${registro.situacao}</td>
+                    <td class="no-print">${registro.situacao}</td>
                     <td>${registro.curso} </td>
-                    <td>${Botao}</td>
-                    <td>
-                    <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal${registro.N_processo}"></i>
+                    <td class="no-print">${Botao}</td>
+                    <td class="no-print">
+                    <i  class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal${registro.N_processo}"></i>
                     <a href="/matricula/editar-aluno/${registro.N_processo}/editar"><i class="bi bi-pencil"></i></a>
                     </td>
 
@@ -305,6 +306,60 @@ axios.get('/api/matriculados')
                     },
                     select: true
 
+                });
+
+                $('#ImprimirMatricula').click(function() {
+                  // Desabilitar o DataTables
+                  $T.destroy();
+                
+                  // Ocultar elementos indesejados antes de imprimir
+                  $('#conteudo .no-print').hide();
+                
+
+                  // Iniciar a impressão
+                  window.print();
+                });
+                
+                $(window).on('afterprint', function() {
+                  // Restaurar a visibilidade dos elementos ocultos após a impressão
+                  $('#conteudo .no-print').show();
+                
+                  // Reativar o DataTables e aplicar as configurações
+                  $T = $("#matriculas").DataTable({
+                    initComplete: function(settings, json) {
+                      // Verifica a contagem de registros
+                      if (totalRegistros > 15) {
+                        // Ativa o DataTables
+                        $T.draw();
+                      }
+                    },
+                    // Resto das configurações do DataTables
+                    pageLength: 6,
+                    "dom": '<"top"i>rt<"bottom"lp><"clear">',
+                    lengthChange: false,
+                    ordering: false,
+                    language:{
+                        
+                            "sEmptyTable": "Nenhum registro encontrado",
+                            "sInfo": "",
+                            "sInfoEmpty": "",
+                            "sInfoFiltered": "",
+                            "sInfoPostFix": "",
+                            "sInfoThousands": ".",
+                            "sLengthMenu": "MENU resultados por página",
+                            "sLoadingRecords": "Carregando...",
+                            "sProcessing": "Processando...",
+                            "sZeroRecords": "Nenhum registro encontrado",
+                            "sSearch": "Pesquisar",
+                            "oPaginate": {
+                              "sNext": "Próximo",
+                              "sPrevious": "Anterior",
+                              "sFirst": "Primeiro",
+                              "sLast": "Último"
+                            }
+                    },
+                    select: true
+                  });
                 });
 
 

@@ -112,7 +112,7 @@
       </div>
 
       <div class="area-input form-group">
-        <label>Número do BI: </label><input type="text" disabled class="form-control" readonly="true" name="num_bi" value ="{{ $candidato['NumeroBI'] }}" >
+        <label>Número do BI: </label><input type="text" class="form-control" readonly="true" name="num_bi" value ="{{ $candidato['NumeroBI'] }}" disabled >
       </div>
 
       <div class="area-input form-group">
@@ -192,17 +192,17 @@
           <div class="container">
             <div class="row">
               <div class="col area-input form-group" >
-                <label>Língua Poertuguesa: </label><input type="text" value ="{{ $candidato['Lingua_Portuguesa'] }}" name="LinguaP">
+                <label>Língua Poertuguesa: </label><input type="text" value ="{{ $candidato['Lingua_Portuguesa'] }}" name="LinguaP" disabled>
               </div>
               <div class="col area-input form-group" style="margin-left: 10px;">
-                <label>Matemática: </label><input type="text" value ="{{ $candidato['Matematica'] }}" name="Matematic" >
+                <label>Matemática: </label><input type="text" value ="{{ $candidato['Matematica'] }}" name="Matematic" disabled >
               </div>
               <div class="col area-input form-group" style="margin-left: 10px;">
-                <label>Química: </label><input type="text" name="Quimic" value ="{{ $candidato['Quimica'] }}">
+                <label>Química: </label><input type="text" name="Quimic" value ="{{ $candidato['Quimica'] }}" disabled>
 
               </div>
               <div class="col area-input form-group" style="margin-left: 10px;">
-                <label>Física: </label><input type="text" name="Fisic" value ="{{ $candidato['Fisica'] }}">
+                <label>Física: </label><input type="text" name="Fisic" value ="{{ $candidato['Fisica'] }}" disabled>
               </div>
 
 

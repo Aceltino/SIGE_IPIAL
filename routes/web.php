@@ -142,7 +142,7 @@ Route::prefix('inscricao')->group(function(){
 Route::prefix('matricula')->group(function(){
 
     /* Matriculas*/
-    Route::get('matriculas', [MatriculaController::class, 'index'])->name('matricula-index');
+    Route::get('matriculas', [MatriculaController::class, 'index'])->name('Matriculas');
     Route::get('matricula-turma',  [MatriculaController::class, 'atribuirTurma'])->name('matricula-validarTurma');
 
     //
