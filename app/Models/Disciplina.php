@@ -17,7 +17,7 @@ class Disciplina extends Model
         'componente',
         'tempo_prova',
         'sigla',        
-     ];
+     ]; 
  
     public function professor(){
         return $this->belongsToMany(Professor::class, 'professor_disciplina', 'disciplina_id', 'professor_id');
@@ -38,6 +38,6 @@ class Disciplina extends Model
     // conexão de disciplina e curso
     public function cursos()
     {
-        return $this->belonToMany(Curso::class, 'diciplina_curso', 'curso_id', 'disciplina_id');
+    return $this->belongsToMany(Curso::class, 'disciplinas_cursos', 'disciplina_id', 'curso_id');
     }
 }
