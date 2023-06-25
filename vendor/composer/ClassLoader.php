@@ -42,6 +42,7 @@ namespace Composer\Autoload;
  */
 class ClassLoader
 {
+
     /** @var ?string */
     private $vendorDir;
 

@@ -337,7 +337,7 @@
                   <div class="row mb-3">
                      <label for="SenhaAtual" class="col-md-4 col-lg-3 col-form-label">Senha atual</label>
                      <div class="col-md-8 col-lg-9">
-                       <input type="password" name="password_old" value="{{old('password_old')}}" class="form-control" id="SenhaAtual" required>
+                       <input type="password" name="password_old" value="{{old('password_old')}}" class="inpsenh" id="SenhaAtual" required>
                        <div class="invalid-feedback">Por favor insere a Senha atual!</div>
                      </div>
                   </div>
@@ -347,10 +347,14 @@
 
                   <div class="row mb-3">
                      <label for="NovaSenha" class="col-md-4 col-lg-3 col-form-label">Nova senha</label>
-                     <div class="col-md-8 col-lg-9">
-                       <input type="password" name="password" value="{{old('password')}}" class="form-control" id="NovaSenha" required>
+                     <div class="col-md-8 col-lg-5">
+                       <input type="password" name="password" value="{{old('password')}}" class="inpsenh" id="NovaSenha" onkeyup="avaliarSenha();" required>
                        <div class="invalid-feedback">Por favor insere a Nova senha!</div>
                      </div>
+                     <div class="col-md-2 col-lg-3">
+                        <div id="avaliacaoResult"></div>
+                        <span id="mostaSenha" style="display: block;"></span>
+                      </div>
                   </div>
                   @error('password')
                     <div class="alert alert-danger">{{$message}}</div>  
@@ -358,10 +362,13 @@
 
                   <div class="row mb-3">
                      <label for="ConfSenha" class="col-md-4 col-lg-3 col-form-label">Confirmar a senha</label>
-                     <div class="col-md-8 col-lg-9">
-                       <input type="password" name="password_confirmation" value="{{old('password_confirmation')}}" class="form-control" id="ConfSenha" required>
+                     <div class="col-md-8 col-lg-5">
+                       <input type="password" name="password_confirmation" value="{{old('password_confirmation')}}" class="inpsenh" id="ConfSenha" onkeyup="avaliarSenha();" required>
                        <div class="invalid-feedback">Por favor confirme a senha!</div>
                      </div>
+                     <div class="col-md-2 col-lg-3">
+                        <div id="resultcomparaSenha"></div>
+                      </div>
                   </div>
                   @error('password_confirmation')
                     <div class="alert alert-danger">{{$message}}</div>  

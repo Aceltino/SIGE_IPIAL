@@ -10,12 +10,18 @@
   </div>
   
   <div class="col-md-12 col-lg-4 mb-2">
-    <select class="btn-sel form-select" id="filtro4">
-                <option selected disabled>Cargo:</option>
-                <option value="Professora">Professora</option>
-                <option value="Secretária">Secretária</option>
-                <option value="Coordenadora">Coordenadora</option>
-        </optgroup>
+    <select class="btn-sel form-select" id="filtro5">
+      <optgroup> 
+        <option selected disabled>Cargo:</option>
+        <option value="Professor">Professor</option>
+        <option value="Administrador">Administrador</option>
+        <option value="Subdirector">Subdirector Pedagogico</option>
+        <option value="Secretaria">Secretaria Pedagogica</option>
+        <option value="Director">Director Geral</option>
+        <option value="Coordenacao">Coordenador</option>
+        <option value="insc_user">Colaborador-Inscrição</option>
+        <option value="matri_user">Colaborador-Matricula</option>
+      </optgroup>
     </select>
 </div> 
 
@@ -139,7 +145,7 @@
         <div class="form-inativo">
           <div class="dados-pessoais">        
             <div class="area-input form-group">
-              <label>Nome Completo: </label><input type="text" readonly="true" disabled name="" value="{{$user->pessoa->nome_completo}}">
+              <label>Nome Completo: </label><input type="text" readonly="true" disabled value="{{$user->pessoa->nome_completo}}">
             </div>
   
             <div class="container">
@@ -151,15 +157,15 @@
                 </div>
                       
                 <div class="col area-input form-group" style="margin-left: 10px;">
-                  <label>Idade: </label><input type="text" class="form-control" readonly="true" disabled name="" value="16">
+                  <label>Idade: </label><input type="text" class="form-control" readonly="true" disabled value="16">
                 </div>
   
                 <div class="col area-input form-group" style="margin-left: 10px;">
                   <label class="me-3">Sexo:</label>
-                  <input type="radio" id="masculino" name="genero" readonly="true" disabled value="Masculino" checked>
+                  <input type="radio" id="masculino" name="genero" readonly="true" disabled value="Masculino" {{$user->pessoa->genero=='Masculino'? "checked" : ""}} >
                   <label for="masculino" class="me-2"> Masculino</label>
-                  <input type="radio" id="feminino" name="genero" readonly="true" disabled value="Feminino" >
-                  <label for="feminino"> Feminino</label>
+                  <input type="radio" id="feminino" name="genero" readonly="true" disabled value="Femenino" {{$user->pessoa->genero=='Femenino'? "checked" : ""}}>
+                  <label for="feminino"> Femenino</label>
                 </div>  
   
               </div>

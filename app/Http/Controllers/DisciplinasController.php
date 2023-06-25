@@ -27,7 +27,6 @@ class DisciplinasController extends Controller
         $disciplinas->componente = $request->componente;
         $disciplinas->tempo_prova = $request-> tempo_prova;
         $disciplinas->sigla = $request->sigla;
-        $disciplinas->curso_id = $request->curso;
         $disciplinas->save();
          return redirect()->route('consultar.disciplina')->with('sucess','Dados salvos com sucesso');
     }
