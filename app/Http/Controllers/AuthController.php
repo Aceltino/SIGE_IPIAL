@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Active_session;
 use App\Traits\PessoaTrait;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{
-    Auth,Validator,Mail,DB,Hash,Session
+    Auth,Validator,Mail,
+    DB,Hash,Session,Response
 };
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 
@@ -56,6 +59,9 @@ class AuthController extends Controller
 
         Session::start();
         $request->session()->regenerate();
+
+        $this->registrarSession($user->usuario_id); //Resgistrar todo inicio de sessão do sistema no Banco de Dados(Active_session)
+
         return redirect()->intended('/');
     }
 
@@ -305,7 +311,8 @@ class AuthController extends Controller
         return true;
     }
 
-    public function reenviarCredencias($id){
+    public function reenviarCredencias($id):mixed
+    {
 
         $user= User::findOrFail($id);
       
@@ -331,11 +338,45 @@ class AuthController extends Controller
     }
 
     //Metodo que termina o inicio de sessão
-    public function logout()
-    {
+    public static function logout()
+    {   
+        $user= Auth::user();
+        self::detectarLogin($user);
+
         Auth::logout();
         Session::invalidate();
+        
         return redirect()->route("login");
+    }
+
+    private function registrarSession($userId)
+    {   
+        try {
+            // Registre a sessão ativa na tabela 'active_sessions'
+            DB::table('active_sessions')->insert([
+                'usuario_id' => $userId,
+                'session_id' => Session::getId(),
+            ]);
+
+        }catch (\Throwable $th) {
+            return redirect()->route('login')->with(
+                    'erro_sistema_001',
+                    'Lamentamos! Existe um erro interno, pedimos que reporte as entidade da instituição Alda Lara '
+                );
+       }
+    }
+
+    private static function detectarLogin($user){
+
+        $session= Active_session::where('usuario_id', $user->usuario_id)->get()->first()->delete();
+        
+        
+        // dd($session);
+
+        // // Auth::logout();
+        // //Session::invalidate();
+        // // return redirect()->route("login");
+
     }
 
     //Metodo que retorna o formulario de recuperação de senha

@@ -8,15 +8,17 @@ use App\Http\Controllers\{
     Controller
 };
 use Illuminate\Support\Facades\{
-    Validator,
+    Validator,Auth,
 };
 use Illuminate\Http\Request;
 use App\Traits\PessoaTrait;
+
 
 class UserController extends Controller
 {
 
     use PessoaTrait;
+
     //Metodo que retorna a views do cadastro de usuario
     public function usuarioFormCadastro(){
         return view('usuario/use_cadastro');
@@ -42,7 +44,7 @@ class UserController extends Controller
         return view('usuario/use_editar',compact('user'));
     }
 
-    //Metodo para fazer Update nos dados do usuario
+    //Metodo para fazer Update nos dados dos alunos
     public static function updateAluno($dadosUser)
     {
         $user = User::find($dadosUser['usuario_id']);
@@ -53,6 +55,7 @@ class UserController extends Controller
         return $user->save();
     }
 
+    //Metodo para fazer Update nos dados do usuario
     public function updateUser(Request $request,$id)
     {   
         
@@ -75,7 +78,6 @@ class UserController extends Controller
             'zona_update'=>'required|string',
             'num_casa_update'=>'required|numeric',
         ];
-
         $msg_erro=[
 
             '*.required'=>'Este campo deve ser preenchido',
@@ -168,6 +170,7 @@ class UserController extends Controller
         $user= User::findOrFail($id);
 
         if($user->status_usuario===0){
+
             $user->status_usuario=1;
             if(!$user->save()){
                 return redirect()->back()->with('erro_status_001','Lamentamos! Não foi possivel Desbloquer Usuario');
@@ -175,10 +178,12 @@ class UserController extends Controller
             return redirect()->back()->with('success_status_001','Usuario Desbloqueado');
 
         }else{
+
             $user->status_usuario=0;
             if(!$user->save()){
                 return redirect()->back()->with('erro_status_002','Lamentamos! Não foi possivel Bloqueado Usuario');
             }
+
             return redirect()->back()->with('sucess_status_002','Usuario Bloqueado');
         } 
     }

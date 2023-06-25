@@ -564,7 +564,7 @@
         <ul id="matricula-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 
           <li>
-            <a href="matricula/matriculas">
+            <a href="/matricula/matriculas">
               <i class="bi bi-circle"></i><span>Matriculas</span>
             </a>
           </li>
