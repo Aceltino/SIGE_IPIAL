@@ -10,12 +10,18 @@
   </div>
   
   <div class="col-md-12 col-lg-4 mb-2">
-    <select class="btn-sel form-select" id="filtro4">
-                <option selected disabled>Cargo:</option>
-                <option value="Professora">Professora</option>
-                <option value="Secretária">Secretária</option>
-                <option value="Coordenadora">Coordenadora</option>
-        </optgroup>
+    <select class="btn-sel form-select" id="filtro5">
+      <optgroup> 
+        <option selected disabled>Cargo:</option>
+        <option value="Professor">Professor</option>
+        <option value="Administrador">Administrador</option>
+        <option value="Subdirector">Subdirector Pedagogico</option>
+        <option value="Secretaria">Secretaria Pedagogica</option>
+        <option value="Director">Director Geral</option>
+        <option value="Coordenacao">Coordenador</option>
+        <option value="insc_user">Colaborador-Inscrição</option>
+        <option value="matri_user">Colaborador-Matricula</option>
+      </optgroup>
     </select>
 </div> 
 

@@ -7,6 +7,8 @@
 
     <title>@yield('title')</title>
 
+    {{--Icone da pagina--}}
+    <link href={{{URL::asset("img/logo.png")}}} rel="icon">
     <!-- /	Link dos Css do Bootstrap -->
     <link href={{URL::asset("vendor/bootstrap/css/bootstrap.min.css")}} rel="stylesheet">
     <link href={{URL::asset("vendor/bootstrap-icons/bootstrap-icons.css")}} rel="stylesheet">
