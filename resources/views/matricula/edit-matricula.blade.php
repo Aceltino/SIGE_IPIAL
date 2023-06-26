@@ -174,7 +174,6 @@
                         </div>
                         <div class="col area-input form-group" style="margin-left: 10px;">
                             <label>{{ $aluno['enc_grau_2'] }} </label><input type="text" name="telefone2" value="{{ $aluno['tel_grau_2'] }}">
-
                         </div>
 
                         <div class="col area-input form-group" style="margin-left: 10px;">
@@ -192,14 +191,14 @@
                         </div>
                     </div>
                 </div>
-                <input type="hidden" name="aluno_id" value="{{ $aluno['N_processo'] }}"disabled>
-                <input type="hidden" name="id" value="{{ $aluno['cod_inscr'] }}"disabled>
+                <input type="hidden" name="aluno_id" value="{{ $aluno['N_processo'] }}">
+                <input type="hidden" name="id" value="{{ $aluno['cod_inscr'] }}">
 
 
 
                 <div class="footer-modal" style="text-align: center; margin-top: 50px;">
                     <div class="jnt">
-                        <a href="/matriculas" class="btn" style="background-color: #070b17; color: #fff;">Cancelar edição</a>
+                        <a href="/matricula/matriculas" class="btn" style="background-color: #070b17; color: #fff;">Cancelar edição</a>
 
                         <button type="submit" class="btn" style="background-color: #26dd35; color: #fff;">Atualizar</button>
                     </div>

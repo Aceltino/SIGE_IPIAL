@@ -3,7 +3,7 @@
 @section('title', 'Matricular Aluno')
 
 @section('conteudo')
-{{-- {{ dd($candidato) }} --}}
+
 <main id="main" class="main" >
 
     <form method="POST" action="{{ route('matricula-store', ['candidato' => $candidato['Id_inscricao']]) }}" id="regForm" class="formulario-layout">
@@ -128,7 +128,7 @@
 
                 <div class="col">
                     <div class="form-group">
-                        <input class="form-control" style="text-align: center;" type="text" name="curso_escolhido" value="{{$candidato['Curso']}}"  oninput="this.className = ''" readonly disabled>
+                        <input class="form-control" style="text-align: center;" type="text" name="curso_escolhido" value="{{$candidato['Curso']}}"  oninput="this.className = ''" readonly>
                     </div>
                 </div>
             </div>
@@ -450,7 +450,7 @@
                     <input type="email" value="{{old('email')}}" placeholder="Digite o E-mail do Aluno" name="email"  value="" oninput="this.className = ''">
                 </div>
                 <div class="col form-group">
-                    <input type="hidden" name="id" value ="{{ $candidato['Id_inscricao'] }}" hidden disabled> {{-- Input para recuperar o id --}}
+                    <input type="hidden" name="id" value ="{{ $candidato['Id_inscricao'] }}"> {{-- Input para recuperar o id --}}
                 </div>
             </div>
         </div>

@@ -13,4 +13,15 @@ class EncarregadoController extends Controller
         $encarregadoCriada = Encarregado::create($dadosEncarregado);
         return $encarregadoCriada->encarregado_id;
     }
+
+    public static function updateEncarregado($dadosPessoa)
+    {
+        $pessoa = Encarregado::find($dadosPessoa['pessoa_id']);
+        foreach ($dadosPessoa as $campo => $valor)
+        {
+            $pessoa->$campo = $valor;
+        }
+        $pessoaAtualizado = $pessoa->save();
+        return $pessoaAtualizado;
+    }
 }

@@ -66,8 +66,6 @@
         {{ session('ErroCurso') }}
     </div>
     @endif
-
-
         @if(session()->has('ErroCadastro'))
         <div class="alert alert-danger">
         {{session('ErroCadastro')}}
@@ -103,8 +101,8 @@
                 <label class="tua clas">Sexo:</label>
                 <input type="radio" id="masculino" name="genero" value="Masculino" checked>
                 <label for="masculino" class="tua class"> Masculino</label>
-                <input type="radio" id="feminino" name="genero" value="Feminino" >
-                <label for="feminino"> Feminino</label>
+                <input type="radio" id="feminino" name="genero" value="Femenino" >
+                <label for="femenino"> Femenino</label>
              
 
             </div>
@@ -123,7 +121,7 @@
       <div class="container">
         <div class="row">
           <div class="col area-input form-group">
-            <label>Tel-1: </label><input type="text"  name="num_tel" value ="{{ $candidato['Telefone'] }}" >
+            <label>Tel: </label><input type="text"  name="num_tel" value ="{{ $candidato['Telefone'] }}" >
 
           </div>
         </div>
@@ -230,10 +228,9 @@
               $a++;
              @endphp
               @endforeach
-             
 
-      
-             
+              <input type="hidden" value ="{{ $candidato['Id_inscricao'] }}" name="id" >
+              
             </div>
           </div>
 

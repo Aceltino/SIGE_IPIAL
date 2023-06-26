@@ -155,8 +155,9 @@ trait AvaliacaoTrait
 
         $professor = Professor::with('pessoa')->where('pessoa_id', $user->pessoa_id)->get();
         $ano_lectivo = self::pegarAnoLectivo($professor);
-        $disciplinas = Professor_disciplina::with('disciplina', 'horario.turma.anoturmaCood')->where('professor_id', $professor[0]->professor_id)
+        $disciplinas = Professor_disciplina::with('disciplina', 'horario')->where('professor_id', $professor[0]->professor_id)
         ->where('ano_lectivo_id', $ano_lectivo[0]->ano_lectivo_id)->get();
+        dd($disciplinas);
 
         for ($i = 0; $i < count($disciplinas); $i++) {
             $dados[$i] = [

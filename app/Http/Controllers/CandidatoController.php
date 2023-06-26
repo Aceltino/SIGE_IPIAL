@@ -80,7 +80,7 @@ class CandidatoController extends Controller
         $dataAtual = Carbon::now();
 
         $candidatos = Candidato::with( 'pessoa', 'escola', 'ano_lectivo')
-        ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
+        ->where('ano_lectivo_id', AnoLectivoController::pegarPenultimoAnoLectivo())
         ->where(function ($query) {
             $query->where('status', 'não admitido')
                 ->orWhere('status', 'pendente')

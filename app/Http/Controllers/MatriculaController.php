@@ -58,6 +58,36 @@ class MatriculaController extends Controller
     public function update(Request $request)
     {
         dd($request);
+
+        $candidato = Candidato::find($request['id']);
+        $pessoa_id = $candidato->pessoa_id;
+        $dadosPessoa = [
+            'nome_completo'=> $request['nome_completo'],
+            'genero'=> $request['genero'],
+            'telefone' => $request['num_tel'],
+            'pessoa_id' => $pessoa_id
+        ];
+    
+        $idPessoa = $this->updatePessoa($dadosPessoa);
+        if(!$idPessoa)
+        {
+            $msg="Fique atento nos dados de identifcação deste aluno, este número de identificação já está sendo utilizado!";
+            return redirect()->back()->with("ErroPessoa",$msg);
+        }
+
+        $dadosCandidato=[
+            'nome_pai_cand'=>$request['nome_pai_cand'],
+            'nome_mae_cand'=>$request['nome_mae_cand'],
+            'naturalidade_cand'=>$request['naturalidade_cand'],
+
+            'candidato_id' => $request['id']
+        ];
+        $candidato = CandidatoController::updateCandidato($dadosCandidato);
+        if(!$candidato)
+        {
+            $msg="Lamentamos! Dados não cadastrado, tente este processo mais tarde...";
+            return redirect()->back()->with("ErroCadastro",$msg);
+        }
     }
 
 
@@ -74,7 +104,6 @@ class MatriculaController extends Controller
         $pessoa_id = $candidato->pessoa_id;
         $dadosPessoa = [
             'nome_completo'=> $request['nome_completo'],
-            'num_bi'=> $request['num_bi'],
             'genero'=> $request['genero'],
             'telefone' => $request['num_tel'],
             'pessoa_id' => $pessoa_id
@@ -93,6 +122,7 @@ class MatriculaController extends Controller
             'nome_escola'=>$request['nome_escola'],
             'turno'=>$request['turno'],
             'num_aluno'=>$request['num_aluno'],
+            'num_processo' => $request['num_processo'],
             'turma_aluno' =>$request['turma_aluno'],
             'ultimo_anoLectivo' =>$request['ultimo_anoLectivo'],
             'escola_proveniencia_id' => $escola_id
