@@ -106,7 +106,7 @@
               </form>
             </td>
             <td>
-                <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
+                <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal{{$user['usuario_id']}}"></i>
                 <a href={{ route('editUser', ['id'=>$user->usuario_id])}}><i class="bi bi-pencil"></i></a> 
             </td>
           </tr>
@@ -118,7 +118,8 @@
   <!-- Termina a tabela do usuário -->
   
 <!--Inicio da modal ver usuario-->
-<div class="modal fade" id="ExtralargeModal" tabindex="-1" data-bs-backdrop="false">
+@foreach ($users as $user)
+<div class="modal fade" id="ExtralargeModal{{$user['usuario_id']}}" tabindex="-1" data-bs-backdrop="false">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
      
@@ -232,6 +233,6 @@
     </div>
   </div>
 </div><!--  / Termina a modal ver usuario-->  
-
+@endforeach
 </main>
 @endsection
