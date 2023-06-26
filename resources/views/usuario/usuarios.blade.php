@@ -9,7 +9,6 @@
       <h2>Usuários</h2>     
   </div>
   
-  
   <div class="col-md-12 col-lg-4 mb-2">
     <select class="btn-sel form-select" id="filtro5">
       <optgroup> 
