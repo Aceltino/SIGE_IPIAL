@@ -6,11 +6,6 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'App\\Actions\\Fortify\\CreateNewUser' => $baseDir . '/app/Actions/Fortify/CreateNewUser.php',
-    'App\\Actions\\Fortify\\PasswordValidationRules' => $baseDir . '/app/Actions/Fortify/PasswordValidationRules.php',
-    'App\\Actions\\Fortify\\ResetUserPassword' => $baseDir . '/app/Actions/Fortify/ResetUserPassword.php',
-    'App\\Actions\\Fortify\\UpdateUserPassword' => $baseDir . '/app/Actions/Fortify/UpdateUserPassword.php',
-    'App\\Actions\\Fortify\\UpdateUserProfileInformation' => $baseDir . '/app/Actions/Fortify/UpdateUserProfileInformation.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\AdmissaoController' => $baseDir . '/app/Http/Controllers/AdmissaoController.php',
@@ -53,11 +48,13 @@ return array(
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\ValidateSignature' => $baseDir . '/app/Http/Middleware/ValidateSignature.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+    'App\\Http\\Middleware\\detectarLogin' => $baseDir . '/app/Http/Middleware/detectarLogin.php',
     'App\\Http\\Requests\\AnoLectivoRequest' => $baseDir . '/app/Http/Requests/AnoLectivoRequest.php',
     'App\\Http\\Requests\\InscricaoRequest' => $baseDir . '/app/Http/Requests/InscricaoRequest.php',
     'App\\Http\\Requests\\InscricaoUpdateRequest' => $baseDir . '/app/Http/Requests/InscricaoUpdateRequest.php',
     'App\\Http\\Requests\\MatriculaRequest' => $baseDir . '/app/Http/Requests/MatriculaRequest.php',
     'App\\Http\\Requests\\MatriculaupdateRequest' => $baseDir . '/app/Http/Requests/MatriculaupdateRequest.php',
+    'App\\Models\\Active_session' => $baseDir . '/app/Models/Active_session.php',
     'App\\Models\\Aluno' => $baseDir . '/app/Models/Aluno.php',
     'App\\Models\\AlunoEncarregado' => $baseDir . '/app/Models/AlunoEncarregado.php',
     'App\\Models\\AlunoTurma' => $baseDir . '/app/Models/AlunoTurma.php',
