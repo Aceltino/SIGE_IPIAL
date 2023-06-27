@@ -255,11 +255,14 @@ class MatriculaController extends Controller
 
     public function anularMatricula($id)
     {
-        $aluno = AlunoController::pegarDadosMatriculado($id);
+        $dadosAluno=[
+            'aluno_id'=>$id,
+            'status'=> 0,
+            // 'candidato_id'=>intval($request['id'])
+        ];
 
-        return view('matricula.edit-matricula',[
-            'aluno' => $aluno[0]
-        ]);
+        $aluno = AlunoController::pegarDadosMatriculado($id);
+        return view('matricula.matriculas');
     }
 
 }

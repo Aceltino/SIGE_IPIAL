@@ -22,7 +22,6 @@ class AlunoTurmaController extends Controller
        }
        $alunoTurma = [];
 
-
        usort($alunos, function ($a, $b)
             {
                 $data_nascA = $a['data_nasc'];
