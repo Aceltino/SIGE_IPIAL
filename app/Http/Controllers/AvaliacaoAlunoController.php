@@ -44,7 +44,7 @@ class AvaliacaoAlunoController extends Controller
         }
         $aluno = AvaliacaoTrait::pegarNotaAluno($disciplina_id, $turmas);
 
-        //  $teste = AnoTurmaCood::with('alunoAno')->where('turma_id', 13)->where('ano_lectivo_id', 17)->get();
+        //  $teste = AnoTurmaCood::with('aluno')->where('turma_id', 13)->where('ano_lectivo_id', 17)->get();
         //  dd($teste);
 
         return view('avaliac-aluno/avaliacoes-aluno', compact(['aluno', 'nome_disciplina', 'nome_turma']));
