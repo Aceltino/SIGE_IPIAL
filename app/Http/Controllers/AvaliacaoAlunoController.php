@@ -42,9 +42,10 @@ class AvaliacaoAlunoController extends Controller
 
             }
         }
+        //dd($turmas);
         $aluno = AvaliacaoTrait::pegarNotaAluno($disciplina_id, $turmas);
 
-        //  $teste = AnoTurmaCood::with('aluno')->where('turma_id', 13)->where('ano_lectivo_id', 17)->get();
+        //  $teste = AnoTurmaCood::with('aluno.candidato.pessoa')->where('turma_id', 13)->where('ano_lectivo_id', 17)->get();
         //  dd($teste);
 
         return view('avaliac-aluno/avaliacoes-aluno', compact(['aluno', 'nome_disciplina', 'nome_turma']));
@@ -65,7 +66,8 @@ class AvaliacaoAlunoController extends Controller
 
     public function store(Request $request, $disciplina_id)
     {
-        if(!$request->ac && !$request->npp && !$request->npt && !$request->exame && !$request->exame_recurso){
+        //dd($request);
+        if($request->ac == null && $request->npp == null && $request->npt == null && $request->exame == null && $request->exame_recurso == null){
             return redirect()->back();
         }
         $trimestre = Trimestre::where('status', 1)->get();
