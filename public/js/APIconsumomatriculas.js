@@ -9,6 +9,7 @@ axios.get('/api/matriculados')
                 const row = tbody.insertRow();
                 const turma = registro.nomeTurma;
 
+                
                 if($.isEmptyObject(turma)){
 
                   Botao = `<a href="/matricula/registrar-aluno" name="" id="" class="btn btn-success"  role="button">Ativar</a>`;
