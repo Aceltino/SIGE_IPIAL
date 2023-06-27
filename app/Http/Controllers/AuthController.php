@@ -9,7 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{
     Auth,Validator,Mail,
-    DB,Hash,Session,Response
+    DB,Hash,Session
 };
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
@@ -73,6 +73,15 @@ class AuthController extends Controller
         $abreNome = substr($request->nome, $posicao,2);
         $abreSobreNome = substr($request->sobre_nome, $posicao,2);
 
+        switch($request->password) {
+            case $request->password_confirmation:
+                goto conti_salvar;
+            default:
+            $msg = "A confirmação da senha não correspondem.";
+            return redirect()->back()->with('erro_senha_001', $msg)->withInput();
+        }
+
+        conti_salvar:
         $regras_gerais=[
 
             //Formulario da Pessoa
@@ -162,7 +171,7 @@ class AuthController extends Controller
         $dadosUser=[
             'nome_usuario'=>$abreNome.count(User::all()).$abreSobreNome,
             'email'=>$request->email,
-            'password'=>bcrypt($request->num_telefone),
+            'password'=>bcrypt($request->password),
             'cargo_usuario'=>"Administrador",
             'status_usuario'=>1,
             'pessoa_id'=> $pessoa_id
@@ -311,6 +320,7 @@ class AuthController extends Controller
         return true;
     }
 
+    // Metodo que reenvia as credencias de acesso(Nome do Usuario)
     public function reenviarCredencias($id):mixed
     {
 
@@ -340,15 +350,17 @@ class AuthController extends Controller
     //Metodo que termina o inicio de sessão
     public static function logout()
     {   
-        $user= Auth::user();
-        self::detectarLogin($user);
+        // $user= Auth::user();
+        // self::detectarLogin($user);
 
+        //Antiga implementação
         Auth::logout();
         Session::invalidate();
         
         return redirect()->route("login");
     }
 
+    //Metodo que regista as sessions no DB
     private function registrarSession($userId)
     {   
         try {
@@ -366,20 +378,13 @@ class AuthController extends Controller
        }
     }
 
-    private static function detectarLogin($user){
-
-        $session= Active_session::where('usuario_id', $user->usuario_id)->get()->first()->delete();
-        
-        
-        // dd($session);
-
-        // // Auth::logout();
-        // //Session::invalidate();
-        // // return redirect()->route("login");
-
+    //Metodo que deleta registros de usuarios logados. 
+    public static function detectarLogin($user)
+    {
+       Active_session::where('usuario_id', $user->usuario_id)->delete();
     }
 
-    //Metodo que retorna o formulario de recuperação de senha
+    // Metodo que retorna o formulario de recuperação de senha
     public function resetForm()
     {
         return view('autenticacao.recuperar-senha');

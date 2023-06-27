@@ -38,6 +38,11 @@
           {{session('erro_sistema_001')}}
       </div>
    @endif
+   @if(session('sucess_session_finality'))
+    <div class="alert alert-danger">
+        {{session('sucess_session_finality')}}
+    </div>
+  @endif
     
     <form action={{route('loginCheck')}} method="post" class="row g-3 needs-validation" novalidate>
       @csrf

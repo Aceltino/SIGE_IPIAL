@@ -160,7 +160,7 @@ class AlunoController extends Controller
             }
         return $Alunos;
     }
-//
+
     public static function alunosTurma() // Função chamada no AlunoTurmacontroller para saber a situação doa aluno no ano anterior
     {
         $alunos = Aluno::with('candidato', 'anoturma')

@@ -42,29 +42,21 @@
           <th scope="col"></th>
           </tr>
       </thead>
+      
       <tbody>
-          <tr  style=" text-align: center;">
-          <th scope="row">2021-2022</th>
-          <td>11ª</td>
-          <td>I11AM</td>
-          <td>Informática</td>
-          <td>Manhã</td>
-          <td>
-          <a href={{ route('pauta.show') }} class="btn btn-cor-sg-a">Ver Pauta</a>
-          </td>
-          </tr>
-          
-          <tr  style=" text-align: center;">
-          <th scope="row">2020-2021</th>
-          <td>13ª</td>
-          <td>I13BT</td>
-          <td>Desenhador projetista</td>
-          <td>Tarde</td>
-          <td>
-              <a href={{ route('pauta.show') }} class="btn btn-cor-sg-a">Ver Pauta</a>
-          </td>
-          </tr>
-      </tbody>
+        @foreach($anoTurmaCoord as $item)
+        <tr style="text-align: center;">
+            <th scope="row">{{ $item['anoLectivo']->ano_lectivo }}</th>
+            <td>{{ $item['turma']->classe->classe }}</td>
+            <td>{{ $item['turma']->nome_turma }}</td>
+            <td>{{ $item['turma']->belongerCurso->nome_curso}}</td>
+            <td>{{ $item['turma']->turno->nome_turno }}</td>
+            <td>
+                <a href={{ route('pauta.show', ['id'=> $item['turma']->turma_id, 'ano'=>$item['anoLectivo']->ano_lectivo] ) }} class="btn btn-cor-sg-a">Ver Pauta</a>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
     </table>
     <!-- Termina a tabela de inscritos -->
     

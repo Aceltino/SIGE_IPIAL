@@ -567,7 +567,7 @@
         </a>
         <ul id="pauta-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="pauta/pautas">
+            <a href="pauta">
               <i class="bi bi-circle"></i><span>Pautas</span>
             </a>
           </li>
