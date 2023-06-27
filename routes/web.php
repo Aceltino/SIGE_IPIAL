@@ -131,7 +131,7 @@ Route::prefix('matricula')->group(function(){
     Route::get('matriculas', [MatriculaController::class, 'index'])->name('Matriculas');
 
     /*Eliminar Matricula*/
-    Route::delete('elimnar/{aluno}', [MatriculaController::class, 'index'])->name('eliminar-matricula');
+    Route::get('eliminar/{aluno}', [MatriculaController::class, 'anularMatricula'])->name('eliminar-matricula');
 
     // Atribuir turma 10ª classe
     Route::get('matricula-turma',  [MatriculaController::class, 'atribuirTurma'])->name('matricula-validarTurma');
