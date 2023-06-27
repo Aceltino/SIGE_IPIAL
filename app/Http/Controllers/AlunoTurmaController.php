@@ -342,4 +342,39 @@ class AlunoTurmaController extends Controller
             return true;
     }
 
+
+    public static function pegarVagas()
+    {
+        $turmas = AnoTurmaCood::with('turma', 'ano_lectivo')
+            ->get();
+
+        $vagas = [];
+
+        foreach ($turmas as $turmaA) {
+            $curso = $turmaA->turma->curso->nome_curso;
+            $classe = $turmaA->turma->classe->classe;
+            $turno = $turmaA->turma->turno->nome_turno;
+            $numVagas = $turmaA->num_vagas;
+            $anoLectivo = $turmaA->ano_lectivo->ano_lectivo;
+            $anoId = $turmaA->ano_lectivo->ano_lectivo_id;
+
+            $chave = $curso . '-' . $classe . '-' . $turno . '-' . $anoLectivo;
+
+            if (!isset($vagas[$chave])) {
+                $vagas[$chave] = [
+                    'curso' => $curso,
+                    'classe' => $classe,
+                    'turno' => $turno,
+                    'anoLectivo' => $anoLectivo,
+                    'anoId' => $anoId,
+                    'totalVagas' => 0
+                ];
+            }
+
+            $vagas[$chave]['totalVagas'] += $numVagas;
+        }
+        return array_values($vagas);
+    }
+
+
 }

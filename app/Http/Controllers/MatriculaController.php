@@ -265,7 +265,7 @@ class MatriculaController extends Controller
     }
 
     public function registrarView(){
-        $vagas = AdmissaoController::numVagas();
+        $vagas = AlunoTurmaController::pegarVagas();
         dd($vagas);
         $cursos = Curso::all();
         return view('matricula.registrar-aluno', compact('cursos'));
