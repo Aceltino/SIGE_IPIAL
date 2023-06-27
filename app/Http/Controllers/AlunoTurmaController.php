@@ -296,6 +296,7 @@ class AlunoTurmaController extends Controller
 
                 return strcmp($identificadorA, $identificadorB);
             });
+            
             $alunoTurma = [];
             foreach ($turmas as $turma)
             {
@@ -318,13 +319,13 @@ class AlunoTurmaController extends Controller
                 }
             }
 
-            $qtdAlunos = AlunoTurmaController::quantidadeTurma($alunoTurma['turma']);
-            $alunoA = Aluno::find($alunoTurma['aluno']);
-            $alunoA->Anoturma()->attach($alunoTurma['turma'],[
-                'numero_aluno' => $qtdAlunos + 1
+            $qtdAlunos = AlunoTurmaController::quantidadeTurma($alunoTurma[0]['turma']);
+            $alunoA = Aluno::find($alunoTurma[0]['aluno']);
+            $alunoA->Anoturma()->attach($alunoTurma[0]['turma'],[
+                'numero_aluno' => $qtdAlunos + 1,
             ]);
 
-            $userId = AlunoController::pegarIdUser($alunoTurma['aluno']);
+            $userId = AlunoController::pegarIdUser($alunoTurma[0]['aluno']);
             $dadosUser=[
                 'usuario_id'=> $userId,
                 'status_usuario'=>1,
@@ -334,7 +335,7 @@ class AlunoTurmaController extends Controller
             {
                 return "Algum problema com o aluno ".$alunoTurma['nome'].", tente mais tarde.";
             }
-            return true;
+            return $alunoTurma[0]['aluno'];
     }
 
 }
