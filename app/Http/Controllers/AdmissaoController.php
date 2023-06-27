@@ -33,6 +33,45 @@ class AdmissaoController extends Controller
         return $vagaCurso;
     }
 
+    public static function numVagas()
+{
+    $quantCursos = CursoController::quantidadeCurso();
+    $cursoNome = CursoController::pegarNomeCurso();
+    $num_aluno = AnoLectivoController::pegarNumVagas();
+    $vagaCurso = [];
+
+    for ($i = 0; $i < $quantCursos; $i++)
+    {
+        $curso[$i] = CursoController::pegarIdCurso($cursoNome[$i]);
+
+        $turmas = Turma::where('curso_id', $curso[$i])
+            ->with('classe', 'turno')
+            ->get();
+
+        $vagasPorClasse = [];
+
+        foreach ($turmas as $turma) {
+            $classe = $turma->classe->classe;
+            $turno = $turma->turno->nome_turno;
+            $vagas = $turma->classe->vagas * $turma->turno->num_alunos;
+
+            if (!isset($vagasPorClasse[$classe])) {
+                $vagasPorClasse[$classe] = [];
+            }
+
+            $vagasPorClasse[$classe][$turno] = $vagas;
+        }
+
+        $vagaCurso[$i] = [
+            'Curso' => $cursoNome[$i],
+            'Vagas por Classe' => $vagasPorClasse
+        ];
+    }
+
+    return $vagaCurso;
+}
+
+
     public static function Vagas() // Vagas e Turma
     {
         $quantCursos = CursoController::quantidadeCurso();

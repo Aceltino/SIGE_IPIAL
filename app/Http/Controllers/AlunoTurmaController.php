@@ -282,6 +282,10 @@ class AlunoTurmaController extends Controller
     {
             $classe = intval($aluno['classeId']);
             $turmas = AlunoTurmaController::pegarTurmasCurso($aluno['idCurso'], $classe );
+            if(!$turmas)
+            {
+                return "Não há nenhuma vaga para disponível para tua classe e o teu curso.";
+            }
 
             usort($turmas, function ($a, $b)
             {
@@ -313,7 +317,7 @@ class AlunoTurmaController extends Controller
                     'id' => $turma['TurmaAno_id'],
                     'vaga' => $vaga
                     ];
-                    AlunoController::updateStatusTrue($alunoTurma['aluno_id']);
+                    AlunoController::updateStatusTrue($alunoTurma[0]['aluno']);
                     AlunoTurmaController::atualizarVaga($vagaUpdate);
                     break;
                 }
@@ -335,7 +339,7 @@ class AlunoTurmaController extends Controller
             {
                 return "Algum problema com o aluno ".$alunoTurma['nome'].", tente mais tarde.";
             }
-            return $alunoTurma[0]['aluno'];
+            return true;
     }
 
 }

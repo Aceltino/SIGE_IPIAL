@@ -147,30 +147,22 @@ Route::prefix('matricula')->middleware(['auth','active.session'])->group(functio
 
     /*Readimitir aluno */
     Route::get('readmitir-aluno/{aluno}/readmitir', [MatriculaController::class, 'readmitirEdit'])->name('readmitir-view');
-    Route::post('readmitir-aluno/{aluno}', [MatriculaController::class, 'readmitirUpdate'])->name('readmitir-store');
-
-    Route::get('readmitir-aluno', function () {
-        return view('matricula/readmitir-aluno');
-    });
-
-    /*Aluno ativo */
-    Route::get('aluno-ativo', function () {
-        return view('matricula/aluno-ativo');
-    });
-
-    /*Aluno inativo */
-    Route::get('aluno-inativo', function () {
-        return view('matricula/aluno-inativo');
-    });
 
     /*Registrar aluno */
-    Route::get('registrar-aluno',[MatriculaController::class, 'registrar_aluno'])->name('registrar_aluno');
-        
+    Route::get('registrar-aluno',[MatriculaController::class, 'registrarView'])->name('registrar-view');
+    Route::post('registrar-aluno',[MatriculaController::class, 'registrarStore'])->name('registrar-store');
 
-    /*Editar registro */
-    Route::get('editar-registro', function () {
-        return view('matricula/edit-registro-aluno');
-    });
+    
+    
+    // /*Aluno ativo */
+    // Route::get('aluno-ativo', function () {
+    //     return view('matricula/aluno-ativo');
+    // });
+
+    // /*Aluno inativo */
+    // Route::get('aluno-inativo', function () {
+    //     return view('matricula/aluno-inativo');
+    // });
 });
 /**<!--Fim Rotas de matriculas--> */
 
