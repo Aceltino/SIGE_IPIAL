@@ -38,9 +38,9 @@ class MatriculaupdateRequest extends FormRequest
             'num_tel'=>'required|size:9|unique:pessoas,telefone,'.$candidato->pessoa_id.',pessoa_id',
 
              //Encarregado Form
+             'telefone0'=>'required|size:9|unique:pessoas,telefone,'.$candidato->pessoa_id.',pessoa_id',
              'telefone1'=>'required|size:9|unique:pessoas,telefone,'.$candidato->pessoa_id.',pessoa_id',
              'telefone2'=>'required|size:9|unique:pessoas,telefone,'.$candidato->pessoa_id.',pessoa_id',
-             'telefone3'=>'required|size:9|unique:pessoas,telefone,'.$candidato->pessoa_id.',pessoa_id',
         ];
 return $rules;
     }

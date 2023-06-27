@@ -251,5 +251,21 @@ class AlunoController extends Controller
         }
         return $Alunos;
     }
+
+    public static function pegarEncarregados($id)
+    {
+        $pessoas = Aluno::with('encarregado')
+        ->where('aluno_id', $id)
+        ->get();
+        
+        foreach ($pessoas as $pessoa) {
+            foreach ($pessoa->encarregado as $encarregado) {
+                $alunos[] = [
+                    'pessoa_id' => $encarregado->pessoa->pessoa_id,
+                ];
+            }
+        }
+        return($alunos);
+    }
 //
 }

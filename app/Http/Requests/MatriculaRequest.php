@@ -39,7 +39,7 @@ class MatriculaRequest extends FormRequest
             'genero' => 'required|string',
             'num_tel'=>'required|size:9|unique:pessoas,telefone,'.$candidato->pessoa_id.',pessoa_id',
            //User
-            'email'=>'required|email',
+            'email'=>'required|email|unique:users,email',
             //Formulario escola proveniente
             'nome_escola'=>'required|max:100|min:2',
             'num_processo'=>'required|min:2',
@@ -102,6 +102,7 @@ class MatriculaRequest extends FormRequest
             'num_tel.unique'=> 'Este número de telefone já está em uso',
 
             // Usuario
+            'email.unique' => 'Este email já está em uso.',
             'email' => 'Email inválido',
 
             //Formulario Escola proveniente

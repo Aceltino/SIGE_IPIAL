@@ -38,7 +38,10 @@ class AlunoTurmaController extends Controller
 
         for($i = 0; $i < count($alunos); $i++)
         {
-            $turmas = AlunoTurmaController::pegarTurmasCurso( CursoController::pegarIdCurso($alunos[$i]['curso']), ClasseController::pegarIdClasse('10ª') );
+            $classe = intval(ClasseController::pegarIdClasse('10ª'));
+            // $turmas = AlunoTurmaController::pegarTurmasCurso($alunos[$i]['idCurso'], $classed );
+
+            $turmas = AlunoTurmaController::pegarTurmasCurso($alunos[$i]['idCurso'], $classe);
 
             usort($turmas, function ($a, $b)
             {
@@ -75,7 +78,6 @@ class AlunoTurmaController extends Controller
                 }
             }
         }
-
         usort($alunoTurma, function($a, $b) {
             return strcmp($a['nome'], $b['nome']);
         });
@@ -108,7 +110,7 @@ class AlunoTurmaController extends Controller
             }
 
         }
-
+        return true;
     }
 
     public static function pegarTurmasCurso($curso, $classe) //Pegar turmas paraordenar os alunos
@@ -116,11 +118,11 @@ class AlunoTurmaController extends Controller
         $turmas = AnoTurmaCood::with('turma','ano_lectivo')
         ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
         ->whereHas('turma', function ($query)  use ($curso, $classe) {
-            $query->where('classe_id', $classe);
             $query->where('curso_id', $curso);
+            $query->where('classe_id', $classe);
         })
         ->get();
-
+// dd($turmas);
         $Turmas = [];
 
         foreach ($turmas as $turmaA)

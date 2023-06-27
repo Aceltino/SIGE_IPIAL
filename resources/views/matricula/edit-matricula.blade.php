@@ -169,15 +169,15 @@
                 <div class="container">
                     <div class="row">
                         <div class="col area-input form-group">
-                            <label>{{ $aluno['enc_grau_1'] }} </label><input type="text" name="telefone1" value="{{ $aluno['tel_grau_1'] }}">
+                            <label>{{ $aluno['enc_grau_1'] }} </label><input type="text" name="telefone0" value="{{ $aluno['tel_grau_1'] }}">
 
                         </div>
                         <div class="col area-input form-group" style="margin-left: 10px;">
-                            <label>{{ $aluno['enc_grau_2'] }} </label><input type="text" name="telefone2" value="{{ $aluno['tel_grau_2'] }}">
+                            <label>{{ $aluno['enc_grau_2'] }} </label><input type="text" name="telefone1" value="{{ $aluno['tel_grau_2'] }}">
                         </div>
 
                         <div class="col area-input form-group" style="margin-left: 10px;">
-                            <label>{{ $aluno['enc_grau_3'] }} </label><input type="text" name="telefone3" value="{{ $aluno['tel_grau_3'] }}">
+                            <label>{{ $aluno['enc_grau_3'] }} </label><input type="text" name="telefone2" value="{{ $aluno['tel_grau_3'] }}">
 
                         </div>
                     </div>

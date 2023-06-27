@@ -9,6 +9,7 @@ use App\Http\Controllers\{
     MiniPautaController,UserController,PautaController,
     PerfilUserController,ProcessoController,
     DisciplinasController, AdmissaoController,
+    AlunoTurmaController,
 };
 
 /*
@@ -23,8 +24,8 @@ use App\Http\Controllers\{
 */
 
 // Rota apenas de teste... Não apague -> ACELTINO
-// Route::get('validar-aluno', [AlunoTurmaController::class, 'situacaoAluno']);
-Route::get('validar-aluno', [AlunoController::class, 'pegarDadosMatriculados']);
+Route::get('validar-aluno', [AlunoTurmaController::class, 'situacaoAluno']);
+// Route::get('validar-aluno', [AlunoController::class, 'situacaoAluno']);
 
 
 //Rotas inicial do Painel
@@ -128,9 +129,9 @@ Route::prefix('matricula')->group(function(){
 
     /* Matriculas*/
     Route::get('matriculas', [MatriculaController::class, 'index'])->name('Matriculas');
-    Route::get('matricula-turma',  [MatriculaController::class, 'atribuirTurma'])->name('matricula-validarTurma');
 
-    //
+    // Atribuir turma 10ª classe
+    Route::get('matricula-turma',  [MatriculaController::class, 'atribuirTurma'])->name('matricula-validarTurma');
 
     /*Matricular aluno */
     Route::get('matricular-aluno/{candidato}',  [MatriculaController::class, 'create'])->name('matricula-view');
@@ -141,11 +142,10 @@ Route::prefix('matricula')->group(function(){
     Route::put('editar-aluno/{aluno}', [MatriculaController::class, 'update'])->name('matricula-update');
 
 
-    Route::get('editar-matricula', function () {
-        return view('matricula/edit-matricula');
-    });
-
     /*Readimitir aluno */
+    Route::get('readmitir-aluno/{aluno}/readmitir', [MatriculaController::class, 'readmitirEdit'])->name('readmitir-view');
+    Route::put('readmitir-aluno/{aluno}', [MatriculaController::class, 'readmitirUpdate'])->name('readmitir-store');
+
     Route::get('readmitir-aluno', function () {
         return view('matricula/readmitir-aluno');
     });
