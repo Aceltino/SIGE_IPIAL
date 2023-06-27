@@ -237,11 +237,16 @@ class MatriculaController extends Controller
 
     public function readmitirEdit($id)
     {
-        $aluno = AlunoController::pegarDadosMatriculado($id);
-
-        return view('matricula.readmitir-aluno',[
-            'aluno' => $aluno[0]
-        ]);
+        $aluno = AlunoController::pegarReprovado($id);
+        $alunoTurma = AlunoTurmaController::alunoNAdmtido($aluno);
+        dd($alunoTurma);
+        if($alunoTurma !== true)
+        {
+            return redirect()->back()->with("ErroMatricula", $alunoTurma);
+        }
+            $msg = "Os alunos foram atribuidas as suas turmas com sucesso!";
+            return Redirect::route('Matriculas')->with("Sucesso", $msg);
+        
     }
 
     public function readmitirUpdate($id)

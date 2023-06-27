@@ -278,11 +278,64 @@ class AlunoTurmaController extends Controller
         return true;
     }
 
-    public static function alunoNAdmtido() // Função a ser chamada na reabertura do ano lectivo 11ª >
+    public static function alunoNAdmtido($aluno) // Função a ser readmissão de um aluno >
     {
+            $classe = intval($aluno['classeId']);
+            $turmas = AlunoTurmaController::pegarTurmasCurso($aluno['idCurso'], $classe );
 
+            usort($turmas, function ($a, $b)
+            {
+                $identificadorA = substr($a['turma'], -1);
+                $identificadorB = substr($b['turma'], -1);
+                $turnos = ['M' => 3, 'T' => 2, 'N' => 1];
 
+                if ($identificadorA != $identificadorB)
+                {
+                    return $turnos[$identificadorB] - $turnos[$identificadorA];
+                }
 
+                return strcmp($identificadorA, $identificadorB);
+            });
+            
+            $alunoTurma = [];
+            foreach ($turmas as $turma)
+            {
+                if($turma['num_vaga'] > 0)
+                {
+                    $alunoTurma[] = [
+                    'turma' => $turma['TurmaAno_id'],
+                    'aluno' => $aluno['aluno_id'],
+                    'nome' => $aluno['nome']
+                    ];
+
+                    $vaga = $turma['num_vaga'] - 1;
+                    $vagaUpdate = [
+                    'id' => $turma['TurmaAno_id'],
+                    'vaga' => $vaga
+                    ];
+                    AlunoController::updateStatusTrue($alunoTurma['aluno_id']);
+                    AlunoTurmaController::atualizarVaga($vagaUpdate);
+                    break;
+                }
+            }
+
+            $qtdAlunos = AlunoTurmaController::quantidadeTurma($alunoTurma[0]['turma']);
+            $alunoA = Aluno::find($alunoTurma[0]['aluno']);
+            $alunoA->Anoturma()->attach($alunoTurma[0]['turma'],[
+                'numero_aluno' => $qtdAlunos + 1,
+            ]);
+
+            $userId = AlunoController::pegarIdUser($alunoTurma[0]['aluno']);
+            $dadosUser=[
+                'usuario_id'=> $userId,
+                'status_usuario'=>1,
+            ];
+            $user = UserController::updateAluno($dadosUser);
+            if(!$user)
+            {
+                return "Algum problema com o aluno ".$alunoTurma['nome'].", tente mais tarde.";
+            }
+            return $alunoTurma[0]['aluno'];
     }
 
 }
