@@ -9,7 +9,7 @@ use App\Traits\AvaliacaoTrait;
 use App\Models\Trimestre;
 use App\Models\Aluno;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\AnoTurmaCood;
 
 class AvaliacaoAlunoController extends Controller
 {
@@ -17,8 +17,8 @@ class AvaliacaoAlunoController extends Controller
     {
         $user = Auth::user();
         $professor = AvaliacaoTrait::pegarProfessor($user);
-
         $inc = 0;
+
         for ($i = 0; $i < count($professor); $i++) {
             $disciplina_id[$i] = $professor[$i]['disciplina_id'];
             $nome_disciplina[$i] = $professor[$i]['nome_disciplina'];
@@ -42,10 +42,10 @@ class AvaliacaoAlunoController extends Controller
 
             }
         }
-        //dd($nome_turma);
         $aluno = AvaliacaoTrait::pegarNotaAluno($disciplina_id, $turmas);
 
-        //dd($aluno);
+        // $teste = AnoTurmaCood::with('aluno.candidato.pessoa')->where('turma_id', 13)->where('ano_lectivo_id', 17)->get();
+        // dd($teste);
 
         return view('avaliac-aluno/avaliacoes-aluno', compact(['aluno', 'nome_disciplina', 'nome_turma']));
     }
@@ -56,7 +56,6 @@ class AvaliacaoAlunoController extends Controller
         ->where('aluno_id', $id_aluno)
         ->where('disciplina_id', $id_disciplina)
         ->where('trimestre_id', $trimestre[0]->trimestre_id)->get();
-        //dd($notas[0]);
         if(count($notas) < 1){
             return redirect()->back()->with('erro', "Nenhuma avaliação encontrada!");
         }

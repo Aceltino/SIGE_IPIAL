@@ -35,12 +35,7 @@ trait AvaliacaoTrait
                 ->where('turmaAno_id', $turma[$inc][$ii])->get();
                 //dd($aluno[0]->aluno->candidato->pessoa->nome_completo);
             $dis = Disciplina::find($disciplinas[$inc]);
-            //dd($aluno);
-            if(empty($aluno) || empty($dis)){
-                return false;
-            } elseif($aluno == null || $dis == null){
-                return false;
-            }
+
             for($i = 0; $i < count($aluno); $i++){
                 $mac = null;
                 $med = null;
@@ -154,20 +149,20 @@ trait AvaliacaoTrait
     public static function pegarProfessor($user){
 
         $professor = Professor::with('pessoa')->where('pessoa_id', $user->pessoa_id)->get();
-        $ano_lectivo = self::pegarAnoLectivo($professor);
-        $disciplinas = Professor_disciplina::with('disciplina', 'horario')->where('professor_id', $professor[0]->professor_id)
-        ->where('ano_lectivo_id', $ano_lectivo[0]->ano_lectivo_id)->get();
-        dd($disciplinas);
-
-        for ($i = 0; $i < count($disciplinas); $i++) {
+        //dd($professor);
+        $ano_lectivo = self::pegarAnoLectivo();
+        $prof_disc = Professor_disciplina::with('turmaProf', 'disciplina')->where('professor_id', $professor[0]->professor_id)
+        ->where('ano_lectivo_id', $ano_lectivo[0]->ano_lectivo_id)
+        ->get();
+        for ($i = 0; $i < count($prof_disc); $i++) {
             $dados[$i] = [
-                'nome_disciplina' =>  $disciplinas[$i]->disciplina->nome_disciplina,
-                'disciplina_id' => $disciplinas[$i]->disciplina->disciplina_id,
+                'nome_disciplina' =>  $prof_disc[$i]->disciplina->nome_disciplina,
+                'disciplina_id' => $prof_disc[$i]->disciplina->disciplina_id,
             ];
-          for ($j = 0; $j < count($disciplinas[$i]->horario); $j++) {
+          for ($j = 0; $j < count($prof_disc[$i]->turmaProf); $j++) {
             $dados[$i][$j] = [
-                'turma_id' => $disciplinas[$i]->horario[$j]->turma_id,
-                'nome_turma' => $disciplinas[$i]->horario[$j]->turma->nome_turma,
+                'turma_id' => $prof_disc[$i]->turmaProf[$j]->turma_id,
+                'nome_turma' => $prof_disc[$i]->turmaProf[$j]->nome_turma,
             ];
           }
         }
