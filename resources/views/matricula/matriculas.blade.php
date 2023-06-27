@@ -11,6 +11,9 @@
     @if(session()->has('ErroMatricula'))
     <div class="alert alert-danger no-print">
     {{session('ErroMatricula')}}
+    <button class="botaofecharerro">
+      <i class="bi bi-x"></i>
+    </button>
     </div>
     @endif
 
@@ -23,6 +26,9 @@
     @if(session()->has('Sucesso'))
     <div class="alert alert-success no-print">
     {{session('Sucesso')}}
+    <button class="botaofechasucesso">
+      <i class="bi bi-x"></i>
+    </button>
     </div>
     @endif
   </div>

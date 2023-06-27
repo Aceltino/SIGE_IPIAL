@@ -260,4 +260,10 @@ class MatriculaController extends Controller
         return redirect()->route('Matriculas')->with('success', 'Aluno excluído com sucesso.');
     }
 
+    public function registrar_aluno(){
+        $cursos = Curso::all();
+        return view('matricula.registrar-aluno', compact('cursos'));
+
+    }
+
 }
