@@ -7,11 +7,17 @@
     @if (session()->has('erro'))
     <div class="alert alert-danger">
     {{session('erro')}}
+    <button class="botaofecharerro">
+      <i class="bi bi-x"></i>
+    </button>
     </div>
     @endif
     @if (session()->has('sucesso'))
     <div class="alert alert-success">
         {{session('sucesso')}}
+        <button class="botaofechasucesso">
+          <i class="bi bi-x"></i>
+        </button>
     </div>
     @endif
   <div class="pagetitle">
@@ -23,10 +29,10 @@
   </div>
 
     <div class="procurar">
-        <form class="proc-form d-flex align-items-center">
+        <div class="proc-form d-flex align-items-center">
             <input id="pesquisa" type="text" placeholder="Digite A Data da Avaliação que pretendes Atualizar a nota" name="" class="campo-pesq">
-            <button id="pesquisa" type="submit" title="Search"><i class="bi bi-search"></i></button>
-        </form>
+            <button><i class="bi bi-search"></i></button>
+        </div>
     </div>
 
     <div class="nomenumeroaluno">
@@ -126,7 +132,7 @@
                   <tr style="text-align: center;">
                     <td>{{date('d-m-Y', strtotime($nota->data_avaliacao))}}</td>
                     <td>{{$nota->tipo_prova}}</td>
-                    <td><input class=" form-control innota" value="{{$nota->nota_aluno}}" type="text" name="nota_aluno" maxlength="2"></td>
+                    <td><input class=" form-control innota" id="notaimput" value="{{$nota->nota_aluno}}" type="text" name="nota_aluno" maxlength="2"></td>
                     <td hidden>Informática</td>
                     <td hidden>Desenho técnico</td>
                     <td hidden>I12BT</td>

@@ -6,11 +6,17 @@
     @if (session()->has('erro'))
     <div class="alert alert-danger">
         {{session('erro')}}
+        <button class="botaofecharerro">
+          <i class="bi bi-x"></i>
+        </button>
     </div>
     @endif
     @if (session()->has('sucesso'))
     <div class="alert alert-success">
         {{session('sucesso')}}
+        <button class="botaofechasucesso">
+          <i class="bi bi-x"></i>
+        </button>
     </div>
     @endif
   <div class="pagetitle">
@@ -53,10 +59,10 @@
     </div>
 
     <div class="procurar">
-    <form class="proc-form d-flex align-items-center">
+    <div class="proc-form d-flex align-items-center">
         <input id="pesquisa" type="text" placeholder="Digite o Número ou o Nome do Aluno que Procuras" name="" class="campo-pesq">
-        <button id="pesquisa" type="submit" title="Search"><i class="bi bi-search"></i></button>
-    </form>
+        <button  title="Search"><i class="bi bi-search"></i></button>
+    </div>
     </div>
   </div>
   <div class="bortabela">
@@ -68,7 +74,7 @@
         </div>
     </div>
     <!-- /  Inicio da tabela  -->
-    <table id="tabela" class="table table-striped" style="margin-top: 20px; width: 100%;" >
+    <table id="avaliacaotab" class="table table-striped" style="margin-top: 20px; width: 100%;" >
       <thead style="text-align: center">
         <tr>
           <th scope="col">Nº</th>
@@ -79,7 +85,7 @@
           <th scope="col">Exame</th>
           <th scope="col">E.Recurso</th>
           <th scope="col">Avaliar</th>
-          <th scope="col">Ediatr avaliação</th>
+          <th scope="col">Histórico</th>
           <th scope="col" hidden>curso</th>
           <th scope="col" hidden>Disciplina</th>
           <th scope="col" hidden>Turma</th>
@@ -101,7 +107,7 @@
                     <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$aluno[$i][$j]['aluno_id']}}" >Avaliar aluno</a>
                     </td>
                     <td style="text-align: center">
-                    <a href="{{route('editar.avaliacao.aluno', [$aluno[$i][$j]['aluno_id'], $aluno[$i][$j]['disciplina_id']])}}" class="btn linkeditar">Editar Avaliação</a>
+                    <a href="{{route('editar.avaliacao.aluno', [$aluno[$i][$j]['aluno_id'], $aluno[$i][$j]['disciplina_id']])}}" class="btn linkeditar">Avaliações Aluno</a>
                     </td>
                     <td hidden>{{$aluno[$i][$j]['curso']}}</td>
                     <td hidden>{{$aluno[$i][$j]['nome_disciplina']}}</td>
@@ -155,12 +161,12 @@
                   </tr>
                 </thead>
                 <tbody>
-
-                    <td><input class=" form-control innota" type="text" name="ac" maxlength="2"></td>
-                    <td><input class=" form-control innota " type="text" name="npp" maxlength="2"></td>
-                    <td><input class=" form-control innota" type="text" name="npt" maxlength="2"></td>
-                    <td><input class=" form-control innota" type="text" name="exame" maxlength="2"></td>
-                    <td><input class=" form-control innota" type="text" name="exame_recurso" maxlength="2"></td>
+                  <tr>
+                    <td><input class="form-control innota" type="text" name="ac" maxlength="2" id="notaimput_{{$i}}_{{$j}}"></td>
+                    <td><input class="form-control innota" type="text" name="npp" maxlength="2" id="notaimput_{{$i}}_{{$j+1}}"></td>
+                    <td><input class="form-control innota" type="text" name="npt" maxlength="2" id="notaimput_{{$i}}_{{$j+2}}"></td>
+                    <td><input class="form-control innota" type="text" name="exame" maxlength="2" id="notaimput_{{$i}}_{{$j+3}}"></td>
+                    <td><input class="form-control innota" type="text" name="exame_recurso" maxlength="2" id="notaimput_{{$i}}_{{$j+4}}"></td>
                   </tr>
                 </tbody>
               </table>
@@ -175,13 +181,12 @@
       </div>
       </div>
     </form>
+
     @endfor
     @endfor
   </div>
   @endif
+ 
   <!-- Termina a tabela -->
-
-
-
 </main>
 @endsection
