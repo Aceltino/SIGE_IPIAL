@@ -79,7 +79,7 @@
                   <label class="me-3">Sexo:</label>
                   <input type="radio" id="masculino" name="genero" value="Masculino" checked>
                   <label for="masculino" class="me-2"> Masculino</label>
-                  <input type="radio" id="feminino" name="genero" value="Feminino" >
+                  <input type="radio" id="feminino" name="genero" value="Femenino" >
                   <label for="feminino"> Feminino</label>
                 </div>
             </div>
@@ -142,8 +142,8 @@
 
           <div class="form-group">
             <select oninput="this.className = ''" class="form-select" name="cargo">
-              <option selected disabled>Cargo</option>
-              <option value="Professor">Professor</option>
+              <option disabled>Cargo</option>
+              <option selected value="Professor">Professor</option>
               <option value="Administrador">Administrador</option>
               <option value="Subdirector">Subdirector Pedagogico</option>
               <option value="Secretaria">Secretaria Pedagogica</option>
