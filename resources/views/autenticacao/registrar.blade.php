@@ -17,24 +17,32 @@
         <span class="step"></span>
         <span class="step"></span>
       </div>
+
       <div class="area-logo">
         <span style="font-size: 20px;">Cadastro de Usuario</span>
       </div>
+
       @if(session('erroCadastroPessoa'))
-        <div class="alert alert-success">
+        <div class="alert alert-danger">
           {{session('erroCadastroPessoa')}}
         </div>
       @endif
       @if(session('erroCadastroEndereco'))
-        <div class="alert alert-success">
+        <div class="alert alert-danger">
           {{session('erroCadastroEndereco')}}
         </div>
       @endif
       @if(session('erroCadastroUser'))
-        <div class="alert alert-success">
+        <div class="alert alert-danger">
           {{session('erroCadastroUser')}}
         </div>
       @endif
+      @if(session('erro_senha_001'))
+        <div class="alert alert-danger">
+          {{session('erro_senha_001')}}
+        </div>
+      @endif
+      
 
       {{-- Dados da Pessoa - Apagar em Produção --}}
       <div class="tab">
@@ -58,8 +66,8 @@
         <div class="input-group">
           <select class="form-select" name="genero">
             <option value="Masculino" selected>Masculino</option>
-            <option value="Femenino">Femenino</option>
-          </select>
+            <option value="Femenino">Feminino</option>
+          </select>   
         </div>
 
         <div class="col">

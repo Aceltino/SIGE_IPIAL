@@ -183,7 +183,7 @@ class UserController extends Controller
             if(!$user->save()){
                 return redirect()->back()->with('erro_status_002','Lamentamos! Não foi possivel Bloqueado Usuario');
             }
-
+            AuthController::detectarLogin($user); //Assim que o usuario for bloqueado a sessão sera finalizada
             return redirect()->back()->with('sucess_status_002','Usuario Bloqueado');
         } 
     }
