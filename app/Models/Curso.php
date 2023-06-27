@@ -44,16 +44,9 @@ class Curso extends Model
         return $this->hasMany(Aluno::class, 'curso_id');
     }
     public function disciplinas()
-<<<<<<< Updated upstream
-{
-    return $this->belongsToMany(Disciplina::class, 'disciplinas_cursos', 'curso_id', 'disciplina_id');
-}
-
-=======
     {
         return $this->belongToMany(Disciplina::class, 'diciplina_curso', 'disciplina_id', 'curso_id');
     }
->>>>>>> Stashed changes
 
 
 }

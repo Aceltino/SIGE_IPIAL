@@ -280,7 +280,6 @@ class AlunoController extends Controller
                 'nomeTurma' => $aluno->anoturma->first()->turma->nome_turma
             ];
     
-        dd($alunoReprovado);
         return $alunoReprovado;
     }
 
