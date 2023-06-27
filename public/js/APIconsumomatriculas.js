@@ -13,7 +13,7 @@ axios.get('/api/matriculados')
 
                   Botao = `<a href="/matricula/registrar-aluno" name="" id="" class="btn btn-success"  role="button">Ativar</a>`;
                 } else{
-                  Botao = `<a href="" name="" id="" class="btn btn-danger"  role="button">inativar</a>`;
+                  Botao = `<a href="/matricula/eliminar/${registro.cod_inscr}" name="" id="" class="btn btn-danger"  role="button">inativar</a>`;
 
                 }
 

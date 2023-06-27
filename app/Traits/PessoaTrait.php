@@ -100,4 +100,11 @@ trait PessoaTrait
         return $pessoaAtualizado;
     }
 
+    public static function deletePessoa($dadosPessoa)
+    {
+        $pessoa = Pessoa::find($dadosPessoa['pessoa_id']);
+        $pessoa->delete();
+        return $pessoa;
+    }
+
 }
