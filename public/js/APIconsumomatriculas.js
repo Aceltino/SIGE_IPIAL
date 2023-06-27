@@ -9,15 +9,12 @@ axios.get('/api/matriculados')
                 const row = tbody.insertRow();
                 const turma = registro.nomeTurma;
 
-                switch (registro.nomeTurma) {
-                    case 'Null':
-                        Botao = `<a href="/matricula/registrar-aluno" name="" id="" class="btn btn-success"  role="button">Ativar</a>`;
-                        break;
-                    case turma:
-                        Botao = `<a href="#" name="" id="" class="btn btn-danger"  role="button">inativar</a>`;
-                        break;
-                    default:
-                        Botao = ``;
+                if($.isEmptyObject(turma)){
+
+                  Botao = `<a href="/matricula/registrar-aluno" name="" id="" class="btn btn-success"  role="button">Ativar</a>`;
+                } else{
+                  Botao = `<a href="" name="" id="" class="btn btn-danger"  role="button">inativar</a>`;
+
                 }
 
                 row.innerHTML = `
@@ -253,9 +250,9 @@ axios.get('/api/matriculados')
                               </div>
 
                               <div class="footer-modal" style="text-align: center;">
-                                <a href="/matricula/matricular-aluno/${registro.N_processo}" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
+                                <a href="/matricula/editar-aluno/${registro.N_processo}/editar" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
                                 <div class="jnt">
-                                    <a href="/matriculas" class="btn" style="background-color: #070b17; color: #fff;">Retrocer as Matriculas</a>
+                                    <a href="/matricula/matriculas" class="btn" style="background-color: #070b17; color: #fff;">Retrocer as Matriculas</a>
 
                                     <a href="#ExtralargeModal${registro.N_processo}" class="btn" style="background-color: #070b17; color: #fff;">Dados pessoais <i class="bi bi-arrow-up"></i></a>
                                 </div>
