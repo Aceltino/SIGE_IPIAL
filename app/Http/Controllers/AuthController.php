@@ -350,10 +350,9 @@ class AuthController extends Controller
     //Metodo que termina o inicio de sessão
     public static function logout()
     {   
-        // $user= Auth::user();
-        // self::detectarLogin($user);
-
-        //Antiga implementação
+        $user= Auth::user();
+        self::detectarLogin($user);
+        
         Auth::logout();
         Session::invalidate();
         
