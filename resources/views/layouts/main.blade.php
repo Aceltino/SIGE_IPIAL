@@ -89,6 +89,8 @@
   <script src={{{URL::asset("tooltipster/dist/js/tooltipster.bundle.min.js")}}}></script>
   <script src={{{URL::asset("js/tab.js")}}}></script>
   <script src={{{URL::asset("js/gerarpdf.js")}}}></script>
+  <script src={{{URL::asset("js/fecharerro.js")}}}></script>
+ 
   
 
 

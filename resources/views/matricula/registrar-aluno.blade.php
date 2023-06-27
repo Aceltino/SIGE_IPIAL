@@ -29,11 +29,9 @@
             <div class="form-group">
                 <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
                     <option selected disabled>CURSO</option>
-                    <option value ="I">Informática - I</option>
-                    <option value="D.P">Desenhador projetista - D.P</option>
-                    <option value="T.E.I.E">Técnico de Energia e Instalações Electricas - T.E.I.E</option>
-                    <option value="T.I">Técnico de Informática - T.I</option>
-                    <option value="E.T">Electronica e Telecomunicação - E.T</option>
+                    @foreach($cursos as $curso)
+                    <option value ="{{$curso['nome_curso']}}">{{$curso['nome_curso']}}</option>
+                    @endforeach
                 </select>
             </div>
 
