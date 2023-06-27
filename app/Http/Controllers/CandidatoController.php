@@ -106,15 +106,17 @@ class CandidatoController extends Controller
         }
 
         $cursoEscolhido = [];
-
-        usort($cursoCandidato, function ($a, $b)
+        if($cursoCandidato)
+        {
+            usort($cursoCandidato, function ($a, $b)
             {
                 return $a['prefCurso'] - $b['prefCurso'];
             });
+        }
         foreach($cursoCandidato as $curso)
-                {
-                    $cursoEscolhido[] = $curso['nomeCurso'];
-                }
+        {
+            $cursoEscolhido[] = $curso['nomeCurso'];
+        }
 
         $dadosCandidatos = [];
         foreach ($candidatos as $candidato)
@@ -151,6 +153,7 @@ class CandidatoController extends Controller
                 'Data_inscricao' => $candidato->created_at
             ];
         }
+        
         return $dadosCandidatos;
     }
 

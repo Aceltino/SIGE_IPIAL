@@ -140,21 +140,6 @@ class InscricaoController extends Controller
     {
     $request = $input->validated(); // Inputs validadas
 
-    $curso = CursoController::quantidadeCurso();
-
-    for($i = 1; $i <= $curso; $i++)
-    {
-        $cursoValidado[$i] = $request['curso' . $i];
-    }
-
-    $validacaoCurso = CandidatoCursoController::validarCurso($cursoValidado);
-
-    if(!$validacaoCurso)
-    {
-        $msg="Lamentamos! Dados não cadastrado, um candidato não pode escolher o mesmo curso mais de uma vez. ...";
-        return redirect()->back()->with("ErroCurso",$msg);
-    }
-
     $candidato = Candidato::find($request['id']);
     $pessoa_id = $candidato->pessoa_id;
     $dadosPessoa = [
@@ -179,10 +164,6 @@ class InscricaoController extends Controller
         'num_aluno'=>$request['num_aluno'],
         'ultimo_anoLectivo'=>$request['ultimo_anoLectivo'],
         'turma_aluno' =>$request['turma_aluno'],
-        'ling_port'   => $request['LinguaP'],
-        'matematica'  => $request['Matematic'],
-        'fisica' =>  $request['Fisic'],
-        'quimica' => $request['Quimic'],
         'escola_proveniencia_id' => $escola_id
     ];
 
@@ -203,28 +184,6 @@ class InscricaoController extends Controller
     {
         $msg="Lamentamos! Dados não cadastrado, tente este processo mais tarde...";
         return redirect()->back()->with("ErroCadastro",$msg);
-    }
-
-    for($i = 1; $i <= $curso; $i++)
-    {
-        $id[$i] = CursoController::pegarIdCurso($request['curso' . $i]);
-        if(!$id[$i])
-        {
-            $msg="Lamentamos! Dados não cadastrado, tente este processo mais tarde...";
-            return redirect()->back()->with("ErroCadastro",$msg);
-        }
-    }
-
-    $candCurso = [
-        'curso_id' => $id,
-        'candidato_id' => $request['id']
-    ];
-    $cursos = CandidatoCursoController::updateCandCurso($candCurso);
-
-    if(!$cursos)
-    {
-        $msg="Lamentamos! Dados não atualizados, um candidato não pode escolher o mesmo curso mais de uma vez. ...";
-        return redirect()->back()->with("ErroCurso",$msg);
     }
 
     $msg="Candidato actualizado com sucesso!";

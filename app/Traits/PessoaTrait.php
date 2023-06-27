@@ -89,7 +89,7 @@ trait PessoaTrait
 
     }
 
-    public static function updatePessoa($dadosPessoa, $dadosEndereco = null)
+    public static function updatePessoa($dadosPessoa)
     {
         $pessoa = Pessoa::find($dadosPessoa['pessoa_id']);
         foreach ($dadosPessoa as $campo => $valor)
@@ -97,13 +97,14 @@ trait PessoaTrait
             $pessoa->$campo = $valor;
         }
         $pessoaAtualizado = $pessoa->save();
-        // if($dadosEndereco)  ----- Antes de descomentar tens de criar o metodo update na controller endereço
-        // {
-        //     $enderecoId = EnderecoController::store($dadosEndereco);
-        //     $dadosPessoa['endereco_id']= $enderecoId;
-        // }
-        // $pessoa
         return $pessoaAtualizado;
+    }
+
+    public static function deletePessoa($id)
+    {
+        $pessoa = Pessoa::find($id);
+        $pessoa->delete();
+        return $pessoa;
     }
 
 }

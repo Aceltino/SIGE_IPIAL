@@ -16,7 +16,18 @@ class AlunoController extends Controller
         return $alunoCriado->aluno_id;
     }
 
-    public static function updateStatusTrue($idAluno) // Atualizr status para admitido
+    public static function updateAluno($dadosAluno)
+    {
+        $aluno = Aluno::find($dadosAluno['aluno_id']);
+        foreach ($dadosAluno as $campo => $valor)
+        {
+            $aluno->$campo = $valor;
+        }
+        $alunoAtualizado = $aluno->save();
+        return $alunoAtualizado;
+    }
+
+    public static function updateStatusTrue($idAluno) // Atualizar status para true
     {
         $alunoCriado = Aluno::find($idAluno);
         $alunoCriado->status =1;
@@ -93,9 +104,6 @@ class AlunoController extends Controller
         ->whereHas('candidato', function ($query) {
             $query->where('status', 'Matriculado');
         })
-       // ->whereHas('anoturma', function ($query) {
-           // $query->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo());
-       // })
         ->get();
 
         $dataAtual = Carbon::now();
@@ -152,7 +160,7 @@ class AlunoController extends Controller
             }
         return $Alunos;
     }
-//
+
     public static function alunosTurma() // Função chamada no AlunoTurmacontroller para saber a situação doa aluno no ano anterior
     {
         $alunos = Aluno::with('candidato', 'anoturma')
@@ -250,6 +258,22 @@ class AlunoController extends Controller
             ];
         }
         return $Alunos;
+    }
+
+    public static function pegarEncarregados($id)
+    {
+        $pessoas = Aluno::with('encarregado')
+        ->where('aluno_id', $id)
+        ->get();
+        
+        foreach ($pessoas as $pessoa) {
+            foreach ($pessoa->encarregado as $encarregado) {
+                $alunos[] = [
+                    'pessoa_id' => $encarregado->pessoa->pessoa_id,
+                ];
+            }
+        }
+        return($alunos);
     }
 //
 }

@@ -13,4 +13,5 @@ class EncarregadoController extends Controller
         $encarregadoCriada = Encarregado::create($dadosEncarregado);
         return $encarregadoCriada->encarregado_id;
     }
+
 }

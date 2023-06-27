@@ -54,7 +54,7 @@
                             <label class="me-3">Sexo:</label>
                             <input type="radio" id="masculino" name="genero_update" value="Masculino" {{$user->pessoa->genero=='Masculino'? "checked" : ""}} >
                             <label for="masculino" class="me-2"> Masculino</label>
-                            <input type="radio" id="feminino" name="genero_update" value="Feminino" {{$user->pessoa->genero=='Femenino'? "checked" : ""}} >
+                            <input type="radio" id="feminino" name="genero_update" value="Femenino" {{$user->pessoa->genero=='Femenino'? "checked" : ""}} >
                             <label for="feminino"> Feminino</label>
                     </div>
                     @error('genero_update')
