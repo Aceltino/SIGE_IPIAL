@@ -27,122 +27,123 @@ trait AvaliacaoTrait
 
     public static function pegarNotaAluno($disciplinas, $turma){
         $trimestre = self::pegarTrimestre();
+        $ano_lectivo = self::pegarAnoLectivo();
+        //dd($turma);
+        for ($dis = 0; $dis < count($disciplinas); $dis++) {
+            for ($tur = 0; $tur < count($turma[$dis]); $tur++) {
+                $aluno = AlunoTurma::with('aluno.candidato.pessoa', 'turmaAno.turma')->where('turmaAno_id', $turma[$dis][$tur])
+                ->get();
 
-        for ($inc = 0; $inc < count($disciplinas); $inc++) {
-            for ($ii = 0; $ii < count($turma[$inc]); $ii++) {
+                $disc = Disciplina::find($disciplinas[$dis]);
+                //dd($aluno);
+                for($i = 0; $i < count($aluno); $i++){
+                    $mac = null;
+                    $med = null;
+                    $npp = null;
+                    $npt = null;
+                    $npg = null;
+                    $recurso = null;
+                    $exame_recurso = null;
+                    $exame = null;
+                    $exame_especial = null;
 
-                $aluno = AlunoTurma::with(['aluno.candidato.pessoa', 'aluno.turmas', 'aluno.anoturma.turma'])
-                ->where('turmaAno_id', $turma[$inc][$ii])->get();
-                //dd($aluno[0]->aluno->candidato->pessoa->nome_completo);
-            $dis = Disciplina::find($disciplinas[$inc]);
+                    $nota = Nota::with(['disciplina'])->where('aluno_id', $aluno[$i]->aluno_id)
+                    ->where('trimestre_id', $trimestre[0]->trimestre_id)
+                    ->where('disciplina_id', $disciplinas[$dis])->get();
 
-            for($i = 0; $i < count($aluno); $i++){
-                $mac = null;
-                $med = null;
-                $npp = null;
-                $npt = null;
-                $npg = null;
-                $recurso = null;
-                $exame_recurso = null;
-                $exame = null;
-                $exame_especial = null;
-
-                $nota = Nota::where('aluno_id', $aluno[$i]->aluno_id)
-                ->where('trimestre_id', $trimestre[0]->trimestre_id)
-                ->where('disciplina_id', $disciplinas[$inc])->get();
-                $ac = Nota::with(['disciplina'])->where('aluno_id', $aluno[$i]->aluno_id)
-                ->where('trimestre_id', $trimestre[0]->trimestre_id)
-                ->where('tipo_prova', 'AvaliacaoContinua')
-                ->where('disciplina_id', $disciplinas[$inc])->get();
-                //dd($nota);
-                if(count($nota) < 1){
-                    $dados[$inc][$i] = [
-                        'aluno_id' => $aluno[$i]->aluno_id,
-                        'nome' => $aluno[$i]->aluno->candidato->pessoa->nome_completo,
-                        'numero_aluno' => $aluno[$i]->aluno->turmas[0]->numero_aluno,
-                        'turma_id' => $aluno[$i]->aluno->anoturma[0]->turma->turma_id,
-                        'nome_turma' => $aluno[$i]->aluno->anoturma[0]->turma->nome_turma,
-                        'trimestre_id' => $trimestre[0]->trimestre_id,
-                        'trimestre' => $trimestre[0]->trimestre,
-                        'mac' => $mac,
-                        'npp' => $npp,
-                        'npt' => $npt,
-                        'npg' => $npg,
-                        'recurso' => $recurso,
-                        'exame_recurso' => $exame_recurso,
-                        'exame' => $exame,
-                        'exame_especial' => $exame_especial,
-                        'disciplina_id' => $dis->disciplina_id,
-                        'nome_disciplina' => $dis->nome_disciplina,
-                        'curso' => $aluno[$i]->aluno->anoturma[0]->turma->curso->nome_curso,
-                    ];
-                } else{
-                    for($j = 0; $j < count($ac); $j++){
-                        $mac += $ac[$j]->nota_aluno;
-                        $med++;
-                    }
-                    if($med > 0){
-                        $mac /= $med;
-                    }
-                    for($j = 0; $j < count($nota); $j++){
-                        if($nota[$j]->tipo_prova === "Prova Professor"){
-                            $npp = $nota[$j]->nota_aluno;
+                    $ac = Nota::with(['disciplina'])->where('aluno_id',  $aluno[$i]->aluno_id)
+                    ->where('trimestre_id', $trimestre[0]->trimestre_id)
+                    ->where('tipo_prova', 'AvaliacaoContinua')
+                    ->where('disciplina_id', $disciplinas[$dis])->get();
+                    //dd($aluno);
+                    if(count($nota) < 1){
+                        $dados[$dis][$i] = [
+                            'aluno_id' => $aluno[$i]->aluno_id,
+                            'nome' => $aluno[$i]->aluno->candidato->pessoa->nome_completo,
+                            'numero_aluno' => $aluno[$i]->aluno->turmas[0]->numero_aluno,
+                            'turma_id' => $aluno[$i]->aluno->anoturma[0]->turma->turma_id,
+                            'nome_turma' => $aluno[$i]->aluno->anoturma[0]->turma->nome_turma,
+                            'trimestre_id' => $trimestre[0]->trimestre_id,
+                            'trimestre' => $trimestre[0]->trimestre,
+                            'mac' => $mac,
+                            'npp' => $npp,
+                            'npt' => $npt,
+                            'npg' => $npg,
+                            'recurso' => $recurso,
+                            'exame_recurso' => $exame_recurso,
+                            'exame' => $exame,
+                            'exame_especial' => $exame_especial,
+                            'disciplina_id' => $disc->disciplina_id,
+                            'nome_disciplina' => $disc->nome_disciplina,
+                            'curso' => $aluno[$i]->aluno->anoturma[0]->turma->curso->nome_curso,
+                        ];
+                    } else{
+                        for($j = 0; $j < count($ac); $j++){
+                            $mac += $ac[$j]->nota_aluno;
+                            $med++;
                         }
-                    }
-                    for($j = 0; $j < count($nota); $j++){
-                        if($nota[$j]->tipo_prova === "ProvaTrimestre"){
-                            $npt = $nota[$j]->nota_aluno;
+                        if($med > 0){
+                            $mac /= $med;
                         }
-                    }
-                    for($j = 0; $j < count($nota); $j++){
-                        if($nota[$j]->tipo_prova === "Prova Global"){
-                            $npg = $nota[$j]->nota_aluno;
+                        for($j = 0; $j < count($nota); $j++){
+                            if($nota[$j]->tipo_prova === "Prova Professor"){
+                                $npp = $nota[$j]->nota_aluno;
+                            }
                         }
-                    }
-                    for($j = 0; $j < count($nota); $j++){
-                        if($nota[$j]->tipo_prova === "Recurso"){
-                            $recurso = $nota[$j]->nota_aluno;
+                        for($j = 0; $j < count($nota); $j++){
+                            if($nota[$j]->tipo_prova === "ProvaTrimestre"){
+                                $npt = $nota[$j]->nota_aluno;
+                            }
                         }
-                    }
-                    for($j = 0; $j < count($nota); $j++){
-                        if($nota[$j]->tipo_prova === "Exame Recurso"){
-                            $exame_recurso = $nota[$j]->nota_aluno;
+                        for($j = 0; $j < count($nota); $j++){
+                            if($nota[$j]->tipo_prova === "Prova Global"){
+                                $npg = $nota[$j]->nota_aluno;
+                            }
                         }
-                    }
-                    for($j = 0; $j < count($nota); $j++){
-                        if($nota[$j]->tipo_prova === "Exame"){
-                            $exame = $nota[$j]->nota_aluno;
+                        for($j = 0; $j < count($nota); $j++){
+                            if($nota[$j]->tipo_prova === "Recurso"){
+                                $recurso = $nota[$j]->nota_aluno;
+                            }
                         }
-                    }
-                    for($j = 0; $j < count($nota); $j++){
-                        if($nota[$j]->tipo_prova === "Exame Especial"){
-                            $exame_especial = $nota[$j]->nota_aluno;
+                        for($j = 0; $j < count($nota); $j++){
+                            if($nota[$j]->tipo_prova === "Exame Recurso"){
+                                $exame_recurso = $nota[$j]->nota_aluno;
+                            }
                         }
+                        for($j = 0; $j < count($nota); $j++){
+                            if($nota[$j]->tipo_prova === "Exame"){
+                                $exame = $nota[$j]->nota_aluno;
+                            }
+                        }
+                        for($j = 0; $j < count($nota); $j++){
+                            if($nota[$j]->tipo_prova === "Exame Especial"){
+                                $exame_especial = $nota[$j]->nota_aluno;
+                            }
+                        }
+                        $dados[$dis][$i] = [
+                            'aluno_id' => $aluno[$i]->aluno->aluno_id,
+                            'nome' => $aluno[$i]->aluno->candidato->pessoa->nome_completo,
+                            'numero_aluno' => $aluno[$i]->aluno->turmas[0]->numero_aluno,
+                            'turma_id' => $aluno[$i]->aluno->anoturma[0]->turma->turma_id,
+                            'nome_turma' => $aluno[$i]->aluno->anoturma[0]->turma->nome_turma,
+                            'trimestre_id' => $trimestre[0]->trimestre_id,
+                            'trimestre' => $trimestre[0]->trimestre,
+                            'mac' => $mac,
+                            'npp' => $npp,
+                            'npt' => $npt,
+                            'npg' => $npg,
+                            'recurso' => $recurso,
+                            'exame_recurso' => $exame_recurso,
+                            'exame' => $exame,
+                            'exame_especial' => $exame_especial,
+                            'disciplina_id' => $disc->disciplina_id,
+                            'nome_disciplina' => $disc->nome_disciplina,
+                            'curso' => $aluno[$i]->aluno->anoturma[0]->turma->curso->nome_curso,
+                        ];
                     }
-                    $dados[$inc][$i] = [
-                        'aluno_id' => $aluno[$i]->aluno->aluno_id,
-                        'nome' => $aluno[$i]->aluno->candidato->pessoa->nome_completo,
-                        'numero_aluno' => $aluno[$i]->aluno->turmas[0]->numero_aluno,
-                        'turma_id' => $aluno[$i]->aluno->anoturma[0]->turma->turma_id,
-                        'nome_turma' => $aluno[$i]->aluno->anoturma[0]->turma->nome_turma,
-                        'trimestre_id' => $trimestre[0]->trimestre_id,
-                        'trimestre' => $trimestre[0]->trimestre,
-                        'mac' => $mac,
-                        'npp' => $npp,
-                        'npt' => $npt,
-                        'npg' => $npg,
-                        'recurso' => $recurso,
-                        'exame_recurso' => $exame_recurso,
-                        'exame' => $exame,
-                        'exame_especial' => $exame_especial,
-                        'disciplina_id' => $dis->disciplina_id,
-                        'nome_disciplina' => $dis->nome_disciplina,
-                        'curso' => $aluno[$i]->aluno->anoturma[0]->turma->curso->nome_curso,
-                    ];
                 }
             }
         }
-    }
         return $dados;
     }
 
