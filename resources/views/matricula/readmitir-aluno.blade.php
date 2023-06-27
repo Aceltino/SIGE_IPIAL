@@ -24,26 +24,29 @@
         </div>
 
         <div class="form-group">
-          <input type="text" value= "Márcio Celestino" placeholder="Nome Completo do Aluno" name="" >
+          <input type="text" class="form-control" value= "Márcio Celestino" placeholder="Nome Completo do Aluno" name="" disabled readonly>
         </div>
 
         <div class="row">
             
           <div class="col">
             <div class="form-group">
-              <input type="text" value= "Manhã" placeholder="Turno do Aluno" >
+              <span>Turno do Aluno</span>
+              <input type="text" class="form-control" value= "Manhã" placeholder="Turno do Aluno" disabled readonly >
             </div>
           </div>
 
             <div class="col">
               <div class="form-group">
-                  <input type="text" value= "I11AM" placeholder="Turma do Aluno" >
+                <span>Turma do Aluno</span>
+                  <input type="text" class="form-control" value= "I11AM" placeholder="Turma do Aluno" disabled readonly >
               </div> 
             </div>
 
             <div class="col">
               <div class="form-group">
-                  <input type="text" value= "33" placeholder="Nº do Aluno" >
+                <span>Número do Aluno</span>
+                  <input type="text" class="form-control" value= "33" placeholder="Nº do Aluno" disabled readonly >
               </div> 
             </div>
         </div>
@@ -52,13 +55,15 @@
 
             <div class="col">
               <div class="form-group">
-                <input type="text" value= "9383474" placeholder="Número de processo" >
+                <span>Número de Processo</span>
+                <input type="text" class="form-control" value= "9383474" placeholder="Número de processo" disabled readonly >
               </div> 
             </div>
 
             <div class="col">
               <div class="form-group">
-                <input type="text" value= "2020/2029" placeholder="Ano lectivo" >
+                <span>Ano lectivo</span>
+                <input type="text" class="form-control" value= "2020/2029" placeholder="Ano lectivo" disabled readonly >
               </div> 
             </div>
         </div>
@@ -67,40 +72,21 @@
 
             <div class="col">
               <div class="form-group">
-                <input type="text" value= "44" placeholder="Sala do Aluno" >
+                <span>Sala do Aluno</span>
+                <input type="text" class="form-control" value= "44" placeholder="Sala do Aluno" disabled readonly >
               </div> 
             </div>
 
             <div class="col">
               <div class="form-group">
-                <input type="text" value= "I13AM" placeholder="Classe do aluno" >
+                <span>Classe do ALuno</span>
+                <input type="text" class="form-control" value= "12ª" placeholder="Classe do aluno" disabled readonly>
               </div> 
             </div>
         </div>
 
-        <div class="form-group"> 
-          <select oninput="this.className = ''" class="form-select">
-            <option selected>Turno</option>
-            <option>Manhã</option>
-            <option>Tarde</option>
-            <option>Noite</option>
-          </select>
-        </div>
-
         <div class="form-group">
-            <input type="text" value= "exame 1" placeholder="Curso do aluno" name="" >
-        </div>
-
-        <div class="form-group">
-            <input type="text" value= "exame 2" placeholder="Curso do aluno" name="" >
-        </div>
-
-        <div class="form-group">
-            <input type="text" value= "Exame 3" placeholder="Curso do aluno" name="" >
-        </div>
-
-        <div class="form-group">
-            <input type="text" style=" text-align: center; "value= "Informática" placeholder="Curso do aluno" name="" >
+            <input type="text" class="form-control" style=" text-align: center; "value= "Informática" placeholder="Curso do aluno" name="" disabled readonly >
         </div>
       </div>
 

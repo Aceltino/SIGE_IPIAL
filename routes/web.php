@@ -164,9 +164,8 @@ Route::prefix('matricula')->group(function(){
     });
 
     /*Registrar aluno */
-    Route::get('registrar-aluno', function () {
-        return view('matricula/registrar-aluno');
-    });
+    Route::get('registrar-aluno',[MatriculaController::class, 'registrar_aluno'])->name('registrar_aluno');
+        
 
     /*Editar registro */
     Route::get('editar-registro', function () {

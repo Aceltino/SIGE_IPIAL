@@ -15,70 +15,93 @@
     </div>
 
         <div class="tab">
-        @error('nome_completo')
+          <div class="conteudo">
+
+            @error('nome_completo')
+              <div class="alert alert-danger">
+                {{$message}}
+                <button class="botaofecharerro">
+                  <i class="bi bi-x"></i>
+                </button>
+              
+              </div>
+              
+            @enderror
+            @error('nome_pai_cand')
+                <div class="alert alert-danger">{{$message}}
+                  <button class="botaofecharerro">
+                    <i class="bi bi-x"></i>
+                  </button>
+                </div>
+            @enderror
+            @error('nome_mae_cand')
+                <div class="alert alert-danger">{{$message}}</div>
+            @enderror
+            @error('naturalidade_cand')
+                <div class="alert alert-danger">{{$message}}</div>
+            @enderror
+            @error('num_tel')
             <div class="alert alert-danger">{{$message}}</div>
-        @enderror
-        @error('nome_pai_cand')
+            @enderror
+            @error('num_bi')
             <div class="alert alert-danger">{{$message}}</div>
-        @enderror
-        @error('nome_mae_cand')
+            @enderror
+            @error('nome_escola')
             <div class="alert alert-danger">{{$message}}</div>
-        @enderror
-        @error('naturalidade_cand')
+            @enderror
+            @error('num_aluno')
             <div class="alert alert-danger">{{$message}}</div>
-        @enderror
-        @error('num_tel')
-        <div class="alert alert-danger">{{$message}}</div>
-        @enderror
-        @error('num_bi')
-        <div class="alert alert-danger">{{$message}}</div>
-        @enderror
-        @error('nome_escola')
-        <div class="alert alert-danger">{{$message}}</div>
-        @enderror
-        @error('num_aluno')
-        <div class="alert alert-danger">{{$message}}</div>
-        @enderror
-        @error('turma_aluno')
-        <div class="alert alert-danger">{{$message}}</div>
-        @enderror
-        @error('num_processo')
-        <div class="alert alert-danger">{{$message}}</div>
-        @enderror
-        @error('ultimo_anoLectivo')
-        <div class="alert alert-danger">{{$message}}</div>
-        @enderror
-
-        @if(session()->has('ErroPessoa'))
-        <div class="alert alert-danger">
-        {{session('ErroPessoa')}}
-        </div>
-    @endif
-
-    @if (session()->has('ErroTelefone'))
-    <div class="alert alert-warning">
-        {{ session('ErroTelefone') }}
-    </div>
-    @endif
-
-    @if (session()->has('ErroCurso'))
-    <div class="alert alert-warning">
-        {{ session('ErroCurso') }}
-    </div>
-    @endif
-
-
-        @if(session()->has('ErroCandidato'))
-        <div class="alert alert-danger">
-        {{session('ErroCandidato')}}
-        </div>
-    @endif
-
-        @if(session()->has('Sucesso'))
-        <div class="alert alert-success">
-        {{session('Sucesso')}}
-        </div>
-    @endif
+            @enderror
+            @error('turma_aluno')
+            <div class="alert alert-danger">{{$message}}</div>
+            @enderror
+            @error('num_processo')
+            <div class="alert alert-danger">{{$message}}</div>
+            @enderror
+            @error('ultimo_anoLectivo')
+            <div class="alert alert-danger">{{$message}}</div>
+            @enderror
+    
+            @if(session()->has('ErroPessoa'))
+            <div class="alert alert-danger">
+            {{session('ErroPessoa')}}
+            </div>
+             @endif
+    
+            @if (session()->has('ErroTelefone'))
+            <div class="alert alert-warning">
+                {{ session('ErroTelefone') }}
+                <button class="botaofecharerro">
+                  <i class="bi bi-x"></i>
+                </button>
+            </div>
+            @endif
+    
+            @if (session()->has('ErroCurso'))
+            <div class="alert alert-warning">
+                {{ session('ErroCurso') }}
+                <button class="botaofecharerro">
+                  <i class="bi bi-x"></i>
+                </button>
+            </div>
+            @endif
+    
+    
+            @if(session()->has('ErroCandidato'))
+            <div class="alert alert-danger">
+            {{session('ErroCandidato')}}
+            <button class="botaofecharerro">
+              <i class="bi bi-x"></i>
+            </button>
+            </div>
+            @endif
+    
+            @if(session()->has('Sucesso'))
+            <div class="alert alert-success">
+            {{session('Sucesso')}}
+            </div>
+            @endif
+         </div>
       <h2>Introduza os dados pessoais</h2>
 
       <div class="form-group">

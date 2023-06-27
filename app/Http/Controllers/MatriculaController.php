@@ -265,4 +265,10 @@ class MatriculaController extends Controller
         return view('matricula.matriculas');
     }
 
+    public function registrar_aluno(){
+        $cursos = Curso::all();
+        return view('matricula.registrar-aluno', compact('cursos'));
+
+    }
+
 }
