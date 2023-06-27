@@ -232,7 +232,7 @@ class MatriculaController extends Controller
             return redirect()->back()->with("ErroMatricula", $alunos);
         }
             $msg = "Os alunos foram atribuidas as suas turmas com sucesso!";
-            return Redirect::route('matricula-index')->with("Sucesso", $msg);
+            return Redirect::route('Matriculas')->with("Sucesso", $msg);
     }
 
     public function readmitirEdit($id)

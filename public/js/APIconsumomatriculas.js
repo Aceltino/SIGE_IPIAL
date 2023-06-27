@@ -10,11 +10,11 @@ axios.get('/api/matriculados')
                 const turma = registro.nomeTurma;
 
                 switch (registro.nomeTurma) {
-                    case 'Null':
+                    case 'null':
                         Botao = `<a href="/matricula/registrar-aluno" name="" id="" class="btn btn-success"  role="button">Ativar</a>`;
                         break;
                     case turma:
-                        Botao = `<a href="#" name="" id="" class="btn btn-danger"  role="button">inativar</a>`;
+                        Botao = `<a href="/matricula/elimnar/${registro.cod_inscr}" name="" id="" class="btn btn-danger"  role="button">inativar</a>`;
                         break;
                     default:
                         Botao = ``;
