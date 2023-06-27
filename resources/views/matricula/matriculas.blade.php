@@ -16,7 +16,13 @@
     </button>
     </div>
     @endif
-  
+
+    @if(session()->has('success'))
+    <div class="alert alert-success no-print">
+    {{session('success')}}
+    </div>
+    @endif
+    
     @if(session()->has('Sucesso'))
     <div class="alert alert-success no-print">
     {{session('Sucesso')}}

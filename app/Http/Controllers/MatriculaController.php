@@ -255,14 +255,9 @@ class MatriculaController extends Controller
 
     public function anularMatricula($id)
     {
-        $dadosAluno=[
-            'aluno_id'=>$id,
-            'status'=> 0,
-            // 'candidato_id'=>intval($request['id'])
-        ];
-
-        $aluno = AlunoController::pegarDadosMatriculado($id);
-        return view('matricula.matriculas');
+        $candidato = Candidato::find($id);
+        $this->deletePessoa($candidato->pessoa_id);
+        return redirect()->route('Matriculas')->with('success', 'Aluno excluído com sucesso.');
     }
 
     public function registrar_aluno(){
