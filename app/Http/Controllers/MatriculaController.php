@@ -87,7 +87,7 @@ class MatriculaController extends Controller
         }
 
         $curso_id = CursoController::pegarIdCurso($request['curso_escolhido']);
-        // dd($curso_id);
+        //dd($curso_id);
         $dadosAluno=[
             'curso_id'=>$curso_id,
             'status'=> 0,

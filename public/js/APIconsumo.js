@@ -4,8 +4,9 @@ axios.get('/api/candidatos')
 
             const tabelaRegistros = document.getElementById('Inscricoes');
             const tbody = tabelaRegistros.getElementsByTagName('tbody')[0];
-
+            
             registros.forEach(function(registro) {
+
                 const row = tbody.insertRow();
                 let corBotao = '';
 
