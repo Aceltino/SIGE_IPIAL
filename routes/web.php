@@ -147,7 +147,7 @@ Route::prefix('matricula')->group(function(){
 
     /*Readimitir aluno */
     Route::get('readmitir-aluno/{aluno}/readmitir', [MatriculaController::class, 'readmitirEdit'])->name('readmitir-view');
-    Route::put('readmitir-aluno/{aluno}', [MatriculaController::class, 'readmitirUpdate'])->name('readmitir-store');
+    Route::post('readmitir-aluno/{aluno}', [MatriculaController::class, 'readmitirUpdate'])->name('readmitir-store');
 
     Route::get('readmitir-aluno', function () {
         return view('matricula/readmitir-aluno');

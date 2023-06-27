@@ -237,8 +237,8 @@ class MatriculaController extends Controller
 
     public function readmitirEdit($id)
     {
-        $aluno = AlunoController::pegarDadosMatriculado($id);
-
+        $aluno = AlunoController::pegarReprovado($id);
+        dd($aluno);
         return view('matricula.readmitir-aluno',[
             'aluno' => $aluno[0]
         ]);
