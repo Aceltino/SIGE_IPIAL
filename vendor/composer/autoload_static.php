@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitd687848da1c8e5b0effdcf829e99ed56
+class ComposerStaticInit93e89d2febddaea9dd9f7e1839217805
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -366,8 +366,8 @@ class ComposerStaticInitd687848da1c8e5b0effdcf829e99ed56
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-factory/src',
-            1 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            1 => __DIR__ . '/..' . '/psr/http-factory/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -585,11 +585,6 @@ class ComposerStaticInitd687848da1c8e5b0effdcf829e99ed56
     );
 
     public static $classMap = array (
-        'App\\Actions\\Fortify\\CreateNewUser' => __DIR__ . '/../..' . '/app/Actions/Fortify/CreateNewUser.php',
-        'App\\Actions\\Fortify\\PasswordValidationRules' => __DIR__ . '/../..' . '/app/Actions/Fortify/PasswordValidationRules.php',
-        'App\\Actions\\Fortify\\ResetUserPassword' => __DIR__ . '/../..' . '/app/Actions/Fortify/ResetUserPassword.php',
-        'App\\Actions\\Fortify\\UpdateUserPassword' => __DIR__ . '/../..' . '/app/Actions/Fortify/UpdateUserPassword.php',
-        'App\\Actions\\Fortify\\UpdateUserProfileInformation' => __DIR__ . '/../..' . '/app/Actions/Fortify/UpdateUserProfileInformation.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AdmissaoController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdmissaoController.php',
@@ -632,11 +627,13 @@ class ComposerStaticInitd687848da1c8e5b0effdcf829e99ed56
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Http\\Middleware\\detectarLogin' => __DIR__ . '/../..' . '/app/Http/Middleware/detectarLogin.php',
         'App\\Http\\Requests\\AnoLectivoRequest' => __DIR__ . '/../..' . '/app/Http/Requests/AnoLectivoRequest.php',
         'App\\Http\\Requests\\InscricaoRequest' => __DIR__ . '/../..' . '/app/Http/Requests/InscricaoRequest.php',
         'App\\Http\\Requests\\InscricaoUpdateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/InscricaoUpdateRequest.php',
         'App\\Http\\Requests\\MatriculaRequest' => __DIR__ . '/../..' . '/app/Http/Requests/MatriculaRequest.php',
         'App\\Http\\Requests\\MatriculaupdateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/MatriculaupdateRequest.php',
+        'App\\Models\\Active_session' => __DIR__ . '/../..' . '/app/Models/Active_session.php',
         'App\\Models\\Aluno' => __DIR__ . '/../..' . '/app/Models/Aluno.php',
         'App\\Models\\AlunoEncarregado' => __DIR__ . '/../..' . '/app/Models/AlunoEncarregado.php',
         'App\\Models\\AlunoTurma' => __DIR__ . '/../..' . '/app/Models/AlunoTurma.php',
@@ -6656,9 +6653,9 @@ class ComposerStaticInitd687848da1c8e5b0effdcf829e99ed56
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitd687848da1c8e5b0effdcf829e99ed56::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitd687848da1c8e5b0effdcf829e99ed56::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitd687848da1c8e5b0effdcf829e99ed56::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit93e89d2febddaea9dd9f7e1839217805::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit93e89d2febddaea9dd9f7e1839217805::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit93e89d2febddaea9dd9f7e1839217805::$classMap;
 
         }, null, ClassLoader::class);
     }

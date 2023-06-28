@@ -24,8 +24,10 @@ class InscricaoUpdateRequest extends FormRequest
      */
     public function rules()
     {
+        // dd($this->request->all());
         $rules = [];
         $candidato = Candidato::find($this->request->get('id'));
+        // dd($candidato);
         $rules = [
             //Formulario candidato
             'nome_pai_cand'=>'required|string|max:100|min:2',
@@ -35,15 +37,8 @@ class InscricaoUpdateRequest extends FormRequest
             //Formulario da Pessoa
             'nome_completo'=>'required|string|min:2|max:100',
             'data_nascimento'=>'required|date|before:'.now()->format('d-m-Y'),
-            'num_bi'=>'nullable|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi,'.$candidato->pessoa_id.',pessoa_id',
             'genero' => 'required|string',
             'turno' => 'required|string',
-
-            //Notas das disciplinas
-            'LinguaP' => 'required|numeric',
-            'Matematic' => 'required|numeric',
-            'Fisic' => 'required|numeric',
-            'Quimic' => 'required|numeric',
             'id' => 'required',
 
             //Formulario escola proveniente
@@ -92,8 +87,6 @@ class InscricaoUpdateRequest extends FormRequest
             'nome_completo.min'=>'O nome não deve ter menos de 2 letras',
             'data_nascimento.date' => 'O campo data:attribute deve ser uma data válida.',
             'data_nascimento.before'=> 'O campo data de nascimento deve ser uma data posterior à data atual.',
-            'num_bi.unique'=> 'Número de identificação já esta a ser usado',
-            'num_bi'=> 'Número de identificação inválido',
 
             //Formulario Escola proveniente
             'nome_escola.max'=>'Nome da escola não pode conter mais de 100 letras',
@@ -101,7 +94,8 @@ class InscricaoUpdateRequest extends FormRequest
             'num_aluno.numeric'=>'Número do aluno deve conter apenas digitos validos.',
 
             //Formulario Telefone
-            'num_tel.size'=> 'Número de telefone esta incorrecto'
+            'num_tel.size'=> 'Número de telefone esta incorrecto',
+            'num_tel.unique'=> 'Numero de telefone já em uso.'
         ];
     }
 }

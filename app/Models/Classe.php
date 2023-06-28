@@ -23,7 +23,7 @@ class Classe extends Model
      *  Nota - aluno
      *  Aluno - ano_turma_coord
     */
-    public function turma()
+    public function turmas()
     {
         return $this->hasMany(Turma::class, 'classe_id', 'turma_id');
     }

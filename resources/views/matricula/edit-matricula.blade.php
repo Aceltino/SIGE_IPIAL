@@ -16,13 +16,13 @@
     @method('PUT')
         <div class="dados-pessoais">
             <div class="area-input form-group">
-                <label>Nome Completo: </label><input type="text" name="nome_completo" value="{{ $aluno['nome'] }}">
+                <label>Nome Completo: </label><input type="text" name="nome_completo"value="{{ $aluno['nome'] }}" value="{{old('nome_completo')}}" >
             </div>
             <div class="area-input form-group">
-                <label>Nome do Pai: </label><input type="text" name="nome_pai_cand" value="{{ $aluno['pai'] }}">
+                <label>Nome do Pai: </label><input type="text" name="nome_pai_cand" value="{{ $aluno['pai'] }}" value="{{old('nome_pai_cand')}}" >
             </div>
             <div class="area-input form-group">
-                <label>Nome da Mãe: </label><input type="text" name="nome_mae_cand" value="{{ $aluno['mae'] }}">
+                <label>Nome da Mãe: </label><input type="text" name="nome_mae_cand"value="{{ $aluno['mae'] }}" value="{{old('nome_mae_cand')}}" >
             </div>
 
             <div class="container">
@@ -37,19 +37,19 @@
                     </div>
 
                     <div class="col area-input form-group" style="margin-left: 10px;">
-                        <label>Gênero:</label><input type="radio" checked id="masculino" name="genero" value="{{ $aluno['genero'] }}"><label for="masculino"> Masculino</label>
-                        <input type="radio" id="feminino" name="genero" value="Femenino"><label for="feminino"> Feminino</label>
+                        <label>Gênero:</label><input type="radio" checked id="masculino" name="genero" value="Masculino" value="{{old('genero')}}" ><label for="masculino"> Masculino</label>
+                        <input type="radio" id="feminino" name="genero" value="Femenino" value="{{old('genero')}}" ><label for="feminino"> Feminino</label>
                     </div>
                 </div>
             </div>
             <div class="container">
                 <div class="row">
                     <div class=" col area-input form-group" >
-                        <label>Número do BI: </label><input type="text" class="form-control" name="num_bi" value="{{ $aluno['num_bi'] }}" disabled>
+                        <label>Número do BI: </label><input type="text" class="form-control" name="num_bi" value="{{ $aluno['num_bi'] }}" value="{{old('num_bi')}}"  disabled>
                     </div>
 
                     <div class="col area-input form-group" style="margin-left: 10px;">
-                        <label>Naturalidade: </label><input type="text" name="naturalidade_cand" value="{{ $aluno['naturalidade'] }}">
+                        <label>Naturalidade: </label><input type="text" name="naturalidade_cand" value="{{ $aluno['naturalidade'] }}" value="{{old('naturalidade_cand')}}" >
 
                     </div>
                 </div>
@@ -58,7 +58,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col area-input form-group">
-                        <label>Telefone: </label><input type="text" name="num_tel" value="{{ $aluno['tel_aluno'] }}">
+                        <label>Telefone: </label><input type="text" name="num_tel" value="{{ $aluno['tel_aluno'] }}" value="{{old('num_tel')}}">
                     </div>
 
                     <div class="col form-group" style="margin-left: 10px;">
@@ -169,16 +169,15 @@
                 <div class="container">
                     <div class="row">
                         <div class="col area-input form-group">
-                            <label>{{ $aluno['enc_grau_1'] }} </label><input type="text" name="telefone1" value="{{ $aluno['tel_grau_1'] }}">
+                            <label>{{ $aluno['enc_grau_1'] }} </label><input type="text" name="telefone0"  value="{{ $aluno['tel_grau_1'] }}" value="{{old('telefone0')}}">
 
                         </div>
                         <div class="col area-input form-group" style="margin-left: 10px;">
-                            <label>{{ $aluno['enc_grau_2'] }} </label><input type="text" name="telefone2" value="{{ $aluno['tel_grau_2'] }}">
-
+                            <label>{{ $aluno['enc_grau_2'] }} </label><input type="text" name="telefone1" value="{{ $aluno['tel_grau_2'] }}" value="{{old('telefone1')}}" >
                         </div>
 
                         <div class="col area-input form-group" style="margin-left: 10px;">
-                            <label>{{ $aluno['enc_grau_3'] }} </label><input type="text" name="telefone3" value="{{ $aluno['tel_grau_3'] }}">
+                            <label>{{ $aluno['enc_grau_3'] }} </label><input type="text" name="telefone2"value="{{ $aluno['tel_grau_3'] }}" value="{{old('telefone2')}}">
 
                         </div>
                     </div>
@@ -192,14 +191,14 @@
                         </div>
                     </div>
                 </div>
-                <input type="hidden" name="aluno_id" value="{{ $aluno['N_processo'] }}"disabled>
-                <input type="hidden" name="id" value="{{ $aluno['cod_inscr'] }}"disabled>
+                <input type="hidden" name="aluno_id" value="{{ $aluno['N_processo'] }}">
+                <input type="hidden" name="id" value="{{ $aluno['cod_inscr'] }}">
 
 
 
                 <div class="footer-modal" style="text-align: center; margin-top: 50px;">
                     <div class="jnt">
-                        <a href="/matriculas" class="btn" style="background-color: #070b17; color: #fff;">Cancelar edição</a>
+                        <a href="/matricula/matriculas" class="btn" style="background-color: #070b17; color: #fff;">Cancelar edição</a>
 
                         <button type="submit" class="btn" style="background-color: #26dd35; color: #fff;">Atualizar</button>
                     </div>

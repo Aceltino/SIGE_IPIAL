@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Models\Candidato;
-use App\Models\Pessoa;
 use Illuminate\Foundation\Http\FormRequest;
 
 class MatriculaRequest extends FormRequest
@@ -25,6 +24,7 @@ class MatriculaRequest extends FormRequest
      */
     public function rules()
     {
+        // dd($this->request->all());
         $candidato = Candidato::find($this->request->get('id'));
         $rules = [
             //Formulario candidato
@@ -32,49 +32,47 @@ class MatriculaRequest extends FormRequest
             'nome_mae_cand'=>'required|string|max:100|min:2',
             'naturalidade_cand'=>'required|string|max:100|min:2',
             'id' => 'required',
+            'curso_escolhido' => 'required',
 
             //Formulario da Pessoa
             'nome_completo'=>'required|string|min:2|max:100',
             'genero' => 'required|string',
-            'num_tel'=>'required|size:9',
-            'num_bi' =>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi,'.$candidato->pessoa_id.',pessoa_id',
+            'num_tel'=>'required|size:9|unique:pessoas,telefone,'.$candidato->pessoa_id.',pessoa_id',
            //User
-            'email'=>'required|email',
-            'curso_escolhido' =>'required|string',
-
+            'email'=>'required|email|unique:users,email',
             //Formulario escola proveniente
             'nome_escola'=>'required|max:100|min:2',
-            'num_processo'=>'required|int|min:2',
-            'num_aluno'=>'required|int|min:1',
+            'num_processo'=>'required|min:2',
+            'num_aluno'=>'required|min:1',
             'turma_aluno' => 'required|string',
             'turno' => 'required|string',
             'ultimo_anoLectivo' => 'required|string',
 
             //encarregado 1
-            'telefone1'=>'required|size:9',
+            'telefone1'=>'required|size:9|unique:pessoas,telefone',
             'grau1'=>'required|string',
             'nome_enc1' => 'required|string|max:100|min:2',
             'data_nascimento_enc1' => 'required|date|before:'.now()->format('d-m-Y'),
             'genero1' =>'required|string',
-            'num_bi_enc1' =>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi',
+            'num_bi_enc1' =>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/',
 
             //encarregado 2
-            'telefone2'=>'required|size:9',
+            'telefone2'=>'required|size:9|unique:pessoas,telefone',
             'grau2'=>'required|string',
             'nome_enc2' => 'required|string|max:100|min:2',
             'data_nascimento_enc2' => 'required|date|before:'.now()->format('d-m-Y'),
             'genero2' =>'required|string',
-            'num_bi_enc2' =>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi',
+            'num_bi_enc2' =>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/',
 
             //encarregado 3
-            'telefone3'=>'required|size:9',
+            'telefone3'=>'required|size:9|unique:pessoas,telefone',
             'grau3'=>'required|string',
             'nome_enc3' => 'required|string|max:100|min:2',
             'data_nascimento_enc3' => 'required|date|before:'.now()->format('d-m-Y'),
             'genero3' =>'required|string',
-            'num_bi_enc3' =>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi',
+            'num_bi_enc3' =>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/',
         ];
-        // dd($this->request->all());
+        
         return $rules;
     }
 
@@ -101,7 +99,10 @@ class MatriculaRequest extends FormRequest
             'num_bi.unique'=> 'Número de identificação já esta a ser usado',
             'num_bi'=> 'Número de identificação inválido',
             'num_tel'=> 'Número de telefone esta incorrecto',
+            'num_tel.unique'=> 'Este número de telefone já está em uso',
+
             // Usuario
+            'email.unique' => 'Este email já está em uso.',
             'email' => 'Email inválido',
 
             //Formulario Escola proveniente
@@ -116,6 +117,8 @@ class MatriculaRequest extends FormRequest
             'data_nascimento_enc1.before'=> 'O campo data de nascimento deve ser uma data posterior à data atual.',
             'num_bi_enc1.unique'=> 'Número de identificação já esta a ser usado',
             'num_bi_enc1'=>'Número de identificação inválido',
+            'telefone1.unique'=> 'Este número de telefone já está em uso',
+
 
             //Dados encarregado 2
             'telefone2'=> 'Número de telefone esta incorrecto',
@@ -124,6 +127,8 @@ class MatriculaRequest extends FormRequest
             'data_nascimento_enc2.before'=> 'O campo data de nascimento deve ser uma data posterior à data atual.',
             'num_bi_enc2.unique'=> 'Número de identificação já esta a ser usado',
             'num_bi_enc2'=>'Número de identificação inválido',
+            'telefone2.unique'=> 'Este número de telefone já está em uso',
+
 
             //Dados encarregado 3
             'telefone3'=> 'Número de telefone esta incorrecto',
@@ -132,6 +137,7 @@ class MatriculaRequest extends FormRequest
             'data_nascimento_enc3.before'=> 'O campo data de nascimento deve ser uma data posterior à data atual.',
             'num_bi_enc3.unique'=> 'Número de identificação já esta a ser usado',
             'num_bi_enc3'=>'Número de identificação inválido',
+            'telefone3.unique'=> 'Este número de telefone já está em uso',
         ];
     }
 }

@@ -22,7 +22,6 @@ class AlunoTurmaController extends Controller
        }
        $alunoTurma = [];
 
-
        usort($alunos, function ($a, $b)
             {
                 $data_nascA = $a['data_nasc'];
@@ -38,7 +37,10 @@ class AlunoTurmaController extends Controller
 
         for($i = 0; $i < count($alunos); $i++)
         {
-            $turmas = AlunoTurmaController::pegarTurmasCurso( CursoController::pegarIdCurso($alunos[$i]['curso']), ClasseController::pegarIdClasse('10ª') );
+            $classe = intval(ClasseController::pegarIdClasse('10ª'));
+            // $turmas = AlunoTurmaController::pegarTurmasCurso($alunos[$i]['idCurso'], $classed );
+
+            $turmas = AlunoTurmaController::pegarTurmasCurso($alunos[$i]['idCurso'], $classe);
 
             usort($turmas, function ($a, $b)
             {
@@ -75,7 +77,6 @@ class AlunoTurmaController extends Controller
                 }
             }
         }
-
         usort($alunoTurma, function($a, $b) {
             return strcmp($a['nome'], $b['nome']);
         });
@@ -108,7 +109,7 @@ class AlunoTurmaController extends Controller
             }
 
         }
-
+        return true;
     }
 
     public static function pegarTurmasCurso($curso, $classe) //Pegar turmas paraordenar os alunos
@@ -116,11 +117,11 @@ class AlunoTurmaController extends Controller
         $turmas = AnoTurmaCood::with('turma','ano_lectivo')
         ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
         ->whereHas('turma', function ($query)  use ($curso, $classe) {
-            $query->where('classe_id', $classe);
             $query->where('curso_id', $curso);
+            $query->where('classe_id', $classe);
         })
         ->get();
-
+// dd($turmas);
         $Turmas = [];
 
         foreach ($turmas as $turmaA)
@@ -277,11 +278,106 @@ class AlunoTurmaController extends Controller
         return true;
     }
 
-    public static function alunoNAdmtido() // Função a ser chamada na reabertura do ano lectivo 11ª >
+    public static function alunoNAdmtido($aluno) // Função a ser readmissão de um aluno >
     {
+            $classe = intval($aluno['classeId']);
+            $turmas = AlunoTurmaController::pegarTurmasCurso($aluno['idCurso'], $classe );
+            if(!$turmas)
+            {
+                return "Não há nenhuma vaga para disponível para tua classe e o teu curso.";
+            }
 
+            usort($turmas, function ($a, $b)
+            {
+                $identificadorA = substr($a['turma'], -1);
+                $identificadorB = substr($b['turma'], -1);
+                $turnos = ['M' => 3, 'T' => 2, 'N' => 1];
 
+                if ($identificadorA != $identificadorB)
+                {
+                    return $turnos[$identificadorB] - $turnos[$identificadorA];
+                }
 
+                return strcmp($identificadorA, $identificadorB);
+            });
+            
+            $alunoTurma = [];
+            foreach ($turmas as $turma)
+            {
+                if($turma['num_vaga'] > 0)
+                {
+                    $alunoTurma[] = [
+                    'turma' => $turma['TurmaAno_id'],
+                    'aluno' => $aluno['aluno_id'],
+                    'nome' => $aluno['nome']
+                    ];
+
+                    $vaga = $turma['num_vaga'] - 1;
+                    $vagaUpdate = [
+                    'id' => $turma['TurmaAno_id'],
+                    'vaga' => $vaga
+                    ];
+                    AlunoController::updateStatusTrue($alunoTurma[0]['aluno']);
+                    AlunoTurmaController::atualizarVaga($vagaUpdate);
+                    break;
+                }
+            }
+
+            $qtdAlunos = AlunoTurmaController::quantidadeTurma($alunoTurma[0]['turma']);
+            $alunoA = Aluno::find($alunoTurma[0]['aluno']);
+            $alunoA->Anoturma()->attach($alunoTurma[0]['turma'],[
+                'numero_aluno' => $qtdAlunos + 1,
+            ]);
+
+            $userId = AlunoController::pegarIdUser($alunoTurma[0]['aluno']);
+            $dadosUser=[
+                'usuario_id'=> $userId,
+                'status_usuario'=>1,
+            ];
+            $user = UserController::updateAluno($dadosUser);
+            if(!$user)
+            {
+                return "Algum problema com o aluno ".$alunoTurma['nome'].", tente mais tarde.";
+            }
+            return true;
     }
+
+
+    public static function pegarVagas()
+    {
+        $turmas = AnoTurmaCood::with('turma', 'ano_lectivo')
+            ->get();
+
+        $vagas = [];
+
+        foreach ($turmas as $turmaA) {
+            $curso = $turmaA->turma->curso->nome_curso;
+            $cursoId = $turmaA->turma->curso->curso_id;
+            $classe = $turmaA->turma->classe->classe;
+            $turno = $turmaA->turma->turno->nome_turno;
+            $numVagas = $turmaA->num_vagas;
+            $anoLectivo = $turmaA->ano_lectivo->ano_lectivo;
+            $anoId = $turmaA->ano_lectivo->ano_lectivo_id;
+
+            $chave = $curso . '-' . $classe . '-' . $turno . '-' . $anoLectivo;
+
+            if (!isset($vagas[$chave])) 
+            {
+                $vagas[$chave] = [
+                    'curso' => $curso,
+                    'cursoId' => $cursoId,
+                    'classe' => $classe,
+                    'turno' => $turno,
+                    'anoLectivo' => $anoLectivo,
+                    'anoId' => $anoId,
+                    'totalVagas' => 0
+                ];
+            }
+    
+            $vagas[$chave]['totalVagas'] += $numVagas;
+        }
+        return array_values($vagas);
+    }
+
 
 }

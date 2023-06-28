@@ -33,48 +33,38 @@ class MatriculaController extends Controller
         ]);
     }
 
-    public function atribuirTurma()
-    {
-       // $alunos = AlunoTurmaController::situacaoAluno(); // Atribuir turmas aos alunos da 11ª em diante.
-         $alunos = AlunoTurmaController::SelecionarTurma(); // Atribuir turmas aos recém matriculado da 10ª classe.
-
-        if($alunos !== true)
-        {
-            return redirect()->back()->with("ErroMatricula", $alunos);
-        }
-            $msg = "Os alunos foram atribuidas as suas turmas com sucesso!";
-            return Redirect::route('matricula-index')->with("Sucesso", $msg);
-    }
-
-    public function edit($id)
-    {
-        $aluno = AlunoController::pegarDadosMatriculado($id);
-
-        return view('matricula.edit-matricula',[
-            'aluno' => $aluno[0]
-        ]);
-    }
-
-    public function update(Request $request)
-    {
-        dd($request);
-    }
-
-
-
-
-// BOTÃO ATRIBUIR TURMA
     public function store(MatriculaRequest $input)
     {
         $request = $input->validated(); // Inputs validadas
         // dd($request);
+        $encarregado = [];
+        for($i = 1; $i <= 3; $i++)
+        {
+            $dadosPessoa = [
+                'nome_completo'=> $request['nome_enc' . $i],
+                'num_bi'=> strtoupper($request['num_bi_enc' . $i]),
+                'data_nascimento'=> $request['data_nascimento_enc' . $i],
+                'genero'=> $request['genero'. $i],
+                'telefone' => $request['telefone' . $i]
+            ];
+
+            $consultEncarregado = $this->checkPessoa($dadosPessoa);
+            if(!empty($consultEncarregado))
+            {
+                $encarregado[$i] = $consultEncarregado->pessoa_id;
+            }
+            if(!$this->checkPessoaBI($dadosPessoa['num_bi']))
+            {
+                $msg="O número de identificação do ". $i ."º encarregado já está sendo utilizado, confirme todos os seus dados de identificação.";
+                return redirect()->back()->with("ErroEncarregado",$msg);
+            }
+        }
 
         // Atualizando candidato(Pessoas) pela confirmação de dados no formMatricula--
         $candidato = Candidato::find($request['id']);
         $pessoa_id = $candidato->pessoa_id;
         $dadosPessoa = [
             'nome_completo'=> $request['nome_completo'],
-            'num_bi'=> $request['num_bi'],
             'genero'=> $request['genero'],
             'telefone' => $request['num_tel'],
             'pessoa_id' => $pessoa_id
@@ -93,6 +83,7 @@ class MatriculaController extends Controller
             'nome_escola'=>$request['nome_escola'],
             'turno'=>$request['turno'],
             'num_aluno'=>$request['num_aluno'],
+            'num_processo' => $request['num_processo'],
             'turma_aluno' =>$request['turma_aluno'],
             'ultimo_anoLectivo' =>$request['ultimo_anoLectivo'],
             'escola_proveniencia_id' => $escola_id
@@ -118,11 +109,11 @@ class MatriculaController extends Controller
         }
 
         $curso_id = CursoController::pegarIdCurso($request['curso_escolhido']);
-        // dd($curso_id);
+        //dd($curso_id);
         $dadosAluno=[
             'curso_id'=>$curso_id,
             'status'=> 0,
-            'candidato_id' =>intval($request['id'])
+            'candidato_id'=>intval($request['id'])
         ];
         $alunoId = AlunoController::store($dadosAluno);
 
@@ -134,32 +125,26 @@ class MatriculaController extends Controller
 
         for($i = 1; $i <= 3; $i++)
         {
-            $dadosPessoa = [
-                'nome_completo'=> $request['nome_enc' . $i],
-                'num_bi'=> strtoupper($request['num_bi_enc' . $i]),
-                'data_nascimento'=> $request['data_nascimento_enc' . $i],
-                'genero'=> $request['genero'. $i],
-                'telefone' => $request['telefone' . $i]
-            ];
-
-            $idPessoa = $this->storePessoa($dadosPessoa);
-            if(!$idPessoa)
+            $idPessoa = $encarregado[$i];
+            if(empty($encarregado[$i]))
             {
-                $msg="Fique atento nos dados de identifcação, este candidato já está inscrito!";
-                return redirect()->back()->with("ErroPessoa",$msg);
+                $dadosPessoa = [
+                    'nome_completo'=> $request['nome_enc' . $i],
+                    'num_bi'=> strtoupper($request['num_bi_enc' . $i]),
+                    'data_nascimento'=> $request['data_nascimento_enc' . $i],
+                    'genero'=> $request['genero'. $i],
+                    'telefone' => $request['telefone' . $i]
+                ];    
+                $idPessoa = $this->storePessoa($dadosPessoa);  
             }
+
             $dadosEncarregado = [
                 'grau_parentensco_enc'=> $request['grau' . $i],
                 'pessoa_id'=> $idPessoa
             ];
-
+            
             $idEncarregado = EncarregadoController::storeEncarregado($dadosEncarregado);
             $id[$i] = $idEncarregado;
-            if(!$id[$i])
-            {
-                $msg="Fique atento nos dados de identifcação, este candidato já está inscrito!";
-                return redirect()->back()->with("ErroPessoa",$msg);
-            }
         }
 
         $alunoEncarregado = [
@@ -196,4 +181,108 @@ class MatriculaController extends Controller
         $msg="Candidato matriculado com sucesso!";
         return Redirect::route('inscricao-index')->with("Sucesso",$msg);
     }
+
+    public function edit($id)
+    {
+        $aluno = AlunoController::pegarDadosMatriculado($id);
+
+        return view('matricula.edit-matricula',[
+            'aluno' => $aluno[0]
+        ]);
+    }
+
+    public function update(Request $request)
+    {
+        $candidato = Candidato::find($request['id']);
+        $pessoa_id = $candidato->pessoa_id;
+        $dadosPessoa = [
+            'nome_completo'=> $request['nome_completo'],
+            'genero'=> $request['genero'],
+            'telefone' => $request['num_tel'],
+            'pessoa_id' => $pessoa_id
+        ];
+    
+        $idPessoa = $this->updatePessoa($dadosPessoa);
+        if(!$idPessoa)
+        {
+            $msg="Fique atento nos dados de identifcação deste aluno, este número de identificação já está sendo utilizado!";
+            return redirect()->back()->with("ErroPessoa",$msg);
+        }
+
+        $dadosCandidato=[
+            'nome_pai_cand'=>$request['nome_pai_cand'],
+            'nome_mae_cand'=>$request['nome_mae_cand'],
+            'naturalidade_cand'=>$request['naturalidade_cand'],
+
+            'candidato_id' => $request['id']
+        ];
+        $candidato = CandidatoController::updateCandidato($dadosCandidato);
+        if(!$candidato)
+        {
+            $msg="Lamentamos! Dados não cadastrado, tente este processo mais tarde...";
+            return redirect()->back()->with("ErroCadastro",$msg);
+        }
+
+        $encarregados = AlunoController::pegarEncarregados($request['aluno_id']);
+        for($i = 0; $i < 3 ; $i++)
+        {
+            $dadosPessoa = [
+                'telefone' => $request['telefone' . $i],
+                'pessoa_id' => $encarregados[$i]['pessoa_id']
+            ];
+        $this->updatePessoa($dadosPessoa);
+        }
+        $msg="Aluno actualizado com sucesso!";
+        return Redirect::route('Matriculas')->with("Sucesso",$msg);
+ 
+    }
+
+// BOTÃO ATRIBUIR TURMA
+    public function atribuirTurma()
+    {
+       // $alunos = AlunoTurmaController::situacaoAluno(); // Atribuir turmas aos alunos da 11ª em diante.
+         $alunos = AlunoTurmaController::SelecionarTurma(); // Atribuir turmas aos recém matriculado da 10ª classe.
+
+        if($alunos !== true)
+        {
+            return redirect()->back()->with("ErroMatricula", $alunos);
+        }
+            $msg = "Os alunos foram atribuidas as suas turmas com sucesso!";
+            return Redirect::route('Matriculas')->with("Sucesso", $msg);
+    }
+
+    public function readmitirEdit($id)
+    {
+        $aluno = AlunoController::pegarReprovado($id);
+        $alunoTurma = AlunoTurmaController::alunoNAdmtido($aluno);
+        
+        if($alunoTurma !== true)
+        {
+            return redirect()->back()->with("ErroMatricula", $alunoTurma);
+        }
+            $msg = "O aluno foi readmitido com sucesso, consulte por ele!";
+            return Redirect::route('Matriculas')->with("Sucesso", $msg);
+    }
+
+
+    public function anularMatricula($id)
+    {
+        $candidato = Candidato::find($id);
+        $this->deletePessoa($candidato->pessoa_id);
+        return redirect()->route('Matriculas')->with('success', 'Aluno excluído com sucesso.');
+    }
+
+    public function registrarView()
+    {
+        $vagas = AlunoTurmaController::pegarVagas();
+        dd($vagas);
+        $cursos = Curso::all();
+        return view('matricula.registrar-aluno', compact('cursos'));
+    }
+
+    public function registrarStore(){
+        $cursos = Curso::all();
+        return view('matricula.registrar-aluno', compact('cursos'));
+    }
+
 }
