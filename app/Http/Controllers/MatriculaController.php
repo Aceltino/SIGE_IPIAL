@@ -264,7 +264,8 @@ class MatriculaController extends Controller
         return redirect()->route('Matriculas')->with('success', 'Aluno excluído com sucesso.');
     }
 
-    public function registrarView(){
+    public function registrarView()
+    {
         $vagas = AlunoTurmaController::pegarVagas();
         dd($vagas);
         $cursos = Curso::all();

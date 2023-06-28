@@ -152,15 +152,15 @@
             </div>
 
             <div class="form-group">
-                <input type="text" name="nome_completo" value="{{$candidato['Nome']}}" oninput="this.className = ''">
+                <input type="text" name="nome_completo" value="{{old('nome_completo')}}" value="{{$candidato['Nome']}}" oninput="this.className = ''">
             </div>
 
             <div class="form-group">
-                <input type="text" name="nome_pai_cand" value ="{{ $candidato['Pai'] }}" oninput="this.className = ''">
+                <input type="text" name="nome_pai_cand" value="{{old('nome_pai_cand')}}" value ="{{ $candidato['Pai'] }}" oninput="this.className = ''">
             </div>
 
             <div class="form-group">
-                <input type="text" name="nome_mae_cand" value ="{{ $candidato['Mae'] }}" oninput="this.className = ''">
+                <input type="text" name="nome_mae_cand" value="{{old('nome_mae_cand')}}" value ="{{ $candidato['Mae'] }}" oninput="this.className = ''">
             </div>
 
             <div class="row">
@@ -169,25 +169,25 @@
                 </div>
 
                 <div class="col">
-                    <input type="text" class="form-control" readonly="true" value ="{{ $candidato['Idade'] }}" disabled>
+                    <input type="text" class="form-control" readonly="true"  value ="{{ $candidato['Idade'] }}" disabled>
                 </div>
 
                 <div class="col">
-                    <input type="text" name="naturalidade_cand" value ="{{ $candidato['Naturalidade'] }}" oninput="this.className = ''">
+                    <input type="text" name="naturalidade_cand" value="{{old('naturalidade_cand')}}" value ="{{ $candidato['Naturalidade'] }}" oninput="this.className = ''">
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-4">
                     <div class="form-group">
-                      <input type="radio" checked="{{ $candidato['Genero'] }}" id="masculino" name="genero" value="Masculino"><label for="masculino"> Masculino</label>
-                      <input type="radio" id="feminino" name="genero" value="Femenino"><label for="feminino"> Feminino</label>
+                      <input type="radio" checked="{{ $candidato['Genero'] }}" id="masculino" name="genero" value="{{old('genero')}}" value="Masculino"><label for="masculino"> Masculino</label>
+                      <input type="radio" id="feminino" name="genero" value="{{old('genero')}}" value="Femenino"><label for="feminino"> Feminino</label>
                     </div>
                   </div>
 
                 <div class="col">
                     <div class="form-group">
-                        <input type="text" id="bi_input" name="num_bi" value ="{{ $candidato['NumeroBI'] }}" oninput="this.className = ''" maxlength="14">
+                        <input type="text" id="bi_input" name="num_bi" value="{{old('num_bi')}}" value ="{{ $candidato['NumeroBI'] }}" oninput="this.className = ''" maxlength="14">
                         <div id="mensagem1" style="color: red;"></div>
                     </div>
                 </div>
@@ -200,7 +200,7 @@
                         <span style="color: #777;">Telefone (+244):</span>
                     </div>
                     <div class=" col aa" style="display: flex; flex-direction: column;">
-                        <input type="text" name="num_tel" id="telefoneinput" value ="{{ $candidato['Telefone'] }}" oninput="this.className = ''">
+                        <input type="text" name="num_tel" id="telefoneinput" value="{{old('num_tel')}}" value ="{{ $candidato['Telefone'] }}" oninput="this.className = ''">
                         <div class="mensagem-erro" style="width: 100%;"></div>
                     </div>
                 </div>
@@ -219,7 +219,7 @@
 
             <div class="row">
                 <div class="form-group">
-                    <input type="text" placeholder="Nome da Escola" name="nome_escola" value ="{{ $candidato['Escola'] }}" oninput="this.className = ''">
+                    <input type="text" placeholder="Nome da Escola" name="nome_escola" value="{{old('nome_escola')}}" value ="{{ $candidato['Escola'] }}" oninput="this.className = ''">
                 </div>
             </div>
 
@@ -227,33 +227,33 @@
 
                 <div class="col">
                     <div class="form-group">
-                        <input type="text" placeholder="Turno" name="turno" value ="{{ $candidato['Turno'] }}" oninput="this.className = ''">
+                        <input type="text" placeholder="Turno" name="turno" value="{{old('turno')}}" value ="{{ $candidato['Turno'] }}" oninput="this.className = ''">
                     </div>
                 </div>
 
                 <div class="col">
                     <div class="form-group">
-                        <input type="text" placeholder="Número do aluno" id="numeroinput" value ="{{ $candidato['Numero_Aluno'] }}" name="num_aluno" oninput="this.className = ''">
+                        <input type="text" placeholder="Número do aluno" id="numeroinput" value ="{{ $candidato['Numero_Aluno'] }}" value="{{old('num_aluno')}}" name="num_aluno" oninput="this.className = ''">
                     </div>
                 </div>
 
                 <div class="col">
                     <div class="form-group">
-                        <input type="text" placeholder="Turma" name="turma_aluno" value ="{{ $candidato['Turma'] }}" oninput="this.className = ''">
+                        <input type="text" placeholder="Turma" name="turma_aluno" value ="{{ $candidato['Turma'] }}" value="{{old('turma_aluno')}}" oninput="this.className = ''">
                     </div>
                 </div>
             </div>
 
-
-            <div class="row">
-                <div class=" form-group">
-                    <input type="text" placeholder="Número de Processo" id="numeroinput1" name="num_processo" value ="{{ $candidato['Numero_Processo'] }}" oninput="this.className = ''">
-                </div>
-            </div>
 
             <div class="row">
                 <div class=" form-group">
-                    <input type="text" placeholder="Ultimo Ano Letivo" name="ultimo_anoLectivo" value ="{{ $candidato['Ultimo_AnoLectivo'] }}" oninput="this.className = ''">
+                    <input type="text" placeholder="Número de Processo" id="numeroinput1" name="num_processo" value="{{old('num_processo')}}" value ="{{ $candidato['Numero_Processo'] }}" oninput="this.className = ''">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class=" form-group">
+                    <input type="text" placeholder="Ultimo Ano Letivo" name="ultimo_anoLectivo" value="{{old('ultimo_anoLectivo')}}" value ="{{ $candidato['Ultimo_AnoLectivo'] }}" oninput="this.className = ''">
                 </div>
             </div>
         </div>
@@ -271,7 +271,7 @@
             <div class="row" style="display: flex; flex-direction: row;">
 
                 <div class="col-3 form-group gap-1 ">
-                    <select name="grau1" id="opcoes" oninput="this.className = ''" class="form-select">
+                    <select name="grau1" value="{{old('grau1')}}" id="opcoes" oninput="this.className = ''" class="form-select">
                         <option disabled>Familiares:</option>
                         <option value="Pai"selected>Pai</option>
                         <option value="Mãe">Mãe</option>
@@ -292,7 +292,7 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                    <input type="text" placeholder="Nome do Primeiro encarregado" name="nome_enc1" value ="{{ $candidato['Pai'] }}"  oninput="this.className = ''">
+                    <input type="text" placeholder="Nome do Primeiro encarregado" name="nome_enc1" value="{{old('nome_enc1')}}" value ="{{ $candidato['Pai'] }}"  oninput="this.className = ''">
                     </div>
                 </div>
             </div>
@@ -312,8 +312,8 @@
 
                 <div class="col">
                     <div class="form-group">
-                      <input type="radio" id="masculino" name="genero1" value="Masculino" checked><label for="masculino"> Masculino</label>
-                      <input type="radio" id="feminino" name="genero1" value="Femenino"><label for="feminino"> Feminino</label>
+                      <input type="radio" id="masculino" value="{{old('genero1')}}" name="genero1" value="Masculino" checked><label for="masculino"> Masculino</label>
+                      <input type="radio" id="feminino" value="{{old('genero1')}}" name="genero1" value="Femenino"><label for="feminino"> Feminino</label>
                     </div>
                   </div>
 
@@ -331,7 +331,7 @@
             {{-- Dados do Segundo encarregado --}}
             <div class="row" style="display: flex; flex-direction: row;">
                 <div class="col-lg-3 form-group gap-1 ">
-                    <select name="grau2" id="opcoes"  oninput="this.className = ''" class="form-select">
+                    <select name="grau2" value="{{old('grau2')}}" id="opcoes"  oninput="this.className = ''" class="form-select">
                         <option disabled>Familiares:</option>
                         <option value="Pai">Pai</option>
                         <option value="Mãe" selected>Mãe</option>
@@ -342,7 +342,7 @@
                 <div id="clone2"class="col-lg-3 justify-content-center align-items-center">
 
                     <div class=" col aa" style="display: flex; flex-direction: column;">
-                     <input type="text" id="telefoneinput3" name="telefone2" value="{{old('Telefone2')}}" placeholder="Telefone" oninput="this.className = ''">
+                     <input type="text" id="telefoneinput3" name="telefone2" value="{{old('telefone2')}}" placeholder="Telefone" oninput="this.className = ''">
                      <div class="mensagem-erro" style="color: red;"></div>
                     </div>
                 </div>
@@ -350,7 +350,7 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                    <input type="text" placeholder="Nome do Segundo encarregado" value ="{{ $candidato['Mae'] }}" name="nome_enc2" oninput="this.className = ''">
+                    <input type="text" placeholder="Nome do Segundo encarregado" value="{{old('nome_enc2')}}"  value ="{{ $candidato['Mae'] }}" name="nome_enc2" oninput="this.className = ''">
                     </div>
                 </div>
             </div>
@@ -373,8 +373,8 @@
 
                 <div class="col">
                     <div class="form-group">
-                      <input type="radio" id="masculino" name="genero2" value="Masculino" checked><label for="masculino"> Masculino</label>
-                      <input type="radio" id="feminino" name="genero2" value="Femenino"><label for="feminino"> Feminino</label>
+                      <input type="radio" id="masculino" name="genero2" value="{{old('genero2')}}" value="Masculino" checked><label for="masculino"> Masculino</label>
+                      <input type="radio" id="feminino" name="genero2" value="{{old('genero2')}}" value="Femenino"><label for="feminino"> Feminino</label>
                     </div>
                   </div>
 
@@ -392,7 +392,7 @@
             <div class="row" style="display: flex; flex-direction: row;">
 
                 <div class="col-3 form-group gap-1 ">
-                    <select name="grau3" id="opcoes" oninput="this.className = ''" class="form-select">
+                    <select name="grau3" id="opcoes" value="{{old('grau3')}}" oninput="this.className = ''" class="form-select">
                         <option disabled>Familiares:</option>
                         <option value="Pai">Pai</option>
                         <option value="Mãe">Mãe</option>
@@ -425,7 +425,7 @@
 
                 <div class="col">
                     <span>Idade</span>
-                    <input type="text" id="idadeinput20" class="form-control" readonly="true" style="text-align: center" value="IDADE" disabled>
+                    <input type="text" id="idadeinput20" class="form-control" readonly="true"  style="text-align: center" value="IDADE" disabled>
                     <div id="mensagem080" style="color: red;"></div>
                 </div>
             </div>
@@ -433,13 +433,13 @@
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                      <input type="radio" id="masculino" name="genero3" value="Masculino" checked><label for="masculino"> Masculino</label>
-                      <input type="radio" id="feminino" name="genero3" value="Femenino"><label for="feminino"> Feminino</label>
+                      <input type="radio" id="masculino" value="{{old('genero3')}}" name="genero3" value="Masculino" checked><label for="masculino"> Masculino</label>
+                      <input type="radio" id="feminino" value="{{old('genero3')}}" name="genero3" value="Femenino"><label for="feminino"> Feminino</label>
                     </div>
                 </div>
                 <div class="col-8">
                     <div class="form-group">
-                        <input type="text" id="bi_input4" value="{{old('num_bi_enc3')}}" placeholder="Número do bilhete de identidade"  name="num_bi_enc3" value="" oninput="this.className = ''"maxlength="14">
+                        <input type="text" id="bi_input4" value="{{old('num_bi_enc3')}}" placeholder="Número do bilhete de identidade"  name="num_bi_enc3"  oninput="this.className = ''"maxlength="14">
                         <div id="mensagem5" style="color: red;"></div>
                     </div>
                 </div>
@@ -447,10 +447,10 @@
             {{-- Dados do Terceiro encarregado FIM --}}
             <div class="row">
                 <div class=" col form-group">
-                    <input type="email" value="{{old('email')}}" placeholder="Digite o E-mail do Aluno" name="email"  value="" oninput="this.className = ''">
+                    <input type="email" value="{{old('email')}}" placeholder="Digite o E-mail do Aluno" name="email" oninput="this.className = ''">
                 </div>
                 <div class="col form-group">
-                    <input type="hidden" name="id" value ="{{ $candidato['Id_inscricao'] }}"> {{-- Input para recuperar o id --}}
+                    <input type="hidden" name="id" value="{{old('id')}}" value ="{{ $candidato['Id_inscricao'] }}"> {{-- Input para recuperar o id --}}
                 </div>
             </div>
         </div>
