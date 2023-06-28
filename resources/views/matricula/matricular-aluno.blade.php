@@ -265,7 +265,7 @@
                 <div class="col">
                     <div class="form-group">
 
-                        <input type="text" placeholder="Nome do Primeiro encarregado" name="nome_enc1" value ="{{ $candidato['Pai'] }}" value="{{ old('nome_enc1') }}"  oninput="this.className = ''">
+                        <input type="text" placeholder="Nome do Primeiro encarregado" name="nome_enc1"  value="{{ old('nome_enc1') }}" value ="{{ $candidato['Pai'] }}"   oninput="this.className = ''">
                         @error('nome_enc1')
                             <div class="alert alert-danger">{{$message}}</div>
                         @enderror

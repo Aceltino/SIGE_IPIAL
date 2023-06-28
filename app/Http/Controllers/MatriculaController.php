@@ -52,7 +52,6 @@ class MatriculaController extends Controller
             if(!empty($consultEncarregado))
             {
                 $encarregado[$i] = $consultEncarregado->pessoa_id;
-                // dd('x');
                 continue;
             }
             // $checkBI = $this->checkPessoaBI($dadosPessoa['num_bi']);
@@ -75,6 +74,7 @@ class MatriculaController extends Controller
         $pessoa_id = $candidato->pessoa_id;
         $dadosPessoa = [
             'nome_completo'=> $request['nome_completo'],
+            'num_bi'=> $request['num_bi'],
             'genero'=> $request['genero'],
             'telefone' => $request['num_tel'],
             'pessoa_id' => $pessoa_id
@@ -136,10 +136,12 @@ class MatriculaController extends Controller
         for($i = 1; $i <= 3; $i++)
         {
             // $encarregado[$i] = null;
-            $idPessoa = $encarregado[$i];
-            if(empty($encarregado[$i]))
-            {
-                dd('a');
+            
+                if(!empty($encarregado[$i]))
+                {
+                    $idPessoa = $encarregado[$i];
+                    goto cadEncarregado;
+                }
                 $dadosPessoa = [
                     'nome_completo'=> $request['nome_enc' . $i],
                     'num_bi'=> strtoupper($request['num_bi_enc' . $i]),
@@ -148,8 +150,8 @@ class MatriculaController extends Controller
                     'telefone' => $request['telefone' . $i]
                 ];    
                 $idPessoa = $this->storePessoa($dadosPessoa);  
-            }
-dd('x');
+                cadEncarregado:
+
             $dadosEncarregado = [
                 'grau_parentensco_enc'=> $request['grau' . $i],
                 'pessoa_id'=> $idPessoa
