@@ -359,10 +359,10 @@ class AlunoTurmaController extends Controller
             $anoLectivo = $turmaA->ano_lectivo->ano_lectivo;
             $anoId = $turmaA->ano_lectivo->ano_lectivo_id;
 
-
             $chave = $curso . '-' . $classe . '-' . $turno . '-' . $anoLectivo;
 
-            if (!isset($vagas[$chave])) {
+            if (!isset($vagas[$chave])) 
+            {
                 $vagas[$chave] = [
                     'curso' => $curso,
                     'cursoId' => $cursoId,
@@ -373,7 +373,7 @@ class AlunoTurmaController extends Controller
                     'totalVagas' => 0
                 ];
             }
-
+    
             $vagas[$chave]['totalVagas'] += $numVagas;
         }
         return array_values($vagas);
