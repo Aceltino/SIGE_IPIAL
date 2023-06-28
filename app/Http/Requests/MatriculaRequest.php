@@ -37,6 +37,7 @@ class MatriculaRequest extends FormRequest
             //Formulario da Pessoa
             'nome_completo'=>'required|string|min:2|max:100',
             'genero' => 'required|string',
+            'num_bi'=>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi,'.$candidato->pessoa_id.',pessoa_id',
             'num_tel'=>'required|size:9|unique:pessoas,telefone,'.$candidato->pessoa_id.',pessoa_id',
            //User
             'email'=>'required|email|unique:users,email',
@@ -97,6 +98,7 @@ class MatriculaRequest extends FormRequest
             'data_nascimento.date' => 'O campo data deve ser uma data válida.',
             'data_nascimento.before'=> 'O campo data de nascimento deve ser uma data posterior à data atual.',
             'num_bi'=> 'Número de identificação inválido',
+            'num_bi.unique'=> 'Número de identificação em uso',
             'num_tel'=> 'Número de telefone esta incorrecto',
 
             // Usuario
