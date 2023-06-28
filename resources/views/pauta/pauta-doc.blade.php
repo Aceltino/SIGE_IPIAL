@@ -174,7 +174,7 @@
         
           <tr class="linha-tab-p">
             <td class="coluna-tab-p">
-              <span class="num-aluno-p">{{"numero"}}</span>
+              <span class="num-aluno-p">{{$loop->index+1}}</span>
             </td>
             <td class="coluna-tab-p">
               <span class="nome-aluno-p">{{$aluno->candidato->pessoa->nome_completo}}</span>

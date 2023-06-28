@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\{
     Aluno_turma,Aluno,User,
@@ -35,20 +33,31 @@ class PautaController extends Controller
 
     public function show($id, $anoLectivo)
     {
+        $anoTurmaCoord = AnoTurmaCood::where('turma_id', $id)->first();
+        $turmaAluno = Aluno_turma::where('ano_coord_id', $anoTurmaCoord->turmaAno_id)->get();
+        $director = User::where('cargo_usuario', 'Director')->first();
+        $alunos = Aluno::find($turmaAluno);
 
-        $anoTurmaCoord= AnoTurmaCood::where('turma_id',$id)->firstOrFail();
-        $turmaAluno= Aluno_turma::where('ano_coord_id',$anoTurmaCoord->turmaAno_id)->get();
-        $director= User::where('cargo_usuario','Director')->firstOrFail();
-        $alunos= Aluno::find($turmaAluno);
-        // foreach ($turmaAluno as $key => $value) {
-        //     $alunos= Aluno::find($value);
-        //     echo $alunos;
-        //     echo "<hr>";
-        // }
+        // dd($turmaAluno);
 
-        // die;
-    
-        return view('pauta.pauta-doc',['alunos'=>$alunos,'anoTurmaCoord'=>$anoTurmaCoord,'director'=>$director] );
+        switch ($director) {
+            case false || null:
+                return redirect()->back()->with('msg_sem_director',"Lamentamos! Esta pauta não pode ser gerada sem conter um director no sistema");
+
+            default:
+                goto conti;
+        }
+
+        conti:
+        if (!$anoTurmaCoord || !$turmaAluno || !$alunos){
+            return redirect()->back()->with('msg_sem_pauta',"Lamentamos! Esta pauta ainda não esta composta... Aguarde o lançamento das notas");
+        }
+
+      
+
+        return view('pauta.pauta-doc', ['alunos' => $alunos, 'anoTurmaCoord' => $anoTurmaCoord, 'director' => $director]);
     }
+
+    
     
 }
