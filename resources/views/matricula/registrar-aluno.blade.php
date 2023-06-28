@@ -27,37 +27,36 @@
             </div>
 
             <div class="form-group">
-                <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
+                <select name="curso" id="curso-select" oninput="this.className = ''" class="form-select">
                     <option selected disabled>CURSO</option>
                     @foreach($cursos as $curso)
-                    <option value ="{{$curso['nome_curso']}}">{{$curso['nome_curso']}}</option>
+                    <option value="{{$curso->curso}}">{{$curso['nome_curso']}}</option>
                     @endforeach
                 </select>
             </div>
-
+            
             <div class="row">
-                
+            
                 <div class="form-group col">
-                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
-                            <option  selected disabled>Classe</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
+                    <select name="classe" id="classe-select" oninput="this.className = ''" class="form-select">
+                        <option selected disabled>Classe</option>
+                        @foreach ($classe as $classee)
+                        <option value="{{$classee->classe}}">{{$classee['classe']}}</option>
+                        @endforeach
                     </select>
                 </div>
-
+            
                 <div class="form-group col">
                     <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
-                            <option selected disabled>Turno</option>
-                            <option value="Manhã">Manhã</option>
-                            <option value="Tarde">Tarde</option>
-                            <option value="Noite">Noite</option>
+                        <option selected disabled>Turno</option>
+                        <option value="Manhã">Manhã</option>
+                        <option value="Tarde">Tarde</option>
+                        <option value="Noite">Noite</option>
                     </select>
                 </div>
-
+            
                 <div class="col">
-                    <input type="text" readonly="true" value="VAGAS: 00 " name="" desable="">
+                    <input id="input-vagas" class="form-control" type="text" readonly value="00">
                 </div>
             </div>
         </div>
@@ -344,5 +343,35 @@
             </div>
         </div>
     </form>
+    @push('scripts')
+    <script>
+        var cursos = @json($vagas);
+        
+        // Função para atualizar o valor das vagas com base nas seleções do curso e classe
+        function atualizarVagas() {
+            var curso = document.getElementById('curso-select').value;
+            var classe = document.getElementById('classe-select').value;
+            var inputVagas = document.getElementById('input-vagas');
+            
+            // Procura o valor correspondente nas vagas disponíveis
+            for (var i = 0; i < cursos.length; i++) {
+                if (cursos[i].curso === curso && cursos[i].classe === classe) {
+                    inputVagas.value = cursos[i].totalVagas;
+                    return;
+                }
+            }
+            
+            // Caso nenhuma combinação seja encontrada, define o valor como "00"
+            inputVagas.value = "00";
+        }
+    
+        // Chama a função inicialmente para exibir o valor padrão
+        atualizarVagas();
+    
+        // Adiciona um manipulador de eventos para detectar mudanças nas seleções
+        document.getElementById('curso-select').addEventListener('change', atualizarVagas);
+        document.getElementById('classe-select').addEventListener('change', atualizarVagas);
+    </script>
+    @endpush
 </main>
 @endsection
