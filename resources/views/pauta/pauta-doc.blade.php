@@ -101,13 +101,13 @@
 
           <tr>
             <th scope="col" colspan="3">
-              <span class="nome-dg">VICTORINO ANDRE CACULO</span>
+              <span class="nome-dg">{{$director->pessoa->nome_completo}}</span>
             </th>
             <th scope="col" colspan="21">
-              <h1>PAUTA DE AVALIAÇÃO ANUAL</h1> 
+              <h1>PAUTA DE AVALIAÇÃO ANUAL</h1>   
             </th>
             <th colspan="3">
-              <span class="ano-lec-p nota-neg">ANO LECTIVO: 2022-2023</span>
+              <span class="ano-lec-p nota-neg">ANO LECTIVO: {{$anoTurmaCoord->ano_lectivo->ano_lectivo}}</span>
             </th>
           </tr>
 
@@ -116,7 +116,7 @@
           
           <tr class="linha-tab-p">
             <th class="coluna-tab-p" colspan="3" rowspan="2">
-              <span class="tx-turma-p">TURMA: I10AM</span>
+              <span class="tx-turma-p">TURMA: {{$anoTurmaCoord->turma->nome_turma}}</span>
             </th>
             <th class="coluna-tab-p" colspan="21">
               <span class="tx-disciplina-p">DISICPLINAS</span>
@@ -167,66 +167,17 @@
             <th class="coluna-tab-p"><span class="t-vert-falta-aluno-p">FALTAS</span></th>            
           </tr>
 
+          
+        
+        @foreach ($alunos as $aluno)
+             
+        
           <tr class="linha-tab-p">
             <td class="coluna-tab-p">
-              <span class="num-aluno-p">1</span>
+              <span class="num-aluno-p">{{"numero"}}</span>
             </td>
             <td class="coluna-tab-p">
-              <span class="nome-aluno-p">Nome Completo Deumaluno</span>
-            </td>
-            <td class="coluna-tab-p">
-              <span class="num-proc-p">36701</span>
-            </td>          
-            <td class="nota coluna-tab-p"><span class="nota-pos">14</span></td>
-            <td class="nota coluna-tab-p"><span class="nota-pos">12</span></td>
-            <td class="nota coluna-tab-p"><span class="nota-neg">8</span></td>
-            <td class="nota coluna-tab-p"><span class="nota-neg">6</span></td>
-            <td class="nota c-tab-amarelo coluna-tab-p"><span class="nota-pos">18</span></td>
-            <td class="nota coluna-tab-p"><span class="nota-pos">19</span></td>
-
-            <td class="nota c-tab-sinza-esq coluna-tab-p">
-              <span>
-                
-              </span>
-            </td>
-
-            <td class="nota coluna-tab-p"><span class="nota-pos">13</span></td>
-            <td class="nota coluna-tab-p"><span class="nota-neg">9</span></td>
-            <td class="nota coluna-tab-p"><span class="nota-neg">4</span></td>
-            <td class="nota coluna-tab-p"><span class="nota-pos">14</span></td>
-            <td class="nota c-tab-amarelo coluna-tab-p"><span class="nota-pos">15</span></td>
-            <td class="nota coluna-tab-p"><span class="nota-pos">16</span></td>
-
-            <td class="nota c-tab-sinza-esq coluna-tab-p">
-              <span>
-                
-              </span>
-            </td>
-
-            <td class="nota coluna-tab-p"><span class="nota-pos">14</span></td>
-            <td class="nota coluna-tab-p"><span class="nota-pos">12</span></td>
-            <td class="nota coluna-tab-p"><span class="nota-neg">8</span></td>
-            <td class="nota coluna-tab-p"><span class="nota-neg">6</span></td>
-            <td class="nota c-tab-amarelo coluna-tab-p"><span class="nota-pos">18</span></td>
-            <td class="nota coluna-tab-p"><span class="nota-pos">19</span></td>
-            
-            <td class="nota c-tab-sinza-esq coluna-tab-p">
-              <span>
-                
-              </span>
-            </td>
-
-            <td class="nota coluna-tab-p"><span class="nota-neg">RPF</span></td>
-            <td class="nota coluna-tab-p"><span class="nota-neg">NÃO TRANSITA</span></td>
-            <td class="nota coluna-tab-p">1</td>
-          </tr>
-
-          <tr class="linha-tab-p">
-            <td class="coluna-tab-p">
-              <span class="num-aluno-p">1</span>
-            </td>
-            <td class="coluna-tab-p">
-              <span class="nome-aluno-p">Nome Completo Deumaluno</span>
+              <span class="nome-aluno-p">{{$aluno->candidato->pessoa->nome_completo}}</span>
             </td>
             <td class="coluna-tab-p">
               <span class="num-proc-p">36701</span>
@@ -274,6 +225,8 @@
             <td class="nota coluna-tab-p"><span class="nota-pos">TRANSITA</span></td>
             <td class="nota coluna-tab-p">1</td>
           </tr>
+        @endforeach
+       
 
           <!--Rodape da pauta-->
           <tr>
@@ -582,4 +535,3 @@
       <!--Fim da pauta-->
              <br><br>
     </main>
-@endsection

@@ -24,11 +24,12 @@ class MiniPautaController extends Controller
 {
     public function index()
     {
+
         $dados = Turma::join('classe_disciplina', 'turmas.classe_id', '=', 'classe_disciplina.classe_id')
                         ->join('disciplinas', 'classe_disciplina.disciplina_id', '=', 'disciplinas.disciplina_id')
                         ->select('turmas.*', 'classe_disciplina.*', 'disciplinas.*')
                         ->get();
-                        
+    
         $dados = ClasseDisciplina::join('turmas', 'turmas.classe_id', '=', 'classe_disciplina.classe_id')
                     ->join('professor_disciplina', 'professor_disciplina.disciplina_id', '=', 'classe_disciplina.disciplina_id')
                     ->select('turmas.*', 'classe_disciplina.*', 'professor_disciplina.*')

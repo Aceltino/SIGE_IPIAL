@@ -87,7 +87,7 @@ class MatriculaController extends Controller
         }
 
         $curso_id = CursoController::pegarIdCurso($request['curso_escolhido']);
-        // dd($curso_id);
+        //dd($curso_id);
         $dadosAluno=[
             'curso_id'=>$curso_id,
             'status'=> 0,
@@ -237,11 +237,15 @@ class MatriculaController extends Controller
 
     public function readmitirEdit($id)
     {
-        $aluno = AlunoController::pegarDadosMatriculado($id);
-
-        return view('matricula.readmitir-aluno',[
-            'aluno' => $aluno[0]
-        ]);
+        $aluno = AlunoController::pegarReprovado($id);
+        $alunoTurma = AlunoTurmaController::alunoNAdmtido($aluno);
+        
+        if($alunoTurma !== true)
+        {
+            return redirect()->back()->with("ErroMatricula", $alunoTurma);
+        }
+            $msg = "O aluno foi readmitido com sucesso, consulte por ele!";
+            return Redirect::route('Matriculas')->with("Sucesso", $msg);
     }
 
     public function readmitirUpdate($id)
@@ -255,14 +259,21 @@ class MatriculaController extends Controller
 
     public function anularMatricula($id)
     {
-        $dadosAluno=[
-            'aluno_id'=>$id,
-            'status'=> 0,
-            // 'candidato_id'=>intval($request['id'])
-        ];
+        $candidato = Candidato::find($id);
+        $this->deletePessoa($candidato->pessoa_id);
+        return redirect()->route('Matriculas')->with('success', 'Aluno excluído com sucesso.');
+    }
 
-        $aluno = AlunoController::pegarDadosMatriculado($id);
-        return view('matricula.matriculas');
+    public function registrarView(){
+        $vagas = AlunoTurmaController::pegarVagas();
+        dd($vagas);
+        $cursos = Curso::all();
+        return view('matricula.registrar-aluno', compact('cursos'));
+    }
+
+    public function registrarStore(){
+        $cursos = Curso::all();
+        return view('matricula.registrar-aluno', compact('cursos'));
     }
 
 }
