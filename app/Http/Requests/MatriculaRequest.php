@@ -49,7 +49,7 @@ class MatriculaRequest extends FormRequest
             'ultimo_anoLectivo' => 'required|string',
 
             //encarregado 1
-            'telefone1'=>'required|size:9|unique:pessoas,telefone',
+            'telefone1'=>'required|size:9',
             'grau1'=>'required|string',
             'nome_enc1' => 'required|string|max:100|min:2',
             'data_nascimento_enc1' => 'required|date|before:'.now()->format('d-m-Y'),
@@ -57,7 +57,7 @@ class MatriculaRequest extends FormRequest
             'num_bi_enc1' =>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/',
 
             //encarregado 2
-            'telefone2'=>'required|size:9|unique:pessoas,telefone',
+            'telefone2'=>'required|size:9',
             'grau2'=>'required|string',
             'nome_enc2' => 'required|string|max:100|min:2',
             'data_nascimento_enc2' => 'required|date|before:'.now()->format('d-m-Y'),
@@ -65,7 +65,7 @@ class MatriculaRequest extends FormRequest
             'num_bi_enc2' =>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/',
 
             //encarregado 3
-            'telefone3'=>'required|size:9|unique:pessoas,telefone',
+            'telefone3'=>'required|size:9',
             'grau3'=>'required|string',
             'nome_enc3' => 'required|string|max:100|min:2',
             'data_nascimento_enc3' => 'required|date|before:'.now()->format('d-m-Y'),
@@ -96,10 +96,8 @@ class MatriculaRequest extends FormRequest
             'nome_completo.min'=>'O nome não deve ter menos de 2 letras',
             'data_nascimento.date' => 'O campo data deve ser uma data válida.',
             'data_nascimento.before'=> 'O campo data de nascimento deve ser uma data posterior à data atual.',
-            'num_bi.unique'=> 'Número de identificação já esta a ser usado',
             'num_bi'=> 'Número de identificação inválido',
             'num_tel'=> 'Número de telefone esta incorrecto',
-            'num_tel.unique'=> 'Este número de telefone já está em uso',
 
             // Usuario
             'email.unique' => 'Este email já está em uso.',
