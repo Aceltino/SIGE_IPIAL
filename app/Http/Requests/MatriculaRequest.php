@@ -54,7 +54,7 @@ class MatriculaRequest extends FormRequest
             'nome_enc1' => 'required|string|max:100|min:2',
             'data_nascimento_enc1' => 'required|date|before:'.now()->format('d-m-Y'),
             'genero1' =>'required|string',
-            'num_bi_enc1' =>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi',
+            'num_bi_enc1' =>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/',
 
             //encarregado 2
             'telefone2'=>'required|size:9|unique:pessoas,telefone',
@@ -62,7 +62,7 @@ class MatriculaRequest extends FormRequest
             'nome_enc2' => 'required|string|max:100|min:2',
             'data_nascimento_enc2' => 'required|date|before:'.now()->format('d-m-Y'),
             'genero2' =>'required|string',
-            'num_bi_enc2' =>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi',
+            'num_bi_enc2' =>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/',
 
             //encarregado 3
             'telefone3'=>'required|size:9|unique:pessoas,telefone',
@@ -70,7 +70,7 @@ class MatriculaRequest extends FormRequest
             'nome_enc3' => 'required|string|max:100|min:2',
             'data_nascimento_enc3' => 'required|date|before:'.now()->format('d-m-Y'),
             'genero3' =>'required|string',
-            'num_bi_enc3' =>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi',
+            'num_bi_enc3' =>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/',
         ];
         
         return $rules;

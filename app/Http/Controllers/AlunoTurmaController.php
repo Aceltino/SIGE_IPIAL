@@ -352,17 +352,20 @@ class AlunoTurmaController extends Controller
 
         foreach ($turmas as $turmaA) {
             $curso = $turmaA->turma->curso->nome_curso;
+            $cursoId = $turmaA->turma->curso->curso_id;
             $classe = $turmaA->turma->classe->classe;
             $turno = $turmaA->turma->turno->nome_turno;
             $numVagas = $turmaA->num_vagas;
             $anoLectivo = $turmaA->ano_lectivo->ano_lectivo;
             $anoId = $turmaA->ano_lectivo->ano_lectivo_id;
 
+
             $chave = $curso . '-' . $classe . '-' . $turno . '-' . $anoLectivo;
 
             if (!isset($vagas[$chave])) {
                 $vagas[$chave] = [
                     'curso' => $curso,
+                    'cursoId' => $cursoId,
                     'classe' => $classe,
                     'turno' => $turno,
                     'anoLectivo' => $anoLectivo,

@@ -38,6 +38,28 @@ class MatriculaController extends Controller
     {
         $request = $input->validated(); // Inputs validadas
         // dd($request);
+        $encarregado = [];
+        for($i = 1; $i <= 3; $i++)
+        {
+            $dadosPessoa = [
+                'nome_completo'=> $request['nome_enc' . $i],
+                'num_bi'=> strtoupper($request['num_bi_enc' . $i]),
+                'data_nascimento'=> $request['data_nascimento_enc' . $i],
+                'genero'=> $request['genero'. $i],
+                'telefone' => $request['telefone' . $i]
+            ];
+
+            $consultEncarregado = $this->checkPessoa($dadosPessoa);
+            if(!empty($consultEncarregado))
+            {
+                $encarregado[$i] = $consultEncarregado->pessoa_id;
+            }
+            if(!$this->checkPessoaBI($dadosPessoa['num_bi']))
+            {
+                $msg="O número de identificação do ". $i ."º encarregado já está sendo utilizado, confirme todos os seus dados de identificação.";
+                return redirect()->back()->with("ErroEncarregado",$msg);
+            }
+        }
 
         // Atualizando candidato(Pessoas) pela confirmação de dados no formMatricula--
         $candidato = Candidato::find($request['id']);
@@ -104,32 +126,26 @@ class MatriculaController extends Controller
 
         for($i = 1; $i <= 3; $i++)
         {
-            $dadosPessoa = [
-                'nome_completo'=> $request['nome_enc' . $i],
-                'num_bi'=> strtoupper($request['num_bi_enc' . $i]),
-                'data_nascimento'=> $request['data_nascimento_enc' . $i],
-                'genero'=> $request['genero'. $i],
-                'telefone' => $request['telefone' . $i]
-            ];
-
-            $idPessoa = $this->storePessoa($dadosPessoa);
-            if(!$idPessoa)
+            $idPessoa = $encarregado[$i];
+            if(empty($encarregado[$i]))
             {
-                $msg="Fique atento nos dados de identifcação, este candidato já está inscrito!";
-                return redirect()->back()->with("ErroPessoa",$msg);
+                $dadosPessoa = [
+                    'nome_completo'=> $request['nome_enc' . $i],
+                    'num_bi'=> strtoupper($request['num_bi_enc' . $i]),
+                    'data_nascimento'=> $request['data_nascimento_enc' . $i],
+                    'genero'=> $request['genero'. $i],
+                    'telefone' => $request['telefone' . $i]
+                ];    
+                $idPessoa = $this->storePessoa($dadosPessoa);  
             }
+
             $dadosEncarregado = [
                 'grau_parentensco_enc'=> $request['grau' . $i],
                 'pessoa_id'=> $idPessoa
             ];
-
+            
             $idEncarregado = EncarregadoController::storeEncarregado($dadosEncarregado);
             $id[$i] = $idEncarregado;
-            if(!$id[$i])
-            {
-                $msg="Fique atento nos dados de identifcação, este candidato já está inscrito!";
-                return redirect()->back()->with("ErroPessoa",$msg);
-            }
         }
 
         $alunoEncarregado = [
@@ -249,14 +265,6 @@ class MatriculaController extends Controller
             return Redirect::route('Matriculas')->with("Sucesso", $msg);
     }
 
-    public function readmitirUpdate($id)
-    {
-        $aluno = AlunoController::pegarDadosMatriculado($id);
-
-        return view('matricula.edit-matricula',[
-            'aluno' => $aluno[0]
-        ]);
-    }
 
     public function anularMatricula($id)
     {
@@ -265,7 +273,8 @@ class MatriculaController extends Controller
         return redirect()->route('Matriculas')->with('success', 'Aluno excluído com sucesso.');
     }
 
-    public function registrarView(){
+    public function registrarView()
+    {
         $vagas = AlunoTurmaController::pegarVagas();
         $classe = Classe::all();
         $cursos = Curso::all();
