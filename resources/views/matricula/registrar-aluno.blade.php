@@ -27,37 +27,39 @@
             </div>
 
             <div class="form-group">
-                <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
+                <select name="curso" id="curso-select" class="form-select">
                     <option selected disabled>CURSO</option>
                     @foreach($cursos as $curso)
-                    <option value ="{{$curso['nome_curso']}}">{{$curso['nome_curso']}}</option>
+                        <option value="{{ $curso->curso_id }}">{{ $curso->nome_curso }}</option>
                     @endforeach
                 </select>
             </div>
-
+            
             <div class="row">
-                
+            
                 <div class="form-group col">
-                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
-                            <option  selected disabled>Classe</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
+                    <span>Classe</span>
+                    <select name="classe" id="classe-select" oninput="this.className = ''" class="form-select">
+                        <option selected disabled>Classe</option>
+                        @foreach ($classe as $classee)
+                        <option value="{{$classee->classe_id}}">{{$classee['classe']}}</option>
+                        @endforeach
                     </select>
                 </div>
-
+            
                 <div class="form-group col">
-                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
-                            <option selected disabled>Turno</option>
-                            <option value="Manhã">Manhã</option>
-                            <option value="Tarde">Tarde</option>
-                            <option value="Noite">Noite</option>
+                    <span>Turno</span>
+                    <select name="opcoes" id="turno-select" oninput="this.className = ''" class="form-select">
+                        <option selected disabled>Turno</option>
+                        <option value="Manhã">Manhã</option>
+                        <option value="Tarde">Tarde</option>
+                        <option value="Noite">Noite</option>
                     </select>
                 </div>
-
+            
                 <div class="col">
-                    <input type="text" readonly="true" value="VAGAS: 00 " name="" desable="">
+                    <span>Nº Vagas</span>
+                    <input id="vagas-input" class="form-control" type="text" value="Vagas 0" readonly>
                 </div>
             </div>
         </div>
@@ -117,7 +119,7 @@
 
                 <div class="col-lg-4 d-flex gap-1 justify-content-center align-items-center">
                     <span style="color: #777;">+244</span>
-                    <input type="text" name="" placeholder="Telefone" oninput="this.className = ''"><i class="bi bi-plus-circle" style=" font-size: 30px; cursor: pointer;"></i> 
+                    <input type="text" name="" placeholder="Telefone" oninput="this.className = ''">
                 </div>
             </div>
         </div> 
@@ -153,7 +155,7 @@
 
                 <div class="col">
                     <div class="form-group">
-                        <input type="text" placeholder="Turma" oninput="this.className = ''">
+                        <input type="text" placeholder="turno" oninput="this.className = ''">
                     </div>
                 </div>
             </div>
@@ -344,5 +346,33 @@
             </div>
         </div>
     </form>
+    <script>
+        const cursoSelect = document.getElementById('curso-select');
+        const classeSelect = document.getElementById('classe-select');
+        const turnoSelect = document.getElementById('turno-select');
+        const vagasInput = document.getElementById('vagas-input');
+    
+        cursoSelect.addEventListener('change', updateVagasInput);
+        classeSelect.addEventListener('change', updateVagasInput);
+        turnoSelect.addEventListener('change', updateVagasInput);
+    
+        function updateVagasInput() {
+            const cursoId = cursoSelect.value;
+            const classeId = classeSelect.value;
+            const turno = turnoSelect.value;
+            const vagas = @json($vagas);
+    
+            let totalVagas = 0;
+    
+            for (let i = 0; i < vagas.length; i++) {
+                if (vagas[i].cursoId == cursoId && vagas[i].classeId == classeId && vagas[i].turno === turno) {
+                    totalVagas = vagas[i].totalVagas;
+                    break;
+                }
+            }
+    
+            vagasInput.value = totalVagas;
+        }
+    </script>
 </main>
 @endsection

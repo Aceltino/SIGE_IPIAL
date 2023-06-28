@@ -11,6 +11,7 @@ use App\Models\{
     User,
     Curso,
     Turma,
+    Classe,
 };
 use App\Traits\PessoaTrait;
 use Illuminate\Support\Facades\Redirect;
@@ -289,9 +290,9 @@ class MatriculaController extends Controller
     public function registrarView()
     {
         $vagas = AlunoTurmaController::pegarVagas();
-        dd($vagas);
+        $classe = Classe::all();
         $cursos = Curso::all();
-        return view('matricula.registrar-aluno', compact('cursos'));
+        return view('matricula.registrar-aluno', compact('cursos','vagas', 'classe'));
     }
 
     public function registrarStore(){
