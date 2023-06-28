@@ -30,6 +30,17 @@
     </form>
     </div>
 
+    @if(session('msg_sem_pauta'))
+        <div class="alert alert-danger">
+            {{session('msg_sem_pauta')}}
+        </div>
+    @endif
+    @if(session('msg_sem_director'))
+        <div class="alert alert-danger">
+            {{session('msg_sem_director')}}
+        </div>
+    @endif
+
     <!-- /  Inicio da tabela de inscritos -->
     <table  id="matricula-tab" class="table table-striped" style="margin-top: 20px;" >
       <thead  style=" text-align: center;">
@@ -52,7 +63,7 @@
             <td>{{ $item['turma']->belongerCurso->nome_curso}}</td>
             <td>{{ $item['turma']->turno->nome_turno }}</td>
             <td>
-                <a href={{ route('pauta.show', ['id'=> $item['turma']->turma_id, 'ano'=>$item['anoLectivo']->ano_lectivo] ) }} class="btn btn-cor-sg-a">Ver Pauta</a>
+                <a href={{ route('pauta.show', ['id'=> $item['turma']->turma_id, 'ano'=>$item['anoLectivo']->ano_lectivo] ) }} class="btn btn-cor-sg-a">Gerar Pauta</a>
             </td>
         </tr>
         @endforeach
