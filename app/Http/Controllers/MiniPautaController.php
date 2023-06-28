@@ -12,7 +12,7 @@ use App\Models\{
     User,
     Turma,
     AnoTurmaCood,
-    Nota, // Não está a ser usada
+    Nota,
     Disciplina,
     ClasseDisciplina,
     Professor_disciplina,
