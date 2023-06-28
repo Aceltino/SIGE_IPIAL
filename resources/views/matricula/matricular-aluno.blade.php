@@ -16,6 +16,11 @@
         </div>
 
         <div class="tab">
+        @if(session()->has('ErroEncarregado'))
+        <div class="alert alert-danger">
+          {{session('ErroEncarregado')}}
+        </div>
+      @endif
             <div class="row" >
                 <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
                     <div style="  text-align: center;">

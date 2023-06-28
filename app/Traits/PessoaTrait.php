@@ -100,6 +100,21 @@ trait PessoaTrait
         return $pessoaAtualizado;
     }
 
+    public static function checkPessoa($dadosPessoa)
+    {
+        return Pessoa::where('nome_completo', $dadosPessoa['nome_completo'])
+                     ->where('num_bi', $dadosPessoa['num_bi'])
+                     ->where('data_nascimento', $dadosPessoa['data_nascimento'])
+                     ->where('genero', $dadosPessoa['genero'])
+                     ->where('telefone', $dadosPessoa['telefone'])->first();
+
+    }
+
+    public static function checkPessoaBI($bilhete)
+    {
+        return Pessoa::where('num_bi', $bilhete['num_bi'])->first();
+    }
+
     public static function deletePessoa($id)
     {
         $pessoa = Pessoa::find($id);
