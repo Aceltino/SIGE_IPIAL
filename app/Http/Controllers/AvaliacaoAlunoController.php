@@ -16,9 +16,9 @@ class AvaliacaoAlunoController extends Controller
     public function index()
     {
         $user = Auth::user();
+        //dd($user);
         $professor = AvaliacaoTrait::pegarProfessor($user);
         $inc = 0;
-
         for ($i = 0; $i < count($professor); $i++) {
             $disciplina_id[$i] = $professor[$i]['disciplina_id'];
             $nome_disciplina[$i] = $professor[$i]['nome_disciplina'];
@@ -39,16 +39,26 @@ class AvaliacaoAlunoController extends Controller
                 if(!in_array($turma, $turmas[$i])){
                     $turmas[$i][$j] = $turma;
                 }
-
             }
         }
-        //dd($turmas);
+
+        $incremento = 0;
+        for ($i = 0; $i < count($professor); $i++) {
+            for ($j = 0; $j < (count($professor[$i]) - 2); $j++) {
+                if ($incremento === 0) {
+                    $cursos[$incremento] = $professor[$i][$j]['nome_curso'];
+                    $incremento++;
+                }
+                if (!in_array($professor[$i][$j]['nome_curso'], $cursos)) {
+                    $cursos[$incremento] = $professor[$i][$j]['nome_curso'];
+                    $incremento++;
+                }
+            }
+        }
+
         $aluno = AvaliacaoTrait::pegarNotaAluno($disciplina_id, $turmas);
 
-        //  $teste = AnoTurmaCood::with('aluno.candidato.pessoa')->where('turma_id', 13)->where('ano_lectivo_id', 17)->get();
-        //  dd($teste);
-
-        return view('avaliac-aluno/avaliacoes-aluno', compact(['aluno', 'nome_disciplina', 'nome_turma']));
+        return view('avaliac-aluno/avaliacoes-aluno', compact(['aluno', 'nome_disciplina', 'nome_turma', 'cursos']));
     }
 
     public function indexUpdate($id_aluno, $id_disciplina){

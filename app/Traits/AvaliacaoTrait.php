@@ -57,7 +57,7 @@ trait AvaliacaoTrait
                     ->where('disciplina_id', $disciplinas[$dis])->get();
                     //dd($aluno);
                     if(count($nota) < 1){
-                        $dados[$dis][$i] = [
+                        $dados[$dis][$tur][$i] = [
                             'aluno_id' => $aluno[$i]->aluno_id,
                             'nome' => $aluno[$i]->aluno->candidato->pessoa->nome_completo,
                             'numero_aluno' => $aluno[$i]->aluno->turmas[0]->numero_aluno,
@@ -120,7 +120,7 @@ trait AvaliacaoTrait
                                 $exame_especial = $nota[$j]->nota_aluno;
                             }
                         }
-                        $dados[$dis][$i] = [
+                        $dados[$dis][$tur][$i] = [
                             'aluno_id' => $aluno[$i]->aluno->aluno_id,
                             'nome' => $aluno[$i]->aluno->candidato->pessoa->nome_completo,
                             'numero_aluno' => $aluno[$i]->aluno->turmas[0]->numero_aluno,
@@ -152,9 +152,10 @@ trait AvaliacaoTrait
         $professor = Professor::with('pessoa')->where('pessoa_id', $user->pessoa_id)->get();
         //dd($professor);
         $ano_lectivo = self::pegarAnoLectivo();
-        $prof_disc = Professor_disciplina::with('turmaProf', 'disciplina')->where('professor_id', $professor[0]->professor_id)
+        $prof_disc = Professor_disciplina::with('turmaProf.curso', 'disciplina')->where('professor_id', $professor[0]->professor_id)
         ->where('ano_lectivo_id', $ano_lectivo[0]->ano_lectivo_id)
         ->get();
+        //dd($prof_disc->toArray());
         for ($i = 0; $i < count($prof_disc); $i++) {
             $dados[$i] = [
                 'nome_disciplina' =>  $prof_disc[$i]->disciplina->nome_disciplina,
@@ -164,6 +165,8 @@ trait AvaliacaoTrait
             $dados[$i][$j] = [
                 'turma_id' => $prof_disc[$i]->turmaProf[$j]->turma_id,
                 'nome_turma' => $prof_disc[$i]->turmaProf[$j]->nome_turma,
+                'curso_id' => $prof_disc[$i]->turmaProf[$j]->curso->curso_id,
+                'nome_curso' => $prof_disc[$i]->turmaProf[$j]->curso->nome_curso,
             ];
           }
         }
