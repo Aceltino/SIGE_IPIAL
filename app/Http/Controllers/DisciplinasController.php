@@ -12,7 +12,7 @@ class DisciplinasController extends Controller
 {
     public function index()
     {
-        $disciplinas = Disciplina::has('curso')->get();
+        $disciplinas = Disciplina::has('cursos')->get();
         return view('disciplina.disciplinas', ['disciplinas'=>$disciplinas]);
     }
     public function create()
