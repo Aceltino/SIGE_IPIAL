@@ -354,26 +354,28 @@ class AlunoTurmaController extends Controller
             $curso = $turmaA->turma->curso->nome_curso;
             $cursoId = $turmaA->turma->curso->curso_id;
             $classe = $turmaA->turma->classe->classe;
+            $classeId = $turmaA->turma->classe->classe_id;
             $turno = $turmaA->turma->turno->nome_turno;
             $numVagas = $turmaA->num_vagas;
             $anoLectivo = $turmaA->ano_lectivo->ano_lectivo;
             $anoId = $turmaA->ano_lectivo->ano_lectivo_id;
 
-
             $chave = $curso . '-' . $classe . '-' . $turno . '-' . $anoLectivo;
 
-            if (!isset($vagas[$chave])) {
+            if (!isset($vagas[$chave])) 
+            {
                 $vagas[$chave] = [
                     'curso' => $curso,
                     'cursoId' => $cursoId,
                     'classe' => $classe,
+                    'classeId' => $classeId,
                     'turno' => $turno,
                     'anoLectivo' => $anoLectivo,
                     'anoId' => $anoId,
                     'totalVagas' => 0
                 ];
             }
-
+    
             $vagas[$chave]['totalVagas'] += $numVagas;
         }
         return array_values($vagas);

@@ -12,12 +12,13 @@ use App\Models\{
     User,
     Turma,
     AnoTurmaCood,
-    Nota, // Não está a ser usada
+    Nota,
     Disciplina,
     ClasseDisciplina,
     Professor_disciplina,
     Professor,
-    AlunoTurma
+    AlunoTurma,
+    DisciplinaCurso
 };
 
 class MiniPautaController extends Controller
@@ -25,7 +26,7 @@ class MiniPautaController extends Controller
     public function index()
     {
 
-        $dados = Turma::join('classe_disciplina', 'turmas.classe_id', '=', 'classe_disciplina.classe_id')
+        /*$dados = Turma::join('classe_disciplina', 'turmas.classe_id', '=', 'classe_disciplina.classe_id')
                         ->join('disciplinas', 'classe_disciplina.disciplina_id', '=', 'disciplinas.disciplina_id')
                         ->select('turmas.*', 'classe_disciplina.*', 'disciplinas.*')
                         ->get();
@@ -33,19 +34,31 @@ class MiniPautaController extends Controller
         $dados = ClasseDisciplina::join('turmas', 'turmas.classe_id', '=', 'classe_disciplina.classe_id')
                     ->join('professor_disciplina', 'professor_disciplina.disciplina_id', '=', 'classe_disciplina.disciplina_id')
                     ->select('turmas.*', 'classe_disciplina.*', 'professor_disciplina.*')
-                    ->get();
+                    ->get();*/
 
-        return view('mini-pauta.mini-pauta', ['dados' => $dados]);
+        #$turmas = Turma::has('beAlunos')->with('anoTurmaCoord')->distinct()->get();
+        $turmas = AnoTurmaCood::has('alunoAno')->with('turma', 'alunoAno')->get();
+        
+        return view('mini-pauta.mini-pauta', ['turmas' => $turmas]);
+    }
+
+    public function turma($turma, $curso)
+    {
+        $turma = Turma::findOrFail($turma);
+        $disciplinas = DisciplinaCurso::with('disciplinas', 'curso', 'professorDisciplina')
+                        ->where('curso_id', $curso)
+                        ->get();
+
+        return view('mini-pauta.mini-pauta-discip', ['turma' => $turma, 'disciplinas' => $disciplinas]);
     }
 
     public function view($turma_id, $prof_id, $disciplina_id)
     {
-        // Depois vou organizar isso, tem muita consulta desnecessária
         $turma = Turma::findOrFail($turma_id);
         $professor = Professor::with('pessoa')->findOrFail($prof_id);
         $ano_turma_coord = AnoTurmaCood::where('turma_id',  $turma_id)->first();
         $disciplina = Disciplina::where('disciplina_id', $disciplina_id)->first();
-        $notas  = Nota::where('disciplina_id', $disciplina_id)->first();
+        #$notas  = Nota::where('disciplina_id', $disciplina_id)->first();
         
         $alunos = AlunoTurma::whereHas('anoTurmaCood', function ($query) use ($turma_id) {
             $query->whereHas('turma', function ($query) use ($turma_id) {
@@ -53,7 +66,11 @@ class MiniPautaController extends Controller
             });
         })->orderBy('numero_aluno', 'asc')->get();
 
-        // Já está a pegar os alunos, idade, genero de forma automatica, agora vou pegar nas notas 
+        // Extrai os IDs dos alunos
+        $alunoIds = $alunos->pluck('aluno_id')->toArray();
+
+        // Realiza a consulta em Nota usando os IDs dos alunos
+        $notas = Nota::whereIn('aluno_id', $alunoIds)->get();
 
         return view('mini-pauta.mini-pauta-doc', ['alunos' => $alunos, 'anoturmacoord' => $ano_turma_coord, 'notas' => $notas, 'disciplina' => $disciplina, 'turma' => $turma, 'professor' => $professor]);
     }

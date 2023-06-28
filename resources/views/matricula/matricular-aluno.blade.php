@@ -32,13 +32,13 @@
             <div class="row">
                 <div class="col d-flex" style="margin-bottom: 15px;">
                     <div class= "d-flex"style="width: 246px;margin-right: auto; margin-left: auto;">
-                        <input class=" form-control codinscricao" style="text-align: center" type="text" value="{{$candidato['Id_inscricao']}}" required="" disabled readonly>
+                        <input class="form-control codinscricao" style="text-align: center" type="text" value="{{$candidato['Id_inscricao']}}"  required="" disabled readonly>
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
-                <input class="form-control" style="text-align: center;" type="text" value="{{$candidato['Nome']}}" oninput="this.className = ''" disabled readonly>
+                <input class="form-control" style="text-align: center;" type="text" value="{{$candidato['Nome']}}" value="{{old('nome_completo')}}" oninput="this.className = ''" disabled readonly>
             </div>
 
             <div class="row">
@@ -46,9 +46,7 @@
                 <div class="col">
                     <div class="form-group">
                         <input class="form-control" style="text-align: center;" type="text" name="curso_escolhido" value="{{$candidato['Curso']}}"  oninput="this.className = ''" readonly>
-                        @error('curso_escolhido')
-                            <div class="alert alert-danger">{{$message}}</div>
-                        @enderror
+
                     </div>
                 </div>
             </div>
@@ -76,21 +74,21 @@
 
             <div class="form-group">
 
-                <input type="text" name="nome_completo" value="{{$candidato['Nome']}}" oninput="this.className = ''">
+                <input type="text" name="nome_completo" value="{{$candidato['Nome']}}" value="{{old('nome_completo')}}" oninput="this.className = ''">
                 @error('nome_completo')
                   <div class="alert alert-danger">{{$message}}</div>
                 @enderror
             </div>
 
             <div class="form-group">
-                <input type="text" name="nome_pai_cand" value ="{{ $candidato['Pai'] }}" oninput="this.className = ''">
+                <input type="text" name="nome_pai_cand" value ="{{ $candidato['Pai'] }}" value="{{old('nome_pai_cand')}}" oninput="this.className = ''">
                 @error('nome_pai_cand')
                   <div class="alert alert-danger">{{$message}}</div>
                 @enderror
             </div>
 
             <div class="form-group">
-                <input type="text" name="nome_mae_cand" value ="{{ $candidato['Mae'] }}" oninput="this.className = ''">
+                <input type="text" name="nome_mae_cand" value ="{{ $candidato['Mae'] }}" value="{{old('nome_mae_cand')}}" oninput="this.className = ''">
                 @error('nome_mae_cand')
                     <div class="alert alert-danger">{{$message}}</div>
                 @enderror
@@ -108,25 +106,24 @@
 
                 <div class="col">
 
-                    <input type="text" name="naturalidade_cand" value ="{{ $candidato['Naturalidade'] }}" oninput="this.className = ''">
+                    <input type="text" name="naturalidade_cand" value ="{{ $candidato['Naturalidade'] }}" value="{{old('naturalidade_cand')}}" oninput="this.className = ''">
                     @error('naturalidade_cand')
                         <div class="alert alert-danger">{{$message}}</div>
                     @enderror
-
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-4">
                     <div class="form-group">
-                      <input type="radio" checked="{{ $candidato['Genero'] }}" id="masculino" name="genero" value="{{old('genero')}}" value="Masculino"><label for="masculino"> Masculino</label>
-                      <input type="radio" id="feminino" name="genero" value="{{old('genero')}}" value="Femenino"><label for="feminino"> Feminino</label>
+                      <input type="radio" checked="{{ $candidato['Genero'] }}" id="masculino" name="genero" value="Masculino" value="{{old('genero')}}" ><label for="masculino"> Masculino</label>
+                      <input type="radio"  id="feminino" name="genero" value="Femenino" value="{{old('genero')}}" ><label for="feminino"> Feminino</label>
                     </div>
                   </div>
 
                 <div class="col">
                     <div class="form-group">
-                        <input type="text" id="bi_input" name="num_bi" value="{{old('num_bi')}}" value ="{{ $candidato['NumeroBI'] }}" oninput="this.className = ''" maxlength="14">
+                        <input type="text" id="bi_input" name="num_bi" value ="{{ $candidato['NumeroBI'] }}" value="{{old('num_bi')}}" oninput="this.className = ''" maxlength="14">
                         <div id="mensagem1" style="color: red;"></div>
                         @error('num_bi')
                             <div class="alert alert-danger">{{$message}}</div>
@@ -142,7 +139,7 @@
                         <span style="color: #777;">Telefone (+244):</span>
                     </div>
                     <div class=" col aa" style="display: flex; flex-direction: column;">
-                        <input type="text" name="num_tel" id="telefoneinput" value="{{old('num_tel')}}" value ="{{ $candidato['Telefone'] }}" oninput="this.className = ''">
+                        <input type="text" name="num_tel" id="telefoneinput" value ="{{ $candidato['Telefone'] }}" value="{{old('num_tel')}}"  oninput="this.className = ''">
                         <div class="mensagem-erro" style="width: 100%;"></div>
                         @error('num_tel')
                             <div class="alert alert-danger">{{$message}}</div>
@@ -165,7 +162,7 @@
             <div class="row">
                 <div class="form-group">
 
-                    <input type="text" placeholder="Nome da Escola" name="nome_escola" value ="{{ $candidato['Escola'] }}" oninput="this.className = ''">
+                    <input type="text" placeholder="Nome da Escola" name="nome_escola" value ="{{ $candidato['Escola'] }}" value ="{{old('nome_escola')}}" oninput="this.className = ''">
                     @error('nome_escola')
                         <div class="alert alert-danger">{{$message}}</div>
                     @enderror
@@ -177,14 +174,14 @@
 
                 <div class="col">
                     <div class="form-group">
-                        <input type="text" placeholder="Turno" name="turno" value="{{old('turno')}}" value ="{{ $candidato['Turno'] }}" oninput="this.className = ''">
+                        <input type="text" placeholder="Turno" name="turno"  value ="{{ $candidato['Turno'] }}" value="{{old('turno')}}" oninput="this.className = ''">
                     </div>
                 </div>
 
                 <div class="col">
                     <div class="form-group">
 
-                        <input type="text" placeholder="Número do aluno" id="numeroinput" value ="{{ $candidato['Numero_Aluno'] }}" name="num_aluno" oninput="this.className = ''">
+                        <input type="text" placeholder="Número do aluno" id="numeroinput" value ="{{ $candidato['Numero_Aluno'] }}" value="{{old('num_aluno')}}" name="num_aluno" oninput="this.className = ''">
                         @error('num_aluno')
                             <div class="alert alert-danger">{{$message}}</div>
                         @enderror
@@ -195,7 +192,7 @@
                 <div class="col">
                     <div class="form-group">
 
-                        <input type="text" placeholder="Turma" name="turma_aluno" value ="{{ $candidato['Turma'] }}" oninput="this.className = ''">
+                        <input type="text" placeholder="Turma" name="turma_aluno" value ="{{ $candidato['Turma'] }}" value="{{old('turma_aluno')}}" oninput="this.className = ''">
                         @error('turma_aluno')
                             <div class="alert alert-danger">{{$message}}</div>
                         @enderror
@@ -208,7 +205,7 @@
             <div class="row">
                 <div class=" form-group">
 
-                    <input type="text" placeholder="Número de Processo" id="numeroinput1" name="num_processo" value ="{{ $candidato['Numero_Processo'] }}" oninput="this.className = ''">
+                    <input type="text" placeholder="Número de Processo" id="numeroinput1" name="num_processo" value ="{{ $candidato['Numero_Processo'] }}" value="{{old('num_processo')}}" oninput="this.className = ''">
                     @error('num_processo')
                         <div class="alert alert-danger">{{$message}}</div>
                     @enderror
@@ -218,7 +215,7 @@
 
             <div class="row">
                 <div class=" form-group">
-                    <input type="text" placeholder="Ultimo Ano Letivo" name="ultimo_anoLectivo" value="{{old('ultimo_anoLectivo')}}" value ="{{ $candidato['Ultimo_AnoLectivo'] }}" oninput="this.className = ''">
+                    <input type="text" placeholder="Ultimo Ano Letivo" name="ultimo_anoLectivo" value ="{{ $candidato['Ultimo_AnoLectivo'] }}" value="{{old('ultimo_anoLectivo')}}" oninput="this.className = ''">
                 </div>
                 @error('ultimo_anoLectivo1')
                     <div class="alert alert-danger">{{$message}}</div>
@@ -267,7 +264,7 @@
                 <div class="col">
                     <div class="form-group">
 
-                        <input type="text" placeholder="Nome do Primeiro encarregado" name="nome_enc1" value ="{{ $candidato['Pai'] }}"  oninput="this.className = ''">
+                        <input type="text" placeholder="Nome do Primeiro encarregado" name="nome_enc1" value ="{{ $candidato['Pai'] }}" value="{{ old('nome_enc1') }}"  oninput="this.className = ''">
                         @error('nome_enc1')
                             <div class="alert alert-danger">{{$message}}</div>
                         @enderror
@@ -344,7 +341,7 @@
                 <div class="col">
                     <div class="form-group">
 
-                        <input type="text" placeholder="Nome do Segundo encarregado" value ="{{ $candidato['Mae'] }}" name="nome_enc2" oninput="this.className = ''">
+                        <input type="text" placeholder="Nome do Segundo encarregado" value ="{{ $candidato['Mae'] }}"  value="{{ old('nome_enc2') }}" name="nome_enc2" oninput="this.className = ''">
                         @error('nome_enc2')
                             <div class="alert alert-danger">{{$message}}</div>
                         @enderror
@@ -474,7 +471,7 @@
 
                 </div>
                 <div class="col form-group">
-                    <input type="hidden" name="id" value="{{old('id')}}" value ="{{ $candidato['Id_inscricao'] }}"> {{-- Input para recuperar o id --}}
+                    <input type="hidden" name="id" value ="{{ $candidato['Id_inscricao'] }}"> {{-- Input para recuperar o id --}}
                 </div>
             </div>
         </div>

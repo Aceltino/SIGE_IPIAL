@@ -43,13 +43,13 @@
             <div class="figura-card">
               <div class="count-box">
                 <i class="bi bi-people"></i>
-                <span class="total">472</span>
+                <span class="total">{{$totalinscritos}}</span>
                 <p>INSCRITOS</p>
               </div>
 
               <div class="card-legenda">
                 <ul>
-                  <li>T.I: 200</li>
+                  <li>T.I: 23</li>
                   <li>D.P: 100</li>
                   <li>T.E.I.E: 50</li>
                   <li>E.T: 122</li>
@@ -64,7 +64,7 @@
             <div class="figura-card">
               <div class="count-box">
                 <i class="bi bi-person"></i>
-                <span class="total">572</span>
+                <span class="total">{{$totaladmitidos}}</span>
                 <p>ADMITIDOS</p>
               </div>
               
@@ -85,7 +85,7 @@
             <div class="figura-card">
               <div class="count-box">
                 <i class="bi bi-check2-square"></i>
-                <span class="total">772</span>
+                <span class="total">{{$totalnadmitidos}}</span>
                 <p>NÃO ADMITIDOS</p>
               </div>
               
@@ -106,7 +106,7 @@
             <div class="figura-card">
               <div class="count-box">
                 <i class="bi bi-clipboard"></i>
-                <span class="total">562</span>
+                <span class="total">{{$totalmatriculados}}</span>
                 <p>MATRICULADOS</p>
               </div>
               
@@ -127,7 +127,7 @@
             <div class="figura-card">
               <div class="count-box">
                 <i class="bi bi-arrow-90deg-down"></i>
-                <span class="total">233</span>
+                <span class="total">{{$totalprofessores}}</span>
                 <p>PROFESSORES</p>
               </div>
               
@@ -147,7 +147,7 @@
             <div class="figura-card">
               <div class="count-box">
                 <i class="bi bi-person-check"></i>
-                <span class="total">66</span>
+                <span class="total">{{$totalturmas}}</span>
                 <p>TURMAS</p>
               </div>
               
@@ -167,7 +167,7 @@
             <div class="figura-card">
               <div class="count-box">
                 <i class="bi bi-people"></i>
-                <span class="total">800</span>
+                <span class="total">N</span>
                 <p>VAGAS</p>
               </div>
               
@@ -185,7 +185,7 @@
           <div class="col-lg-3 col-md-6 mt-5">
             <div class="count-box">
               <i class="bi bi-people"></i>
-              <span class="total">4</span>
+              <span class="total">{{$totalcursos}}</span>
               <p>CURSOS</p>
             </div>
           </div>

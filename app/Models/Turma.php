@@ -26,6 +26,11 @@ class Turma extends Model
         return $this->belongsTo(Curso::class, 'curso_id');
     }
 
+    public function beDiscp()
+    {
+        return $this->belongsTo(DisciplinaCurso::class, 'curso_id');
+    }
+
     public function turmaCurso()
     {
         return $this->belongsTo(Curso::class, 'curso_id');
@@ -69,7 +74,8 @@ class Turma extends Model
          * 'disciplina_id': O nome da coluna em ClasseDisciplina que referencia a chave estrangeira para Disciplina.
          */
         #return $this->hasManyThrough(Disciplina::class, ClasseDisciplina::class, 'classe_id', 'classe_id', 'id', 'disciplina_id');
-        return $this->hasManyThrough(Disciplina::class, ClasseDisciplina::class, 'disciplina_id', 'disciplina_id');
+        #return $this->hasManyThrough(Disciplina::class, ClasseDisciplina::class, 'disciplina_id', 'disciplina_id');
+        return $this->belongsTo(ClasseDisciplina::class, 'classe_id');
     }
 
     public function alunos(){
@@ -90,5 +96,11 @@ class Turma extends Model
         return $this->hasMany(AnoTurmaCood::class, 'turmaAno_id');
     }
 
-
+    /*
+     * @author Augusto Kussema <email@email.com>
+     */
+    public function anoTurmaCoord()
+    {
+        return $this->belongsTo(AnoTurmaCood::class, 'turmaAno_id');
+    }
 }
