@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     //Classes das Controllers
+    inicioController,
     AuthController,InscricaoController,ProfessorController,
     AlunoController,MatriculaController,CursoController,
     comunicadosController,AssiduidadeAlunoController,
@@ -29,9 +30,14 @@ Route::get('validar-aluno', [AlunoController::class, 'pegarDadosMatriculados']);
 
 //Rotas inicial do Painel
 
+
+Route::get('/', [inicioController::class, 'inicio'])->name('inicio')->middleware('auth');
+/*
 Route::get('/', function () {
     return view('pagina-inicial');
-})->name('inicio')->middleware('auth');
+})->name('inicio')->middleware('auth');*/
+
+
 
  //Rota final do painel
  Route::get('logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
