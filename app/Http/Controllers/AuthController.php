@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\{
     Auth,Validator,Mail,
     DB,Hash,Session
 };
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 
@@ -22,9 +21,7 @@ class AuthController extends Controller
     //Metodo que retorna o formulario de login
     public function loginForm()
     {
-        $user= User::all();
-
-        if(count($user)==0){
+        if(count(User::all())==0){
             return $this->registrarForm();
         }
         return view('autenticacao.login');
@@ -38,30 +35,28 @@ class AuthController extends Controller
 
     //Metodo de Check de Login
     public function loginCheck(Request $request)
-    {
-
+    {   
         $credencias= [
-            'nome_usuario'=>$request->username,
-            'password'=>$request->password,
+            'nome_usuario' => $request->username,
+            'password' => $request->password,
         ];
 
         if (empty($credencias['nome_usuario']) || empty($credencias['password'])) {
             return redirect()->back()->with('erro_login_001', 'Por favor, insira os dados de acesso');
         }
-        if (!Auth::attempt($credencias,$request->lembrar)) {
+        if (!Auth::attempt($credencias, $request->lembrar)) {
+           
             return redirect()->back()->with('erro_login_002', 'Dados incorretos');
         }
+      
         $user = Auth::user();
-        if(!$user->status_usuario){
+
+        if (!$user->status_usuario) {
             Auth::logout();
-            return redirect()->back()->with('erro_login_003', 'Usuario Bloqueado, Entre em contacto com a instituição');
+            return redirect()->back()->with('erro_login_003', 'Usuario Bloqueado, Entre em contato com a instituição');
         }
-
-        Session::start();
-        $request->session()->regenerate();
-
-        $this->registrarSession($user->usuario_id); //Resgistrar todo inicio de sessão do sistema no Banco de Dados(Active_session)
-
+    
+        $this->registrarSession($user->usuario_id); //Registrar todo início de sessão do sistema no Banco de Dados(Active_session)
         return redirect()->intended('/');
     }
 

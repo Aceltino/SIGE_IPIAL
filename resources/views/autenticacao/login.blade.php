@@ -37,12 +37,22 @@
       <div class="alert alert-danger">
           {{session('erro_sistema_001')}}
       </div>
-   @endif
-   @if(session('sucess_session_finality'))
-    <div class="alert alert-danger">
-        {{session('sucess_session_finality')}}
-    </div>
-  @endif
+    @endif
+    @if(session('sucess_session_finality'))
+      <div class="alert alert-danger">
+          {{session('sucess_session_finality')}}
+      </div>
+    @endif
+    @if(session('bloqueado_brutForce'))
+      <div class="alert alert-danger">
+          {{session('bloqueado_brutForce')}}
+      </div>
+    @endif
+    @if(session('erro_login_004'))
+      <div class="alert alert-danger">
+          {{session('erro_login_004')}}
+      </div>
+    @endif
     
     <form action={{route('loginCheck')}} method="post" class="row g-3 needs-validation" novalidate>
       @csrf
