@@ -17,7 +17,7 @@ class Curso extends Model
         'sigla',
         'area_formacao_id',
         'professor_id',
-        'created_at', 
+        'created_at',
         'updated_at'
     ];
 
@@ -47,7 +47,6 @@ class Curso extends Model
     {
         return $this->belongsToMany(Disciplina::class, 'disciplinas_cursos', 'curso_id', 'disciplina_id');
     }
-
 
 
 }

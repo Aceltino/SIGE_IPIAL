@@ -28,6 +28,11 @@ class AnoTurmaCood extends Model
     }
     public function aluno()
     {
-        return $this->belongsToMany(AnoTurmaCood::class, 'aluno_turma', 'turmaAno_id', 'aluno_id')->withPivot('numero_aluno','situacao');
+        return $this->belongsToMany(Aluno::class, 'aluno_turma', 'turmaAno_id', 'aluno_id')->withPivot('numero_aluno','situacao');
+    }
+
+    public function alunoAno()
+    {
+        return $this->belongsToMany(Aluno::class, 'aluno_turma', 'turmaAno_id', 'aluno_id');
     }
 }

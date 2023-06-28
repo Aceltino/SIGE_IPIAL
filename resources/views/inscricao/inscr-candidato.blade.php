@@ -13,88 +13,82 @@
       <span class="step"></span>
       <span class="step"></span>
     </div>
-
         <div class="tab">
-        @error('nome_completo')
-            <div class="alert alert-danger">{{$message}}</div>
-        @enderror
-        @error('nome_pai_cand')
-            <div class="alert alert-danger">{{$message}}</div>
-        @enderror
-        @error('nome_mae_cand')
-            <div class="alert alert-danger">{{$message}}</div>
-        @enderror
-        @error('naturalidade_cand')
-            <div class="alert alert-danger">{{$message}}</div>
-        @enderror
-        @error('num_tel')
-        <div class="alert alert-danger">{{$message}}</div>
-        @enderror
-        @error('num_bi')
-        <div class="alert alert-danger">{{$message}}</div>
-        @enderror
-        @error('nome_escola')
-        <div class="alert alert-danger">{{$message}}</div>
-        @enderror
-        @error('num_aluno')
-        <div class="alert alert-danger">{{$message}}</div>
-        @enderror
-        @error('turma_aluno')
-        <div class="alert alert-danger">{{$message}}</div>
-        @enderror
-        @error('num_processo')
-        <div class="alert alert-danger">{{$message}}</div>
-        @enderror
-        @error('ultimo_anoLectivo')
-        <div class="alert alert-danger">{{$message}}</div>
-        @enderror
-
-        @if(session()->has('ErroPessoa'))
-        <div class="alert alert-danger">
-        {{session('ErroPessoa')}}
-        </div>
-    @endif
-
-    @if (session()->has('ErroTelefone'))
-    <div class="alert alert-warning">
-        {{ session('ErroTelefone') }}
-    </div>
-    @endif
-
-    @if (session()->has('ErroCurso'))
-    <div class="alert alert-warning">
-        {{ session('ErroCurso') }}
-    </div>
-    @endif
-
-
-        @if(session()->has('ErroCandidato'))
-        <div class="alert alert-danger">
-        {{session('ErroCandidato')}}
-        </div>
-    @endif
-
-        @if(session()->has('Sucesso'))
-        <div class="alert alert-success">
-        {{session('Sucesso')}}
-        </div>
-    @endif
+          <div class="conteudo">
+            @if(session()->has('ErroPessoa'))
+            <div class="alert alert-danger">
+            {{session('ErroPessoa')}}
+            </div>
+             @endif
+    
+            @if (session()->has('ErroTelefone'))
+            <div class="alert alert-warning">
+                {{ session('ErroTelefone') }}
+                <button class="botaofecharerro">
+                  <i class="bi bi-x"></i>
+                </button>
+            </div>
+            @endif
+    
+            @if (session()->has('ErroCurso'))
+            <div class="alert alert-warning">
+                {{ session('ErroCurso') }}
+                <button class="botaofecharerro">
+                  <i class="bi bi-x"></i>
+                </button>
+            </div>
+            @endif
+    
+    
+            @if(session()->has('ErroCandidato'))
+            <div class="alert alert-danger">
+            {{session('ErroCandidato')}}
+            <button class="botaofecharerro">
+              <i class="bi bi-x"></i>
+            </button>
+            </div>
+            @endif
+    
+            @if(session()->has('Sucesso'))
+            <div class="alert alert-success">
+            {{session('Sucesso')}}
+            </div>
+            @endif
+         </div>
       <h2>Introduza os dados pessoais</h2>
 
       <div class="form-group">
         <input type="text" placeholder="Nome Completo" value="{{ old('nome_completo') }}" name="nome_completo" oninput="this.className = ''">
+        @error('nome_completo')
+          <div class="alert alert-danger">
+            {{$message}}
+            <button class="botaofecharerro">
+              <i class="bi bi-x"></i>
+            </button>
+          </div>
+        @enderror
       </div>
 
       <div class="row">
         <div class="col">
           <div class="form-group">
             <input type="text" placeholder="Nome do Pai" value="{{ old('nome_pai_cand') }}" name="nome_pai_cand" oninput="this.className = ''">
+            @error('nome_pai_cand')
+              <div class="alert alert-danger">{{$message}}
+                <button class="botaofecharerro">
+                  <i class="bi bi-x"></i>
+                </button>
+              </div>
+            @enderror
           </div>
         </div>
 
         <div class="col">
           <div class="form-group">
             <input type="text" placeholder="Nome da Mãe" value="{{ old('nome_mae_cand') }}" name="nome_mae_cand" oninput="this.className = ''">
+            @error('nome_mae_cand')
+                <div class="alert alert-danger">{{$message}}</div>
+            @enderror
           </div>
         </div>
       </div>
@@ -110,6 +104,9 @@
         </div>
         <div class="col">
           <input type="text" placeholder="Naturalidade" value="{{ old('naturalidade_cand') }}" name="naturalidade_cand" oninput="this.className = ''">
+          @error('naturalidade_cand')
+            <div class="alert alert-danger">{{$message}}</div>
+          @enderror
         </div>
       </div>
 
@@ -125,6 +122,9 @@
           <div class="form-group">
             <input type="text" style="margin-top: 15px;" placeholder="Número do Bilhete de identidade" id="bi_input" name="num_bi" oninput="this.className = ''" maxlength="14">
             <div id="mensagem1" style="color: red;"></div>
+            @error('num_bi')
+              <div class="alert alert-danger">{{$message}}</div>
+            @enderror
           </div>
         </div>
       </div>
@@ -137,6 +137,9 @@
           <div class=" col aa" style="display: flex; flex-direction: column;">
             <input type="text" value="" id="telefoneinput" placeholder="Telefone"  value="{{ old('num_tel') }}" name="num_tel" oninput="this.className = ''">
             <div class="mensagem-erro" style="width: 100%;"></div>
+            @error('num_tel')
+              <div class="alert alert-danger">{{$message}}</div>
+            @enderror
           </div>
 
         </div>
@@ -149,6 +152,9 @@
       <h2>introduza os dados da escola de providência</h2>
       <div class="form-group">
         <input type="text" placeholder="Nome da escola de providência" value="{{ old('nome_escola') }}" name="nome_escola" oninput="this.className = ''">
+        @error('nome_escola')
+          <div class="alert alert-danger">{{$message}}</div>
+        @enderror
       </div>
 
       <div class="row">
@@ -162,10 +168,16 @@
 
         <div class="form-group col">
           <input id="numeroinput1" type="text" placeholder="Nº de estudante" value="{{ old('num_aluno') }}" name="num_aluno" oninput="this.className = ''">
+          @error('num_aluno')
+          <div class="alert alert-danger">{{$message}}</div>
+          @enderror
         </div>
 
         <div class="form-group col">
           <input type="text" placeholder="Turma" value="{{ old('turma_aluno') }}" name="turma_aluno" oninput="this.className = ''">
+          @error('turma_aluno')
+            <div class="alert alert-danger">{{$message}}</div>
+          @enderror
         </div>
 
       </div>
@@ -173,10 +185,16 @@
       <div class="row">
         <div class="form-group col">
           <input id="numeroinput" type="text" placeholder="Processo nº" value="{{ old('num_processo') }}" name="num_processo" oninput="this.className = ''">
+          @error('num_processo')
+            <div class="alert alert-danger">{{$message}}</div>
+          @enderror
         </div>
 
         <div class="form-group col">
           <input type="text" placeholder="Ano Lectivo" value="{{ old('ultimo_anoLectivo') }}" name="ultimo_anoLectivo" oninput="this.className = ''">
+          @error('ultimo_anoLectivo')
+            <div class="alert alert-danger">{{$message}}</div>
+          @enderror
         </div>
 
       </div>

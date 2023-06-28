@@ -41,9 +41,14 @@ class Turma extends Model
         return $this->belongsTo(Curso::class, 'curso_id', 'curso_id');
     }
 
+    public function turmaProf()
+    {
+        return $this->belongsToMany(Professor_disciplina::class, 'horario', 'turma_id', 'professor_disciplina_id');
+    }
+
     /*
      * @author Augusto Kussema <dev.kussema@gmail.com>
-     * 
+     *
      * @before Não altere em nada
      */
     public function belongClasse()
@@ -55,7 +60,7 @@ class Turma extends Model
     {
         /*
          * @author Augusto Kussema
-         * 
+         *
          * Disciplina::class: O modelo alvo do relacionamento.
          * ClasseDisciplina::class: A tabela intermediária que conecta Turma e Disciplina.
          * 'classe_id': O nome da coluna em ClasseDisciplina que referencia a chave estrangeira para Classe.

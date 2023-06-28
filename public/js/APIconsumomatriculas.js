@@ -12,7 +12,7 @@ axios.get('/api/matriculados')
                 
                 if($.isEmptyObject(turma)){
 
-                  Botao = `<a href="/matricula/registrar-aluno" name="" id="" class="btn btn-success"  role="button">Ativar</a>`;
+                  Botao = `<a href="/matricula/readmitir-aluno/${registro.N_processo}/readmitir" name="" id="" class="btn btn-success"  role="button">Ativar</a>`;
                 } else{
                   Botao = `<a href="/matricula/eliminar/${registro.cod_inscr}" name="" id="" class="btn btn-danger"  role="button">inativar</a>`;
 

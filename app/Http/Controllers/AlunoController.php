@@ -260,6 +260,29 @@ class AlunoController extends Controller
         return $Alunos;
     }
 
+    public static function pegarReprovado($id)
+    {
+        $aluno = Aluno::with('candidato', 'anoturma')
+            ->whereHas('candidato', function ($query) {
+                $query->where('status', 'Matriculado');
+            })
+            ->where('aluno_id', $id)
+            ->first();
+    
+            $alunoReprovado = [
+                'aluno_id' => $aluno->aluno_id,
+                'aluno_status' => $aluno->status,
+                'curso' => $aluno->candidato->cursoAdmitido,
+                'data_nasc' => $aluno->candidato->pessoa->data_nascimento,
+                'nome' => $aluno->candidato->pessoa->nome_completo,
+                'idCurso' => CursoController::pegarIdCurso($aluno->candidato->cursoAdmitido),
+                'classeId' => $aluno->anoturma->first()->turma->classe->classe_id,
+                'nomeTurma' => $aluno->anoturma->first()->turma->nome_turma
+            ];
+    
+        return $alunoReprovado;
+    }
+
     public static function pegarEncarregados($id)
     {
         $pessoas = Aluno::with('encarregado')

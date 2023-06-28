@@ -1087,3 +1087,49 @@ display: none;
   display: flex;
   flex-direction: column;
 }
+
+.alert {
+  position: relative;
+}
+
+.botaofecharerro {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin-right: 30px;
+  cursor: pointer;
+  border: 2px solid rgb(240, 128, 128);
+  width: 50px;
+  height: 50px;
+}
+
+.botaofechasucesso {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin-right: 30px;
+  cursor: pointer;
+  border: 2px solid rgb(170, 233, 146);
+  width: 50px;
+  height: 50px;
+}
+
+.botaofecharerro i {
+  color: rgb(173, 173, 173);
+  font-size: 30px;
+
+}
+
+.botaofechasucesso i {
+  color: rgb(173, 173, 173);
+  font-size: 30px;
+
+}
