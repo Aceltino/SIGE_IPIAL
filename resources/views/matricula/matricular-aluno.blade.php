@@ -110,7 +110,6 @@
                     @error('naturalidade_cand')
                         <div class="alert alert-danger">{{$message}}</div>
                     @enderror
-
                 </div>
             </div>
 

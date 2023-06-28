@@ -430,7 +430,7 @@
         </a>
         <ul id="pauta-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="pauta/pautas">
+            <a href={{route('pauta')}}>
               <i class="bi bi-circle"></i><span>Pautas</span>
             </a>
           </li>
@@ -562,12 +562,12 @@
 
       <!-- /  Nav Pauta-->
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#pauta-nav" data-bs-toggle="collapse" href="#">
+        <a class="nav-link collapsed" data-bs-target="#pauta-nav" data-bs-toggle="collapse" href=>
         <i class="bi bi-calendar3"></i><span>Pauta</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="pauta-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="pauta">
+            <a href={{route('pauta')}}>
               <i class="bi bi-circle"></i><span>Pautas</span>
             </a>
           </li>
@@ -705,7 +705,7 @@
         </a>
         <ul id="pauta-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="pauta/pautas">
+            <a href={{route('pauta')}}>
               <i class="bi bi-circle"></i><span>Pautas</span>
             </a>
           </li>
@@ -851,7 +851,7 @@
         </a>
         <ul id="pauta-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="pauta/pautas">
+            <a href={{route('pauta')}}>
               <i class="bi bi-circle"></i><span>Pautas</span>
             </a>
           </li>
@@ -969,7 +969,7 @@
         </a>
         <ul id="pauta-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="pauta/pautas">
+            <a href={{route('pauta')}}>
               <i class="bi bi-circle"></i><span>Pautas</span>
             </a>
           </li>
