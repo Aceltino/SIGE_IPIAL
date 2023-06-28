@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit93e89d2febddaea9dd9f7e1839217805
+class ComposerStaticInit5d6b96744462d75d754cb2842bc4996b
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -366,8 +366,8 @@ class ComposerStaticInit93e89d2febddaea9dd9f7e1839217805
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -618,6 +618,7 @@ class ComposerStaticInit93e89d2febddaea9dd9f7e1839217805
         'App\\Http\\Controllers\\comunicadosController' => __DIR__ . '/../..' . '/app/Http/Controllers/comunicadosController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
+        'App\\Http\\Middleware\\CheckActiveSession' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckActiveSession.php',
         'App\\Http\\Middleware\\CheckUserCargo' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckUserCargo.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\PreventRequestsDuringMaintenance' => __DIR__ . '/../..' . '/app/Http/Middleware/PreventRequestsDuringMaintenance.php',
@@ -627,7 +628,6 @@ class ComposerStaticInit93e89d2febddaea9dd9f7e1839217805
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
-        'App\\Http\\Middleware\\detectarLogin' => __DIR__ . '/../..' . '/app/Http/Middleware/detectarLogin.php',
         'App\\Http\\Requests\\AnoLectivoRequest' => __DIR__ . '/../..' . '/app/Http/Requests/AnoLectivoRequest.php',
         'App\\Http\\Requests\\InscricaoRequest' => __DIR__ . '/../..' . '/app/Http/Requests/InscricaoRequest.php',
         'App\\Http\\Requests\\InscricaoUpdateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/InscricaoUpdateRequest.php',
@@ -657,7 +657,6 @@ class ComposerStaticInit93e89d2febddaea9dd9f7e1839217805
         'App\\Models\\Nota' => __DIR__ . '/../..' . '/app/Models/Nota.php',
         'App\\Models\\Pessoa' => __DIR__ . '/../..' . '/app/Models/Pessoa.php',
         'App\\Models\\Professor' => __DIR__ . '/../..' . '/app/Models/Professor.php',
-        'App\\Models\\ProfessorDisciplina' => __DIR__ . '/../..' . '/app/Models/ProfessorDisciplina.php',
         'App\\Models\\Professor_disciplina' => __DIR__ . '/../..' . '/app/Models/Professor_disciplina.php',
         'App\\Models\\Trimestre' => __DIR__ . '/../..' . '/app/Models/Trimestre.php',
         'App\\Models\\Turma' => __DIR__ . '/../..' . '/app/Models/Turma.php',
@@ -6653,9 +6652,9 @@ class ComposerStaticInit93e89d2febddaea9dd9f7e1839217805
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit93e89d2febddaea9dd9f7e1839217805::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit93e89d2febddaea9dd9f7e1839217805::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit93e89d2febddaea9dd9f7e1839217805::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit5d6b96744462d75d754cb2842bc4996b::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit5d6b96744462d75d754cb2842bc4996b::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit5d6b96744462d75d754cb2842bc4996b::$classMap;
 
         }, null, ClassLoader::class);
     }
