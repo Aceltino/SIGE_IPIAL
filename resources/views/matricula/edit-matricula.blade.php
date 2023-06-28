@@ -33,7 +33,6 @@
 
                     <div class="col area-input form-group" style="margin-left: 10px;">
                         <label>Idade: </label><input type="text" class="form-control" readonly="true" disabled value="{{ $aluno['idade'] }}">
-
                     </div>
 
                     <div class="col area-input form-group" style="margin-left: 10px;">

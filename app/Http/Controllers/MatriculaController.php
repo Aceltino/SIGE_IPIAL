@@ -41,7 +41,7 @@ class MatriculaController extends Controller
         $encarregado = [];
         for($i = 1; $i <= 3; $i++)
         {
-            $dadosPessoa = [
+            $dadosEnc = [
                 'nome_completo'=> $request['nome_enc' . $i],
                 'num_bi'=> strtoupper($request['num_bi_enc' . $i]),
                 'data_nascimento'=> $request['data_nascimento_enc' . $i],
@@ -49,14 +49,24 @@ class MatriculaController extends Controller
                 'telefone' => $request['telefone' . $i]
             ];
 
-            $consultEncarregado = $this->checkPessoa($dadosPessoa);
+            $consultEncarregado = $this->checkPessoa($dadosEnc);
             if(!empty($consultEncarregado))
             {
                 $encarregado[$i] = $consultEncarregado->pessoa_id;
+                // dd('x');
+                continue;
             }
-            if(!$this->checkPessoaBI($dadosPessoa['num_bi']))
+            // $checkBI = $this->checkPessoaBI($dadosPessoa['num_bi']);
+            // dd($checkBI);
+
+            if($this->checkPessoaBI($dadosEnc['num_bi']))
             {
-                $msg="O número de identificação do ". $i ."º encarregado já está sendo utilizado, confirme todos os seus dados de identificação.";
+                $msg="O número de identificação do ". $i ."º encarregado já está sendo utilizado, confirme todos os dados de identificação dele.";
+                return redirect()->back()->with("ErroEncarregado",$msg);
+            }
+            if($this->checkPessoaTel($dadosEnc['telefone']))
+            {
+                $msg="O telefone do ". $i ."º encarregado já está sendo utilizado, confirme o numero de telefone dele.";
                 return redirect()->back()->with("ErroEncarregado",$msg);
             }
         }
@@ -126,9 +136,11 @@ class MatriculaController extends Controller
 
         for($i = 1; $i <= 3; $i++)
         {
+            // $encarregado[$i] = null;
             $idPessoa = $encarregado[$i];
             if(empty($encarregado[$i]))
             {
+                dd('a');
                 $dadosPessoa = [
                     'nome_completo'=> $request['nome_enc' . $i],
                     'num_bi'=> strtoupper($request['num_bi_enc' . $i]),
@@ -138,7 +150,7 @@ class MatriculaController extends Controller
                 ];    
                 $idPessoa = $this->storePessoa($dadosPessoa);  
             }
-
+dd('x');
             $dadosEncarregado = [
                 'grau_parentensco_enc'=> $request['grau' . $i],
                 'pessoa_id'=> $idPessoa
