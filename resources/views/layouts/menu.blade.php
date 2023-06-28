@@ -6,7 +6,7 @@
       <div class="d-flex justify-content-between">
 
         <div class="d-flex align-items-center" style="background-color: #96abce; padding-left: 30px; border-radius: 10px; padding-right: 100px;">
-          <a href={{route('inicio')}} class="logo d-flex align-items-center">
+          <a href="#" class="logo d-flex align-items-center">
 
             <!--<img src="assets/img/logo.png" alt="">-->
 
