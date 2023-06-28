@@ -52,6 +52,9 @@
             @if(session()->has('Sucesso'))
             <div class="alert alert-success">
             {{session('Sucesso')}}
+            <button class="botaofechasucesso">
+              <i class="bi bi-x"></i>
+            </button>
             </div>
             @endif
          </div>

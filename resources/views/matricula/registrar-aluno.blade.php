@@ -27,7 +27,6 @@
             </div>
 
             <div class="form-group">
-                <label for="curso-select">Curso:</label>
                 <select name="curso" id="curso-select" class="form-select">
                     <option selected disabled>CURSO</option>
                     @foreach($cursos as $curso)
@@ -39,6 +38,7 @@
             <div class="row">
             
                 <div class="form-group col">
+                    <span>Classe</span>
                     <select name="classe" id="classe-select" oninput="this.className = ''" class="form-select">
                         <option selected disabled>Classe</option>
                         @foreach ($classe as $classee)
@@ -48,6 +48,7 @@
                 </div>
             
                 <div class="form-group col">
+                    <span>Turno</span>
                     <select name="opcoes" id="turno-select" oninput="this.className = ''" class="form-select">
                         <option selected disabled>Turno</option>
                         <option value="Manhã">Manhã</option>
@@ -57,7 +58,8 @@
                 </div>
             
                 <div class="col">
-                    <input id="vagas-input" class="form-control" type="text" value="0" readonly>
+                    <span>Nº Vagas</span>
+                    <input id="vagas-input" class="form-control" type="text" value="Vagas 0" readonly>
                 </div>
             </div>
         </div>
@@ -117,7 +119,7 @@
 
                 <div class="col-lg-4 d-flex gap-1 justify-content-center align-items-center">
                     <span style="color: #777;">+244</span>
-                    <input type="text" name="" placeholder="Telefone" oninput="this.className = ''"><i class="bi bi-plus-circle" style=" font-size: 30px; cursor: pointer;"></i> 
+                    <input type="text" name="" placeholder="Telefone" oninput="this.className = ''">
                 </div>
             </div>
         </div> 
@@ -153,7 +155,7 @@
 
                 <div class="col">
                     <div class="form-group">
-                        <input type="text" placeholder="Turma" oninput="this.className = ''">
+                        <input type="text" placeholder="turno" oninput="this.className = ''">
                     </div>
                 </div>
             </div>
@@ -347,23 +349,23 @@
     <script>
         const cursoSelect = document.getElementById('curso-select');
         const classeSelect = document.getElementById('classe-select');
-        const turmaSelect = document.getElementById('turno-select');
+        const turnoSelect = document.getElementById('turno-select');
         const vagasInput = document.getElementById('vagas-input');
     
         cursoSelect.addEventListener('change', updateVagasInput);
         classeSelect.addEventListener('change', updateVagasInput);
-        turmaSelect.addEventListener('change', updateVagasInput);
+        turnoSelect.addEventListener('change', updateVagasInput);
     
         function updateVagasInput() {
             const cursoId = cursoSelect.value;
             const classeId = classeSelect.value;
-            const turma = turmaSelect.value;
+            const turno = turnoSelect.value;
             const vagas = @json($vagas);
     
             let totalVagas = 0;
     
             for (let i = 0; i < vagas.length; i++) {
-                if (vagas[i].cursoId == cursoId && vagas[i].classeId == classeId && vagas[i].turma === turma) {
+                if (vagas[i].cursoId == cursoId && vagas[i].classeId == classeId && vagas[i].turno === turno) {
                     totalVagas = vagas[i].totalVagas;
                     break;
                 }
