@@ -52,6 +52,9 @@
             @if(session()->has('Sucesso'))
             <div class="alert alert-success">
             {{session('Sucesso')}}
+            <button class="botaofechasucesso">
+              <i class="bi bi-x"></i>
+            </button>
             </div>
             @endif
          </div>
@@ -120,7 +123,7 @@
 
         <div class="col">
           <div class="form-group">
-            <input type="text" style="margin-top: 15px;" placeholder="Número do Bilhete de identidade" id="bi_input" name="num_bi" oninput="this.className = ''" maxlength="14">
+            <input type="text" style="margin-top: 15px;" placeholder="Número do Bilhete de identidade" id="bi_input" name="num_bi" oninput="this.className = ''" minlength="14" maxlength="14">
             <div id="mensagem1" style="color: red;"></div>
             @error('num_bi')
               <div class="alert alert-danger">{{$message}}</div>
