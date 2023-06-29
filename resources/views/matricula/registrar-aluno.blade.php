@@ -59,7 +59,7 @@
             
                 <div class="col">
                     <span>Nº Vagas</span>
-                    <input id="vagas-input" class="form-control" type="text" value="Vagas 0" readonly>
+                    <input id="vagas-input" class="form-control" type="text" value="Vagas 0" readonly disabled>
                 </div>
             </div>
         </div>
