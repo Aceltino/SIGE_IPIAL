@@ -7,5 +7,10 @@ use Illuminate\Http\Request;
 
 class TurmaController extends Controller
 {
-    //
+    public function createTurma()
+    {
+        $vagas = AlunoTurmaController::pegarVagasTurno();
+        dd($vagas);
+        return view('turma.cri-turma', compact('vagas'));
+    }
 }

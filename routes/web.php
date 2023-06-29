@@ -11,6 +11,7 @@ use App\Http\Controllers\{
     PerfilUserController,ProcessoController,
     DisciplinasController, AdmissaoController,
     AlunoTurmaController,
+    TurmaController,
 };
 
 /*
@@ -25,7 +26,7 @@ use App\Http\Controllers\{
 */
 
 // Rota apenas de teste... Não apague -> ACELTINO
-    Route::get('validar-aluno', [AlunoTurmaController::class, 'situacaoAluno']);
+    Route::get('validar-aluno', [AlunoTurmaController::class, 'pegarVagasTurno']);
 // Route::get('validar-aluno', [AlunoController::class, 'situacaoAluno']);
 
 
@@ -201,9 +202,8 @@ Route::prefix('professor')->middleware(['auth','active.session','checkcargo'])->
 Route::prefix('turma')->middleware(['auth','active.session','checkcargo'])->group(function(){
 
     /* Criar turma*/
-    Route::get('criar-turma', function () {
-        return view('turma/cri-turma');
-    });
+    Route::get('criar-turma', [TurmaController::class, 'createTurma'])->name('turma-create');
+
 
     /*Trumas */
     Route::get('turmas', function () {

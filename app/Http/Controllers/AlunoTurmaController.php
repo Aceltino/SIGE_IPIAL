@@ -341,16 +341,15 @@ class AlunoTurmaController extends Controller
             }
             return true;
     }
-
-
-    public static function pegarVagas()
+    public static function pegarVagas() // Com base a classe, curso e turno...
     {
         $turmas = AnoTurmaCood::with('turma', 'ano_lectivo')
             ->get();
 
         $vagas = [];
 
-        foreach ($turmas as $turmaA) {
+        foreach ($turmas as $turmaA) 
+        {
             $curso = $turmaA->turma->curso->nome_curso;
             $cursoId = $turmaA->turma->curso->curso_id;
             $classe = $turmaA->turma->classe->classe;
@@ -383,5 +382,38 @@ class AlunoTurmaController extends Controller
         return array_values($vagas);
     }
 
+    public static function pegarVagasTurno() // Com base turno...
+    {
+        $turmas = AnoTurmaCood::with('turma', 'ano_lectivo')
+        ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
+        ->get();
+
+        $vagas = [];
+
+        foreach ($turmas as $turmaA) 
+        {
+            $turno = $turmaA->turma->turno->nome_turno;
+            $turnoId = $turmaA->turma->turno->turno_id;
+            $anoLectivo = $turmaA->ano_lectivo->ano_lectivo;
+            $anoId = $turmaA->ano_lectivo->ano_lectivo_id;
+            $ano_numSala = $turmaA->ano_lectivo->num_sala_escola;
+
+            $chave = $turno . '-' . $anoLectivo;
+
+            if (!isset($vagas[$chave])) 
+            {
+                $vagas[$chave] = [
+                    'turno' => $turno,
+                    'turnoId' => $turnoId,
+                    'anoLectivo' => $anoLectivo,
+                    'anoId' => $anoId,
+                    'turmasRestantes' => $ano_numSala
+                ];
+            }
+    
+            $vagas[$chave]['turmasRestantes']--;
+        }
+        return array_values($vagas);
+    }
 
 }
