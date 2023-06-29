@@ -16,6 +16,21 @@
 
         <div class="tab">     
 
+        @if(session()->has('Sucesso'))
+    <div class="alert alert-success no-print">
+    {{session('Sucesso')}}
+    </div>
+    @endif
+    @if(session()->has('ErroPessoa'))
+    <div class="alert alert-danger no-print">
+    {{session('ErroPessoa')}}
+    </div>
+    @endif
+    @if(session()->has('ErroEncarregado'))
+    <div class="alert alert-danger no-print">
+    {{session('ErroEncarregado')}}
+    </div>
+    @endif
             <div class="row" >
                 <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
 

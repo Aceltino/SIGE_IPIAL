@@ -301,7 +301,7 @@ class MatriculaController extends Controller
 
     public function registrarStore(RegistrarRequest $input){
         $request = $input->validated(); // Inputs validadas
-
+        // dd($request);
         $encarregado = [];
         for($i = 1; $i <= 3; $i++)
         {
@@ -361,22 +361,23 @@ class MatriculaController extends Controller
         if(!$idEscola)
         {
             $msg="Lamentamos! Certifique de que introduziu os dados correctos ou tente mais tarde...";
-            return redirect()->back()->with("ErroCadastro",$msg);
+            return redirect()->back()->with("ErroEncarregado",$msg);
         }
 
         $idAnolectivo = AnoLectivoController::pegarIdAnoLectivo();
         if(!$idAnolectivo)
         {
             $msg="Lamentamos! Dados não cadastrado, tente este processo mais tarde...";
-            return redirect()->back()->with("ErroCadastro",$msg);
+            return redirect()->back()->with("ErroEncarregado",$msg);
         }
 
+        $nomeCurso = CursoController::pegarNome(intval($request['curso_escolhido'])); 
         $dadosCandidato=[
             'nome_pai_cand'=>$request['nome_pai_cand'],
             'nome_mae_cand'=>$request['nome_mae_cand'],
             'naturalidade_cand'=>$request['naturalidade_cand'],
             'status' => 'Matriculado',
-            'cursoAdmitido' => $request['curso_escolhido'],
+            'cursoAdmitido' => $nomeCurso,
             'pessoa_id' => $idPessoa,
             'ano_lectivo_id' => $idAnolectivo,
             'escola_proveniencia_id' => $idEscola
@@ -385,11 +386,11 @@ class MatriculaController extends Controller
         if(!$candidato)
         {
             $msg="Lamentamos! Dados não cadastrado, tente este processo mais tarde...";
-            return redirect()->back()->with("ErroCadastro",$msg);
+            return redirect()->back()->with("ErroEncarregado",$msg);
         }
         $pessoa_id =$candidato->pessoa_id;
 
-        $curso_id = CursoController::pegarIdCurso($request['curso_escolhido']);
+        $curso_id = intval($request['curso_escolhido']);
         //dd($curso_id);
         $dadosAluno=[
             'curso_id'=>$curso_id,
@@ -401,7 +402,7 @@ class MatriculaController extends Controller
         if(!$alunoId)
         {
             $msg="Lamentamos! Aluno não registrado, tente este processo mais tarde...";
-            return redirect()->back()->with("ErroCadastro",$msg);
+            return redirect()->back()->with("ErroEncarregado",$msg);
         }
 
         for($i = 1; $i <= 3; $i++)
@@ -413,6 +414,11 @@ class MatriculaController extends Controller
                     $idPessoa = $encarregado[$i];
                     goto cadEncarregado;
                 }
+                if($this->checkPessoaBI($request['num_bi_enc' . $i]))
+            {
+                $msg="O número de identificação do ". $i ."º encarregado já está sendo utilizado, confirme todos os dados de identificação dele.";
+                return redirect()->back()->with("ErroEncarregado",$msg);
+            }
                 $dadosPessoa = [
                     'nome_completo'=> $request['nome_enc' . $i],
                     'num_bi'=> strtoupper($request['num_bi_enc' . $i]),
@@ -462,8 +468,17 @@ class MatriculaController extends Controller
             return redirect()->back()->with("ErroPessoa",$msg);
         }
 
-        $alunoTransferido = AlunoController::alunoTransferido($alunoId);
+        $dadosAlunoTurma =
+        [
+            'aluno_id'=> $alunoId,
+            'classe_id'=> intval($request['classe_escolhido']),
+            'turno_id'=> TurnoController::pegarIdTurno($request['turno_escolhido']),
+            'curso_id'=>$curso_id
+        ];
 
+        AlunoTurmaController::alunoTransferido($dadosAlunoTurma);
+        $msg = "Aluno cadastrado com sucesso!";
+        return Redirect::route('registrar-view')->with("Sucesso", $msg);
     }
 
 }

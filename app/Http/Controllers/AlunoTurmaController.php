@@ -139,25 +139,23 @@ class AlunoTurmaController extends Controller
         return $Turmas;
     }
 
-    public static function pegarTurma() //Pegar turma para integrar aluno transferido
+    public static function pegarTurma($curso, $classe, $turno) //Pegar turma para integrar aluno transferido
     {
         $turma = AnoTurmaCood::with('turma','ano_lectivo')
         ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
-        ->whereHas('turma', function ($query) {
-            $query->where('curso_id', 1);
-            $query->where('classe_id', 1);
-            $query->where('turno_id', 1);
+        ->whereHas('turma', function ($query) use($curso, $classe, $turno ) {
+            $query->where('curso_id', $curso);
+            $query->where('classe_id', $classe);
+            $query->where('turno_id', $turno);
         })
         ->where('num_vagas', '>', 0)
         ->first();
 // dd($turmas);
         $turmaEncontrada = [
-            'turma' => $turma->turma->nome_turma,
             'TurmaAno_id' => $turma->turmaAno_id,
             'num_vaga' => $turma->num_vagas
 ];
     
-        dd($turmaEncontrada);
         return $turmaEncontrada;
     }
 
@@ -368,6 +366,7 @@ class AlunoTurmaController extends Controller
     public static function pegarVagas() // Com base a classe, curso e turno...
     {
         $turmas = AnoTurmaCood::with('turma', 'ano_lectivo')
+            ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
             ->get();
 
         $vagas = [];
@@ -442,12 +441,7 @@ class AlunoTurmaController extends Controller
 
     public static function alunoTransferido($Aluno) // Função a ser chamada na reabertura do ano lectivo 11ª >
     {
-
-        $turma = AlunoTurmaController::pegarTurma();
-        $aluno[] = [
-            'turma' => $turma['TurmaAno_id'],
-            'aluno' => $Aluno['aluno_id'],
-            ];
+            $turma = AlunoTurmaController::pegarTurma($Aluno['curso_id'], $Aluno['classe_id'],$Aluno['turno_id']);
 
             $vaga = $turma['num_vaga'] - 1;
             $vagaUpdate = [
@@ -455,15 +449,15 @@ class AlunoTurmaController extends Controller
             'vaga' => $vaga
             ];
             AlunoTurmaController::atualizarVaga($vagaUpdate);
+            $qtdAlunos = AlunoTurmaController::quantidadeTurma($turma['TurmaAno_id']);
 
-            $qtdAlunos = AlunoTurmaController::quantidadeTurma($aluno['turma']);
-
-            $alunoA = Aluno::find($aluno['aluno']);
-            $alunoA->Anoturma()->attach($aluno['turma'],[
-                'numero_aluno' => $qtdAlunos + 1
+            $alunoA = Aluno::find($Aluno['aluno_id']);
+            $alunoA->Anoturma()->attach($turma['TurmaAno_id'],[
+                'numero_aluno' => $qtdAlunos + 1,
+                'situacao' => 'Transferido'
             ]);
 
-            return true;
+            return $alunoA;
     }
 
 }
