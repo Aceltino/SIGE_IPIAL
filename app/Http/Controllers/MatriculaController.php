@@ -237,11 +237,15 @@ class MatriculaController extends Controller
 
     public function readmitirEdit($id)
     {
-        $aluno = AlunoController::pegarDadosMatriculado($id);
-
-        return view('matricula.readmitir-aluno',[
-            'aluno' => $aluno[0]
-        ]);
+        $aluno = AlunoController::pegarReprovado($id);
+        $alunoTurma = AlunoTurmaController::alunoNAdmtido($aluno);
+        
+        if($alunoTurma !== true)
+        {
+            return redirect()->back()->with("ErroMatricula", $alunoTurma);
+        }
+            $msg = "O aluno foi readmitido com sucesso, consulte por ele!";
+            return Redirect::route('Matriculas')->with("Sucesso", $msg);
     }
 
     public function readmitirUpdate($id)
@@ -258,6 +262,19 @@ class MatriculaController extends Controller
         $candidato = Candidato::find($id);
         $this->deletePessoa($candidato->pessoa_id);
         return redirect()->route('Matriculas')->with('success', 'Aluno excluído com sucesso.');
+    }
+
+    public function registrarView()
+    {
+        $vagas = AlunoTurmaController::pegarVagas();
+        dd($vagas);
+        $cursos = Curso::all();
+        return view('matricula.registrar-aluno', compact('cursos'));
+    }
+
+    public function registrarStore(){
+        $cursos = Curso::all();
+        return view('matricula.registrar-aluno', compact('cursos'));
     }
 
 }

@@ -9,7 +9,7 @@ class Professor_disciplina extends Model
 {
     use HasFactory;
     protected $table = 'professor_disciplina';
-    protected $primaryKey = 'professor_disciplina_id';
+    protected $primaryKey = 'disc_professor_id';
 
     public function turma(){
         return $this->hasMany(Turma::class, 'turma_id');
@@ -22,6 +22,11 @@ class Professor_disciplina extends Model
     }
     public function horario(){
         return $this->hasMany(Horario::class, 'disc_professor_id');
+    }
+
+    public function turmaProf()
+    {
+        return $this->belongsToMany(Turma::class, 'horario', 'disc_professor_id', 'turma_id');
     }
 
 }

@@ -9,15 +9,15 @@ use App\Traits\AvaliacaoTrait;
 use App\Models\Trimestre;
 use App\Models\Aluno;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\AnoTurmaCood;
 
 class AvaliacaoAlunoController extends Controller
 {
     public function index()
     {
         $user = Auth::user();
+        //dd($user);
         $professor = AvaliacaoTrait::pegarProfessor($user);
-
         $inc = 0;
         for ($i = 0; $i < count($professor); $i++) {
             $disciplina_id[$i] = $professor[$i]['disciplina_id'];
@@ -39,15 +39,26 @@ class AvaliacaoAlunoController extends Controller
                 if(!in_array($turma, $turmas[$i])){
                     $turmas[$i][$j] = $turma;
                 }
-
             }
         }
-        //dd($nome_turma);
+
+        $incremento = 0;
+        for ($i = 0; $i < count($professor); $i++) {
+            for ($j = 0; $j < (count($professor[$i]) - 2); $j++) {
+                if ($incremento === 0) {
+                    $cursos[$incremento] = $professor[$i][$j]['nome_curso'];
+                    $incremento++;
+                }
+                if (!in_array($professor[$i][$j]['nome_curso'], $cursos)) {
+                    $cursos[$incremento] = $professor[$i][$j]['nome_curso'];
+                    $incremento++;
+                }
+            }
+        }
+
         $aluno = AvaliacaoTrait::pegarNotaAluno($disciplina_id, $turmas);
 
-        //dd($aluno);
-
-        return view('avaliac-aluno/avaliacoes-aluno', compact(['aluno', 'nome_disciplina', 'nome_turma']));
+        return view('avaliac-aluno/avaliacoes-aluno', compact(['aluno', 'nome_disciplina', 'nome_turma', 'cursos']));
     }
 
     public function indexUpdate($id_aluno, $id_disciplina){
@@ -56,7 +67,6 @@ class AvaliacaoAlunoController extends Controller
         ->where('aluno_id', $id_aluno)
         ->where('disciplina_id', $id_disciplina)
         ->where('trimestre_id', $trimestre[0]->trimestre_id)->get();
-        //dd($notas[0]);
         if(count($notas) < 1){
             return redirect()->back()->with('erro', "Nenhuma avaliação encontrada!");
         }
@@ -66,7 +76,8 @@ class AvaliacaoAlunoController extends Controller
 
     public function store(Request $request, $disciplina_id)
     {
-        if(!$request->ac && !$request->npp && !$request->npt && !$request->exame && !$request->exame_recurso){
+        //dd($request);
+        if($request->ac == null && $request->npp == null && $request->npt == null && $request->exame == null && $request->exame_recurso == null){
             return redirect()->back();
         }
         $trimestre = Trimestre::where('status', 1)->get();
