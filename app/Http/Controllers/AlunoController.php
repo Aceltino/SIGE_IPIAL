@@ -298,5 +298,24 @@ class AlunoController extends Controller
         }
         return($alunos);
     }
+
+    public static function alunoTransferido($id) 
+    {
+        $aluno = Aluno::with('candidato')
+        ->where('aluno_id', $id )
+        ->first();
+
+        $Aluno = [];
+            $Aluno[] =
+            [
+                'aluno_id' => $aluno->aluno_id,
+                'curso' => $aluno->candidato->cursoAdmitido,
+                'data_nasc' => $aluno->candidato->pessoa->data_nascimento,
+                'nome' => $aluno->candidato->pessoa->nome_completo,
+                'idCurso' => CursoController::pegarIdCurso($aluno->candidato->cursoAdmitido),
+            ];
+            dd($Aluno);
+        return $Aluno;
+    }
 //
 }

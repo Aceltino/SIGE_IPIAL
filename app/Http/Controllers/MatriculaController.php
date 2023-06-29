@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MatriculaRequest;
+use App\Http\Requests\MatriculaupdateRequest;
+use App\Http\Requests\RegistrarRequest;
 // use App\Http\Requests\MatriculaStoreRequest;
 use Illuminate\Http\Request;
 use App\Models\{
@@ -206,8 +208,10 @@ class MatriculaController extends Controller
         ]);
     }
 
-    public function update(Request $request)
+    public function update(MatriculaupdateRequest $input)
     {
+        $request = $input->validated(); // Inputs validadas
+
         $candidato = Candidato::find($request['id']);
         $pessoa_id = $candidato->pessoa_id;
         $dadosPessoa = [
@@ -295,9 +299,171 @@ class MatriculaController extends Controller
         return view('matricula.registrar-aluno', compact('cursos','vagas', 'classe'));
     }
 
-    public function registrarStore(){
-        $cursos = Curso::all();
-        return view('matricula.registrar-aluno', compact('cursos'));
+    public function registrarStore(RegistrarRequest $input){
+        $request = $input->validated(); // Inputs validadas
+
+        $encarregado = [];
+        for($i = 1; $i <= 3; $i++)
+        {
+            $dadosEnc = [
+                'nome_completo'=> $request['nome_enc' . $i],
+                'num_bi'=> strtoupper($request['num_bi_enc' . $i]),
+                'data_nascimento'=> $request['data_nascimento_enc' . $i],
+                'genero'=> $request['genero'. $i],
+                'telefone' => $request['telefone' . $i]
+            ];
+
+            $consultEncarregado = $this->checkPessoa($dadosEnc);
+            if(!empty($consultEncarregado))
+            {
+                $encarregado[$i] = $consultEncarregado->pessoa_id;
+                continue;
+            }
+            // $checkBI = $this->checkPessoaBI($dadosPessoa['num_bi']);
+            // dd($checkBI);
+
+            if($this->checkPessoaBI($dadosEnc['num_bi']))
+            {
+                $msg="O número de identificação do ". $i ."º encarregado já está sendo utilizado, confirme todos os dados de identificação dele.";
+                return redirect()->back()->with("ErroEncarregado",$msg);
+            }
+            if($this->checkPessoaTel($dadosEnc['telefone']))
+            {
+                $msg="O telefone do ". $i ."º encarregado já está sendo utilizado, confirme o numero de telefone dele.";
+                return redirect()->back()->with("ErroEncarregado",$msg);
+            }
+        }
+
+        $dadosPessoa = [
+            'nome_completo'=> $request['nome_completo'],
+            'num_bi'=> strtoupper($request['num_bi']),
+            'data_nascimento'=> $request['data_nascimento'],
+            'genero'=> $request['genero'],
+            'telefone' => $request['num_tel']
+        ];
+
+        $idPessoa = $this->storePessoa($dadosPessoa);
+        if(!$idPessoa)
+        {
+            $msg="Fique atento nos dados de identifcação, este candidato já está inscrito!";
+            return redirect()->back()->with("ErroPessoa",$msg);
+        }
+
+        $dadosEscola = [
+            'nome_escola'=>$request['nome_escola'],
+            'turno'=>$request['turno'],
+            'num_processo'=>$request['num_processo'],
+            'num_aluno'=>$request['num_aluno'],
+            'ultimo_anoLectivo'=>$request['ultimo_anoLectivo'],
+            'turma_aluno' =>$request['turma_aluno'],
+        ];
+        $idEscola = EscolaController::storeEscola($dadosEscola);
+        if(!$idEscola)
+        {
+            $msg="Lamentamos! Certifique de que introduziu os dados correctos ou tente mais tarde...";
+            return redirect()->back()->with("ErroCadastro",$msg);
+        }
+
+        $idAnolectivo = AnoLectivoController::pegarIdAnoLectivo();
+        if(!$idAnolectivo)
+        {
+            $msg="Lamentamos! Dados não cadastrado, tente este processo mais tarde...";
+            return redirect()->back()->with("ErroCadastro",$msg);
+        }
+
+        $dadosCandidato=[
+            'nome_pai_cand'=>$request['nome_pai_cand'],
+            'nome_mae_cand'=>$request['nome_mae_cand'],
+            'naturalidade_cand'=>$request['naturalidade_cand'],
+            'status' => 'Matriculado',
+            'cursoAdmitido' => $request['curso_escolhido'],
+            'pessoa_id' => $idPessoa,
+            'ano_lectivo_id' => $idAnolectivo,
+            'escola_proveniencia_id' => $idEscola
+        ];
+        $candidato = CandidatoController::store($dadosCandidato);
+        if(!$candidato)
+        {
+            $msg="Lamentamos! Dados não cadastrado, tente este processo mais tarde...";
+            return redirect()->back()->with("ErroCadastro",$msg);
+        }
+        $pessoa_id =$candidato->pessoa_id;
+
+        $curso_id = CursoController::pegarIdCurso($request['curso_escolhido']);
+        //dd($curso_id);
+        $dadosAluno=[
+            'curso_id'=>$curso_id,
+            'status'=> 1,
+            'candidato_id'=>$candidato->candidato_id
+        ];
+        $alunoId = AlunoController::store($dadosAluno);
+
+        if(!$alunoId)
+        {
+            $msg="Lamentamos! Aluno não registrado, tente este processo mais tarde...";
+            return redirect()->back()->with("ErroCadastro",$msg);
+        }
+
+        for($i = 1; $i <= 3; $i++)
+        {
+            // $encarregado[$i] = null;
+            
+                if(!empty($encarregado[$i]))
+                {
+                    $idPessoa = $encarregado[$i];
+                    goto cadEncarregado;
+                }
+                $dadosPessoa = [
+                    'nome_completo'=> $request['nome_enc' . $i],
+                    'num_bi'=> strtoupper($request['num_bi_enc' . $i]),
+                    'data_nascimento'=> $request['data_nascimento_enc' . $i],
+                    'genero'=> $request['genero'. $i],
+                    'telefone' => $request['telefone' . $i]
+                ];    
+                $idPessoa = $this->storePessoa($dadosPessoa);  
+                cadEncarregado:
+
+            $dadosEncarregado = [
+                'grau_parentensco_enc'=> $request['grau' . $i],
+                'pessoa_id'=> $idPessoa
+            ];
+            
+            $idEncarregado = EncarregadoController::storeEncarregado($dadosEncarregado);
+            $id[$i] = $idEncarregado;
+        }
+
+        $alunoEncarregado = [
+            'encarregado' => $id,
+            'aluno_id' => $alunoId
+        ];
+        $alunoEncs = AlunoEncarregadoController::store($alunoEncarregado);
+        if(!$alunoEncs)
+        {
+            $msg="Lamentamos! Aluno não registrado, tente este processo mais tarde...";
+            return redirect()->back()->with("ErroPessoa",$msg);
+        }
+
+        $posicao = 0; // posição do caractere desejado(Onde começa a contagem do caracter)
+        $abreNome = substr($request['nome_completo'], $posicao,2);
+        $abreSobreNome = substr($request['nome_enc1'], $posicao,2);
+
+        $dadosUser=[
+            'nome_usuario'=>$abreNome.count(User::all()).$abreSobreNome,
+            'email'=>$request['email'],
+            'password'=>bcrypt($request['num_tel']),
+            'cargo_usuario'=>'Aluno',
+            'status_usuario'=>1,
+            'pessoa_id'=>$pessoa_id,
+        ];
+        $user = UserController::store($dadosUser);
+        if(!$user)
+        {
+            $msg="Lamentamos! Aluno não registrado, tente este processo mais tarde...";
+            return redirect()->back()->with("ErroPessoa",$msg);
+        }
+
+        $alunoTransferido = AlunoController::alunoTransferido($alunoId);
+
     }
 
 }

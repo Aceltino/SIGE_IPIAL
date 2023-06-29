@@ -139,6 +139,28 @@ class AlunoTurmaController extends Controller
         return $Turmas;
     }
 
+    public static function pegarTurma() //Pegar turma para integrar aluno transferido
+    {
+        $turma = AnoTurmaCood::with('turma','ano_lectivo')
+        ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
+        ->whereHas('turma', function ($query) {
+            $query->where('curso_id', 1);
+            $query->where('classe_id', 1);
+            $query->where('turno_id', 1);
+        })
+        ->where('num_vagas', '>', 0)
+        ->first();
+// dd($turmas);
+        $turmaEncontrada = [
+            'turma' => $turma->turma->nome_turma,
+            'TurmaAno_id' => $turma->turmaAno_id,
+            'num_vaga' => $turma->num_vagas
+];
+    
+        dd($turmaEncontrada);
+        return $turmaEncontrada;
+    }
+
     public static function quantidadeTurma($turma) //Pegar turmas 10ª Classe deste ano lectivo
     {
         $turmas = AlunoTurma::all()
@@ -341,6 +363,8 @@ class AlunoTurmaController extends Controller
             }
             return true;
     }
+
+
     public static function pegarVagas() // Com base a classe, curso e turno...
     {
         $turmas = AnoTurmaCood::with('turma', 'ano_lectivo')
@@ -414,6 +438,32 @@ class AlunoTurmaController extends Controller
             $vagas[$chave]['turmasRestantes']--;
         }
         return array_values($vagas);
+    }
+
+    public static function alunoTransferido($Aluno) // Função a ser chamada na reabertura do ano lectivo 11ª >
+    {
+
+        $turma = AlunoTurmaController::pegarTurma();
+        $aluno[] = [
+            'turma' => $turma['TurmaAno_id'],
+            'aluno' => $Aluno['aluno_id'],
+            ];
+
+            $vaga = $turma['num_vaga'] - 1;
+            $vagaUpdate = [
+            'id' => $turma['TurmaAno_id'],
+            'vaga' => $vaga
+            ];
+            AlunoTurmaController::atualizarVaga($vagaUpdate);
+
+            $qtdAlunos = AlunoTurmaController::quantidadeTurma($aluno['turma']);
+
+            $alunoA = Aluno::find($aluno['aluno']);
+            $alunoA->Anoturma()->attach($aluno['turma'],[
+                'numero_aluno' => $qtdAlunos + 1
+            ]);
+
+            return true;
     }
 
 }
