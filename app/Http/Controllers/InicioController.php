@@ -103,19 +103,30 @@ class inicioController extends Controller
 
         //          #Cargos do usuario
         //Pegando os usuarios pelos seus cargos
-        $usCargos = User::all();
+//        $usCargos = User::all();
+//        $totalUs = User::all()->count();
         $totalUs = User::all()->count();
+        $usCargos = User::select([
+            DB::raw('cargo_usuario as cargo'),
+            DB::raw('COUNT(*) as totalc')
+        ])
+        ->groupBY('cargo')
+        ->orderBy('cargo', 'asc')
+        ->get();
 
         //Percorrendo cada posicao 
         foreach($usCargos as $usCargo){
-            $nomeCargo[] = "'".$usCargo->cargo_usuario."'";
-            $totalCargo[] = User::where('cargo_usuario', $usCargo->cargo_usuario)->count();
+            $nomeCargo[] = "'".$usCargo->cargo."'";
+            $totalCargo[] = $usCargo->totalc;
+      /*      $nomeCargo[] = "'".$usCargo->cargo_usuario."'";
+            $totalCargo[] = User::where('cargo_usuario', $usCargo->cargo_usuario)->count();*/
         }
 
         //Variaveis necessarias para o grafico
         $cargoNome = implode(',', $nomeCargo);
         $cargoTotal = implode(',', $totalCargo); 
 
+        //dd($usCargos);
      //   return view('pagina-inicial', compact('alunoAno', 'alunoTotal'));
 
         return view('pagina-inicial', compact('totalinscritos', 'totaladmitidos', 'totalnadmitidos', 'totalmatriculados', 'totalprofessores', 'totalturmas', 'totalcursos', 'totalUs', 'titulo', 'alunoAno', 'alunoTotal', 'cargoNome', 'cargoTotal'));
