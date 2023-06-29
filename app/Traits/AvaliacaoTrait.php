@@ -177,6 +177,58 @@ trait AvaliacaoTrait
         $ano_lectivo = self::pegarAnoLectivo();
         $ano_turma = AnoTurmaCood::where('turma_id', $turma_id)
         ->where('ano_lectivo_id', $ano_lectivo[0]->ano_lectivo_id)->get();
+        //dd($ano_turma);
         return $ano_turma[0]->turmaAno_id;
+
     }
+
+    public static function pegarAdmin(){
+        $ano_lectivo = self::pegarAnoLectivo();
+        $prof_disc = Professor_disciplina::with('turmaProf.curso', 'disciplina')
+        ->where('ano_lectivo_id', $ano_lectivo[0]->ano_lectivo_id)
+        ->get();
+        for ($i = 0; $i < count($prof_disc); $i++) {
+            $dados[$i] = [
+                'nome_disciplina' =>  $prof_disc[$i]->disciplina->nome_disciplina,
+                'disciplina_id' => $prof_disc[$i]->disciplina->disciplina_id,
+            ];
+          for ($j = 0; $j < count($prof_disc[$i]->turmaProf); $j++) {
+            $dados[$i][$j] = [
+                'turma_id' => $prof_disc[$i]->turmaProf[$j]->turma_id,
+                'nome_turma' => $prof_disc[$i]->turmaProf[$j]->nome_turma,
+                'curso_id' => $prof_disc[$i]->turmaProf[$j]->curso->curso_id,
+                'nome_curso' => $prof_disc[$i]->turmaProf[$j]->curso->nome_curso,
+            ];
+          }
+        }
+        return $dados;
+    }
+
+    public static function pegarCoordenadorCurso($user){
+        $coordenador = Professor::with('pessoa')->where('pessoa_id', $user->pessoa_id)->get();
+        $ano_lectivo = self::pegarAnoLectivo();
+        $prof_disc = Professor_disciplina::with('turmaProf.curso', 'disciplina')
+        ->where('ano_lectivo_id', $ano_lectivo[0]->ano_lectivo_id)
+        ->get();
+        //dd($prof_disc->toArray());
+        for ($i = 0; $i < count($prof_disc); $i++) {
+            for ($j = 0; $j < count($prof_disc[$i]->turmaProf); $j++) {
+                if($prof_disc[$i]->turmaProf[$j]->curso->curso_id === $coordenador[0]->curso_id){
+                    $dados[$i] = [
+                        'nome_disciplina' =>  $prof_disc[$i]->disciplina->nome_disciplina,
+                        'disciplina_id' => $prof_disc[$i]->disciplina->disciplina_id,
+                    ];
+                    $dados[$i][$j] = [
+                        'turma_id' => $prof_disc[$i]->turmaProf[$j]->turma_id,
+                        'nome_turma' => $prof_disc[$i]->turmaProf[$j]->nome_turma,
+                        'curso_id' => $prof_disc[$i]->turmaProf[$j]->curso->curso_id,
+                        'nome_curso' => $prof_disc[$i]->turmaProf[$j]->curso->nome_curso,
+                    ];
+                }
+
+            }
+        }
+        return $dados;
+    }
+
 }
