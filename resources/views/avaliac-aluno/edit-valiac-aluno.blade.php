@@ -77,7 +77,7 @@
             <tr style="text-align: center;">
                 <th scope="row">{{date('d/m/Y', strtotime($nota->data_avaliacao))}}</th>
                 <td>{{$nota->tipo_prova}}</td>
-                <td>{{$nota->nota_aluno}}</td>
+                <td>{{number_format($nota->nota_aluno, 1, ".")}}</td>
                 <td style="text-align: center">
                 <a class="btn linkeditar" data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$nota['nota_id']}}">Editar Nota do Aluno</a>
                 </td>
