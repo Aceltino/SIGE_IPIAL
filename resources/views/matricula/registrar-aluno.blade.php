@@ -59,7 +59,8 @@
             
                 <div class="col">
                     <span>Nº Vagas</span>
-                    <input id="vagas-input" class="form-control" type="text" value="Vagas 0" readonly disabled>
+                    <input id="vagas-input" class="form-control" type="number" readonly>
+                    <p class="alert alert-danger d-none mt-2" role="alert" id="paragrafo-de-validacao-da-quantidade-de-vagas"></p>
                 </div>
             </div>
         </div>

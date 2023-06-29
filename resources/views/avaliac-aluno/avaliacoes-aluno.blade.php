@@ -126,69 +126,8 @@
 
         </tbody>
     </table>
-    @for ($i = 0; $i < count($aluno); $i++)
-    @for ($j = 0; $j < count($aluno[$i]); $j++)
-<form method="POST" action="{{route('avaliar.aluno', $aluno[$i][$j]['disciplina_id'])}}">
-@csrf
-<div class="modal" id="modal_assiduidade{{$aluno[$i][$j]['aluno_id']}}" tabindex="-1" data-bs-backdrop="false" >
-  <div class="modal-dialog modal-xl">
-  <div class="modal-content">
-  <div class="modal-header">
-      <h5 class="modal-title">Avaliar Aluno</h5>
-      <button type="button" class="btn-close"data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close"></button>
-  </div>
-  <div class="modal-body">
-
-      <div class="row">
-        <div class="col-lg-10">
-            <div class="nomenumeroalunoinfo">
-                <h5 style="margin-left: 3px;"> <b>Nome:</b> {{$aluno[$i][$j]['nome']}}</h5>
-            </div>
-        </div>
-        <div class="col-lg-2">
-            <div class="nofimnomenumeroaluno">
-                <h5 class="nomenumeroalunoinfo"> <b>Nº:</b>{{$aluno[$i][$j]['numero_aluno']}}</h5>
-            </div>
-        </div>
-      </div>
-    <div class="bortabelasemscroll">
-      <!-- /  Inicio da tabela  -->
-      <table class="table table-striped" style="margin-top: 20px; width: 100%;" >
-        <thead style="text-align: center">
-          <tr>
-            <th scope="col">AC</th>
-            <th scope="col">NPP</th>
-            <th scope="col">NPT</th>
-            <th scope="col">Exame</th>
-            <th scope="col">E.Recurso</th>
-
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><input class="form-control innota" type="text" name="ac" maxlength="2" id="notaimput_{{$i}}_{{$j}}"></td>
-            <td><input class="form-control innota" type="text" name="npp" maxlength="2" id="notaimput_{{$i}}_{{$j+1}}"></td>
-            <td><input class="form-control innota" type="text" name="npt" maxlength="2" id="notaimput_{{$i}}_{{$j+2}}"></td>
-            <td><input class="form-control innota" type="text" name="exame" maxlength="2" id="notaimput_{{$i}}_{{$j+3}}"></td>
-            <td><input class="form-control innota" type="text" name="exame_recurso" maxlength="2" id="notaimput_{{$i}}_{{$j+4}}"></td>
-          </tr>
-        </tbody>
-      </table>
-
-    </div>
-  </div>
-  <div class="modal-footer" style="display: flex; justify-content: center; align-items: center;">
-      <button type="button" class="btn botaovermelhonota" data-bs-dismiss="modal">Cancelar</button>
-      <button type="subimit" name="aluno_id" class="btn botaoazulnota" value="{{$aluno[$i][$j]['aluno_id']}}" >Avaliar Aluno</button>
-  </div>
-  </div>
-</div>
-</div>
-</form>
-
-@endfor
-@endfor
-</div>
+    <!-- Cola aqui o código -->
+    
   @endif
 
   <!-- Termina a tabela -->

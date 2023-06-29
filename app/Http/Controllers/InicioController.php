@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Db;
+use Illuminate\Support\Facades\DB;
 use App\Models\{
     Candidato, 
     Professor,
     Turma,
     Curso,
+    Aluno,
+    User,
 };
 
 class inicioController extends Controller
@@ -76,9 +78,47 @@ class inicioController extends Controller
         //Contando cada registro da tabela cursos
         foreach($cursos as $curs)
             $totalcursos +=1;
-       
 
-        return view('pagina-inicial', compact('totalinscritos', 'totaladmitidos', 'totalnadmitidos', 'totalmatriculados', 'totalprofessores', 'totalturmas', 'totalcursos'));
+            //      #Alunos por ano
+
+        //Consulta do sql para o Grafico de representacao dos alunos
+        $dadosAlunos = Aluno::select([
+            DB::raw('YEAR(created_at) as ano'),
+            DB::raw('COUNT(*) as total')
+        ])
+        ->groupBy('ano')
+        ->orderBY('ano', 'asc')
+        ->get();
+
+        //Percorrendo a cada posicao
+        foreach($dadosAlunos as $alunos){
+            $ano[] = $alunos->ano;
+            $total[] = $alunos->total;
+        }
+
+        //Variaveis necessarias para o grafico
+        $titulo = "Alunos no Alda";
+        $alunoAno = implode(',', $ano); 
+        $alunoTotal = implode(',', $total);
+
+        //          #Cargos do usuario
+        //Pegando os usuarios pelos seus cargos
+        $usCargos = User::all();
+        $totalUs = User::all()->count();
+
+        //Percorrendo cada posicao 
+        foreach($usCargos as $usCargo){
+            $nomeCargo[] = "'".$usCargo->cargo_usuario."'";
+            $totalCargo[] = User::where('cargo_usuario', $usCargo->cargo_usuario)->count();
+        }
+
+        //Variaveis necessarias para o grafico
+        $cargoNome = implode(',', $nomeCargo);
+        $cargoTotal = implode(',', $totalCargo); 
+
+     //   return view('pagina-inicial', compact('alunoAno', 'alunoTotal'));
+
+        return view('pagina-inicial', compact('totalinscritos', 'totaladmitidos', 'totalnadmitidos', 'totalmatriculados', 'totalprofessores', 'totalturmas', 'totalcursos', 'totalUs', 'titulo', 'alunoAno', 'alunoTotal', 'cargoNome', 'cargoTotal'));
         //redirect()->route('inicio');
     }
 

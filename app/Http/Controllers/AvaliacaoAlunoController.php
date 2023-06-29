@@ -10,14 +10,27 @@ use App\Models\Trimestre;
 use App\Models\Aluno;
 use Illuminate\Support\Facades\Auth;
 use App\Models\AnoTurmaCood;
+use App\Models\Professor;
 
 class AvaliacaoAlunoController extends Controller
 {
     public function index()
     {
         $user = Auth::user();
-        //dd($user);
-        $professor = AvaliacaoTrait::pegarProfessor($user);
+        //dd($user->pessoa_id);
+        if($user->cargo_usuario === "Administrador" || $user->cargo_usuario === "Subdirector"){
+            $professor = AvaliacaoTrait::pegarAdmin();
+        }
+        if($user->cargo_usuario === "Professor"){
+            $professor = AvaliacaoTrait::pegarProfessor($user);
+        }
+        if($user->cargo_usuario === "Coordenacao"){
+            $coord = Professor::where('pessoa_id', $user->pessoa_id)->get();
+            if($coord[0]->cargo === "Coordenador Curso"){
+                $professor = AvaliacaoTrait::pegarCoordenadorCurso($user);
+            }
+        }
+        //dd($professor);
         $inc = 0;
         for ($i = 0; $i < count($professor); $i++) {
             $disciplina_id[$i] = $professor[$i]['disciplina_id'];
@@ -57,7 +70,9 @@ class AvaliacaoAlunoController extends Controller
         }
 
         $aluno = AvaliacaoTrait::pegarNotaAluno($disciplina_id, $turmas);
-
+        //$coordenador_curso = AvaliacaoTrait::pegarCoordenadorCurso($user);
+        //$coordenador_area = AvaliacaoTrait::pegarCoordenadorArea($user);
+        //dd($turmas);
         return view('avaliac-aluno/avaliacoes-aluno', compact(['aluno', 'nome_disciplina', 'nome_turma', 'cursos']));
     }
 
