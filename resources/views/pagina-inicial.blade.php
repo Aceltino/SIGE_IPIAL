@@ -195,8 +195,105 @@
 
       </div>
     </section><!-- Termina seccao do dashboard -->
-
+    
     <br><br>
+    
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Cargos de Usarios </h5>
+
+            <!-- inicio grafico de consulta de usuarios -->
+            <div id="radialBarChart"></div>
+            
+            <script>
+              document.addEventListener("DOMContentLoaded", () => {
+                new ApexCharts(document.querySelector("#radialBarChart"), {
+                  series: [{{$cargoTotal}}],
+                  chart: {
+                    height: 350,
+                    type: 'radialBar',
+                    toolbar: {
+                      show: true
+                    }
+                  },
+                  plotOptions: {
+                    radialBar: {
+                      dataLabels: {
+                        name: {
+                          fontSize: '22px',
+                        },
+                        value: {
+                          fontSize: '16px',
+                        },
+                        total: {
+                          show: true,
+                          label: 'Total',
+                          formatter: function(w) {
+                            // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
+                            return {{$totalUs}}
+                          }
+                        }
+                      }
+                    }
+                  },
+                  labels: [{!!$cargoNome!!}],
+                }).render();
+              });
+            </script>
+            <!-- Fim grafico de consulta de usuarios -->
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Alunos por ano</h5>
+  
+            <!-- inicio grafico de consulta -->
+            <div id="lineChart"></div>
+  
+            <script>
+              document.addEventListener("DOMContentLoaded", () => {
+                new ApexCharts(document.querySelector("#lineChart"), {
+                  series: [{
+                    name: "{{$titulo}}",
+                    data: [{{$alunoTotal}}]
+                  }],
+                  chart: {
+                    height: 350,
+                    type: 'line',
+                    zoom: {
+                      enabled: false
+                    }
+                  },
+                  dataLabels: {
+                    enabled: false
+                  },
+                  stroke: {
+                    curve: 'straight'
+                  },
+                  grid: {
+                    row: {
+                      colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                      opacity: 0.5
+                    },
+                  },
+                  xaxis: {
+                    categories: [{{$alunoAno}}],
+                  }
+                }).render();
+              });
+            </script>
+            <!-- Fim grafico de consulta -->
+  
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="row">
 
