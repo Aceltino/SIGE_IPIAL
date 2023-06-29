@@ -2,7 +2,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     //Classes das Controllers
-    inicioController,
     AuthController,InscricaoController,ProfessorController,
     AlunoController,MatriculaController,CursoController,
     comunicadosController,AssiduidadeAlunoController,
@@ -32,14 +31,9 @@ use App\Http\Controllers\{
 
 //Rotas inicial do Painel
 
-
-Route::get('/', [inicioController::class, 'inicio'])->name('inicio')->middleware(['auth','active.session']);
-/*
 Route::get('/', function () {
     return view('pagina-inicial');
-})->name('inicio')->middleware('auth');*/
-
-
+})->name('inicio')->middleware(['auth','active.session']);
 
  //Rota final do painel
  Route::get('logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
@@ -316,8 +310,8 @@ Route::prefix('pautas')->middleware(['auth','active.session'])->group(function()
 Route::prefix('mini-pauta')->middleware(['auth','active.session'])->group(function(){
     Route::get('mini-pauta', [MiniPautaController::class, 'index'])->name('mini-pauta');
     Route::get('ver-mini-pauta', [MiniPautaController::class, 'show'])->name('mini-pauta.show');
-    Route::get('turma/{turma}/{curso}', [MiniPautaController::class, 'turma'])->name('mini-pauta.turma');
-    Route::get('{turma_id}/{prof_id}/{disciplina_id}', [MiniPautaController::class, 'view'])->name('mini-pauta.view');
+    Route::get('{turma}/{prof_id}/{disciplina}', [MiniPautaController::class, 'view'])->name('mini-pauta.view');
+
 });
 
 /******************************************
