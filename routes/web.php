@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     //Classes das Controllers
+    inicioController,
     AuthController,InscricaoController,ProfessorController,
     AlunoController,MatriculaController,CursoController,
     comunicadosController,AssiduidadeAlunoController,
@@ -10,6 +11,7 @@ use App\Http\Controllers\{
     PerfilUserController,ProcessoController,
     DisciplinasController, AdmissaoController,
     AlunoTurmaController,
+    TurmaController,
 };
 
 /*
@@ -24,15 +26,16 @@ use App\Http\Controllers\{
 */
 
 // Rota apenas de teste... Não apague -> ACELTINO
-    Route::get('validar-aluno', [AlunoTurmaController::class, 'situacaoAluno']);
+    Route::get('validar-aluno', [AlunoTurmaController::class, 'pegarVagasTurno']);
 // Route::get('validar-aluno', [AlunoController::class, 'situacaoAluno']);
 
 
 //Rotas inicial do Painel
-
+Route::get('/', [inicioController::class,'inicio'])->name('inicio')->middleware(['auth','active.session']);
+/*
 Route::get('/', function () {
     return view('pagina-inicial');
-})->name('inicio')->middleware(['auth','active.session']);
+})->name('inicio')->middleware(['auth','active.session']);*/
 
  //Rota final do painel
  Route::get('logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
@@ -195,9 +198,8 @@ Route::prefix('professor')->middleware(['auth','active.session','checkcargo'])->
 Route::prefix('turma')->middleware(['auth','active.session','checkcargo'])->group(function(){
 
     /* Criar turma*/
-    Route::get('criar-turma', function () {
-        return view('turma/cri-turma');
-    });
+    Route::get('criar-turma', [TurmaController::class, 'createTurma'])->name('turma-create');
+
 
     /*Trumas */
     Route::get('turmas', function () {

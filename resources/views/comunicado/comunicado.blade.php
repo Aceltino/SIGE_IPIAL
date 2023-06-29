@@ -35,14 +35,9 @@
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal{{ $com['comunicado_id'] }}"></i>
 
 
-<<<<<<< Updated upstream
             <a href="{{ route('comunicado.edit', ['comunicado_id' => $com->comunicado_id]) }}"><i class="bi bi-pencil"></i></a>
             <form action="{{ route('comunicado.destroy', ['comunicado_id' => $com->comunicado_id]) }}" method="POST">
 
-=======
-            <a href={{ route('comunicado.edit', ['comunicado_id' => $com->comunicado_id]) }}><i class="bi bi-pencil"></i></a>
-            <form action={{ route('comunicado.destroy', ['comunicado_id' => $com->comunicado_id]) }} method="POST">
->>>>>>> Stashed changes
             @csrf
             @method('delete')
           <button type="submit" class="bi bi-trash-fill" style="border: none; background: none;"></button>

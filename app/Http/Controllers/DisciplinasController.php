@@ -12,7 +12,7 @@ class DisciplinasController extends Controller
 {
     public function index()
     {
-        $disciplinas = Disciplina::has('curso')->get();
+        $disciplinas = Disciplina::has('cursos')->get();
         return view('disciplina.disciplinas', ['disciplinas'=>$disciplinas]);
     }
     public function create()
@@ -27,6 +27,7 @@ class DisciplinasController extends Controller
         $disciplinas->componente = $request->componente;
         $disciplinas->tempo_prova = $request-> tempo_prova;
         $disciplinas->sigla = $request->sigla;
+        $disciplinas->curso_id = $request->curso;
         $disciplinas->save();
          return redirect()->route('consultar.disciplina')->with('sucess','Dados salvos com sucesso');
     }

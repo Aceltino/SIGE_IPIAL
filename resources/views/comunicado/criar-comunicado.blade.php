@@ -31,9 +31,9 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <textarea style="border: 1px solid; border-color: rgb(204, 204, 204); border-radius: 5px; outline: none" class="tinymce-editor"  rows="13" name="conteudo"  id="area" placeholder="Escreve aqui o conteúdo do Comunicado" required></textarea>
-                    <div class="invalid-feedback">Se for para enviar uma mensagem deve escrever alguma coisa</div>
+                    <textarea style="border: 1px solid; border-color: rgb(204, 204, 204); border-radius: 5px; outline: none; padding: 20px;" class="w-100"  rows="13" name="conteudo"  id="area" placeholder="Escreve aqui o conteúdo do Comunicado" required></textarea>
                 </div>
+                <div class="invalid-feedback">Se for para enviar uma mensagem deve escrever alguma coisa</div>
             </div>
 
             <div style="text-align:center;margin-top:10px;">

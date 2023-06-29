@@ -41,17 +41,11 @@
               </div>
               <div class="row">
                 <div class="col">
-                    @php
-                    $j=1;
-                    @endphp
                   @foreach($cursos as $curso)
                   <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="curso{{$j}}" value="{{$curso['curso_id']}}">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="curso" value="{{$curso['curso_id']}}">
                     <label class="form-check-label" for="flexSwitchCheckDefault">{{$curso['nome_curso']}}</label>
                  </div>
-                     @php
-                      $j++;
-                     @endphp
                   @endforeach
                             <div class="col">
                                 <label for="">Tempo de prova:</label>

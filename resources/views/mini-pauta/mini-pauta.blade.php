@@ -29,42 +29,23 @@
             </form>
         </div>
 
-        <!-- /  Inicio da tabela de inscritos -->
         <table  id="matricula-tab" class="table table-striped" style="margin-top: 20px;" >
             <thead  style=" text-align: center;">
                 <tr>
                     <th scope="col">ANO</th>
-                    {{-- <thscope="col">Classe</th> --}}
                     <th scope="col">Turma</th>
-                    {{-- <thscope="col">Curso</th>
-                    <th scope="col">Periodo</th> --}}
-                    <th scope="col">Disciplina</th>
+                    <th scope="col">Classe</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
-                    <!--<tr style=" text-align: center;">
-                        <th scope="row">{{-- $a->ano_lectivo->ano_lectivo --}}</th>
-                        <td>{{-- $a->turma->belongClasse->classe --}}</td>
-                        <td>{{-- $a->turma->nome_turma --}}</td>
-                        <td>Informática</td>
-                        <td>Manhã</td>
-                        <td>MAT</td>
-                        <td>
-                            <a href={{ route('mini-pauta.show') }} class="btn btn-cor-sg-a">Ver Mini-pauta</a>
-                        </td>
-                    </tr> -->
-                @foreach ($dados as $dado)
+                @foreach ($turmas as $turma)
                     <tr  style=" text-align: center;">
-                        <th scope="row">2020-2021</th>
-                        {{-- <td>$dado->classe->classe --}}</td>
-                        <td>{{ $dado->nome_turma }}</td>
-                        {{-- <td>$dado->belongerCurso->nome_curso</td>}}
-                        <td>{{ $dado->turno->nome_turno }}</td> --}}
-                        {{-- @if($dado->componente=='Técnica') --}}
-                        <td>{{$dado->disciplina->nome_disciplina }}</td>
+                        <th scope="row">{{ $turma->ano_lectivo->ano_lectivo }}</th>
+                        <td>{{ $turma->turma->nome_turma }}</td>
+                        <td>{{ $turma->turma->belongClasse->classe }}</td>
                         <td>
-                            <a href={{ route('mini-pauta.view', ['turma' => $dado->turma_id, 'prof_id' => $dado->professor_id, 'disciplina' => $dado->disciplina_id]) }} class="btn btn-cor-sg-a">Ver Mini-pauta</a>
+                            <a href={{ route('mini-pauta.turma', ['turma' => $turma->turma->turma_id, 'curso' => $turma->turma->curso_id]) }} class="btn btn-cor-sg-a">Ver Mini-pauta da turma</a>
                         </td>
                     </tr>
                 @endforeach
