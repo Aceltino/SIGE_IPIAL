@@ -84,40 +84,76 @@ trait AvaliacaoTrait
                         }
                         if($med > 0){
                             $mac /= $med;
+                            $mac = number_format($mac, 1, ".");
                         }
                         for($j = 0; $j < count($nota); $j++){
                             if($nota[$j]->tipo_prova === "Prova Professor"){
-                                $npp = $nota[$j]->nota_aluno;
+                                if($nota[$j]->nota_aluno){
+                                    $npp = $nota[$j]->nota_aluno;
+                                    $npp = number_format($npp, 1, ".");
+                                } else{
+                                    $npp = $nota[$j]->nota_aluno;
+                                }
                             }
                         }
                         for($j = 0; $j < count($nota); $j++){
                             if($nota[$j]->tipo_prova === "ProvaTrimestre"){
-                                $npt = $nota[$j]->nota_aluno;
+                                if($nota[$j]->nota_aluno){
+                                    $npt = $nota[$j]->nota_aluno;
+                                    $npt = number_format($npt, 1, ".");
+                                } else{
+                                    $npt = $nota[$j]->nota_aluno;
+                                }
                             }
                         }
                         for($j = 0; $j < count($nota); $j++){
                             if($nota[$j]->tipo_prova === "Prova Global"){
-                                $npg = $nota[$j]->nota_aluno;
+                                if($nota[$j]->nota_aluno){
+                                    $npg = $nota[$j]->nota_aluno;
+                                    $npg = number_format($npg, 1, ".");
+                                } else{
+                                    $npg = $nota[$j]->nota_aluno;
+                                }
                             }
                         }
                         for($j = 0; $j < count($nota); $j++){
                             if($nota[$j]->tipo_prova === "Recurso"){
-                                $recurso = $nota[$j]->nota_aluno;
+                                if($nota[$j]->nota_aluno){
+                                    $recurso = $nota[$j]->nota_aluno;
+                                    $recurso = number_format($recurso, 1, ".");
+                                } else{
+                                    $recurso = $nota[$j]->nota_aluno;
+                                }
                             }
                         }
                         for($j = 0; $j < count($nota); $j++){
                             if($nota[$j]->tipo_prova === "Exame Recurso"){
-                                $exame_recurso = $nota[$j]->nota_aluno;
+                                if($nota[$j]->nota_aluno){
+                                    $exame_recurso = $nota[$j]->nota_aluno;
+                                    $exame_recurso = number_format($exame_recurso, 1, ".");
+                                } else{
+                                    $exame_recurso = $nota[$j]->nota_aluno;
+                                }
                             }
                         }
                         for($j = 0; $j < count($nota); $j++){
                             if($nota[$j]->tipo_prova === "Exame"){
-                                $exame = $nota[$j]->nota_aluno;
+                                if($nota[$j]->nota_aluno){
+                                    $exame = $nota[$j]->nota_aluno;
+                                    $exame = number_format($exame, 1, ".");
+                                } else{
+                                    $exame = $nota[$j]->nota_aluno;
+                                }
                             }
                         }
                         for($j = 0; $j < count($nota); $j++){
                             if($nota[$j]->tipo_prova === "Exame Especial"){
-                                $exame_especial = $nota[$j]->nota_aluno;
+                                if($nota[$j]->nota_aluno){
+                                    $exame_especial= $nota[$j]->nota_aluno;
+                                    $exame_especial = number_format($exame_especial, 1, ".");
+                                } else{
+                                    $exame_especial = $nota[$j]->nota_aluno;
+                                }
                             }
                         }
                         $dados[$dis][$tur][$i] = [
