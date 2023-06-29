@@ -11,6 +11,7 @@ use App\Models\{
     User,
     Curso,
     Turma,
+    Classe,
 };
 use App\Traits\PessoaTrait;
 use Illuminate\Support\Facades\Redirect;
@@ -40,7 +41,7 @@ class MatriculaController extends Controller
         $encarregado = [];
         for($i = 1; $i <= 3; $i++)
         {
-            $dadosPessoa = [
+            $dadosEnc = [
                 'nome_completo'=> $request['nome_enc' . $i],
                 'num_bi'=> strtoupper($request['num_bi_enc' . $i]),
                 'data_nascimento'=> $request['data_nascimento_enc' . $i],
@@ -48,14 +49,23 @@ class MatriculaController extends Controller
                 'telefone' => $request['telefone' . $i]
             ];
 
-            $consultEncarregado = $this->checkPessoa($dadosPessoa);
+            $consultEncarregado = $this->checkPessoa($dadosEnc);
             if(!empty($consultEncarregado))
             {
                 $encarregado[$i] = $consultEncarregado->pessoa_id;
+                continue;
             }
-            if(!$this->checkPessoaBI($dadosPessoa['num_bi']))
+            // $checkBI = $this->checkPessoaBI($dadosPessoa['num_bi']);
+            // dd($checkBI);
+
+            if($this->checkPessoaBI($dadosEnc['num_bi']))
             {
-                $msg="O número de identificação do ". $i ."º encarregado já está sendo utilizado, confirme todos os seus dados de identificação.";
+                $msg="O número de identificação do ". $i ."º encarregado já está sendo utilizado, confirme todos os dados de identificação dele.";
+                return redirect()->back()->with("ErroEncarregado",$msg);
+            }
+            if($this->checkPessoaTel($dadosEnc['telefone']))
+            {
+                $msg="O telefone do ". $i ."º encarregado já está sendo utilizado, confirme o numero de telefone dele.";
                 return redirect()->back()->with("ErroEncarregado",$msg);
             }
         }
@@ -65,6 +75,7 @@ class MatriculaController extends Controller
         $pessoa_id = $candidato->pessoa_id;
         $dadosPessoa = [
             'nome_completo'=> $request['nome_completo'],
+            'num_bi'=> $request['num_bi'],
             'genero'=> $request['genero'],
             'telefone' => $request['num_tel'],
             'pessoa_id' => $pessoa_id
@@ -125,9 +136,13 @@ class MatriculaController extends Controller
 
         for($i = 1; $i <= 3; $i++)
         {
-            $idPessoa = $encarregado[$i];
-            if(empty($encarregado[$i]))
-            {
+            // $encarregado[$i] = null;
+            
+                if(!empty($encarregado[$i]))
+                {
+                    $idPessoa = $encarregado[$i];
+                    goto cadEncarregado;
+                }
                 $dadosPessoa = [
                     'nome_completo'=> $request['nome_enc' . $i],
                     'num_bi'=> strtoupper($request['num_bi_enc' . $i]),
@@ -136,7 +151,7 @@ class MatriculaController extends Controller
                     'telefone' => $request['telefone' . $i]
                 ];    
                 $idPessoa = $this->storePessoa($dadosPessoa);  
-            }
+                cadEncarregado:
 
             $dadosEncarregado = [
                 'grau_parentensco_enc'=> $request['grau' . $i],
@@ -275,9 +290,9 @@ class MatriculaController extends Controller
     public function registrarView()
     {
         $vagas = AlunoTurmaController::pegarVagas();
-        dd($vagas);
+        $classe = Classe::all();
         $cursos = Curso::all();
-        return view('matricula.registrar-aluno', compact('cursos'));
+        return view('matricula.registrar-aluno', compact('cursos','vagas', 'classe'));
     }
 
     public function registrarStore(){

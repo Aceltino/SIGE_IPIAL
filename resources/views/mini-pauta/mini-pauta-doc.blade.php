@@ -240,9 +240,7 @@
                     <td class="coluna-tab-mp">{{ $aluno->numero_aluno }}</td>
 
                     <td class="sm-cor"></td>
-                    <td class="coluna-tab-mp" style="font-size: 11pt;">{{ $aluno->aluno->candidato->pessoa->nome_completo }}</td>
-
-                    {{-- Não consigo ver, não sei se estás em que página --}}
+                    <td class="coluna-tab-mp" style="font-size: 11pt;">{{ $aluno->aluno->candidato->pessoa->nome_completo }} - id: {{ $aluno->aluno->aluno_id }}</td>
 
                     {{-- Idade --}}
                     <td class="coluna-tab-mp">
@@ -256,21 +254,22 @@
 
                     {{-- MAC --}}
                     <td class="coluna-tab-mp">
-                        <span class="nota-pos largura-10">0</span>
+                        <span class="nota-pos largura-10"> {{ getMAC1($aluno->aluno->aluno_id, $disciplina->disciplina_id) }} </span>
                     </td>
 
                     {{-- NPP --}}
                     <td class="coluna-tab-mp">
-                        <span class="nota-pos largura-10">0</span>
-                    </td>
-
-                    <td class="coluna-tab-mp">
-                        <span class="nota-neg largura-10">0</span>
+                        <span class="nota-pos largura-10"> {{ getNPP1($aluno->aluno->aluno_id, $disciplina->disciplina_id) }} </span>
                     </td>
 
                     {{-- NPT --}}
                     <td class="coluna-tab-mp">
-                        <span class="nota-pos largura-10">0</span>
+                        <span class="nota-neg largura-10"> {{ getNPT1($aluno->aluno->aluno_id, $disciplina->disciplina_id) }}</span>
+                    </td>
+
+                    {{-- MT1 --}}
+                    <td class="coluna-tab-mp">
+                        <span class="nota-pos largura-10">{{ getMT1($aluno->aluno->aluno_id, $disciplina->disciplina_id) }}</span>
                     </td>            
 
                     {{-- FNJ --}}
@@ -289,22 +288,22 @@
 
                     {{-- MAC 2 --}}
                     <td class="coluna-tab-mp">
-                        <span class="nota-pos largura-10">0</span>
+                        <span class="nota-pos largura-10">{{ getMAC2($aluno->aluno->aluno_id, $disciplina->disciplina_id) }}</span>
                     </td>
 
                     {{-- NPP 2 --}}
                     <td class="coluna-tab-mp">
-                        <span class="nota-pos largura-10">0</span>
+                        <span class="nota-pos largura-10">{{ getNPP2($aluno->aluno->aluno_id, $disciplina->disciplina_id) }}</span>
                     </td>
 
                     {{-- NPT 2 --}}
                     <td class="coluna-tab-mp">
-                        <span class="nota-pos largura-10">0</span>
+                        <span class="nota-pos largura-10">{{ getNPT2($aluno->aluno->aluno_id, $disciplina->disciplina_id) }}</span>
                     </td>
 
                     {{-- MT 2 --}}
                     <td class="coluna-tab-mp">
-                        <span class="nota-neg largura-10">0</span>
+                        <span class="nota-neg largura-10">{{ getMT2($aluno->aluno->aluno_id, $disciplina->disciplina_id) }}</span>
                     </td>
 
                     {{-- Faltas FNJ 2--}}
@@ -323,22 +322,22 @@
 
                     {{-- MAC 3--}}
                     <td class="coluna-tab-mp">
-                        <span class="nota-pos largura-10">0</span>
+                        <span class="nota-pos largura-10">{{ getMAC3($aluno->aluno->aluno_id, $disciplina->disciplina_id) }}</span>
                     </td>
 
                     {{--  NPP 3--}}
                     <td class="coluna-tab-mp">
-                        <span class="nota-pos largura-10">0</span>
+                        <span class="nota-pos largura-10">{{ getNPP3($aluno->aluno->aluno_id, $disciplina->disciplina_id) }}</span>
                     </td>
 
                     {{-- NPT 3--}}
                     <td class="coluna-tab-mp">
-                        <span class="nota-pos largura-10">0</span>
+                        <span class="nota-pos largura-10">{{ getNPT3($aluno->aluno->aluno_id, $disciplina->disciplina_id) }}</span>
                     </td>
                     
                     {{--  MT3 3  --}}
                     <td class="coluna-tab-mp">
-                        <span class="nota-pos largura-10">0</span>
+                        <span class="nota-pos largura-10">{{ getMT3($aluno->aluno->aluno_id, $disciplina->disciplina_id) }}</span>
                     </td>
 
                     {{--  FNJ 3  --}}
