@@ -10,9 +10,12 @@ use App\Models\Disciplina;
 
 class DisciplinasController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $pesquisa = $request->pesquisa;
         $disciplinas = Disciplina::all();
+        $disciplinas = Disciplina::where('nome_disciplina', 'like', "%$pesquisa%")->get();
+        $cursos = Curso::all();
         return view('disciplina.disciplinas', ['disciplinas'=>$disciplinas]);
     }
     public function create()
@@ -62,7 +65,7 @@ class DisciplinasController extends Controller
     }
     public function getdisciplina()
     {
-        $getdisciplina = Disciplina::all();
+         Disciplina::all();
     }
  
 }
