@@ -401,17 +401,34 @@ $(document).ready(function () {
 
     // Função para aplicar os filtros iniciais
     function applyInitialFilters() {
-        var filtro1 = $("#filtro10").val();
-        var filtro2 = $("#filtro11").val();
-        var filtro3 = $("#filtro12").val();
-        // Obter os valores selecionados dos demais selects
-
-        // Aplicar os filtros iniciais
-        $T.column(9).search(filtro1).draw(); 
-        $T.column(10).search(filtro2).draw(); 
-        $T.column(11).search(filtro3).draw(); 
-        
+      var filtro1 = getSelectedOption("filtro10");
+      var filtro2 = getSelectedOption("filtro11");
+      var filtro3 = getSelectedOption("filtro12");
+      // Márcio podes adicionar mais selects com base os numeros de selects necessários
+  
+      // Aplicar os filtros iniciais
+      $T.column(9).search(filtro1).draw();
+      $T.column(10).search(filtro2).draw();
+      $T.column(11).search(filtro3).draw();
     }
+  
+    // Função para obter a opção selecionada de um select e armazenar no localStorage
+    function saveSelectedOption(selectId) {
+      var selectedValue = $("#" + selectId).val();
+      localStorage.setItem(selectId, selectedValue);
+    }
+  
+    // Função para recuperar a opção selecionada de um select do localStorage
+    function getSelectedOption(selectId) {
+      var selectedValue = localStorage.getItem(selectId);
+      return selectedValue || ""; // Retorna uma string vazia caso não haja valor armazenado
+    }
+  
+    // Evento para salvar a opção selecionada quando um select for alterado
+    $("#filtro10, #filtro11, #filtro12").change(function() {
+      var selectId = $(this).attr("id");
+      saveSelectedOption(selectId);
+    });
     $("#filtro").on("change", function() {
       var filtro = $(this).val(); 
       $T.column(5).search(filtro).draw(); // Filtra a tabela pela sexta coluna com o valor selecionado
@@ -484,10 +501,17 @@ $(document).ready(function () {
 $(".paginate_button").addClass("paginate_button");
 $(".paginate").addClass("float-end");
 
-
+// Função para Pesquisar os dados apartir da barra de pesquisas
 $("#pesquisa").on("keyup", function () {
    $T.search(this.value).draw();
    
 });
+
+  // Recuperar os valores dos selects do localStorage e selecionar as opções correspondentes
+  $("#filtro10").val(getSelectedOption("filtro10"));
+  $("#filtro11").val(getSelectedOption("filtro11"));
+  $("#filtro12").val(getSelectedOption("filtro12"));
  
+
+
 });
