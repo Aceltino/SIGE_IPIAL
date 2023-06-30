@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     //Classes das Controllers
+    inicioController,
     AuthController,InscricaoController,ProfessorController,
     AlunoController,MatriculaController,CursoController,
     comunicadosController,AssiduidadeAlunoController,
@@ -25,15 +26,16 @@ use App\Http\Controllers\{
 */
 
 // Rota apenas de teste... Não apague -> ACELTINO
-    Route::get('validar-aluno', [AlunoTurmaController::class, 'pegarVagasTurno']);
+    Route::get('validar-aluno', [AlunoTurmaController::class, 'pegarTurma']);
 // Route::get('validar-aluno', [AlunoController::class, 'situacaoAluno']);
 
 
 //Rotas inicial do Painel
-
+Route::get('/', [inicioController::class,'inicio'])->name('inicio')->middleware(['auth','active.session']);
+/*
 Route::get('/', function () {
     return view('pagina-inicial');
-})->name('inicio')->middleware(['auth','active.session']);
+})->name('inicio')->middleware(['auth','active.session']);*/
 
  //Rota final do painel
  Route::get('logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
@@ -99,9 +101,9 @@ Route::prefix('inscricao')->middleware(['active.session'])->group(function(){
     // });
 
     // /*Incritos rejeitados */
-    // Route::get('inscritos-rejeitados', function () {
-    //     return view('inscricao/inscritos-rejeitados');
-    // });
+    Route::get('recibo', function () {
+        return view('recibo/recibo-incricao');
+    });
 
     // /*Confirmar inscricao*/
     // Route::get('conf-inscricao', function () {
@@ -131,8 +133,9 @@ Route::prefix('matricula')->middleware(['auth','active.session'])->group(functio
     /* Matriculas*/
     Route::get('matriculas', [MatriculaController::class, 'index'])->name('Matriculas');
 
-    /*Eliminar Matricula*/
-    Route::get('eliminar/{aluno}', [MatriculaController::class, 'anularMatricula'])->name('eliminar-matricula');
+    /*Eliminar/Inativar Matricula*/
+    Route::get('inativar/{aluno}', [MatriculaController::class, 'anularMatricula'])->name('inativar-matricula');
+    Route::get('eliminar/{aluno}', [MatriculaController::class, 'eliminarMatricula'])->name('eliminar-matricula');
 
     // Atribuir turma 10ª classe
     Route::get('matricula-turma',  [MatriculaController::class, 'atribuirTurma'])->name('matricula-validarTurma');

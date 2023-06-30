@@ -61,6 +61,12 @@ class AlunoController extends Controller
         return $Alunos;
     }
 
+    public static function alunoCandId($id) // 10ª Classe
+    {
+        $aluno = Aluno::find($id);
+        return $aluno->candidato->pessoa_id;
+    }
+
     public static function alunosVinculados() // Fechamento do ano lectivo, ano lectivo status 0 -> Colocar esta função no fechamento do Ano Lectivo
     {
         $alunos = Aluno::where('status', 1 )->get();
@@ -297,6 +303,21 @@ class AlunoController extends Controller
             }
         }
         return($alunos);
+    }
+
+    public static function alunoTurma($Aluno) // Função a ser chamada na reabertura do ano lectivo 11ª >
+    {
+        $aluno = Aluno::with('anoturma')
+        ->whereHas('anoturma', function ($query) {
+            $query->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo());
+        })
+        ->where('aluno_id', $Aluno)
+        ->first();
+
+        $ultimaPosicao = count($aluno->anoturma) - 1;
+        $turmaAnoId = $aluno->anoturma[$ultimaPosicao]->turmaAno_id;
+
+        return $turmaAnoId;
     }
 //
 }

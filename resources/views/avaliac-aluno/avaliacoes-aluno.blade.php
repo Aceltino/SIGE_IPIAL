@@ -108,7 +108,7 @@
                         <td>{{$valor3['exame']}}</td>
                         <td>{{$valor3['exame_recurso']}}</td>
                         <td style="text-align: center">
-                        <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$valor3['aluno_id']}}" >Avaliar aluno</a>
+                        <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}" >Avaliar aluno</a>
                         </td>
                         <td style="text-align: center">
                         <a href="{{route('editar.avaliacao.aluno', [$valor3['aluno_id'], $valor3['disciplina_id']])}}" class="btn linkeditar">Avaliações Aluno</a>
@@ -127,6 +127,73 @@
         </tbody>
     </table>
     <!-- Cola aqui o código -->
+    @foreach ($aluno as $chave1 => $valor1)
+
+    @foreach ($valor1 as $chave2 => $valor2)
+
+        @foreach ($valor2 as $chave3 => $valor3)
+   
+    <form method="POST" action="{{route('avaliar.aluno', $valor3['disciplina_id'])}}">
+        @csrf
+      <div class="modal" id="modal_assiduidade{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}" tabindex="-1" data-bs-backdrop="false" >
+          <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Avaliar Aluno</h5>
+              <button type="button" class="btn-close"data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+              <div class="row">
+                <div class="col-lg-10">
+                    <div class="nomenumeroalunoinfo">
+                        <h5 style="margin-left: 3px;"> <b>Nome:</b>{{$valor3['nome']}}</h5>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="nofimnomenumeroaluno">
+                        <h5 class="nomenumeroalunoinfo"> <b>Nº:</b>{{$valor3['numero_aluno']}}</h5>
+                    </div>
+                </div>
+              </div>
+            <div class="bortabelasemscroll">
+              <!-- /  Inicio da tabela  -->
+              <table class="table table-striped" style="margin-top: 20px; width: 100%;" >
+                <thead style="text-align: center">
+                  <tr>
+                    <th scope="col">AC</th>
+                    <th scope="col">NPP</th>
+                    <th scope="col">NPT</th>
+                    <th scope="col">Exame</th>
+                    <th scope="col">E.Recurso</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><input class="form-control innota" type="text" name="ac" maxlength="5" id="notaimput"></td>
+                    <td><input class="form-control innota" type="text" name="npp" maxlength="5" id="notaimput"></td>
+                    <td><input class="form-control innota" type="text" name="npt" maxlength="5" id="notaimput"></td>
+                    <td><input class="form-control innota" type="text" name="exame" maxlength="5" id="notaimput"></td>
+                    <td><input class="form-control innota" type="text" name="exame_recurso" maxlength="5" id="notaimput"></td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+          <div class="modal-footer" style="display: flex; justify-content: center; align-items: center;">
+              <button type="button" class="btn botaovermelhonota" data-bs-dismiss="modal">Cancelar</button>
+              <button type="subimit" name="aluno_id" class="btn botaoazulnota" value="{{$valor3['aluno_id']}}" >Avaliar Aluno</button>
+          </div>
+          </div>
+      </div>
+      </div>
+    </form>
+    @endforeach
+    @endforeach
+  @endforeach
+  </div>
     
   @endif
 

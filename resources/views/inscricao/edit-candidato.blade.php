@@ -41,20 +41,20 @@
 
     <div class="dados-pessoais">
       <div class="area-input form-group">
-        <label>Nome Completo: </label><input type="text" name="nome_completo" value ="{{ $candidato['Nome'] }}"  >
+        <label>Nome Completo: </label><input type="text" name="nome_completo" value ="{{ $candidato['Nome'] }}" value="{{ old('nome_completo') }}" >
         @error('nome_completo')
             <div class="alert alert-danger">{{$message}}</div>
         @enderror
       </div>
       <div class="area-input form-group">
-        <label>Nome do Pai: </label><input type="text" name="nome_pai_cand" value ="{{ $candidato['Pai'] }}" >
+        <label>Nome do Pai: </label><input type="text" name="nome_pai_cand" value ="{{ $candidato['Pai'] }}" value="{{ old('nome_pai_cand') }}" >
         @error('nome_pai_cand')
             <div class="alert alert-danger">{{$message}}</div>
         @enderror
       </div>
 
       <div class="area-input form-group">
-        <label>Nome da Mãe: </label><input type="text" name="nome_mae_cand" value ="{{ $candidato['Mae'] }}">
+        <label>Nome da Mãe: </label><input type="text" name="nome_mae_cand" value ="{{ $candidato['Mae'] }}" value="{{ old('nome_mae_cand') }}">
         @error('nome_mae_cand')
             <div class="alert alert-danger">{{$message}}</div>
         @enderror
@@ -63,12 +63,12 @@
       <div class="container">
           <div class="row">
             <div class="col area-input form-group">
-              <label>Data de nascimento: </label><input type="date" name="data_nascimento" value ="{{ $candidato['Data_Nascimento'] }}" >
+              <label>Data de nascimento: </label><input type="date" name="data_nascimento" value ="{{ $candidato['Data_Nascimento'] }}" value="{{ old('data_nascimento') }}" >
               
             </div>
 
             <div class="col area-input form-group" style="margin-left: 10px;">
-                <label>Idade: </label><input type="text" class="form-control" readonly="true" disabled value ="{{ $candidato['Idade'] }}" >
+                <label>Idade: </label><input type="text" class="form-control" readonly="true" disabled value ="{{ $candidato['Idade'] }}"  >
 
               </div>
 
@@ -103,7 +103,7 @@
       <div class="container">
         <div class="row">
           <div class="col area-input form-group">
-            <label>Tel: </label><input type="text"  name="num_tel" value ="{{ $candidato['Telefone'] }}" >
+            <label>Tel: </label><input type="text"  name="num_tel" value ="{{ $candidato['Telefone'] }}" value="{{ old('num_tel') }}" >
             @error('num_tel')
               <div class="alert alert-danger">{{$message}}</div>
             @enderror
@@ -136,7 +136,7 @@
           <br>
 
           <div class="area-input form-group">
-            <label>Escola de proveniência: </label><input type="text" name="nome_escola" value ="{{ $candidato['Escola'] }}" >
+            <label>Escola de proveniência: </label><input type="text" name="nome_escola" value ="{{ $candidato['Escola'] }}" value="{{ old('nome_escola') }}" >
             @error('nome_escola')
               <div class="alert alert-danger">{{$message}}</div>
             @enderror
@@ -145,11 +145,11 @@
           <div class="container">
             <div class="row">
               <div class="col area-input form-group">
-                <label>Turno: </label><input type="text" name="turno" value ="{{ $candidato['Turno'] }}">
+                <label>Turno: </label><input type="text" name="turno" value ="{{ $candidato['Turno'] }}" value="{{ old('turno') }}">
               </div>
 
               <div class="col area-input form-group" style="margin-left: 10px;">
-                <label>Turma: </label><input type="text" name="turma_aluno" value ="{{ $candidato['Turma'] }}"  >
+                <label>Turma: </label><input type="text" name="turma_aluno" value ="{{ $candidato['Turma'] }}" value="{{ old('turma_aluno') }}"  >
                 @error('turma_aluno')
                   <div class="alert alert-danger">{{$message}}</div>
                 @enderror
@@ -157,7 +157,7 @@
 
               <div class="col area-input form-group" style="margin-left: 10px;">
                 <label>Nº aluno: </label>
-                <input type="text" value ="{{ $candidato['Numero_Aluno'] }}" name="num_aluno">
+                <input type="text" value ="{{ $candidato['Numero_Aluno'] }}" name="num_aluno" value="{{ old('num_aluno') }}">
                 @error('num_aluno')
                   <div class="alert alert-danger">{{$message}}</div>
                 @enderror
@@ -175,7 +175,7 @@
               </div>
 
               <div class="col area-input form-group" style="margin-left: 10px;">
-                <label>Ano lectivo: </label><input type="text" class="form-control" name="ultimo_anoLectivo" value ="{{ $candidato['Ultimo_AnoLectivo'] }}" >
+                <label>Ano lectivo: </label><input type="text" class="form-control" name="ultimo_anoLectivo" value ="{{ $candidato['Ultimo_AnoLectivo'] }}" value="{{ old('ultimo_anoLectivo') }}">
                 @error('ultimo_anoLectivo')
                   <div class="alert alert-danger">{{$message}}</div>
                 @enderror
@@ -198,8 +198,7 @@
               <div class="col area-input form-group" style="margin-left: 10px;">
                 <label>Física: </label><input type="text" name="Fisic" value ="{{ $candidato['Fisica'] }}" disabled>
               </div>
-
-
+              
             </div>
           </div>
 
