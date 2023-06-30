@@ -61,7 +61,7 @@
       <h2>Introduza os dados pessoais</h2>
 
       <div class="form-group">
-        <input type="text" placeholder="Nome Completo" value="{{ old('nome_completo') }}" name="nome_completo" oninput="this.className = ''">
+        <input type="text" placeholder="Nome Completo" name="nome_completo" value="{{ old('nome_completo') }}"  oninput="this.className = ''">
         @error('nome_completo')
           <div class="alert alert-danger">
             {{$message}}
@@ -75,7 +75,7 @@
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <input type="text" placeholder="Nome do Pai" value="{{ old('nome_pai_cand') }}" name="nome_pai_cand" oninput="this.className = ''">
+            <input type="text" placeholder="Nome do Pai" name="nome_pai_cand" value="{{ old('nome_pai_cand') }}"  oninput="this.className = ''">
             @error('nome_pai_cand')
               <div class="alert alert-danger">{{$message}}
                 <button class="botaofecharerro">
@@ -88,7 +88,7 @@
 
         <div class="col">
           <div class="form-group">
-            <input type="text" placeholder="Nome da Mãe" value="{{ old('nome_mae_cand') }}" name="nome_mae_cand" oninput="this.className = ''">
+            <input type="text" placeholder="Nome da Mãe" name="nome_mae_cand" value="{{ old('nome_mae_cand') }}"  oninput="this.className = ''">
             @error('nome_mae_cand')
                 <div class="alert alert-danger">{{$message}}</div>
             @enderror
@@ -98,7 +98,7 @@
 
       <div class="row">
         <div class="col">
-          <input type="date" value="{{ old('data_nascimento') }}" id="datainput" name="data_nascimento" oninput="this.className = ''">
+          <input type="date" name="data_nascimento" value="{{ old('data_nascimento') }}" id="datainput"  oninput="this.className = ''">
         </div>
 
         <div class="col">
@@ -123,7 +123,7 @@
 
         <div class="col">
           <div class="form-group">
-            <input type="text" style="margin-top: 15px;" placeholder="Número do Bilhete de identidade" id="bi_input" name="num_bi" oninput="this.className = ''" minlength="14" maxlength="14">
+            <input type="text" style="margin-top: 15px;" placeholder="Número do Bilhete de identidade" id="bi_input" name="num_bi" value="{{ old('num_bi') }}" oninput="this.className = ''" minlength="14" maxlength="14">
             <div id="mensagem1" style="color: red;"></div>
             @error('num_bi')
               <div class="alert alert-danger">{{$message}}</div>
@@ -211,7 +211,7 @@
         @endphp
           @foreach($cursos as $curso)
           <div class="form-group">
-          <select oninput="this.className = ''" class="form-select"  name="curso{{$a}}">
+          <select oninput="this.className = ''" class="form-select" name="curso{{$a}}">
           <option selected disabled>Escolha a {{$a}}ª opção</option>
           @foreach ($cursos as $Curso )
           <option value="{{$Curso['nome_curso']}}">{{$Curso['nome_curso']}}</option>
@@ -228,7 +228,7 @@
     <div class="tab">
       <h2>Digite as médias para cada disciplina solicitada</h2>
       <div class="form-group">
-        <select oninput="this.className = ''" class="form-select" name="LinguaP">
+        <select oninput="this.className = ''" class="form-select" value="{{ old('LinguaP') }}" name="LinguaP">
           <option selected >Língua Portuguesa</option>
           <option value="10">10</option>
           <option value="11">11</option>
@@ -245,7 +245,7 @@
       </div>
 
       <div class="form-group">
-        <select oninput="this.className = ''" class="form-select" name="Matematic">
+        <select oninput="this.className = ''" class="form-select" value="{{ old('Matematic') }}" name="Matematic">
           <option selected disabled>Matemática</option>
           <option value="10">10</option>
           <option value="11">11</option>
@@ -262,7 +262,7 @@
       </div>
 
       <div class="form-group">
-        <select oninput="this.className = ''" class="form-select" name="Fisic">
+        <select oninput="this.className = ''" class="form-select" value="{{ old('Fisic') }}" name="Fisic">
           <option selected disabled>Física</option>
           <option value="10">10</option>
           <option value="11">11</option>
@@ -279,7 +279,7 @@
       </div>
 
       <div class="form-group">
-        <select oninput="this.className = ''" class="form-select" name="Quimic">
+        <select oninput="this.className = ''" class="form-select" value="{{ old('Quimic') }}" name="Quimic">
           <option selected disabled>Química</option>
           <option value="10">10</option>
           <option value="11">11</option>

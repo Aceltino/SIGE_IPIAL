@@ -198,8 +198,53 @@
     <br><br>
     
     <div class="row">
-      <div class="col-lg-6">
-        <div class="card">
+      <div class="col-lg-8">
+        <div class="cardL">
+          <div class="card-body">
+            <h5 class="card-title">Alunos por ano</h5>
+  
+            <!-- inicio grafico de consulta -->
+            <div id="lineChart"></div>
+  
+            <script>
+              document.addEventListener("DOMContentLoaded", () => {
+                new ApexCharts(document.querySelector("#lineChart"), {
+                  series: [{
+                    name: "{{$titulo}}",
+                    data: [{{$alunoTotal}}]
+                  }],
+                  chart: {
+                    height: 350,
+                    type: 'line',
+                    zoom: {
+                      enabled: false
+                    }
+                  },
+                  dataLabels: {
+                    enabled: false
+                  },
+                  stroke: {
+                    curve: 'straight'
+                  },
+                  grid: {
+                    row: {
+                      colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                      opacity: 0.5
+                    },
+                  },
+                  xaxis: {
+                    categories: [{{$alunoAno}}],
+                  }
+                }).render();
+              });
+            </script>
+            <!-- Fim grafico de consulta -->
+  
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="cardB">
           <div class="card-body">
             <h5 class="card-title">Cargos de Usarios </h5>
 
@@ -247,51 +292,6 @@
         </div>
       </div>
 
-      <div class="col-lg-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Alunos por ano</h5>
-  
-            <!-- inicio grafico de consulta -->
-            <div id="lineChart"></div>
-  
-            <script>
-              document.addEventListener("DOMContentLoaded", () => {
-                new ApexCharts(document.querySelector("#lineChart"), {
-                  series: [{
-                    name: "{{$titulo}}",
-                    data: [{{$alunoTotal}}]
-                  }],
-                  chart: {
-                    height: 350,
-                    type: 'line',
-                    zoom: {
-                      enabled: false
-                    }
-                  },
-                  dataLabels: {
-                    enabled: false
-                  },
-                  stroke: {
-                    curve: 'straight'
-                  },
-                  grid: {
-                    row: {
-                      colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-                      opacity: 0.5
-                    },
-                  },
-                  xaxis: {
-                    categories: [{{$alunoAno}}],
-                  }
-                }).render();
-              });
-            </script>
-            <!-- Fim grafico de consulta -->
-  
-          </div>
-        </div>
-      </div>
     </div>
 
     <div class="row">
@@ -307,7 +307,7 @@
 
               <div class="card-body">
                 <h5 class="card-title">Alunos <span>| 2022 - 2023</span></h5>
-                <table class="table table-striped">
+                <table class="table table-striped" style="font-size: 15px;">
                   <thead>
                     <tr style="text-transform: uppercase;">
                       <th scope="col">Cursos</th>
@@ -356,7 +356,7 @@
 
               <div class="card-body">
                 <h5 class="card-title">Turmas <span>| 2022 - 2023</span></h5>
-                <table class="table table-striped">
+                <table class="table table-striped" style="font-size: 15px;">
                   <thead>
                     <tr style="text-transform: uppercase;">
                       <th scope="col">Cursos</th>
@@ -403,11 +403,6 @@
 
       <!-- Coluna da direita -->
       <div class="col-lg-4">
-      
-        <div class="alert alert-warning bg-warning border-0 alert-dismissible fade show" role="alert">
-              Mensagem importante!
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
         <!-- Card comunicado -->
         <div class="card">
           <div class="card-body">
