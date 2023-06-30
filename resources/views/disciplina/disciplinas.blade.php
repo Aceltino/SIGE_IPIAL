@@ -38,8 +38,21 @@
     </form>
   </div>
 
-
-
+  @if(session('sucess'))
+<div class="alert alert-danger">
+          {{(session('sucess'))}}
+      </div>
+@endif
+@if(session('edit'))
+<div class="alert alert-danger">
+          {{(session('edit'))}}
+      </div>
+@endif
+@if(session('delete'))
+<div class="alert alert-danger">
+          {{(session('delete'))}}
+      </div>
+@endif
   <!-- /  Inicio da tabela de disciplina -->
   <table class="table table-striped display" style="margin-top: 10px;" id="Inscricoes-tab">
     <thead>
@@ -59,12 +72,15 @@
         <td>{{ $disciplina->nome_disciplina }}</td>
         <td>{{ $disciplina->sigla		}}</td>
         <td>{{ $disciplina->componente	}}</td>
-        <td>{{ $disciplina->tempo_prova }}</td>
+        <td>{{ $disciplina->tempo_prova }}</td> 
+        @if($disciplina->curso_id == '')
+        <td>todos cursos</td>
+      @else
         <td>{{ $disciplina->curso->nome_curso }}</td>
+       @endif
         <td> 
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
           <a href="{{ route('disciplina.edit', ['disciplina_id' => $disciplina->disciplina_id ])}}"><i class="bi bi-pencil"></i></a>
-
           <form action="{{ route('disciplina.delete', ['disciplina_id' => $disciplina->disciplina_id]) }}" method="POST">
             @csrf
             @method('delete')
@@ -73,7 +89,6 @@
         </td>
       </tr>
       @endforeach
-
             </tr>
     </tbody>
   </table>
@@ -111,8 +126,12 @@
                 <label>Componete: </label><input type="text" name="socio-culturais" value="{{ $disciplina->componente }}" disabled>
             </div>
             <div class="area-input form-group" style="border: none; ">
-                <label>Curso: </label><input type="text" name="socio-culturais" value="{{ $disciplina->curso->nome_curso }}" disabled>
-            </div>
+            @if($disciplina->curso_id == '')
+            <label>Curso: </label><input type="text" name="" value="Todos os cursos" disabled>
+            @else
+                <label>Curso: </label><input type="text" name="" value="{{ $disciplina->curso->nome_curso }}" disabled>
+            @endif
+              </div>
   <div class="area-input form-group" style="border: none; ">
                 <label>Tempo de prova: </label><input type="text" name="tempo_prova" value="{{ $disciplina->tempo_prova }}" disabled>
             </div>
@@ -125,9 +144,5 @@
           </div>
         </div>
       </div>
-
-
-
 </main>
 @endsection
-@
