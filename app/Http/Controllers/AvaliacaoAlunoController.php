@@ -68,11 +68,9 @@ class AvaliacaoAlunoController extends Controller
                 }
             }
         }
-
+        $trimestre = AvaliacaoTrait::pegarTrimestre();
         $aluno = AvaliacaoTrait::pegarNotaAluno($disciplina_id, $turmas);
-        //$coordenador_curso = AvaliacaoTrait::pegarCoordenadorCurso($user);
-        //$coordenador_area = AvaliacaoTrait::pegarCoordenadorArea($user);
-        //dd($turmas);
+
         return view('avaliac-aluno/avaliacoes-aluno', compact(['aluno', 'nome_disciplina', 'nome_turma', 'cursos']));
     }
 
@@ -92,8 +90,9 @@ class AvaliacaoAlunoController extends Controller
     public function store(Request $request, $disciplina_id)
     {
         //dd($request);
-        if($request->ac == null && $request->npp == null && $request->npt == null && $request->exame == null && $request->exame_recurso == null){
-            return redirect()->back();
+        if($request->ac == null && $request->npp == null && $request->npt == null
+        && $request->exame == null && $request->exame_recurso == null){
+            return redirect()->back()->with('erro', "Os campos dos formulários não podem estar vazios!");
         }
         $trimestre = Trimestre::where('status', 1)->get();
         $nota = Nota::where('aluno_id', $request->aluno_id)
