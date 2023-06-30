@@ -74,7 +74,7 @@ Route::prefix('Perfil')->middleware(['auth','active.session'])->group(function()
 /******************************************
  * Rotas de inscricao
  */
-Route::prefix('inscricao')->middleware(['active.session'])->group(function(){
+Route::prefix('inscricao')->middleware(['auth','active.session','checkcargo'])->group(function(){
 
     /*Inscricoes ou alunos inscritos */
     
@@ -128,7 +128,7 @@ Route::prefix('inscricao')->middleware(['active.session'])->group(function(){
  * Rotas das matriculas
  */
 
-Route::prefix('matricula')->middleware(['auth','active.session'])->group(function(){
+Route::prefix('matricula')->middleware(['auth','active.session','checkcargo'])->group(function(){
 
     /* Matriculas*/
     Route::get('matriculas', [MatriculaController::class, 'index'])->name('Matriculas');

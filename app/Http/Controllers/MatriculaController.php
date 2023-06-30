@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 use App\Http\Requests\MatriculaRequest;
 use App\Http\Requests\MatriculaupdateRequest;
 use App\Http\Requests\RegistrarRequest;
+use Carbon\Carbon;
 // use App\Http\Requests\MatriculaStoreRequest;
-use Illuminate\Http\Request;
 use App\Models\{
     Candidato,
     User,
@@ -178,15 +179,29 @@ class MatriculaController extends Controller
         $abreNome = substr($request['nome_completo'], $posicao,2);
         $abreSobreNome = substr($request['nome_enc1'], $posicao,2);
 
-        $dadosUser=[
+        $dataFimMatricula = AnoLectivoController::pegarAnoLectivo(AnoLectivoController::pegarIdAnoLectivo());
+        $dataMatriculaCarboon = Carbon::parse($dataFimMatricula);
+        $dataMatriculaCarboon->addDay();
+        $dataAcesso = $dataMatriculaCarboon->format('d-m-Y');
+        $hexAleatorio = Str::random(8);
+        $dadosUser=
+        [
             'nome_usuario'=>$abreNome.count(User::all()).$abreSobreNome,
             'email'=>$request['email'],
-            'password'=>bcrypt($request['email']),
+            'password'=>bcrypt($hexAleatorio),
             'cargo_usuario'=>'Aluno',
             'status_usuario'=>0,
             'pessoa_id'=>$pessoa_id,
         ];
         $user = UserController::store($dadosUser);
+
+        $sendEmail = AuthController::envioCredenciasEmail($dadosUser, $dadosUser['password'], $dataAcesso);
+        if(!$sendEmail)
+        {
+            $msg="Fique atento nos dados de identifcação, este candidato já está inscrito!";
+            return redirect()->back()->with("ErroPessoa",$msg);
+        }
+
         if(!$user)
         {
             $msg="Fique atento nos dados de identifcação, este candidato já está inscrito!";

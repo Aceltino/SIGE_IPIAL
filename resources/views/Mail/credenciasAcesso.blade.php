@@ -49,6 +49,7 @@
         <p>
             <a class="button" href="{{ $urlLogin }}">Acessar o Sistema</a>
         </p>
+        <p>ATT: Se for um 'aluno' a sua conta estará activa, após a</p>
         <p>Obrigado,</p>
         <p>Equipe do Sistema de Gestão Escolar - IPIAL</p>
     </div>
