@@ -180,7 +180,7 @@ class MatriculaController extends Controller
         $abreSobreNome = substr($request['nome_enc1'], $posicao,2);
 
         $dataFimMatricula = AnoLectivoController::pegarAnoLectivo(AnoLectivoController::pegarIdAnoLectivo());
-        $dataMatriculaCarboon = Carbon::parse($dataFimMatricula);
+        $dataMatriculaCarboon = Carbon::parse($dataFimMatricula->data_fim_matricula);
         $dataMatriculaCarboon->addDay();
         $dataAcesso = $dataMatriculaCarboon->format('d-m-Y');
         $hexAleatorio = Str::random(8);
