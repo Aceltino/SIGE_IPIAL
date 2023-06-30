@@ -14,6 +14,7 @@ class TurmaController extends Controller
     public function createTurma()
     {
         $vagas = AlunoTurmaController::pegarVagasTurno();
+
         $cursos = Curso::all();
         $turnos = Turno::all();
      //   dd($vagas);

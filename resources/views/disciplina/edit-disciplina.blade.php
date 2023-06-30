@@ -49,9 +49,9 @@
                     <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="curso" value="{{$curso['curso_id']}}">
                     <label class="form-check-label" for="flexSwitchCheckDefault">{{$curso['nome_curso']}}</label>
                  </div>
-                  @endforeach
+                  @endforeach 
                 <div class="col">
-                     <input type="time" style=" text-align: center;" value="{{ $disciplinas->tempo_prova }}" name="tempo_prova"   oninput="this.className = ''">
+                     <input type="number" style=" text-align: center;" value="{{ $disciplinas->tempo_prova }}" name="tempo_prova"    oninput="this.className = ''">
                  </div>
              </div> 
              <div style="text-align:center;margin-top:10px;">
