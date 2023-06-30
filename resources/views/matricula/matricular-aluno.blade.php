@@ -240,8 +240,6 @@
                     <select name="grau1" value="{{old('grau1')}}" id="opcoes" oninput="this.className = ''" class="form-select">
                         <option disabled>Familiares:</option>
                         <option value="Pai"selected>Pai</option>
-                        <option value="Mãe">Mãe</option>
-                        <option value="Outro">Outro</option>
                     </select>
                     @error('grau1')
                         <div class="alert alert-danger">{{$message}}</div>
@@ -316,9 +314,7 @@
                 <div class="col-lg-3 form-group gap-1 ">
                     <select name="grau2" value="{{old('grau2')}}" id="opcoes"  oninput="this.className = ''" class="form-select">
                         <option disabled>Familiares:</option>
-                        <option value="Pai">Pai</option>
                         <option value="Mãe" selected>Mãe</option>
-                        <option value="Outro">Outro</option>
                     </select>
                     @error('grau2')
                         <div class="alert alert-danger">{{$message}}</div>
@@ -396,8 +392,6 @@
                 <div class="col-3 form-group gap-1 ">
                     <select name="grau3" id="opcoes" value="{{old('grau3')}}" oninput="this.className = ''" class="form-select">
                         <option disabled>Familiares:</option>
-                        <option value="Pai">Pai</option>
-                        <option value="Mãe">Mãe</option>
                         <option value="Outro"selected>Outro</option>
                     </select>
                     @error('grau3')
