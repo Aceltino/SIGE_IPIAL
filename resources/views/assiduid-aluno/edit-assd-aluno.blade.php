@@ -4,10 +4,26 @@
 
 @section('conteudo')
 <main id="main" class="main">
+    @if (session()->has('erro'))
+    <div class="alert alert-danger">
+        {{session('erro')}}
+        <button class="botaofecharerro">
+          <i class="bi bi-x"></i>
+        </button>
+    </div>
+    @endif
+    @if (session()->has('sucesso'))
+    <div class="alert alert-success">
+        {{session('sucesso')}}
+        <button class="botaofechasucesso">
+          <i class="bi bi-x"></i>
+        </button>
+    </div>
+    @endif
   <div class="pagetitle">
     <div class="row">
         <div class="col">
-            <h1>Editar Assiduidade</h1>      
+            <h1>Editar Assiduidade</h1>
         </div>
     </div>
   </div>
@@ -15,7 +31,7 @@
     <div class="procurar">
         <form class="proc-form d-flex align-items-center">
             <input id="pesquisa" type="text" placeholder="Digite A Data da falta que pretendes justificar" name="" class="campo-pesq">
-            <button id="pesquisa" type="submit" title="Search"><i class="bi bi-search"></i></button>   
+            <button id="pesquisa" type="submit" title="Search"><i class="bi bi-search"></i></button>
         </form>
     </div>
 
@@ -24,15 +40,15 @@
             <div class="row">
                 <div class="col-lg-10">
                     <div class="nomenumeroalunoinfo">
-                        <h5 style="margin-left: 3px;"> <b>Nome:</b> Fualno Fulano Fulano Fulano</h5>
+                        <h5 style="margin-left: 3px;"> <b>Nome:</b>  {{$assiduidade[0]->aluno->candidato->pessoa->nome_completo}}</h5>
                     </div>
                 </div>
                 <div class="col-lg-2">
                     <div class="nofimnomenumeroaluno">
-                        <h5 class="nomenumeroalunoinfo"> <b>Nº:</b> 12</h5>
+                        <h5 class="nomenumeroalunoinfo"> <b>Nº:</b> {{$assiduidade[0]->aluno->turmas[0]->numero_aluno}}</h5>
                     </div>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
 
@@ -41,7 +57,7 @@
         <div class="row">
             <div class="col">
                 <div style="text-align: center;">
-                    <h1 style="font-size: 24px;">Histórico de Assiduidade</h1>      
+                    <h1 style="font-size: 24px;">Histórico de Assiduidade</h1>
                 </div>
             </div>
         </div>
@@ -59,97 +75,19 @@
         </tr>
       </thead>
       <tbody>
-        <tr style="text-align: center;">
-          <th scope="row">21/09/2023</th>
-          <td>1º</td>
-          <td>1º</td>
-          <td>Vermelha</td>
-          <td>Justificada</td>
-          <td style="text-align: center">
-            <a class="btn linkeditar" data-bs-toggle="modal" data-bs-target="#modal_assiduidade">Justificar</a>
-          </td>
-        </tr>
-        <tr style="text-align: center;">
-            <th scope="row">21/09/2023</th>
-            <td>1º</td>
-            <td>1º</td>
-            <td>Vermelha</td>
-            <td>Justificada</td>
-            <td style="text-align: center">
-              <a class="btn linkeditar" data-bs-toggle="modal" data-bs-target="#modal_assiduidade">Justificar</a>
-            </td>
-        </tr>
-        <tr style="text-align: center;">
-        <th scope="row">21/09/2023</th>
-        <td>1º</td>
-        <td>1º</td>
-        <td>Vermelha</td>
-        <td>Justificada</td>
-        <td style="text-align: center">
-            <a class="btn linkeditar" data-bs-toggle="modal" data-bs-target="#modal_assiduidade">Justificar</a>
-        </td>
-        </tr>
-        <tr style="text-align: center;">
-        <th scope="row">21/09/2023</th>
-        <td>1º</td>
-        <td>1º</td>
-        <td>Vermelha</td>
-        <td>Justificada</td>
-        <td style="text-align: center">
-            <a class="btn linkeditar" data-bs-toggle="modal" data-bs-target="#modal_assiduidade">Justificar</a>
-        </td>
-        </tr>
-        <tr style="text-align: center;">
-        <th scope="row">21/09/2023</th>
-        <td>1º</td>
-        <td>1º</td>
-        <td>Vermelha</td>
-        <td>Justificada</td>
-        <td style="text-align: center">
-            <a class="btn linkeditar" data-bs-toggle="modal" data-bs-target="#modal_assiduidade">Justificar</a>
-        </td>
-        </tr>
-        <tr style="text-align: center;">
-        <th scope="row">21/09/2023</th>
-        <td>1º</td>
-        <td>1º</td>
-        <td>Vermelha</td>
-        <td>Justificada</td>
-        <td style="text-align: center">
-            <a class="btn linkeditar" data-bs-toggle="modal" data-bs-target="#modal_assiduidade">Justificar</a>
-        </td>
-        </tr>
-        <tr style="text-align: center;">
-        <th scope="row">21/09/2023</th>
-        <td>1º</td>
-        <td>1º</td>
-        <td>Vermelha</td>
-        <td>Justificada</td>
-        <td style="text-align: center">
-            <a class="btn linkeditar" data-bs-toggle="modal" data-bs-target="#modal_assiduidade">Justificar</a>
-        </td>
-        </tr>
-        <tr style="text-align: center;">
-        <th scope="row">21/09/2023</th>
-        <td>1º</td>
-        <td>1º</td>
-        <td>Vermelha</td>
-        <td>Justificada</td>
-        <td style="text-align: center">
-            <a class="btn linkeditar" data-bs-toggle="modal" data-bs-target="#modal_assiduidade">Justificar</a>
-        </td>
-        </tr>
-        <tr style="text-align: center;">
-        <th scope="row">21/09/2023</th>
-        <td>1º</td>
-        <td>1º</td>
-        <td>Vermelha</td>
-        <td>Justificada</td>
-        <td style="text-align: center">
-            <a class="btn linkeditar" data-bs-toggle="modal" data-bs-target="#modal_assiduidade">Justificar</a>
-        </td>
-        </tr>
-
+        @foreach ($assiduidade as $assid)
+            <tr style="text-align: center;">
+                <th scope="row">{{date('d/m/Y', strtotime($assid->created_at))}}</th>
+                <td>1º</td>
+                <td>{{$assid->trimestre}}</td>
+                <td>{{$assid->tipo_falta}}</td>
+                <td>{{$assid->status_falta}}</td>
+                <td style="text-align: center">
+                    <a class="btn linkeditar" data-bs-toggle="modal" data-bs-target="#modal_assiduidade">Justificar</a>
+                  </td>
+                </tr>
+        @endforeach
+        
       </tbody>
     </table>
   </div>
@@ -186,6 +124,6 @@
       </div>
     </form>
 <!-- Fím da modal -->
-    
+
 </main>
 @endsection
