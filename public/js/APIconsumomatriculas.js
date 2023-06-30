@@ -8,12 +8,16 @@ axios.get('/api/matriculados')
             registros.forEach(function(registro) {
                 const row = tbody.insertRow();
                 const turma = registro.nomeTurma;
+                const situacao = registro.situacao
 
                 
                 if($.isEmptyObject(turma)){
 
                   Botao = `<a href="/matricula/readmitir-aluno/${registro.N_processo}/readmitir" name="" id="" class="btn btn-success"  role="button">Ativar</a>`;
-                } else{
+                } else if(turma && situacao == 'Anulou a Matricula'){
+                  Botao = `<a href="#" name="" id="" class="btn btn-danger"  role="button">Eliminar</a>`;
+
+                }else{
                   Botao = `<a href="/matricula/inativar/${registro.N_processo}" name="" id="" class="btn btn-danger"  role="button">inativar</a>`;
 
                 }
