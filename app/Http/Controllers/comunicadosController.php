@@ -10,9 +10,13 @@ use Illuminate\Support\Facades\Validator;
 
 class comunicadosController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $pesquisa = $request->pesquisa;
         $comunicados = Comunicado::all();
+        $comunicados = Comunicado::where('titulo_com', 'like',  "%$pesquisa%")->get();
+
+
         return view('comunicado.comunicado', compact('comunicados'));
     }
     public function create()
