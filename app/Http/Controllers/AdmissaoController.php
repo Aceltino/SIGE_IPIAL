@@ -33,29 +33,6 @@ class AdmissaoController extends Controller
         return $vagaCurso;
     }
 
-    public static function Vagas() // Vagas e Turma
-    {
-        $quantCursos = CursoController::quantidadeCurso();
-        $cursoNome = CursoController::pegarNomeCurso();
-        $classe = ClasseController::pegarIdClasse("10ª");
-
-        for ($i = 0; $i < $quantCursos; $i++) {
-            $curso[$i] = CursoController::pegarIdCurso($cursoNome[$i]);
-            $turmas = Turma::where('classe_id', $classe)
-                ->where('curso_id', $curso[$i])
-                ->get();
-
-            for ($j = 0; $j < $turmas->count(); $j++) { // Corrigido o operador de incremento $j++
-                $vagaCurso[] = [
-                    'Curso' => $cursoNome[$i],
-                    'Turma' => $turmas[$j]->nome_turma
-                ];
-            }
-        }
-
-        return $vagaCurso;
-    }
-
     // INICIO ADMISSÃO DA 10ª CLASSE
     public static function validarCandidato()
     {
