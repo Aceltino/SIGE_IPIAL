@@ -17,7 +17,7 @@
                 <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
 
                     <div style="  text-align: center;">
-                        <h2>CADASTrAR DISCIPLINA</h2>
+                        <h2>CADASTRAR DISCIPLINA</h2>
                     </div>
 
                 </div>
@@ -53,7 +53,7 @@
              </div> 
              <div style="text-align:center;margin-top:10px;">
                 <div>
-                    <button type="submit" class="btn btn-success">Criar Disciplina</button>
+                    <button type="submit" class="btn btn-success">Cadastrar</button>
                 </div>
             </div>
         </div> 

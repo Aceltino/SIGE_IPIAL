@@ -32,8 +32,8 @@
   </div>
 
   <div class="procurar">
-    <form class="proc-form d-flex align-items-center">
-      <input id="pesquisa" placeholder='Digite o nome das disciplina' type="text" name="" class="campo-pesq">
+    <form action="{{ route('consultar.disciplina') }}" class="proc-form d-flex align-items-center" method="GET">
+      <input id="pesquisa" placeholder='Digite o nome das disciplina' type="text" name="pesquisa" class="campo-pesq">
       <button type="submit" title="procurar"><i class="bi bi-search"></i></button>
     </form>
   </div>
