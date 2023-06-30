@@ -101,9 +101,9 @@ Route::prefix('inscricao')->middleware(['active.session'])->group(function(){
     // });
 
     // /*Incritos rejeitados */
-    // Route::get('inscritos-rejeitados', function () {
-    //     return view('inscricao/inscritos-rejeitados');
-    // });
+    Route::get('recibo', function () {
+        return view('recibo/recibo-incricao');
+    });
 
     // /*Confirmar inscricao*/
     // Route::get('conf-inscricao', function () {
@@ -133,8 +133,9 @@ Route::prefix('matricula')->middleware(['auth','active.session'])->group(functio
     /* Matriculas*/
     Route::get('matriculas', [MatriculaController::class, 'index'])->name('Matriculas');
 
-    /*Eliminar Matricula*/
-    Route::get('inativar/{aluno}', [MatriculaController::class, 'anularMatricula'])->name('eliminar-matricula');
+    /*Eliminar/Inativar Matricula*/
+    Route::get('inativar/{aluno}', [MatriculaController::class, 'anularMatricula'])->name('inativar-matricula');
+    Route::get('eliminar/{aluno}', [MatriculaController::class, 'eliminarMatricula'])->name('eliminar-matricula');
 
     // Atribuir turma 10ª classe
     Route::get('matricula-turma',  [MatriculaController::class, 'atribuirTurma'])->name('matricula-validarTurma');

@@ -265,8 +265,10 @@ class MatriculaController extends Controller
         {
             return redirect()->back()->with("ErroMatricula", $alunos);
         }
-            $msg = "Os alunos foram atribuidas as suas turmas com sucesso!";
-            return Redirect::route('Matriculas')->with("Sucesso", $msg);
+        CandidatoController::eliminarAdmitidos();
+
+        $msg = "Os alunos foram atribuidas as suas turmas com sucesso!";
+        return Redirect::route('Matriculas')->with("Sucesso", $msg);
     }
 
     public function readmitirEdit($id)
@@ -301,6 +303,21 @@ class MatriculaController extends Controller
         UserController::updateAluno($dadosUser);
 
         return redirect()->route('Matriculas')->with('success', 'Matricula anulada com sucesso.');
+    }
+
+    public function eliminarMatricula($id)
+    {
+        // dd($id);
+        $cand = AlunoController::alunoCandId(intval($id));
+        // dd($cand);
+        $pessoa = $this->deletePessoa($cand);
+
+        if(!$pessoa)
+        {
+            return redirect()->back()->with("ErroMatricula", "Este aluno já não existe em nosso banco de dados");
+        }
+
+        return redirect()->route('Matriculas')->with('success', 'Aluno eliminado com sucesso.');
     }
 
     public function registrarView()
