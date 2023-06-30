@@ -15,7 +15,7 @@ class AlunoTurmaController extends Controller
     public static function SelecionarTurma() //10ª Classe, função a ser chamada na atribuição de alunos, matriculados.
     {
        $alunos = AlunoController::alunosSemturma();
-
+// dd($alunos);
        if(!$alunos)
        {
             return "Todos os alunos matriculados atualmente estão nas suas devidas turmas.";

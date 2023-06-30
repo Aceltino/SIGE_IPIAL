@@ -61,6 +61,12 @@ class AlunoController extends Controller
         return $Alunos;
     }
 
+    public static function alunoCandId($id) // 10ª Classe
+    {
+        $aluno = Aluno::find($id);
+        return $aluno->candidato->pessoa_id;
+    }
+
     public static function alunosVinculados() // Fechamento do ano lectivo, ano lectivo status 0 -> Colocar esta função no fechamento do Ano Lectivo
     {
         $alunos = Aluno::where('status', 1 )->get();

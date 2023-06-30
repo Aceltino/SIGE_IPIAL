@@ -115,10 +115,6 @@ trait PessoaTrait
         return Pessoa::where('num_bi', $bilhete)->first();
     }
 
-    public static function checkPessoaTel($telefone)
-    {
-        return Pessoa::where('telefone', $telefone)->first();
-    }
     public static function deletePessoa($id)
     {
         $pessoa = Pessoa::find($id);
