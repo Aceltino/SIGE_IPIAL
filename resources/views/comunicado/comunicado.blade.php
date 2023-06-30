@@ -8,11 +8,11 @@
     <div class="col">
       <h2>Comunicados</h2>
     </div>
-  </div>
+  </div> 
  
   <div class="procurar">
-    <form class="proc-form d-flex align-items-center">
-      <input id="pesquisa" placeholder='pesquise o comunicado pelo seu Título' type="text" name="" class="campo-pesq">
+    <form action="{{ route('comunicado.index') }}" class="proc-form d-flex align-items-center" method="GET">
+      <input id="pesquisa" placeholder='pesquise o comunicado pelo seu Título' type="text" name="pesquisa" class="campo-pesq">
       <button type="submit" title="procurar"><i class="bi bi-search"></i></button>
     </form>
   </div>
