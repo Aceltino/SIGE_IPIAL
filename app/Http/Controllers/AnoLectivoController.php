@@ -25,6 +25,9 @@ class AnoLectivoController extends Controller
     }
     public static function pegarAnoLectivo($id)
     {
+
+        
+
         $ultimoAno = Ano_lectivo::orderBy('ano_lectivo_id', 'desc')
         ->where('ano_lectivo_id', $id)
         ->first();
