@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Active_session;
 use App\Traits\PessoaTrait;
-use App\Models\User;
+use App\Models\{
+    User,Active_session,
+};
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{
@@ -301,13 +302,17 @@ class AuthController extends Controller
     }
 
     //Metodo que envia o email das credencias de acesso do usuario cadastrado
-    public function envioCredenciasEmail($user,$senha):mixed
+    public static function envioCredenciasEmail($user,$senha,$dataMatri=null):mixed
     {  
         // Construir o URLpara logar com os novos dados 
         $urlLogin = url('autenticacao/login');
 
+        $paramAluno= ['urlLogin' => $urlLogin,'nome_usuario'=>$user->nome_usuario,'senha'=>$senha,'dataMatri'=>$dataMatri ];
+        $param=      ['urlLogin' => $urlLogin,'nome_usuario'=>$user->nome_usuario,'senha'=>$senha];
+
+
         // Enviar o e-mail
-        Mail::send('Mail.credenciasAcesso', ['urlLogin' => $urlLogin,'nome_usuario'=>$user->nome_usuario,'senha'=>$senha], 
+        Mail::send('Mail.credenciasAcesso', $user->cargo_usuario=="Aluno" ? $paramAluno : $param , 
         function ($message) use ($user) {
             $message->to($user->email);
             $message->subject('SIGE-IPIAL (Credencias de Acesso)');

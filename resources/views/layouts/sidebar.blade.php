@@ -60,12 +60,12 @@
       </a>
       <ul id="inscriacao-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href={{route('inscricao-view')}}>
+          <a href="{{route('inscricao-view')}}">
             <i class="bi bi-circle"></i><span>Inscrever candidato</span>
           </a>
         </li>
         <li>
-          <a href={{route('inscricao-index')}}>
+          <a href="{{route('inscricao-index')}}">
             <i class="bi bi-circle"></i><span>Inscrições</span>
           </a>
         </li>
@@ -81,13 +81,13 @@
       <ul id="matricula-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 
         <li>
-          <a href={{route('Matriculas')}}>
+          <a href="{{ route('Matriculas') }}">
             <i class="bi bi-circle"></i><span>Matriculas</span>
           </a>
         </li>
 
         <li>
-          <a href="matricula/registrar-aluno">
+          <a href="{{ route('registrar-view') }}">
             <i class="bi bi-circle"></i><span>Registrar Aluno</span>
           </a>
         </li>
@@ -121,7 +121,7 @@
       </a>
       <ul id="turma-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="turma/criar-turma">
+          <a href="{{route('turma-create')}}">
             <i class="bi bi-circle"></i><span>Criar turma</span>
           </a>
         </li>
