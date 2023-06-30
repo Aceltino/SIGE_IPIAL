@@ -26,7 +26,7 @@ use App\Http\Controllers\{
 */
 
 // Rota apenas de teste... Não apague -> ACELTINO
-    Route::get('validar-aluno', [AlunoTurmaController::class, 'pegarVagasTurno']);
+    Route::get('validar-aluno', [AlunoTurmaController::class, 'pegarTurma']);
 // Route::get('validar-aluno', [AlunoController::class, 'situacaoAluno']);
 
 
@@ -134,7 +134,7 @@ Route::prefix('matricula')->middleware(['auth','active.session'])->group(functio
     Route::get('matriculas', [MatriculaController::class, 'index'])->name('Matriculas');
 
     /*Eliminar Matricula*/
-    Route::get('eliminar/{aluno}', [MatriculaController::class, 'anularMatricula'])->name('eliminar-matricula');
+    Route::get('inativar/{aluno}', [MatriculaController::class, 'anularMatricula'])->name('eliminar-matricula');
 
     // Atribuir turma 10ª classe
     Route::get('matricula-turma',  [MatriculaController::class, 'atribuirTurma'])->name('matricula-validarTurma');

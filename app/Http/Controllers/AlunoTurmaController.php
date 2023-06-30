@@ -139,6 +139,26 @@ class AlunoTurmaController extends Controller
         return $Turmas;
     }
 
+    public static function pegarTurma($curso, $classe, $turno) //Pegar turma para integrar aluno transferido
+    {
+        $turma = AnoTurmaCood::with('turma','ano_lectivo')
+        ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
+        ->whereHas('turma', function ($query) use($curso, $classe, $turno ) {
+            $query->where('curso_id', $curso);
+            $query->where('classe_id', $classe);
+            $query->where('turno_id', $turno);
+        })
+        ->where('num_vagas', '>', 0)
+        ->first();
+// dd($turmas);
+        $turmaEncontrada = [
+            'TurmaAno_id' => $turma->turmaAno_id,
+            'num_vaga' => $turma->num_vagas
+];
+    
+        return $turmaEncontrada;
+    }
+
     public static function quantidadeTurma($turma) //Pegar turmas 10ª Classe deste ano lectivo
     {
         $turmas = AlunoTurma::all()
@@ -341,9 +361,11 @@ class AlunoTurmaController extends Controller
             }
             return true;
     }
+
     public static function pegarVagas() // Com base a classe, curso e turno...
     {
         $turmas = AnoTurmaCood::with('turma', 'ano_lectivo')
+            ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
             ->get();
 
         $vagas = [];
@@ -414,6 +436,37 @@ class AlunoTurmaController extends Controller
             $vagas[$chave]['turmasRestantes']--;
         }
         return array_values($vagas);
+    }
+
+    public static function AnulouMatricula($Aluno) // Função de anular a matricula
+    {
+        $aluno = Aluno::find($Aluno['aluno']);
+        $aluno->Anoturma()->updateExistingPivot($Aluno['turma'], 
+        [
+            'situacao' => 'Anulou a Matricula',
+            'numero_aluno' => 0,    
+        ]);
+        return $aluno;
+    }
+    public static function alunoTransferido($Aluno) // Função a ser chamada na reabertura do ano lectivo 11ª >
+    {
+            $turma = AlunoTurmaController::pegarTurma($Aluno['curso_id'], $Aluno['classe_id'],$Aluno['turno_id']);
+
+            $vaga = $turma['num_vaga'] - 1;
+            $vagaUpdate = [
+            'id' => $turma['TurmaAno_id'],
+            'vaga' => $vaga
+            ];
+            AlunoTurmaController::atualizarVaga($vagaUpdate);
+            $qtdAlunos = AlunoTurmaController::quantidadeTurma($turma['TurmaAno_id']);
+
+            $alunoA = Aluno::find($Aluno['aluno_id']);
+            $alunoA->Anoturma()->attach($turma['TurmaAno_id'],[
+                'numero_aluno' => $qtdAlunos + 1,
+                'situacao' => 'Transferido'
+            ]);
+
+            return $alunoA;
     }
 
 }

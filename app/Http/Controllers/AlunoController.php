@@ -298,5 +298,20 @@ class AlunoController extends Controller
         }
         return($alunos);
     }
+
+    public static function alunoTurma($Aluno) // Função a ser chamada na reabertura do ano lectivo 11ª >
+    {
+        $aluno = Aluno::with('anoturma')
+        ->whereHas('anoturma', function ($query) {
+            $query->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo());
+        })
+        ->where('aluno_id', $Aluno)
+        ->first();
+
+        $ultimaPosicao = count($aluno->anoturma) - 1;
+        $turmaAnoId = $aluno->anoturma[$ultimaPosicao]->turmaAno_id;
+
+        return $turmaAnoId;
+    }
 //
 }

@@ -36,8 +36,9 @@ class Disciplina extends Model
         return $this->belongsToMany(Turma::class, 'classe_disciplina', 'disciplina_id', 'classe_id');
     }
     // conexão de disciplina e curso
-    public function cursos()
+    public function curso()
     {
-    return $this->belongsToMany(Curso::class, 'disciplinas_cursos', 'disciplina_id', 'curso_id');
+        return $this->belongsTo(Curso::class,'curso_id');
     }
 }
+ 

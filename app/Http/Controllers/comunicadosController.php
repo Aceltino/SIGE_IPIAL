@@ -34,16 +34,14 @@ class comunicadosController extends Controller
             'conteudo_com.min'=>'Este campo não pode conter menos de 2 letras.',
         ];
         $dadosFiltrado = [
-            'titulo_com' => $request->titulo_com,
-            'conteudo_com' => $request->conteudo_com,
+            'titulo_com' => $request->titulo,
+            'conteudo_com' => $request->conteudo, 
+            'usuario_id' => Auth::user()->usuario_id,
+            'ano_lectivo_id' => Ano_lectivo::where('status_ano_lectivo', 1)->first(),   
         ];
-        $validação = Validator::make($dadosFiltrado,$regras,$msgErro,);
+        $validação = Validator::make($dadosFiltrado,$regras,$msgErro);
         if($validação->fails()){
-            return redirect()->back()->withErrors($validação)->withInput();
-        }
-        else
-        {
-            return redirect()->route('comunicado.index', ['comunicados' => $comunicados]);  
+            return redirect()->route('comunicado.index');
         }
         $ano_lectivo = Ano_lectivo::where('status_ano_lectivo', 1)->first();
         $comunicados = new Comunicado();
@@ -52,9 +50,8 @@ class comunicadosController extends Controller
         $comunicados->ano_lectivo_id = $ano_lectivo->ano_lectivo_id;
         $comunicados->usuario_id =Auth::user()->usuario_id;
         $comunicados->save();
+        return redirect()->route('comunicado.index',$comunicados)->with('sucess','Comunicado criado com sucesso'); 
        
-
-        return redirect()->route('comunicado.index',$comunicados);
     }
     public function edit($comunicado_id)
     {
@@ -63,7 +60,7 @@ class comunicadosController extends Controller
         {
             return view('comunicado.editar-comunicado', ['comunicados' => $comunicados]);
         }
-        else{
+        else{ 
             return redirect()->route('comunicado.index');
         }
     }
@@ -75,12 +72,12 @@ class comunicadosController extends Controller
             'conteudo_com' => $request->conteudo_com,
         ];
         Comunicado::where('comunicado_id', $comunicado_id)->update($dados);
-        return redirect()->route('comunicado.index');
+        return redirect()->route('comunicado.index')->with('edit','Comunicado editado com sucesso');
     }
     public function destroy($comunicado_id)
     {
         Comunicado::where('comunicado_id', $comunicado_id)->delete();
-        return redirect()->route('comunicado.index');
+        return redirect()->route('comunicado.index')->with('delete','Comunicado eliminada com sucesso ');
     }
 
 }

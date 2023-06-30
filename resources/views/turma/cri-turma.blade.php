@@ -24,7 +24,7 @@
              
 
             <div class="form-group">
-                <input class="form-control" id="vagas-input" type="number" style=" text-align: center;" placeholder="Vagas Restantes" disabled>
+                <input class="form-control" id="vagas-input" type="number" style=" text-align: center;" placeholder="Vagas Disóniveis" disabled>
                 
             </div>
 
