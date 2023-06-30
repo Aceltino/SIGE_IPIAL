@@ -306,8 +306,8 @@ class AuthController extends Controller
     {  
         // Construir o URLpara logar com os novos dados 
         $urlLogin = url('autenticacao/login');
-
-        $paramAluno= ['urlLogin' => $urlLogin,'nome_usuario'=>$user->nome_usuario,'senha'=>$senha,'dataMatri'=>$dataMatri ];
+// dd($user->nome_usuario);
+        $paramAluno= ['urlLogin' => $urlLogin,'nome_usuario'=>$user->nome_usuario,'senha'=>$senha,'dataMatri'=>$dataMatri, 'cargo'=>$user->cargo_usuario ];
         $param=      ['urlLogin' => $urlLogin,'nome_usuario'=>$user->nome_usuario,'senha'=>$senha];
 
 

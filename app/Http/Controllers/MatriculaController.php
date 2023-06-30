@@ -195,7 +195,7 @@ class MatriculaController extends Controller
         ];
         $user = UserController::store($dadosUser);
 
-        $sendEmail = AuthController::envioCredenciasEmail($dadosUser, $hexAleatorio, $dataAcesso);
+        $sendEmail = AuthController::envioCredenciasEmail($user, $hexAleatorio, $dataAcesso);
         if(!$sendEmail)
         {
             $msg="Fique atento nos dados de identifcação, este candidato já está inscrito!";
