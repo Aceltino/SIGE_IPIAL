@@ -65,11 +65,6 @@ class MatriculaController extends Controller
                 $msg="O número de identificação do ". $i ."º encarregado já está sendo utilizado, confirme todos os dados de identificação dele.";
                 return redirect()->back()->with("ErroEncarregado",$msg);
             }
-            if($this->checkPessoaTel($dadosEnc['telefone']))
-            {
-                $msg="O telefone do ". $i ."º encarregado já está sendo utilizado, confirme o numero de telefone dele.";
-                return redirect()->back()->with("ErroEncarregado",$msg);
-            }
         }
 
         // Atualizando candidato(Pessoas) pela confirmação de dados no formMatricula--
@@ -79,7 +74,6 @@ class MatriculaController extends Controller
             'nome_completo'=> $request['nome_completo'],
             'num_bi'=> $request['num_bi'],
             'genero'=> $request['genero'],
-            'telefone' => $request['num_tel'],
             'pessoa_id' => $pessoa_id
         ];
         $Pessoa = $this->updatePessoa($dadosPessoa);
@@ -145,6 +139,11 @@ class MatriculaController extends Controller
                     $idPessoa = $encarregado[$i];
                     goto cadEncarregado;
                 }
+                if($this->checkPessoaBI($request['num_bi_enc' . $i]))
+                {
+                    $msg="O número de identificação do ". $i ."º encarregado já está sendo utilizado, confirme todos os dados de identificação dele.";
+                    return redirect()->back()->with("ErroEncarregado",$msg);
+                }
                 $dadosPessoa = [
                     'nome_completo'=> $request['nome_enc' . $i],
                     'num_bi'=> strtoupper($request['num_bi_enc' . $i]),
@@ -182,7 +181,7 @@ class MatriculaController extends Controller
         $dadosUser=[
             'nome_usuario'=>$abreNome.count(User::all()).$abreSobreNome,
             'email'=>$request['email'],
-            'password'=>bcrypt($request['num_tel']),
+            'password'=>bcrypt($request['email']),
             'cargo_usuario'=>'Aluno',
             'status_usuario'=>0,
             'pessoa_id'=>$pessoa_id,
@@ -279,16 +278,29 @@ class MatriculaController extends Controller
         {
             return redirect()->back()->with("ErroMatricula", $alunoTurma);
         }
-            $msg = "O aluno foi readmitido com sucesso, consulte por ele!";
-            return Redirect::route('Matriculas')->with("Sucesso", $msg);
+        $msg = "O aluno foi readmitido com sucesso, consulte por ele!";
+        return Redirect::route('Matriculas')->with("Sucesso", $msg);
     }
 
 
     public function anularMatricula($id)
     {
-        $candidato = Candidato::find($id);
-        $this->deletePessoa($candidato->pessoa_id);
-        return redirect()->route('Matriculas')->with('success', 'Aluno excluído com sucesso.');
+        // dd($id);
+        $turma = AlunoController::alunoTurma(intval($id));
+        $aluno = [
+            'aluno' => $id,
+            'turma' => $turma,
+        ];
+
+        AlunoTurmaController::AnulouMatricula($aluno);
+        $userId = AlunoController::pegarIdUser($id);
+        $dadosUser=[
+            'usuario_id'=> $userId,
+            'status_usuario'=>0,
+        ];
+        UserController::updateAluno($dadosUser);
+
+        return redirect()->route('Matriculas')->with('success', 'Matricula anulada com sucesso.');
     }
 
     public function registrarView()
@@ -299,7 +311,8 @@ class MatriculaController extends Controller
         return view('matricula.registrar-aluno', compact('cursos','vagas', 'classe'));
     }
 
-    public function registrarStore(RegistrarRequest $input){
+    public function registrarStore(RegistrarRequest $input)
+    {
         $request = $input->validated(); // Inputs validadas
         // dd($request);
         $encarregado = [];
@@ -325,11 +338,6 @@ class MatriculaController extends Controller
             if($this->checkPessoaBI($dadosEnc['num_bi']))
             {
                 $msg="O número de identificação do ". $i ."º encarregado já está sendo utilizado, confirme todos os dados de identificação dele.";
-                return redirect()->back()->with("ErroEncarregado",$msg);
-            }
-            if($this->checkPessoaTel($dadosEnc['telefone']))
-            {
-                $msg="O telefone do ". $i ."º encarregado já está sendo utilizado, confirme o numero de telefone dele.";
                 return redirect()->back()->with("ErroEncarregado",$msg);
             }
         }

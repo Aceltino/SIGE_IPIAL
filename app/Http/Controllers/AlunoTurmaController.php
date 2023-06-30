@@ -362,7 +362,6 @@ class AlunoTurmaController extends Controller
             return true;
     }
 
-
     public static function pegarVagas() // Com base a classe, curso e turno...
     {
         $turmas = AnoTurmaCood::with('turma', 'ano_lectivo')
@@ -439,6 +438,16 @@ class AlunoTurmaController extends Controller
         return array_values($vagas);
     }
 
+    public static function AnulouMatricula($Aluno) // Função de anular a matricula
+    {
+        $aluno = Aluno::find($Aluno['aluno']);
+        $aluno->Anoturma()->updateExistingPivot($Aluno['turma'], 
+        [
+            'situacao' => 'Anulou a Matricula',
+            'numero_aluno' => 0,    
+        ]);
+        return $aluno;
+    }
     public static function alunoTransferido($Aluno) // Função a ser chamada na reabertura do ano lectivo 11ª >
     {
             $turma = AlunoTurmaController::pegarTurma($Aluno['curso_id'], $Aluno['classe_id'],$Aluno['turno_id']);

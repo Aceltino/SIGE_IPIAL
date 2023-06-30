@@ -36,7 +36,7 @@ class RegistrarRequest extends FormRequest
             //Formulario da Pessoa
             'nome_completo'=>'required|string|min:2|max:100',
             'data_nascimento'=>'required|date|before:'.now()->format('d-m-Y'),
-            'num_bi'=>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi',
+            'num_bi'=>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/',
             'genero' => 'required|string',
             'turno' => 'required|string',
 
@@ -48,7 +48,7 @@ class RegistrarRequest extends FormRequest
             'turma_aluno' => 'required|string',
 
             //Dados Telefone
-            'num_tel'=>'required|size:9|unique:pessoas,telefone',
+            'num_tel'=>'required|size:9',
 
             //encarregado 1
             'telefone1'=>'required|size:9',
