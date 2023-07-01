@@ -70,9 +70,20 @@ class AssiduidadeAlunoController extends Controller
         return view('assiduid-aluno/assd-aluno', compact(['alunos', 'nome_turma', 'cursos', 'nome_disciplina', 'trimestre']));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $aluno_id, $disciplina_id)
     {
-
+        $trimestre = AvaliacaoTrait::pegarTrimestre();
+        $falta = [
+            'falta_aluno' => 1,
+            'status_falta' => "N-JUSTIFICADA",
+            'descricao_falta' => $request->conteudo,
+            'tipo_falta' => $request->tipo_falta,
+            'aluno_id' => $aluno_id,
+            'id_trimestre' => $trimestre[0]->trimestre_id,
+            'disciplina_id' => $disciplina_id
+        ];
+        Assiduidade_aluno::create($falta);
+        return redirect()->back()->with('sucesso', "Falta aplicada com sucesso!");
     }
 
     public function show($aluno_id, $disciplina_id)
@@ -84,17 +95,16 @@ class AssiduidadeAlunoController extends Controller
         if(count($assiduidade) < 1){
             return redirect()->back()->with('erro', "Nenhuma falta encontrada!");
         }
-        return view('assiduid-aluno/edit-assd-aluno', compact('assiduidade'));
+        $tempos = AssiduidadeTrait::pegarTempo($assiduidade);
+        return view('assiduid-aluno/edit-assd-aluno', compact(['assiduidade', 'trimestre', 'tempos']));
     }
 
-    public function edit(Assiduidade_aluno $assiduidade_aluno)
+    public function update(Request $request, $assiduidade_id)
     {
-
-    }
-
-    public function update(Request $request, Assiduidade_aluno $assiduidade_aluno)
-    {
-        //
+        $assiduidade = Assiduidade_aluno::find($assiduidade_id);
+        $assiduidade->status_falta = "JUSTIFICADA";
+        $assiduidade->save();
+        return redirect()->back()->with('sucesso', "Falta justificada com sucesso!");
     }
 
     public function delete(Assiduidade_aluno $assiduidade_aluno)

@@ -5,8 +5,12 @@ use App\Models\Assiduidade_aluno;
 use Illuminate\Support\Fluent;
 use App\Models\Disciplina;
 use App\Models\AlunoTurma;
+use App\Models\Hora;
 use App\Models\Trimestre;
 use App\Traits\AvaliacaoTrait;
+use Carbon\Carbon;
+use DateTime;
+
 trait AssiduidadeTrait
 {
     public static function pegarAssiduidadeAluno($disciplinas, $turmas){
@@ -86,4 +90,21 @@ trait AssiduidadeTrait
         }
         return $dados;
     }
+
+    public static function pegarTempo($assiduidade){
+        for($i = 0; $i < count($assiduidade); $i++){
+            $hora_falta = new Carbon($assiduidade[$i]->created_at);
+            $hora_tempo = Hora::with('tempo')->get();
+            for ($j = 0; $j < count($hora_tempo); $j++) {
+                $h_falta = strtotime($hora_falta->toTimeString());
+                $inicio = substr($hora_tempo[$j]->hora, 0, 5);
+                $fim = substr($hora_tempo[$j]->hora, 8, 5);
+                if($h_falta >= strtotime($inicio) && $h_falta <= strtotime($fim)){
+                    $tempo[$i] = $hora_tempo[$j]->tempo->tempo;
+                }
+            }
+        }
+        return $tempo;
+    }
+
 }

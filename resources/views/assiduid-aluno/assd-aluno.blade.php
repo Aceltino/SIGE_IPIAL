@@ -127,7 +127,8 @@
       @foreach ($valor2 as $chave3 => $valor3)
 
     <!-- Início da Modal -->
-    <form method="POST" action="">
+    <form method="POST" action="{{route('marcar.falta', [$valor3['aluno_id'], $valor3['disciplina_id']])}}">
+        @csrf
       <div class="modal" id="modal_assiduidade{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}" tabindex="-1" data-bs-backdrop="false" >
           <div class="modal-dialog">
           <div class="modal-content">
@@ -138,7 +139,7 @@
           <div class="modal-body">
               <div class="row">
                   <div class="alert alert-warning" role="alert">
-                      <h6>Atenção: Estás a Marcar uma falta normal ao Aluno(a) !! </h6><h6> Estás prestes a inserir uma falta no dia {{date('d/m/Y')}} ao Aluno(a) {{$valor3['nome']}}</h6>
+                      <h6>Atenção: Estás a Marcar uma falta presencial ao Aluno(a) !! </h6><h6> Estás prestes a inserir uma falta no dia {{date('d/m/Y')}} ao Aluno(a) {{$valor3['nome']}}</h6>
                       <h5>Deseja Realmente Continuar?</h5>
                   </div>
               </div>
@@ -150,7 +151,7 @@
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="subimit" class="btn btn-primary">Confirmar</button>
+              <button type="subimit" class="btn btn-primary" name="tipo_falta" value="Presencial">Confirmar</button>
           </div>
           </div>
       </div>
