@@ -105,7 +105,7 @@ class AvaliacaoAlunoController extends Controller
                 'data_avaliacao' => date('Y-m-d'),
                 'nota_aluno' => $request->ac,
                 'tipo_prova' => "AvaliacaoContinua",
-                'descricao_nota' => null,
+                'descricao_nota' => $request->conteudo,
                 'aluno_id' => $request->aluno_id,
                 'disciplina_id' => $disciplina_id,
                 'trimestre_id' => $trimestre[0]->trimestre_id
@@ -124,7 +124,7 @@ class AvaliacaoAlunoController extends Controller
                     'data_avaliacao' => date('Y-m-d'),
                     'nota_aluno' => $request->npp,
                     'tipo_prova' => "Prova Professor",
-                    'descricao_nota' => null,
+                    'descricao_nota' => $request->conteudo,
                     'aluno_id' => $request->aluno_id,
                     'disciplina_id' => $disciplina_id,
                     'trimestre_id' => $trimestre[0]->trimestre_id
@@ -144,7 +144,7 @@ class AvaliacaoAlunoController extends Controller
                     'data_avaliacao' => date('Y-m-d'),
                     'nota_aluno' => $request->npt,
                     'tipo_prova' => "ProvaTrimestre",
-                    'descricao_nota' => null,
+                    'descricao_nota' => $request->conteudo,
                     'aluno_id' => $request->aluno_id,
                     'disciplina_id' => $disciplina_id,
                     'trimestre_id' => $trimestre[0]->trimestre_id
@@ -164,7 +164,7 @@ class AvaliacaoAlunoController extends Controller
                     'data_avaliacao' => date('Y-m-d'),
                     'nota_aluno' => $request->exame,
                     'tipo_prova' => "Exame",
-                    'descricao_nota' => null,
+                    'descricao_nota' => $request->conteudo,
                     'aluno_id' => $request->aluno_id,
                     'disciplina_id' => $disciplina_id,
                     'trimestre_id' => $trimestre[0]->trimestre_id
@@ -184,7 +184,7 @@ class AvaliacaoAlunoController extends Controller
                     'data_avaliacao' => date('Y-m-d'),
                     'nota_aluno' => $request->exame_recurso,
                     'tipo_prova' => "Exame Recurso",
-                    'descricao_nota' => null,
+                    'descricao_nota' => $request->conteudo,
                     'aluno_id' => $request->aluno_id,
                     'disciplina_id' => $disciplina_id,
                     'trimestre_id' => $trimestre[0]->trimestre_id
@@ -202,6 +202,7 @@ class AvaliacaoAlunoController extends Controller
         $nota = Nota::find($nota);
 
         $nota->nota_aluno = $request->nota_aluno;
+        $nota->descricao_nota = $request->conteudo;
         $nota->save();
         //dd($nota);
         return redirect()->back()->with('sucesso', "Nota alterada com sucesso!");
