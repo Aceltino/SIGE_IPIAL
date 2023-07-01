@@ -83,17 +83,17 @@ $(document).ready(function () {
         var filtro9 = $(this).val(); 
         $T.column(8).search(filtro9).draw(); // Filtra a tabela pela Nona coluna com o valor selecionado
       });
+      $("#filtro8").on("change", function() {
+        var filtro8 = $(this).val(); 
+        $T.column(9).search(filtro8).draw(); // Filtra a tabela pela Décima coluna com o valor selecionado
+      });
+      $("#filtro9").on("change", function() {
+        var filtro9 = $(this).val(); 
+        $T.column(10).search(filtro9).draw(); // Filtra a tabela pela Décima-Primeira coluna com o valor selecionado
+      });
       $("#filtro10").on("change", function() {
         var filtro10 = $(this).val(); 
-        $T.column(9).search(filtro10).draw(); // Filtra a tabela pela Décima coluna com o valor selecionado
-      });
-      $("#filtro11").on("change", function() {
-        var filtro11 = $(this).val(); 
-        $T.column(10).search(filtro11).draw(); // Filtra a tabela pela Décima-Primeira coluna com o valor selecionado
-      });
-      $("#filtro12").on("change", function() {
-        var filtro12 = $(this).val(); 
-        $T.column(11).search(filtro12).draw(); // Filtra a tabela pela Décima-Segunda coluna com o valor selecionado
+        $T.column(11).search(filtro10).draw(); // Filtra a tabela pela Décima-Segunda coluna com o valor selecionado
       });
       $("#filtro13").on("change", function() {
         var filtro13 = $(this).val(); 
@@ -216,17 +216,17 @@ $(document).ready(function () {
         var filtro9 = $(this).val(); 
         $T.column(8).search(filtro9).draw(); // Filtra a tabela pela Nona coluna com o valor selecionado
       });
+      $("#filtro8").on("change", function() {
+        var filtro8 = $(this).val(); 
+        $T.column(9).search(filtro8).draw(); // Filtra a tabela pela Décima coluna com o valor selecionado
+      });
+      $("#filtro9").on("change", function() {
+        var filtro9 = $(this).val(); 
+        $T.column(10).search(filtro9).draw(); // Filtra a tabela pela Décima-Primeira coluna com o valor selecionado
+      });
       $("#filtro10").on("change", function() {
         var filtro10 = $(this).val(); 
-        $T.column(9).search(filtro10).draw(); // Filtra a tabela pela Décima coluna com o valor selecionado
-      });
-      $("#filtro11").on("change", function() {
-        var filtro11 = $(this).val(); 
-        $T.column(10).search(filtro11).draw(); // Filtra a tabela pela Décima-Primeira coluna com o valor selecionado
-      });
-      $("#filtro12").on("change", function() {
-        var filtro12 = $(this).val(); 
-        $T.column(11).search(filtro12).draw(); // Filtra a tabela pela Décima-Segunda coluna com o valor selecionado
+        $T.column(11).search(filtro10).draw(); // Filtra a tabela pela Décima-Segunda coluna com o valor selecionado
       });
       $("#filtro13").on("change", function() {
         var filtro13 = $(this).val(); 
@@ -325,17 +325,17 @@ $(document).ready(function () {
         var filtro9 = $(this).val(); 
         $T.column(8).search(filtro9).draw(); // Filtra a tabela pela Nona coluna com o valor selecionado
       });
+      $("#filtro8").on("change", function() {
+        var filtro8 = $(this).val(); 
+        $T.column(9).search(filtro8).draw(); // Filtra a tabela pela Décima coluna com o valor selecionado
+      });
+      $("#filtro9").on("change", function() {
+        var filtro9 = $(this).val(); 
+        $T.column(10).search(filtro9).draw(); // Filtra a tabela pela Décima-Primeira coluna com o valor selecionado
+      });
       $("#filtro10").on("change", function() {
         var filtro10 = $(this).val(); 
-        $T.column(9).search(filtro10).draw(); // Filtra a tabela pela Décima coluna com o valor selecionado
-      });
-      $("#filtro11").on("change", function() {
-        var filtro11 = $(this).val(); 
-        $T.column(10).search(filtro11).draw(); // Filtra a tabela pela Décima-Primeira coluna com o valor selecionado
-      });
-      $("#filtro12").on("change", function() {
-        var filtro12 = $(this).val(); 
-        $T.column(11).search(filtro12).draw(); // Filtra a tabela pela Décima-Segunda coluna com o valor selecionado
+        $T.column(11).search(filtro10).draw(); // Filtra a tabela pela Décima-Segunda coluna com o valor selecionado
       });
       $("#filtro13").on("change", function() {
         var filtro13 = $(this).val(); 
@@ -370,7 +370,7 @@ $("#pesquisa").on("keyup", function () {
 });
 
 $(document).ready(function () {
-  var $T= $("#avaliacaotab").DataTable({
+  var $T= $("aliacaotab").DataTable({
         pageLength: 50,
         "dom": '<"top"i>rt<"bottom"lp><"clear">',
         lengthChange: false,
@@ -401,17 +401,34 @@ $(document).ready(function () {
 
     // Função para aplicar os filtros iniciais
     function applyInitialFilters() {
-        var filtro1 = $("#filtro10").val();
-        var filtro2 = $("#filtro11").val();
-        var filtro3 = $("#filtro12").val();
-        // Obter os valores selecionados dos demais selects
-
-        // Aplicar os filtros iniciais
-        $T.column(9).search(filtro1).draw(); 
-        $T.column(10).search(filtro2).draw(); 
-        $T.column(11).search(filtro3).draw(); 
-        
+      var filtro1 = getSelectedOption("filtro8");
+      var filtro2 = getSelectedOption("filtro9");
+      var filtro3 = getSelectedOption("filtro10");
+      // Márcio podes adicionar mais selects com base os numeros de selects necessários
+  
+      // Aplicar os filtros iniciais
+      $T.column(9).search(filtro1).draw();
+      $T.column(10).search(filtro2).draw();
+      $T.column(11).search(filtro3).draw();
     }
+  
+    // Função para obter a opção selecionada de um select e armazenar no localStorage
+    function saveSelectedOption(selectId) {
+      var selectedValue = $("#" + selectId).val();
+      localStorage.setItem(selectId, selectedValue);
+    }
+  
+    // Função para recuperar a opção selecionada de um select do localStorage
+    function getSelectedOption(selectId) {
+      var selectedValue = localStorage.getItem(selectId);
+      return selectedValue || ""; // Retorna uma string vazia caso não haja valor armazenado
+    }
+  
+    // Evento para salvar a opção selecionada quando um select for alterado
+    $("#filtro8, #filtro9, #filtro10").change(function() {
+      var selectId = $(this).attr("id");
+      saveSelectedOption(selectId);
+    });
     $("#filtro").on("change", function() {
       var filtro = $(this).val(); 
       $T.column(5).search(filtro).draw(); // Filtra a tabela pela sexta coluna com o valor selecionado
@@ -448,17 +465,17 @@ $(document).ready(function () {
       var filtro9 = $(this).val(); 
       $T.column(8).search(filtro9).draw(); // Filtra a tabela pela Nona coluna com o valor selecionado
     });
+    $("#filtro8").on("change", function() {
+      var filtro8 = $(this).val(); 
+      $T.column(9).search(filtro8).draw(); // Filtra a tabela pela Décima coluna com o valor selecionado
+    });
+    $("#filtro9").on("change", function() {
+      var filtro9 = $(this).val(); 
+      $T.column(10).search(filtro9).draw(); // Filtra a tabela pela Décima-Primeira coluna com o valor selecionado
+    });
     $("#filtro10").on("change", function() {
       var filtro10 = $(this).val(); 
-      $T.column(9).search(filtro10).draw(); // Filtra a tabela pela Décima coluna com o valor selecionado
-    });
-    $("#filtro11").on("change", function() {
-      var filtro11 = $(this).val(); 
-      $T.column(10).search(filtro11).draw(); // Filtra a tabela pela Décima-Primeira coluna com o valor selecionado
-    });
-    $("#filtro12").on("change", function() {
-      var filtro12 = $(this).val(); 
-      $T.column(11).search(filtro12).draw(); // Filtra a tabela pela Décima-Segunda coluna com o valor selecionado
+      $T.column(11).search(filtro10).draw(); // Filtra a tabela pela Décima-Segunda coluna com o valor selecionado
     });
     $("#filtro13").on("change", function() {
       var filtro13 = $(this).val(); 
@@ -484,10 +501,164 @@ $(document).ready(function () {
 $(".paginate_button").addClass("paginate_button");
 $(".paginate").addClass("float-end");
 
-
+// Função para Pesquisar os dados apartir da barra de pesquisas
 $("#pesquisa").on("keyup", function () {
    $T.search(this.value).draw();
    
 });
+
+  // Recuperar os valores dos selects do localStorage e selecionar as opções correspondentes
+  $("#filtro8").val(getSelectedOption("filtro8"));
+  $("#filtro9").val(getSelectedOption("filtro9"));
+  $("#filtro10").val(getSelectedOption("filtro10"));
  
+
+
+});
+
+$(document).ready(function () {
+  var $T= $("#assiduidadetab").DataTable({
+        pageLength: 50,
+        "dom": '<"top"i>rt<"bottom"lp><"clear">',
+        lengthChange: false,
+        ordering: false,
+        language:{
+            
+                "sEmptyTable": "Nenhum registro encontrado",
+                "sInfo": "",
+                "sInfoEmpty": "",
+                "sInfoFiltered": "",
+                "sInfoPostFix": "",
+                "sInfoThousands": ".",
+                "sLengthMenu": "MENU resultados por página",
+                "sLoadingRecords": "Carregando...",
+                "sProcessing": "Processando...",
+                "sZeroRecords": "Nenhum registro encontrado",
+                "sSearch": "Pesquisar",
+                "oPaginate": {
+                  "sNext": "Próximo",
+                  "sPrevious": "Anterior",
+                  "sFirst": "Primeiro",
+                  "sLast": "Último"
+                }
+        },
+        select: true
+    });
+    applyInitialFilters();
+
+    // Função para aplicar os filtros iniciais
+    function applyInitialFilters() {
+      var filtro1 = getSelectedOption("filtro8");
+      var filtro2 = getSelectedOption("filtro9");
+      var filtro3 = getSelectedOption("filtro10");
+      // Márcio podes adicionar mais selects com base os numeros de selects necessários
+  
+      // Aplicar os filtros iniciais
+      $T.column(7).search(filtro1).draw();
+      $T.column(8).search(filtro2).draw();
+      $T.column(9).search(filtro3).draw();
+    }
+  
+    // Função para obter a opção selecionada de um select e armazenar no localStorage
+    function saveSelectedOption(selectId) {
+      var selectedValue = $("#" + selectId).val();
+      localStorage.setItem(selectId, selectedValue);
+    }
+  
+    // Função para recuperar a opção selecionada de um select do localStorage
+    function getSelectedOption(selectId) {
+      var selectedValue = localStorage.getItem(selectId);
+      return selectedValue || ""; // Retorna uma string vazia caso não haja valor armazenado
+    }
+  
+    // Evento para salvar a opção selecionada quando um select for alterado
+    $("#filtro8, #filtro9, #filtro10").change(function() {
+      var selectId = $(this).attr("id");
+      saveSelectedOption(selectId);
+    });
+    $("#filtro").on("change", function() {
+      var filtro = $(this).val(); 
+      $T.column(5).search(filtro).draw(); // Filtra a tabela pela sexta coluna com o valor selecionado
+    });
+    $("#filtro1").on("change", function() {
+      var filtro1 = $(this).val(); 
+      $T.column(0).search(filtro1).draw(); // Filtra a tabela pela primeira coluna com o valor selecionado
+    });
+    $("#filtro2").on("change", function() {
+      var filtro2 = $(this).val(); 
+      $T.column(1).search(filtro2).draw(); // Filtra a tabela pela segunda coluna com o valor selecionado
+    });
+    $("#filtro3").on("change", function() {
+      var filtro3 = $(this).val(); 
+      $T.column(2).search(filtro3).draw(); // Filtra a tabela pela  terceira coluna com o valor selecionado
+    });
+    $("#filtro4").on("change", function() {
+      var filtro4 = $(this).val(); 
+      $T.column(3).search(filtro4).draw(); // Filtra a tabela pela quarta coluna com o valor selecionado
+    });
+    $("#filtro5").on("change", function() {
+      var filtro5 = $(this).val(); 
+      $T.column(4).search(filtro5).draw(); // Filtra a tabela pela quinta coluna com o valor selecionado
+    });
+    $("#filtro7").on("change", function() {
+      var filtro7 = $(this).val(); 
+      $T.column(6).search(filtro7).draw(); // Filtra a tabela pela sétima coluna com o valor selecionado
+    });
+    $("#filtro8").on("change", function() {
+      var filtro8 = $(this).val(); 
+      $T.column(7).search(filtro8).draw(); // Filtra a tabela pela oitava coluna com o valor selecionado
+    });
+    $("#filtro9").on("change", function() {
+      var filtro9 = $(this).val(); 
+      $T.column(8).search(filtro9).draw(); // Filtra a tabela pela Nona coluna com o valor selecionado
+    });
+    $("#filtro8").on("change", function() {
+      var filtro8 = $(this).val(); 
+      $T.column(9).search(filtro8).draw(); // Filtra a tabela pela Décima coluna com o valor selecionado
+    });
+    $("#filtro9").on("change", function() {
+      var filtro9 = $(this).val(); 
+      $T.column(10).search(filtro9).draw(); // Filtra a tabela pela Décima-Primeira coluna com o valor selecionado
+    });
+    $("#filtro10").on("change", function() {
+      var filtro10 = $(this).val(); 
+      $T.column(11).search(filtro10).draw(); // Filtra a tabela pela Décima-Segunda coluna com o valor selecionado
+    });
+    $("#filtro13").on("change", function() {
+      var filtro13 = $(this).val(); 
+      $T.column(12).search(filtro13).draw(); // Filtra a tabela pela Décima-terceira coluna com o valor selecionado
+    });
+    $("#filtro14").on("change", function() {
+      var filtro14 = $(this).val(); 
+      $T.column(13).search(filtro14).draw(); // Filtra a tabela pela Décima-quarta coluna com o valor selecionado
+    });
+    $("#filtro15").on("change", function() {
+      var filtro15 = $(this).val(); 
+      $T.column(14).search(filtro15).draw(); // Filtra a tabela pela Décima-quinta coluna com o valor selecionado
+    });     
+     $("#filtro16").on("change", function() {
+      var filtro16 = $(this).val(); 
+      $T.column(15).search(filtro16).draw(); // Filtra a tabela pela Décima-Sexta coluna com o valor selecionado
+    });     
+     $("#filtro17").on("change", function() {
+      var filtro17 = $(this).val(); 
+      $T.column(16).search(filtro17).draw(); // Filtra a tabela pela Décima-Sétima coluna com o valor selecionado
+    });
+    
+$(".paginate_button").addClass("paginate_button");
+$(".paginate").addClass("float-end");
+
+// Função para Pesquisar os dados apartir da barra de pesquisas
+$("#pesquisa").on("keyup", function () {
+   $T.search(this.value).draw();
+   
+});
+
+  // Recuperar os valores dos selects do localStorage e selecionar as opções correspondentes
+  $("#filtro8").val(getSelectedOption("filtro8"));
+  $("#filtro9").val(getSelectedOption("filtro9"));
+  $("#filtro10").val(getSelectedOption("filtro10"));
+ 
+
+
 });

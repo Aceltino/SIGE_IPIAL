@@ -37,27 +37,26 @@
                   <option  value="C.T">Técnicas </option>
                   <option value="I.E"> Socio-culturais</option>
                   <option value="I"> Cientificas</option>
-                </select> 
+                </select>
               </div>
               <div class="row">
                 <div class="col">
                   @foreach($cursos as $curso)
                   <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="curso" value="{{$curso['curso_id']}}">
-                    <label class="form-check-label" for="flexSwitchCheckDefault">{{$curso['nome_curso']}}</label>
+                    <input class="form-check-input" type="checkbox" id="curso" name="curso" value="{{$curso['curso_id']}}">
+                    <label class="form-check-label" for="curso">{{$curso['nome_curso']}}</label>
                  </div>
                   @endforeach
-                            <div class="col">
-                                <label for="">Tempo de prova:</label>
-                     <input type="time" style=" text-align: center;" name="tempo_prova"  oninput="this.className = ''">
+                 <div class="col">
+                     <input type="number" style=" text-align: center;" name="tempo_prova" placeholder="Tempo de prova" oninput="this.className = ''">
                  </div> 
              </div> 
              <div style="text-align:center;margin-top:10px;">
                 <div>
-                    <button type="submit" class="btn btn-success">Criar Disciplina</button>
+                    <button type="submit" class="btn btn-success">Cadastrar</button>
                 </div>
             </div>
-        </div>
-    </form> 
+        </div> 
+    </form>
 </main>
 @endsection

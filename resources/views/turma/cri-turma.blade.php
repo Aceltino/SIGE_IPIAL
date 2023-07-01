@@ -24,7 +24,7 @@
              
 
             <div class="form-group">
-                <input class="form-control" id="vagas-input" type="number" style=" text-align: center;" placeholder="Vagas Restantes" disabled>
+                <input class="form-control" id="vagas-input" type="number" style=" text-align: center;" placeholder="Vagas Disóniveis" disabled>
                 
             </div>
 
@@ -32,7 +32,7 @@
             <div class="row">
 
                 <div class="form-group col">
-                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
+                    <select name="curso" id="opcoes" oninput="this.className = ''" class="form-select">
                         <option selected disabled>CURSO</option>
                         @foreach($cursos as $curso)
                         <option value="{{ $curso->curso_id }}">{{ $curso->nome_curso }}</option>
@@ -41,7 +41,7 @@
                 </div>
                 
                 <div class="col form-group gap-1 ">
-                    <select name="opcoes" id="turnoSelect" oninput="this.className = ''" class="form-select">
+                    <select name="turno" id="turnoSelect" oninput="this.className = ''" class="form-select">
                         <option selected disabled>Turno:</option>
                         @foreach($turnos as $turno)
                         <option value="{{ $turno->turno_id }}">{{ $turno->nome_turno }}</option>

@@ -38,7 +38,6 @@ class MatriculaRequest extends FormRequest
             'nome_completo'=>'required|string|min:2|max:100',
             'genero' => 'required|string',
             'num_bi'=>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi,'.$candidato->pessoa_id.',pessoa_id',
-            'num_tel'=>'required|size:9|unique:pessoas,telefone,'.$candidato->pessoa_id.',pessoa_id',
            //User
             'email'=>'required|email|unique:users,email',
             //Formulario escola proveniente
@@ -111,33 +110,24 @@ class MatriculaRequest extends FormRequest
             'num_aluno.numeric'=>'Número do aluno deve conter apenas digitos validos.',
 
             //Dados encarregado 1
-            'telefone1'=> 'Número de telefone esta incorrecto',
             'nome_enc1'=>'O nome não deve ter mais de 100 letras.',
             'data_nascimento_enc1.date' => 'O campo data:attribute deve ser uma data válida.',
             'data_nascimento_enc1.before'=> 'O campo data de nascimento deve ser uma data posterior à data atual.',
-            'num_bi_enc1.unique'=> 'Número de identificação já esta a ser usado',
             'num_bi_enc1'=>'Número de identificação inválido',
-            'telefone1.unique'=> 'Este número de telefone já está em uso',
 
 
             //Dados encarregado 2
-            'telefone2'=> 'Número de telefone esta incorrecto',
             'nome_enc2'=>'O nome não deve ter mais de 100 letras.',
             'data_nascimento_enc2.date' => 'O campo data:attribute deve ser uma data válida.',
             'data_nascimento_enc2.before'=> 'O campo data de nascimento deve ser uma data posterior à data atual.',
-            'num_bi_enc2.unique'=> 'Número de identificação já esta a ser usado',
             'num_bi_enc2'=>'Número de identificação inválido',
-            'telefone2.unique'=> 'Este número de telefone já está em uso',
 
 
             //Dados encarregado 3
-            'telefone3'=> 'Número de telefone esta incorrecto',
             'nome_enc3'=>'O nome não deve ter mais de 100 letras.',
             'data_nascimento_enc3.date' => 'O campo data:attribute deve ser uma data válida.',
             'data_nascimento_enc3.before'=> 'O campo data de nascimento deve ser uma data posterior à data atual.',
-            'num_bi_enc3.unique'=> 'Número de identificação já esta a ser usado',
             'num_bi_enc3'=>'Número de identificação inválido',
-            'telefone3.unique'=> 'Este número de telefone já está em uso',
         ];
     }
 }

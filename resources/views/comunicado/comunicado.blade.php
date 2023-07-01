@@ -8,14 +8,29 @@
     <div class="col">
       <h2>Comunicados</h2>
     </div>
-  </div>
-
+  </div> 
+ 
   <div class="procurar">
-    <form class="proc-form d-flex align-items-center">
-      <input id="pesquisa" placeholder='pesquise o comunicado pelo seu Título' type="text" name="" class="campo-pesq">
+    <form action="{{ route('comunicado.index') }}" class="proc-form d-flex align-items-center" method="GET">
+      <input id="pesquisa" placeholder='pesquise o comunicado pelo seu Título' type="text" name="pesquisa" class="campo-pesq">
       <button type="submit" title="procurar"><i class="bi bi-search"></i></button>
     </form>
   </div>
+  @if(session('sucess'))
+<div class="alert alert-danger">
+          {{(session('sucess'))}}
+      </div>
+@endif
+@if(session('edit'))
+<div class="alert alert-danger">
+          {{(session('edit'))}}
+      </div>
+@endif
+@if(session('delete'))
+<div class="alert alert-danger">
+          {{(session('delete'))}}
+      </div>
+@endif
 
   <!-- /  Inicio da tabela de inscritos -->
   <table class="table table-striped table-custom" id="matricula-tab">
