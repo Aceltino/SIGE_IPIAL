@@ -35,7 +35,7 @@ class AvaliacaoAlunoController extends Controller
         for ($i = 0; $i < count($professor); $i++) {
             $disciplina_id[$i] = $professor[$i]['disciplina_id'];
             $nome_disciplina[$i] = $professor[$i]['nome_disciplina'];
-            for ($j = 0; $j < (count($professor[$i]) - 2); $j++) {
+            for ($j = 0; $j < (count($professor[$i]) - 3); $j++) {
                 $turma =  AvaliacaoTrait::pegarAnoTurmaCoord($professor[$i][$j]['turma_id']);
                 $n_turma = $professor[$i][$j]['nome_turma'];
                 if($j === 0){
@@ -57,7 +57,7 @@ class AvaliacaoAlunoController extends Controller
 
         $incremento = 0;
         for ($i = 0; $i < count($professor); $i++) {
-            for ($j = 0; $j < (count($professor[$i]) - 2); $j++) {
+            for ($j = 0; $j < (count($professor[$i]) - 3); $j++) {
                 if ($incremento === 0) {
                     $cursos[$incremento] = $professor[$i][$j]['nome_curso'];
                     $incremento++;

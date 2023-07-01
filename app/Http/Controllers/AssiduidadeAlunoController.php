@@ -33,7 +33,7 @@ class AssiduidadeAlunoController extends Controller
         for ($i = 0; $i < count($professor); $i++) {
             $disciplina_id[$i] = $professor[$i]['disciplina_id'];
             $nome_disciplina[$i] = $professor[$i]['nome_disciplina'];
-            for ($j = 0; $j < (count($professor[$i]) - 2); $j++) {
+            for ($j = 0; $j < (count($professor[$i]) - 3); $j++) {
                 $turma =  AvaliacaoTrait::pegarAnoTurmaCoord($professor[$i][$j]['turma_id']);
                 $n_turma = $professor[$i][$j]['nome_turma'];
                 if($j === 0){
@@ -54,7 +54,7 @@ class AssiduidadeAlunoController extends Controller
         }
         $incremento = 0;
         for ($i = 0; $i < count($professor); $i++) {
-            for ($j = 0; $j < (count($professor[$i]) - 2); $j++) {
+            for ($j = 0; $j < (count($professor[$i]) - 3); $j++) {
                 if ($incremento === 0) {
                     $cursos[$incremento] = $professor[$i][$j]['nome_curso'];
                     $incremento++;
@@ -67,11 +67,14 @@ class AssiduidadeAlunoController extends Controller
         }
         $trimestre = AvaliacaoTrait::pegarTrimestre();
         $alunos = AssiduidadeTrait::pegarAssiduidadeAluno($disciplina_id, $turmas);
-        return view('assiduid-aluno/assd-aluno', compact(['alunos', 'nome_turma', 'cursos', 'nome_disciplina', 'trimestre']));
+        return view('assiduid-aluno/assd-aluno', compact(['alunos', 'nome_turma', 'cursos', 'nome_disciplina', 'trimestre', 'professor']));
     }
 
-    public function store(Request $request, $aluno_id, $disciplina_id)
+    public function store(Request $request, $aluno_id, $disciplina_id, $turma_id, $professor_disciplina_id)
     {
+        //dd($professor_disciplina_id);
+        $dia = AssiduidadeTrait::pegarDiaBanco();
+        $tempo = AssiduidadeTrait::pegarTempoFalta($turma_id, $dia, $professor_disciplina_id);
         $trimestre = AvaliacaoTrait::pegarTrimestre();
         $falta = [
             'falta_aluno' => 1,
