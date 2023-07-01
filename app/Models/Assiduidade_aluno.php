@@ -30,6 +30,6 @@ class Assiduidade_aluno extends Model
         return $this->belongsTo(Aluno::class, 'aluno_id');
     }
     public function trimestre(){
-        return $this->belongsTo(trimestre::class, 'trimestre_id');
+        return $this->belongsTo(Trimestre::class, 'trimestre_id');
     }
 }

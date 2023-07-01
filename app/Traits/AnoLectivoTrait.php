@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 use App\Models\Ano_lectivo;
+use App\Models\Trimestre;
 use DateTime;
 use carbon\Carbon;
 use Illuminate\Support\Fluent;
