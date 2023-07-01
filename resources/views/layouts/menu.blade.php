@@ -97,11 +97,11 @@
 							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 
-						<div class="modal-body" style="color: #696969;">
-							Tem a certeza de que pretende sair do sistema?
+						<div class="modal-body" style="color: #000;">
+							<strong>Tem a certeza de que pretende sair do sistema?</strong>
                     	</div>
 
-						<div class="modal-footer">
+						<div class="modal-footer" style="border: none;">
 							<button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancelar</button>
 							<a class="btn btn-danger" href={{route('logout')}}>Sair</a>
 						</div>
