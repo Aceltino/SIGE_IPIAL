@@ -373,9 +373,11 @@ Route::prefix('calend-prova')->group(function(){
 
 /* Assiduidade de alunos*/
 Route::get('/assiduidade-aluno', [AssiduidadeAlunoController::class, 'index'])->name('assiduidade');
+Route::post('/assiduidade-aluno/marcar-falta/{aluno_id}/{disciplina_id}', [AssiduidadeAlunoController::class, 'store'])->name('marcar.falta');
 
 /*justificar ou editar assiduidade*/
 Route::get('/editar-assiduidade/{aluno_id}/{disciplina_id}', [AssiduidadeAlunoController::class, 'show'])->name('editar.assiduidade');
+Route::put('/editar-assiduidade/justificar-falta/{assiduidade_id}', [AssiduidadeAlunoController::class, 'update'])->name('justificar.falta');
 
 /******************************************
  * Rotas da Avaliação de Aluno

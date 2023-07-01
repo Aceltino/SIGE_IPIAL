@@ -75,11 +75,11 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($assiduidade as $assid)
+        @foreach ($assiduidade as $key => $assid)
             <tr style="text-align: center;">
                 <th scope="row">{{date('d/m/Y', strtotime($assid->created_at))}}</th>
-                <td>1º</td>
-                <td>{{$assid->trimestre}}</td>
+                <td>{{$tempos[$key]}}</td>
+                <td>{{$trimestre[0]->trimestre}}</td>
                 <td>{{$assid->tipo_falta}}</td>
                 <td>{{$assid->status_falta}}</td>
                 <td style="text-align: center">
@@ -87,7 +87,7 @@
                   </td>
                 </tr>
         @endforeach
-        
+
       </tbody>
     </table>
   </div>
@@ -95,7 +95,9 @@
 
     <!-- Início da Modal -->
     @foreach ($assiduidade as $assid)
-    <form method="POST" action="">
+    <form method="POST" action="{{route('justificar.falta', $assid->assiduidade_id)}}">
+        @csrf
+        @method('put')
       <div class="modal" id="modal_assiduidade" tabindex="-1" data-bs-backdrop="false" >
           <div class="modal-dialog">
           <div class="modal-content">
