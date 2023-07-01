@@ -7,8 +7,6 @@ use App\Http\Controllers\UserController;
 use App\Models\Aluno;
 use App\Models\AlunoTurma;
 use App\Models\AnoTurmaCood;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 
 class AlunoTurmaController extends Controller
 {

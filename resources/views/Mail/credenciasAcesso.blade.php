@@ -46,7 +46,7 @@
         <p>Senha: {{ $senha }}</p>
         <p><strong>Recomendamos que você altere sua senha assim que fizer o primeiro login.</strong></p>
         @if(isset($cargo))
-        <p>A sua conta estará activa após esta data: <strong> {{ $dataMatri }} </strong></p>
+        <p>A sua conta estará activa na seguinte data: <strong> {{ !empty($dataMatri) ? $dataMatri : 'Hoje (' . date('d/m/Y') . ')' }}</strong></p>
         @endif
         <p>Para acessar o sistema, clique no botão abaixo:</p>
         <p>
