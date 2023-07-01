@@ -216,5 +216,12 @@ trait AnoLectivoTrait
         }
     }
 
+    public static function fecharAnoLectivo(){
+        $anoLec = ['status_ano_lectivo' => 0];
+        $trimestre = ['status' => 0];
+        Ano_lectivo::where('status_ano_lectivo', 1)->update($anoLec);
+        Trimestre::where('status', 1)->update($trimestre);
+        return true;
+    }
 
 }

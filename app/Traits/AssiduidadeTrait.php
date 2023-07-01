@@ -7,7 +7,6 @@ use App\Models\Disciplina;
 use App\Models\AlunoTurma;
 use App\Models\Trimestre;
 use App\Traits\AvaliacaoTrait;
-
 trait AssiduidadeTrait
 {
     public static function pegarAssiduidadeAluno($disciplinas, $turmas){
@@ -87,5 +86,4 @@ trait AssiduidadeTrait
         }
         return $dados;
     }
-
 }
