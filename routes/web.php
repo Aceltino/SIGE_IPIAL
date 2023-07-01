@@ -392,6 +392,29 @@ Route::post('/avaliar-aluno/cadastrar{id_disciplina}', [AvaliacaoAlunoController
 Route::get('/editar-avaliacao-aluno/{id_aluno}/{id_disciplina}', [AvaliacaoAlunoController::class, 'indexUpdate'])->name('editar.avaliacao.aluno');
 Route::put('/editar-avaliacao-aluno/update/{id_nota}', [AvaliacaoAlunoController::class, 'update'])->name('update.nota.aluno');
 
+/*Exame de aluno de Aluno*/
+Route::get('exame_aluno',  function () {
+    return view('avaliac-aluno/exame');
+});
+
+Route::get('exames_histo',  function () {
+    return view('avaliac-aluno/edit-exame');
+});
+Route::get('edit_exame',  function () {
+    return view('avaliac-aluno/edit-exame');
+});
+
+/*Recurso de Aluno*/
+Route::get('recurso_aluno',  function () {
+    return view('avaliac-aluno/recurso');
+});
+Route::get('recurso_histo',  function () {
+    return view('avaliac-aluno/edit-recurso');
+});
+Route::get('edit_recurso',  function () {
+    return view('avaliac-aluno/edit-exame');
+});
+
 /******************************************
  * Rotas do horário
 ******************************************/
