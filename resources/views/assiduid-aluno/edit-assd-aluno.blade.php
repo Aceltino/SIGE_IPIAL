@@ -29,10 +29,10 @@
   </div>
 
     <div class="procurar">
-        <form class="proc-form d-flex align-items-center">
+        <div class="proc-form d-flex align-items-center">
             <input id="pesquisa" type="text" placeholder="Digite A Data da falta que pretendes justificar" name="" class="campo-pesq">
-            <button id="pesquisa" type="submit" title="Search"><i class="bi bi-search"></i></button>
-        </form>
+            <button  title="Search"><i class="bi bi-search"></i></button>
+        </div>
     </div>
 
     <div class="nomenumeroaluno">
@@ -75,11 +75,11 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($assiduidade as $assid)
+        @foreach ($assiduidade as $key => $assid)
             <tr style="text-align: center;">
                 <th scope="row">{{date('d/m/Y', strtotime($assid->created_at))}}</th>
-                <td>1º</td>
-                <td>{{$assid->trimestre}}</td>
+                <td>{{$tempos[$key]}}</td>
+                <td>{{$trimestre[0]->trimestre}}</td>
                 <td>{{$assid->tipo_falta}}</td>
                 <td>{{$assid->status_falta}}</td>
                 <td style="text-align: center">
@@ -87,14 +87,17 @@
                   </td>
                 </tr>
         @endforeach
-        
+
       </tbody>
     </table>
   </div>
   <!-- Termina a tabela -->
 
     <!-- Início da Modal -->
-    <form method="POST" action="">
+    @foreach ($assiduidade as $assid)
+    <form method="POST" action="{{route('justificar.falta', $assid->assiduidade_id)}}">
+        @csrf
+        @method('put')
       <div class="modal" id="modal_assiduidade" tabindex="-1" data-bs-backdrop="false" >
           <div class="modal-dialog">
           <div class="modal-content">
@@ -105,7 +108,7 @@
           <div class="modal-body">
               <div class="row">
                   <div class="alert alert-warning" role="alert">
-                      <h6>Atenção: Estás a justificar uma falta normal!!</h6><h6> A falta do dia 21/06/2021 no 1º Tempo do 1º Trimestre Inserida ao Aluno (a) Fualno Fulano Fualano será Removidada</h6>
+                      <h6>Atenção: Estás a justificar uma falta normal!!</h6><h6> A falta do dia {{date('d/m/Y', strtotime($assid->created_at))}} no 1º Tempo do 1º Trimestre Inserida ao Aluno (a) {{$assiduidade[0]->aluno->candidato->pessoa->nome_completo}} será Removidada</h6>
                       <h5>Deseja Realmente Continuar?</h5>
                   </div>
               </div>
@@ -117,12 +120,13 @@
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="subimit" class="btn btn-primary">Confirmar</button>
+              <button type="subimit" class="btn btn-primary" value="">Confirmar</button>
           </div>
           </div>
       </div>
       </div>
     </form>
+    @endforeach
 <!-- Fím da modal -->
 
 </main>

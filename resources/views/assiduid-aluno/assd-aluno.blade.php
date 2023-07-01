@@ -55,10 +55,10 @@
     </div>
 
   <div class="procurar">
-  <form class="proc-form d-flex align-items-center">
+  <div class="proc-form d-flex align-items-center">
       <input id="pesquisa" type="text" placeholder="Digite o Número ou o Nome do Aluno que Procuras" name="" class="campo-pesq">
-      <button id="pesquisa" type="submit" title="Search"><i class="bi bi-search"></i></button>
-  </form>
+      <button  title="Search"><i class="bi bi-search"></i></button>
+  </div>
   </div>
 
   <div class="bortabela">
@@ -70,7 +70,7 @@
         </div>
     </div>
     <!-- /  Inicio da tabela  -->
-    <table id="tabela" class="table table-striped" style="margin-top: 20px; width: 100%;" >
+    <table id="assidu" class="table table-striped" style="margin-top: 20px; width: 100%;" >
       <thead style="text-align: center">
         <tr>
           <th scope="col">Nº</th>
@@ -100,9 +100,9 @@
                         <td>{{$valor3['falta_disciplinar']}}</td>
                         <td>{{$valor3['falta_material']}}</td>
                         <td>
-                            <a class="btn botaoazul" data-bs-toggle="modal" data-bs-target="#modal_assiduidade">Normal</a>
-                            <a class="btn botaovermelho" data-bs-toggle="modal" data-bs-target="#modal_assiduidade">Vermelha</a>
-                            <a class="btn botaopreto" data-bs-toggle="modal" data-bs-target="#modal_assiduidade">Outra</a>
+                            <a class="btn botaoazul" data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}">Normal</a>
+                            <a class="btn botaovermelho" data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}">Vermelha</a>
+                            <a class="btn botaopreto" data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}">Outra</a>
                           </td>
                           <td style="text-align: center">
                             <a href="{{route('editar.assiduidade', [$valor3['aluno_id'], $valor3['disciplina_id']])}}" class="btn linkeditar">Justificar</a>
@@ -120,9 +120,16 @@
   </div>
   <!-- Termina a tabela -->
 
+  @foreach ($alunos as $chave1 => $valor1)
+
+  @foreach ($valor1 as $chave2 => $valor2)
+
+      @foreach ($valor2 as $chave3 => $valor3)
+
     <!-- Início da Modal -->
-    <form method="POST" action="">
-      <div class="modal" id="modal_assiduidade" tabindex="-1" data-bs-backdrop="false" >
+    <form method="POST" action="{{route('marcar.falta', [$valor3['aluno_id'], $valor3['disciplina_id']])}}">
+        @csrf
+      <div class="modal" id="modal_assiduidade{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}" tabindex="-1" data-bs-backdrop="false" >
           <div class="modal-dialog">
           <div class="modal-content">
           <div class="modal-header">
@@ -132,7 +139,7 @@
           <div class="modal-body">
               <div class="row">
                   <div class="alert alert-warning" role="alert">
-                      <h6>Atenção: Estás a Marcar uma falta normal ao Aluno (a) !! </h6><h6> Estás prestes a inserir uma falta Normal no dia 21/06/2021 no 1º Tempo do 1º Trimestre ao Aluno (a) Fulano Fulano</h6>
+                      <h6>Atenção: Estás a Marcar uma falta presencial ao Aluno(a) !! </h6><h6> Estás prestes a inserir uma falta no dia {{date('d/m/Y')}} ao Aluno(a) {{$valor3['nome']}}</h6>
                       <h5>Deseja Realmente Continuar?</h5>
                   </div>
               </div>
@@ -144,12 +151,15 @@
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="subimit" class="btn btn-primary">Confirmar</button>
+              <button type="subimit" class="btn btn-primary" name="tipo_falta" value="Presencial">Confirmar</button>
           </div>
           </div>
       </div>
       </div>
   </form>
+  @endforeach
+  @endforeach
+@endforeach
 <!-- Fím da modal -->
 @endif
 </main>
