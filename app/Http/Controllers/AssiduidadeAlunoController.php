@@ -10,13 +10,13 @@ use App\Traits\AssiduidadeTrait;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Professor;
 
+
 class AssiduidadeAlunoController extends Controller
 {
 
     public function index()
     {
         $user = Auth::user();
-        //dd($user->pessoa_id);
         if($user->cargo_usuario === "Administrador" || $user->cargo_usuario === "Subdirector"){
             $professor = AvaliacaoTrait::pegarAdmin();
         }
