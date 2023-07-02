@@ -20,7 +20,7 @@ class TurmaController extends Controller
 
         $cursos = Curso::all();
         $turnos = Turno::all();
-     //   dd($vagas);
+        //dd($vagas);
         return view('turma.cri-turma', compact('vagas','cursos','turnos'));
     }
 
