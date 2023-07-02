@@ -72,7 +72,7 @@ Route::prefix('Perfil')->middleware(['auth','active.session'])->group(function()
 
 
 /******************************************
- * Rotas de inscricao
+ * Rotas de inscricao __ !!! - Admissão
  */
 Route::prefix('inscricao')->middleware(['auth','active.session','checkcargo'])->group(function(){
 
@@ -92,6 +92,9 @@ Route::prefix('inscricao')->middleware(['auth','active.session','checkcargo'])->
     Route::get('editar-candidato/{candidato}/editar', [InscricaoController::class, 'edit'])->name('inscricao-edit');
     Route::put('editar-candidato/{candidato}', [InscricaoController::class, 'update'])->name('inscricao-update');
 
+    Route::get('recibo', function () {
+            return view('recibo/recibo-incricao');
+        });
 
     /*Editar candidato */
 
@@ -101,10 +104,7 @@ Route::prefix('inscricao')->middleware(['auth','active.session','checkcargo'])->
     // });
 
     // /*Incritos rejeitados */
-    Route::get('recibo', function () {
-        return view('recibo/recibo-incricao');
-    });
-
+    
     // /*Confirmar inscricao*/
     // Route::get('conf-inscricao', function () {
     //     return view('inscricao/conf-inscricao');
@@ -147,7 +147,6 @@ Route::prefix('matricula')->middleware(['auth','active.session','checkcargo'])->
     /*Editar matricula */
     Route::get('editar-aluno/{aluno}/editar', [MatriculaController::class, 'edit'])->name('matricula-edit');
     Route::put('editar-aluno/{aluno}', [MatriculaController::class, 'update'])->name('matricula-update');
-
 
     /*Readimitir aluno */
     Route::get('readmitir-aluno/{aluno}/readmitir', [MatriculaController::class, 'readmitirEdit'])->name('readmitir-view');
@@ -200,6 +199,8 @@ Route::prefix('turma')->middleware(['auth','active.session','checkcargo'])->grou
 
     /* Criar turma*/
     Route::get('criar-turma', [TurmaController::class, 'createTurma'])->name('turma-create');
+    Route::post('criar-turma', [TurmaController::class, 'storeTurma'])->name('turma-store');
+
 
 
     /*Trumas */

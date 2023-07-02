@@ -4,8 +4,12 @@
 
 @section('conteudo')
 <main id="main" class="main" >
-
-    <form id="formT" method="POST" class="formulario-layout">
+            @if(session()->has('Sucesso'))
+            <div class="alert alert-success">
+            {{session('Sucesso')}}
+            @endif
+    <form method="POST" action="{{route('turma-store')}}" id="formT" method="POST" class="formulario-layout">
+        @csrf
         <div style="text-align:center;margin-top:10px;">
        
         </div>
@@ -24,8 +28,10 @@
              
 
             <div class="form-group">
-                <input class="form-control" id="vagas-input" type="number" style=" text-align: center;" placeholder="Vagas Disóniveis" disabled>
-                
+                <input class="form-control" id="vagas-input" type="number" name="turmaRestante" style=" text-align: center;" placeholder="Vagas Disóniveis" readonly=true>
+                @error('turmaRestante')
+                <div class="alert alert-danger">{{$message}}</div>
+            @enderror
             </div>
 
 
@@ -33,11 +39,14 @@
 
                 <div class="form-group col">
                     <select name="curso" id="opcoes" oninput="this.className = ''" class="form-select">
-                        <option selected disabled>CURSO</option>
+                        <option selected disabled>Curso</option>
                         @foreach($cursos as $curso)
                         <option value="{{ $curso->curso_id }}">{{ $curso->nome_curso }}</option>
                         @endforeach
                     </select>
+                    @error('curso')
+                <div class="alert alert-danger">{{$message}}</div>
+            @enderror
                 </div>
                 
                 <div class="col form-group gap-1 ">
@@ -47,6 +56,9 @@
                         <option value="{{ $turno->turno_id }}">{{ $turno->nome_turno }}</option>
                         @endforeach
                     </select>
+                    @error('turno')
+                <div class="alert alert-danger">{{$message}}</div>
+            @enderror
                 </div>
             </div>
 

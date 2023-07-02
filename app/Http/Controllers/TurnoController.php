@@ -12,4 +12,10 @@ class TurnoController extends Controller
         $idCurso = Turno::where('nome_turno', $nome_turno)->pluck('turno_id')->first();
         return $idCurso;
     }
+    public static function pegarTurno($id)
+    {
+        $turno = Turno::find($id)->first();
+        return $turno;
+    }
+
 }
