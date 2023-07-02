@@ -59,7 +59,7 @@ class AuthController extends Controller
     
         $this->registrarSession($user->usuario_id); //Registrar todo início de sessão do sistema no Banco de Dados(Active_session)
         return redirect()->intended('/');
-    }
+    } 
 
     //Metodo de cadastro dos usuario(primeira vez)
     public function storeInicio(Request $request):mixed
@@ -187,7 +187,7 @@ class AuthController extends Controller
     public function store(Request $request)
     {   
         $num_registo=count(User::all());
-        // $numId= $num_registo+1;
+        // $numId= $num_registo+1; 
     
         //Gerar uma senha temporária aleatória
         $hexAleatorio = Str::random(8);
@@ -306,8 +306,8 @@ class AuthController extends Controller
     {  
         // Construir o URLpara logar com os novos dados 
         $urlLogin = url('autenticacao/login');
-
-        $paramAluno= ['urlLogin' => $urlLogin,'nome_usuario'=>$user->nome_usuario,'senha'=>$senha,'dataMatri'=>$dataMatri ];
+// dd($user->nome_usuario);
+        $paramAluno= ['urlLogin' => $urlLogin,'nome_usuario'=>$user->nome_usuario,'senha'=>$senha,'dataMatri'=>$dataMatri, 'cargo'=>$user->cargo_usuario ];
         $param=      ['urlLogin' => $urlLogin,'nome_usuario'=>$user->nome_usuario,'senha'=>$senha];
 
 

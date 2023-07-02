@@ -5,8 +5,13 @@ use App\Models\Assiduidade_aluno;
 use Illuminate\Support\Fluent;
 use App\Models\Disciplina;
 use App\Models\AlunoTurma;
+use App\Models\Dia;
+use App\Models\Hora;
+use App\Models\Horario;
 use App\Models\Trimestre;
 use App\Traits\AvaliacaoTrait;
+use Carbon\Carbon;
+use DateTime;
 
 trait AssiduidadeTrait
 {
@@ -38,6 +43,7 @@ trait AssiduidadeTrait
                             'numero_aluno' => $aluno[$i]->aluno->turmas[0]->numero_aluno,
                             'turma_id' => $aluno[$i]->aluno->anoturma[0]->turma->turma_id,
                             'nome_turma' => $aluno[$i]->aluno->anoturma[0]->turma->nome_turma,
+                            'turno_id' => $aluno[$i]->aluno->anoturma[0]->turma->turno_id,
                             'trimestre_id' => $trimestre[0]->trimestre_id,
                             'trimestre' => $trimestre[0]->trimestre,
                             'falta_presencial' => $presencial,
@@ -72,6 +78,7 @@ trait AssiduidadeTrait
                             'numero_aluno' => $aluno[$i]->aluno->turmas[0]->numero_aluno,
                             'turma_id' => $aluno[$i]->aluno->anoturma[0]->turma->turma_id,
                             'nome_turma' => $aluno[$i]->aluno->anoturma[0]->turma->nome_turma,
+                            'turno_id' => $aluno[$i]->aluno->anoturma[0]->turma->turno_id,
                             'trimestre_id' => $trimestre[0]->trimestre_id,
                             'trimestre' => $trimestre[0]->trimestre,
                             'falta_presencial' => $presencial,
@@ -86,6 +93,86 @@ trait AssiduidadeTrait
             }
         }
         return $dados;
+    }
+
+    public static function pegarTempo($assiduidade){
+        for($i = 0; $i < count($assiduidade); $i++){
+            $hora_falta = new Carbon($assiduidade[$i]->created_at);
+            $hora_tempo = Hora::with('tempo')->get();
+            for ($j = 0; $j < count($hora_tempo); $j++) {
+                $h_falta = strtotime($hora_falta->toTimeString());
+                $inicio = substr($hora_tempo[$j]->hora, 0, 5);
+                $fim = substr($hora_tempo[$j]->hora, 8, 5);
+                if($h_falta >= strtotime($inicio) && $h_falta <= strtotime($fim)){
+                    $tempo[$i] = $hora_tempo[$j]->tempo->tempo;
+                }
+            }
+        }
+        $dia = self::pegarDiaBanco();
+        dd($dia);
+        return $tempo;
+    }
+
+    public static function pegarTempoFalta($turma_id, $dia, $professor_disciplina_id){
+        $horario = Horario::with('tempo.hora')->where('turma_id', $turma_id)
+        ->where('dia_id', $dia[0]->dia_id)
+        ->where('disc_professor_id', $professor_disciplina_id)
+        ->get();
+        //dd($horario);
+        if(count($horario) === 1){
+            self::compararHora(1);
+            dd("OK");
+        } else{
+            dd("Horário não encontrado!");
+        }
+    }
+
+    public static function compararHora($turno_id){
+        $hora_tempo = Hora::where('turno_id')->get();
+        $hora_actual = now();
+        dd($hora_actual);
+        $h_falta = strtotime($hora_falta->toTimeString());
+        for ($j = 0; $j < count($hora_tempo); $j++) {
+            $inicio = substr($hora_tempo[$j]->hora, 0, 5);
+            $fim = substr($hora_tempo[$j]->hora, 8, 5);
+            if($h_falta >= strtotime($inicio) && $h_falta <= strtotime($fim)){
+                $tempo[$i] = $hora_tempo[$j]->tempo->tempo;
+            }
+        }
+    }
+
+    public static function pegarDiaBanco(){
+        $dia_corrente = self::pegarDiaSemana(date('D'));
+        if($dia_corrente){
+            $dia = Dia::where('nome_dia', $dia_corrente)->get();
+            return $dia;
+        } else{
+            dd("Não é possível marcar faltas no dia de hoje!");
+        }
+    }
+
+    public static function pegarDiaSemana($day){
+        switch ($day) {
+            case 'Mon':
+                $dia = "SEGUNDA-FEIRA";
+                break;
+            case 'Tue':
+                $dia = "TERÇA-FEIRA";
+                break;
+            case 'Wed':
+                $dia = "QUARTA-FEIRA";
+                break;
+            case 'Thu':
+                $dia = "QUINTA-FEIRA";
+                break;
+            case 'Fri':
+                $dia = "SEXTA-FEIRA";
+                break;
+            default:
+                $dia = null;
+                break;
+        }
+        return $dia;
     }
 
 }

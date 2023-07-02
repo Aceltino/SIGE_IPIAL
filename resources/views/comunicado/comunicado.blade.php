@@ -11,28 +11,36 @@
   </div> 
  
   <div class="procurar">
-    <form action="{{ route('comunicado.index') }}" class="proc-form d-flex align-items-center" method="GET">
+    <form class="proc-form d-flex align-items-center" method="GET">
       <input id="pesquisa" placeholder='pesquise o comunicado pelo seu Título' type="text" name="pesquisa" class="campo-pesq">
-      <button type="submit" title="procurar"><i class="bi bi-search"></i></button>
+      <button type="button" title="procurar"><i class="bi bi-search"></i></button>
     </form>
-  </div>
-  @if(session('sucess'))
-<div class="alert alert-danger">
-          {{(session('sucess'))}}
-      </div>
-@endif
-@if(session('edit'))
-<div class="alert alert-danger">
-          {{(session('edit'))}}
-      </div>
-@endif
-@if(session('delete'))
-<div class="alert alert-danger">
-          {{(session('delete'))}}
-      </div>
-@endif
+  </div><br>
 
-  <!-- /  Inicio da tabela de inscritos -->
+  @if(session('sucess'))
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <i class="bi bi-check-circle me-1"></i>
+    {{(session('sucess'))}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  @endif
+
+  @if(session('edit'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <i class="bi bi-check-circle me-1"></i>
+      {{(session('edit'))}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  @endif
+  @if(session('delete'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <i class="bi bi-exclamation-octagon me-1"></i>
+      {{(session('delete'))}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  @endif
+
+  {{-- /  Inicio da tabela dos comunicados --}}
   <table class="table table-striped table-custom" id="matricula-tab">
     <thead>
       <tr style=" text-align: center;">
@@ -43,26 +51,51 @@
     </thead>
     <tbody>
     @foreach ($comunicados as $com)
-        <tr style=" text-align: center;">
-          <th scope="row">{{ $com->titulo_com }}</th>
-          <td>{{ $com->conteudo_com }}</td>
-          <td>
+      <tr style=" text-align: center;">
+        <th scope="row">{{ $com->titulo_com }}</th>
+        <td>{{ $com->conteudo_com }}</td>
+        <td style="display: flex; justify-content: center; align-items: center; gap:5px;">
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal{{ $com['comunicado_id'] }}"></i>
 
+          <a href="{{ route('comunicado.edit', ['comunicado_id' => $com->comunicado_id]) }}"><i class="bi bi-pencil"></i></a>
+          <i class="bi bi-trash-fill" data-bs-toggle="modal" data-bs-target="#modalApagar{{$com['comunicado_id']}}"></i>
+      
+        </td>
+      </tr>
+    @endforeach
+    </tbody>
+  </table>{{--Fim da tabela dos comunicados --}}
 
-            <a href="{{ route('comunicado.edit', ['comunicado_id' => $com->comunicado_id]) }}"><i class="bi bi-pencil"></i></a>
-            <form action="{{ route('comunicado.destroy', ['comunicado_id' => $com->comunicado_id]) }}" method="POST">
+  {{--Inicio da modal apagarComunicado--}}
+  @foreach ($comunicados as $com)
+  <div class="modal fade" id="modalApagar{{$com['comunicado_id']}}" tabindex="-1" style="color: #000;">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <div class="modal-header" style="border: none;">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body" style="color: #000; text-transform: uppercase; text-align: center;">
+          <strong>Deseja eliminar esse comunicado?</strong>
+        </div>
+
+        <div class="modal-footer" style="border: none;">
+          <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancelar</button>
+
+          <form action="{{ route('comunicado.destroy', ['comunicado_id' => $com->comunicado_id]) }}" method="POST">
 
             @csrf
             @method('delete')
-          <button type="submit" class="bi bi-trash-fill" style="border: none; background: none;"></button>
+          <button type="submit" class="btn btn-danger" style="border: none;">Eliminar</button>
           </form>
-        </td>
-      </tr>
-      @endforeach
-    </tbody>
-  </table>
+        </div>
 
+      </div>
+    </div>
+	</div>{{--  / Fim da modal apagarComunicado--}}
+  @endforeach
+  
   <!-- Termina a tabela de matriculas -->
     @foreach ($comunicados as $com)
       <!--Inicio da modal ver inscrito-->

@@ -4,22 +4,26 @@
 
 @section('conteudo')
 <main id="main" class="main">
-    @if (session()->has('erro'))
-    <div class="alert alert-danger">
-        {{session('erro')}}
-        <button class="botaofecharerro">
-          <i class="bi bi-x"></i>
-        </button>
+    <div>
+        @if (session()->has('erro'))
+        <div class="alert alert-danger">
+            <i class="bi bi-exclamation-octagon me-1"></i>
+            {{session('erro')}}
+            <button class="botaofecharerro">
+              <i class="bi bi-x"></i>
+            </button>
+        </div>
+        @endif
+        @if (session()->has('sucesso'))
+        <div class="alert alert-success">
+            <i class="bi bi-check-circle me-1"></i>
+            {{session('sucesso')}}
+            <button class="botaofechasucesso">
+              <i class="bi bi-x"></i>
+            </button>
+        </div>
+        @endif
     </div>
-    @endif
-    @if (session()->has('sucesso'))
-    <div class="alert alert-success">
-        {{session('sucesso')}}
-        <button class="botaofechasucesso">
-          <i class="bi bi-x"></i>
-        </button>
-    </div>
-    @endif
   <div class="pagetitle">
     <div class="row">
         <div class="col">
@@ -29,10 +33,10 @@
   </div>
 
     <div class="procurar">
-        <form class="proc-form d-flex align-items-center">
+        <div class="proc-form d-flex align-items-center">
             <input id="pesquisa" type="text" placeholder="Digite A Data da falta que pretendes justificar" name="" class="campo-pesq">
-            <button id="pesquisa" type="submit" title="Search"><i class="bi bi-search"></i></button>
-        </form>
+            <button  title="Search"><i class="bi bi-search"></i></button>
+        </div>
     </div>
 
     <div class="nomenumeroaluno">
@@ -72,30 +76,35 @@
           <th scope="col">Tipo de falta</th>
           <th scope="col">Estado</th>
           <th scope="col">Justificar</th>
+          <th scope="col">Descrição</th>
         </tr>
       </thead>
       <tbody>
-        @foreach ($assiduidade as $assid)
+        @foreach ($assiduidade as $key => $assid)
             <tr style="text-align: center;">
                 <th scope="row">{{date('d/m/Y', strtotime($assid->created_at))}}</th>
-                <td>1º</td>
-                <td>{{$assid->trimestre}}</td>
+                <td>{{$tempos[$key]}}</td>
+                <td>{{$trimestre[0]->trimestre}}</td>
                 <td>{{$assid->tipo_falta}}</td>
                 <td>{{$assid->status_falta}}</td>
                 <td style="text-align: center">
-                    <a class="btn linkeditar" data-bs-toggle="modal" data-bs-target="#modal_assiduidade">Justificar</a>
-                  </td>
+                    <a class="btn linkeditar" data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$assid['disciplina_id']}}">Justificar</a>
+                </td>
+                <td> <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#Descricaoassid{{$assid['disciplina_id']}}"></i></td>
                 </tr>
         @endforeach
-        
+
       </tbody>
     </table>
   </div>
   <!-- Termina a tabela -->
 
     <!-- Início da Modal -->
-    <form method="POST" action="">
-      <div class="modal" id="modal_assiduidade" tabindex="-1" data-bs-backdrop="false" >
+    @foreach ($assiduidade as $assid)
+    <form method="POST" action="{{route('justificar.falta', $assid->assiduidade_id)}}">
+        @csrf
+        @method('put')
+      <div class="modal" id="modal_assiduidade{{$assid['disciplina_id']}}" tabindex="-1" data-bs-backdrop="false" >
           <div class="modal-dialog">
           <div class="modal-content">
           <div class="modal-header">
@@ -105,7 +114,7 @@
           <div class="modal-body">
               <div class="row">
                   <div class="alert alert-warning" role="alert">
-                      <h6>Atenção: Estás a justificar uma falta normal!!</h6><h6> A falta do dia 21/06/2021 no 1º Tempo do 1º Trimestre Inserida ao Aluno (a) Fualno Fulano Fualano será Removidada</h6>
+                      <h6>Atenção: Estás a justificar uma falta normal!!</h6><h6> A falta do dia {{date('d/m/Y', strtotime($assid->created_at))}} no 1º Tempo do 1º Trimestre Inserida ao Aluno (a) {{$assiduidade[0]->aluno->candidato->pessoa->nome_completo}} será Removidada</h6>
                       <h5>Deseja Realmente Continuar?</h5>
                   </div>
               </div>
@@ -117,13 +126,61 @@
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="subimit" class="btn btn-primary">Confirmar</button>
+              <button type="subimit" class="btn btn-primary" value="">Confirmar</button>
           </div>
           </div>
       </div>
       </div>
     </form>
+    @endforeach
 <!-- Fím da modal -->
+
+@foreach ($assiduidade as $assid)
+    <div class="modal fade" id="Descricaoassid{{$assid['disciplina_id']}}" tabindex="-1" data-bs-backdrop="false">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+
+          <div class="provisorio">
+            <div class="card-icon-modal rounded-circle d-flex align-items-center justify-content-flex-end">
+
+              <i class="bi bi-x-lg" data-bs-toggle="modal" aria-label="Close" data-bs-dismiss="modal"></i>
+            </div>
+          </div>
+
+          <div class="cabecalho-modal">
+            <div class="row">
+              <div class="col" style="display: flex; justify-content: flex-start; align-items: center;">
+                <h1>Descrição Da Falta</h1>
+              </div>
+            </div>
+          </div>
+
+          <div class="corpo-modal">
+            <div class="form-inativo">
+
+                  <div class="row">
+                      <div class="col">
+                          <textarea class="form-control" style="border: 1px solid; border-color: rgb(204, 204, 204); border-radius: 5px; outline: none" class="w-100 "  rows="13" name="conteudo"  id="area" placeholder="Não foi inserido nenhuma descrição" readonly disabled>{{$assid->descricao_falta}}</textarea>
+                      </div>
+                  </div>
+
+
+                    <div class="footer-modal" style="text-align: center;">
+
+                      <div class="jnt">
+                          <a class="btn" data-bs-toggle="modal" aria-label="Close" data-bs-dismiss="modal" style="background-color: #070b17; color: #fff;">Retroceder</a>
+
+                          <a class="btn" data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$assid['disciplina_id']}}" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
+                      </div>
+                    </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+@endforeach
 
 </main>
 @endsection

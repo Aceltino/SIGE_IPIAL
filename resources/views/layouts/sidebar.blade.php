@@ -255,9 +255,8 @@
         <li>
 
 
-          {{-- <a href={{ route('consultar.processo') }}> --}}
 
-          {{-- <a href={{route('processo.consultar')}}> --}}
+           <a href={{route('processo.consultar')}}> 
 
             <i class="bi bi-circle"></i><span>Processos</span>
           </a>
@@ -275,6 +274,16 @@
         <li>
           <a href={{route('avaliacao.aluno')}}>
             <i class="bi bi-circle"></i><span>Avaliar Avaliação</span>
+          </a>
+        </li>
+        <li>
+          <a href="/recurso_aluno">
+            <i class="bi bi-circle"></i><span>Recurso</span>
+          </a>
+        </li>
+        <li>
+          <a href="/exame_aluno">
+            <i class="bi bi-circle"></i><span>Exame Especial</span>
           </a>
         </li>
       </ul>

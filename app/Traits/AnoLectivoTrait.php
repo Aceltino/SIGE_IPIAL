@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 use App\Models\Ano_lectivo;
+use App\Models\Trimestre;
 use DateTime;
 use carbon\Carbon;
 use Illuminate\Support\Fluent;
@@ -216,5 +217,12 @@ trait AnoLectivoTrait
         }
     }
 
+    public static function fecharAnoLectivo(){
+        $anoLec = ['status_ano_lectivo' => 0];
+        $trimestre = ['status' => 0];
+        Ano_lectivo::where('status_ano_lectivo', 1)->update($anoLec);
+        Trimestre::where('status', 1)->update($trimestre);
+        return true;
+    }
 
 }

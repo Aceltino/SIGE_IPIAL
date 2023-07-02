@@ -10,13 +10,13 @@ use App\Traits\AssiduidadeTrait;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Professor;
 
+
 class AssiduidadeAlunoController extends Controller
 {
 
     public function index()
     {
         $user = Auth::user();
-        //dd($user->pessoa_id);
         if($user->cargo_usuario === "Administrador" || $user->cargo_usuario === "Subdirector"){
             $professor = AvaliacaoTrait::pegarAdmin();
         }
@@ -33,7 +33,7 @@ class AssiduidadeAlunoController extends Controller
         for ($i = 0; $i < count($professor); $i++) {
             $disciplina_id[$i] = $professor[$i]['disciplina_id'];
             $nome_disciplina[$i] = $professor[$i]['nome_disciplina'];
-            for ($j = 0; $j < (count($professor[$i]) - 2); $j++) {
+            for ($j = 0; $j < (count($professor[$i]) - 3); $j++) {
                 $turma =  AvaliacaoTrait::pegarAnoTurmaCoord($professor[$i][$j]['turma_id']);
                 $n_turma = $professor[$i][$j]['nome_turma'];
                 if($j === 0){
@@ -54,7 +54,7 @@ class AssiduidadeAlunoController extends Controller
         }
         $incremento = 0;
         for ($i = 0; $i < count($professor); $i++) {
-            for ($j = 0; $j < (count($professor[$i]) - 2); $j++) {
+            for ($j = 0; $j < (count($professor[$i]) - 3); $j++) {
                 if ($incremento === 0) {
                     $cursos[$incremento] = $professor[$i][$j]['nome_curso'];
                     $incremento++;
@@ -67,12 +67,26 @@ class AssiduidadeAlunoController extends Controller
         }
         $trimestre = AvaliacaoTrait::pegarTrimestre();
         $alunos = AssiduidadeTrait::pegarAssiduidadeAluno($disciplina_id, $turmas);
-        return view('assiduid-aluno/assd-aluno', compact(['alunos', 'nome_turma', 'cursos', 'nome_disciplina', 'trimestre']));
+        return view('assiduid-aluno/assd-aluno', compact(['alunos', 'nome_turma', 'cursos', 'nome_disciplina', 'trimestre', 'professor']));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $aluno_id, $disciplina_id, $turma_id, $professor_disciplina_id)
     {
-
+        //dd($professor_disciplina_id);
+        //$dia = AssiduidadeTrait::pegarDiaBanco();
+        //$tempo = AssiduidadeTrait::pegarTempoFalta($turma_id, $dia, $professor_disciplina_id);
+        $trimestre = AvaliacaoTrait::pegarTrimestre();
+        $falta = [
+            'falta_aluno' => 1,
+            'status_falta' => "N-JUSTIFICADA",
+            'descricao_falta' => $request->conteudo,
+            'tipo_falta' => $request->tipo_falta,
+            'aluno_id' => $aluno_id,
+            'id_trimestre' => $trimestre[0]->trimestre_id,
+            'disciplina_id' => $disciplina_id
+        ];
+        Assiduidade_aluno::create($falta);
+        return redirect()->back()->with('sucesso', "Falta aplicada com sucesso!");
     }
 
     public function show($aluno_id, $disciplina_id)
@@ -84,17 +98,16 @@ class AssiduidadeAlunoController extends Controller
         if(count($assiduidade) < 1){
             return redirect()->back()->with('erro', "Nenhuma falta encontrada!");
         }
-        return view('assiduid-aluno/edit-assd-aluno', compact('assiduidade'));
+        $tempos = AssiduidadeTrait::pegarTempo($assiduidade);
+        return view('assiduid-aluno/edit-assd-aluno', compact(['assiduidade', 'trimestre', 'tempos']));
     }
 
-    public function edit(Assiduidade_aluno $assiduidade_aluno)
+    public function update(Request $request, $assiduidade_id)
     {
-
-    }
-
-    public function update(Request $request, Assiduidade_aluno $assiduidade_aluno)
-    {
-        //
+        $assiduidade = Assiduidade_aluno::find($assiduidade_id);
+        $assiduidade->status_falta = "JUSTIFICADA";
+        $assiduidade->save();
+        return redirect()->back()->with('sucesso', "Falta justificada com sucesso!");
     }
 
     public function delete(Assiduidade_aluno $assiduidade_aluno)

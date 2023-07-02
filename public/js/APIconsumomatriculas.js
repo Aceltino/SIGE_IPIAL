@@ -15,10 +15,10 @@ axios.get('/api/matriculados')
 
                   Botao = `<a href="/matricula/readmitir-aluno/${registro.N_processo}/readmitir" name="" id="" class="btn btn-success"  role="button">Ativar</a>`;
                 } else if(turma && situacao == 'Anulou a Matricula'){
-                  Botao = `<a href="/matricula/eliminar/${registro.N_processo}" name="" id="" class="btn btn-danger"  role="button">Eliminar</a>`;
+                  Botao = `<a name="" id="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target=" #basicModalll${registro.N_processo}"  role="button">Eliminar</a>`;
 
                 }else{
-                  Botao = `<a href="/matricula/inativar/${registro.N_processo}" name="" id="" class="btn btn-danger"  role="button">inativar</a>`;
+                  Botao = `<a  name="" id="" class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#basicModal${registro.N_processo}"  role="button">inativar</a>`;
 
                 }
 
@@ -38,6 +38,8 @@ axios.get('/api/matriculados')
 
 
                 `;
+
+                //Modal para Visualizar os Dados do ALUNO
 
                 const modall = `
 
@@ -272,6 +274,58 @@ axios.get('/api/matriculados')
 
                 `;
                 document.body.insertAdjacentHTML('beforeend', modall);
+
+                //Modal para confirmar a Inativação do ALUNO
+
+                const modall2 =`
+
+                <div class="modal fade" id="basicModal${registro.N_processo}" tabindex="-1" data-bs-backdrop="false" style="color: #000;">
+                  <div class="modal-dialog">
+                      <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body" style="color: #696969;">
+                      Tem a certeza de que deseja Inativar o Aluno ${registro.nome} ? 
+                              </div>
+
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancelar</button>
+                      <a class="btn btn-danger" href="/matricula/inativar/${registro.N_processo}">Inativar</a>
+                    </div>
+
+                    </div>
+                  </div>
+                </div> 
+                `;
+                 document.body.insertAdjacentHTML('beforeend', modall2);
+
+                  //Modal para confirmar a Eliminação do ALUNO
+
+                 const modall3 =`
+
+                 <div class="modal fade" id="basicModalll${registro.N_processo}" tabindex="-1" data-bs-backdrop="false" style="color: #000;">
+                   <div class="modal-dialog">
+                       <div class="modal-content">
+                     <div class="modal-header">
+                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                     </div>
+ 
+                     <div class="modal-body" style="color: #696969;">
+                       Tem a certeza de que deseja Eliminar o Aluno ${registro.nome} ? 
+                               </div>
+ 
+                     <div class="modal-footer">
+                       <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancelar</button>
+                       <a class="btn btn-danger"href="/matricula/eliminar/${registro.N_processo}"">Eliminar</a>
+                     </div>
+ 
+                     </div>
+                   </div>
+                 </div> 
+                 `;
+                  document.body.insertAdjacentHTML('beforeend', modall3);
 
             });
             var $T= $("#matriculas").DataTable({

@@ -373,9 +373,11 @@ Route::prefix('calend-prova')->group(function(){
 
 /* Assiduidade de alunos*/
 Route::get('/assiduidade-aluno', [AssiduidadeAlunoController::class, 'index'])->name('assiduidade');
+Route::post('/assiduidade-aluno/marcar-falta/{aluno_id}/{disciplina_id}/{turma_id}/{professor_disciplina_id}', [AssiduidadeAlunoController::class, 'store'])->name('marcar.falta');
 
 /*justificar ou editar assiduidade*/
 Route::get('/editar-assiduidade/{aluno_id}/{disciplina_id}', [AssiduidadeAlunoController::class, 'show'])->name('editar.assiduidade');
+Route::put('/editar-assiduidade/justificar-falta/{assiduidade_id}', [AssiduidadeAlunoController::class, 'update'])->name('justificar.falta');
 
 /******************************************
  * Rotas da Avaliação de Aluno
@@ -389,6 +391,29 @@ Route::post('/avaliar-aluno/cadastrar{id_disciplina}', [AvaliacaoAlunoController
 /*editar Avaliação de Aluno*/
 Route::get('/editar-avaliacao-aluno/{id_aluno}/{id_disciplina}', [AvaliacaoAlunoController::class, 'indexUpdate'])->name('editar.avaliacao.aluno');
 Route::put('/editar-avaliacao-aluno/update/{id_nota}', [AvaliacaoAlunoController::class, 'update'])->name('update.nota.aluno');
+
+/*Exame de aluno de Aluno*/
+Route::get('exame_aluno',  function () {
+    return view('avaliac-aluno/exame');
+});
+
+Route::get('exames_histo',  function () {
+    return view('avaliac-aluno/edit-exame');
+});
+Route::get('edit_exame',  function () {
+    return view('avaliac-aluno/edit-exame');
+});
+
+/*Recurso de Aluno*/
+Route::get('recurso_aluno',  function () {
+    return view('avaliac-aluno/recurso');
+});
+Route::get('recurso_histo',  function () {
+    return view('avaliac-aluno/edit-recurso');
+});
+Route::get('edit_recurso',  function () {
+    return view('avaliac-aluno/edit-exame');
+});
 
 /******************************************
  * Rotas do horário
