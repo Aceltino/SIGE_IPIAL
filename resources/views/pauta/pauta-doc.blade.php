@@ -127,12 +127,14 @@
             <th class="coluna-tab-p" rowspan="3"><span class="txdecisao-p">Nº</span></th>
                               
           </tr>
-          
+
+          {{-- @foreach ($collection as $item) --}}
           <tr class="linha-tab-p">
             <th class="coluna-tab-p" colspan="7">TLP</th>
             <th class="coluna-tab-p" colspan="7">TIC</th>
             <th class="coluna-tab-p" colspan="7">SEAC</th>
           </tr>
+          {{-- @endforeach --}}
 
           <tr class="linha-tab-p">
             <th class="coluna-tab-p">
@@ -166,12 +168,10 @@
             <th class="coluna-tab-p"><span class="t-vert">EXAMES</span></th>
             <th class="coluna-tab-p"><span class="t-vert-falta-aluno-p">FALTAS</span></th>            
           </tr>
-
           
-        
+          
         @foreach ($alunos as $aluno)
              
-        
           <tr class="linha-tab-p">
             <td class="coluna-tab-p">
               <span class="num-aluno-p">{{$loop->index+1}}</span>
@@ -180,8 +180,10 @@
               <span class="nome-aluno-p">{{$aluno->candidato->pessoa->nome_completo}}</span>
             </td>
             <td class="coluna-tab-p">
-              <span class="num-proc-p">36701</span>
-            </td>          
+              <span class="num-proc-p">{{$aluno->aluno_id}}</span>
+            </td>   
+            
+            
             <td class="nota coluna-tab-p"><span class="nota-pos">14</span></td>
             <td class="nota coluna-tab-p"><span class="nota-pos">12</span></td>
             <td class="nota coluna-tab-p"><span class="nota-pos">14</span></td>
