@@ -28,7 +28,7 @@ class CursoController extends Controller
     }
     public static function pegarCurso($id)
     {
-        $curso = Curso::find($id)->first();
+        $curso = Curso::where('curso_id', $id)->first();
         return $curso;
     }
 

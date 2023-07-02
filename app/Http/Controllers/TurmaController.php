@@ -54,11 +54,12 @@ class TurmaController extends Controller
         {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+        
 
         // $abreNome = substr($request['nome_completo'], $posicao,2);
         $curso = CursoController::pegarCurso(intval($request->curso));
         $turno = TurnoController::pegarTurno(intval($request->turno));
-        dd($turno);
+        // dd($turno, $curso);
         $turnoSigla =  substr($turno->nome_turno, 0, 1);
 
          $dadosTurma = [
@@ -66,15 +67,15 @@ class TurmaController extends Controller
             'curso' => intval($request->curso),
             'classe' => 1,
         ];
-
+// dd($dadosTurma);
         $turmas = $this->pegarTurma((object) $dadosTurma); 
 
         if(!$turmas || isEmpty($turmas)) //Considerando que não existe uma turma com estes dados acima
         {
             // dd($dadosTurma);
-            dd($turnoSigla);
+            // dd($curso->sigla);
             $turmaNome = $curso->sigla.'10'.'A'.$turnoSigla;
-            dd($turmaNome);
+            // dd($turmaNome);
             criarTurma:
             $cadTurma = [
                 'nome_turma' => $turmaNome,
