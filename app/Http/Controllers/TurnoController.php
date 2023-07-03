@@ -14,7 +14,7 @@ class TurnoController extends Controller
     }
     public static function pegarTurno($id)
     {
-        $turno = Turno::find($id)->first();
+        $turno = Turno::where('turno_id', $id)->first();
         return $turno;
     }
 

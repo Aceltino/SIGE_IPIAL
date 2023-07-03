@@ -49,17 +49,17 @@
             @enderror
                 </div>
                 
-                <div class="col form-group gap-1 ">
-                    <select name="turno" id="turnoSelect" oninput="this.className = ''" class="form-select">
-                        <option selected disabled>Turno:</option>
-                        <option value="1">Manhã</option>
-                        <option value="2">Tarde</option>
-                        <option value="3">Noite</option>
-                    </select>
-                    @error('turno')
-                <div class="alert alert-danger">{{$message}}</div>
-            @enderror
-                </div>
+                <div class="col form-group gap-1">
+    <select name="turno" id="turnoSelect" oninput="this.className = ''" class="form-select">
+        <option selected disabled>Turno:</option>
+        <option value="1">Manhã</option>
+        <option value="2">Tarde</option>
+        <option value="3">Noite</option>
+    </select>
+    @error('turno')
+    <div class="alert alert-danger">{{$message}}</div>
+    @enderror
+</div>
             </div>
 
             <div style="text-align:center;margin-top:10px;">
@@ -69,16 +69,16 @@
             </div>    
         </div>
     </form>
-    <script>
-        const turnoSelect = document.getElementById('turnoSelect');
-        const vagasInput = document.getElementById('vagas-input');
+   <script>
+    const turnoSelect = document.getElementById('turnoSelect');
+    const vagasInput = document.getElementById('vagas-input');
     
-        turnoSelect.addEventListener('change', updateVagasInput);
+    turnoSelect.addEventListener('change', updateVagasInput);
     
-        function updateVagasInput() {
-            const turnoId = turnoSelect.value;
-            const vagas = @json($vagas);
-    
+    function updateVagasInput() {
+        const turnoId = turnoSelect.value;
+
+            const vagas =  @json($vagas);
             let totalVagas = 0;
     
             for (let i = 0; i < vagas.length; i++) {
@@ -89,7 +89,7 @@
             }
     
             vagasInput.value = totalVagas;
-        }
-    </script>
+    }
+</script>
 </main>
 @endsection
