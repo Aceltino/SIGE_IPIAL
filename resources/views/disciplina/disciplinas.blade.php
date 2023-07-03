@@ -74,7 +74,7 @@
         <td>{{ $disciplina->componente	}}</td>
         <td>{{ $disciplina->tempo_prova }}</td> 
         @if($disciplina->curso_id == '')
-        <td>todos cursos</td>
+        <td>Todos cursos</td>
         @else
         <td>{{ $disciplina->curso->nome_curso }}</td>
         @endif
