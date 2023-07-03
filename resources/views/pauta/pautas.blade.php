@@ -63,7 +63,7 @@
             <td>{{ $item['turma']->belongerCurso->nome_curso}}</td>
             <td>{{ $item['turma']->turno->nome_turno }}</td>
             <td>
-                <a href={{ route('pauta.show', ['id'=> $item['turma']->turma_id, 'ano'=>$item['anoLectivo']->ano_lectivo] ) }} class="btn btn-cor-sg-a">Gerar Pauta</a>
+                <a href={{ route('pauta.show', ['id'=> $item['turma']->turma_id, 'ano'=>$item['anoLectivo']->ano_lectivo] ) }} class="btn btn-cor-sg-a">Ver Pauta</a>
             </td>
         </tr>
         @endforeach

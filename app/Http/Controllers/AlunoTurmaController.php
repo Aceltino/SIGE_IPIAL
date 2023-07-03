@@ -7,11 +7,15 @@ use App\Http\Controllers\UserController;
 use App\Models\Aluno;
 use App\Models\AlunoTurma;
 use App\Models\AnoTurmaCood;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 
 class AlunoTurmaController extends Controller
 {
+
+    public static function store($dadosTurma)
+    {
+        $turmaAtrelada = AnoTurmaCood::create($dadosTurma);
+        return $turmaAtrelada;
+    }
     public static function SelecionarTurma() //10ª Classe, função a ser chamada na atribuição de alunos, matriculados.
     {
        $alunos = AlunoController::alunosSemturma();
@@ -154,9 +158,22 @@ class AlunoTurmaController extends Controller
         $turmaEncontrada = [
             'TurmaAno_id' => $turma->turmaAno_id,
             'num_vaga' => $turma->num_vagas
-];
+    ];
     
         return $turmaEncontrada;
+    }
+
+    public static function pegarTurmaId($turmaId) //Pegar turma para integrar aluno transferido
+    {
+        $turma = AnoTurmaCood::where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
+        ->where('turma_id', $turmaId)
+        ->first();
+        
+        if(!$turma)
+        {
+            return false;
+        }
+        return true;
     }
 
     public static function quantidadeTurma($turma) //Pegar turmas 10ª Classe deste ano lectivo

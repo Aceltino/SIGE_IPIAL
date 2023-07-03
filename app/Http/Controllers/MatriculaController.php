@@ -273,7 +273,6 @@ class MatriculaController extends Controller
 // BOTÃO ATRIBUIR TURMA
     public function atribuirTurma()
     {
-       // $alunos = AlunoTurmaController::situacaoAluno(); // Atribuir turmas aos alunos da 11ª em diante.
          $alunos = AlunoTurmaController::SelecionarTurma(); // Atribuir turmas aos recém matriculado da 10ª classe.
 
         if($alunos !== true)
@@ -492,6 +491,29 @@ class MatriculaController extends Controller
         $posicao = 0; // posição do caractere desejado(Onde começa a contagem do caracter)
         $abreNome = substr($request['nome_completo'], $posicao,2);
         $abreSobreNome = substr($request['nome_enc1'], $posicao,2);
+
+        $dataFimMatricula = AnoLectivoController::pegarAnoLectivo(AnoLectivoController::pegarIdAnoLectivo());
+        $dataMatriculaCarboon = Carbon::parse($dataFimMatricula->data_fim_matricula);
+        $dataMatriculaCarboon->addDay();
+        $dataAcesso = $dataMatriculaCarboon->format('d-m-Y');
+        $hexAleatorio = Str::random(8);
+        $dadosUser=
+        [
+            'nome_usuario'=>$abreNome.count(User::all()).$abreSobreNome,
+            'email'=>$request['email'],
+            'password'=>bcrypt($hexAleatorio),
+            'cargo_usuario'=>'Aluno',
+            'status_usuario'=>0,
+            'pessoa_id'=>$pessoa_id,
+        ];
+        $user = UserController::store($dadosUser);
+
+        $sendEmail = AuthController::envioCredenciasEmail($user, $hexAleatorio, $dataAcesso);
+        if(!$sendEmail)
+        {
+            $msg="Fique atento nos dados de identifcação, este candidato já está inscrito!";
+            return redirect()->back()->with("ErroPessoa",$msg);
+        }
 
         $dadosUser=[
             'nome_usuario'=>$abreNome.count(User::all()).$abreSobreNome,
