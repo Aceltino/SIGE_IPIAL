@@ -39,17 +39,17 @@
   </div>
 
   @if(session('sucess'))
-<div class="alert alert-danger">
+<div class="alert alert-success">
           {{(session('sucess'))}}
       </div>
 @endif
 @if(session('edit'))
-<div class="alert alert-danger">
+<div class="alert alert-success">
           {{(session('edit'))}}
       </div>
 @endif
 @if(session('delete'))
-<div class="alert alert-danger">
+<div class="alert alert-success">
           {{(session('delete'))}}
       </div>
 @endif
@@ -75,11 +75,11 @@
         <td>{{ $disciplina->tempo_prova }}</td> 
         @if($disciplina->curso_id == '')
         <td>todos cursos</td>
-      @else
+        @else
         <td>{{ $disciplina->curso->nome_curso }}</td>
-       @endif
+        @endif
         <td> 
-          <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
+          <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal{{ $disciplina['disciplina_id'] }}"></i>
           <a href="{{ route('disciplina.edit', ['disciplina_id' => $disciplina->disciplina_id ])}}"><i class="bi bi-pencil"></i></a>
           <form action="{{ route('disciplina.delete', ['disciplina_id' => $disciplina->disciplina_id]) }}" method="POST">
             @csrf
@@ -93,9 +93,9 @@
     </tbody>
   </table>
   <!-- Termina a tabela de disciplina -->
-
+    @foreach($disciplinas as $disciplina)
       <!--Inicio da modal ver disciplina-->
-      <div class="modal fade" id="ExtralargeModal" tabindex="-1" data-bs-backdrop="false">
+      <div class="modal fade" id="ExtralargeModal{{ $disciplina['disciplina_id'] }}" tabindex="-1" data-bs-backdrop="false">
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
 
@@ -132,11 +132,11 @@
                 <label>Curso: </label><input type="text" name="" value="{{ $disciplina->curso->nome_curso }}" disabled>
             @endif
               </div>
-  <div class="area-input form-group" style="border: none; ">
+           <div class="area-input form-group" style="border: none; ">
                 <label>Tempo de prova: </label><input type="text" name="tempo_prova" value="{{ $disciplina->tempo_prova }}" disabled>
             </div>
                       <div class="footer-modal" style="text-align: center;">
-                        <a href="/edit-disciplina" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
+                        <a href="{{ route('disciplina.edit', ['disciplina_id' => $disciplina->disciplina_id ])}}" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
 
                       </div> 
               </form>
@@ -144,5 +144,6 @@
           </div>
         </div>
       </div>
+      @endforeach
 </main>
 @endsection

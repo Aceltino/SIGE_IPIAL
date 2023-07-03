@@ -19,7 +19,11 @@
                     <div style="  text-align: center;">
                         <h2>CADASTRAR DISCIPLINA</h2>
                     </div>
-
+                    @if(session('sucess'))
+<div class="alert alert-danger">
+          {{(session('sucess'))}}
+      </div>
+@endif
                 </div>
             </div>
         <div class="row">
@@ -34,9 +38,9 @@
               <div class="form-group">
                 <select oninput="this.className = ''" class="form-select" name="componente">
                   <option selected disabled> Componetes</option>
-                  <option  value="C.T">Técnicas </option>
-                  <option value="I.E"> Socio-culturais</option>
-                  <option value="I"> Cientificas</option>
+                  <option  value="Técnicas">Técnicas </option>
+                  <option value="Socio-culturais"> Socio-culturais</option>
+                  <option value="Cientificas"> Cientificas</option>
                 </select>
               </div>
               <div class="row">

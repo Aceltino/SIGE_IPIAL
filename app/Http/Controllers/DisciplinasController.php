@@ -16,7 +16,7 @@ class DisciplinasController extends Controller
         $disciplinas = Disciplina::all();
         $disciplinas = Disciplina::where('nome_disciplina', 'like', "%$pesquisa%")->get();
         $cursos = Curso::all();
-        return view('disciplina.disciplinas', ['disciplinas'=>$disciplinas]);
+        return view('disciplina.disciplinas', compact('disciplinas'));
     }
     public function create()
     {
@@ -55,6 +55,7 @@ class DisciplinasController extends Controller
             'sigla' => $request->sigla,
             'curso_id' => $request->curso,
         ];
+        dd($dado);
         Disciplina::where('disciplina_id', $disciplina_id)->update($dado);
         return redirect()->route('consultar.disciplina')->with('edit','Disciplina editada com sucesso');
     }
