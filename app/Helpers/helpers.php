@@ -100,6 +100,40 @@ if (!function_exists('getMT1')) {
     }
 }
 
+if (!function_exists('getFNJ1')) {
+    function getFNJ1($alunoId, $disciplina) {
+        $notas = \App\Models\Assiduidade_aluno::where('aluno_id', $alunoId)
+                        ->where('status_falta', "N-JUSTIFICADA")
+                        ->where('disciplina_id', $disciplina)
+                        ->whereHas('trimestre', function ($query) {
+                            $query->where('id_trimestre', 1);
+                        })
+                        ->get();
+
+        $sum = $notas->sum('falta_aluno');
+        if ($sum)
+            return $sum;
+        return '';
+    }
+}
+
+if (!function_exists('getFJ1')) {
+    function getFJ1($alunoId, $disciplina) {
+        $notas = \App\Models\Assiduidade_aluno::where('aluno_id', $alunoId)
+                        ->where('status_falta', "JUSTIFICADA")
+                        ->where('disciplina_id', $disciplina)
+                        ->whereHas('trimestre', function ($query) {
+                            $query->where('id_trimestre', 1);
+                        })
+                        ->get();
+
+        $sum = $notas->sum('falta_aluno');
+        if ($sum)
+            return $sum;
+        return '';
+    }
+}
+
 /* ========= Segundo Trimestre ========= */
 if (!function_exists('getMAC2')) {
     function getMAC2($alunoId, $disciplina)
@@ -175,6 +209,40 @@ if (!function_exists('getMT2')) {
     }
 }
 
+if (!function_exists('getFNJ2')) {
+    function getFNJ2($alunoId, $disciplina) {
+        $notas = \App\Models\Assiduidade_aluno::where('aluno_id', $alunoId)
+                        ->where('status_falta', "N-JUSTIFICADA")
+                        ->where('disciplina_id', $disciplina)
+                        ->whereHas('trimestre', function ($query) {
+                            $query->where('id_trimestre', 2);
+                        })
+                        ->get();
+
+        $sum = $notas->sum('falta_aluno');
+        if ($sum)
+            return $sum;
+        return '';
+    }
+}
+
+if (!function_exists('getFJ2')) {
+    function getFJ2($alunoId, $disciplina) {
+        $notas = \App\Models\Assiduidade_aluno::where('aluno_id', $alunoId)
+                        ->where('status_falta', "JUSTIFICADA")
+                        ->where('disciplina_id', $disciplina)
+                        ->whereHas('trimestre', function ($query) {
+                            $query->where('id_trimestre', 2);
+                        })
+                        ->get();
+
+        $sum = $notas->sum('falta_aluno');
+        if ($sum)
+            return $sum;
+        return '';
+    }
+}
+
 /* ========= Terceiro Trimestre ========= */
 if (!function_exists('getMAC3')) {
     function getMAC3($alunoId, $disciplina)
@@ -247,5 +315,104 @@ if (!function_exists('getMT3')) {
         $mediaFormatada = $mediaArredondada != 0 ? number_format($mediaArredondada, 1) : '0';
 
         return $mediaFormatada;
+    }
+}
+
+if (!function_exists('getFNJ3')) {
+    function getFNJ3($alunoId, $disciplina) {
+        $notas = \App\Models\Assiduidade_aluno::where('aluno_id', $alunoId)
+                        ->where('status_falta', "N-JUSTIFICADA")
+                        ->where('disciplina_id', $disciplina)
+                        ->whereHas('trimestre', function ($query) {
+                            $query->where('id_trimestre', 3);
+                        })
+                        ->get();
+
+        $sum = $notas->sum('falta_aluno');
+        if ($sum)
+            return $sum;
+        return '';
+    }
+}
+
+if (!function_exists('getFJ1')) {
+    function getFJ1($alunoId, $disciplina) {
+        $notas = \App\Models\Assiduidade_aluno::where('aluno_id', $alunoId)
+                        ->where('status_falta', "JUSTIFICADA")
+                        ->where('disciplina_id', $disciplina)
+                        ->whereHas('trimestre', function ($query) {
+                            $query->where('id_trimestre', 3);
+                        })
+                        ->get();
+
+        $sum = $notas->sum('falta_aluno');
+        if ($sum)
+            return $sum;
+        return '';
+    }
+}
+
+if (!function_exists('getFTotal')) {
+    function getFTotal($alunoId, $disciplina) {
+        $fnj1 = intval(getFNJ1($alunoId, $disciplina));
+        $fj1  = intval(getFJ1($alunoId, $disciplina));
+
+        $fnj2 = intval(getFNJ2($alunoId, $disciplina));
+        $fj2  = intval(getFJ2($alunoId, $disciplina));
+
+        $fnj3 = intval(getFNJ3($alunoId, $disciplina));
+
+        $total1 = ($fnj1 - $fj1);
+        $total2 = ($fnj2 - $fj2);
+        $total3 = ($total1 + $total2 + $fnj3);
+
+        if ($total3)
+            return $total3;
+        return '';
+    }
+}
+
+/* ========= Considerações Finais ========= */
+if (!function_exists('getExame')) {
+    function getExame($alunoId, $disciplina) {
+        $notas = \App\Models\Nota::where('aluno_id', $alunoId)
+                        ->where('tipo_prova', "Exame")
+                        ->where('disciplina_id', $disciplina)
+                        ->get();
+
+        $sum = $notas->sum('nota_aluno');
+        $count = $notas->count();
+        $media = $count > 0 ? $sum / $count : 0;
+        $mediaArredondada = $media != 0 ? round($media) : 0;
+        $mediaFormatada = $mediaArredondada != 0 ? number_format($mediaArredondada, 1) : '0';
+        return $mediaFormatada;
+    }
+}
+
+if (!function_exists('getMFD')) {
+    function getMFD($alunoId, $disciplina) {
+        $mt1 = getMT1($alunoId, $disciplina);
+
+        $mt2 = getMT2($alunoId, $disciplina);
+
+        $mt3 = getMT3($alunoId, $disciplina);
+
+        $media = ($mt1 + $mt2 + $mt3) / 3;
+        $mediaArredondada = $media != 0 ? round($media) : 0;
+        $mediaFormatada = $mediaArredondada != 0 ? number_format($mediaArredondada, 1) : '0';
+
+        return $mediaFormatada;
+    }
+}
+
+if (!function_exists('getOBS')) {
+    function getOBS($alunoId, $disciplina) {
+        $media = getMFD($alunoId, $disciplina);
+        $faltas = getFTotal($alunoId, $disciplina);
+
+        if ($media >= 10 && $faltas <= 5)
+            return 'Transita';
+
+        return 'Não Transita';
     }
 }
