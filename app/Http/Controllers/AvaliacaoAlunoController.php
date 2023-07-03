@@ -10,19 +10,32 @@ use App\Models\Trimestre;
 use App\Models\Aluno;
 use Illuminate\Support\Facades\Auth;
 use App\Models\AnoTurmaCood;
+use App\Models\Professor;
 
 class AvaliacaoAlunoController extends Controller
 {
     public function index()
     {
         $user = Auth::user();
-        //dd($user);
-        $professor = AvaliacaoTrait::pegarProfessor($user);
+        //dd($user->pessoa_id);
+        if($user->cargo_usuario === "Administrador" || $user->cargo_usuario === "Subdirector"){
+            $professor = AvaliacaoTrait::pegarAdmin();
+        }
+        if($user->cargo_usuario === "Professor"){
+            $professor = AvaliacaoTrait::pegarProfessor($user);
+        }
+        if($user->cargo_usuario === "Coordenacao"){
+            $coord = Professor::where('pessoa_id', $user->pessoa_id)->get();
+            if($coord[0]->cargo === "Coordenador Curso"){
+                $professor = AvaliacaoTrait::pegarCoordenadorCurso($user);
+            }
+        }
+        //dd($professor);
         $inc = 0;
         for ($i = 0; $i < count($professor); $i++) {
             $disciplina_id[$i] = $professor[$i]['disciplina_id'];
             $nome_disciplina[$i] = $professor[$i]['nome_disciplina'];
-            for ($j = 0; $j < (count($professor[$i]) - 2); $j++) {
+            for ($j = 0; $j < (count($professor[$i]) - 3); $j++) {
                 $turma =  AvaliacaoTrait::pegarAnoTurmaCoord($professor[$i][$j]['turma_id']);
                 $n_turma = $professor[$i][$j]['nome_turma'];
                 if($j === 0){
@@ -44,7 +57,7 @@ class AvaliacaoAlunoController extends Controller
 
         $incremento = 0;
         for ($i = 0; $i < count($professor); $i++) {
-            for ($j = 0; $j < (count($professor[$i]) - 2); $j++) {
+            for ($j = 0; $j < (count($professor[$i]) - 3); $j++) {
                 if ($incremento === 0) {
                     $cursos[$incremento] = $professor[$i][$j]['nome_curso'];
                     $incremento++;
@@ -55,7 +68,7 @@ class AvaliacaoAlunoController extends Controller
                 }
             }
         }
-
+        $trimestre = AvaliacaoTrait::pegarTrimestre();
         $aluno = AvaliacaoTrait::pegarNotaAluno($disciplina_id, $turmas);
 
         return view('avaliac-aluno/avaliacoes-aluno', compact(['aluno', 'nome_disciplina', 'nome_turma', 'cursos']));
@@ -77,8 +90,9 @@ class AvaliacaoAlunoController extends Controller
     public function store(Request $request, $disciplina_id)
     {
         //dd($request);
-        if($request->ac == null && $request->npp == null && $request->npt == null && $request->exame == null && $request->exame_recurso == null){
-            return redirect()->back();
+        if($request->ac == null && $request->npp == null && $request->npt == null
+        && $request->exame == null && $request->exame_recurso == null){
+            return redirect()->back()->with('erro', "Os campos dos formulários não podem estar vazios!");
         }
         $trimestre = Trimestre::where('status', 1)->get();
         $nota = Nota::where('aluno_id', $request->aluno_id)
@@ -91,7 +105,7 @@ class AvaliacaoAlunoController extends Controller
                 'data_avaliacao' => date('Y-m-d'),
                 'nota_aluno' => $request->ac,
                 'tipo_prova' => "AvaliacaoContinua",
-                'descricao_nota' => null,
+                'descricao_nota' => $request->conteudo,
                 'aluno_id' => $request->aluno_id,
                 'disciplina_id' => $disciplina_id,
                 'trimestre_id' => $trimestre[0]->trimestre_id
@@ -110,7 +124,7 @@ class AvaliacaoAlunoController extends Controller
                     'data_avaliacao' => date('Y-m-d'),
                     'nota_aluno' => $request->npp,
                     'tipo_prova' => "Prova Professor",
-                    'descricao_nota' => null,
+                    'descricao_nota' => $request->conteudo,
                     'aluno_id' => $request->aluno_id,
                     'disciplina_id' => $disciplina_id,
                     'trimestre_id' => $trimestre[0]->trimestre_id
@@ -130,7 +144,7 @@ class AvaliacaoAlunoController extends Controller
                     'data_avaliacao' => date('Y-m-d'),
                     'nota_aluno' => $request->npt,
                     'tipo_prova' => "ProvaTrimestre",
-                    'descricao_nota' => null,
+                    'descricao_nota' => $request->conteudo,
                     'aluno_id' => $request->aluno_id,
                     'disciplina_id' => $disciplina_id,
                     'trimestre_id' => $trimestre[0]->trimestre_id
@@ -150,7 +164,7 @@ class AvaliacaoAlunoController extends Controller
                     'data_avaliacao' => date('Y-m-d'),
                     'nota_aluno' => $request->exame,
                     'tipo_prova' => "Exame",
-                    'descricao_nota' => null,
+                    'descricao_nota' => $request->conteudo,
                     'aluno_id' => $request->aluno_id,
                     'disciplina_id' => $disciplina_id,
                     'trimestre_id' => $trimestre[0]->trimestre_id
@@ -170,7 +184,7 @@ class AvaliacaoAlunoController extends Controller
                     'data_avaliacao' => date('Y-m-d'),
                     'nota_aluno' => $request->exame_recurso,
                     'tipo_prova' => "Exame Recurso",
-                    'descricao_nota' => null,
+                    'descricao_nota' => $request->conteudo,
                     'aluno_id' => $request->aluno_id,
                     'disciplina_id' => $disciplina_id,
                     'trimestre_id' => $trimestre[0]->trimestre_id
@@ -188,6 +202,7 @@ class AvaliacaoAlunoController extends Controller
         $nota = Nota::find($nota);
 
         $nota->nota_aluno = $request->nota_aluno;
+        $nota->descricao_nota = $request->conteudo;
         $nota->save();
         //dd($nota);
         return redirect()->back()->with('sucesso', "Nota alterada com sucesso!");

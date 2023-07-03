@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use App\Models\Candidato;
+use App\Models\Encarregado;
+use App\Models\Pessoa;
 use Illuminate\Foundation\Http\FormRequest;
 
 class MatriculaupdateRequest extends FormRequest
@@ -25,22 +27,24 @@ class MatriculaupdateRequest extends FormRequest
     public function rules()
     {
         $candidato = Candidato::find($this->request->get('id'));
+
         $rules = [
             //Formulario candidato
             'nome_pai_cand'=>'required|string|max:100|min:2',
             'nome_mae_cand'=>'required|string|max:100|min:2',
             'naturalidade_cand'=>'required|string|max:100|min:2',
             'aluno_id' => 'required',
+            'id' => 'required',
 
             //Formulario da Pessoa
             'nome_completo'=>'required|string|min:2|max:100',
             'genero' => 'required|string',
-            'num_tel'=>'required|size:9|unique:pessoas,telefone,'.$candidato->pessoa_id.',pessoa_id',
+            'num_tel'=>'required|size:9',
 
-             //Encarregado Form
-             'telefone0'=>'required|size:9|unique:pessoas,telefone,'.$candidato->pessoa_id.',pessoa_id',
-             'telefone1'=>'required|size:9|unique:pessoas,telefone,'.$candidato->pessoa_id.',pessoa_id',
-             'telefone2'=>'required|size:9|unique:pessoas,telefone,'.$candidato->pessoa_id.',pessoa_id',
+            //Encarregado Form
+            'telefone0' => 'required|size:9',
+            'telefone1' => 'required|size:9',
+            'telefone2' => 'required|size:9',
         ];
 return $rules;
     }
@@ -66,7 +70,10 @@ return $rules;
 
             //Formulario Telefone
             'num_tel.size'=> 'Número de telefone esta incorrecto',
-            'num_tel.unique'=> 'Numero de telefone já em uso.'
+            'num_tel.unique'=> 'Numero de telefone já em uso.',
+            'telefone0.size'=> 'Número de telefone esta incorrecto',
+            'telefone1.size'=> 'Número de telefone esta incorrecto',
+            'telefone2.size'=> 'Número de telefone esta incorrecto',
         ];
     }
 }

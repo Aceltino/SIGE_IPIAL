@@ -15,52 +15,6 @@
     </div>
         <div class="tab">
           <div class="conteudo">
-
-            @error('nome_completo')
-              <div class="alert alert-danger">
-                {{$message}}
-                <button class="botaofecharerro">
-                  <i class="bi bi-x"></i>
-                </button>
-              
-              </div>
-              
-            @enderror
-            @error('nome_pai_cand')
-                <div class="alert alert-danger">{{$message}}
-                  <button class="botaofecharerro">
-                    <i class="bi bi-x"></i>
-                  </button>
-                </div>
-            @enderror
-            @error('nome_mae_cand')
-                <div class="alert alert-danger">{{$message}}</div>
-            @enderror
-            @error('naturalidade_cand')
-                <div class="alert alert-danger">{{$message}}</div>
-            @enderror
-            @error('num_tel')
-            <div class="alert alert-danger">{{$message}}</div>
-            @enderror
-            @error('num_bi')
-            <div class="alert alert-danger">{{$message}}</div>
-            @enderror
-            @error('nome_escola')
-            <div class="alert alert-danger">{{$message}}</div>
-            @enderror
-            @error('num_aluno')
-            <div class="alert alert-danger">{{$message}}</div>
-            @enderror
-            @error('turma_aluno')
-            <div class="alert alert-danger">{{$message}}</div>
-            @enderror
-            @error('num_processo')
-            <div class="alert alert-danger">{{$message}}</div>
-            @enderror
-            @error('ultimo_anoLectivo')
-            <div class="alert alert-danger">{{$message}}</div>
-            @enderror
-    
             @if(session()->has('ErroPessoa'))
             <div class="alert alert-danger">
             {{session('ErroPessoa')}}
@@ -98,32 +52,53 @@
             @if(session()->has('Sucesso'))
             <div class="alert alert-success">
             {{session('Sucesso')}}
+            <button class="botaofechasucesso">
+              <i class="bi bi-x"></i>
+            </button>
             </div>
             @endif
          </div>
       <h2>Introduza os dados pessoais</h2>
 
       <div class="form-group">
-        <input type="text" placeholder="Nome Completo" value="{{ old('nome_completo') }}" name="nome_completo" oninput="this.className = ''">
+        <input type="text" placeholder="Nome Completo" name="nome_completo" value="{{ old('nome_completo') }}"  oninput="this.className = ''">
+        @error('nome_completo')
+          <div class="alert alert-danger">
+            {{$message}}
+            <button class="botaofecharerro">
+              <i class="bi bi-x"></i>
+            </button>
+          </div>
+        @enderror
       </div>
 
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <input type="text" placeholder="Nome do Pai" value="{{ old('nome_pai_cand') }}" name="nome_pai_cand" oninput="this.className = ''">
+            <input type="text" placeholder="Nome do Pai" name="nome_pai_cand" value="{{ old('nome_pai_cand') }}"  oninput="this.className = ''">
+            @error('nome_pai_cand')
+              <div class="alert alert-danger">{{$message}}
+                <button class="botaofecharerro">
+                  <i class="bi bi-x"></i>
+                </button>
+              </div>
+            @enderror
           </div>
         </div>
 
         <div class="col">
           <div class="form-group">
-            <input type="text" placeholder="Nome da Mãe" value="{{ old('nome_mae_cand') }}" name="nome_mae_cand" oninput="this.className = ''">
+            <input type="text" placeholder="Nome da Mãe" name="nome_mae_cand" value="{{ old('nome_mae_cand') }}"  oninput="this.className = ''">
+            @error('nome_mae_cand')
+                <div class="alert alert-danger">{{$message}}</div>
+            @enderror
           </div>
         </div>
       </div>
 
       <div class="row">
         <div class="col">
-          <input type="date" value="{{ old('data_nascimento') }}" id="datainput" name="data_nascimento" oninput="this.className = ''">
+          <input type="date" name="data_nascimento" value="{{ old('data_nascimento') }}" id="datainput"  oninput="this.className = ''">
         </div>
 
         <div class="col">
@@ -132,6 +107,9 @@
         </div>
         <div class="col">
           <input type="text" placeholder="Naturalidade" value="{{ old('naturalidade_cand') }}" name="naturalidade_cand" oninput="this.className = ''">
+          @error('naturalidade_cand')
+            <div class="alert alert-danger">{{$message}}</div>
+          @enderror
         </div>
       </div>
 
@@ -145,8 +123,11 @@
 
         <div class="col">
           <div class="form-group">
-            <input type="text" style="margin-top: 15px;" placeholder="Número do Bilhete de identidade" id="bi_input" name="num_bi" oninput="this.className = ''" maxlength="14">
+            <input type="text" style="margin-top: 15px;" placeholder="Número do Bilhete de identidade" id="bi_input" name="num_bi" value="{{ old('num_bi') }}" oninput="this.className = ''" minlength="14" maxlength="14">
             <div id="mensagem1" style="color: red;"></div>
+            @error('num_bi')
+              <div class="alert alert-danger">{{$message}}</div>
+            @enderror
           </div>
         </div>
       </div>
@@ -159,6 +140,9 @@
           <div class=" col aa" style="display: flex; flex-direction: column;">
             <input type="text" value="" id="telefoneinput" placeholder="Telefone"  value="{{ old('num_tel') }}" name="num_tel" oninput="this.className = ''">
             <div class="mensagem-erro" style="width: 100%;"></div>
+            @error('num_tel')
+              <div class="alert alert-danger">{{$message}}</div>
+            @enderror
           </div>
 
         </div>
@@ -171,6 +155,9 @@
       <h2>introduza os dados da escola de providência</h2>
       <div class="form-group">
         <input type="text" placeholder="Nome da escola de providência" value="{{ old('nome_escola') }}" name="nome_escola" oninput="this.className = ''">
+        @error('nome_escola')
+          <div class="alert alert-danger">{{$message}}</div>
+        @enderror
       </div>
 
       <div class="row">
@@ -184,10 +171,16 @@
 
         <div class="form-group col">
           <input id="numeroinput1" type="text" placeholder="Nº de estudante" value="{{ old('num_aluno') }}" name="num_aluno" oninput="this.className = ''">
+          @error('num_aluno')
+          <div class="alert alert-danger">{{$message}}</div>
+          @enderror
         </div>
 
         <div class="form-group col">
           <input type="text" placeholder="Turma" value="{{ old('turma_aluno') }}" name="turma_aluno" oninput="this.className = ''">
+          @error('turma_aluno')
+            <div class="alert alert-danger">{{$message}}</div>
+          @enderror
         </div>
 
       </div>
@@ -195,10 +188,16 @@
       <div class="row">
         <div class="form-group col">
           <input id="numeroinput" type="text" placeholder="Processo nº" value="{{ old('num_processo') }}" name="num_processo" oninput="this.className = ''">
+          @error('num_processo')
+            <div class="alert alert-danger">{{$message}}</div>
+          @enderror
         </div>
 
         <div class="form-group col">
           <input type="text" placeholder="Ano Lectivo" value="{{ old('ultimo_anoLectivo') }}" name="ultimo_anoLectivo" oninput="this.className = ''">
+          @error('ultimo_anoLectivo')
+            <div class="alert alert-danger">{{$message}}</div>
+          @enderror
         </div>
 
       </div>
@@ -212,7 +211,7 @@
         @endphp
           @foreach($cursos as $curso)
           <div class="form-group">
-          <select oninput="this.className = ''" class="form-select"  name="curso{{$a}}">
+          <select oninput="this.className = ''" class="form-select" name="curso{{$a}}">
           <option selected disabled>Escolha a {{$a}}ª opção</option>
           @foreach ($cursos as $Curso )
           <option value="{{$Curso['nome_curso']}}">{{$Curso['nome_curso']}}</option>
@@ -229,7 +228,7 @@
     <div class="tab">
       <h2>Digite as médias para cada disciplina solicitada</h2>
       <div class="form-group">
-        <select oninput="this.className = ''" class="form-select" name="LinguaP">
+        <select oninput="this.className = ''" class="form-select" value="{{ old('LinguaP') }}" name="LinguaP">
           <option selected >Língua Portuguesa</option>
           <option value="10">10</option>
           <option value="11">11</option>
@@ -246,7 +245,7 @@
       </div>
 
       <div class="form-group">
-        <select oninput="this.className = ''" class="form-select" name="Matematic">
+        <select oninput="this.className = ''" class="form-select" value="{{ old('Matematic') }}" name="Matematic">
           <option selected disabled>Matemática</option>
           <option value="10">10</option>
           <option value="11">11</option>
@@ -263,7 +262,7 @@
       </div>
 
       <div class="form-group">
-        <select oninput="this.className = ''" class="form-select" name="Fisic">
+        <select oninput="this.className = ''" class="form-select" value="{{ old('Fisic') }}" name="Fisic">
           <option selected disabled>Física</option>
           <option value="10">10</option>
           <option value="11">11</option>
@@ -280,7 +279,7 @@
       </div>
 
       <div class="form-group">
-        <select oninput="this.className = ''" class="form-select" name="Quimic">
+        <select oninput="this.className = ''" class="form-select" value="{{ old('Quimic') }}" name="Quimic">
           <option selected disabled>Química</option>
           <option value="10">10</option>
           <option value="11">11</option>

@@ -18,7 +18,7 @@ class Curso extends Model
         'area_formacao_id',
         'professor_id',
         'created_at',
-        'updated_at'
+        'updated_at' 
     ];
 
     public function coordenador(){
@@ -45,7 +45,7 @@ class Curso extends Model
     }
     public function disciplinas()
     {
-        return $this->belongToMany(Disciplina::class, 'diciplina_curso', 'disciplina_id', 'curso_id');
+        return $this->hasMany(Disciplina::class, 'disciplina_id');
     }
 
 

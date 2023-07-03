@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Active_session;
 use App\Traits\PessoaTrait;
-use App\Models\User;
+use App\Models\{
+    User,Active_session,
+};
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{
     Auth,Validator,Mail,
     DB,Hash,Session
 };
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 
@@ -22,9 +22,7 @@ class AuthController extends Controller
     //Metodo que retorna o formulario de login
     public function loginForm()
     {
-        $user= User::all();
-
-        if(count($user)==0){
+        if(count(User::all())==0){
             return $this->registrarForm();
         }
         return view('autenticacao.login');
@@ -38,32 +36,30 @@ class AuthController extends Controller
 
     //Metodo de Check de Login
     public function loginCheck(Request $request)
-    {
-
+    {   
         $credencias= [
-            'nome_usuario'=>$request->username,
-            'password'=>$request->password,
+            'nome_usuario' => $request->username,
+            'password' => $request->password,
         ];
 
         if (empty($credencias['nome_usuario']) || empty($credencias['password'])) {
             return redirect()->back()->with('erro_login_001', 'Por favor, insira os dados de acesso');
         }
-        if (!Auth::attempt($credencias,$request->lembrar)) {
+        if (!Auth::attempt($credencias, $request->lembrar)) {
+           
             return redirect()->back()->with('erro_login_002', 'Dados incorretos');
         }
+      
         $user = Auth::user();
-        if(!$user->status_usuario){
+
+        if (!$user->status_usuario) {
             Auth::logout();
-            return redirect()->back()->with('erro_login_003', 'Usuario Bloqueado, Entre em contacto com a instituição');
+            return redirect()->back()->with('erro_login_003', 'Usuario Bloqueado, Entre em contato com a instituição');
         }
-
-        Session::start();
-        $request->session()->regenerate();
-
-        $this->registrarSession($user->usuario_id); //Resgistrar todo inicio de sessão do sistema no Banco de Dados(Active_session)
-
+    
+        $this->registrarSession($user->usuario_id); //Registrar todo início de sessão do sistema no Banco de Dados(Active_session)
         return redirect()->intended('/');
-    }
+    } 
 
     //Metodo de cadastro dos usuario(primeira vez)
     public function storeInicio(Request $request):mixed
@@ -191,7 +187,7 @@ class AuthController extends Controller
     public function store(Request $request)
     {   
         $num_registo=count(User::all());
-        // $numId= $num_registo+1;
+        // $numId= $num_registo+1; 
     
         //Gerar uma senha temporária aleatória
         $hexAleatorio = Str::random(8);
@@ -306,13 +302,17 @@ class AuthController extends Controller
     }
 
     //Metodo que envia o email das credencias de acesso do usuario cadastrado
-    public function envioCredenciasEmail($user,$senha):mixed
+    public static function envioCredenciasEmail($user,$senha,$dataMatri=null):mixed
     {  
         // Construir o URLpara logar com os novos dados 
         $urlLogin = url('autenticacao/login');
+// dd($user->nome_usuario);
+        $paramAluno= ['urlLogin' => $urlLogin,'nome_usuario'=>$user->nome_usuario,'senha'=>$senha,'dataMatri'=>$dataMatri, 'cargo'=>$user->cargo_usuario ];
+        $param=      ['urlLogin' => $urlLogin,'nome_usuario'=>$user->nome_usuario,'senha'=>$senha];
+
 
         // Enviar o e-mail
-        Mail::send('Mail.credenciasAcesso', ['urlLogin' => $urlLogin,'nome_usuario'=>$user->nome_usuario,'senha'=>$senha], 
+        Mail::send('Mail.credenciasAcesso', $user->cargo_usuario=="Aluno" ? $paramAluno : $param , 
         function ($message) use ($user) {
             $message->to($user->email);
             $message->subject('SIGE-IPIAL (Credencias de Acesso)');

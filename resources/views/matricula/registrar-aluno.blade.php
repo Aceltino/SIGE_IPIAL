@@ -5,8 +5,8 @@
 @section('conteudo')
 <main id="main" class="main" >
 
-    <form method="POST" action="" id="regForm" action="" class="formulario-layout">
-
+    <form method="POST" action="{{route('registrar-store')}}" id="regForm" action="" class="formulario-layout">
+    @csrf
         <div style="text-align:center;margin-top:10px;">
             <span class="step"></span>
             <span class="step"></span>
@@ -16,6 +16,21 @@
 
         <div class="tab">     
 
+        @if(session()->has('Sucesso'))
+    <div class="alert alert-success no-print">
+    {{session('Sucesso')}}
+    </div>
+    @endif
+    @if(session()->has('ErroPessoa'))
+    <div class="alert alert-danger no-print">
+    {{session('ErroPessoa')}}
+    </div>
+    @endif
+    @if(session()->has('ErroEncarregado'))
+    <div class="alert alert-danger no-print">
+    {{session('ErroEncarregado')}}
+    </div>
+    @endif
             <div class="row" >
                 <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
 
@@ -27,37 +42,41 @@
             </div>
 
             <div class="form-group">
-                <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
+                <select name="curso_escolhido" value="{{ old('curso_escolhido') }}" id="curso-select" class="form-select">
                     <option selected disabled>CURSO</option>
                     @foreach($cursos as $curso)
-                    <option value ="{{$curso['nome_curso']}}">{{$curso['nome_curso']}}</option>
+                        <option value="{{ $curso->curso_id }}">{{ $curso->nome_curso }}</option>
                     @endforeach
                 </select>
             </div>
-
+            
             <div class="row">
-                
+            
                 <div class="form-group col">
-                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
-                            <option  selected disabled>Classe</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
+                    <span>Classe</span>
+                    <select name="classe_escolhido" value="{{ old('classe_escolhido') }}" id="classe-select" oninput="this.className = ''" class="form-select">
+                        <option selected disabled>Classe</option>
+                        <option value="2">11ª</option>
+                        <option value="3">12ª</option>
+                        <option value="4">13ª</option>
+                       
                     </select>
                 </div>
-
+            
                 <div class="form-group col">
-                    <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select">
-                            <option selected disabled>Turno</option>
-                            <option value="Manhã">Manhã</option>
-                            <option value="Tarde">Tarde</option>
-                            <option value="Noite">Noite</option>
+                    <span>Turno</span>
+                    <select name="turno_escolhido" value="{{ old('turno_escolhido') }}" id="turno-select" oninput="this.className = ''" class="form-select">
+                        <option selected disabled>Turno</option>
+                        <option value="Manhã">Manhã</option>
+                        <option value="Tarde">Tarde</option>
+                        <option value="Noite">Noite</option>
                     </select>
                 </div>
-
+            
                 <div class="col">
-                    <input type="text" readonly="true" value="VAGAS: 00 " name="" desable="">
+                    <span>Nº Vagas</span>
+                    <input id="vagas-input" class="form-control" type="number" readonly>
+                    <p class="alert alert-danger d-none mt-2" role="alert" id="paragrafo-de-validacao-da-quantidade-de-vagas"></p>
                 </div>
             </div>
         </div>
@@ -72,21 +91,33 @@
             </div>
                 
             <div class="form-group">
-                <input type="text" placeholder="Nome Completo do aluno" name="" oninput="this.className = ''">
+                <input type="text" placeholder="Nome Completo do aluno" value="{{ old('nome_completo') }}" name="nome_completo" oninput="this.className = ''">
+                @error('nome_completo')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
             </div>
 
             <div class="form-group">
-                <input type="text" placeholder="Nome Completo do pai" name="" oninput="this.className = ''">
+                <input type="text" placeholder="Nome Completo do pai" value="{{ old('nome_pai_cand') }}" name="nome_pai_cand" oninput="this.className = ''">
+                @error('nome_pai_cand')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
             </div>
 
             <div class="form-group">
-                <input type="text" placeholder="Nome Completo da mãe" name="" oninput="this.className = ''">
+                <input type="text" placeholder="Nome Completo da mãe" value="{{ old('nome_mae_cand') }}" name="nome_mae_cand" oninput="this.className = ''">
+                @error('nome_mae_cand')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
             </div>
 
             <div class="row">
 
                 <div class="col">
-                    <p><input type="date" name="" oninput="this.className = ''"></p>
+                    <p><input type="date" name="data_nascimento" value="{{ old('data_nascimento') }}" oninput="this.className = ''"></p>
+                    @error('data_nascimento')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                 </div>
 
                 <div class="col">
@@ -94,21 +125,27 @@
                 </div>
 
                 <div class="col">
-                    <input type="text" placeholder="Naturalidade" name="" oninput="this.className = ''">
+                    <input type="text" placeholder="Naturalidade" value="{{ old('naturalidade_cand') }}" name="naturalidade_cand" oninput="this.className = ''">
+                    @error('naturalidade_cand')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-4">
                     <div class="form-group">
-                        <LAbel > Sexo: </LAbel><input  style=" margin-left: 8px;"type="radio" id="masculino" name="genero" checked><label for="masculino"> Masculino</label>
-                        <input type="radio" id="feminino" name="genero"><label for="feminino"> Feminino</label>
+                        <LAbel > Sexo: </LAbel><input  style=" margin-left: 8px;"type="radio" id="masculino" value="Masculino" name="genero" checked><label for="masculino"> Masculino</label>
+                        <input type="radio" id="feminino" value="Femenino" name="genero"><label for="feminino"> Feminino</label>
                     </div>
                 </div>
 
                 <div class="col">
                     <div class="form-group">
-                        <input type="text" placeholder="Número do bilhete de identidade" oninput="this.className = ''">
+                        <input type="text" placeholder="Número do bilhete de identidade" value="{{ old('num_bi') }}" name="num_bi" oninput="this.className = ''">
+                        @error('num_bi')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                     </div>
                 </div>
             </div>
@@ -117,7 +154,10 @@
 
                 <div class="col-lg-4 d-flex gap-1 justify-content-center align-items-center">
                     <span style="color: #777;">+244</span>
-                    <input type="text" name="" placeholder="Telefone" oninput="this.className = ''"><i class="bi bi-plus-circle" style=" font-size: 30px; cursor: pointer;"></i> 
+                    <input type="text" name="num_tel" placeholder="Telefone" value="{{ old('num_tel') }}" oninput="this.className = ''">
+                    @error('num_tel')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                 </div>
             </div>
         </div> 
@@ -133,7 +173,10 @@
     
             <div class="row">
                 <div class="form-group">
-                    <input type="text" placeholder="Nome da escola de proveniência" name="" oninput="this.className = ''">
+                    <input type="text" placeholder="Nome da escola de proveniência" value="{{ old('nome_escola') }}" name="nome_escola" oninput="this.className = ''">
+                    @error('nome_escola')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                 </div>
             </div>
 
@@ -141,32 +184,47 @@
 
                 <div class="col">
                     <div class="form-group">
-                        <input type="text" placeholder="Turno" oninput="this.className = ''">
+                        <input type="text" name="turno" value="{{ old('turno') }}" placeholder="Turno" oninput="this.className = ''">
+                        @error('turno')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                     </div>
                 </div>
 
                 <div class="col">
                     <div class="form-group">
-                        <input type="text" placeholder="Nº do aluno" oninput="this.className = ''">
+                        <input type="text" name="num_aluno" value="{{ old('num_aluno') }}" placeholder="Nº do aluno" oninput="this.className = ''">
+                        @error('num_aluno')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                     </div>
                 </div>
 
                 <div class="col">
                     <div class="form-group">
-                        <input type="text" placeholder="Turma" oninput="this.className = ''">
+                        <input type="text" name="turma_aluno" value="{{ old('turma_aluno') }}" placeholder="Turma" oninput="this.className = ''">
+                        @error('turma_aluno')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class=" form-group">
-                    <input type="text" placeholder=" Número do aluno" name="" oninput="this.className = ''">
+                    <input type="text" placeholder=" Número de processo" value="{{ old('num_processo') }}" name="num_processo" oninput="this.className = ''">
+                    @error('num_processo')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                 </div>
             </div>
 
             <div class="row">
                 <div class=" form-group">
-                    <input type="text" placeholder=" Ano letivo" name="" oninput="this.className = ''">
+                    <input type="text" placeholder=" Ano letivo" value="{{ old('ultimo_anoLectivo') }}" name="ultimo_anoLectivo" oninput="this.className = ''">
+                    @error('ultimo_anoLectivo')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                 </div>
             </div>      
         </div>
@@ -184,7 +242,7 @@
             <div class="row">
 
                 <div class="col-3 form-group gap-1 ">
-                    <select name="grau1" id="opcoes" oninput="this.className = ''" class="form-select">
+                    <select name="grau1" value="{{ old('grau1') }}" id="opcoes" oninput="this.className = ''" class="form-select">
                         <option disabled>Familiares:</option>
                         <option value="Pai"selected>Pai</option>
                         <option value="Mãe">Mãe</option>
@@ -195,19 +253,28 @@
                 <div id="clone3"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
                     <span style="color: #777;">+244</span>
                     <input type="text" name="telefone1" value="{{ old('telefone1') }}" placeholder="Telefone" oninput="this.className = ''">
+                    @error('telefone1')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                 </div>
 
             </div>
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                    <input type="text" placeholder="Nome do Primeiro encarregado" name="nome_enc1" value ="3456789"  oninput="this.className = ''">
+                    <input type="text" placeholder="Nome do Primeiro encarregado" name="nome_enc1" value="{{ old('nome_enc1') }}"  oninput="this.className = ''">
+                    @error('nome_enc1')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <p><input type="date" value="{{ old('data_nascimento_enc1') }}" name="data_nascimento_enc1" oninput="this.className = ''"></p>
+                    @error('data_nascimento_enc1')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                 </div>
 
                 <div class="col">
@@ -226,13 +293,16 @@
                 <div class="col-8">
                     <div class="form-group">
                         <input type="text" placeholder="Número do bilhete de identidade"  name="num_bi_enc1" value="{{ old('num_bi_enc1') }}" oninput="this.className = ''">
+                        @error('num_bi_enc1')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-lg-3 form-group gap-1 ">
-                    <select name="grau2" id="opcoes" oninput="this.className = ''" class="form-select">
+                    <select name="grau2" value="{{ old('grau2') }}" id="opcoes" oninput="this.className = ''" class="form-select">
                         <option disabled>Familiares:</option>
                         <option value="Pai">Pai</option>
                         <option value="Mãe" selected>Mãe</option>
@@ -242,20 +312,29 @@
 
                 <div id="clone2"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
                     <span style="color: #777;">+244</span>
-                    <input type="text" name="telefone2" placeholder="Telefone" oninput="this.className = ''">
+                    <input type="text" name="telefone2" value="{{ old('telefone2') }}" placeholder="Telefone" oninput="this.className = ''">
+                    @error('telefone2')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                    <input type="text" placeholder="Nome do Segundo encarregado" value ="" name="nome_enc2" oninput="this.className = ''">
+                    <input type="text" placeholder="Nome do Segundo encarregado" value="{{ old('nome_enc2') }}" name="nome_enc2" oninput="this.className = ''">
+                    @error('nome_enc2')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col">
-                    <p><input type="date" value="" name="data_nascimento_enc2" oninput="this.className = ''"></p>
+                    <p><input type="date" value="{{ old('data_nascimento_enc2') }}"  name="data_nascimento_enc2" oninput="this.className = ''"></p>
+                    @error('data_nascimento_enc2')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                 </div>
 
                 <div class="col">
@@ -273,7 +352,10 @@
 
                 <div class="col-8">
                     <div class="form-group">
-                        <input type="text" placeholder="Número do bilhete de identidade"  name="num_bi_enc2" value="" oninput="this.className = ''">
+                        <input type="text" placeholder="Número do bilhete de identidade"  name="num_bi_enc2" value="{{ old('num_bi_enc2') }}" oninput="this.className = ''">
+                        @error('num_bi_enc2')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                     </div>
                 </div>
             </div>
@@ -281,7 +363,7 @@
             <div class="row">
 
                 <div class="col-3 form-group gap-1 ">
-                    <select name="grau3" id="opcoes" oninput="this.className = ''" class="form-select">
+                    <select name="grau3" value="{{ old('grau3') }}" id="opcoes" oninput="this.className = ''" class="form-select">
                         <option disabled>Familiares:</option>
                         <option value="Pai">Pai</option>
                         <option value="Mãe">Mãe</option>
@@ -291,21 +373,30 @@
 
                 <div id="clone" class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
                     <span style="color: #777;">+244</span>
-                    <input type="text" name="telefone3" placeholder="Telefone" oninput="this.className = ''">
+                    <input type="text" name="telefone3" value="{{ old('telefone3') }}" placeholder="Telefone" oninput="this.className = ''">
+                    @error('telefone3')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                 </div>
             </div>
 
             <div class="row">
                 <div class="col">
                     <div class="form-group">
-                    <input type="text" placeholder="Nome do Terceiro encarregado" value="" name="nome_enc3" oninput="this.className = ''">
-                    </div>
+                    <input type="text" placeholder="Nome do Terceiro encarregado" value="{{ old('nome_enc3') }}" name="nome_enc3" oninput="this.className = ''">
+                    @error('nome_enc3')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror   
+                </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col">
-                    <p><input type="date" value="" name="data_nascimento_enc3" oninput="this.className = ''"></p>
+                    <p><input type="date" value="{{ old('data_nascimento_enc3') }}" name="data_nascimento_enc3" oninput="this.className = ''"></p>
+                    @error('data_nascimento_enc3')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                 </div>
 
                 <div class="col">
@@ -322,18 +413,22 @@
                 </div>
                 <div class="col-8">
                     <div class="form-group">
-                        <input type="text" placeholder="Número do bilhete de identidade"  name="num_bi_enc3" value="" oninput="this.className = ''">
+                        <input type="text" placeholder="Número do bilhete de identidade"  name="num_bi_enc3" value="{{ old('num_bi_enc3') }}" oninput="this.className = ''">
+                        @error('num_bi_enc3')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class=" col form-group">
-                    <input type="email" placeholder="Digite o E-mail do Aluno" name="email"  value="" oninput="this.className = ''">
+                    <input type="email" placeholder="Digite o E-mail do Aluno" name="email"  value="{{ old('email') }}" oninput="this.className = ''">
+                    @error('email')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                 </div>
-                <div class="col form-group">
-                    <input type="hidden" name="id" value ="123456"> {{-- Input para recuperar o id --}}
-                </div>
+                <div class="col form-group"></div>
             </div>
 
         </div>  
@@ -344,5 +439,33 @@
             </div>
         </div>
     </form>
+    <script>
+        const cursoSelect = document.getElementById('curso-select');
+        const classeSelect = document.getElementById('classe-select');
+        const turnoSelect = document.getElementById('turno-select');
+        const vagasInput = document.getElementById('vagas-input');
+    
+        cursoSelect.addEventListener('change', updateVagasInput);
+        classeSelect.addEventListener('change', updateVagasInput);
+        turnoSelect.addEventListener('change', updateVagasInput);
+    
+        function updateVagasInput() {
+            const cursoId = cursoSelect.value;
+            const classeId = classeSelect.value;
+            const turno = turnoSelect.value;
+            const vagas = @json($vagas);
+    
+            let totalVagas = 0;
+    
+            for (let i = 0; i < vagas.length; i++) {
+                if (vagas[i].cursoId == cursoId && vagas[i].classeId == classeId && vagas[i].turno === turno) {
+                    totalVagas = vagas[i].totalVagas;
+                    break;
+                }
+            }
+    
+            vagasInput.value = totalVagas;
+        }
+    </script>
 </main>
 @endsection

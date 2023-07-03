@@ -30,6 +30,17 @@
     </form>
     </div>
 
+    @if(session('msg_sem_pauta'))
+        <div class="alert alert-danger">
+            {{session('msg_sem_pauta')}}
+        </div>
+    @endif
+    @if(session('msg_sem_director'))
+        <div class="alert alert-danger">
+            {{session('msg_sem_director')}}
+        </div>
+    @endif
+
     <!-- /  Inicio da tabela de inscritos -->
     <table  id="matricula-tab" class="table table-striped" style="margin-top: 20px;" >
       <thead  style=" text-align: center;">

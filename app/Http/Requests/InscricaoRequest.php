@@ -52,7 +52,7 @@ class InscricaoRequest extends FormRequest
             'turma_aluno' => 'required|string',
 
             //Dados Telefone
-            'num_tel'=>'required|size:9|unique:pessoas,telefone'
+            'num_tel'=>'required|size:9'
         ];
 
         //Cursos escolhidos pelos candidato
@@ -101,6 +101,7 @@ class InscricaoRequest extends FormRequest
             'num_aluno.numeric'=>'Número do aluno deve conter apenas digitos validos.',
 
             //Formulario Telefone
+            'num_tel.unique'=> 'Número de telefone em uso.',
             'num_tel.size'=> 'Número de telefone esta incorrecto'
         ];
     }

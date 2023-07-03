@@ -21,6 +21,17 @@ class CursoController extends Controller
         return $idCurso;
     }
 
+    public static function pegarNome($cursoId)
+    {
+        $nomeCurso = Curso::where('curso_id', $cursoId)->pluck('nome_curso')->first();
+        return $nomeCurso;
+    }
+    public static function pegarCurso($id)
+    {
+        $curso = Curso::where('curso_id', $id)->first();
+        return $curso;
+    }
+
     public static function pegarNomeCurso()
     {
         $cursos = Curso::all(['curso_id', 'nome_curso']);

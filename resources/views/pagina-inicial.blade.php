@@ -43,20 +43,19 @@
             <div class="figura-card">
               <div class="count-box">
                 <i class="bi bi-people"></i>
-                <span class="total">472</span>
+                <span class="total">500</span>
                 <p>INSCRITOS</p>
               </div>
 
               <div class="card-legenda">
                 <ul>
-                  <li>T.I: 200</li>
+                  <li>T.I: 23</li>
                   <li>D.P: 100</li>
                   <li>T.E.I.E: 50</li>
                   <li>E.T: 122</li>
                 </ul>
               </div>
             </div>
-
           </div>
 
           <div class="col-lg-3 col-md-6 mt-4">
@@ -64,7 +63,7 @@
             <div class="figura-card">
               <div class="count-box">
                 <i class="bi bi-person"></i>
-                <span class="total">572</span>
+                <span class="total">500</span>
                 <p>ADMITIDOS</p>
               </div>
               
@@ -85,7 +84,7 @@
             <div class="figura-card">
               <div class="count-box">
                 <i class="bi bi-check2-square"></i>
-                <span class="total">772</span>
+                <span class="total">500</span>
                 <p>NÃO ADMITIDOS</p>
               </div>
               
@@ -106,7 +105,7 @@
             <div class="figura-card">
               <div class="count-box">
                 <i class="bi bi-clipboard"></i>
-                <span class="total">562</span>
+                <span class="total">500</span>
                 <p>MATRICULADOS</p>
               </div>
               
@@ -127,7 +126,7 @@
             <div class="figura-card">
               <div class="count-box">
                 <i class="bi bi-arrow-90deg-down"></i>
-                <span class="total">233</span>
+                <span class="total">500</span>
                 <p>PROFESSORES</p>
               </div>
               
@@ -147,7 +146,7 @@
             <div class="figura-card">
               <div class="count-box">
                 <i class="bi bi-person-check"></i>
-                <span class="total">66</span>
+                <span class="total">500</span>
                 <p>TURMAS</p>
               </div>
               
@@ -167,7 +166,7 @@
             <div class="figura-card">
               <div class="count-box">
                 <i class="bi bi-people"></i>
-                <span class="total">800</span>
+                <span class="total">500</span>
                 <p>VAGAS</p>
               </div>
               
@@ -185,7 +184,7 @@
           <div class="col-lg-3 col-md-6 mt-5">
             <div class="count-box">
               <i class="bi bi-people"></i>
-              <span class="total">4</span>
+              <span class="total">500</span>
               <p>CURSOS</p>
             </div>
           </div>
@@ -195,8 +194,105 @@
 
       </div>
     </section><!-- Termina seccao do dashboard -->
-
+    
     <br><br>
+    
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="cardL">
+          <div class="card-body">
+            <h5 class="card-title">Alunos por ano</h5>
+  
+            <!-- inicio grafico de consulta -->
+            <div id="lineChart"></div>
+  
+            <script>
+              document.addEventListener("DOMContentLoaded", () => {
+                new ApexCharts(document.querySelector("#lineChart"), {
+                  series: [{
+                    name: "{{$titulo}}",
+                    data: [{{$alunoTotal}}]
+                  }],
+                  chart: {
+                    height: 350,
+                    type: 'line',
+                    zoom: {
+                      enabled: false
+                    }
+                  },
+                  dataLabels: {
+                    enabled: false
+                  },
+                  stroke: {
+                    curve: 'straight'
+                  },
+                  grid: {
+                    row: {
+                      colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                      opacity: 0.5
+                    },
+                  },
+                  xaxis: {
+                    categories: [{{$alunoAno}}],
+                  }
+                }).render();
+              });
+            </script>
+            <!-- Fim grafico de consulta -->
+  
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="cardB">
+          <div class="card-body">
+            <h5 class="card-title">Cargos de Usarios </h5>
+
+            <!-- inicio grafico de consulta de usuarios -->
+            <div id="radialBarChart"></div>
+            
+            <script>
+              document.addEventListener("DOMContentLoaded", () => {
+                new ApexCharts(document.querySelector("#radialBarChart"), {
+                  series: [{{$cargoTotal}}],
+                  chart: {
+                    height: 350,
+                    type: 'radialBar',
+                    toolbar: {
+                      show: true
+                    }
+                  },
+                  plotOptions: {
+                    radialBar: {
+                      dataLabels: {
+                        name: {
+                          fontSize: '22px',
+                        },
+                        value: {
+                          fontSize: '16px',
+                        },
+                        total: {
+                          show: true,
+                          label: 'Total de usuários',
+                          formatter: function(w) {
+                            // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
+                            return {{$totalUs}}
+                          }
+                        }
+                      }
+                    }
+                  },
+                  labels: [{!!$cargoNome!!}],
+                }).render();
+              });
+            </script>
+            <!-- Fim grafico de consulta de usuarios -->
+
+          </div>
+        </div>
+      </div>
+
+    </div>
 
     <div class="row">
 
@@ -211,7 +307,7 @@
 
               <div class="card-body">
                 <h5 class="card-title">Alunos <span>| 2022 - 2023</span></h5>
-                <table class="table table-striped">
+                <table class="table table-striped" style="font-size: 15px;">
                   <thead>
                     <tr style="text-transform: uppercase;">
                       <th scope="col">Cursos</th>
@@ -260,7 +356,7 @@
 
               <div class="card-body">
                 <h5 class="card-title">Turmas <span>| 2022 - 2023</span></h5>
-                <table class="table table-striped">
+                <table class="table table-striped" style="font-size: 15px;">
                   <thead>
                     <tr style="text-transform: uppercase;">
                       <th scope="col">Cursos</th>
@@ -307,11 +403,6 @@
 
       <!-- Coluna da direita -->
       <div class="col-lg-4">
-      
-        <div class="alert alert-warning bg-warning border-0 alert-dismissible fade show" role="alert">
-              Mensagem importante!
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
         <!-- Card comunicado -->
         <div class="card">
           <div class="card-body">

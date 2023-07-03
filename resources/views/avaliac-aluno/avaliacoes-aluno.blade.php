@@ -28,7 +28,6 @@
 
           <div class="col-lg-2">
             <select class="btn-sel form-select" id="filtro10">
-              <option  disabled>Curso</option>
               @foreach ($cursos as $curso)
                 <option value="{{$curso}}">{{$curso}}</option>
               @endforeach
@@ -37,7 +36,6 @@
 
           <div class="col-lg-2">
             <select class="btn-sel form-select" id="filtro11">
-              <option disabled >Disciplina</option>
               @if (isset($nome_disciplina))
                 @foreach ($nome_disciplina as $disciplina)
                     <option value="{{$disciplina}}">{{$disciplina}}</option>
@@ -48,7 +46,6 @@
 
           <div class="col-lg-2">
             <select class="btn-sel form-select" id="filtro12">
-              <option disabled >Turma</option>
               @if (isset($nome_turma))
                 @foreach ($nome_turma as $turma)
                     <option value="{{$turma}}">{{$turma}}</option>
@@ -102,13 +99,39 @@
                     <tr style="text-align: center;">
                         <th scope="row">{{$valor3['numero_aluno']}}</th>
                         <td>{{$valor3['nome']}}</td>
-                        <td>{{$valor3['mac']}}</td>
-                        <td>{{$valor3['npp']}}</td>
-                        <td>{{$valor3['npt']}}</td>
-                        <td>{{$valor3['exame']}}</td>
-                        <td>{{$valor3['exame_recurso']}}</td>
+
+                        @if ($valor3['mac']<10)
+                        <td style="color: rgb(255, 8, 8)">{{$valor3['mac']}}</td>
+                        @else
+                        <td style="color: rgb(10, 10, 255)">{{$valor3['mac']}}</td>
+                        @endif
+
+                        @if ($valor3['npp']<10)
+                        <td style="color: rgb(255, 8, 8)">{{$valor3['npp']}}</td>
+                        @else
+                        <td style="color: rgb(10, 10, 255)">{{$valor3['npp']}}</td>
+                        @endif
+
+                        @if ($valor3['npt']<10)
+                        <td style="color: rgb(255, 8, 8)">{{$valor3['npt']}}</td>
+                        @else
+                        <td style="color: rgb(10, 10, 255)">{{$valor3['npt']}}</td>
+                        @endif
+
+                        @if ($valor3['exame']<10)
+                        <td style="color: rgb(255, 8, 8)">{{$valor3['exame']}}</td>
+                        @else
+                        <td style="color: rgb(10, 10, 255)">{{$valor3['exame']}}</td>
+                        @endif
+
+                        @if ($valor3['exame_recurso']<10)
+                        <td style="color: rgb(255, 8, 8)">{{$valor3['exame_recurso']}}</td>
+                        @else
+                        <td style="color: rgb(10, 10, 255)">{{$valor3['exame_recurso']}}</td>
+                        @endif
+
                         <td style="text-align: center">
-                        <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$valor3['aluno_id']}}" >Avaliar aluno</a>
+                        <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}" >Avaliar aluno</a>
                         </td>
                         <td style="text-align: center">
                         <a href="{{route('editar.avaliacao.aluno', [$valor3['aluno_id'], $valor3['disciplina_id']])}}" class="btn linkeditar">Avaliações Aluno</a>
@@ -126,69 +149,79 @@
 
         </tbody>
     </table>
-    @for ($i = 0; $i < count($aluno); $i++)
-    @for ($j = 0; $j < count($aluno[$i]); $j++)
-<form method="POST" action="{{route('avaliar.aluno', $aluno[$i][$j]['disciplina_id'])}}">
-@csrf
-<div class="modal" id="modal_assiduidade{{$aluno[$i][$j]['aluno_id']}}" tabindex="-1" data-bs-backdrop="false" >
-  <div class="modal-dialog modal-xl">
-  <div class="modal-content">
-  <div class="modal-header">
-      <h5 class="modal-title">Avaliar Aluno</h5>
-      <button type="button" class="btn-close"data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close"></button>
-  </div>
-  <div class="modal-body">
+    <!-- Cola aqui o código -->
+    @foreach ($aluno as $chave1 => $valor1)
 
-      <div class="row">
-        <div class="col-lg-10">
-            <div class="nomenumeroalunoinfo">
-                <h5 style="margin-left: 3px;"> <b>Nome:</b> {{$aluno[$i][$j]['nome']}}</h5>
+    @foreach ($valor1 as $chave2 => $valor2)
+
+        @foreach ($valor2 as $chave3 => $valor3)
+   
+    <form method="POST" action="{{route('avaliar.aluno', $valor3['disciplina_id'])}}">
+        @csrf
+      <div class="modal" id="modal_assiduidade{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}" tabindex="-1" data-bs-backdrop="false" >
+          <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Avaliar Aluno</h5>
+              <button type="button" class="btn-close"data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+              <div class="row">
+                <div class="col-lg-10">
+                    <div class="nomenumeroalunoinfo">
+                        <h5 style="margin-left: 3px;"> <b>Nome:</b>{{$valor3['nome']}}</h5>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="nofimnomenumeroaluno">
+                        <h5 class="nomenumeroalunoinfo"> <b>Nº:</b>{{$valor3['numero_aluno']}}</h5>
+                    </div>
+                </div>
+              </div>
+            <div class="bortabelasemscroll">
+              <!-- /  Inicio da tabela  -->
+              <table class="table table-striped" style="margin-top: 20px; width: 100%;" >
+                <thead style="text-align: center">
+                  <tr>
+                    <th scope="col">AC</th>
+                    <th scope="col">NPP</th>
+                    <th scope="col">NPT</th>
+                    <th scope="col">Exame</th>
+                    <th scope="col">E.Recurso</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><input class="form-control innota" type="text" name="ac" maxlength="5" id="notaimput"></td>
+                    <td><input class="form-control innota" type="text" name="npp" maxlength="5" id="notaimput"></td>
+                    <td><input class="form-control innota" type="text" name="npt" maxlength="5" id="notaimput"></td>
+                    <td><input class="form-control innota" type="text" name="exame" maxlength="5" id="notaimput"></td>
+                    <td><input class="form-control innota" type="text" name="exame_recurso" maxlength="5" id="notaimput"></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-        </div>
-        <div class="col-lg-2">
-            <div class="nofimnomenumeroaluno">
-                <h5 class="nomenumeroalunoinfo"> <b>Nº:</b>{{$aluno[$i][$j]['numero_aluno']}}</h5>
+            <div class="row" style="margin-top: 5px;">
+              <div class="col">
+                  <textarea style="border: 1px solid; border-color: rgb(204, 204, 204); border-radius: 5px; outline: none"  class="w-100"  rows="8" name="conteudo" id="area" placeholder="Dê uma Breve descrição sobre a Nota Adicionada(Opcional)"></textarea>
+              </div>
             </div>
-        </div>
+          </div>
+          <div class="modal-footer" style="display: flex; justify-content: center; align-items: center;">
+              <button type="button" class="btn botaovermelhonota" data-bs-dismiss="modal">Cancelar</button>
+              <button type="subimit" name="aluno_id" class="btn botaoazulnota" value="{{$valor3['aluno_id']}}" >Avaliar Aluno</button>
+          </div>
+          </div>
       </div>
-    <div class="bortabelasemscroll">
-      <!-- /  Inicio da tabela  -->
-      <table class="table table-striped" style="margin-top: 20px; width: 100%;" >
-        <thead style="text-align: center">
-          <tr>
-            <th scope="col">AC</th>
-            <th scope="col">NPP</th>
-            <th scope="col">NPT</th>
-            <th scope="col">Exame</th>
-            <th scope="col">E.Recurso</th>
-
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><input class="form-control innota" type="text" name="ac" maxlength="2" id="notaimput_{{$i}}_{{$j}}"></td>
-            <td><input class="form-control innota" type="text" name="npp" maxlength="2" id="notaimput_{{$i}}_{{$j+1}}"></td>
-            <td><input class="form-control innota" type="text" name="npt" maxlength="2" id="notaimput_{{$i}}_{{$j+2}}"></td>
-            <td><input class="form-control innota" type="text" name="exame" maxlength="2" id="notaimput_{{$i}}_{{$j+3}}"></td>
-            <td><input class="form-control innota" type="text" name="exame_recurso" maxlength="2" id="notaimput_{{$i}}_{{$j+4}}"></td>
-          </tr>
-        </tbody>
-      </table>
-
-    </div>
+      </div>
+    </form>
+    @endforeach
+    @endforeach
+  @endforeach
   </div>
-  <div class="modal-footer" style="display: flex; justify-content: center; align-items: center;">
-      <button type="button" class="btn botaovermelhonota" data-bs-dismiss="modal">Cancelar</button>
-      <button type="subimit" name="aluno_id" class="btn botaoazulnota" value="{{$aluno[$i][$j]['aluno_id']}}" >Avaliar Aluno</button>
-  </div>
-  </div>
-</div>
-</div>
-</form>
-
-@endfor
-@endfor
-</div>
+    
   @endif
 
   <!-- Termina a tabela -->

@@ -70,6 +70,7 @@
           <th scope="col">Tipo de Nota</th>
           <th scope="col">Nota</th>
           <th scope="col">Editar</th>
+          <th scope="col">Descrição</th>
         </tr>
       </thead>
       <tbody>
@@ -77,10 +78,15 @@
             <tr style="text-align: center;">
                 <th scope="row">{{date('d/m/Y', strtotime($nota->data_avaliacao))}}</th>
                 <td>{{$nota->tipo_prova}}</td>
-                <td>{{$nota->nota_aluno}}</td>
+                @if (number_format($nota->nota_aluno, 1, ".")<10)
+                <td style="color: rgb(190, 14, 14)">{{number_format($nota->nota_aluno, 1, ".")}}</td>
+                @else
+                <td style="color: rgb(7, 7, 129)">{{number_format($nota->nota_aluno, 1, ".")}}</td>
+                @endif
                 <td style="text-align: center">
                 <a class="btn linkeditar" data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$nota['nota_id']}}">Editar Nota do Aluno</a>
                 </td>
+                <td> <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#Descricaonota{{$nota['nota_id']}}"></i></td>
             </tr>
         @endforeach
 
@@ -140,6 +146,11 @@
                 </tbody>
               </table>
             </div>
+            <div class="row" style="margin-top: 5px;">
+              <div class="col">
+                  <textarea style="border: 1px solid; border-color: rgb(204, 204, 204); border-radius: 5px; outline: none"  class="w-100"  rows="8" name="conteudo" id="area" placeholder="Dê uma Breve descrição sobre a Nota Adicionada(Opcional)">{{$nota->descricao_nota}}</textarea>
+              </div>
+            </div>
           </div>
           <div class="modal-footer" style="display: flex; justify-content: center; align-items: center;">
               <button type="button" class="btn botaovermelhonota" data-bs-dismiss="modal">Cancelar</button>
@@ -151,6 +162,54 @@
     </form>
     @endforeach
 <!-- Fím da modal -->
+<!-- Modal para visualizar a Descrição no Comunicado -->
+@foreach ($notas as $nota)
+    <div class="modal fade" id="Descricaonota{{$nota['nota_id']}}" tabindex="-1" data-bs-backdrop="false">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+
+          <div class="provisorio">
+            <div class="card-icon-modal rounded-circle d-flex align-items-center justify-content-flex-end">
+
+              <i class="bi bi-x-lg" data-bs-toggle="modal" aria-label="Close" data-bs-dismiss="modal"></i>
+            </div>
+          </div>
+
+          <div class="cabecalho-modal">
+            <div class="row">
+              <div class="col" style="display: flex; justify-content: flex-start; align-items: center;">
+                <h1>Descrição Da Nota</h1>
+              </div>
+            </div>
+          </div>
+
+          <div class="corpo-modal">
+            <div class="form-inativo">
+
+                  <div class="row">
+                      <div class="col">
+                          <textarea class="form-control" style="border: 1px solid; border-color: rgb(204, 204, 204); border-radius: 5px; outline: none" class="w-100 "  rows="13" name="conteudo"  id="area" placeholder="Não foi inserido nenhuma descrição" readonly disabled>{{$nota->descricao_nota}}</textarea>
+                      </div>
+                  </div>
+
+
+                    <div class="footer-modal" style="text-align: center;">
+
+                      <div class="jnt">
+                          <a class="btn" data-bs-toggle="modal" aria-label="Close" data-bs-dismiss="modal" style="background-color: #070b17; color: #fff;">Retroceder</a>
+
+                          <a class="btn" data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$nota['nota_id']}}" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
+                      </div>
+                    </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+@endforeach
+<!-- Modal para visualizar a Descrição no Comunicado  FIM-->
 
 </main>
 @endsection
