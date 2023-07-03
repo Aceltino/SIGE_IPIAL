@@ -33,12 +33,13 @@
             </div>
 
             <div class="form-group">
-                <input type="text" style=" text-align: center;" value="{{old('nome_curso')}}" placeholder="Nome do Curso" name="nome_curso" oninput="this.className = ''" required>
+                <input type="text" style=" text-align: center;" value="{{old('nome_curso')}}" placeholder="Nome do Curso" name="nome_curso" id="nome_curso" oninput="this.className = ''" required >
+                <span id=" erro_nome"  style="color: red"></span>
             </div>
 
             <div class="row">
                 <div class="col form-group">
-                    <select name="area_formacao" id="opcoes" oninput="this.className = ''" class="form-select" >
+                    <select name="area_formacao" id="opcoes" oninput="this.className = ''" class="form-select">
                         <option selected disabled>Area de Formação:</option>
                         @foreach ($areaFormacao as $af)
                             <option value="{{$af->area_formacao_id}}">{{$af->nome_area_formacao}}</option>
@@ -47,7 +48,7 @@
                 </div>
 
                 <div class=" col form-group">
-                    <select name="coordenador" id="opcoes" oninput="this.className = ''" class="form-select" >
+                    <select name="coordenador" id="opcoes" oninput="this.className = ''" class="form-select">
                         <option selected disabled>Coordenador:</option>
                         @foreach ($coordenador as $coord)
                             <option value="{{$coord['professor_id']}}">{{$coord['pessoa']['nome_completo']}}</option>
@@ -59,7 +60,8 @@
             </div>
 
             <div class="form-group">
-                <input type="text" style=" text-align: center;" value="{{old('sigla_curso')}}" placeholder="Sigla do Curso" name="sigla_curso" oninput="this.className = ''" maxlength="4" required>
+                <input type="text" style=" text-align: center;" value="{{old('sigla_curso')}}" placeholder="Sigla do Curso" name="sigla_curso" id="nome_sigla" oninput="this.className = ''" maxlength="4" required>
+                <span id=" erro_sigla"  style="color: red"></span>
             </div>
 
             <div style="text-align:center;margin-top:10px;">

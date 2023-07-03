@@ -52,7 +52,7 @@ class InscricaoRequest extends FormRequest
             'turma_aluno' => 'required|string',
 
             //Dados Telefone
-            'num_tel'=>'required|size:9|unique:pessoas,telefone'
+            'num_tel'=>'required|size:9'
         ];
 
         //Cursos escolhidos pelos candidato

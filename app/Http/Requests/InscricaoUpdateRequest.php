@@ -49,7 +49,7 @@ class InscricaoUpdateRequest extends FormRequest
             'turma_aluno' => 'required|string',
 
             //Dados Telefone
-            'num_tel'=>'required|size:9|unique:pessoas,telefone,'.$candidato->pessoa_id.',pessoa_id',
+            'num_tel'=>'required|size:9',
         ];
 
         $count = 1;

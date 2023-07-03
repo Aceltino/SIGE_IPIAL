@@ -28,4 +28,8 @@ class Horario extends Model
     {
         return $this->belongsTo(Professor_disciplina::class, 'disc_professor_id');
     }
+
+    public function tempo(){
+        return $this->belongsTo(Tempo::class, 'tempo_id');
+    }
 }

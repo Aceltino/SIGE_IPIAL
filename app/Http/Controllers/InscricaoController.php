@@ -47,7 +47,7 @@ class InscricaoController extends Controller
         }
 
         $dadosPessoa = [
-            'nome_completo'=> $request['nome_completo'],
+            'nome_completo'=> strtoupper($request['nome_completo']),
             'num_bi'=> strtoupper($request['num_bi']),
             'data_nascimento'=> $request['data_nascimento'],
             'genero'=> $request['genero'],
@@ -62,12 +62,12 @@ class InscricaoController extends Controller
         }
 
         $dadosEscola = [
-            'nome_escola'=>$request['nome_escola'],
+            'nome_escola'=>strtoupper($request['nome_escola']),
             'turno'=>$request['turno'],
             'num_processo'=>$request['num_processo'],
             'num_aluno'=>$request['num_aluno'],
             'ultimo_anoLectivo'=>$request['ultimo_anoLectivo'],
-            'turma_aluno' =>$request['turma_aluno'],
+            'turma_aluno' =>strtoupper($request['turma_aluno']),
             'ling_port'   => $request['LinguaP'],
             'matematica'  => $request['Matematic'],
             'fisica' =>  $request['Fisic'],
@@ -88,9 +88,9 @@ class InscricaoController extends Controller
         }
 
         $dadosCandidato=[
-            'nome_pai_cand'=>$request['nome_pai_cand'],
-            'nome_mae_cand'=>$request['nome_mae_cand'],
-            'naturalidade_cand'=>$request['naturalidade_cand'],
+            'nome_pai_cand'=>strtoupper($request['nome_pai_cand']),
+            'nome_mae_cand'=>strtoupper($request['nome_mae_cand']),
+            'naturalidade_cand'=>strtoupper($request['naturalidade_cand']),
             'pessoa_id' => $idPessoa,
             'ano_lectivo_id' => $idAnolectivo,
             'escola_proveniencia_id' => $idEscola
@@ -143,7 +143,7 @@ class InscricaoController extends Controller
     $candidato = Candidato::find($request['id']);
     $pessoa_id = $candidato->pessoa_id;
     $dadosPessoa = [
-        'nome_completo'=> $request['nome_completo'],
+        'nome_completo'=> strtoupper($request['nome_completo']),
         'data_nascimento'=> $request['data_nascimento'],
         'genero'=> $request['genero'],
         'telefone' => $request['num_tel'],
@@ -159,11 +159,11 @@ class InscricaoController extends Controller
 
     $escola_id = $candidato->escola_proveniencia_id;
     $dadosEscola = [
-        'nome_escola'=>$request['nome_escola'],
+        'nome_escola'=>strtoupper($request['nome_escola']),
         'turno'=>$request['turno'],
         'num_aluno'=>$request['num_aluno'],
         'ultimo_anoLectivo'=>$request['ultimo_anoLectivo'],
-        'turma_aluno' =>$request['turma_aluno'],
+        'turma_aluno' =>strtoupper($request['turma_aluno']),
         'escola_proveniencia_id' => $escola_id
     ];
 
@@ -175,8 +175,8 @@ class InscricaoController extends Controller
     }
 
     $dadosCandidato=[
-        'nome_pai_cand'=>$request['nome_pai_cand'],
-        'nome_mae_cand'=>$request['nome_mae_cand'],
+        'nome_pai_cand'=>strtoupper($request['nome_pai_cand']),
+        'nome_mae_cand'=>strtoupper($request['nome_mae_cand']),
         'candidato_id' => $request['id']
     ];
     $candidato = CandidatoController::updateCandidato($dadosCandidato);

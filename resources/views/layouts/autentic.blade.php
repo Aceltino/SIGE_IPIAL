@@ -7,6 +7,7 @@
     <title>@yield('title')</title>
 
     <!-- /  Link dos Css do Bootstrap -->
+    <link href={{{URL::asset("img/logo.png")}}} rel="icon">
     <link href={{URL::asset("vendor/bootstrap/css/bootstrap.min.css")}} rel="stylesheet">
     <link href={{URL::asset("vendor/bootstrap-icons/bootstrap-icons.css")}} rel="stylesheet">
     <link href={{URL::asset("vendor/boxicons/css/boxicons.min.css")}} rel="stylesheet">
@@ -23,6 +24,7 @@
 
     @yield('formulario-aut')
     
+  <div id="preloader"></div>
   <!-- /  Footer -->
   <footer id="footer" class="footer">
     <div class="copyright">

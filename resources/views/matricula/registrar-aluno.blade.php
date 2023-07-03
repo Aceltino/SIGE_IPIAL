@@ -56,9 +56,10 @@
                     <span>Classe</span>
                     <select name="classe_escolhido" value="{{ old('classe_escolhido') }}" id="classe-select" oninput="this.className = ''" class="form-select">
                         <option selected disabled>Classe</option>
-                        @foreach ($classe as $classee)
-                        <option value="{{$classee->classe_id}}">{{$classee['classe']}}</option>
-                        @endforeach
+                        <option value="2">11ª</option>
+                        <option value="3">12ª</option>
+                        <option value="4">13ª</option>
+                       
                     </select>
                 </div>
             

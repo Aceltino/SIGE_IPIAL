@@ -7,15 +7,19 @@ use App\Http\Controllers\UserController;
 use App\Models\Aluno;
 use App\Models\AlunoTurma;
 use App\Models\AnoTurmaCood;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 
 class AlunoTurmaController extends Controller
 {
+
+    public static function store($dadosTurma)
+    {
+        $turmaAtrelada = AnoTurmaCood::create($dadosTurma);
+        return $turmaAtrelada;
+    }
     public static function SelecionarTurma() //10ª Classe, função a ser chamada na atribuição de alunos, matriculados.
     {
        $alunos = AlunoController::alunosSemturma();
-
+// dd($alunos);
        if(!$alunos)
        {
             return "Todos os alunos matriculados atualmente estão nas suas devidas turmas.";
@@ -154,9 +158,22 @@ class AlunoTurmaController extends Controller
         $turmaEncontrada = [
             'TurmaAno_id' => $turma->turmaAno_id,
             'num_vaga' => $turma->num_vagas
-];
+    ];
     
         return $turmaEncontrada;
+    }
+
+    public static function pegarTurmaId($turmaId) //Pegar turma para integrar aluno transferido
+    {
+        $turma = AnoTurmaCood::where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
+        ->where('turma_id', $turmaId)
+        ->first();
+        
+        if(!$turma)
+        {
+            return false;
+        }
+        return true;
     }
 
     public static function quantidadeTurma($turma) //Pegar turmas 10ª Classe deste ano lectivo
@@ -362,7 +379,6 @@ class AlunoTurmaController extends Controller
             return true;
     }
 
-
     public static function pegarVagas() // Com base a classe, curso e turno...
     {
         $turmas = AnoTurmaCood::with('turma', 'ano_lectivo')
@@ -439,6 +455,16 @@ class AlunoTurmaController extends Controller
         return array_values($vagas);
     }
 
+    public static function AnulouMatricula($Aluno) // Função de anular a matricula
+    {
+        $aluno = Aluno::find($Aluno['aluno']);
+        $aluno->Anoturma()->updateExistingPivot($Aluno['turma'], 
+        [
+            'situacao' => 'Anulou a Matricula',
+            'numero_aluno' => 0,    
+        ]);
+        return $aluno;
+    }
     public static function alunoTransferido($Aluno) // Função a ser chamada na reabertura do ano lectivo 11ª >
     {
             $turma = AlunoTurmaController::pegarTurma($Aluno['curso_id'], $Aluno['classe_id'],$Aluno['turno_id']);

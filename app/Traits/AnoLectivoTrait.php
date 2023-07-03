@@ -1,7 +1,15 @@
 <?php
 
 namespace App\Traits;
+
+use App\Http\Controllers\AlunoController;
+use App\Http\Controllers\CandidatoController;
 use App\Models\Ano_lectivo;
+<<<<<<< HEAD
+use App\Models\Candidato;
+=======
+>>>>>>> a81daee9dfb2617efcdf511b581ba8c37a55ed93
+use App\Models\Trimestre;
 use DateTime;
 use carbon\Carbon;
 use Illuminate\Support\Fluent;
@@ -216,5 +224,17 @@ trait AnoLectivoTrait
         }
     }
 
+    public static function fecharAnoLectivo(){
+        CandidatoController::eliminarCandidatos(); // Eliminar todos os candidatos não matriculados no ano lectivo
+        AlunoController::alunosVinculados(); //Cortar o acesso de todos os alunos do sistema
+
+
+//Todas as funções devem ser colocadas acima porque depois do ano lectivo estar com o status 0 nenhuma ação é permitida.
+        $anoLec = ['status_ano_lectivo' => 0];
+        $trimestre = ['status' => 0];
+        Ano_lectivo::where('status_ano_lectivo', 1)->update($anoLec);
+        Trimestre::where('status', 1)->update($trimestre);
+        return true;
+    }
 
 }

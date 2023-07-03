@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 use App\Http\Requests\MatriculaRequest;
 use App\Http\Requests\MatriculaupdateRequest;
 use App\Http\Requests\RegistrarRequest;
+use Carbon\Carbon;
 // use App\Http\Requests\MatriculaStoreRequest;
-use Illuminate\Http\Request;
 use App\Models\{
     Candidato,
     User,
@@ -65,11 +66,6 @@ class MatriculaController extends Controller
                 $msg="O número de identificação do ". $i ."º encarregado já está sendo utilizado, confirme todos os dados de identificação dele.";
                 return redirect()->back()->with("ErroEncarregado",$msg);
             }
-            if($this->checkPessoaTel($dadosEnc['telefone']))
-            {
-                $msg="O telefone do ". $i ."º encarregado já está sendo utilizado, confirme o numero de telefone dele.";
-                return redirect()->back()->with("ErroEncarregado",$msg);
-            }
         }
 
         // Atualizando candidato(Pessoas) pela confirmação de dados no formMatricula--
@@ -79,7 +75,6 @@ class MatriculaController extends Controller
             'nome_completo'=> $request['nome_completo'],
             'num_bi'=> $request['num_bi'],
             'genero'=> $request['genero'],
-            'telefone' => $request['num_tel'],
             'pessoa_id' => $pessoa_id
         ];
         $Pessoa = $this->updatePessoa($dadosPessoa);
@@ -145,6 +140,11 @@ class MatriculaController extends Controller
                     $idPessoa = $encarregado[$i];
                     goto cadEncarregado;
                 }
+                if($this->checkPessoaBI($request['num_bi_enc' . $i]))
+                {
+                    $msg="O número de identificação do ". $i ."º encarregado já está sendo utilizado, confirme todos os dados de identificação dele.";
+                    return redirect()->back()->with("ErroEncarregado",$msg);
+                }
                 $dadosPessoa = [
                     'nome_completo'=> $request['nome_enc' . $i],
                     'num_bi'=> strtoupper($request['num_bi_enc' . $i]),
@@ -179,15 +179,29 @@ class MatriculaController extends Controller
         $abreNome = substr($request['nome_completo'], $posicao,2);
         $abreSobreNome = substr($request['nome_enc1'], $posicao,2);
 
-        $dadosUser=[
+        $dataFimMatricula = AnoLectivoController::pegarAnoLectivo(AnoLectivoController::pegarIdAnoLectivo());
+        $dataMatriculaCarboon = Carbon::parse($dataFimMatricula->data_fim_matricula);
+        $dataMatriculaCarboon->addDay();
+        $dataAcesso = $dataMatriculaCarboon->format('d-m-Y');
+        $hexAleatorio = Str::random(8);
+        $dadosUser=
+        [
             'nome_usuario'=>$abreNome.count(User::all()).$abreSobreNome,
             'email'=>$request['email'],
-            'password'=>bcrypt($request['num_tel']),
+            'password'=>bcrypt($hexAleatorio),
             'cargo_usuario'=>'Aluno',
             'status_usuario'=>0,
             'pessoa_id'=>$pessoa_id,
         ];
         $user = UserController::store($dadosUser);
+
+        $sendEmail = AuthController::envioCredenciasEmail($user, $hexAleatorio, $dataAcesso);
+        if(!$sendEmail)
+        {
+            $msg="Fique atento nos dados de identifcação, este candidato já está inscrito!";
+            return redirect()->back()->with("ErroPessoa",$msg);
+        }
+
         if(!$user)
         {
             $msg="Fique atento nos dados de identifcação, este candidato já está inscrito!";
@@ -259,15 +273,16 @@ class MatriculaController extends Controller
 // BOTÃO ATRIBUIR TURMA
     public function atribuirTurma()
     {
-       // $alunos = AlunoTurmaController::situacaoAluno(); // Atribuir turmas aos alunos da 11ª em diante.
          $alunos = AlunoTurmaController::SelecionarTurma(); // Atribuir turmas aos recém matriculado da 10ª classe.
 
         if($alunos !== true)
         {
             return redirect()->back()->with("ErroMatricula", $alunos);
         }
-            $msg = "Os alunos foram atribuidas as suas turmas com sucesso!";
-            return Redirect::route('Matriculas')->with("Sucesso", $msg);
+        CandidatoController::eliminarAdmitidos();
+
+        $msg = "Os alunos foram atribuidas as suas turmas com sucesso!";
+        return Redirect::route('Matriculas')->with("Sucesso", $msg);
     }
 
     public function readmitirEdit($id)
@@ -279,16 +294,44 @@ class MatriculaController extends Controller
         {
             return redirect()->back()->with("ErroMatricula", $alunoTurma);
         }
-            $msg = "O aluno foi readmitido com sucesso, consulte por ele!";
-            return Redirect::route('Matriculas')->with("Sucesso", $msg);
+        $msg = "O aluno foi readmitido com sucesso, consulte por ele!";
+        return Redirect::route('Matriculas')->with("Sucesso", $msg);
     }
 
 
     public function anularMatricula($id)
     {
-        $candidato = Candidato::find($id);
-        $this->deletePessoa($candidato->pessoa_id);
-        return redirect()->route('Matriculas')->with('success', 'Aluno excluído com sucesso.');
+        // dd($id);
+        $turma = AlunoController::alunoTurma(intval($id));
+        $aluno = [
+            'aluno' => $id,
+            'turma' => $turma,
+        ];
+
+        AlunoTurmaController::AnulouMatricula($aluno);
+        $userId = AlunoController::pegarIdUser($id);
+        $dadosUser=[
+            'usuario_id'=> $userId,
+            'status_usuario'=>0,
+        ];
+        UserController::updateAluno($dadosUser);
+
+        return redirect()->route('Matriculas')->with('success', 'Matricula anulada com sucesso.');
+    }
+
+    public function eliminarMatricula($id)
+    {
+        // dd($id);
+        $cand = AlunoController::alunoCandId(intval($id));
+        // dd($cand);
+        $pessoa = $this->deletePessoa($cand);
+
+        if(!$pessoa)
+        {
+            return redirect()->back()->with("ErroMatricula", "Este aluno já não existe em nosso banco de dados");
+        }
+
+        return redirect()->route('Matriculas')->with('success', 'Aluno eliminado com sucesso.');
     }
 
     public function registrarView()
@@ -299,7 +342,8 @@ class MatriculaController extends Controller
         return view('matricula.registrar-aluno', compact('cursos','vagas', 'classe'));
     }
 
-    public function registrarStore(RegistrarRequest $input){
+    public function registrarStore(RegistrarRequest $input)
+    {
         $request = $input->validated(); // Inputs validadas
         // dd($request);
         $encarregado = [];
@@ -325,11 +369,6 @@ class MatriculaController extends Controller
             if($this->checkPessoaBI($dadosEnc['num_bi']))
             {
                 $msg="O número de identificação do ". $i ."º encarregado já está sendo utilizado, confirme todos os dados de identificação dele.";
-                return redirect()->back()->with("ErroEncarregado",$msg);
-            }
-            if($this->checkPessoaTel($dadosEnc['telefone']))
-            {
-                $msg="O telefone do ". $i ."º encarregado já está sendo utilizado, confirme o numero de telefone dele.";
                 return redirect()->back()->with("ErroEncarregado",$msg);
             }
         }
@@ -452,6 +491,29 @@ class MatriculaController extends Controller
         $posicao = 0; // posição do caractere desejado(Onde começa a contagem do caracter)
         $abreNome = substr($request['nome_completo'], $posicao,2);
         $abreSobreNome = substr($request['nome_enc1'], $posicao,2);
+
+        $dataFimMatricula = AnoLectivoController::pegarAnoLectivo(AnoLectivoController::pegarIdAnoLectivo());
+        $dataMatriculaCarboon = Carbon::parse($dataFimMatricula->data_fim_matricula);
+        $dataMatriculaCarboon->addDay();
+        $dataAcesso = $dataMatriculaCarboon->format('d-m-Y');
+        $hexAleatorio = Str::random(8);
+        $dadosUser=
+        [
+            'nome_usuario'=>$abreNome.count(User::all()).$abreSobreNome,
+            'email'=>$request['email'],
+            'password'=>bcrypt($hexAleatorio),
+            'cargo_usuario'=>'Aluno',
+            'status_usuario'=>0,
+            'pessoa_id'=>$pessoa_id,
+        ];
+        $user = UserController::store($dadosUser);
+
+        $sendEmail = AuthController::envioCredenciasEmail($user, $hexAleatorio, $dataAcesso);
+        if(!$sendEmail)
+        {
+            $msg="Fique atento nos dados de identifcação, este candidato já está inscrito!";
+            return redirect()->back()->with("ErroPessoa",$msg);
+        }
 
         $dadosUser=[
             'nome_usuario'=>$abreNome.count(User::all()).$abreSobreNome,

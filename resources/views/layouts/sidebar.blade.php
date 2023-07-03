@@ -60,12 +60,12 @@
       </a>
       <ul id="inscriacao-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href={{route('inscricao-view')}}>
+          <a href="{{route('inscricao-view')}}">
             <i class="bi bi-circle"></i><span>Inscrever candidato</span>
           </a>
         </li>
         <li>
-          <a href={{route('inscricao-index')}}>
+          <a href="{{route('inscricao-index')}}">
             <i class="bi bi-circle"></i><span>Inscrições</span>
           </a>
         </li>
@@ -81,13 +81,13 @@
       <ul id="matricula-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 
         <li>
-          <a href={{route('Matriculas')}}>
+          <a href="{{ route('Matriculas') }}">
             <i class="bi bi-circle"></i><span>Matriculas</span>
           </a>
         </li>
 
         <li>
-          <a href="matricula/registrar-aluno">
+          <a href="{{ route('registrar-view') }}">
             <i class="bi bi-circle"></i><span>Registrar Aluno</span>
           </a>
         </li>
@@ -121,7 +121,7 @@
       </a>
       <ul id="turma-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="turma/criar-turma">
+          <a href="{{route('turma-create')}}">
             <i class="bi bi-circle"></i><span>Criar turma</span>
           </a>
         </li>
@@ -255,9 +255,8 @@
         <li>
 
 
-          {{-- <a href={{ route('consultar.processo') }}> --}}
 
-          {{-- <a href={{route('processo.consultar')}}> --}}
+           <a href={{route('processo.consultar')}}> 
 
             <i class="bi bi-circle"></i><span>Processos</span>
           </a>
@@ -275,6 +274,16 @@
         <li>
           <a href={{route('avaliacao.aluno')}}>
             <i class="bi bi-circle"></i><span>Avaliar Avaliação</span>
+          </a>
+        </li>
+        <li>
+          <a href="/recurso_aluno">
+            <i class="bi bi-circle"></i><span>Recurso</span>
+          </a>
+        </li>
+        <li>
+          <a href="/exame_aluno">
+            <i class="bi bi-circle"></i><span>Exame Especial</span>
           </a>
         </li>
       </ul>

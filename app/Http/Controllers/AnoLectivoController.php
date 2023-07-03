@@ -20,8 +20,17 @@ class AnoLectivoController extends Controller
 
     public static function pegarIdAnoLectivo()
     {
-        $ultimoAno = Ano_lectivo::orderBy('ano_lectivo_id', 'desc')->first();
+        $ultimoAno = Ano_lectivo::orderBy('ano_lectivo_id', 'desc')
+        ->first();
         return $ultimoAno->ano_lectivo_id;
+    }
+    
+    public static function pegarAnoLectivo($id)
+    {
+        $ultimoAno = Ano_lectivo::orderBy('ano_lectivo_id', 'desc')
+        ->where('ano_lectivo_id', $id)
+        ->first();
+        return $ultimoAno;
     }
 
     public function indexCadastroAnoLectivo(){
@@ -101,6 +110,9 @@ class AnoLectivoController extends Controller
         }
 
         //dd($trimestre);
+
+        //Todas as funções que devem acontecer no inicio do ano lectivo devem estar abaixo deste comentário
+        AlunoTurmaController::situacaoAluno(); // Atribuir turmas aos alunos da 11ª em diante.
 
         return redirect()->route('ano.lectivo')->with('sucesso', "Ano lectivo criado com sucesso.");
     }

@@ -194,6 +194,7 @@ trait AvaliacaoTrait
         //dd($prof_disc->toArray());
         for ($i = 0; $i < count($prof_disc); $i++) {
             $dados[$i] = [
+                'professor_disciplina_id' => $prof_disc[$i]->disc_professor_id,
                 'nome_disciplina' =>  $prof_disc[$i]->disciplina->nome_disciplina,
                 'disciplina_id' => $prof_disc[$i]->disciplina->disciplina_id,
             ];

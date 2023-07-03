@@ -201,7 +201,7 @@
                    <div class="row mb-3">
                      <label for="nomeComp" class="col-md-4 col-lg-4 col-form-label">Nome Completo</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="nomeComp" name="nome_completo_update" value="{{ Auth::user()->belongPessoa->nome_completo }}" required>
+                       <input type="text" class="form-control" id="letra" name="nome_completo_update" value="{{ Auth::user()->belongPessoa->nome_completo }}" required>
                        <div class="invalid-feedback">Por favor insere o nome completo!</div>
                      </div>
                    </div>
@@ -212,7 +212,10 @@
                    <div class="row mb-3">
                      <label for="genero" class="col-md-4 col-lg- col-form-label">Gênero</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="genero" name="genero_update" value="{{ Auth::user()->belongPessoa->genero }}" required>
+                       <input type="radio" id="masculino" name="genero_update" value="Masculino" {{Auth::user()->belongPessoa->genero=='Masculino'? "checked" : ""}} >
+                        <label for="masculino" class="me-2"> Masculino</label>
+                        <input type="radio" id="feminino" name="genero_update" value="Femenino" {{Auth::user()->belongPessoa->genero=='Femenino'? "checked" : ""}} >
+                        <label for="feminino"> Feminino</label>
                        <div class="invalid-feedback">Por favor insere um Gênero!</div>
                      </div>
                    </div>
@@ -223,7 +226,8 @@
                    <div class="row mb-3">
                      <label for="dtNascimento" class="col-md-4 col-lg-4 col-form-label">Data de nascimento</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="date" class="form-control" id="dtNascimento" name="data_nascimento_update" value="{{ Auth::user()->belongPessoa->data_nascimento }}" required>
+                       <input type="date" class="form-control" id="datainput10" name="data_nascimento_update" value="{{ Auth::user()->belongPessoa->data_nascimento }}" required>
+                       <div id="mensagem10" style="color: red;"></div>
                        <div class="invalid-feedback">Por favor insere uma data!</div>
                      </div>
                    </div>

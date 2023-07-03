@@ -4,66 +4,80 @@
 
 @section('conteudo')
 <main id="main" class="main">
+  
+    @if (session()->has('erro'))
+    <div class="alert alert-danger">
+      <i class="bi bi-exclamation-octagon me-1"></i>
+        {{session('erro')}}
+        <button class="botaofecharerro">
+          <i class="bi bi-x"></i>
+        </button>
+    </div>
+    @endif
+    @if (session()->has('sucesso'))
+    <div class="alert alert-success">
+      <i class="bi bi-check-circle me-1"></i>
+        {{session('sucesso')}}
+        <button class="botaofechasucesso">
+          <i class="bi bi-x"></i>
+        </button>
+    </div>
+    @endif
   <div class="pagetitle">
     <div class="row">
           <div class="col">
-              <h1>Assiduidade De Aluno</h1>      
+              <h1>Assiduidade De Aluno</h1>
           </div>
-      
+
           <div class="col-lg-2">
             <select class="btn-sel form-select" id="filtro8">
-              <option  disabled>Curso</option>
-              <option value="Informática">Informática</option>
-              <option value="Técnico de Energia e Instalações Electricas">Técnico de Energia e Instalações Electricas</option>
-              <option value="construção civil">construção civil</option>
-              <option value="Electronica e Telecomunicação">Electronica e Telecomunicação</option>
+              @foreach ($cursos as $curso)
+                <option value="{{$curso}}">{{$curso}}</option>
+              @endforeach
             </select>
-          </div> 
+          </div>
 
           <div class="col-lg-2">
             <select class="btn-sel form-select" id="filtro9">
-              <option disabled >Disciplina</option>
-              <option value="Desenho técnico">Desenho técnico</option>
-              <option value="Técnicas de Linguagem de Programação">Técnicas de Linguagem de Programação</option>
-              <option value="Língua Portuguêsa">Língua Portuguêsa</option>
+              @foreach ($nome_disciplina as $disciplina)
+                <option value="{{$disciplina}}">{{$disciplina}}</option>
+              @endforeach
             </select>
-          </div> 
+          </div>
 
           <div class="col-lg-2">
             <select class="btn-sel form-select" id="filtro10">
-              <option disabled >Turma</option>
-              <option value="I10AM" selected>I10AM</option>
-              <option value="I11AM">I11AM</option>
-              <option value="I12AT">I12AT</option>
-              <option value="I12BT">I12BT</option>
+              @foreach ($nome_turma as $turma)
+                <option value="{{$turma}}">{{$turma}}</option>
+              @endforeach
             </select>
-          </div> 
+          </div>
     </div>
 
   <div class="procurar">
-  <form class="proc-form d-flex align-items-center">
+  <div class="proc-form d-flex align-items-center">
       <input id="pesquisa" type="text" placeholder="Digite o Número ou o Nome do Aluno que Procuras" name="" class="campo-pesq">
-      <button id="pesquisa" type="submit" title="Search"><i class="bi bi-search"></i></button>   
-  </form>
+      <button  title="Search"><i class="bi bi-search"></i></button>
+  </div>
   </div>
 
   <div class="bortabela">
     <div class="pagetitle">
         <div class="row">
             <div class="col datatabelapeddin">
-                <h4 style="text-align: center">Data:21-03-2023</h3>
+                <h4 style="text-align: center">Data: {{date('d/m/Y')}}</h3>
             </div>
         </div>
     </div>
     <!-- /  Inicio da tabela  -->
-    <table id="tabela" class="table table-striped" style="margin-top: 20px; width: 100%;" >
+    <table id="assiduidadetab" class="table table-striped" style="margin-top: 20px; width: 100%;" >
       <thead style="text-align: center">
         <tr>
           <th scope="col">Nº</th>
           <th scope="col">Nome do Aluno</th>
           <th scope="col">F.Normais</th>
           <th scope="col">F.Vermelhas</th>
-          <th scope="col">f.Outro</th>
+          <th scope="col">f.Material</th>
           <th scope="col">Marcar Falta</th>
           <th scope="col">justificar</th>
           <th scope="col" hidden>curso</th>
@@ -72,50 +86,49 @@
         </tr>
       </thead>
       <tbody>
-        <tr style="text-align: center;">
-          <th scope="row">1</th>
-          <td>Fulano fulano fu...</td>
-          <td>9</td>
-          <td>6</td>
-          <td>15</td>
-          <td>
-            <a class="btn botaoazul" data-bs-toggle="modal" data-bs-target="#modal_assiduidade">Normal</a>
-            <a class="btn botaovermelho" data-bs-toggle="modal" data-bs-target="#modal_assiduidade">Vermelha</a>
-            <a class="btn botaopreto" data-bs-toggle="modal" data-bs-target="#modal_assiduidade">Outra</a>
-          </td>
-          <td style="text-align: center">
-            <a href="editar_assiduidade" class="btn linkeditar">Justificar</a>
-          </td>
-          <td hidden>Informática</td>
-          <td hidden>Desenho técnico</td>
-          <td hidden>I12BT</td>
-        </tr>
-        <tr style="text-align: center;">
-          <th scope="row">1</th>
-          <td>Márcio Celestino Ma...</td>
-          <td>9</td>
-          <td>6</td>
-          <td>15</td>
-          <td>
-            <a class="btn botaoazul" data-bs-toggle="modal" data-bs-target="#modal_assiduidade" >Normal</a>
-            <a class="btn botaovermelho" data-bs-toggle="modal" data-bs-target="#modal_assiduidade">Vermelha</a>
-            <a class="btn botaopreto" data-bs-toggle="modal" data-bs-target="#modal_assiduidade">Outra</a>
-          </td>
-          <td style="text-align: center">
-            <a href="editar_assiduidade" class="btn linkeditar">Justificar</a>
-          </td>
-          <td hidden>construção civil</td>
-          <td hidden>Língua Portuguêsa</td>
-          <td hidden>I10AM</td>
-        </tr>
-      </tbody>
-    </table>
+        @if (!empty($alunos))
+          @foreach ($alunos as $chave1 => $valor1)
+
+            @foreach ($valor1 as $chave2 => $valor2)
+
+                @foreach ($valor2 as $chave3 => $valor3)
+
+                    <tr style="text-align: center;">
+                        <th scope="row">{{$valor3['numero_aluno']}}</th>
+                        <td>{{$valor3['nome']}}</td>
+                        <td>{{$valor3['falta_presencial']}}</td>
+                        <td>{{$valor3['falta_disciplinar']}}</td>
+                        <td>{{$valor3['falta_material']}}</td>
+                        <td>
+                            <a class="btn botaoazul" data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}">Normal</a>
+                            <a class="btn botaovermelho" data-bs-toggle="modal" data-bs-target="#modal_assiduidadee{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}">Vermelha</a>
+                            <a class="btn botaopreto" data-bs-toggle="modal" data-bs-target="#modal_assiduidadeee{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}">Materiais</a>
+                          </td>
+                          <td style="text-align: center">
+                            <a href="{{route('editar.assiduidade', [$valor3['aluno_id'], $valor3['disciplina_id']])}}" class="btn linkeditar">Justificar</a>
+                          </td>
+
+                        <td hidden>{{$valor3['curso']}}</td>
+                        <td hidden>{{$valor3['nome_disciplina']}}</td>
+                        <td hidden>{{$valor3['nome_turma']}}</td>
+                    </tr>
+                @endforeach
+            @endforeach
+        @endforeach
+    </tbody>
+  </table>
   </div>
   <!-- Termina a tabela -->
+  @foreach ($alunos as $chave1 => $valor1)
+
+  @foreach ($valor1 as $chave2 => $valor2)
+
+      @foreach ($valor2 as $chave3 => $valor3)
 
     <!-- Início da Modal -->
-    <form method="POST" action="">
-      <div class="modal" id="modal_assiduidade" tabindex="-1" data-bs-backdrop="false" >
+    <form method="POST" action="{{route('marcar.falta', [$valor3['aluno_id'], $valor3['disciplina_id'], $valor3['turma_id'], $professor[$chave1]['professor_disciplina_id']])}}">
+        @csrf
+      <div class="modal" id="modal_assiduidade{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}" tabindex="-1" data-bs-backdrop="false" >
           <div class="modal-dialog">
           <div class="modal-content">
           <div class="modal-header">
@@ -125,7 +138,7 @@
           <div class="modal-body">
               <div class="row">
                   <div class="alert alert-warning" role="alert">
-                      <h6>Atenção: Estás a Marcar uma falta normal ao Aluno (a) !! </h6><h6> Estás prestes a inserir uma falta Normal no dia 21/06/2021 no 1º Tempo do 1º Trimestre ao Aluno (a) Fulano Fulano</h6>
+                      <h6>Atenção: Estás a Marcar uma falta <b style="color: rgb(132, 132, 255)">presencial</b> ao Aluno(a) !! </h6><h6> Estás prestes a inserir uma falta no dia {{date('d/m/Y')}} ao Aluno(a) {{$valor3['nome']}}</h6>
                       <h5>Deseja Realmente Continuar?</h5>
                   </div>
               </div>
@@ -137,13 +150,105 @@
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="subimit" class="btn btn-primary">Confirmar</button>
+              <button type="subimit" class="btn btn-primary" name="tipo_falta" value="Presencial">Confirmar</button>
           </div>
           </div>
       </div>
       </div>
   </form>
+  @endforeach
+  @endforeach
+@endforeach
 <!-- Fím da modal -->
-    
+
+ <!-- Início da Modal Falta vermelha -->
+ @foreach ($alunos as $chave1 => $valor1)
+
+ @foreach ($valor1 as $chave2 => $valor2)
+
+     @foreach ($valor2 as $chave3 => $valor3)
+
+   <!-- Início da Modal -->
+   <form method="POST" action="{{route('marcar.falta', [$valor3['aluno_id'], $valor3['disciplina_id'], $valor3['turma_id'], $professor[$chave1]['professor_disciplina_id']])}}">
+       @csrf
+     <div class="modal" id="modal_assiduidadee{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}" tabindex="-1" data-bs-backdrop="false" >
+         <div class="modal-dialog">
+         <div class="modal-content">
+         <div class="modal-header">
+             <h5 class="modal-title">Marcar Falta</h5>
+             <button type="button" class="btn-close"data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+             <div class="row">
+                 <div class="alert alert-warning" role="alert">
+                     <h6>Atenção: Estás a Marcar uma falta <b style="color: rgb(255, 11, 11)">Vermelha</b> ao Aluno(a) !! </h6><h6> Estás prestes a inserir uma falta no dia {{date('d/m/Y')}} ao Aluno(a) {{$valor3['nome']}}</h6>
+                     <h5>Deseja Realmente Continuar?</h5>
+                 </div>
+             </div>
+             <div class="row">
+                 <div class="col">
+                     <textarea style="border: 1px solid; border-color: rgb(204, 204, 204); border-radius: 5px; outline: none" class="w-100"  rows="5" name="conteudo"  id="area" placeholder="Descreve ou não a causa da Marcação da Falta"></textarea>
+                 </div>
+             </div>
+         </div>
+         <div class="modal-footer">
+             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+             <button type="subimit" class="btn btn-primary" name="tipo_falta" value="Disciplinar">Confirmar</button>
+         </div>
+         </div>
+     </div>
+     </div>
+ </form>
+ @endforeach
+ @endforeach
+@endforeach
+ 
+ <!-- Início da Modal Falta vermelha FIM -->
+
+ 
+ <!-- Início da Modal Falta Materiais -->
+
+ @foreach ($alunos as $chave1 => $valor1)
+
+  @foreach ($valor1 as $chave2 => $valor2)
+
+      @foreach ($valor2 as $chave3 => $valor3)
+
+    <form method="POST" action="{{route('marcar.falta', [$valor3['aluno_id'], $valor3['disciplina_id'], $valor3['turma_id'], $professor[$chave1]['professor_disciplina_id']])}}">
+        @csrf
+      <div class="modal" id="modal_assiduidadeee{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}" tabindex="-1" data-bs-backdrop="false" >
+          <div class="modal-dialog">
+          <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Marcar Falta</h5>
+              <button type="button" class="btn-close"data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <div class="row">
+                  <div class="alert alert-warning" role="alert">
+                      <h6>Atenção: Estás a Marcar uma falta de <b style="color: rgb(22, 21, 21)">Materiais</b> ao Aluno(a) !! </h6><h6> Estás prestes a inserir uma falta no dia {{date('d/m/Y')}} ao Aluno(a) {{$valor3['nome']}}</h6>
+                      <h5>Deseja Realmente Continuar?</h5>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col">
+                      <textarea style="border: 1px solid; border-color: rgb(204, 204, 204); border-radius: 5px; outline: none" class="w-100"  rows="5" name="conteudo"  id="area" placeholder="Descreve ou não a causa da Marcação da Falta"></textarea>
+                  </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="subimit" class="btn btn-primary" name="tipo_falta" value="Material">Confirmar</button>
+          </div>
+          </div>
+      </div>
+      </div>
+  </form>
+  @endforeach
+  @endforeach
+@endforeach
+ <!-- Início da Modal Falta Materiais FIM -->
+
+@endif
 </main>
 @endsection
