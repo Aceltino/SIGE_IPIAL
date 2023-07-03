@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Candidato;
+use App\Traits\PessoaTrait;
 use Carbon\Carbon;
 
 class CandidatoController extends Controller
@@ -79,7 +80,19 @@ class CandidatoController extends Controller
         $candidatos = Candidato::where('status', 'Admitido')->get();
         foreach ($candidatos as $candidato)
         {
-            $candidato->delete();
+            PessoaTrait::deletePessoa($candidato->pessoa_id);
+        }
+    }
+
+    public static function eliminarCandidatos() //Função chamada no final do ano lectivo
+    {
+        $candidatos = Candidato::where('status', 'Admitido')
+        ->where('status', 'Pendente')
+        ->where('status', 'Não admitido')
+        ->get();
+        foreach ($candidatos as $candidato)
+        {
+            PessoaTrait::deletePessoa($candidato->pessoa_id);
         }
     }
 
@@ -230,14 +243,6 @@ class CandidatoController extends Controller
         $candidatoAtualizado = $candidato->save();
 
         return $candidatoAtualizado;
-
-        // $escola = Escola_proveniencia::find($dadosEscola['escola_proveniencia_id']);
-        // foreach ($dadosEscola as $campo => $valor)
-        // {
-        //     $escola->$campo = $valor;
-        // }
-        // $escolaAtualizado = $escola->save();
-        // return $escolaAtualizado;
     }
 
     public static function atualizarMatriculado($candidatoStatus) //Atualizar status

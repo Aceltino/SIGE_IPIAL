@@ -72,7 +72,7 @@ Route::prefix('Perfil')->middleware(['auth','active.session'])->group(function()
 
 
 /******************************************
- * Rotas de inscricao
+ * Rotas de inscricao __ !!! - Admissão
  */
 Route::prefix('inscricao')->middleware(['auth','active.session','checkcargo'])->group(function(){
 
@@ -92,6 +92,9 @@ Route::prefix('inscricao')->middleware(['auth','active.session','checkcargo'])->
     Route::get('editar-candidato/{candidato}/editar', [InscricaoController::class, 'edit'])->name('inscricao-edit');
     Route::put('editar-candidato/{candidato}', [InscricaoController::class, 'update'])->name('inscricao-update');
 
+    Route::get('recibo', function () {
+            return view('recibo/recibo-incricao');
+        });
 
     /*Editar candidato */
 
@@ -101,10 +104,7 @@ Route::prefix('inscricao')->middleware(['auth','active.session','checkcargo'])->
     // });
 
     // /*Incritos rejeitados */
-    Route::get('recibo', function () {
-        return view('recibo/recibo-incricao');
-    });
-
+    
     // /*Confirmar inscricao*/
     // Route::get('conf-inscricao', function () {
     //     return view('inscricao/conf-inscricao');
@@ -147,7 +147,6 @@ Route::prefix('matricula')->middleware(['auth','active.session','checkcargo'])->
     /*Editar matricula */
     Route::get('editar-aluno/{aluno}/editar', [MatriculaController::class, 'edit'])->name('matricula-edit');
     Route::put('editar-aluno/{aluno}', [MatriculaController::class, 'update'])->name('matricula-update');
-
 
     /*Readimitir aluno */
     Route::get('readmitir-aluno/{aluno}/readmitir', [MatriculaController::class, 'readmitirEdit'])->name('readmitir-view');
@@ -200,6 +199,8 @@ Route::prefix('turma')->middleware(['auth','active.session','checkcargo'])->grou
 
     /* Criar turma*/
     Route::get('criar-turma', [TurmaController::class, 'createTurma'])->name('turma-create');
+    Route::post('criar-turma', [TurmaController::class, 'storeTurma'])->name('turma-store');
+
 
 
     /*Trumas */
@@ -373,7 +374,7 @@ Route::prefix('calend-prova')->group(function(){
 
 /* Assiduidade de alunos*/
 Route::get('/assiduidade-aluno', [AssiduidadeAlunoController::class, 'index'])->name('assiduidade');
-Route::post('/assiduidade-aluno/marcar-falta/{aluno_id}/{disciplina_id}', [AssiduidadeAlunoController::class, 'store'])->name('marcar.falta');
+Route::post('/assiduidade-aluno/marcar-falta/{aluno_id}/{disciplina_id}/{turma_id}/{professor_disciplina_id}', [AssiduidadeAlunoController::class, 'store'])->name('marcar.falta');
 
 /*justificar ou editar assiduidade*/
 Route::get('/editar-assiduidade/{aluno_id}/{disciplina_id}', [AssiduidadeAlunoController::class, 'show'])->name('editar.assiduidade');
@@ -391,6 +392,29 @@ Route::post('/avaliar-aluno/cadastrar{id_disciplina}', [AvaliacaoAlunoController
 /*editar Avaliação de Aluno*/
 Route::get('/editar-avaliacao-aluno/{id_aluno}/{id_disciplina}', [AvaliacaoAlunoController::class, 'indexUpdate'])->name('editar.avaliacao.aluno');
 Route::put('/editar-avaliacao-aluno/update/{id_nota}', [AvaliacaoAlunoController::class, 'update'])->name('update.nota.aluno');
+
+/*Exame de aluno de Aluno*/
+Route::get('exame_aluno',  function () {
+    return view('avaliac-aluno/exame');
+});
+
+Route::get('exames_histo',  function () {
+    return view('avaliac-aluno/edit-exame');
+});
+Route::get('edit_exame',  function () {
+    return view('avaliac-aluno/edit-exame');
+});
+
+/*Recurso de Aluno*/
+Route::get('recurso_aluno',  function () {
+    return view('avaliac-aluno/recurso');
+});
+Route::get('recurso_histo',  function () {
+    return view('avaliac-aluno/edit-recurso');
+});
+Route::get('edit_recurso',  function () {
+    return view('avaliac-aluno/edit-exame');
+});
 
 /******************************************
  * Rotas do horário

@@ -370,7 +370,7 @@ $("#pesquisa").on("keyup", function () {
 });
 
 $(document).ready(function () {
-  var $T= $("aliacaotab").DataTable({
+  var $T= $("#avaliacaotab").DataTable({
         pageLength: 50,
         "dom": '<"top"i>rt<"bottom"lp><"clear">',
         lengthChange: false,

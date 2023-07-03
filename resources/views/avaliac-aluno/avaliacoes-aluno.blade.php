@@ -28,7 +28,6 @@
 
           <div class="col-lg-2">
             <select class="btn-sel form-select" id="filtro10">
-              <option  disabled>Curso</option>
               @foreach ($cursos as $curso)
                 <option value="{{$curso}}">{{$curso}}</option>
               @endforeach
@@ -37,7 +36,6 @@
 
           <div class="col-lg-2">
             <select class="btn-sel form-select" id="filtro11">
-              <option disabled >Disciplina</option>
               @if (isset($nome_disciplina))
                 @foreach ($nome_disciplina as $disciplina)
                     <option value="{{$disciplina}}">{{$disciplina}}</option>
@@ -48,7 +46,6 @@
 
           <div class="col-lg-2">
             <select class="btn-sel form-select" id="filtro12">
-              <option disabled >Turma</option>
               @if (isset($nome_turma))
                 @foreach ($nome_turma as $turma)
                     <option value="{{$turma}}">{{$turma}}</option>
@@ -102,11 +99,37 @@
                     <tr style="text-align: center;">
                         <th scope="row">{{$valor3['numero_aluno']}}</th>
                         <td>{{$valor3['nome']}}</td>
-                        <td>{{$valor3['mac']}}</td>
-                        <td>{{$valor3['npp']}}</td>
-                        <td>{{$valor3['npt']}}</td>
-                        <td>{{$valor3['exame']}}</td>
-                        <td>{{$valor3['exame_recurso']}}</td>
+
+                        @if ($valor3['mac']<10)
+                        <td style="color: rgb(255, 8, 8)">{{$valor3['mac']}}</td>
+                        @else
+                        <td style="color: rgb(10, 10, 255)">{{$valor3['mac']}}</td>
+                        @endif
+
+                        @if ($valor3['npp']<10)
+                        <td style="color: rgb(255, 8, 8)">{{$valor3['npp']}}</td>
+                        @else
+                        <td style="color: rgb(10, 10, 255)">{{$valor3['npp']}}</td>
+                        @endif
+
+                        @if ($valor3['npt']<10)
+                        <td style="color: rgb(255, 8, 8)">{{$valor3['npt']}}</td>
+                        @else
+                        <td style="color: rgb(10, 10, 255)">{{$valor3['npt']}}</td>
+                        @endif
+
+                        @if ($valor3['exame']<10)
+                        <td style="color: rgb(255, 8, 8)">{{$valor3['exame']}}</td>
+                        @else
+                        <td style="color: rgb(10, 10, 255)">{{$valor3['exame']}}</td>
+                        @endif
+
+                        @if ($valor3['exame_recurso']<10)
+                        <td style="color: rgb(255, 8, 8)">{{$valor3['exame_recurso']}}</td>
+                        @else
+                        <td style="color: rgb(10, 10, 255)">{{$valor3['exame_recurso']}}</td>
+                        @endif
+
                         <td style="text-align: center">
                         <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}" >Avaliar aluno</a>
                         </td>
@@ -179,7 +202,11 @@
                   </tr>
                 </tbody>
               </table>
-
+            </div>
+            <div class="row" style="margin-top: 5px;">
+              <div class="col">
+                  <textarea style="border: 1px solid; border-color: rgb(204, 204, 204); border-radius: 5px; outline: none"  class="w-100"  rows="8" name="conteudo" id="area" placeholder="Dê uma Breve descrição sobre a Nota Adicionada(Opcional)"></textarea>
+              </div>
             </div>
           </div>
           <div class="modal-footer" style="display: flex; justify-content: center; align-items: center;">
