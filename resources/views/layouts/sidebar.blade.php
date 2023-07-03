@@ -276,6 +276,16 @@
             <i class="bi bi-circle"></i><span>Avaliar Avaliação</span>
           </a>
         </li>
+        <li>
+          <a href="/recurso_aluno">
+            <i class="bi bi-circle"></i><span>Recurso</span>
+          </a>
+        </li>
+        <li>
+          <a href="/exame_aluno">
+            <i class="bi bi-circle"></i><span>Exame Especial</span>
+          </a>
+        </li>
       </ul>
     </li>
 
