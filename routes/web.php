@@ -449,3 +449,29 @@ Route::prefix('disciplina')->middleware(['auth','active.session','checkcargo'])-
         Route::put('{disciplina_id}', [DisciplinasController::class, 'update'])->where('disciplina_id', '[0-9]+')->name('disciplina.update');
         Route::delete('{disciplina_id}', [DisciplinasController::class, 'destroy'])->where('disciplina_id', '[0-9]+')->name('disciplina.delete');
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*biblioteca_alda*/
+Route::get('/biblioteca_alda', function () {
+    return view('horario/criar-horario');
+});
+
+
+
