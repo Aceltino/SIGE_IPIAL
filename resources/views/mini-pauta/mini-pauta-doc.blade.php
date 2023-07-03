@@ -234,13 +234,17 @@
                 {{ $aluno->aluno->candidato->pessoa->nome_completo }}
             @endforeach--}}
 
+            @php
+                $m = 0; // Genero Masculino
+                $f = 0; // Genero Feminino
+            @endphp
             @foreach($alunos as $aluno)
                 <tr class="linha-tab-mp">
                     {{-- Posicao na lista --}}
                     <td class="coluna-tab-mp">{{ $aluno->numero_aluno }}</td>
 
                     <td class="sm-cor"></td>
-                    <td class="coluna-tab-mp" style="font-size: 11pt;">{{ $aluno->aluno->candidato->pessoa->nome_completo }} - id: {{ $aluno->aluno->aluno_id }}</td>
+                    <td class="coluna-tab-mp" style="font-size: 11pt;">{{ $aluno->aluno->candidato->pessoa->nome_completo }}</td>
 
                     {{-- Idade --}}
                     <td class="coluna-tab-mp">
@@ -249,7 +253,12 @@
 
                     {{-- Genero --}}
                     <td class="coluna-tab-mp">
-                        <span class="largura-10">{{ getGenero($aluno->aluno->candidato->pessoa->genero) }}</span>
+                        @php
+                            $genero = getGenero($aluno->aluno->candidato->pessoa->genero);
+                            if ($genero === "F")
+                                $f++;
+                        @endphp
+                        <span class="largura-10">{{ $genero }}</span>
                     </td>
 
                     {{-- MAC --}}
@@ -581,8 +590,8 @@
             </tr>
 
             <tr class="linha-tab-mp">
-                <td class="coluna-tab-mp">0</td>
-                <td class="coluna-tab-mp">0</td>
+                <td class="coluna-tab-mp">{{ $alunos->count() }}</td>
+                <td class="coluna-tab-mp">{{ $f }}</td>
                 <td class="coluna-tab-mp">0</td>
                 <td class="coluna-tab-mp">0</td>
                 <td class="coluna-tab-mp">0</td>
