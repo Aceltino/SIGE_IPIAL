@@ -100,7 +100,6 @@ trait AssiduidadeTrait
         for($i = 0; $i < count($assiduidade); $i++){
             $hora_falta = new Carbon($assiduidade[$i]->created_at);
             $hora_tempo = Hora::with('tempo')->get();
-            //dd($hora_falta);
             for ($j = 0; $j < count($hora_tempo); $j++) {
                 $h_falta = strtotime($hora_falta->toTimeString());
                 $inicio = substr($hora_tempo[$j]->hora, 0, 5);
@@ -113,22 +112,40 @@ trait AssiduidadeTrait
         return $tempo;
     }
 
-    public static function pegarTempoFalta(){
-        dd("ok");
+    public static function limiteFaltas($aluno_id, $disciplina_id, $tot_tempo){
+        $trimestre = AvaliacaoTrait::pegarTrimestre();
+        $faltas = Assiduidade_aluno::where('$aluno_id', $aluno_id)
+        ->where('disciplina_id', $disciplina_id)
+        ->where('id_trimestre', $trimestre[0]->trimestre_id)->get();
+        dd($faltas);
+        for($i = 0; $i < count($faltas); $i++){
+            $faltas[$i]->criated_at;
+        }
     }
 
-    public static function compararHora($turno_id){
-        $hora_tempo = Hora::where('turno_id')->get();
-        $hora_actual = 1;
-
-        $h_falta = strtotime($hora_tempo->toTimeString());
-        for ($j = 0; $j < count($hora_tempo); $j++) {
-            $inicio = substr($hora_tempo[$j]->hora, 0, 5);
-            $fim = substr($hora_tempo[$j]->hora, 8, 5);
-            if($h_falta >= strtotime($inicio) && $h_falta <= strtotime($fim)){
-                $tempo[$j] = $hora_tempo[$j]->tempo->tempo;
+    public static function pegarTempoFalta($turma_id, $professor_disciplina_id){
+        $dia = self::pegarDiaBanco();
+        if(!$dia){
+            return false;
+        }
+        $tempo = Horario::with('tempo.hora', 'turma.turno')->where('dia_id', $dia[0]->dia_id)
+        ->where('turma_id', $turma_id)
+        ->where('disc_professor_id', $professor_disciplina_id)
+        ->get();
+        $hora_falta = now();
+        $hora_falta = substr($hora_falta, 11, 5);
+        $h_falta = strtotime($hora_falta);
+        for($i = 0; $i < count($tempo); $i++){
+            $hora_banco = Hora::where('turno_id', $tempo[$i]->turma->turno_id)->get();
+            for ($j = 0; $j < count($hora_banco); $j++) {
+                $inicio = substr($hora_banco[$j]->hora, 0, 5);
+                $fim = substr($hora_banco[$j]->hora, 8, 5);
+                if($h_falta >= strtotime($inicio) && $h_falta <= strtotime($fim)){
+                    return $tempo;
+                }
             }
         }
+        return false;
     }
 
     public static function pegarDiaBanco(){
@@ -137,11 +154,12 @@ trait AssiduidadeTrait
             $dia = Dia::where('nome_dia', $dia_corrente)->get();
             return $dia;
         } else{
-            dd("Não é possível marcar faltas no dia de hoje!");
+            return false;
         }
     }
 
     public static function pegarDiaSemana($day){
+        //dd($day);
         switch ($day) {
             case 'Mon':
                 $dia = "SEGUNDA-FEIRA";
@@ -159,7 +177,7 @@ trait AssiduidadeTrait
                 $dia = "SEXTA-FEIRA";
                 break;
             default:
-                $dia = null;
+                $dia = false;
                 break;
         }
         return $dia;

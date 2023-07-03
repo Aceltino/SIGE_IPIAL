@@ -72,6 +72,15 @@ class AssiduidadeAlunoController extends Controller
 
     public function store(Request $request, $aluno_id, $disciplina_id, $turma_id, $professor_disciplina_id)
     {
+
+        $falta = AssiduidadeTrait::pegarTempoFalta($turma_id, $professor_disciplina_id);
+        if(!$falta){
+            return redirect()->back()->with('erro', "Não é possível marcar faltas!");
+        }
+        dd(count($falta));
+        $data = (string) date('Y-m-d');
+        $f = Assiduidade_aluno::where('created_at', 'like', '%'.$data.'%')->where('aluno_id', 8)->where('id_trimestre', 28)->get();
+        dd(count($f));
         $trimestre = AvaliacaoTrait::pegarTrimestre();
         $falta = [
             'falta_aluno' => 1,
