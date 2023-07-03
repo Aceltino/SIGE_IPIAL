@@ -26,7 +26,7 @@
               
             </th>
 
-            <th scope="col" colspan="28">
+            <th scope="col" colspan="21">
             <img src={{URL::asset("img/insignia.jpg")}} alt="Insígnia" class="insignia">
             </th>
             <th scope="col" colspan="3">
@@ -39,7 +39,7 @@
               
             </th>
             
-            <th scope="col" colspan="28">
+            <th scope="col" colspan="21">
               <span class="tx-cab-p">REPÚBLICA DE ANGOLA</span> 
             </th>
             <th scope="col" colspan="3">
@@ -52,7 +52,7 @@
               
             </th>
             
-            <th scope="col" colspan="28">
+            <th scope="col" colspan="21">
               <span class="tx-cab-p">GOVERNO PROVINCIAL DE LUANDA</span>
             </th>
             <th scope="col" colspan="3">
@@ -64,7 +64,7 @@
             <th scope="col" colspan="3">
               VISTO
             </th>
-            <th scope="col" colspan="28">
+            <th scope="col" colspan="21">
               <span class="tx-cab-p">INSTITUTO POLITÉCNICO INDUSTRIAL "ALDA LARA"</span>
             </th>
             <th scope="col" colspan="3">
@@ -77,7 +77,7 @@
             <th scope="col" colspan="3">
               O DIRECTOR
             </th>
-            <th scope="col" colspan="28">
+            <th scope="col" colspan="21">
               <span class="tx-curso-p">INFORMÁTICA: TÉCNICO DE INFORMÁTICA</span>
             </th>
             <th scope="col" colspan="3">
@@ -92,7 +92,7 @@
             <td colspan="2" style="background-color: #fff; border-bottom: 1px solid #000; padding-bottom: 8px;">
               
             </td>
-            <td colspan="28"></td>
+            <td colspan="21"></td>
             
             <td colspan="3">
               
@@ -103,7 +103,7 @@
             <th scope="col" colspan="3">
               <span class="nome-dg">{{$director->pessoa->nome_completo}}</span>
             </th>
-            <th scope="col" colspan="28">
+            <th scope="col" colspan="21">
               <h1>PAUTA DE AVALIAÇÃO ANUAL</h1>   
             </th>
             <th colspan="3">
@@ -118,13 +118,13 @@
             <th class="coluna-tab-p" colspan="3" rowspan="2">
               <span class="tx-turma-p">TURMA: {{$anoTurmaCoord->turma->nome_turma}}</span>
             </th>
-            <th class="coluna-tab-p" colspan="28">
+            <th class="coluna-tab-p" colspan="21">
               <span class="tx-disciplina-p">DISICPLINAS</span>
             </th> 
 
             <th class="coluna-tab-p" rowspan="3"><span class="txdecisao-p">OBS(EXAMES)</span></th>
             <th class="coluna-tab-p" rowspan="3"><span class="txdecisao-p">RESULTADOS</span></th>
-
+            <th class="coluna-tab-p" rowspan="3"><span class="txdecisao-p">Nº</span></th>
                               
           </tr>
 
@@ -132,7 +132,6 @@
           <tr class="linha-tab-p">
             <th class="coluna-tab-p" colspan="7">TLP</th>
             <th class="coluna-tab-p" colspan="7">TIC</th>
-            <th class="coluna-tab-p" colspan="7">SEAC</th>
             <th class="coluna-tab-p" colspan="7">SEAC</th>
           </tr>
           {{-- @endforeach --}}
@@ -147,110 +146,88 @@
             <th class="coluna-tab-p">
               <span class="txproc-p">Nº PROC</span>
             </th>          
-            <th class="coluna-tab-p" colspan="1"><span class="t-vert">10ª Classe</span></th>
+            <th class="coluna-tab-p"><span class="t-vert">10ª Classe</span></th>
             <th class="coluna-tab-p"><span class="t-vert">MT1</span></th>
             <th class="coluna-tab-p"><span class="t-vert">MT2</span></th>
             <th class="coluna-tab-p"><span class="t-vert">MT3</span></th>
             <th class="c-tab-amarelo coluna-tab-p"><span class="t-vert">CFD</span></th>
             <th class="coluna-tab-p"><span class="t-vert">EXAMES</span></th>
-            <th class="coluna-tab-p"><span class="t-vert-falta-aluno-p">FALTAS</span></th> 
-            <th class="coluna-tab-p" colspan="1"><span class="t-vert">10ª Classe</span></th>
+            <th class="coluna-tab-p"><span class="t-vert-falta-aluno-p">FALTAS</span></th>
+            <th class="coluna-tab-p"><span class="t-vert">10ª Classe</span></th>
             <th class="coluna-tab-p"><span class="t-vert">MT1</span></th>
             <th class="coluna-tab-p"><span class="t-vert">MT2</span></th>
             <th class="coluna-tab-p"><span class="t-vert">MT3</span></th>
             <th class="c-tab-amarelo coluna-tab-p"><span class="t-vert">CFD</span></th>
             <th class="coluna-tab-p"><span class="t-vert">EXAMES</span></th>
-            <th class="coluna-tab-p"><span class="t-vert-falta-aluno-p">FALTAS</span></th> 
-            <th class="coluna-tab-p" colspan="1"><span class="t-vert">10ª Classe</span></th>
+            <th class="coluna-tab-p"><span class="t-vert-falta-aluno-p">FALTAS</span></th>
+            <th class="coluna-tab-p"><span class="t-vert">10ª Classe</span></th>
             <th class="coluna-tab-p"><span class="t-vert">MT1</span></th>
             <th class="coluna-tab-p"><span class="t-vert">MT2</span></th>
             <th class="coluna-tab-p"><span class="t-vert">MT3</span></th>
             <th class="c-tab-amarelo coluna-tab-p"><span class="t-vert">CFD</span></th>
             <th class="coluna-tab-p"><span class="t-vert">EXAMES</span></th>
-            <th class="coluna-tab-p"><span class="t-vert-falta-aluno-p">FALTAS</span></th> 
-            <th class="coluna-tab-p" colspan="1"><span class="t-vert">10ª Classe</span></th>
-            <th class="coluna-tab-p"><span class="t-vert">MT1</span></th>
-            <th class="coluna-tab-p"><span class="t-vert">MT2</span></th>
-            <th class="coluna-tab-p"><span class="t-vert">MT3</span></th>
-            <th class="c-tab-amarelo coluna-tab-p"><span class="t-vert">CFD</span></th>
-            <th class="coluna-tab-p"><span class="t-vert">EXAMES</span></th>
-            <th class="coluna-tab-p"><span class="t-vert-falta-aluno-p">FALTAS</span></th> 
-            
+            <th class="coluna-tab-p"><span class="t-vert-falta-aluno-p">FALTAS</span></th>            
           </tr>
+          
+          
+        @foreach ($alunos as $aluno)
              
           <tr class="linha-tab-p">
-            <td class="coluna-tab-p"colspan="1">
-              <span class="num-aluno-p">38</span>
-            </td>
-            <td class="coluna-tab-p"colspan="1">
-              <span class="nome-aluno-p">Márcio Celestino Manuel Miguel</span>
+            <td class="coluna-tab-p">
+              <span class="num-aluno-p">{{$loop->index+1}}</span>
             </td>
             <td class="coluna-tab-p">
-              <span class="num-proc-p"colspan="1">38263</span>
+              <span class="nome-aluno-p">{{$aluno->candidato->pessoa->nome_completo}}</span>
+            </td>
+            <td class="coluna-tab-p">
+              <span class="num-proc-p">{{$aluno->aluno_id}}</span>
             </td>   
             
-           
-            <td class="nota coluna-tab-p"colspan="1"><span class="nota-pos">13</span></td>
-            <td class="nota coluna-tab-p"colspan="1"><span class="nota-pos">19</span></td>
-            <td class="nota coluna-tab-p"colspan="1"><span class="nota-12">4</span></td>
-            <td class="nota coluna-tab-p"colspan="1"><span class="nota-pos">14</span></td>
-            <td class="nota c-tab-amarelo coluna-tab-p"colspan="1"><span class="nota-pos">15</span></td>
-            <td class="nota coluna-tab-p"colspan="1"><span class="nota-pos">16</span></td>
             
-            <td class="nota c-tab-sinza-esq coluna-tab-p"colspan="1">
-              <span>
-                
-              </span>
-            </td>
-            
-
-           
-            
-            <td class="nota coluna-tab-p"colspan="1"><span class="nota-pos">13</span></td>
-            <td class="nota coluna-tab-p"colspan="1"><span class="nota-pos">19</span></td>
-            <td class="nota coluna-tab-p"colspan="1"><span class="nota-12">4</span></td>
-            <td class="nota coluna-tab-p"colspan="1"><span class="nota-pos">14</span></td>
-            <td class="nota c-tab-amarelo coluna-tab-p"colspan="1"><span class="nota-pos">15</span></td>
-            <td class="nota coluna-tab-p"colspan="1"><span class="nota-pos">16</span></td>
-            
-            <td class="nota c-tab-sinza-esq coluna-tab-p"colspan="1">
-              <span>
-                
-              </span>
-            </td>
-            
-            <td class="nota coluna-tab-p" colspan="1"><span class="nota-pos">13</span></td>
-            <td class="nota coluna-tab-p" colspan="1"><span class="nota-pos">12</span></td>
-            <td class="nota coluna-tab-p"colspan="1"><span class="nota-neg">9</span></td>
-            <td class="nota coluna-tab-p"colspan="1"><span class="nota-neg">8</span></td>
+            <td class="nota coluna-tab-p"><span class="nota-pos">14</span></td>
+            <td class="nota coluna-tab-p"><span class="nota-pos">12</span></td>
+            <td class="nota coluna-tab-p"><span class="nota-pos">14</span></td>
+            <td class="nota coluna-tab-p"><span class="nota-pos">9</span></td>
             <td class="nota c-tab-amarelo coluna-tab-p"><span class="nota-pos">18</span></td>
-            <td class="nota coluna-tab-p"colspan="1"><span class="nota-pos">19</span></td>
+            <td class="nota coluna-tab-p"><span class="nota-pos">19</span></td>
             
-            <td class="nota c-tab-sinza-esq coluna-tab-p" colspan="1">
+            <td class="nota c-tab-sinza-esq coluna-tab-p">
               <span>
                 
               </span>
-            </td> 
-
-
-            <td class="nota coluna-tab-p" colspan="1"><span class="nota-pos">14</span></td>
-            <td class="nota coluna-tab-p" colspan="1"><span class="nota-pos">12</span></td>
-            <td class="nota coluna-tab-p" colspan="1"><span class="nota-neg">9</span></td>
-            <td class="nota coluna-tab-p" colspan="1"><span class="nota-neg">8</span></td>
-            <td class="nota c-tab-amarelo coluna-tab-p" colspan="1"><span class="nota-pos">18</span></td>
-            <td class="nota coluna-tab-p" colspan="1"><span class="nota-pos">19</span></td> 
+            </td>
             
-            <td class="nota c-tab-sinza-esq coluna-tab-p"colspan="1">
+            <td class="nota coluna-tab-p"><span class="nota-pos">13</span></td>
+            <td class="nota coluna-tab-p"><span class="nota-pos">19</span></td>
+            <td class="nota coluna-tab-p"><span class="nota-12">4</span></td>
+            <td class="nota coluna-tab-p"><span class="nota-pos">14</span></td>
+            <td class="nota c-tab-amarelo coluna-tab-p"><span class="nota-pos">15</span></td>
+            <td class="nota coluna-tab-p"><span class="nota-pos">16</span></td>
+            
+            <td class="nota c-tab-sinza-esq coluna-tab-p">
               <span>
                 
               </span>
-            </td> 
+            </td>
             
-            <td class="nota coluna-tab-p"><span class="nota-neg"colspan="1"></span></td>
-            <td class="nota coluna-tab-p"><span class="nota-pos"colspan="1">TRANSITA</span></td>
+            <td class="nota coluna-tab-p"><span class="nota-pos">14</span></td>
+            <td class="nota coluna-tab-p"><span class="nota-pos">12</span></td>
+            <td class="nota coluna-tab-p"><span class="nota-neg">9</span></td>
+            <td class="nota coluna-tab-p"><span class="nota-neg">8</span></td>
+            <td class="nota c-tab-amarelo coluna-tab-p"><span class="nota-pos">18</span></td>
+            <td class="nota coluna-tab-p"><span class="nota-pos">19</span></td>
             
+            <td class="nota c-tab-sinza-esq coluna-tab-p">
+              <span>
+                
+              </span>
+            </td>            
+            
+            <td class="nota coluna-tab-p"><span class="nota-neg"></span></td>
+            <td class="nota coluna-tab-p"><span class="nota-pos">TRANSITA</span></td>
+            <td class="nota coluna-tab-p">1</td>
           </tr>
-      
+        @endforeach
        
 
           <!--Rodape da pauta-->
@@ -259,9 +236,6 @@
               O COORDENADOR DA AREA DE FORMAÇÃO
 
             </th>
-            <th></th>
-            <th class="c-tab-sinza coluna-tab-p" colspan="5">Iº Trimestre</th>
-            <th></th>
             <th></th>
             <th class="c-tab-sinza coluna-tab-p" colspan="5">Iº Trimestre</th>
             <th></th>
@@ -285,10 +259,6 @@
             <th class="coluna-tab-p" colspan="2" style="text-align: left;">C/APROV</th>
             <th class="coluna-tab-p" colspan="3" style="text-align: left;">S/APROV</th>
             <th></th>
-            <th></th>
-            <th class="coluna-tab-p" colspan="2" style="text-align: left;">C/APROV</th>
-            <th class="coluna-tab-p" colspan="3" style="text-align: left;">S/APROV</th>
-            <th></th>
 
             <th></th>
             <th class="coluna-tab-p" colspan="2" style="text-align: left;">C/APROV</th>
@@ -303,12 +273,6 @@
           </tr>
 
           <tr>
-            <th></th>
-            <th class="coluna-tab-p">MF</th>
-            <th class="coluna-tab-p">F</th>
-            <th class="coluna-tab-p" colspan="2">MF</th>
-            <th class="coluna-tab-p">F</th>
-            <th></th>
             <th></th>
             <th class="coluna-tab-p">MF</th>
             <th class="coluna-tab-p">F</th>
@@ -334,13 +298,6 @@
 
           <tr>
             <th colspan="3"></th>
-
-            <th></th>
-            <th class="coluna-tab-p">0</th>
-            <th class="coluna-tab-p">0</th>
-            <th class="coluna-tab-p" colspan="2">0</th>
-            <th class="coluna-tab-p">0</th>
-            <th></th>
 
             <th></th>
             <th class="coluna-tab-p">0</th>
@@ -378,24 +335,15 @@
 
             <th></th>
             <th class="c-tab-sinza coluna-tab-p" colspan="5">IIº Trimestre</th>
-            <th></th>  
-            
-            <th></th>
-            <th class="c-tab-sinza coluna-tab-p" colspan="5">IIº Trimestre</th>
-            <th></th> 
+            <th></th>     
 
-            <th colspan="4">              
+            <th colspan="3">              
               DOMINGOS AGOSTINHO
             </th> 
           </tr>
 
           <tr>
             <th colspan="3" rowspan="3"></th>
-            <th></th>
-            <th class="coluna-tab-p" colspan="2" style="text-align: left;">C/APROV</th>
-            <th class="coluna-tab-p" colspan="3" style="text-align: left;">S/APROV</th>
-            <th></th>
-
             <th></th>
             <th class="coluna-tab-p" colspan="2" style="text-align: left;">C/APROV</th>
             <th class="coluna-tab-p" colspan="3" style="text-align: left;">S/APROV</th>
@@ -428,13 +376,6 @@
             <th class="coluna-tab-p" colspan="2">MF</th>
             <th class="coluna-tab-p">F</th>
             <th></th>
-            <th></th>
-            <th class="coluna-tab-p">MF</th>
-            <th class="coluna-tab-p">F</th>
-            <th class="coluna-tab-p" colspan="2">MF</th>
-            <th class="coluna-tab-p">F</th>
-            <th></th>
-
 
             <th></th>
             <th class="coluna-tab-p">MF</th>
@@ -460,13 +401,6 @@
             <th class="coluna-tab-p">0</th>
             <th></th>
             
-            <th></th>
-            <th class="coluna-tab-p">0</th>
-            <th class="coluna-tab-p">0</th>
-            <th class="coluna-tab-p" colspan="2">0</th>
-            <th class="coluna-tab-p">0</th>
-            <th></th>
-
             <th></th>
             <th class="coluna-tab-p">0</th>
             <th class="coluna-tab-p">0</th>
@@ -490,11 +424,7 @@
 
             <th></th>
             <th class="c-tab-sinza coluna-tab-p" colspan="5">IIIº Trimestre</th>
-            <th></th> 
-            
-            <th></th>
-            <th class="c-tab-sinza coluna-tab-p" colspan="5">IIIº Trimestre</th>
-            <th></th>  
+            <th></th>      
           </tr>
 
           <tr>
@@ -512,21 +442,10 @@
             <th class="coluna-tab-p" colspan="2" style="text-align: left;">C/APROV</th>
             <th class="coluna-tab-p" colspan="3" style="text-align: left;">S/APROV</th>
             <th></th>
-            <th></th>
-            <th class="coluna-tab-p" colspan="2" style="text-align: left;">C/APROV</th>
-            <th class="coluna-tab-p" colspan="3" style="text-align: left;">S/APROV</th>
-            <th></th>
 
           </tr>
 
           <tr>
-            <th></th>
-            <th class="coluna-tab-p">MF</th>
-            <th class="coluna-tab-p">F</th>
-            <th class="coluna-tab-p" colspan="2">MF</th>
-            <th class="coluna-tab-p">F</th>
-            <th></th>
-
             <th></th>
             <th class="coluna-tab-p">MF</th>
             <th class="coluna-tab-p">F</th>
@@ -558,12 +477,6 @@
             <th class="coluna-tab-p">0</th>
             <th></th>
 
-            <th></th>
-            <th class="coluna-tab-p">0</th>
-            <th class="coluna-tab-p">0</th>
-            <th class="coluna-tab-p" colspan="2">0</th>
-            <th class="coluna-tab-p">0</th>
-            <th></th>
             <th></th>
             <th class="coluna-tab-p">0</th>
             <th class="coluna-tab-p">0</th>
@@ -591,9 +504,6 @@
             <th class="coluna-tab-p" colspan="5" style="padding: 20px;"></th>
             <th></th>
 
-            <th></th>
-            <th class="coluna-tab-p" colspan="5" style="padding: 20px;"></th>
-            <th></th>
             <th></th>
             <th class="coluna-tab-p" colspan="5" style="padding: 20px;"></th>
             <th></th>
@@ -614,9 +524,6 @@
             <th class="coluna-tab-p" colspan="5">Margarida Francisco</th>
             <th></th>
 
-            <th></th>
-            <th class="coluna-tab-p" colspan="5">Lucia Diambote</th>
-            <th></th>
             <th></th>
             <th class="coluna-tab-p" colspan="5">Lucia Diambote</th>
             <th></th>
