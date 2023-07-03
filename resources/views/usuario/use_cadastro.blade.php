@@ -39,13 +39,13 @@
           
           <div class="row">
             <div class="col">
-                 <input type="text" style=" text-align: center;" placeholder="Primeiro Nome" value="{{old('nome')}}" name="nome" oninput="this.className = ''">
+                 <input type="text" style=" text-align: center;" id="letra" placeholder="Primeiro Nome" value="{{old('nome')}}" name="nome" oninput="this.className = ''">
             </div>
             @error('nome')
               <div class="alert alert-danger">{{$message}}</div>
             @enderror
             <div class="col">
-                 <input type="text" style=" text-align: center;" placeholder="Ultimo Nome" value="{{old('sobre_nome')}}" name="sobre_nome"  oninput="this.className = ''">
+                 <input type="text" style=" text-align: center;" id="letra" placeholder="Ultimo Nome" value="{{old('sobre_nome')}}" name="sobre_nome"  oninput="this.className = ''">
              </div>
              @error('sobre_nome')
               <div class="alert alert-danger">{{$message}}</div>
@@ -61,15 +61,15 @@
                 @enderror
              </div>
             <div class="col-5">
-                 <input type="date" id="datainput" class="form-control" style=" text-align: start;" placeholder="" name="data_nascimento" value="{{old('data_nascimento')}}" oninput="this.className = ''" >
-                 <div id="mensagem" style="color: red;"></div>
+                 <input type="date" id="datainput10" class="form-control" style=" text-align: start;" placeholder="" name="data_nascimento" value="{{old('data_nascimento')}}" oninput="this.className = ''" >
+                 <div id="mensagem10" style="color: red;"></div>
              </div>
              @error('data_nascimento')
               <div class="alert alert-danger">{{$message}}</div>
              @enderror
              <div class="col">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="idadeinput" style="text-align: center;" readonly="true" disabled oninput="this.className = ''" value="00">
+                  <input type="text" class="form-control" id="idadeinput10" style="text-align: center;" readonly="true" disabled oninput="this.className = ''" value="00">
                 </div> 
               </div>
           </div>

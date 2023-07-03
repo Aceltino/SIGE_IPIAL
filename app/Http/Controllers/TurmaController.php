@@ -54,42 +54,40 @@ class TurmaController extends Controller
         {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
-        // $abreNome = substr($request['nome_completo'], $posicao,2);
+        
         $curso = CursoController::pegarCurso(intval($request->curso));
         $turno = TurnoController::pegarTurno(intval($request->turno));
-        dd($turno);
         $turnoSigla =  substr($turno->nome_turno, 0, 1);
 
-         $dadosTurma = [
+        $dadosTurma = [
             'turno' => intval($request->turno),
             'curso' => intval($request->curso),
             'classe' => 1,
         ];
-
         $turmas = $this->pegarTurma((object) $dadosTurma); 
 
-        if(!$turmas || isEmpty($turmas)) //Considerando que não existe uma turma com estes dados acima
+        if($turmas)
         {
-            // dd($dadosTurma);
-            dd($turnoSigla);
-            $turmaNome = $curso->sigla.'10'.'A'.$turnoSigla;
-            dd($turmaNome);
-            criarTurma:
-            $cadTurma = [
-                'nome_turma' => $turmaNome,
-                'classe_id' => $dadosTurma['classe'],
-                'curso_id' => $dadosTurma['curso'],
-                'turno_id' => $dadosTurma['turno'],
-            ];
-            $turmaCadastrada = $this->store($cadTurma);
-            $turmaId = $turmaCadastrada->turma_id;
-            goto turmaAno;
-        }
-        
+            $contTurma = count($turmas);
+            $turmaIndice = $contTurma - 1;
+            if($turmaIndice < 0 )
+            {
+                goto criarTurma0;
+            }
+            $nome_turma = $turmas[$turmaIndice];
 
-// dd($turmas);
-// dd($turmas);
+            $penultima_posicao = substr($nome_turma->nome_turma, -2, 1);
+            $penultima_posicao++;
+
+            $turmaNome = $curso->sigla.'10'.$penultima_posicao.$turnoSigla;
+            goto criarTurma;
+        }
+
+        criarTurma0:
+        $turmaNome = $curso->sigla.'10'.'A'.$turnoSigla; //Considerando que não existe uma turma com estes dados acima
+        goto criarTurma;
+
+        
         foreach($turmas as $turma) 
         {
             $tumas[] = $turma->turma_id;
@@ -110,21 +108,16 @@ class TurmaController extends Controller
         $penultima_posicao++;
 
         $turmaNome = $curso->sigla.'10'.$penultima_posicao.$turnoSigla;
-        goto criarTurma;
- 
-        if(!$turma)
-        {
-            dd('Sem turma');
-        }
-        // dd($turma);
 
-        $letraInicial = 'A';
-
-        // for ($letra = $letraInicial; $letra <= 'D'; $letra++) {
-        //     $resultado = $curso->sigla.'10'.$letra.$turnoSigla;
-        //     echo $resultado . "\n";
-        // }
-        dd('x');
+        criarTurma:
+            $cadTurma = [
+                'nome_turma' => $turmaNome,
+                'classe_id' => $dadosTurma['classe'],
+                'curso_id' => $dadosTurma['curso'],
+                'turno_id' => $dadosTurma['turno'],
+            ];
+            $turmaCadastrada = $this->store($cadTurma);
+            $turmaId = $turmaCadastrada->turma_id;
 
         turmaAno:
         $anoLectivo = AnoLectivoController::pegarAnoLectivo(AnoLectivoController::pegarIdAnoLectivo());
