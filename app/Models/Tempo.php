@@ -10,4 +10,8 @@ class Tempo extends Model
     use HasFactory;
     protected $table = 'tempos';
     protected $primaryKey = 'tempo_id';
+
+    public function hora(){
+        return $this->hasOne(Hora::class, 'hora_id');
+    }
 }

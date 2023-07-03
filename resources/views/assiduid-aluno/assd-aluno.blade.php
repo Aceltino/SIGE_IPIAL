@@ -4,6 +4,7 @@
 
 @section('conteudo')
 <main id="main" class="main">
+    {{dd($cursos)}}
     @if (session()->has('erro'))
     <div class="alert alert-danger">
         {{session('erro')}}
@@ -119,7 +120,6 @@
   </table>
   </div>
   <!-- Termina a tabela -->
-
   @foreach ($alunos as $chave1 => $valor1)
 
   @foreach ($valor1 as $chave2 => $valor2)
@@ -127,7 +127,7 @@
       @foreach ($valor2 as $chave3 => $valor3)
 
     <!-- Início da Modal -->
-    <form method="POST" action="{{route('marcar.falta', [$valor3['aluno_id'], $valor3['disciplina_id']])}}">
+    <form method="POST" action="{{route('marcar.falta', [$valor3['aluno_id'], $valor3['disciplina_id'], $valor3['turma_id'], $professor[$chave1]['professor_disciplina_id']])}}">
         @csrf
       <div class="modal" id="modal_assiduidade{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}" tabindex="-1" data-bs-backdrop="false" >
           <div class="modal-dialog">
