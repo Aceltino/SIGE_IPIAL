@@ -1,0 +1,46 @@
+@media print{
+    .no-print, .footer, .header, .back-to-top{
+      display: none;
+    }
+  
+  }
+  
+  .processo-al{
+      color: #000;
+  }
+  
+  .processo-al img{
+      width: 150px;
+      margin-bottom: 15px; 
+      border-radius: 10px;
+      margin: auto;
+  }
+  
+  .processo-al h3{
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #012970;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .processo-al h4, h5 {
+      font-size: 18px;
+  }
+  
+  .processo-al h4 {
+      color: #a1a1a1;
+      font-weight: 400;
+  }
+  
+  .processo-al h5 {
+      text-transform: uppercase;
+      font-weight: 500;
+      color: #696969;
+  }
+  
+  .processo-al .area-dado-pessoal{
+	display: flex; justify-content: flex-start; align-items: center; gap: 5px;
+}
+
+  
