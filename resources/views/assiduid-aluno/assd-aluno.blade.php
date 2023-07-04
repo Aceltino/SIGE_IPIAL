@@ -4,6 +4,7 @@
 
 @section('conteudo')
 <main id="main" class="main">
+
     @if (session()->has('erro'))
     <div class="alert alert-danger">
       <i class="bi bi-exclamation-octagon me-1"></i>
@@ -118,6 +119,7 @@
   </table>
   </div>
   <!-- Termina a tabela -->
+
   @foreach ($alunos as $chave1 => $valor1)
 
   @foreach ($valor1 as $chave2 => $valor2)
@@ -247,7 +249,6 @@
   @endforeach
 @endforeach
  <!-- Início da Modal Falta Materiais FIM -->
-
 @endif
 </main>
 @endsection

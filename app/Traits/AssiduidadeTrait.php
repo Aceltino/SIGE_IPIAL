@@ -98,7 +98,7 @@ trait AssiduidadeTrait
 
     public static function pegarTempo($assiduidade){
         for($i = 0; $i < count($assiduidade); $i++){
-            $hora_falta = new Carbon($assiduidade[$i]->created_at);
+            $hora_falta = new Carbon($assiduidade[$i]->data_hora);
             $hora_tempo = Hora::with('tempo')->get();
             for ($j = 0; $j < count($hora_tempo); $j++) {
                 $h_falta = strtotime($hora_falta->toTimeString());
@@ -110,17 +110,6 @@ trait AssiduidadeTrait
             }
         }
         return $tempo;
-    }
-
-    public static function limiteFaltas($aluno_id, $disciplina_id, $tot_tempo){
-        $trimestre = AvaliacaoTrait::pegarTrimestre();
-        $faltas = Assiduidade_aluno::where('$aluno_id', $aluno_id)
-        ->where('disciplina_id', $disciplina_id)
-        ->where('id_trimestre', $trimestre[0]->trimestre_id)->get();
-        dd($faltas);
-        for($i = 0; $i < count($faltas); $i++){
-            $faltas[$i]->criated_at;
-        }
     }
 
     public static function pegarTempoFalta($turma_id, $professor_disciplina_id){

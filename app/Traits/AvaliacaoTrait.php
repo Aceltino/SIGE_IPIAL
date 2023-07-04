@@ -226,6 +226,7 @@ trait AvaliacaoTrait
         ->get();
         for ($i = 0; $i < count($prof_disc); $i++) {
             $dados[$i] = [
+                'professor_disciplina_id' => $prof_disc[$i]->disc_professor_id,
                 'nome_disciplina' =>  $prof_disc[$i]->disciplina->nome_disciplina,
                 'disciplina_id' => $prof_disc[$i]->disciplina->disciplina_id,
             ];
@@ -247,14 +248,17 @@ trait AvaliacaoTrait
         $prof_disc = Professor_disciplina::with('turmaProf.curso', 'disciplina')
         ->where('ano_lectivo_id', $ano_lectivo[0]->ano_lectivo_id)
         ->get();
+
         //dd($prof_disc->toArray());
         for ($i = 0; $i < count($prof_disc); $i++) {
             for ($j = 0; $j < count($prof_disc[$i]->turmaProf); $j++) {
                 if($prof_disc[$i]->turmaProf[$j]->curso->curso_id === $coordenador[0]->curso_id){
                     $dados[$i] = [
+                        'professor_disciplina_id' => $prof_disc[$i]->disc_professor_id,
                         'nome_disciplina' =>  $prof_disc[$i]->disciplina->nome_disciplina,
                         'disciplina_id' => $prof_disc[$i]->disciplina->disciplina_id,
                     ];
+
                     $dados[$i][$j] = [
                         'turma_id' => $prof_disc[$i]->turmaProf[$j]->turma_id,
                         'nome_turma' => $prof_disc[$i]->turmaProf[$j]->nome_turma,
