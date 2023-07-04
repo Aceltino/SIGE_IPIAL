@@ -14,4 +14,8 @@ class Turno extends Model
         'created_at',
         'updated_at',
     ];
+    public function calendarios() 
+    {
+        return $this->hasMany(CalendarioProva::class, 'calendario_id');
+    }
 }

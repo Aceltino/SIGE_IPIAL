@@ -11,7 +11,7 @@ use App\Http\Controllers\{
     PerfilUserController,ProcessoController,
     DisciplinasController, AdmissaoController,
     AlunoTurmaController,
-    TurmaController,
+    TurmaController, CalendarioController,
 };
 
 /*
@@ -355,19 +355,14 @@ Route::prefix('usuario')->middleware(['auth','checkcargo','active.session'])->gr
 /* Calendario de provas*/
 Route::prefix('calend-prova')->group(function(){
 
-    Route::get('calend-prova', function(){
-        return view('calend-prova/calendario-prova');
-    });
-
-    Route::get('cri-calend-prov', function(){
-        return view('calend-prova/cri-calend-prov');
-    });
+    Route::get('calend-prova',[CalendarioController::class,'index'])->name('consultar.calendario');
+    Route::get('cri-calend-prov',[CalendarioController::class, 'create'])->name('criar.calendario');
     Route::get('edit-calend-prova', function(){
         return view('calend-prova/edit-calend-prova');
-    });
+    })->name('editar.calendario');
 });
 
-
+ 
 /******************************************
  * Rotas da Assiduidade de Aluno
  */
@@ -445,7 +440,7 @@ Route::prefix('disciplina')->middleware(['auth','active.session','checkcargo'])-
         Route::get('disciplinas', [DisciplinasController::class,'index'])->name('consultar.disciplina');
         Route::get('regi-disciplina',[DisciplinasController::class, 'create'])->name('criar.disciplina');
         Route::post('regi-disciplina', [DisciplinasController::class, 'store'])->name('disciplina.store');
-        Route::get('edit-disciplina', [DisciplinasController::class, 'edit'])->where('disciplina_id','[0-9]+')->name('disciplina.edit');
+        Route::get('edit-disciplina/{disciplina_id}', [DisciplinasController::class, 'edit'])->where('disciplina_id','[0-9]+')->name('disciplina.edit');
         Route::put('{disciplina_id}', [DisciplinasController::class, 'update'])->where('disciplina_id', '[0-9]+')->name('disciplina.update');
         Route::delete('{disciplina_id}', [DisciplinasController::class, 'destroy'])->where('disciplina_id', '[0-9]+')->name('disciplina.delete');
 });
