@@ -43,9 +43,9 @@
                 <div class="col form-group gap-1 ">
                     <select name="turno" id="turnoSelect" oninput="this.className = ''" class="form-select">
                         <option selected disabled>Turno:</option>
-                        @foreach($turnos as $turno)
-                        <option value="{{ $turno->turno_id }}">{{ $turno->nome_turno }}</option>
-                        @endforeach
+                        <option value="1">Manhã</option>
+                        <option value="2">Tarde</option>
+                        <option value="3">Noite</option>
                     </select>
                 </div>
             </div>

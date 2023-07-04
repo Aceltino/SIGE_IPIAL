@@ -4,6 +4,7 @@
 
 @section('conteudo')
 <main id="main" class="main">
+    {{dd($cursos)}}
     @if (session()->has('erro'))
     <div class="alert alert-danger">
       <i class="bi bi-exclamation-octagon me-1"></i>
@@ -168,7 +169,7 @@
      @foreach ($valor2 as $chave3 => $valor3)
 
    <!-- Início da Modal -->
-   <form method="POST" action="{{route('marcar.falta', [$valor3['aluno_id'], $valor3['disciplina_id']])}}">
+   <form method="POST" action="{{route('marcar.falta', [$valor3['aluno_id'], $valor3['disciplina_id'], $valor3['turma_id'], $professor[$chave1]['professor_disciplina_id']])}}">
        @csrf
      <div class="modal" id="modal_assiduidadee{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}" tabindex="-1" data-bs-backdrop="false" >
          <div class="modal-dialog">
@@ -213,7 +214,7 @@
 
       @foreach ($valor2 as $chave3 => $valor3)
 
-    <form method="POST" action="{{route('marcar.falta', [$valor3['aluno_id'], $valor3['disciplina_id']])}}">
+    <form method="POST" action="{{route('marcar.falta', [$valor3['aluno_id'], $valor3['disciplina_id'], $valor3['turma_id'], $professor[$chave1]['professor_disciplina_id']])}}">
         @csrf
       <div class="modal" id="modal_assiduidadeee{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}" tabindex="-1" data-bs-backdrop="false" >
           <div class="modal-dialog">

@@ -101,33 +101,33 @@
                         <td>{{$valor3['nome']}}</td>
 
                         @if ($valor3['mac']<10)
-                        <td style="color: rgb(190, 14, 14)">{{$valor3['mac']}}</td>
+                        <td style="color: rgb(255, 8, 8)">{{$valor3['mac']}}</td>
                         @else
-                        <td style="color: rgb(7, 7, 129)">{{$valor3['mac']}}</td>
+                        <td style="color: rgb(10, 10, 255)">{{$valor3['mac']}}</td>
                         @endif
 
                         @if ($valor3['npp']<10)
-                        <td style="color: rgb(190, 14, 14)">{{$valor3['npp']}}</td>
+                        <td style="color: rgb(255, 8, 8)">{{$valor3['npp']}}</td>
                         @else
-                        <td style="color: rgb(7, 7, 129)">{{$valor3['npp']}}</td>
+                        <td style="color: rgb(10, 10, 255)">{{$valor3['npp']}}</td>
                         @endif
 
                         @if ($valor3['npt']<10)
-                        <td  style="color: rgb(190, 14, 14)">{{$valor3['npt']}}</td>
+                        <td style="color: rgb(255, 8, 8)">{{$valor3['npt']}}</td>
                         @else
-                        <td style="color: rgb(7, 7, 129)">{{$valor3['npt']}}</td>
+                        <td style="color: rgb(10, 10, 255)">{{$valor3['npt']}}</td>
                         @endif
 
                         @if ($valor3['exame']<10)
-                        <td style="color: rgb(190, 14, 14)">{{$valor3['exame']}}</td>
+                        <td style="color: rgb(255, 8, 8)">{{$valor3['exame']}}</td>
                         @else
-                        <td style="color: rgb(7, 7, 129)">{{$valor3['exame']}}</td>
+                        <td style="color: rgb(10, 10, 255)">{{$valor3['exame']}}</td>
                         @endif
 
                         @if ($valor3['exame_recurso']<10)
-                        <td style="color: rgb(190, 14, 14)">{{$valor3['exame_recurso']}}</td>
+                        <td style="color: rgb(255, 8, 8)">{{$valor3['exame_recurso']}}</td>
                         @else
-                        <td style="color: rgb(7, 7, 129)">{{$valor3['exame_recurso']}}</td>
+                        <td style="color: rgb(10, 10, 255)">{{$valor3['exame_recurso']}}</td>
                         @endif
 
                         <td style="text-align: center">
