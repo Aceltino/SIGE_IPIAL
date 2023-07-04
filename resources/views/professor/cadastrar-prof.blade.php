@@ -9,7 +9,7 @@
         <div style="text-align:center;margin-top:40px;">
           <span class="step"></span>
           <span class="step"></span>
-          <!-- <span class="step"></span> -->
+          <span class="step"></span>
         </div>
  
         <div class="tab">
@@ -28,13 +28,15 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                  <input name='nome_completo' type="text" class="input-sm" placeholder="Nome Completo do professor" name="" oninput="this.className = ''">
+                  <input name='nome_completo' type="text" class="input-sm" placeholder="Nome Completo do professor" id="nome-completo-do-professor-input" oninput="this.className = ''" minlength="3" maxlength="70">
+                  <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-do-nome-completo-do-professor"></p>
               </div>
             </div>
 
             <div class="col-md-6">
               <div class="form-group">
-                <input name='formacao' type="text" class="input-sm" placeholder="Formação do professor" oninput="this.className = ''">
+                <input name='formacao' type="text" class="input-sm" placeholder="Formação do professor" id="formacao-do-professor-input" oninput="this.className = ''" minlength="3" maxlength="70">
+                <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-formacao-do-professor"></p>
               </div>
             </div>
           </div>
@@ -42,19 +44,21 @@
           <div class="row">
             <div class="col-md-5">
               <div class="form-group">
-                <input name='num_bi' type="text" placeholder="Número do bilhete de identidade" oninput="this.className = ''">
+                <input name='num_bi' type="text" placeholder="Número do bilhete de identidade" id="numero-do-bilhete-do-professor-input" oninput="this.className = ''" minlength="14" maxlength="14">
+                <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-do-numero-do-bilhete-do-professor"></p>
               </div>
             </div>
 
             <div class="col-md-5">
               <div class="form-group">
-                <input name='data_nascimento' type="date" oninput="this.className = ''">
+                <input name='data_nascimento' type="date" id="data-de-nascimento-do-professor-input" oninput="this.className = ''">
+                <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-data-de-nascimento-do-professor"></p>
               </div> 
             </div>
 
             <div class="col-md-2">
               <div class="form-group">
-                <input type="text" class="form-control" readonly="true" disabled oninput="this.className = ''" value="00">
+                <input type="text" class="form-control" readonly="true" id="idade-do-professor-input" disabled oninput="this.className = ''" value="00">
               </div> 
             </div>
           </div>
@@ -64,7 +68,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label class="me-3">Sexo:</label>
-                <input type="radio" id="masculino" name="genero" value="Masculino" {{ old('genero') == 'Masculino' ? 'checked' : '' }}>
+                <input type="radio" id="masculino" name="genero" value="Masculino" {{ old('genero') == 'Masculino' ? 'checked' : '' }} checked>
                 <label for="masculino" class="me-2"> Masculino</label>
                 <input type="radio" id="feminino" name="genero" value="Femenino" {{ old('genero') == 'Femenino' ? 'checked' : '' }}>
                 <label for="feminino"> Feminino</label>
@@ -74,22 +78,26 @@
             <div class="col-md-8" style=" display: flex; justify-content: flex-end;align-items: center; gap: 10px;">
             <h5>Endereço</h5>
               <div class="form-group">
-                <input name='municipio' type="text" placeholder="Municipio" required='false' oninput="this.className = ''">
+                <input name='municipio' type="text" placeholder="Municipio">
               </div> 
               <div class="form-group">
-                <input name='bairro' type="text" placeholder="Bairro" required='false' oninput="this.className = ''">
+                <input name='bairro' type="text" placeholder="Bairro">
               </div> 
               <div class="form-group">
-                <input name='zona' type="text" placeholder="Zona" required='false' oninput="this.className = ''">
+                <input name='zona' type="text" placeholder="Zona">
               </div> 
               <div class="form-group">
-                <input name='numero_casa' type="text" placeholder="Nº Casa" required='false' oninput="this.className = ''">
+                <input name='numero_casa' type="number" placeholder="Nº Casa">
               </div> 
             </div>
           </div>
 
           <div class="row">
             <div id="clone1"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
+              <span style="color: #777;">+244</span>
+              <input name='num_tel' type="text" name="" placeholder="Telefone" id="contacto-telefonico-do-professor-input" oninput="this.className = ''" minlength="9" maxlength="9">
+              <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-do-contacto-telefone-do-professor"></p>
+            </div>
                 <span style="color: #777;">+244</span>
                 <input name='num_tel' type="text" placeholder="Telefone" oninput="this.className = ''">
               </div>
@@ -137,13 +145,13 @@
               </select>
             </div>
 
-            <div class="form-group col-12 mb-3 w-100">
+            <!--<div class="form-group col-12 mb-3 w-100">
               <input type="number" placeholder="Quantidade de disciplinas" id="quantidade-de-disciplinas" min="1" value="1" max="4" required='false'>
-            </div>
+            </div>-->
           </div>
         </div>
 
-        <!--<div class="tab">
+        <div class="tab">
           <h2 class="text-uppercase text-center my-3 color-blue-principal">informações importantes para o instituto</h2>
 
           <div class="form-group col">
@@ -179,9 +187,10 @@
           </div>
 
           <div class="form-group">
-            <input type="email" placeholder="E-mail do professor" oninput="this.className = ''">
+            <input type="email" placeholder="E-mail do professor" id="email-do-professor-input" oninput="this.className = ''" minlength="10" maxlength="40">
+            <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-do-email-do-professor"></p>
           </div>
-        </div> -->
+        </div>
 
         <div style="text-align:center;margin-top:40px;">
           <div>
@@ -190,7 +199,6 @@
           </div>
         </div>
       </form>
-
 
     </main>
 @endsection
