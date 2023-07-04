@@ -47,6 +47,10 @@ class Curso extends Model
     {
         return $this->hasMany(Disciplina::class, 'disciplina_id');
     }
+    public function calendarios() 
+    {
+        return $this->hasMany(CalendarioProva::class, 'calendario_id');
+    }
 
 
 }

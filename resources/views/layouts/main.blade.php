@@ -69,6 +69,7 @@
   <script src={{{URL::asset("js/paineis/inscricacao/Inputbi.js")}}}></script>
   <script src={{{URL::asset("js/paineis/inscricacao/selectcurso.js")}}}></script>
   <script src={{{URL::asset("js/paineis/inscricacao/inputidade.js")}}}></script>
+  <script src={{{URL::asset("js/paineis/inscricacao/inputnome.js")}}}></script>
   <script src={{{URL::asset("js/paineis/telefone.js")}}}></script>
   <script src={{{URL::asset("js/paineis/disciplina/disciplina.js")}}}></script>
   <script src={{{URL::asset("js/paineis/curso/curso.js")}}}></script>
@@ -77,6 +78,7 @@
   <script src={{{URL::asset("js/paineis/perfil/perfil.js")}}}></script>
   <script src={{{URL::asset("js/paineis/ano-lectivo/criar-ano-lectivo.js")}}}></script>
   <script src={{{URL::asset("js/paineis/professor/professor.js")}}}></script>
+  <script src={{{URL::asset("js/paineis/letrasc.js")}}}></script>
   <script src={{{URL::asset("js/paineis/registrar-aluno/registrar-aluno.js")}}}></script>
   
   

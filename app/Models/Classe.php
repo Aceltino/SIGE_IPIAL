@@ -27,4 +27,8 @@ class Classe extends Model
     {
         return $this->hasMany(Turma::class, 'classe_id', 'turma_id');
     }
+    public function calendarios() 
+    {
+        return $this->hasMany(CalendarioProva::class, 'calendario_id');
+    }
 }

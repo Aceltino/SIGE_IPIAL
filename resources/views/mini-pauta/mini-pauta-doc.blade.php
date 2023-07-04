@@ -234,13 +234,17 @@
                 {{ $aluno->aluno->candidato->pessoa->nome_completo }}
             @endforeach--}}
 
+            @php
+                $m = 0; // Genero Masculino
+                $f = 0; // Genero Feminino
+            @endphp
             @foreach($alunos as $aluno)
                 <tr class="linha-tab-mp">
                     {{-- Posicao na lista --}}
                     <td class="coluna-tab-mp">{{ $aluno->numero_aluno }}</td>
 
                     <td class="sm-cor"></td>
-                    <td class="coluna-tab-mp" style="font-size: 11pt;">{{ $aluno->aluno->candidato->pessoa->nome_completo }} - id: {{ $aluno->aluno->aluno_id }}</td>
+                    <td class="coluna-tab-mp" style="font-size: 11pt;">{{ $aluno->aluno->candidato->pessoa->nome_completo }}</td>
 
                     {{-- Idade --}}
                     <td class="coluna-tab-mp">
@@ -249,7 +253,12 @@
 
                     {{-- Genero --}}
                     <td class="coluna-tab-mp">
-                        <span class="largura-10">{{ getGenero($aluno->aluno->candidato->pessoa->genero) }}</span>
+                        @php
+                            $genero = getGenero($aluno->aluno->candidato->pessoa->genero);
+                            if ($genero === "F")
+                                $f++;
+                        @endphp
+                        <span class="largura-10">{{ $genero }}</span>
                     </td>
 
                     {{-- MAC --}}
@@ -275,14 +284,14 @@
                     {{-- FNJ --}}
                     <td class="coluna-tab-mp">
                         <span class="largura-10">
-                        
+                            {{ getFNJ1($aluno->aluno->aluno_id, $disciplina->disciplina_id) }}
                         </span>
                     </td>            
 
                     {{-- FJ --}}
                     <td class="coluna-tab-mp">
                         <span class="largura-10">
-                        
+                            {{ getFJ1($aluno->aluno->aluno_id, $disciplina->disciplina_id) }}
                         </span>
                     </td>
 
@@ -309,14 +318,14 @@
                     {{-- Faltas FNJ 2--}}
                     <td class="coluna-tab-mp">
                         <span class="largura-10">
-                        
+                            {{ getFNJ2($aluno->aluno->aluno_id, $disciplina->disciplina_id) }}
                         </span>
                     </td>            
 
                     {{-- FJ 2--}}
                     <td class="coluna-tab-mp">
                         <span class="largura-10">
-                        
+                            {{ getFJ2($aluno->aluno->aluno_id, $disciplina->disciplina_id) }}
                         </span>
                     </td>        
 
@@ -343,27 +352,25 @@
                     {{--  FNJ 3  --}}
                     <td class="coluna-tab-mp">
                         <span class="largura-10">
-                        
+                            {{ getFNJ3($aluno->aluno->aluno_id, $disciplina->disciplina_id) }}
                         </span>
                     </td>      
 
-                    {{--  TOTAL 3  --}}  
+                    {{--  TOTAL de Faltas  --}}  
                     <td class="coluna-tab-mp">
                         <span class="largura-10">
-                        
+                            {{ getFTotal($aluno->aluno->aluno_id, $disciplina->disciplina_id) }}
                         </span>
                     </td>         
 
-                    {{--  EXAME 3  --}}   
+                    {{--  EXAME  --}}   
                     <td class="coluna-tab-mp">
-                        <span class="largura-10">
-                        
-                        </span>
+                        <span class="largura-10">{{ getExame($aluno->aluno->aluno_id, $disciplina->disciplina_id) }}</span>
                     </td>
 
                     {{--  MFD 3  --}}
                     <td class="coluna-tab-mp">
-                        <span class="nota-pos largura-10">0</span>
+                        <span class="nota-pos largura-10">{{ getMFD($aluno->aluno->aluno_id, $disciplina->disciplina_id) }}</span>
                     </td>
 
                     {{--  MF 3  --}}
@@ -378,9 +385,16 @@
                         </span>
                     </td>         
 
+                    @php
+                        $resultado = getOBS($aluno->aluno->aluno_id, $disciplina->disciplina_id);
+                    @endphp
                     {{--  OBS  --}}   
                     <td class="coluna-tab-mp">
-                        <span class="nota-pos decide-mp" style="color: red">{{ $aluno->situacao }}</span>
+                        @if ($resultado != "Não Transita" && $resultado != "RPF")
+                            <span class="nota-pos decide-mp" style="color: green">{{ $resultado }}</span>
+                        @else
+                            <span class="nota-pos decide-mp" style="color: red">{{ $resultado }}</span>
+                        @endif
                     </td>            
                 </tr>
             @endforeach
@@ -576,8 +590,8 @@
             </tr>
 
             <tr class="linha-tab-mp">
-                <td class="coluna-tab-mp">0</td>
-                <td class="coluna-tab-mp">0</td>
+                <td class="coluna-tab-mp">{{ $alunos->count() }}</td>
+                <td class="coluna-tab-mp">{{ $f }}</td>
                 <td class="coluna-tab-mp">0</td>
                 <td class="coluna-tab-mp">0</td>
                 <td class="coluna-tab-mp">0</td>

@@ -39,14 +39,14 @@ class comunicadosController extends Controller
         ];
         $dadosFiltrado = [
             'titulo_com' => $request->titulo,
-            'conteudo_com' => $request->conteudo, 
-            'usuario_id' => Auth::user()->usuario_id,
-            'ano_lectivo_id' => Ano_lectivo::where('status_ano_lectivo', 1)->first(),   
+            'conteudo_com' => $request->conteudo,    
         ];
         $validação = Validator::make($dadosFiltrado,$regras,$msgErro);
         if($validação->fails()){
-            return redirect()->route('comunicado.index');
+            return redirect()->back()->withErrors($validator)->withInput();
         }
+        return redirect()->route('comunicado.index' )->with('sucess','Comunicado criado com sucesso');
+
         $ano_lectivo = Ano_lectivo::where('status_ano_lectivo', 1)->first();
         $comunicados = new Comunicado();
         $comunicados->titulo_com = $request->titulo;
@@ -54,7 +54,7 @@ class comunicadosController extends Controller
         $comunicados->ano_lectivo_id = $ano_lectivo->ano_lectivo_id;
         $comunicados->usuario_id =Auth::user()->usuario_id;
         $comunicados->save();
-        return redirect()->route('comunicado.index',$comunicados)->with('sucess','Comunicado criado com sucesso'); 
+        
        
     }
     public function edit($comunicado_id)

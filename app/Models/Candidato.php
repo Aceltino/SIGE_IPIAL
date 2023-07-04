@@ -47,6 +47,6 @@ class Candidato extends Model
 
     public function aluno()
     {
-        $this->hasOne(Aluno::class,'aluno_id');
+       return $this->hasOne(Aluno::class,'candidato_id' ,'aluno_id');
     }
 }
