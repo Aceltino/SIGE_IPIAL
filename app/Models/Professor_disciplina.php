@@ -9,7 +9,14 @@ class Professor_disciplina extends Model
 {
     use HasFactory;
     protected $table = 'professor_disciplina';
-    protected $primaryKey = 'disc_professor_id';
+    protected $primaryKey = 'prof_disc_id';
+
+    protected $fillable = [
+        'disciplina_id',
+        'professor_id',
+        'ano_lectivo_id',
+        'prioridade'
+    ];
 
     public function turma(){
         return $this->hasMany(Turma::class, 'turma_id');

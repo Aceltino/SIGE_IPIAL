@@ -91,7 +91,7 @@
           <div class="row">
             <div id="clone1"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
                 <span style="color: #777;">+244</span>
-                <input name='num_tel' type="text" name="" placeholder="Telefone" oninput="this.className = ''">
+                <input name='num_tel' type="text" placeholder="Telefone" oninput="this.className = ''">
               </div>
 
               <div class="col-3">
