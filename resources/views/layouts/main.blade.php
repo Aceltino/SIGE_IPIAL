@@ -71,18 +71,20 @@
   <script src={{{URL::asset("js/paineis/inscricacao/inputidade.js")}}}></script>
   <script src={{{URL::asset("js/paineis/telefone.js")}}}></script>
   <script src={{{URL::asset("js/paineis/disciplina/disciplina.js")}}}></script>
+  <script src={{{URL::asset("js/paineis/curso/curso.js")}}}></script>
   <script src={{{URL::asset("js/paineis/horario/horario.js")}}}></script>
   <script src={{{URL::asset("js/paineis/horario/editar-horario.js")}}}></script>
   <script src={{{URL::asset("js/paineis/perfil/perfil.js")}}}></script>
   <script src={{{URL::asset("js/paineis/ano-lectivo/criar-ano-lectivo.js")}}}></script>
   <script src={{{URL::asset("js/paineis/professor/professor.js")}}}></script>
   <script src={{{URL::asset("js/paineis/registrar-aluno/registrar-aluno.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/curso/curso.js")}}}></script>
+  
+  
 
    <!-- /	Link do js main do projeto -->
   <script src={{{URL::asset("js/axios.min.js")}}}></script>
-  <script src={{{URL::asset("js/script.js")}}}></script>
-  <script src={{{URL::asset("js/fecharerro.js")}}}></script>
+  <script src={{{URL::asset("js/script.js")}}}></s>
+  <script src={{{URL::asset("js/fecharerro.js")}}}></scri>
   <script src={{{URL::asset("js/select.js")}}}></script>
   <script src={{{URL::asset("js/paineis/avalicao/inputnota.js")}}}></script>
   <script src={{{URL::asset("js/APIconsumo.js")}}}></script>

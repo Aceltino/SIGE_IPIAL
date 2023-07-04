@@ -14,6 +14,8 @@ let erro_tempo_prov = document.getElementById('erro_tempo_prov');
 
 
 function validacao_inputs() {
+    campo_valido = true;
+
     let invalido = "03456789-=;,.+_"
 
     for (let c of invalido) {
@@ -42,11 +44,34 @@ function validacao_inputs() {
         erro_sigla.innerHTML = "";
     }
 
+    let selecionado = select.selectedIndex;
+    if (selecionado === 1) {
+        erro_select.innerHTML = "Essa componente apenas pertence a um curso";
+        setTimeout(() => erro_select.innerHTML = '', 3000);
+        campo_valido = false;
+    } else if (selecionado === 2) {
+        erro_select.innerHTML = "Essa componente apenas pertence a um curso 1";
+        setTimeout(() => erro_select.innerHTML = '', 3000);
+        campo_valido = false;
+    } else if (selecionado === 3) {
+        erro_select.innerHTML = "Essa componente apenas pertence a um curso 2";
+        setTimeout(() => erro_select.innerHTML = '', 7000);
+        campo_valido = false;
+    }
 }
 
+sigla_disciplina.addEventListener('input', function () {
+    validacao_inputs();
+});
+nome_disciplina.addEventListener('input', function () {
+    validacao_inputs();
+});
 
-nome_disciplina.addEventListener('input', validacao_inputs);
-sigla_disciplina.addEventListener('input', validacao_inputs);
+select.addEventListener('input', function () {
+    validacao_inputs();
+});
+
+
 
 botao.addEventListener('click', function (ev) {
 
@@ -111,3 +136,4 @@ function converter_sigla() {
     sigla_disciplina.value = sigla_disciplina.value.toUpperCase()
 }
 sigla_disciplina.addEventListener('input', converter_sigla)
+
