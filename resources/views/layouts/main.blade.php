@@ -24,6 +24,8 @@
     <link href={{{URL::asset("css/perfil.css")}}} rel="stylesheet">
     <link href={{{URL::asset("css/calendario.css")}}} rel="stylesheet">
     <link href={{{URL::asset("css/ficha-biografica-doc.css")}}} rel="stylesheet">
+    <link href={{{URL::asset("css/processo.css")}}} rel="stylesheet">
+    
     <link href={{{URL::asset("css/fonts/fontawesome-all.min.css")}}} rel="stylesheet">
 
     <link href={{{URL::asset("tooltipster/dist/css/tooltipster.bundle.min.css")}}} rel="stylesheet">
