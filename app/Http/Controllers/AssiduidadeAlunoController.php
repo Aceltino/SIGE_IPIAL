@@ -72,11 +72,7 @@ class AssiduidadeAlunoController extends Controller
 
     public function store(Request $request, $aluno_id, $disciplina_id, $turma_id, $professor_disciplina_id)
     {
-        //dd($professor_disciplina_id);
-        //$dia = AssiduidadeTrait::pegarDiaBanco();
-        //$tempo = AssiduidadeTrait::pegarTempoFalta($turma_id, $dia, $professor_disciplina_id);
         $trimestre = AvaliacaoTrait::pegarTrimestre();
-        dd($dia);
         $falta = [
             'falta_aluno' => 1,
             'status_falta' => "N-JUSTIFICADA",

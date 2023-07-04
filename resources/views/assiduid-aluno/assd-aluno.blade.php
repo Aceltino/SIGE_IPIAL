@@ -4,7 +4,6 @@
 
 @section('conteudo')
 <main id="main" class="main">
-    {{dd($cursos)}}
     @if (session()->has('erro'))
     <div class="alert alert-danger">
       <i class="bi bi-exclamation-octagon me-1"></i>

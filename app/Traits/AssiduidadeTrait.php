@@ -12,6 +12,7 @@ use App\Models\Trimestre;
 use App\Traits\AvaliacaoTrait;
 use Carbon\Carbon;
 use DateTime;
+use Ramsey\Uuid\Type\Time;
 
 trait AssiduidadeTrait
 {
@@ -99,6 +100,7 @@ trait AssiduidadeTrait
         for($i = 0; $i < count($assiduidade); $i++){
             $hora_falta = new Carbon($assiduidade[$i]->created_at);
             $hora_tempo = Hora::with('tempo')->get();
+            //dd($hora_falta);
             for ($j = 0; $j < count($hora_tempo); $j++) {
                 $h_falta = strtotime($hora_falta->toTimeString());
                 $inicio = substr($hora_tempo[$j]->hora, 0, 5);
@@ -108,35 +110,23 @@ trait AssiduidadeTrait
                 }
             }
         }
-        $dia = self::pegarDiaBanco();
-        dd($dia);
         return $tempo;
     }
 
-    public static function pegarTempoFalta($turma_id, $dia, $professor_disciplina_id){
-        $horario = Horario::with('tempo.hora')->where('turma_id', $turma_id)
-        ->where('dia_id', $dia[0]->dia_id)
-        ->where('disc_professor_id', $professor_disciplina_id)
-        ->get();
-        //dd($horario);
-        if(count($horario) === 1){
-            self::compararHora(1);
-            dd("OK");
-        } else{
-            dd("Horário não encontrado!");
-        }
+    public static function pegarTempoFalta(){
+        dd("ok");
     }
 
     public static function compararHora($turno_id){
         $hora_tempo = Hora::where('turno_id')->get();
-        $hora_actual = now();
-        dd($hora_actual);
-        $h_falta = strtotime($hora_falta->toTimeString());
+        $hora_actual = 1;
+
+        $h_falta = strtotime($hora_tempo->toTimeString());
         for ($j = 0; $j < count($hora_tempo); $j++) {
             $inicio = substr($hora_tempo[$j]->hora, 0, 5);
             $fim = substr($hora_tempo[$j]->hora, 8, 5);
             if($h_falta >= strtotime($inicio) && $h_falta <= strtotime($fim)){
-                $tempo[$i] = $hora_tempo[$j]->tempo->tempo;
+                $tempo[$j] = $hora_tempo[$j]->tempo->tempo;
             }
         }
     }
