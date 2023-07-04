@@ -11,6 +11,10 @@ class Professor extends Model
     use HasFactory, UuidTrait;
 
     protected $table = 'professores';
+    protected $fillable = [
+        'formacao',
+        'pessoa_id',
+    ];
 
     // Criei essa nova relação > Augusto Kussema
     public function pessoa()
@@ -29,10 +33,6 @@ class Professor extends Model
     }
     protected $primaryKey = 'professor_id';
 
-    protected $fillable = [
-        'formacao',
-        'pessoa_id',
-    ];
 
     /*protected static function boot()
     {
@@ -43,6 +43,15 @@ class Professor extends Model
         });
     }*/
 
+    public function disciplinas()
+    {
+        return $this->hasManyThrough(Disciplina::class, Professor_disciplina::class);
+    }
+    public function professorDisciplina()
+    {
+        return $this->hasMany(Professor_disciplina::class, 'professor_id');
+    }
+
     public function disciplina(){
         return $this->belongsToMany(Disciplina::class, 'professor_disciplina', 'professor_id', 'disciplina_id');
     }
@@ -51,8 +60,5 @@ class Professor extends Model
     }
     public function professor_disciplina(){
         return $this->hasMany(Disciplina::class, 'disciplina_id');
-    }
-    public function professorDisciplina(){
-        return $this->hasMany(Disciplina::class, 'professor_id');
     }
 }

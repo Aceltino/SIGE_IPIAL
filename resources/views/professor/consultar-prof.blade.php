@@ -75,7 +75,6 @@
                     <th scope="col-lg-2">Nome do professor</th>
                     <th scope="col-lg-2">Formação</th>
                     <th scope="col-lg-2">Cargo</th>
-                    <th scope="col-lg-2">Disciplina(s)</th>
                     <th scope="col-lg-2"></th>
                 </tr>
             </thead>
@@ -85,11 +84,9 @@
                         <th scope="row">{{ $prof->pessoa->num_bi }}</th>
                         <td>{{ $prof->pessoa->nome_completo }}</td>
                         <td>{{ $prof->formacao }}</td>
-                        <td>{{$prof->cargo }}</td>
-                        <td>Física</td>
+                        <td>{{ $prof->cargo }}</td>
                         <td>
                             <a href={{ route('professor.Editar', ['id' => $prof->professor_id]) }} class="btn btn-cor-sg-a w-48">Detalhes</a>
-                            <!--<a href="" class="btn btn-cor-sg-a w-48 bg-red"></a> -->
                         </td>
                     </tr>
                 @endforeach
