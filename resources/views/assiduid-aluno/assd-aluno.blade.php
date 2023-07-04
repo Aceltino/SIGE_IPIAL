@@ -4,7 +4,6 @@
 
 @section('conteudo')
 <main id="main" class="main">
-    {{dd($cursos)}}
     @if (session()->has('erro'))
     <div class="alert alert-danger">
       <i class="bi bi-exclamation-octagon me-1"></i>
@@ -138,7 +137,7 @@
           <div class="modal-body">
               <div class="row">
                   <div class="alert alert-warning" role="alert">
-                      <h6>Atenção: Estás a Marcar uma falta <b style="color: rgb(132, 132, 255)">presencial</b> ao Aluno(a) !! </h6><h6> Estás prestes a inserir uma falta no dia {{date('d/m/Y')}} ao Aluno(a) {{$valor3['nome']}}</h6>
+                      <h6>Atenção: Estás a Marcar uma falta <b style="color: rgb(132, 132, 255)">Presencial</b> ao Aluno(a) !! </h6><h6> Estás prestes a inserir uma falta no dia {{date('d/m/Y')}} ao Aluno(a) {{$valor3['nome']}}</h6>
                       <h5>Deseja Realmente Continuar?</h5>
                   </div>
               </div>
@@ -181,7 +180,7 @@
          <div class="modal-body">
              <div class="row">
                  <div class="alert alert-warning" role="alert">
-                     <h6>Atenção: Estás a Marcar uma falta <b style="color: rgb(255, 11, 11)">Vermelha</b> ao Aluno(a) !! </h6><h6> Estás prestes a inserir uma falta no dia {{date('d/m/Y')}} ao Aluno(a) {{$valor3['nome']}}</h6>
+                     <h6>Atenção: Estás a Marcar uma falta <b style="color: rgb(255, 11, 11)">Disciplinar</b> ao Aluno(a) !! </h6><h6> Estás prestes a inserir uma falta no dia {{date('d/m/Y')}} ao Aluno(a) {{$valor3['nome']}}</h6>
                      <h5>Deseja Realmente Continuar?</h5>
                  </div>
              </div>
@@ -193,7 +192,7 @@
          </div>
          <div class="modal-footer">
              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-             <button type="subimit" class="btn btn-primary" name="tipo_falta" value="Presencial">Confirmar</button>
+             <button type="subimit" class="btn btn-primary" name="tipo_falta" value="Disciplinar">Confirmar</button>
          </div>
          </div>
      </div>
@@ -202,10 +201,10 @@
  @endforeach
  @endforeach
 @endforeach
- 
+
  <!-- Início da Modal Falta vermelha FIM -->
 
- 
+
  <!-- Início da Modal Falta Materiais -->
 
  @foreach ($alunos as $chave1 => $valor1)
@@ -238,7 +237,7 @@
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="subimit" class="btn btn-primary" name="tipo_falta" value="Presencial">Confirmar</button>
+              <button type="subimit" class="btn btn-primary" name="tipo_falta" value="Material">Confirmar</button>
           </div>
           </div>
       </div>

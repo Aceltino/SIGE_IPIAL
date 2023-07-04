@@ -74,8 +74,9 @@ class AssiduidadeAlunoController extends Controller
     {
         //dd($professor_disciplina_id);
         $dia = AssiduidadeTrait::pegarDiaBanco();
-        $tempo = AssiduidadeTrait::pegarTempoFalta($turma_id, $dia, $professor_disciplina_id);
+        $tempo = AssiduidadeTrait::pegarTempoFalta();
         $trimestre = AvaliacaoTrait::pegarTrimestre();
+        dd($dia);
         $falta = [
             'falta_aluno' => 1,
             'status_falta' => "N-JUSTIFICADA",
