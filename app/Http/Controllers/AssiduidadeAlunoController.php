@@ -17,17 +17,18 @@ class AssiduidadeAlunoController extends Controller
     public function index()
     {
         $user = Auth::user();
+        //dd($user);
         if($user->cargo_usuario === "Administrador" || $user->cargo_usuario === "Subdirector"){
             $professor = AvaliacaoTrait::pegarAdmin();
-        }
-        if($user->cargo_usuario === "Professor"){
-            $professor = AvaliacaoTrait::pegarProfessor($user);
         }
         if($user->cargo_usuario === "Coordenacao"){
             $coord = Professor::where('pessoa_id', $user->pessoa_id)->get();
             if($coord[0]->cargo === "Coordenador Curso"){
                 $professor = AvaliacaoTrait::pegarCoordenadorCurso($user);
             }
+        }
+        if($user->cargo_usuario === "Professor"){
+            $professor = AvaliacaoTrait::pegarProfessor($user);
         }
         $inc = 0;
         for ($i = 0; $i < count($professor); $i++) {
@@ -65,6 +66,7 @@ class AssiduidadeAlunoController extends Controller
                 }
             }
         }
+        //dd($professor);
         $trimestre = AvaliacaoTrait::pegarTrimestre();
         $alunos = AssiduidadeTrait::pegarAssiduidadeAluno($disciplina_id, $turmas);
         return view('assiduid-aluno/assd-aluno', compact(['alunos', 'nome_turma', 'cursos', 'nome_disciplina', 'trimestre', 'professor']));
@@ -72,9 +74,18 @@ class AssiduidadeAlunoController extends Controller
 
     public function store(Request $request, $aluno_id, $disciplina_id, $turma_id, $professor_disciplina_id)
     {
-        //dd($professor_disciplina_id);
-        //$dia = AssiduidadeTrait::pegarDiaBanco();
-        //$tempo = AssiduidadeTrait::pegarTempoFalta($turma_id, $dia, $professor_disciplina_id);
+        $trimestre = AvaliacaoTrait::pegarTrimestre();
+        $falta = AssiduidadeTrait::pegarTempoFalta($turma_id, $professor_disciplina_id);
+        if(!$falta){
+            return redirect()->back()->with('erro', "Não é possível marcar faltas!");
+        }
+        $data = (string) date('Y-m-d');
+        $tot_faltas = Assiduidade_aluno::where('created_at', 'like', '%'.$data.'%')->where('aluno_id', $aluno_id)
+        ->where('id_trimestre', $trimestre[0]->trimestre_id)->where('disciplina_id', $disciplina_id)->get();
+        if(count($falta) <= count($tot_faltas)){
+            return redirect()->back()->with('erro', "Limite de faltas atingido!");
+        }
+
         $trimestre = AvaliacaoTrait::pegarTrimestre();
         $falta = [
             'falta_aluno' => 1,
@@ -93,6 +104,7 @@ class AssiduidadeAlunoController extends Controller
     {
         $trimestre = AvaliacaoTrait::pegarTrimestre();
         $assiduidade = Assiduidade_aluno::with('aluno.candidato.pessoa', 'aluno.turmas', 'trimestre')->where('aluno_id', $aluno_id)
+        ->where('disciplina_id', $disciplina_id)
         ->where('id_trimestre', $trimestre[0]->trimestre_id)
         ->get();
         if(count($assiduidade) < 1){
