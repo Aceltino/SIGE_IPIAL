@@ -18,23 +18,35 @@
       @if(session()->has('ErroPessoa'))
         <div class="alert alert-danger">
           {{session('ErroPessoa')}}
+          <button class="botaofecharerro">
+            <i class="bi bi-x"></i>
+          </button>
         </div>
       @endif
 
     @if (session()->has('ErroTelefone'))
       <div class="alert alert-warning">
         {{ session('ErroTelefone') }}
+        <button class="botaofecharerro">
+          <i class="bi bi-x"></i>
+        </button>
       </div>
     @endif
 
     @if (session()->has('ErroCurso'))
     <div class="alert alert-warning">
         {{ session('ErroCurso') }}
+        <button class="botaofecharerro">
+          <i class="bi bi-x"></i>
+        </button>
     </div>
     @endif
         @if(session()->has('ErroCadastro'))
         <div class="alert alert-danger">
         {{session('ErroCadastro')}}
+        <button class="botaofecharerro">
+          <i class="bi bi-x"></i>
+        </button>
         </div>
     @endif
 
@@ -63,13 +75,13 @@
       <div class="container">
           <div class="row">
             <div class="col area-input form-group">
-              <label>Data de nascimento: </label><input type="date" name="data_nascimento" value ="{{ $candidato['Data_Nascimento'] }}" value="{{ old('data_nascimento') }}" >
+              <label>Data de nascimento: </label><input type="date" id="datainput" name="data_nascimento" value ="{{ $candidato['Data_Nascimento'] }}" value="{{ old('data_nascimento') }}" >
               
             </div>
 
             <div class="col area-input form-group" style="margin-left: 10px;">
-                <label>Idade: </label><input type="text" class="form-control" readonly="true" disabled value ="{{ $candidato['Idade'] }}"  >
-
+                <label>Idade: </label><input type="text" id="idadeinput" class="form-control" readonly="true" disabled value ="{{ $candidato['Idade'] }}"  >
+                <div id="mensagem" style="color: red;"></div>
               </div>
 
             <div class="col area-input form-group" style="margin-left: 10px;">
@@ -103,7 +115,8 @@
       <div class="container">
         <div class="row">
           <div class="col area-input form-group">
-            <label>Tel: </label><input type="text"  name="num_tel" value ="{{ $candidato['Telefone'] }}" value="{{ old('num_tel') }}" >
+            <label>Tel: </label><input type="text" id="telefoneinput" name="num_tel" value ="{{ $candidato['Telefone'] }}" value="{{ old('num_tel') }}" >
+            <div class="mensagem-erro" style="width: 100%;"></div>
             @error('num_tel')
               <div class="alert alert-danger">{{$message}}</div>
             @enderror
@@ -145,7 +158,7 @@
           <div class="container">
             <div class="row">
               <div class="col area-input form-group">
-                <label>Turno: </label><input type="text" name="turno" value ="{{ $candidato['Turno'] }}" value="{{ old('turno') }}">
+                <label>Turno: </label><input type="text" name="turno" value ="{{ $candidato['Turno'] }}" value="{{ old('turno') }}" disabled>
               </div>
 
               <div class="col area-input form-group" style="margin-left: 10px;">
@@ -157,7 +170,7 @@
 
               <div class="col area-input form-group" style="margin-left: 10px;">
                 <label>Nº aluno: </label>
-                <input type="text" value ="{{ $candidato['Numero_Aluno'] }}" name="num_aluno" value="{{ old('num_aluno') }}">
+                <input type="text" id="numeroinput1" value ="{{ $candidato['Numero_Aluno'] }}" name="num_aluno" value="{{ old('num_aluno') }}">
                 @error('num_aluno')
                   <div class="alert alert-danger">{{$message}}</div>
                 @enderror
@@ -168,7 +181,7 @@
           <div class="container">
             <div class="row">
               <div class="col area-input form-group">
-                <label>Número de processo: </label><input type="text" class="form-control" readonly="true" disabled name="num_processo" value ="{{ $candidato['Numero_Processo'] }}" > {{-- NOME DA INPUT -> 'num_processo' Porque o numero do processo da escola anterior não pode ser atualizado? --}}
+                <label>Número de processo: </label><input type="text" class="form-control" readonly="true" id="numeroinput" disabled name="num_processo" value ="{{ $candidato['Numero_Processo'] }}" > {{-- NOME DA INPUT -> 'num_processo' Porque o numero do processo da escola anterior não pode ser atualizado? --}}
                 @error('num_processo')
                   <div class="alert alert-danger">{{$message}}</div>
                 @enderror

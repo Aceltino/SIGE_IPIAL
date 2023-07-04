@@ -21,7 +21,10 @@ class Trimestre extends Model
         'created_at',
         'updated_at'
     ];
-
+    public function calendarios() 
+    {
+        return $this->hasMany(CalendarioProva::class, 'calendario_id');
+    }
     public function anoLectivo(){
         return $this->belongsTo(Ano_lectivo::class, 'ano_lectivo_id');
     }

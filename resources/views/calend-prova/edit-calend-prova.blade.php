@@ -14,7 +14,7 @@
         <span class="step"></span>
         <span class="step"></span>
         <span class="step"></span>
-    </div>
+    </div> 
 
     <div class="tab">
         <div class="card-titulo-calend">
