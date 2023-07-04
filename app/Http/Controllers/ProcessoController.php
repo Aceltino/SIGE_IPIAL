@@ -11,6 +11,11 @@ class ProcessoController extends Controller
 {
     public function index()
     {
+        $candidatos = $this->buscarCandidato();
+        return view('processo.processos', ['candidatos'=>$candidatos ]) ;
+    }
+    public function buscarCandidato()
+    {
         $candidatos = Candidato::with('pessoa', 'escola')
         ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
         ->where(function ($query) {
@@ -32,8 +37,7 @@ class ProcessoController extends Controller
                 'Curso' => $candidato->cursoAdmitido,
             ];
         }
-
-        return view('processo.processos', ['candidatos'=>$candidatos ]) ;
+            return $candidatos;
     }
     public function destroy($candidato_id)
     {

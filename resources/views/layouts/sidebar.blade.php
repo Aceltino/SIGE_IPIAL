@@ -220,12 +220,12 @@
       </a>
       <ul id="calprova-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="calend-prova/calendario-prova">
+          <a href={{ route('consultar.calendario') }}>
             <i class="bi bi-circle"></i><span>Calendários de Provas</span>
           </a>
         </li>
         <li>
-          <a href="calend-prova/cri-calendario-prov">
+          <a href={{ route('criar.calendario') }}>
             <i class="bi bi-circle"></i><span>Criar Calendário</span>
           </a>
         </li>

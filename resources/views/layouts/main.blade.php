@@ -69,6 +69,7 @@
   <script src={{{URL::asset("js/paineis/inscricacao/Inputbi.js")}}}></script>
   <script src={{{URL::asset("js/paineis/inscricacao/selectcurso.js")}}}></script>
   <script src={{{URL::asset("js/paineis/inscricacao/inputidade.js")}}}></script>
+  <script src={{{URL::asset("js/paineis/inscricacao/inputnome.js")}}}></script>
   <script src={{{URL::asset("js/paineis/telefone.js")}}}></script>
   <script src={{{URL::asset("js/paineis/disciplina/disciplina.js")}}}></script>
   <script src={{{URL::asset("js/paineis/horario/horario.js")}}}></script>
