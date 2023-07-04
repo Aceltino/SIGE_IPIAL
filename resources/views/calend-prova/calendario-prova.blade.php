@@ -13,7 +13,7 @@
         <div class="col-lg-6" style="text-align: right;">
           <span class="titl-cab-calend">Curso: </span><span class="normal-cab-calend">Tecnico de Informatica</span>
         </div>
-      </div>
+      </div> 
 
       <div class="row">
         <div class="col-lg-6">

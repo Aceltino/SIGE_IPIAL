@@ -61,7 +61,7 @@
       <h2>Introduza os dados pessoais</h2>
 
       <div class="form-group">
-        <input type="text" placeholder="Nome Completo" name="nome_completo" value="{{ old('nome_completo') }}"  oninput="this.className = ''">
+        <input type="text" placeholder="Nome Completo" id="nomeinput" name="nome_completo" value="{{ old('nome_completo') }}"  oninput="this.className = ''">
         @error('nome_completo')
           <div class="alert alert-danger">
             {{$message}}
@@ -90,7 +90,10 @@
           <div class="form-group">
             <input type="text" placeholder="Nome da Mãe" name="nome_mae_cand" value="{{ old('nome_mae_cand') }}"  oninput="this.className = ''">
             @error('nome_mae_cand')
-                <div class="alert alert-danger">{{$message}}</div>
+                <div class="alert alert-danger">{{$message}}
+                  <button class="botaofecharerro">
+                    <i class="bi bi-x"></i>
+                  </button></div>
             @enderror
           </div>
         </div>
@@ -108,7 +111,10 @@
         <div class="col">
           <input type="text" placeholder="Naturalidade" value="{{ old('naturalidade_cand') }}" name="naturalidade_cand" oninput="this.className = ''">
           @error('naturalidade_cand')
-            <div class="alert alert-danger">{{$message}}</div>
+            <div class="alert alert-danger">{{$message}}
+              <button class="botaofecharerro">
+                <i class="bi bi-x"></i>
+              </button></div>
           @enderror
         </div>
       </div>
@@ -126,7 +132,10 @@
             <input type="text" style="margin-top: 15px;" placeholder="Número do Bilhete de identidade" id="bi_input" name="num_bi" value="{{ old('num_bi') }}" oninput="this.className = ''" minlength="14" maxlength="14">
             <div id="mensagem1" style="color: red;"></div>
             @error('num_bi')
-              <div class="alert alert-danger">{{$message}}</div>
+              <div class="alert alert-danger">{{$message}}
+                <button class="botaofecharerro">
+                  <i class="bi bi-x"></i>
+                </button></div>
             @enderror
           </div>
         </div>
@@ -141,7 +150,10 @@
             <input type="text" value="" id="telefoneinput" placeholder="Telefone"  value="{{ old('num_tel') }}" name="num_tel" oninput="this.className = ''">
             <div class="mensagem-erro" style="width: 100%;"></div>
             @error('num_tel')
-              <div class="alert alert-danger">{{$message}}</div>
+              <div class="alert alert-danger">{{$message}}
+                <button class="botaofecharerro">
+                  <i class="bi bi-x"></i>
+                </button></div>
             @enderror
           </div>
 
@@ -156,30 +168,39 @@
       <div class="form-group">
         <input type="text" placeholder="Nome da escola de providência" value="{{ old('nome_escola') }}" name="nome_escola" oninput="this.className = ''">
         @error('nome_escola')
-          <div class="alert alert-danger">{{$message}}</div>
+          <div class="alert alert-danger">{{$message}}
+            <button class="botaofecharerro">
+              <i class="bi bi-x"></i>
+            </button></div>
         @enderror
       </div>
 
       <div class="row">
         <div class="form-group col">
           <select oninput="this.className = ''" class="form-select"  value="{{ old('turno') }}" name="turno">
-            <option selected>Manhã</option>
-            <option>Tarde</option>
-            <option>Noite</option>
+            <option value="1">Manhã</option>
+            <option value="2">Tarde</option>
+            <option value="3">Noite</option>
           </select>
         </div>
 
         <div class="form-group col">
           <input id="numeroinput1" type="text" placeholder="Nº de estudante" value="{{ old('num_aluno') }}" name="num_aluno" oninput="this.className = ''">
           @error('num_aluno')
-          <div class="alert alert-danger">{{$message}}</div>
+          <div class="alert alert-danger">{{$message}}
+            <button class="botaofecharerro">
+              <i class="bi bi-x"></i>
+            </button></div>
           @enderror
         </div>
 
         <div class="form-group col">
           <input type="text" placeholder="Turma" value="{{ old('turma_aluno') }}" name="turma_aluno" oninput="this.className = ''">
           @error('turma_aluno')
-            <div class="alert alert-danger">{{$message}}</div>
+            <div class="alert alert-danger">{{$message}}
+              <button class="botaofecharerro">
+                <i class="bi bi-x"></i>
+              </button></div>
           @enderror
         </div>
 
@@ -189,14 +210,20 @@
         <div class="form-group col">
           <input id="numeroinput" type="text" placeholder="Processo nº" value="{{ old('num_processo') }}" name="num_processo" oninput="this.className = ''">
           @error('num_processo')
-            <div class="alert alert-danger">{{$message}}</div>
+            <div class="alert alert-danger">{{$message}}
+              <button class="botaofecharerro">
+                <i class="bi bi-x"></i>
+              </button></div>
           @enderror
         </div>
 
         <div class="form-group col">
           <input type="text" placeholder="Ano Lectivo" value="{{ old('ultimo_anoLectivo') }}" name="ultimo_anoLectivo" oninput="this.className = ''">
           @error('ultimo_anoLectivo')
-            <div class="alert alert-danger">{{$message}}</div>
+            <div class="alert alert-danger">{{$message}}
+              <button class="botaofecharerro">
+                <i class="bi bi-x"></i>
+              </button></div>
           @enderror
         </div>
 
@@ -211,7 +238,7 @@
         @endphp
           @foreach($cursos as $curso)
           <div class="form-group">
-          <select oninput="this.className = ''" class="form-select" name="curso{{$a}}">
+          <select id="select" class="form-select" name="curso{{$a}}" oninput="this.className = ''" >
           <option selected disabled>Escolha a {{$a}}ª opção</option>
           @foreach ($cursos as $Curso )
           <option value="{{$Curso['nome_curso']}}">{{$Curso['nome_curso']}}</option>
