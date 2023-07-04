@@ -21,6 +21,11 @@
     <!-- /	Link do Css main do projecto -->
     <link href={{{URL::asset("css/tudo.css")}}} rel="stylesheet">
     <link href={{{URL::asset("css/pauta.css")}}} rel="stylesheet">
+    <style>
+      .texto-azul{
+        color: #174183;
+      }
+    </style>
 
 </head>
 <body>
@@ -41,6 +46,7 @@
   <script src={{{URL::asset("vendor/tinymce/tinymce.min.js")}}}></script>
 
     <!-- /	Link do Js main do projecto -->
-  <script src={{{URL::asset("js/script.js")}}}></script>  
+  <script src={{{URL::asset("js/script.js")}}}></script>
+  <script src={{{URL::asset("js/paineis/recibo.js")}}}></script>    
 </body>
 </html>

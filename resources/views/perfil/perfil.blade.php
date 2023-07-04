@@ -216,7 +216,6 @@
                         <label for="masculino" class="me-2"> Masculino</label>
                         <input type="radio" id="feminino" name="genero_update" value="Femenino" {{Auth::user()->belongPessoa->genero=='Femenino'? "checked" : ""}} >
                         <label for="feminino"> Feminino</label>
-                       <div class="invalid-feedback">Por favor insere um Gênero!</div>
                      </div>
                    </div>
                    @error('genero_update')
