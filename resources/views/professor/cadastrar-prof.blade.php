@@ -98,13 +98,6 @@
               <input name='num_tel' type="text" name="" placeholder="Telefone" id="contacto-telefonico-do-professor-input" oninput="this.className = ''" minlength="9" maxlength="9">
               <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-do-contacto-telefone-do-professor"></p>
             </div>
-                <span style="color: #777;">+244</span>
-                <input name='num_tel' type="text" placeholder="Telefone" oninput="this.className = ''">
-              </div>
-
-              <div class="col-3">
-                  <i id="clonebtn1"class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>    
-              </div>
           </div>
         </div>
 
