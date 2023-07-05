@@ -32,6 +32,9 @@ class AvaliacaoAlunoController extends Controller
         }
         if($user->cargo_usuario === "Professor"){
             $professor = AvaliacaoTrait::pegarProfessor($user);
+            if(!$professor){
+                return view('assiduid-aluno/assd-aluno')->with('erro', "Nenhuma turma disponível!");
+            }
         }
         $inc = 0;
         for ($i = 0; $i < count($professor); $i++) {
