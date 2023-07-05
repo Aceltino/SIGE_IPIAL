@@ -209,17 +209,11 @@ Route::prefix('turma')->middleware(['auth','active.session','checkcargo'])->grou
     });
 
     /*Editar turma */
-    Route::get('editar-turma', function () {
-        return view('turma/edit-turma');
+    Route::get('adicionar-coord-turma', function () {
+        return view('turma/ad-coord-turma');
     });
 });
 /**<!--Fim Rotas turma--> */
-
-
-/*Editar turma */
-Route::get('editar-turma', function () {
-    return view('turma/edit-turma');
-});/**<!--Fim Rotas turma--> */
 
 /******************************************
  * Rotas de aluno
