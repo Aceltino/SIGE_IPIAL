@@ -62,8 +62,8 @@
         <td>2020/2029</td>
         <td>
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-          <a href="/editar-turma"><i class="bi bi-pencil"></i></a>
-          <i class="bi bi-trash-fill"></i>
+          <a href="#" class="btn btn-success">Ad coordenador</a>
+         <!-- <a href="/editar-turma"><i class="bi bi-pencil"></i></a>-->
         </td>
       </tr>
 
@@ -151,10 +151,8 @@
               </div>
 
               <div class="footer-modal" style="text-align: center;">
-                <div class="jnt">
-                  <a href="/turmas" class="btn" style="background-color: #070b17; color: #fff;">Retrocer as Turmas</a>
-                  <a href="/editar-turma" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
-                </div>
+                <a href="/editar-turma" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
+
               </div>
         </div>
       
