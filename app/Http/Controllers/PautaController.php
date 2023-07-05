@@ -42,50 +42,54 @@ class PautaController extends Controller
                     ->get();
     } 
 
-    public static function show($id)
+    public static function show($id):mixed
     {
       
         $disciplina_1= "Língua Portuguesa";
         $disciplina_2= "Matematica";
 
+    
+
         $anoTurmaCoord = AnoTurmaCood::where('turma_id', $id)->first();
         $turmaAluno = Aluno_turma::where('ano_coord_id', $anoTurmaCoord->turmaAno_id)->get();
-        $director = User::where('cargo_usuario', 'Director')->first();
+        $dadosAssinantes=self::entidadesAssinantes();
         $alunos = Aluno::find($turmaAluno);
 
         foreach ($alunos as $aluno) {
-   
-            $notas= self::getNotaDisciplina($disciplina_2,$aluno->aluno_id);
-            // foreach ($notas as $value) {
-                
-            //     $nome_disciplina= $value->disciplina->nome_disciplina;
-            //     $nota_diciplina=$value->nota_aluno;
-            //     $tipo_prova= $value->tipo_prova;
-            //     $nome_aluno=$value->aluno->candidato->pessoa->nome_completo;
-    
-            // }
-           
+            $notas[]= self::getNotaDisciplina($disciplina_1,$aluno->aluno_id);  
         }
-    
-        switch ($director) {
-            case false || null:
-                return redirect()->back()->with('msg_sem_director',"Lamentamos! Esta pauta não pode ser gerada sem conter um director no sistema");
-
-            default:
-                goto conti;
-        }
-
-        conti:
+        
         if (!$anoTurmaCoord || !$turmaAluno || !$alunos){
             return redirect()->back()->with('msg_sem_pauta',"Lamentamos! Esta pauta ainda não esta composta... Aguarde o lançamento das notas");
         }
         $dadosPauta= [
             'alunos' => $alunos, 
             'anoTurmaCoord' => $anoTurmaCoord, 
-            'director' => $director,
             'notas'=>$notas,
+            'dadosAssinantes'=>$dadosAssinantes,
+            'disciplinas'=>$disciplina_1,
         ];
+        
+        // dd($dadosPauta['notas']);
+
+
         return view('pauta.pauta-doc', $dadosPauta);
     }
+
+    //Metodo que retorna todos os usuario que devem assinar a Pauta
+    private static function entidadesAssinantes():mixed
+    {
+        $director = User::where('cargo_usuario', 'Director')->where('status_usuario',1)->first();
+        $subdirector = User::where('cargo_usuario', 'Subdirector')->where('status_usuario',1)->first();
+        $coordenadorArea= User::where('cargo_usuario', 'coordenacao')->where('status_usuario',1)->first();
   
+        return[
+            'director'=>$director,
+            'subdirector'=>$subdirector,
+            'coordenadorArea'=>$coordenadorArea,
+            'directorTurma'=>"",
+        ];
+    } 
+
+
 }
