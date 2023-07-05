@@ -25,16 +25,26 @@
             </div>
             <div class="row">
                 <div class="form-group col">
-                    <input type="text" style=" text-align: center;" value="" placeholder="Titulo do Comunicado" name="titulo" oninput="this.className = ''" required>
-                    <div class="invalid-feedback" style="font-size: 19px;">Por favor o comunicado deve conter um Titulo</div>
+                    <input type="text" style=" text-align: center;" class="@error('titulo') is-invalid @enderror" value="{{ old('titulo') }}" placeholder="Titulo do Comunicado" name="titulo" oninput="this.className = ''" required>
+                    @error('titulo')
+                    <div class="alert alert-danger">{{$message}}
+                    <button class="botaofecharerro">
+                    <i class="bi bi-x"></i>
+                    </button></div>
+                 @enderror
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <textarea style="border: 1px solid; border-color: rgb(204, 204, 204); border-radius: 5px; outline: none; padding: 20px;" class="w-100"  rows="13" name="conteudo"  id="area" placeholder="Escreve aqui o conteúdo do Comunicado" required></textarea>
-                    <div class="invalid-feedback" style="font-size: 19px;">Se for para enviar um comunicado deve escrever alguma coisa</div>
+                    <textarea style="border: 1px solid; border-color: rgb(204, 204, 204); border-radius: 5px; outline: none; padding: 20px;" class="w-100 @error('titulo') is-invalid @enderror"  rows="13" name="conteudo" value="{{ old('conteudo') }}" id="area" placeholder="Escreve aqui o conteúdo do Comunicado" required></textarea>
+                    @error('conteudo')
+                    <div class="alert alert-danger">{{$message}}
+                    <button class="botaofecharerro">
+                    <i class="bi bi-x"></i>
+                    </button></div>
+                 @enderror
                 </div>
-            </div>
+            </div> 
 
             <div style="text-align:center;margin-top:10px;">
                 <div>
