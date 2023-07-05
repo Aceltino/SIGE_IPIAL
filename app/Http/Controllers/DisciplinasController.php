@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Curso;
 use App\Models\Disciplina;
+use App\Models\Classe;
 use App\Http\Requests\DisciplinaStoreRequest;
 
 
@@ -20,8 +21,9 @@ class DisciplinasController extends Controller
     }
     public function create()
     {
+        $classes = Classe::all();
         $cursos = Curso::all();
-        return view('disciplina.regi-disciplina', compact('cursos'));
+        return view('disciplina.regi-disciplina', compact('classes','cursos'));
     }
     public function store(DisciplinaStoreRequest $request)
     { 
