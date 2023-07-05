@@ -23,6 +23,7 @@
         <tr>
         <th rowspan="2" style="width: 100px;">
             <img src={{URL::asset("img/logo.png")}} width="100px" height="50px">
+            Cod. 2020297878
         </th>
         <th style="padding: 15px;">
             

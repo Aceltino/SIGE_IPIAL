@@ -115,50 +115,50 @@
         
         <tr class="linha-tab-p">
         <th class="coluna-tab-p" colspan="3" rowspan="2">
-            <span class="tx-turma-p">TURMA: I10AM</span>
+            <span class="tx-turma-p maisculo-p">TURMA: I10AM</span>
         </th>
         <th class="coluna-tab-p" colspan="18">
-            <span class="tx-disciplina-p">DISICPLINAS</span>
+            <span class="tx-disciplina-p maisculo-p">DISICPLINAS</span>
         </th> 
 
-        <th class="coluna-tab-p" rowspan="3"><span class="txdecisao-p">OBS(EXAMES)</span></th>
-        <th class="coluna-tab-p" rowspan="3"><span class="txdecisao-p">RESULTADOS</span></th>
-        <th class="coluna-tab-p" rowspan="3"><span class="txdecisao-p">Nº</span></th>
+        <th class="coluna-tab-p" rowspan="3"><span class="txdecisao-p maisculo-p">OBS(EXAMES)</span></th>
+        <th class="coluna-tab-p" rowspan="3"><span class="txdecisao-p maisculo-p">RESULTADOS</span></th>
+        <th class="coluna-tab-p" rowspan="3"><span class="txdecisao-p maisculo-p">Nº</span></th>
                             
         </tr>
         
         <tr class="linha-tab-p">
-        <th class="coluna-tab-p" colspan="6">TLP</th>
-        <th class="coluna-tab-p" colspan="6">SEAC</th>
-        <th class="coluna-tab-p" colspan="6">TIC</th>
+        <th class="coluna-tab-p" colspan="6"><span class="maisculo-p">TLP</span></th>
+        <th class="coluna-tab-p" colspan="6"><span class="maisculo-p">SEAC</span></th>
+        <th class="coluna-tab-p" colspan="6"><span class="maisculo-p">TIC</span></th>
         </tr>
 
         <tr class="linha-tab-p">
         <th class="coluna-tab-p">
-            <span class="txnum-aluno-p">Nº</span>
+            <span class="txnum-aluno-p maisculo-p">Nº</span>
         </th>
         <th class="coluna-tab-p">
-            <span class="txnome-aluno-p">NOME COMPLETO</span>
+            <span class="txnome-aluno-p maisculo-p">NOME COMPLETO</span>
         </th>
         <th class="coluna-tab-p">
-            <span class="txproc-p">Nº PROC</span>
+            <span class="txproc-p maisculo-p">Nº PROC</span>
         </th>          
-        <th class="coluna-tab-p"><span class="t-vert">MT1</span></th>
-        <th class="coluna-tab-p"><span class="t-vert">MT2</span></th>
-        <th class="coluna-tab-p"><span class="t-vert">MT3</span></th>
-        <th class="c-tab-amarelo coluna-tab-p"><span class="t-vert">CA</span></th>
-        <th class="coluna-tab-p" colspan="2"><span class="t-verst-falta-aluno-p">FALTAS</span></th>
-        <th class="coluna-tab-p"><span class="t-vert">MT1</span></th>
-        <th class="coluna-tab-p"><span class="t-vert">MT2</span></th>
-        <th class="coluna-tab-p"><span class="t-vert">MT3</span></th>
-        <th class="c-tab-amarelo coluna-tab-p"><span class="t-vert">CA</span></th>
-        <th class="coluna-tab-p" colspan="2"><span class="t-verts-falta-aluno-p">FALTAS</span></th>
-        <th class="coluna-tab-p"><span class="t-vert">MT1</span></th>
-        <th class="coluna-tab-p"><span class="t-vert">MT2</span></th>
-        <th class="coluna-tab-p"><span class="t-vert">MT3</span></th>
-        <th class="c-tab-amarelo coluna-tab-p"><span class="t-vert">CDF</span></th>
-        <th class="coluna-tab-p"><span class="t-vert">EXAMES</span></th>
-        <th class="coluna-tab-p"><span class="t-vert-falta-aluno-p">FALTAS</span></th>            
+        <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT1</span></th>
+        <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT2</span></th>
+        <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT3</span></th>
+        <th class="c-tab-amarelo coluna-tab-p"><span class="t-vert maisculo-p">CA</span></th>
+        <th class="coluna-tab-p" colspan="2"><span class="t-verst-falta-aluno-p maisculo-p">FALTAS</span></th>
+        <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT1</span></th>
+        <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT2</span></th>
+        <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT3</span></th>
+        <th class="c-tab-amarelo coluna-tab-p"><span class="t-vert maisculo-p">CA</span></th>
+        <th class="coluna-tab-p" colspan="2"><span class="t-verts-falta-aluno-p maisculo-p">FALTAS</span></th>
+        <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT1</span></th>
+        <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT2</span></th>
+        <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT3</span></th>
+        <th class="c-tab-amarelo coluna-tab-p"><span class="t-vert maisculo-p">CDF</span></th>
+        <th class="coluna-tab-p"><span class="t-vert maisculo-p">EXAMES</span></th>
+        <th class="coluna-tab-p"><span class="t-vert-falta-aluno-p maisculo-p">FALTAS</span></th>            
         </tr>
 
         <tr class="linha-tab-p">
@@ -207,8 +207,8 @@
             </span>
         </td>
 
-        <td class="nota coluna-tab-p"><span class="nota-neg">RPF</span></td>
-        <td class="nota coluna-tab-p"><span class="nota-neg">NÃO TRANSITA</span></td>
+        <td class="nota coluna-tab-p"><span class="nota-neg maisculo-p">RPF</span></td>
+        <td class="nota coluna-tab-p"><span class="nota-neg maisculo-p">NÃO TRANSITA</span></td>
         <td class="nota coluna-tab-p">1</td>
         </tr>
 
