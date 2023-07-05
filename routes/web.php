@@ -299,7 +299,7 @@ Route::prefix('pautas')->middleware(['auth','active.session'])->group(function()
     Route::get('/', [PautaController::class, 'index'])->name('pauta');
 
     //Rotas do Documento
-    Route::get('ver-pauta/{id}/{ano}', [PautaController::class, 'show'])->name('pauta.show');
+    Route::get('ver-pauta/{id}/{ano}', [PautaController::class, 'show'])->name('pauta.show')->middleware(['checkusernecessario']);
 });
 
 /******************************************

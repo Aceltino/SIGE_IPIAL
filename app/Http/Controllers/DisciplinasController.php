@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Curso;
 use App\Models\Disciplina;
+use App\Http\Requests\DisciplinaStoreRequest;
 
 
 class DisciplinasController extends Controller
@@ -22,10 +23,10 @@ class DisciplinasController extends Controller
         $cursos = Curso::all();
         return view('disciplina.regi-disciplina', compact('cursos'));
     }
-    public function store(Request $request)
+    public function store(DisciplinaStoreRequest $request)
     { 
         $disciplinas = new Disciplina();
-        $disciplinas->nome_disciplina = $request->nome_disciplina;
+        $disciplinas->nome_disciplina = $request->nome_disciplina; 
         $disciplinas->componente = $request->componente;
         $disciplinas->tempo_prova = $request-> tempo_prova;
         $disciplinas->sigla = $request->sigla;
@@ -45,7 +46,7 @@ class DisciplinasController extends Controller
                 return redirect()->route('consultar.disciplina');
         }
     }
-    public function update(Request $request, $disciplina_id)
+    public function update(DisciplinaStoreRequest $request, $disciplina_id)
     {
         $dado = [
             'nome_disciplina' =>$request->nome_disciplina,
@@ -54,7 +55,6 @@ class DisciplinasController extends Controller
             'sigla' => $request->sigla,
             'curso_id' => $request->curso,
         ];
-        dd($dado);
         Disciplina::where('disciplina_id', $disciplina_id)->update($dado);
         return redirect()->route('consultar.disciplina')->with('edit','Disciplina editada com sucesso');
     }

@@ -34,12 +34,29 @@
         <div class="alert alert-danger">
             {{session('msg_sem_pauta')}}
         </div>
-    @endif
-    @if(session('msg_sem_director'))
+    
+    @elseif(session('msg_sem_director'))
         <div class="alert alert-danger">
             {{session('msg_sem_director')}}
         </div>
+
+    @elseif(session('msg_sem_subdirector'))
+         <div class="alert alert-danger">
+            {{session('msg_sem_subdirector')}}
+        </div>
+
+    @elseif(session('msg_sem_coordenadorArea'))
+        <div class="alert alert-danger">
+            {{session('msg_sem_coordenadorArea')}}
+        </div>
+   
+    @elseif(session('msg_sem_directorTurma'))
+        <div class="alert alert-danger">
+            {{session('msg_sem_directorTurma')}}
+        </div>
+        
     @endif
+  
 
     <!-- /  Inicio da tabela de inscritos -->
     <table  id="matricula-tab" class="table table-striped" style="margin-top: 20px;" >
