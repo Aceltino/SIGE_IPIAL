@@ -24,16 +24,14 @@ class comunicadosController extends Controller
     }
     public function store(ComunicadoStoreRequest $request)
     {
-     
         $ano_lectivo = Ano_lectivo::where('status_ano_lectivo', 1)->first();
         $comunicados = new Comunicado();
-        $comunicados->titulo_com = $request->titulo;
-        $comunicados->conteudo_com = $request->conteudo;
+        $comunicados->titulo_com = $request->titulo_com;
+        $comunicados->conteudo_com = $request->conteudo_com;
         $comunicados->ano_lectivo_id = $ano_lectivo->ano_lectivo_id;
         $comunicados->usuario_id =Auth::user()->usuario_id;
         $comunicados->save();
         return redirect()->route('comunicado.index' )->with('sucess','Comunicado criado com sucesso');
-
     }
     public function edit($comunicado_id)
     {
@@ -46,9 +44,9 @@ class comunicadosController extends Controller
             return redirect()->route('comunicado.index');
         }
     }
-    public function update(Request $request, $comunicado_id)
+    public function update(ComunicadoStoreRequest $request, $comunicado_id)
     {
-        $request = $input->validated();
+        
         $dados = [
             'titulo_com' => $request->titulo_com,
             'conteudo_com' => $request->conteudo_com,

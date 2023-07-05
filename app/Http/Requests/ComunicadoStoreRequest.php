@@ -23,22 +23,34 @@ class ComunicadoStoreRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'titulo_com' => 'required|string|min:2|max:50',
-            'conteudo_com' => 'required|string|max:1000|min:2',
+        $regras = [];
+
+        $regras = [
+            'titulo_com' => [
+                'required',
+                'string',
+                'min:2',
+                'max:50', 
+            ],
+            'conteudo_com' => [
+                'required',
+                'string',
+                'max:255',
+                'min:2',
+            ],
         ];
+        return $regras;
     }
     public function messages()
     {
         return  [
-            'titulo_com.required'=>'Este campo deve ser preenchido',
-            'conteudo_com.required'=>'Este campo deve ser preenchido',
+            '*.required'=>'Todos os campos devem ser preenchidos',
             '*.string'=>'Há campos com preenchimento obrigatorio de apenas letras e não número, fique mais atento.',
-
-            'titulo_com.max'=>'Este campo não pode conter mais de 50 letras.',
-            'titulo_com.min'=>'Este campo não pode conter menos de 2 letras.',
-            'conteudo_com.max'=>'Este campo não pode conter mais de 1000 letras.',
-            'conteudo_com.min'=>'Este campo não pode conter menos de 2 letras.',
+            //Fomulario Comunicado
+            'titulo_com.max'=>'O titulo não pode conter mais de 50 letras.',
+            'titulo_com.min'=>'O titulo não pode conter menos de 2 letras.',
+            'conteudo_com.max'=>'O Conteudo não pode conter mais de 1000 letras.',
+            'conteudo_com.min'=>'O Conteudo não pode conter menos de 2 letras.',
 
         ];
     }

@@ -21,31 +21,43 @@
                         </div>
 
                     </div>
-                    @if(session('sucess'))
-<div class="alert alert-danger">
-          {{(session('sucess'))}}
-      </div>
-@endif
-  </div>
                 <div class="row">
                     <div class="col">
                         <input type="text" style=" text-align: center;" placeholder="Nome da disciplina"
-                            id="nome_disciplina" name="nome_disciplina" required>
-                        <span id="mensagem_erro_nome" style="color: red"></span>
+                            id="nome_disciplina" name="nome_disciplina" value="{{ old('nome_disciplina') }}">
+                            @error('nome_disciplina')
+                                <div class="alert alert-danger">{{$message}}
+                                <button class="botaofecharerro">
+                                <i class="bi bi-x"></i>
+                                </button></div>
+                            @enderror
                     </div>
                     <div class="col">
                         <input type="text" style=" text-align: center;" placeholder="Sigla" name="sigla"
-                            oninput="this.className = ''" id="sigla_disciplina" maxlength="4"  required>
-                            <span id="mensagem_erro_sigla"  style="color: red"></span>
-                    </div>
-                </div> <br>
+                            oninput="this.className = ''" id="sigla_disciplina" value="{{ old('sigla') }}">
+                            @error('sigla')
+                                <div class="alert alert-danger">{{$message}}
+                                <button class="botaofecharerro">
+                                <i class="bi bi-x"></i>
+                                </button></div>
+                            @enderror
+                    </div> 
+                </div> 
+                <br>
+                <br>
               <div class="form-group">
-                <select oninput="this.className = ''" class="form-select" name="componente">
+                <select oninput="this.className = ''" class="form-select" name="componente" value="{{ old('componente') }}">
                   <option selected disabled> Componetes</option>
                   <option  value="Técnicas">Técnicas </option>
                   <option value="Socio-culturais"> Socio-culturais</option>
                   <option value="Cientificas"> Cientificas</option>
                 </select>
+                        @error('componente')
+                                <div class="alert alert-danger">{{$message}}
+                                <button class="botaofecharerro">
+                                <i class="bi bi-x"></i>
+                                </button></div>
+                            @enderror
               </div>
               <div class="row">
                 <div class="col">
@@ -56,8 +68,14 @@
                  </div>
                   @endforeach
                  <div class="col">
-                     <input type="number" style=" text-align: center;" name="tempo_prova" placeholder="Tempo de prova" oninput="this.className = ''">
-                 </div> 
+                     <input type="Time" style=" text-align: center;" name="tempo_prova" value="{{ old('tempo_prova') }}" placeholder="Tempo de prova" oninput="this.className = ''">
+                            @error('tempo_prova')
+                                <div class="alert alert-danger">{{$message}}
+                                <button class="botaofecharerro">
+                                <i class="bi bi-x"></i>
+                                </button></div>
+                            @enderror
+                    </div> 
              </div> 
              <div style="text-align:center;margin-top:10px;">
                 <div>
