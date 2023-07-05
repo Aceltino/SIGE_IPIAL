@@ -40,12 +40,13 @@
                     </div>
                 </div> <br>
               <div class="form-group">
-                <select oninput="this.className = ''" class="form-select" name="componente">
+                <select oninput="this.className = ''" class="form-select" name="componente" id="select">
                   <option selected disabled> Componetes</option>
                   <option  value="Técnicas">Técnicas </option>
                   <option value="Socio-culturais"> Socio-culturais</option>
                   <option value="Cientificas"> Cientificas</option>
                 </select>
+                <span id="mensagem_erro_select"  style="color: red"></span>
               </div>
               <div class="row">
                 <div class="col">
@@ -55,13 +56,16 @@
                     <label class="form-check-label" for="curso">{{$curso['nome_curso']}}</label>
                  </div>
                   @endforeach
+                  <span id="erro_check"  style="color: red"></span>
                  <div class="col">
-                     <input type="number" style=" text-align: center;" name="tempo_prova" placeholder="Tempo de prova" oninput="this.className = ''">
+                     <input type="number" style=" text-align: center;" name="tempo_prova" id="tempo_prova"
+                      placeholder="Tempo de prova" oninput="this.className = ''"min="0" max="120">
                  </div> 
+                 <span id="erro_tempo_prov"  style="color: red"></span>
              </div> 
              <div style="text-align:center;margin-top:10px;">
                 <div>
-                    <button type="submit" class="btn btn-success">Cadastrar</button>
+                    <button type="button" id="botao" class="btn btn-success">Cadastrar</button>
 
                 </div>
         </form>

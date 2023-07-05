@@ -8,7 +8,7 @@ let erro_select = document.getElementById('mensagem_erro_select');
 let checks = document.querySelectorAll('.curso');
 let erro_check = document.getElementById('erro_check');
 let botao = document.getElementById('botao');
-let campo_valido = true;
+let campo_valido = false;
 let tempo_prova = document.getElementById('tempo_prova');
 let erro_tempo_prov = document.getElementById('erro_tempo_prov');
 
@@ -67,7 +67,7 @@ nome_disciplina.addEventListener('input', function () {
     validacao_inputs();
 });
 
-select.addEventListener('input', function () {
+selecionado.addEventListener('input', function () {
     validacao_inputs();
 });
 
@@ -137,3 +137,12 @@ function converter_sigla() {
 }
 sigla_disciplina.addEventListener('input', converter_sigla)
 
+const tempo = document.getElementById("tempo_prova");
+
+tempo.addEventListener("input", function() {
+  const value = parseInt(tempo.value);
+
+  if (isNaN(value) || value < 0 || value > 120) {
+   tempo.value = "o tempo máximo é 120";
+  }
+});
