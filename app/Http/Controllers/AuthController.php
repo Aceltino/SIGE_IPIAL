@@ -185,9 +185,8 @@ class AuthController extends Controller
 
     //Metodo de cadastro dos usuario
     public function store(Request $request)
-    {   
+    {  
         $num_registo=count(User::all());
-        // $numId= $num_registo+1; 
     
         //Gerar uma senha temporária aleatória
         $hexAleatorio = Str::random(8);
@@ -290,10 +289,14 @@ class AuthController extends Controller
 
         $user=UserController::store($dadosUser);
         if(!$user){
+            conti:
             $msg = "Lamentamos! Dados não Cadastrado, tente este processo mais tarde...";
             return redirect()->back()->with("erroCadastroUser",$msg);
-        }
 
+        }elseif(!$this->limitCadastroUser()){
+           goto conti;
+        } 
+        
         //Metodo que envia as credencias de acesso ao email do usuario
         if($this->envioCredenciasEmail($user,$hexAleatorio)){
             return redirect()->route('createUsuario')->with('status','Cadastro Concluido! Enviamos as credencias de acesso ao sistema no email inserido!');
@@ -306,10 +309,8 @@ class AuthController extends Controller
     {  
         // Construir o URLpara logar com os novos dados 
         $urlLogin = url('autenticacao/login');
-// dd($user->nome_usuario);
         $paramAluno= ['urlLogin' => $urlLogin,'nome_usuario'=>$user->nome_usuario,'senha'=>$senha,'dataMatri'=>$dataMatri, 'cargo'=>$user->cargo_usuario ];
         $param=      ['urlLogin' => $urlLogin,'nome_usuario'=>$user->nome_usuario,'senha'=>$senha];
-
 
         // Enviar o e-mail
         Mail::send('Mail.credenciasAcesso', $user->cargo_usuario=="Aluno" ? $paramAluno : $param , 
@@ -323,7 +324,6 @@ class AuthController extends Controller
     // Metodo que reenvia as credencias de acesso(Nome do Usuario)
     public function reenviarCredencias($id):mixed
     {
-
         $user= User::findOrFail($id);
       
         //URL para logar 
@@ -348,7 +348,7 @@ class AuthController extends Controller
     }
 
     //Metodo que termina o inicio de sessão
-    public static function logout()
+    public static function logout():mixed
     {   
         $user= Auth::user();
         self::detectarLogin($user);
@@ -378,13 +378,13 @@ class AuthController extends Controller
     }
 
     //Metodo que deleta registros de usuarios logados. 
-    public static function detectarLogin($user)
+    public static function detectarLogin($user):void
     {
        Active_session::where('usuario_id', $user->usuario_id)->delete();
     }
 
     // Metodo que retorna o formulario de recuperação de senha
-    public function resetForm()
+    public function resetForm():mixed
     {
         return view('autenticacao.recuperar-senha');
     }
@@ -495,6 +495,22 @@ class AuthController extends Controller
         return redirect()->route('login')->with('success_reset_001','Senha redefinida com sucesso! Faça login com sua nova senha.');
 
     }
+
+    public static function limitCadastroUser(): bool
+    {
+
+        $userDirector = User::where('cargo_usuario', 'Director')
+                            ->where('status_usuario', 1)
+                            ->update(['status_usuario' => 0]);
+
+       if($userDirector){
+            return true;
+        }else {
+            return false;
+        }
+
+    }
+
 
 }
 

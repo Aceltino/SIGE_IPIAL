@@ -209,17 +209,11 @@ Route::prefix('turma')->middleware(['auth','active.session','checkcargo'])->grou
     });
 
     /*Editar turma */
-    Route::get('editar-turma', function () {
-        return view('turma/edit-turma');
+    Route::get('adicionar-coord-turma', function () {
+        return view('turma/ad-coord-turma');
     });
 });
 /**<!--Fim Rotas turma--> */
-
-
-/*Editar turma */
-Route::get('editar-turma', function () {
-    return view('turma/edit-turma');
-});/**<!--Fim Rotas turma--> */
 
 /******************************************
  * Rotas de aluno
@@ -305,7 +299,7 @@ Route::prefix('pautas')->middleware(['auth','active.session'])->group(function()
     Route::get('/', [PautaController::class, 'index'])->name('pauta');
 
     //Rotas do Documento
-    Route::get('ver-pauta/{id}/{ano}', [PautaController::class, 'show'])->name('pauta.show');
+    Route::get('ver-pauta/{id}/{ano}', [PautaController::class, 'show'])->name('pauta.show')->middleware(['checkusernecessario']);
 });
 
 /******************************************
@@ -314,8 +308,8 @@ Route::prefix('pautas')->middleware(['auth','active.session'])->group(function()
 Route::prefix('mini-pauta')->middleware(['auth','active.session'])->group(function(){
     Route::get('mini-pauta', [MiniPautaController::class, 'index'])->name('mini-pauta');
     Route::get('ver-mini-pauta', [MiniPautaController::class, 'show'])->name('mini-pauta.show');
-    Route::get('{turma}/{prof_id}/{disciplina}', [MiniPautaController::class, 'view'])->name('mini-pauta.view');
-
+    Route::get('{turma}/{curso}', [MiniPautaController::class, 'turma'])->name('mini-pauta.turma');
+    Route::get('ver/{turma_id}/{prof_id}/{disciplina_id}', [MiniPautaController::class, 'view'])->name('mini-pauta.view');
 });
 
 /******************************************
