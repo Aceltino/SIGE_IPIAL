@@ -21,16 +21,18 @@ class AvaliacaoAlunoController extends Controller
         if($user->cargo_usuario === "Administrador" || $user->cargo_usuario === "Subdirector"){
             $professor = AvaliacaoTrait::pegarAdmin();
         }
-        if($user->cargo_usuario === "Professor"){
-            $professor = AvaliacaoTrait::pegarProfessor($user);
-        }
         if($user->cargo_usuario === "Coordenacao"){
             $coord = Professor::where('pessoa_id', $user->pessoa_id)->get();
             if($coord[0]->cargo === "Coordenador Curso"){
                 $professor = AvaliacaoTrait::pegarCoordenadorCurso($user);
             }
+            if($coord[0]->cargo === "Coordenador Area"){
+                $professor = AvaliacaoTrait::pegarCoordenadorArea($user);
+            }
         }
-        //dd($professor);
+        if($user->cargo_usuario === "Professor"){
+            $professor = AvaliacaoTrait::pegarProfessor($user);
+        }
         $inc = 0;
         for ($i = 0; $i < count($professor); $i++) {
             $disciplina_id[$i] = $professor[$i]['disciplina_id'];

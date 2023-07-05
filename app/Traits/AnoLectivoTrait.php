@@ -5,10 +5,7 @@ namespace App\Traits;
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\CandidatoController;
 use App\Models\Ano_lectivo;
-<<<<<<< HEAD
 use App\Models\Candidato;
-=======
->>>>>>> a81daee9dfb2617efcdf511b581ba8c37a55ed93
 use App\Models\Trimestre;
 use DateTime;
 use carbon\Carbon;
@@ -225,7 +222,7 @@ trait AnoLectivoTrait
     }
 
     public static function fecharAnoLectivo(){
-        CandidatoController::eliminarCandidatos(); // Eliminar todos os candidatos não matriculados no ano lectivo
+        //CandidatoController::eliminarCandidatos(); // Eliminar todos os candidatos não matriculados no ano lectivo
         AlunoController::alunosVinculados(); //Cortar o acesso de todos os alunos do sistema
 
 

@@ -17,7 +17,6 @@ class AssiduidadeAlunoController extends Controller
     public function index()
     {
         $user = Auth::user();
-        //dd($user);
         if($user->cargo_usuario === "Administrador" || $user->cargo_usuario === "Subdirector"){
             $professor = AvaliacaoTrait::pegarAdmin();
         }
@@ -25,6 +24,9 @@ class AssiduidadeAlunoController extends Controller
             $coord = Professor::where('pessoa_id', $user->pessoa_id)->get();
             if($coord[0]->cargo === "Coordenador Curso"){
                 $professor = AvaliacaoTrait::pegarCoordenadorCurso($user);
+            }
+            if($coord[0]->cargo === "Coordenador Area"){
+                $professor = AvaliacaoTrait::pegarCoordenadorArea($user);
             }
         }
         if($user->cargo_usuario === "Professor"){
@@ -81,7 +83,8 @@ class AssiduidadeAlunoController extends Controller
         }
         $data = (string) date('Y-m-d');
         $tot_faltas = Assiduidade_aluno::where('created_at', 'like', '%'.$data.'%')->where('aluno_id', $aluno_id)
-        ->where('id_trimestre', $trimestre[0]->trimestre_id)->where('disciplina_id', $disciplina_id)->get();
+        ->where('id_trimestre', $trimestre[0]->trimestre_id)->where('disciplina_id', $disciplina_id)
+        ->where('tipo_falta', "Presencial")->get();
         if(count($falta) <= count($tot_faltas)){
             return redirect()->back()->with('erro', "Limite de faltas atingido!");
         }
