@@ -29,14 +29,14 @@
             <div class="col-md-6">
               <div class="form-group">
                   <input name='nome_completo' type="text" class="input-sm" placeholder="Nome Completo do professor" id="nome-completo-do-professor-input" oninput="this.className = ''" minlength="3" maxlength="70">
-                  <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-do-nome-completo-do-professor"></p>
+                  <p class="alert alert-danger d-none mt-2" role="alert" id="paragrafo-de-validacao-do-nome-completo-do-professor"></p>
               </div>
             </div>
 
             <div class="col-md-6">
               <div class="form-group">
                 <input name='formacao' type="text" class="input-sm" placeholder="Formação do professor" id="formacao-do-professor-input" oninput="this.className = ''" minlength="3" maxlength="70">
-                <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-formacao-do-professor"></p>
+                <p class="alert alert-danger d-none mt-2" role="alert" id="paragrafo-de-validacao-da-formacao-do-professor"></p>
               </div>
             </div>
           </div>
@@ -45,20 +45,20 @@
             <div class="col-md-5">
               <div class="form-group">
                 <input name='num_bi' type="text" placeholder="Número do bilhete de identidade" id="numero-do-bilhete-do-professor-input" oninput="this.className = ''" minlength="14" maxlength="14">
-                <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-do-numero-do-bilhete-do-professor"></p>
+                <p class="alert alert-danger d-none mt-2" role="alert" id="paragrafo-de-validacao-do-numero-do-bilhete-do-professor"></p>
               </div>
             </div>
 
             <div class="col-md-5">
               <div class="form-group">
                 <input name='data_nascimento' type="date" id="data-de-nascimento-do-professor-input" oninput="this.className = ''">
-                <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-data-de-nascimento-do-professor"></p>
               </div> 
             </div>
 
             <div class="col-md-2">
               <div class="form-group">
                 <input type="text" class="form-control" readonly="true" id="idade-do-professor-input" disabled oninput="this.className = ''" value="00">
+                <p class="alert alert-danger d-none mt-2" role="alert" id="paragrafo-de-validacao-da-idade-do-professor"></p>
               </div> 
             </div>
           </div>
@@ -76,27 +76,30 @@
             </div>
 
             <div class="col-md-8" style=" display: flex; justify-content: flex-end;align-items: center; gap: 10px;">
-            <h5>Endereço</h5>
+              <h5>Endereço</h5>
               <div class="form-group">
-                <input name='municipio' type="text" placeholder="Municipio">
+                <input name='municipio' type="text" placeholder="Municipio" id="municipio-do-professor-input">
+                <p class="alert alert-danger d-none mt-2" role="alert" id="paragrafo-de-validacao-do-municipio-do-professor"></p>
+              </div>
               </div> 
               <div class="form-group">
-                <input name='bairro' type="text" placeholder="Bairro">
+                <input name='bairro' type="text" placeholder="Bairro" id="bairro-do-professor-input">
+                <p class="alert alert-danger d-none mt-2" role="alert" id="paragrafo-de-validacao-do-bairro-do-professor"></p>
               </div> 
               <div class="form-group">
                 <input name='zona' type="text" placeholder="Zona">
               </div> 
               <div class="form-group">
-                <input name='numero_casa' type="number" placeholder="Nº Casa">
+                <input name='numero_casa' type="number" placeholder="Nº Casa" min="0" max="800">
               </div> 
             </div>
-          </div>
+          </div> 
 
           <div class="row">
-            <div id="clone1"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
+            <div id="col-md-4"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
               <span style="color: #777;">+244</span>
               <input name='num_tel' type="text" name="" placeholder="Telefone" id="contacto-telefonico-do-professor-input" oninput="this.className = ''" minlength="9" maxlength="9">
-              <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-do-contacto-telefone-do-professor"></p>
+              <p class="alert alert-danger d-none mt-2" role="alert" id="paragrafo-de-validacao-do-contacto-telefone-do-professor"></p>
             </div>
           </div>
         </div>
@@ -181,7 +184,7 @@
 
           <div class="form-group">
             <input type="email" placeholder="E-mail do professor" id="email-do-professor-input" oninput="this.className = ''" minlength="10" maxlength="40">
-            <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-do-email-do-professor"></p>
+            <p class="alert alert-danger d-none mt-2" role="alert" id="paragrafo-de-validacao-do-email-do-professor"></p>
           </div>
         </div>
 
