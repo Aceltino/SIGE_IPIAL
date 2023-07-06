@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Curso;
 use App\Models\Disciplina;
 use App\Models\Classe;
+use App\Models\ClasseDisciplina;
 use App\Http\Requests\DisciplinaStoreRequest;
 
 
@@ -28,21 +29,24 @@ class DisciplinasController extends Controller
     public function store(DisciplinaStoreRequest $request)
     { 
         $disciplinas = new Disciplina();
-        $disciplinas->nome_disciplina = $request->nome_disciplina; 
-        $disciplinas->componente = $request->componente;
-        $disciplinas->tempo_prova = $request-> tempo_prova;
-        $disciplinas->sigla = $request->sigla;
-        $disciplinas->curso_id = $request->curso;
-        $disciplinas->save();
+        $disciplinas = Disciplina::create($request->all());
+        $classeDisciplina = ClasseDisciplina::create($request->all());
+        dd($classeDisciplina);
+        $disciplinaID = $disciplinas->disciplina_id;
+        $classesID = [
+            $request->classe
+        ];
+        $disciplinas->classes()->sync($classesID);
         return redirect()->route('consultar.disciplina',$disciplinas)->with('sucess','Disciplina cadastrada com sucesso');
     }
     public function edit($disciplina_id)
     {
         $cursos = Curso::all();
+        $classes = Classe::all();
         $disciplinas = Disciplina::where('disciplina_id',$disciplina_id)->first();
         if(!empty($disciplinas))
         {
-            return view('disciplina.edit-disciplina',['disciplinas' => $disciplinas, 'cursos' => $cursos]);
+            return view('disciplina.edit-disciplina',['disciplinas' => $disciplinas, 'cursos' => $cursos , 'classes' => $classes ]);
         }
         else{
                 return redirect()->route('consultar.disciplina');

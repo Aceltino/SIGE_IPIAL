@@ -1,4 +1,4 @@
-$(document).ready(function() {
+/*$(document).ready(function() {
   // Quando o select de componente for alterado
   $('#selectComponente').change(function() {
     // Desmarcar todas as checkboxes selecionadas
@@ -34,11 +34,10 @@ $(document).ready(function() {
       $('input[name="curso"]').not(this).prop('checked', false);
     }
   });
-});
+});*/
 
-// Com socio culturar mas com bug quando selecionar está a impossibilitar de desmarcar os outos 
 
-/*$(document).ready(function() {
+$(document).ready(function() {
     // Quando o select de componente for alterado
     $('#selectComponente').change(function() {
       // Desmarcar todas as checkboxes selecionadas
@@ -82,4 +81,4 @@ $(document).ready(function() {
         $('input[name="curso"]').not(this).prop('checked', false);
       }
     });
-  });*/
+  });
