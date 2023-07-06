@@ -27,7 +27,6 @@ $(document).ready(function() {
       $('input[name="curso"]').prop('disabled', true);
     }
   });
-
   // Ao selecionar uma checkbox
   $('input[name="curso"]').change(function() {
     if ($('#selectComponente').val() === 'Técnicas') {
