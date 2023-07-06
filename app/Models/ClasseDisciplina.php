@@ -12,9 +12,12 @@ class ClasseDisciplina extends Model
     protected $table = 'classe_disciplina';
     protected $primaryKey = 'classe_disciplina_id';
     protected $fillable = [
-        'carga_horaria',
+     'carga_horaria',
+     'disciplina_id',
+     'classe_id',
+     'updated_at',
+     'created_at',
     ];
-
     public function cDisciplina()
     {
         return $this->morphTo();

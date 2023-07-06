@@ -39,20 +39,28 @@
   </div>
 
   @if(session('sucess'))
-<div class="alert alert-success">
-          {{(session('sucess'))}}
-      </div>
-@endif
-@if(session('edit'))
-<div class="alert alert-success">
-          {{(session('edit'))}}
-      </div>
-@endif
-@if(session('delete'))
-<div class="alert alert-success">
-          {{(session('delete'))}}
-      </div>
-@endif
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <i class="bi bi-check-circle me-1"></i>
+    {{(session('sucess'))}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  @endif
+
+  @if(session('edit'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <i class="bi bi-check-circle me-1"></i>
+      {{(session('edit'))}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  @endif
+  @if(session('delete'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <i class="bi bi-exclamation-octagon me-1"></i>
+      {{(session('delete'))}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  @endif
+
   <!-- /  Inicio da tabela de disciplina -->
   <table class="table table-striped display" style="margin-top: 10px;" id="Inscricoes-tab">
     <thead>
