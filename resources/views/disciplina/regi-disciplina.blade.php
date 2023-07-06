@@ -43,7 +43,7 @@
                       <select oninput="this.className = ''" class="form-select" name="componente" id="selectComponente">
                         <option selected disabled> Componetes</option>
                         <option  value="Técnicas">Técnicas</option>
-                        <option value="Socio-culturais"> Socio-culturais</option>
+                        <option value="Socio-culturais">Socio-culturais</option>
                         <option value="Cientificas"> Cientificas</option>
                       </select>
                     </div>
@@ -67,8 +67,8 @@
                 <div class="col">
                   @foreach($cursos as $curso)
                   <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="checkboxCurso{{$curso['curso_id']}}" name="curso" value="{{$curso['curso_id']}}">
-                    <label class="form-check-label" for="checkboxCurso{{$curso['curso_id']}}">{{$curso['nome_curso']}}</label>
+                    <input class="form-check-input" type="checkbox" id="checkboxCurso{{$curso['curso_id']}}" name="curso" value="{{$curso['curso_id']}}" disabled>
+                    <label class="form-check-label" for="checkboxCurso{{$curso['curso_id']}}" >{{$curso['nome_curso']}}</label>
                  </div>
                   @endforeach
                  <div class="col">
