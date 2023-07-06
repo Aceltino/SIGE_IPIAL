@@ -26,7 +26,7 @@ use App\Http\Controllers\{
 */
 
 // Rota apenas de teste... Não apague -> ACELTINO
-    Route::get('validar-aluno', [AlunoTurmaController::class, 'pegarTurma']);
+    Route::get('validar-aluno', [AlunoTurmaController::class, 'alunoAnolectivo']);
 // Route::get('validar-aluno', [AlunoController::class, 'situacaoAluno']);
 
 
@@ -209,17 +209,11 @@ Route::prefix('turma')->middleware(['auth','active.session','checkcargo'])->grou
     });
 
     /*Editar turma */
-    Route::get('editar-turma', function () {
-        return view('turma/edit-turma');
+    Route::get('adicionar-coord-turma', function () {
+        return view('turma/ad-coord-turma');
     });
 });
 /**<!--Fim Rotas turma--> */
-
-
-/*Editar turma */
-Route::get('editar-turma', function () {
-    return view('turma/edit-turma');
-});/**<!--Fim Rotas turma--> */
 
 /******************************************
  * Rotas de aluno
@@ -305,7 +299,7 @@ Route::prefix('pautas')->middleware(['auth','active.session'])->group(function()
     Route::get('/', [PautaController::class, 'index'])->name('pauta');
 
     //Rotas do Documento
-    Route::get('ver-pauta/{id}/{ano}', [PautaController::class, 'show'])->name('pauta.show');
+    Route::get('ver-pauta/{id}/{ano}', [PautaController::class, 'show'])->name('pauta.show')->middleware(['checkusernecessario']);
 });
 
 /******************************************

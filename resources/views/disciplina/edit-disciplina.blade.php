@@ -22,14 +22,26 @@
                         <h2>ACTUALIZAR DADOS DA DISCIPLINA</h2>
                     </div>
 
-                </div> 
+                </div>  
             </div>
         <div class="row">
            <div class="col">
                 <input type="text" style=" text-align: center;"  value="{{ $disciplinas->nome_disciplina }}" placeholder="Nome da disciplina" name="nome_disciplina"  oninput="this.className = ''">
+                    @error('nome_disciplina')
+                                <div class="alert alert-danger">{{$message}}
+                                <button class="botaofecharerro">
+                                <i class="bi bi-x"></i>
+                                </button></div>
+                            @enderror
             </div>
            <div class="col">
                 <input type="text" style=" text-align: center;" value="{{ $disciplinas->sigla }}" placeholder="Sigla" name="sigla"  oninput="this.className = ''">
+                         @error('sigla')
+                                <div class="alert alert-danger">{{$message}}
+                                <button class="botaofecharerro">
+                                <i class="bi bi-x"></i>
+                                </button></div>
+                            @enderror
             </div>
         </div> <br>
 
@@ -41,6 +53,12 @@
                   <option value="I.E"> Socio-culturais</option>
                   <option value="I"> Cientificas</option>
                 </select>
+                @error('componente')
+                                <div class="alert alert-danger">{{$message}}
+                                <button class="botaofecharerro">
+                                <i class="bi bi-x"></i>
+                                </button></div>
+                            @enderror
               </div>
               <div class="row">
                 <div class="col">
@@ -51,8 +69,14 @@
                  </div>
                   @endforeach 
                 <div class="col">
-                     <input type="number" style=" text-align: center;" value="{{ $disciplinas->tempo_prova }}" name="tempo_prova"    oninput="this.className = ''">
-                 </div>
+                     <input type="Time" style=" text-align: center;" value="{{ $disciplinas->tempo_prova }}" name="tempo_prova"    oninput="this.className = ''">
+                     @error('tempo_prova')
+                                <div class="alert alert-danger">{{$message}}
+                                <button class="botaofecharerro">
+                                <i class="bi bi-x"></i>
+                                </button></div>
+                            @enderror
+                    </div>
              </div> 
              <div style="text-align:center;margin-top:10px;">
                 <div>
