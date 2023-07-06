@@ -235,4 +235,8 @@ class TurmaController extends Controller
         $turmaCriada = Turma::create($dadosTurma);
         return $turmaCriada;
     }
+
+    public function adcoordTurma(){
+        return view('turma/ad-coord-turma.blade');
+    }
 }
