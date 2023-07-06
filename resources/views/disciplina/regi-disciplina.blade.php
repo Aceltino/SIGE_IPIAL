@@ -43,20 +43,20 @@
                       <select oninput="this.className = ''" class="form-select" name="componente" id="selectComponente">
                         <option selected disabled> Componetes</option>
                         <option  value="Técnicas">Técnicas</option>
-                        <option value="Socio-culturais"> Socio-culturais</option>
+                        <option value="Socio-culturais">Socio-culturais</option>
                         <option value="Cientificas"> Cientificas</option>
                       </select>
                     </div>
                     <div class="form-group col">
-                      <select oninput="this.className = ''" class="form-select" name="componente" id="selectClasse">
+                      <select oninput="this.className = ''" class="form-select" name="classe" id="selectClasse">
                         <option selected disabled>Classe</option>
                         @foreach ($classes as $classe)
-                        <option value="{{$classe['classe']}}">{{$classe['classe']}}</option>     
+                        <option value="{{$classe['classe_id']}}">{{$classe['classe']}}</option>     
                         @endforeach
                       </select>
                     </div>
                     <div class="form-group col">
-                        <select oninput="this.className = ''" class="form-select" name="componente" id="selectTipoDisciplina">
+                        <select oninput="this.className = ''" class="form-select" name="tipo_disciplina" id="selectTipoDisciplina">
                           <option selected disabled>Tipo de Disciplina</option>
                           <option value="Terminal">Terminal</option> 
                           <option value="Contínua">Contínua</option>    
@@ -67,19 +67,28 @@
                 <div class="col">
                   @foreach($cursos as $curso)
                   <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="checkboxCurso{{$curso['curso_id']}}" name="curso" value="{{$curso['curso_id']}}">
-                    <label class="form-check-label" for="checkboxCurso{{$curso['curso_id']}}">{{$curso['nome_curso']}}</label>
+                    <input class="form-check-input" type="checkbox" id="checkboxCurso{{$curso['curso_id']}}" name="curso" value="{{$curso['curso_id']}}" disabled>
+                    <label class="form-check-label" for="checkboxCurso{{$curso['curso_id']}}" >{{$curso['nome_curso']}}</label>
                  </div>
                   @endforeach
-                 <div class="col">
-                     <input type="Time" style=" text-align: center;" name="tempo_prova" value="{{ old('tempo_prova') }}" placeholder="Tempo de prova" oninput="this.className = ''">
-                            @error('tempo_prova')
-                                <div class="alert alert-danger">{{$message}}
-                                <button class="botaofecharerro">
-                                <i class="bi bi-x"></i>
-                                </button></div>
-                            @enderror
-                    </div> 
+                    <div class="row">
+                      <div class="col">
+                        <input type="Time" style=" text-align: center;" name="tempo_prova" value="{{ old('tempo_prova') }}" placeholder="Tempo de prova" oninput="this.className = ''">
+                               @error('tempo_prova')
+                                   <div class="alert alert-danger">{{$message}}
+                                   <button class="botaofecharerro">
+                                   <i class="bi bi-x"></i>
+                                   </button></div>
+                               @enderror
+                       </div> 
+
+                       <div class="col">
+                          <input type="text" style=" text-align: center;" name="tempo_prova" value="" placeholder="Carga Horária" oninput="this.className = ''">
+    
+                       </div> 
+
+                    </div>
+                    
              </div> 
              <div style="text-align:center;margin-top:10px;">
                 <div>

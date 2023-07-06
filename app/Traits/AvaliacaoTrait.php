@@ -9,6 +9,8 @@ use App\Models\Professor_disciplina;
 use App\Models\AnoTurmaCood;
 use App\Models\AlunoTurma;
 use App\Models\Ano_lectivo;
+use App\Models\Turma;
+use App\Models\Horario;
 
 
 trait AvaliacaoTrait
@@ -186,28 +188,34 @@ trait AvaliacaoTrait
     public static function pegarProfessor($user){
 
         $professor = Professor::with('pessoa')->where('pessoa_id', $user->pessoa_id)->get();
-        //dd($professor);
-        $ano_lectivo = self::pegarAnoLectivo();
-        $prof_disc = Professor_disciplina::with('turmaProf.curso', 'disciplina')->where('professor_id', $professor[0]->professor_id)
-        ->where('ano_lectivo_id', $ano_lectivo[0]->ano_lectivo_id)
-        ->get();
-        //dd($prof_disc->toArray());
-        for ($i = 0; $i < count($prof_disc); $i++) {
-            $dados[$i] = [
-                'professor_disciplina_id' => $prof_disc[$i]->disc_professor_id,
-                'nome_disciplina' =>  $prof_disc[$i]->disciplina->nome_disciplina,
-                'disciplina_id' => $prof_disc[$i]->disciplina->disciplina_id,
-            ];
-          for ($j = 0; $j < count($prof_disc[$i]->turmaProf); $j++) {
-            $dados[$i][$j] = [
-                'turma_id' => $prof_disc[$i]->turmaProf[$j]->turma_id,
-                'nome_turma' => $prof_disc[$i]->turmaProf[$j]->nome_turma,
-                'curso_id' => $prof_disc[$i]->turmaProf[$j]->curso->curso_id,
-                'nome_curso' => $prof_disc[$i]->turmaProf[$j]->curso->nome_curso,
-            ];
-          }
+        if(count($professor) > 0){
+            $ano_lectivo = self::pegarAnoLectivo();
+            $prof_disc = Professor_disciplina::with('turmaProf.curso', 'disciplina')->where('professor_id', $professor[0]->professor_id)
+            ->where('ano_lectivo_id', $ano_lectivo[0]->ano_lectivo_id)
+            ->get();
+            if(count($prof_disc) > 0){
+                for ($i = 0; $i < count($prof_disc); $i++) {
+                    $dados[$i] = [
+                        'professor_disciplina_id' => $prof_disc[$i]->disc_professor_id,
+                        'nome_disciplina' =>  $prof_disc[$i]->disciplina->nome_disciplina,
+                        'disciplina_id' => $prof_disc[$i]->disciplina->disciplina_id,
+                    ];
+                    for ($j = 0; $j < count($prof_disc[$i]->turmaProf); $j++) {
+                        $dados[$i][$j] = [
+                            'turma_id' => $prof_disc[$i]->turmaProf[$j]->turma_id,
+                            'nome_turma' => $prof_disc[$i]->turmaProf[$j]->nome_turma,
+                            'curso_id' => $prof_disc[$i]->turmaProf[$j]->curso->curso_id,
+                            'nome_curso' => $prof_disc[$i]->turmaProf[$j]->curso->nome_curso,
+                        ];
+                    }
+                }
+                return $dados;
+            } else{
+                return false;
+            }
+        }else{
+            return false;
         }
-        return $dados;
     }
 
     public static function pegarAnoTurmaCoord($turma_id) : int {
@@ -248,32 +256,69 @@ trait AvaliacaoTrait
         $prof_disc = Professor_disciplina::with('turmaProf.curso', 'disciplina')
         ->where('ano_lectivo_id', $ano_lectivo[0]->ano_lectivo_id)
         ->get();
-        $inc1 = 0;
-        $inc2 = 0;
-        //dd($prof_disc->toArray());
+        $inc = 0;
+
         for ($i = 0; $i < count($prof_disc); $i++) {
             for ($j = 0; $j < count($prof_disc[$i]->turmaProf); $j++) {
                 if($prof_disc[$i]->turmaProf[$j]->curso->curso_id === $coordenador[0]->curso_id){
-                    $dados[$inc1] = [
+                    $dados[$inc] = [
                         'professor_disciplina_id' => $prof_disc[$i]->disc_professor_id,
                         'nome_disciplina' =>  $prof_disc[$i]->disciplina->nome_disciplina,
                         'disciplina_id' => $prof_disc[$i]->disciplina->disciplina_id,
                     ];
-
-                    $dados[$inc1][$inc2] = [
-                        'turma_id' => $prof_disc[$i]->turmaProf[$j]->turma_id,
-                        'nome_turma' => $prof_disc[$i]->turmaProf[$j]->nome_turma,
-                        'curso_id' => $prof_disc[$i]->turmaProf[$j]->curso->curso_id,
-                        'nome_curso' => $prof_disc[$i]->turmaProf[$j]->curso->nome_curso,
-                    ];
-                    $inc2++;
+                    $inc2 = 0;
+                    for($k = 0; $k < count($prof_disc[$i]->turmaProf); $k++){
+                        if($prof_disc[$i]->turmaProf[$k]->curso->curso_id === $coordenador[0]->curso_id){
+                            $dados[$inc][$inc2] = [
+                                'turma_id' => $prof_disc[$i]->turmaProf[$k]->turma_id,
+                                'nome_turma' => $prof_disc[$i]->turmaProf[$k]->nome_turma,
+                                'curso_id' => $prof_disc[$i]->turmaProf[$k]->curso->curso_id,
+                                'nome_curso' => $prof_disc[$i]->turmaProf[$k]->curso->nome_curso,
+                            ];
+                            $inc2++;
+                        }
+                    }
                 }
-                //dd($prof_disc[$i]->turmaProf[$j]->curso->curso_id);
             }
-            $inc1++;
+            $inc++;
         }
-        //dd($prof_disc[$i]->turmaProf[$j]);
         return $dados;
     }
+
+    public static function pegarCoordenadorArea($user){
+        $coordenador = Professor::with('pessoa')->where('pessoa_id', $user->pessoa_id)->get();
+        $ano_lectivo = self::pegarAnoLectivo();
+        $prof_disc = Professor_disciplina::with('turmaProf.curso', 'disciplina')
+        ->where('ano_lectivo_id', $ano_lectivo[0]->ano_lectivo_id)
+        ->get();
+        $inc = 0;
+
+        for ($i = 0; $i < count($prof_disc); $i++) {
+            for ($j = 0; $j < count($prof_disc[$i]->turmaProf); $j++) {
+                if($prof_disc[$i]->turmaProf[$j]->curso->area_formacao_id === $coordenador[0]->area_formacao_id){
+                    $dados[$inc] = [
+                        'professor_disciplina_id' => $prof_disc[$i]->disc_professor_id,
+                        'nome_disciplina' =>  $prof_disc[$i]->disciplina->nome_disciplina,
+                        'disciplina_id' => $prof_disc[$i]->disciplina->disciplina_id,
+                    ];
+                    $inc2 = 0;
+                    for($k = 0; $k < count($prof_disc[$i]->turmaProf); $k++){
+                        if($prof_disc[$i]->turmaProf[$k]->curso->area_formacao_id === $coordenador[0]->area_formacao_id){
+                            $dados[$inc][$inc2] = [
+                                'turma_id' => $prof_disc[$i]->turmaProf[$k]->turma_id,
+                                'nome_turma' => $prof_disc[$i]->turmaProf[$k]->nome_turma,
+                                'curso_id' => $prof_disc[$i]->turmaProf[$k]->curso->curso_id,
+                                'nome_curso' => $prof_disc[$i]->turmaProf[$k]->curso->nome_curso,
+                            ];
+                            $inc2++;
+                        }
+                    }
+                }
+            }
+            $inc++;
+        }
+        return $dados;
+    }
+
 
 }
