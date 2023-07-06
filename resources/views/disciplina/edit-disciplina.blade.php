@@ -47,37 +47,20 @@
 
             <div class="row">
 
-                <div class="form-group col">
-                  <select oninput="this.className = ''"  value="{{ $disciplinas->componente }}" class="form-select" name="componente" >
-                    <option  disabled> Componetes</option>
-                    <option selected  value="c.T">Técnicas </option>
-                    <option value="I.E"> Socio-culturais</option>
-                    <option value="I"> Cientificas</option>
-                  </select>
-                  @error('componente')
-                                  <div class="alert alert-danger">{{$message}}
-                                  <button class="botaofecharerro">
-                                  <i class="bi bi-x"></i>
-                                  </button></div>
-                              @enderror
-                </div>
-                <div class="form-group col">
-                    <select oninput="this.className = ''" class="form-select" name="componente" id="selectClasse">
-                      <option selected disabled>Classe</option>
-                      @foreach ($classes as $classe)
-                      <option value="{{$classe['classe']}}">{{$classe['classe']}}</option>     
-                      @endforeach
-                    </select>
-                  </div>
-                  <div class="form-group col">
-                      <select oninput="this.className = ''" class="form-select" name="componente" id="selectTipoDisciplina">
-                        <option selected disabled>Tipo de Disciplina</option>
-                        <option value="Terminal">Terminal</option> 
-                        <option value="Contínua">Contínua</option>    
-                      </select>
-                    </div>
+              <div class="form-group">
+                <select oninput="this.className = ''"   class="form-select" name="componente" value="{{ $disciplinas->componente }}" >
+                  <option  disabled > Componetes</option>
+                  <option value="Técnicas">Técnicas </option>
+                  <option value="Socio-culturais"> Socio-culturais</option>
+                  <option value="Cientificas"> Cientificas</option>
+                </select>
+                @error('componente')
+                                <div class="alert alert-danger">{{$message}}
+                                <button class="botaofecharerro">
+                                <i class="bi bi-x"></i>
+                                </button></div>
+                            @enderror
               </div>
-            </div>
               <div class="row">
                 <div class="col">
                 @foreach($cursos as $curso)

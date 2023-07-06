@@ -16,8 +16,8 @@ class Disciplina extends Model
         'nome_disciplina',
         'componente',
         'tempo_prova',
-        'sigla',  
-        'tipo_disciplina',      
+        'sigla',    
+        'Tipo_disciplina',    
      ]; 
  
     public function professor(){
@@ -41,9 +41,10 @@ class Disciplina extends Model
     {
         return $this->belongsTo(Curso::class,'curso_id');
     }
+    //conexão disciplina e classe: muitos para muitos
     public function classes()
     {
-        return $this->belongsToMany(Classe::class, 'classe_disciplina', 'disciplina_id', 'classe_id' );
+        return $this->belongsToMany(Classe::class, 'classe_disciplina' , 'disciplina_id' , 'classe_id');
     }
 }
  
