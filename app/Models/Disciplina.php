@@ -16,7 +16,8 @@ class Disciplina extends Model
         'nome_disciplina',
         'componente',
         'tempo_prova',
-        'sigla',        
+        'sigla',  
+        'tipo_disciplina',      
      ]; 
  
     public function professor(){
@@ -39,6 +40,10 @@ class Disciplina extends Model
     public function curso()
     {
         return $this->belongsTo(Curso::class,'curso_id');
+    }
+    public function classes()
+    {
+        return $this->belongsToMany(Classe::class, 'classe_disciplina', 'disciplina_id', 'classe_id' );
     }
 }
  

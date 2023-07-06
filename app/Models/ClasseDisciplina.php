@@ -11,6 +11,9 @@ class ClasseDisciplina extends Model
 
     protected $table = 'classe_disciplina';
     protected $primaryKey = 'classe_disciplina_id';
+    protected $fillable = [
+        'carga_horaria',
+    ];
 
     public function cDisciplina()
     {
