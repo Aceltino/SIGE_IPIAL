@@ -169,17 +169,20 @@ class AlunoController extends Controller
 
     public static function alunosTurma() // Função chamada no AlunoTurmacontroller para saber a situação doa aluno no ano anterior
     {
+        $anoRestrict = AnoLectivoController::pegarPenultimoAnoLectivo();
+
         $alunos = Aluno::with('candidato', 'anoturma')
-        ->whereHas('anoturma', function ($query) {
-            $query->where('ano_lectivo_id', AnoLectivoController::pegarPenultimoAnoLectivo());
-        })
-        ->where('status', 0 )
-        ->get();
+            ->whereHas('anoturma', function ($query) use ($anoRestrict) {
+                $query->where('ano_lectivo_id', '=', $anoRestrict);
+            })
+            ->get();
 
         $Alunos = [];
 
         foreach ($alunos as $aluno) {
             foreach ($aluno->anoturma as $anoturma) {
+                if($anoturma->ano_lectivo_id === $anoRestrict)
+                {
                 $Alunos[] = [
                     'aluno_id' => $aluno->aluno_id,
                     'aluno_status' => $aluno->status,
@@ -187,10 +190,13 @@ class AlunoController extends Controller
                     'curso' => $aluno->candidato->cursoAdmitido,
                     'data_nasc' => $aluno->candidato->pessoa->data_nascimento,
                     'nome' => $aluno->candidato->pessoa->nome_completo,
-                    'idCurso' => CursoController::pegarIdCurso($aluno->candidato->cursoAdmitido),
+                    'cursoId' => CursoController::pegarIdCurso($aluno->candidato->cursoAdmitido),
                     'classeId' => $anoturma->turma->classe->classe_id,
-                    'nomeTurma' => $anoturma->turma->nome_turma
+                    'turnoId' => $anoturma->turma->turno->turno_id,
+                    'anoLectivo' => $anoturma->ano_lectivo->ano_lectivo,
+                    'nomeTurma' => $anoturma->turma->nome_turma,
                 ];
+                }
             }
         }
         return $Alunos;

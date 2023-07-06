@@ -26,7 +26,7 @@ use App\Http\Controllers\{
 */
 
 // Rota apenas de teste... Não apague -> ACELTINO
-    Route::get('validar-aluno', [AlunoTurmaController::class, 'pegarTurma']);
+    Route::get('validar-aluno', [AlunoTurmaController::class, 'alunoAnolectivo']);
 // Route::get('validar-aluno', [AlunoController::class, 'situacaoAluno']);
 
 
