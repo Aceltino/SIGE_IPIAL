@@ -93,123 +93,136 @@ img.insignia{
     height: 70px;
 }
 
-  table.pauta-geral{
-    width: 100%;
-    margin: auto; 
-    text-align: center; 
-    margin-bottom: 50px;
-    color: #000;
-    font-family: times new roman;
-    font-size: 8pt;
-  }
-  
-  table.pauta-geral, .cabecalho-tab-p, .corpo-tab-p, .linha-tab-p, .coluna-tab-p{
-    cellspacing: 0;
-    font-family: times new roman;
-  }
-  
-  .cabecalho-tab-p h1{
-    color: #000;
-    font-family: times new roman;
-    font-size: 36pt;
-  }
-  
-  .tx-cab-p{
-    font-size: 14pt;
-  }
-  
-  .tx-curso-p{
-    color: red;
-    font-size: 20pt;
-  }
-  
-  .nome-dg{
-    font-size: 10pt;
-    font-weight: bolder;
-  }
-  
-  .ano-lec-p{
-    font-size: 16pt;
-  }
-  
-  /***********Inicio do corpo da tabela pauta***********/
-  .linha-tab-p, .coluna-tab-p{
-    border: 1px solid #000;
-    padding: 2px;
-  }
-  
-  .tx-turma-p{
-    color: red;
-    font-size: 22pt;
-  }
-  
-  .tx-disciplina-p{
-    font-size: 12pt;
-  }
-  
-  .txnum-aluno-p, .txnome-aluno-p{
-    font-size: 12pt;
-  }
-  
-  .txproc-p{
-    font-size: 9pt;
-  }
-  
-  .t-vert{
-    writing-mode: vertical-lr;
-    -webkit-transform: rotate(-180deg);
-    font-size: 8pt;
-  }
-  
-  .t-vert-falta-aluno-p{
-    writing-mode: vertical-lr;
-    -webkit-transform: rotate(-180deg);
-    font-size: 6pt;  
-  }
-  
-  .c-tab-amarelo{
-    background-color: yellow;
-  }
-  
-  .c-tab-sinza-esq{
-    background-color: #777;
-  }
-  
-  .c-tab-sinza{
-    background-color: #ccc;
-  }
-  
-  /********Informacoes do aluno********/
-  .num-aluno-p{
-    font-size: 11pt;
-  }
-  
-  .nome-aluno-p{
-    font-size: 14pt;
-  }
-  
-  .num-proc-p{
-    font-size: 16pt;
-  }
-  
-  .nota{
-    font-size: 10pt;
-  }
-  
-  .nota-pos{
-    color: blue;
-  }
-  
-  .nota-neg{
-    color: red;
-  }
-  
-  
-  
-  
-  .txdecisao-p{
-    font-size: 9pt;
-  }
+table.pauta-geral{
+  margin: auto; 
+  text-align: center; 
+  margin-bottom: 50px;
+  color: #000;
+  font-family: times new roman;
+  font-size: 9px;
+}
+
+table.pauta-geral, .cabecalho-tab-p, .corpo-tab-p, .linha-tab-p, .coluna-tab-p{
+  cellspacing: 0;
+}
+.cabecalho-tab-p{
+  text-transform: uppercase;
+}
+
+.cabecalho-tab-p h1{
+  color: #000;
+  font-family: times new roman;
+  font-size: 30px;
+}
+
+.tx-cab-p{
+  font-size: 15px;
+}
+
+.tx-curso-p{
+  color: red;
+  font-size: 20px;
+}
+
+.nome-dg{
+  font-size: 11px;
+  font-weight: bolder;
+}
+
+.ano-lec-p{
+  font-size: 15px;
+}
+
+/***********Inicio do corpo da tabela pauta***********/
+.linha-tab-p, .coluna-tab-p{
+  border: 1px solid #000;
+  padding: 2px;
+}
+
+.tx-turma-p{
+  color: red;
+  font-size: 18px;
+}
+
+.tx-disciplina-p{
+  font-size: 12px;
+}
+
+.txnum-aluno-p, .txnome-aluno-p, .txproc-p{
+  font-size: 12px;
+}
+
+.t-vert{
+  writing-mode: vertical-lr;
+  -webkit-transform: rotate(-180deg);
+  font-size: 9px;
+}
+
+.t-vert-maisc{
+  writing-mode: vertical-lr;
+  -webkit-transform: rotate(-180deg);
+  font-size: 9px;
+  text-transform: uppercase;
+}
+
+.t-vert-falta-aluno-p{
+  writing-mode: vertical-lr;
+  -webkit-transform: rotate(-180deg);
+  font-size: 8px;  
+  text-transform: uppercase;
+}
+
+.c-tab-amarelo{
+  background-color: yellow;
+}
+
+.c-tab-sinza-esq{
+  background-color: #777;
+}
+
+.c-tab-sinza{
+  background-color: #ccc;
+}
+
+/********Informacoes do aluno********/
+.num-aluno-p{
+  font-size: 12px;
+}
+
+.nome-aluno-p{
+  font-size: 14px;
+}
+
+.num-proc-p{
+  font-size: 14px;
+}
+
+.nota{
+  font-size: 11px;
+}
+
+.nota-pos{
+  color: blue;
+}
+
+.nota-neg{
+  color: red;
+}
+
+.maisculo-p{
+  text-transform: uppercase;
+}
+
+
+.txdecisao-p{
+  font-size: 10px;
+}
+
+
+.cdfs{
+  background-color: yellow;
+}
+
   
   
   /*********************************************

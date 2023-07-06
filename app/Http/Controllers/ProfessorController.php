@@ -29,7 +29,7 @@ class ProfessorController extends Controller
      */
     public function index()
     {
-        $professores = Professor::with('pessoa')->get();
+        $professores = Professor::with('pessoa', 'professorDisciplina')->get();
 
         return view('professor.consultar-prof', compact('professores'));
     }
@@ -102,13 +102,14 @@ class ProfessorController extends Controller
                 'nome_completo' => 'required|string|max:255',
                 'num_bi' => 'required|regex:/^\d{9}[A-Z]{2}\d{3}$/',
                 'genero' => 'required|in:Masculino,Femenino',
-                'telefone' => ['required', 'regex:/^\d{9}$/'],
+                'num_tel' => ['required', 'regex:/^\d{9}$/'],
                 'data_nascimento' => 'required|date',
             ]);
 
             $endereco = Endereco::create($validatedEndereco);
 
             $validatedPessoa['endereco_id'] = $endereco->endereco_id;
+            $validatedPessoa['telefone'] = $request->input('num_tel');
             $pessoa = Pessoa::create($validatedPessoa);
 
             $prof = Professor::create(['formacao' => $request->input('formacao'), '' => $request->input('curso'), 'pessoa_id' => $pessoa->pessoa_id]);

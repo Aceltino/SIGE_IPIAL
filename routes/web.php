@@ -11,7 +11,7 @@ use App\Http\Controllers\{
     PerfilUserController,ProcessoController,
     DisciplinasController, AdmissaoController,
     AlunoTurmaController,
-    TurmaController,
+    TurmaController, CalendarioController,
 };
 
 /*
@@ -209,17 +209,11 @@ Route::prefix('turma')->middleware(['auth','active.session','checkcargo'])->grou
     });
 
     /*Editar turma */
-    Route::get('editar-turma', function () {
-        return view('turma/edit-turma');
+    Route::get('adicionar-coord-turma', function () {
+        return view('turma/ad-coord-turma');
     });
 });
 /**<!--Fim Rotas turma--> */
-
-
-/*Editar turma */
-Route::get('editar-turma', function () {
-    return view('turma/edit-turma');
-});/**<!--Fim Rotas turma--> */
 
 /******************************************
  * Rotas de aluno
@@ -305,7 +299,7 @@ Route::prefix('pautas')->middleware(['auth','active.session'])->group(function()
     Route::get('/', [PautaController::class, 'index'])->name('pauta');
 
     //Rotas do Documento
-    Route::get('ver-pauta/{id}/{ano}', [PautaController::class, 'show'])->name('pauta.show');
+    Route::get('ver-pauta/{id}/{ano}', [PautaController::class, 'show'])->name('pauta.show')->middleware(['checkusernecessario']);
 });
 
 /******************************************
@@ -314,8 +308,8 @@ Route::prefix('pautas')->middleware(['auth','active.session'])->group(function()
 Route::prefix('mini-pauta')->middleware(['auth','active.session'])->group(function(){
     Route::get('mini-pauta', [MiniPautaController::class, 'index'])->name('mini-pauta');
     Route::get('ver-mini-pauta', [MiniPautaController::class, 'show'])->name('mini-pauta.show');
-    Route::get('{turma}/{prof_id}/{disciplina}', [MiniPautaController::class, 'view'])->name('mini-pauta.view');
-
+    Route::get('{turma}/{curso}', [MiniPautaController::class, 'turma'])->name('mini-pauta.turma');
+    Route::get('ver/{turma_id}/{prof_id}/{disciplina_id}', [MiniPautaController::class, 'view'])->name('mini-pauta.view');
 });
 
 /******************************************
@@ -355,19 +349,14 @@ Route::prefix('usuario')->middleware(['auth','checkcargo','active.session'])->gr
 /* Calendario de provas*/
 Route::prefix('calend-prova')->group(function(){
 
-    Route::get('calend-prova', function(){
-        return view('calend-prova/calendario-prova');
-    });
-
-    Route::get('cri-calend-prov', function(){
-        return view('calend-prova/cri-calend-prov');
-    });
+    Route::get('calend-prova',[CalendarioController::class,'index'])->name('consultar.calendario');
+    Route::get('cri-calend-prov',[CalendarioController::class, 'create'])->name('criar.calendario');
     Route::get('edit-calend-prova', function(){
         return view('calend-prova/edit-calend-prova');
-    });
+    })->name('editar.calendario');
 });
 
-
+ 
 /******************************************
  * Rotas da Assiduidade de Aluno
  */
@@ -445,7 +434,7 @@ Route::prefix('disciplina')->middleware(['auth','active.session','checkcargo'])-
         Route::get('disciplinas', [DisciplinasController::class,'index'])->name('consultar.disciplina');
         Route::get('regi-disciplina',[DisciplinasController::class, 'create'])->name('criar.disciplina');
         Route::post('regi-disciplina', [DisciplinasController::class, 'store'])->name('disciplina.store');
-        Route::get('edit-disciplina', [DisciplinasController::class, 'edit'])->where('disciplina_id','[0-9]+')->name('disciplina.edit');
+        Route::get('edit-disciplina/{disciplina_id}', [DisciplinasController::class, 'edit'])->where('disciplina_id','[0-9]+')->name('disciplina.edit');
         Route::put('{disciplina_id}', [DisciplinasController::class, 'update'])->where('disciplina_id', '[0-9]+')->name('disciplina.update');
         Route::delete('{disciplina_id}', [DisciplinasController::class, 'destroy'])->where('disciplina_id', '[0-9]+')->name('disciplina.delete');
 });
