@@ -252,13 +252,29 @@
                 }
                 $classe = intval($alunos[$i]['classeId']);
                 $classed = $classe + 1;
-                $turmas = AlunoTurmaController::pegarTurmasCurso($alunos[$i]['idCurso'], $classed );
 
+                $turmas = AlunoTurmaController::pegarTurmasCurso($alunos[$i]['idCurso'], $classed);
+                if($alunos[$i]['turnoId'] === 3)
+                {
+                    usort($turmas, function ($a, $b)
+                {
+                    $identificadorA = substr($a['turma'], -1);
+                    $identificadorB = substr($b['turma'], -1);
+                    $turnos = ['N' => 1];
+
+                    if ($identificadorA != $identificadorB)
+                    {
+                        return $turnos[$identificadorB] - $turnos[$identificadorA];
+                    }
+
+                    return strcmp($identificadorA, $identificadorB);
+                });
+                }
                 usort($turmas, function ($a, $b)
                 {
                     $identificadorA = substr($a['turma'], -1);
                     $identificadorB = substr($b['turma'], -1);
-                    $turnos = ['M' => 3, 'T' => 2, 'N' => 1];
+                    $turnos = ['M' => 2, 'T' => 1];
 
                     if ($identificadorA != $identificadorB)
                     {
@@ -538,8 +554,6 @@
             }
             $vagas[$chave]['num_alunos']++;
             }
-            // dd(array_values($vagas), $alunoss);
-            // return array_values($vagas);
 
         $turmas = array_values($vagas);
         usort($turmas, function($a, $b) {
@@ -550,32 +564,34 @@
     $anoLectivo = AnoLectivoController::pegarAnoLectivo(AnoLectivoController::pegarIdAnoLectivo());
     $numMaxTurmaT = $anoLectivo->num_sala_escola;
 
-    //    dd($numMaxTurmaT);
-
     foreach ($turmas as &$turma) {
-        if ($turma['turnoId'] === 3) {
-            while ($turma['num_alunos'] > 0) {
+        if ($turma['turnoId'] === 3) 
+        {
+            while ($turma['num_alunos'] > 0) 
+            {
                 repite:
                 $turmaVagas = AlunoTurmaController::pegarTurma(intval($turma['cursoId']), intval($turma['classeId']) + 1, intval($turma['turnoId']));
     
-                if (!$turmaVagas) {
+                if (!$turmaVagas) 
+                {
                     TurmaController::storeTurmas(intval($turma['classeId']) + 1, intval($turma['cursoId']), intval($turma['turnoId']));
                     goto repite;
-                    // $turma['num_alunos'] -= $turma['num_vagas']; // Subtrai o número de vagas da turma recém-criada
-                    // $turma['num_alunos'] = max(0, $turma['num_alunos']);
-                    // continue;
                 }
     
                 $turma['num_alunos'] -= $turmaVagas['num_vaga'];
                 $turma['num_alunos'] = max(0, $turma['num_alunos']);
             }
-        } elseif ($turma['turnoId'] === 2 || $turma['turnoId'] === 1) {
-            while ($turma['num_alunos'] > 0) {
+        } 
+        elseif ($turma['turnoId'] === 2 || $turma['turnoId'] === 1) 
+        {
+            while ($turma['num_alunos'] > 0) 
+            {
                 $turnoId = $numMaxTurmaT > 0 ? 2 : 1;
                 back:
                 $turmaVagas = AlunoTurmaController::pegarTurma(intval($turma['cursoId']), intval($turma['classeId']) + 1, $turnoId);
     
-                if (!$turmaVagas) {
+                if (!$turmaVagas) 
+                {
                     TurmaController::storeTurmas(intval($turma['classeId']) + 1, intval($turma['cursoId']), $turnoId);
     
                     if ($numMaxTurmaT > 0) {
@@ -583,9 +599,6 @@
                     }
                     
                     goto back;
-                    // $turma['num_alunos'] -= $turmaVagas['num_vagas']; // Subtrai o número de vagas da turma recém-criada
-                    // $turma['num_alunos'] = max(0, $turma['num_alunos']);
-                    // continue;
                 }
     
                 $turma['num_alunos'] -= $turmaVagas['num_vaga'];
@@ -593,9 +606,7 @@
             }
         }
     }
-    
-    dd($alunoss, $vagas, $turmas);
-    
-    
+
+    // dd($alunoss, $vagas, $turmas);
     }
 }
