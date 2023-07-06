@@ -175,10 +175,21 @@ class UserController extends Controller
 
         if($user->status_usuario===0){
 
-            if($user->cargo_usuario=='Director'){
+            if($user->cargo_usuario==='Director'){
                 if(!AuthController::limitCadastroUser()){
+
+                    $status=User::where('cargo_usuario','Director')->get();
+                    foreach ($status as $value) {
+                        
+                        if(!$value->status_usuario){
+                            goto conti;
+                        }
+                        goto contiErro;
+                    }
+                  
                     goto contiErro;
                 }
+                
                 goto conti;
             }
            

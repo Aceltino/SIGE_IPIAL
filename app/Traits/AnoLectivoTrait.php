@@ -5,6 +5,10 @@ namespace App\Traits;
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\CandidatoController;
 use App\Models\Ano_lectivo;
+<<<<<<< Updated upstream
+=======
+use App\Models\Candidato;
+>>>>>>> Stashed changes
 use App\Models\Trimestre;
 use DateTime;
 use carbon\Carbon;
