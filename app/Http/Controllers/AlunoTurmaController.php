@@ -1,489 +1,601 @@
 <?php
 
-namespace App\Http\Controllers;
+    namespace App\Http\Controllers;
 
-use App\Http\Controllers\AlunoController;
-use App\Http\Controllers\UserController;
-use App\Models\Aluno;
-use App\Models\AlunoTurma;
-use App\Models\AnoTurmaCood;
+    use App\Http\Controllers\AlunoController;
+    use App\Http\Controllers\UserController;
+    use App\Models\Aluno;
+    use App\Models\AlunoTurma;
+    use App\Models\AnoTurmaCood;
 
-class AlunoTurmaController extends Controller
-{
-
-    public static function store($dadosTurma)
+    class AlunoTurmaController extends Controller
     {
-        $turmaAtrelada = AnoTurmaCood::create($dadosTurma);
-        return $turmaAtrelada;
-    }
-    public static function SelecionarTurma() //10ª Classe, função a ser chamada na atribuição de alunos, matriculados.
-    {
-       $alunos = AlunoController::alunosSemturma();
-// dd($alunos);
-       if(!$alunos)
-       {
-            return "Todos os alunos matriculados atualmente estão nas suas devidas turmas.";
-       }
-       $alunoTurma = [];
-
-       usort($alunos, function ($a, $b)
-            {
-                $data_nascA = $a['data_nasc'];
-                $data_nascB = $b['data_nasc'];
-
-                if ($data_nascA == $data_nascB)
-                {
-                    return 0;
-                }
-
-                return ($data_nascA > $data_nascB) ? -1 : 1;
-            });
-
-        for($i = 0; $i < count($alunos); $i++)
+        public static function store($dadosTurma)
         {
-            $classe = intval(ClasseController::pegarIdClasse('10ª'));
-            // $turmas = AlunoTurmaController::pegarTurmasCurso($alunos[$i]['idCurso'], $classed );
-
-            $turmas = AlunoTurmaController::pegarTurmasCurso($alunos[$i]['idCurso'], $classe);
-
-            usort($turmas, function ($a, $b)
-            {
-                $identificadorA = substr($a['turma'], -1);
-                $identificadorB = substr($b['turma'], -1);
-                $turnos = ['M' => 3, 'T' => 2, 'N' => 1];
-
-                if ($identificadorA != $identificadorB)
-                {
-                    return $turnos[$identificadorB] - $turnos[$identificadorA];
-                }
-
-                return strcmp($identificadorA, $identificadorB);
-            });
-
-            foreach ($turmas as $turma)
-            {
-                if($turma['num_vaga'] > 0)
-                {
-                    $alunoTurma[] = [
-                    'turma' => $turma['TurmaAno_id'],
-                    'aluno' => $alunos[$i]['aluno_id'],
-                    'nome' => $alunos[$i]['nome']
-                    ];
-
-                    $vaga = $turma['num_vaga'] - 1;
-                    $vagaUpdate = [
-                    'id' => $turma['TurmaAno_id'],
-                    'vaga' => $vaga
-                    ];
-                    AlunoController::updateStatusTrue($alunos[$i]['aluno_id']);
-                    AlunoTurmaController::atualizarVaga($vagaUpdate);
-                    break;
-                }
-            }
+            $turmaAtrelada = AnoTurmaCood::create($dadosTurma);
+            return $turmaAtrelada;
         }
-        usort($alunoTurma, function($a, $b) {
-            return strcmp($a['nome'], $b['nome']);
-        });
-
-        $alunosOrdemTurma = [];
-        foreach($alunoTurma as $aluno)
+        public static function SelecionarTurma() //10ª Classe, função a ser chamada na atribuição de alunos, matriculados.
         {
-            if( !in_array($aluno['aluno'], $alunosOrdemTurma) )
-            {
-
-            $qtdAlunos = AlunoTurmaController::quantidadeTurma($aluno['turma']);
-            $alunoA = Aluno::find($aluno['aluno']);
-            $alunoA->Anoturma()->attach($aluno['turma'],[
-                'numero_aluno' => $qtdAlunos + 1
-            ]);
-
-            $userId = AlunoController::pegarIdUser($aluno['aluno']);
-            $dadosUser=[
-                'usuario_id'=> $userId,
-                'status_usuario'=>1,
-            ];
-            $user = UserController::updateAluno($dadosUser);
-            if(!$user)
-            {
-                return "Algum problema com o aluno ".$aluno['nome'].", tente mais tarde.";
-            }
-            $alunoTurma = [];
-
-            $alunosOrdemTurma[] = $aluno['aluno'];
-            }
-
-        }
-        return true;
-    }
-
-    public static function pegarTurmasCurso($curso, $classe) //Pegar turmas paraordenar os alunos
-    {
-        $turmas = AnoTurmaCood::with('turma','ano_lectivo')
-        ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
-        ->whereHas('turma', function ($query)  use ($curso, $classe) {
-            $query->where('curso_id', $curso);
-            $query->where('classe_id', $classe);
-        })
-        ->get();
-// dd($turmas);
-        $Turmas = [];
-
-        foreach ($turmas as $turmaA)
+        $alunos = AlunoController::alunosSemturma();
+    // dd($alunos);
+        if(!$alunos)
         {
-            if($turmaA->num_vagas > 0)
-            {
-                $Turmas[] =
-                [
-                    'turma' => $turmaA->turma->nome_turma,
-                    'TurmaAno_id' => $turmaA->turmaAno_id,
-                    'num_vaga' => $turmaA->num_vagas
-                ];
-            }
+                return "Todos os alunos matriculados atualmente estão nas suas devidas turmas.";
         }
-        return $Turmas;
-    }
-
-    public static function pegarTurma($curso, $classe, $turno) //Pegar turma para integrar aluno transferido
-    {
-        $turma = AnoTurmaCood::with('turma','ano_lectivo')
-        ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
-        ->whereHas('turma', function ($query) use($curso, $classe, $turno ) {
-            $query->where('curso_id', $curso);
-            $query->where('classe_id', $classe);
-            $query->where('turno_id', $turno);
-        })
-        ->where('num_vagas', '>', 0)
-        ->first();
-// dd($turmas);
-        $turmaEncontrada = [
-            'TurmaAno_id' => $turma->turmaAno_id,
-            'num_vaga' => $turma->num_vagas
-    ];
-    
-        return $turmaEncontrada;
-    }
-
-    public static function pegarTurmaId($turmaId) //Pegar turma para integrar aluno transferido
-    {
-        $turma = AnoTurmaCood::where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
-        ->where('turma_id', $turmaId)
-        ->first();
-        
-        if(!$turma)
-        {
-            return false;
-        }
-        return true;
-    }
-
-    public static function quantidadeTurma($turma) //Pegar turmas 10ª Classe deste ano lectivo
-    {
-        $turmas = AlunoTurma::all()
-        ->where('turmaAno_id', $turma);
-        return count($turmas);
-    }
-
-    public static function atualizarVaga($turmaAno)
-    {
-        $turma = AnoTurmaCood::find($turmaAno['id']);
-        $turma->num_vagas = $turmaAno['vaga'];
-        $turma->save();
-
-        return $turma;
-    }
-
-    // FIM 10ª CLASSE
-
-    // TODAS AS CLASSES "FIM ANO LECTIVO, COMPORTAMENTO"
-
-    public static function situacaoAluno() // Função a ser chamada na reabertura do ano lectivo 11ª >
-    {
-
-        $alunosAdmitidos = [];
-        $alunos = AlunoController::alunosTurma();
-
-        foreach( $alunos as $aluno )
-        {
-            if($aluno['situacao'] === "Transita")
-            {
-                $alunosAdmitidos[] = $aluno;
-                continue;
-            }
-            // $alunosNAdmitidos[] = $aluno;
-        }
-
-        if(!$alunosAdmitidos)
-        {
-            return "Todos os alunos já estão nas suas devidas turmas.";
-        }
-        AlunoTurmaController::alunoAdmtido($alunosAdmitidos);
-        return true;
-    }
-
-    public static function alunoAdmtido($alunos) // Passagem de ano lectivo APROVADOS
-    {
         $alunoTurma = [];
 
         usort($alunos, function ($a, $b)
-             {
-                 $data_nascA = $a['data_nasc'];
-                 $data_nascB = $b['data_nasc'];
-
-                 if ($data_nascA == $data_nascB)
-                 {
-                     return 0;
-                 }
-
-                 return ($data_nascA > $data_nascB) ? -1 : 1;
-             });
-
-         for($i = 0; $i < count($alunos); $i++)
-         {
-             if ($alunos[$i]['classeId'] === 4)
-             {
-                continue;
-             }
-             $classe = intval($alunos[$i]['classeId']);
-             $classed = $classe + 1;
-             $turmas = AlunoTurmaController::pegarTurmasCurso($alunos[$i]['idCurso'], $classed );
-
-             usort($turmas, function ($a, $b)
-             {
-                 $identificadorA = substr($a['turma'], -1);
-                 $identificadorB = substr($b['turma'], -1);
-                 $turnos = ['M' => 3, 'T' => 2, 'N' => 1];
-
-                 if ($identificadorA != $identificadorB)
-                 {
-                     return $turnos[$identificadorB] - $turnos[$identificadorA];
-                 }
-
-                 return strcmp($identificadorA, $identificadorB);
-             });
-
-             foreach ($turmas as $turma)
-             {
-                 if($turma['num_vaga'] > 0)
-                 {
-                     $alunoTurma[] = [
-                     'turma' => $turma['TurmaAno_id'],
-                     'aluno' => $alunos[$i]['aluno_id'],
-                     'nome' => $alunos[$i]['nome']
-                     ];
-
-                     $vaga = $turma['num_vaga'] - 1;
-                     $vagaUpdate = [
-                     'id' => $turma['TurmaAno_id'],
-                     'vaga' => $vaga
-                     ];
-                     AlunoController::updateStatusTrue($alunos[$i]['aluno_id']);
-                     AlunoTurmaController::atualizarVaga($vagaUpdate);
-                     break;
-                 }
-             }
-         }
-
-         usort($alunoTurma, function($a, $b) {
-             return strcmp($a['nome'], $b['nome']);
-         });
-
-         $alunosOrdemTurma = [];
-         foreach($alunoTurma as $aluno)
-         {
-             if( !in_array($aluno['aluno'], $alunosOrdemTurma) )
-             {
-             $qtdAlunos = AlunoTurmaController::quantidadeTurma($aluno['turma']);
-             $alunoA = Aluno::find($aluno['aluno']);
-             $alunoA->Anoturma()->attach($aluno['turma'],[
-                 'numero_aluno' => $qtdAlunos + 1
-             ]);
-
-             $userId = AlunoController::pegarIdUser($aluno['aluno']);
-             $dadosUser=[
-                 'usuario_id'=> $userId,
-                 'status_usuario'=>1,
-             ];
-             $user = UserController::updateAluno($dadosUser);
-             if(!$user)
-             {
-                 return "Algum problema com o aluno ".$aluno['nome'].", tente mais tarde.";
-             }
-             $alunosOrdemTurma[] = $aluno['aluno'];
-             }
-
-         }
-        return true;
-    }
-
-    public static function alunoNAdmtido($aluno) // Função a ser readmissão de um aluno >
-    {
-            $classe = intval($aluno['classeId']);
-            $turmas = AlunoTurmaController::pegarTurmasCurso($aluno['idCurso'], $classe );
-            if(!$turmas)
-            {
-                return "Não há nenhuma vaga para disponível para tua classe e o teu curso.";
-            }
-
-            usort($turmas, function ($a, $b)
-            {
-                $identificadorA = substr($a['turma'], -1);
-                $identificadorB = substr($b['turma'], -1);
-                $turnos = ['M' => 3, 'T' => 2, 'N' => 1];
-
-                if ($identificadorA != $identificadorB)
                 {
-                    return $turnos[$identificadorB] - $turnos[$identificadorA];
-                }
+                    $data_nascA = $a['data_nasc'];
+                    $data_nascB = $b['data_nasc'];
 
-                return strcmp($identificadorA, $identificadorB);
+                    if ($data_nascA == $data_nascB)
+                    {
+                        return 0;
+                    }
+
+                    return ($data_nascA > $data_nascB) ? -1 : 1;
+                });
+
+            for($i = 0; $i < count($alunos); $i++)
+            {
+                $classe = intval(ClasseController::pegarIdClasse('10ª'));
+                // $turmas = AlunoTurmaController::pegarTurmasCurso($alunos[$i]['idCurso'], $classed );
+
+                $turmas = AlunoTurmaController::pegarTurmasCurso($alunos[$i]['idCurso'], $classe);
+
+                usort($turmas, function ($a, $b)
+                {
+                    $identificadorA = substr($a['turma'], -1);
+                    $identificadorB = substr($b['turma'], -1);
+                    $turnos = ['M' => 3, 'T' => 2, 'N' => 1];
+
+                    if ($identificadorA != $identificadorB)
+                    {
+                        return $turnos[$identificadorB] - $turnos[$identificadorA];
+                    }
+
+                    return strcmp($identificadorA, $identificadorB);
+                });
+
+                foreach ($turmas as $turma)
+                {
+                    if($turma['num_vaga'] > 0)
+                    {
+                        $alunoTurma[] = [
+                        'turma' => $turma['TurmaAno_id'],
+                        'aluno' => $alunos[$i]['aluno_id'],
+                        'nome' => $alunos[$i]['nome']
+                        ];
+
+                        $vaga = $turma['num_vaga'] - 1;
+                        $vagaUpdate = [
+                        'id' => $turma['TurmaAno_id'],
+                        'vaga' => $vaga
+                        ];
+                        AlunoController::updateStatusTrue($alunos[$i]['aluno_id']);
+                        AlunoTurmaController::atualizarVaga($vagaUpdate);
+                        break;
+                    }
+                }
+            }
+            usort($alunoTurma, function($a, $b) {
+                return strcmp($a['nome'], $b['nome']);
             });
-            
-            $alunoTurma = [];
-            foreach ($turmas as $turma)
+
+            $alunosOrdemTurma = [];
+            foreach($alunoTurma as $aluno)
             {
-                if($turma['num_vaga'] > 0)
+                if( !in_array($aluno['aluno'], $alunosOrdemTurma) )
                 {
-                    $alunoTurma[] = [
-                    'turma' => $turma['TurmaAno_id'],
-                    'aluno' => $aluno['aluno_id'],
-                    'nome' => $aluno['nome']
-                    ];
 
-                    $vaga = $turma['num_vaga'] - 1;
-                    $vagaUpdate = [
-                    'id' => $turma['TurmaAno_id'],
-                    'vaga' => $vaga
-                    ];
-                    AlunoController::updateStatusTrue($alunoTurma[0]['aluno']);
-                    AlunoTurmaController::atualizarVaga($vagaUpdate);
-                    break;
+                $qtdAlunos = AlunoTurmaController::quantidadeTurma($aluno['turma']);
+                $alunoA = Aluno::find($aluno['aluno']);
+                $alunoA->Anoturma()->attach($aluno['turma'],[
+                    'numero_aluno' => $qtdAlunos + 1
+                ]);
+
+                $userId = AlunoController::pegarIdUser($aluno['aluno']);
+                $dadosUser=[
+                    'usuario_id'=> $userId,
+                    'status_usuario'=>1,
+                ];
+                $user = UserController::updateAluno($dadosUser);
+                if(!$user)
+                {
+                    return "Algum problema com o aluno ".$aluno['nome'].", tente mais tarde.";
                 }
-            }
+                $alunoTurma = [];
 
-            $qtdAlunos = AlunoTurmaController::quantidadeTurma($alunoTurma[0]['turma']);
-            $alunoA = Aluno::find($alunoTurma[0]['aluno']);
-            $alunoA->Anoturma()->attach($alunoTurma[0]['turma'],[
-                'numero_aluno' => $qtdAlunos + 1,
-            ]);
+                $alunosOrdemTurma[] = $aluno['aluno'];
+                }
 
-            $userId = AlunoController::pegarIdUser($alunoTurma[0]['aluno']);
-            $dadosUser=[
-                'usuario_id'=> $userId,
-                'status_usuario'=>1,
-            ];
-            $user = UserController::updateAluno($dadosUser);
-            if(!$user)
-            {
-                return "Algum problema com o aluno ".$alunoTurma['nome'].", tente mais tarde.";
             }
             return true;
-    }
+        }
 
-    public static function pegarVagas() // Com base a classe, curso e turno...
-    {
-        $turmas = AnoTurmaCood::with('turma', 'ano_lectivo')
+        public static function pegarTurmasCurso($curso, $classe) //Pegar turmas paraordenar os alunos
+        {
+            $turmas = AnoTurmaCood::with('turma','ano_lectivo')
+            ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
+            ->whereHas('turma', function ($query)  use ($curso, $classe) {
+                $query->where('curso_id', $curso);
+                $query->where('classe_id', $classe);
+            })
+            ->get();
+    // dd($turmas);
+            $Turmas = [];
+
+            foreach ($turmas as $turmaA)
+            {
+                if($turmaA->num_vagas > 0)
+                {
+                    $Turmas[] =
+                    [
+                        'turma' => $turmaA->turma->nome_turma,
+                        'TurmaAno_id' => $turmaA->turmaAno_id,
+                        'num_vaga' => $turmaA->num_vagas
+                    ];
+                }
+            }
+            return $Turmas;
+        }
+
+        public static function pegarTurma($curso, $classe, $turno) //Pegar turma para integrar aluno transferido
+        {
+            $turma = AnoTurmaCood::with('turma','ano_lectivo')
+            ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
+            ->whereHas('turma', function ($query) use($curso, $classe, $turno ) {
+                $query->where('curso_id', $curso);
+                $query->where('classe_id', $classe);
+                $query->where('turno_id', $turno);
+            })
+            ->where('num_vagas', '>', 0)
+            ->first();
+
+        if ($turma === null) {
+            return false;
+        } else {
+        $turmaEncontrada = [
+            'TurmaAno_id' => $turma->turmaAno_id,
+            'num_vaga' => $turma->num_vagas
+        ];
+        return $turmaEncontrada;
+        }
+            
+        }
+
+        public static function pegarTurmaId($turmaId) //Pegar turma para integrar aluno transferido
+        {
+            $turma = AnoTurmaCood::where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
+            ->where('turma_id', $turmaId)
+            ->first();
+            
+            if(!$turma)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public static function quantidadeTurma($turma) //Pegar turmas 10ª Classe deste ano lectivo
+        {
+            $turmas = AlunoTurma::all()
+            ->where('turmaAno_id', $turma);
+            return count($turmas);
+        }
+
+        public static function atualizarVaga($turmaAno)
+        {
+            $turma = AnoTurmaCood::find($turmaAno['id']);
+            $turma->num_vagas = $turmaAno['vaga'];
+            $turma->save();
+
+            return $turma;
+        }
+
+        // FIM 10ª CLASSE
+
+        // TODAS AS CLASSES "FIM ANO LECTIVO, COMPORTAMENTO"
+
+        public static function situacaoAluno() // Função a ser chamada na reabertura do ano lectivo 11ª >
+        {
+            $alunosAdmitidos = [];
+            $alunos = AlunoController::alunosTurma();
+
+            foreach( $alunos as $aluno )
+            {
+                if($aluno['situacao'] === "Transita" && $aluno['classeId'] < 4)
+                {
+                    $alunosAdmitidos[] = $aluno;
+                    continue;
+                }
+                if($aluno['situacao'] === "Recurso" && $aluno['classeId'] < 3)
+                {
+                    $alunosAdmitidos[] = $aluno;
+                    continue;
+                }
+                // $alunosNAdmitidos[] = $aluno;
+            }
+
+            if(!$alunosAdmitidos) //COmentar este if após terminar, alunos...
+            {
+                return "Todos os alunos já estão nas suas devidas turmas.";
+            }
+            AlunoTurmaController::alunoAdmtido($alunosAdmitidos);
+            return true;
+        }
+
+        public static function alunoAdmtido($alunos) // Passagem de ano lectivo APROVADOS
+        {
+            $alunoTurma = [];
+
+            usort($alunos, function ($a, $b)
+                {
+                    $data_nascA = $a['data_nasc'];
+                    $data_nascB = $b['data_nasc'];
+
+                    if ($data_nascA == $data_nascB)
+                    {
+                        return 0;
+                    }
+
+                    return ($data_nascA > $data_nascB) ? -1 : 1;
+                });
+
+            for($i = 0; $i < count($alunos); $i++)
+            {
+                if ($alunos[$i]['classeId'] === 4)
+                {
+                    continue;
+                }
+                $classe = intval($alunos[$i]['classeId']);
+                $classed = $classe + 1;
+                $turmas = AlunoTurmaController::pegarTurmasCurso($alunos[$i]['idCurso'], $classed );
+
+                usort($turmas, function ($a, $b)
+                {
+                    $identificadorA = substr($a['turma'], -1);
+                    $identificadorB = substr($b['turma'], -1);
+                    $turnos = ['M' => 3, 'T' => 2, 'N' => 1];
+
+                    if ($identificadorA != $identificadorB)
+                    {
+                        return $turnos[$identificadorB] - $turnos[$identificadorA];
+                    }
+
+                    return strcmp($identificadorA, $identificadorB);
+                });
+
+                foreach ($turmas as $turma)
+                {
+                    if($turma['num_vaga'] > 0)
+                    {
+                        $alunoTurma[] = [
+                        'turma' => $turma['TurmaAno_id'],
+                        'aluno' => $alunos[$i]['aluno_id'],
+                        'nome' => $alunos[$i]['nome']
+                        ];
+
+                        $vaga = $turma['num_vaga'] - 1;
+                        $vagaUpdate = [
+                        'id' => $turma['TurmaAno_id'],
+                        'vaga' => $vaga
+                        ];
+                        AlunoController::updateStatusTrue($alunos[$i]['aluno_id']);
+                        AlunoTurmaController::atualizarVaga($vagaUpdate);
+                        break;
+                    }
+                }
+            }
+
+            usort($alunoTurma, function($a, $b) {
+                return strcmp($a['nome'], $b['nome']);
+            });
+
+            $alunosOrdemTurma = [];
+            foreach($alunoTurma as $aluno)
+            {
+                if( !in_array($aluno['aluno'], $alunosOrdemTurma) )
+                {
+                $qtdAlunos = AlunoTurmaController::quantidadeTurma($aluno['turma']);
+                $alunoA = Aluno::find($aluno['aluno']);
+                $alunoA->Anoturma()->attach($aluno['turma'],[
+                    'numero_aluno' => $qtdAlunos + 1
+                ]);
+
+                $userId = AlunoController::pegarIdUser($aluno['aluno']);
+                $dadosUser=[
+                    'usuario_id'=> $userId,
+                    'status_usuario'=>1,
+                ];
+                $user = UserController::updateAluno($dadosUser);
+                if(!$user)
+                {
+                    return "Algum problema com o aluno ".$aluno['nome'].", tente mais tarde.";
+                }
+                $alunosOrdemTurma[] = $aluno['aluno'];
+                }
+
+            }
+            return true;
+        }
+
+        public static function alunoNAdmtido($aluno) // Função a ser readmissão de um aluno >
+        {
+                $classe = intval($aluno['classeId']);
+                $turmas = AlunoTurmaController::pegarTurmasCurso($aluno['idCurso'], $classe );
+                if(!$turmas)
+                {
+                    return "Não há nenhuma vaga para disponível para tua classe e o teu curso.";
+                }
+
+                usort($turmas, function ($a, $b)
+                {
+                    $identificadorA = substr($a['turma'], -1);
+                    $identificadorB = substr($b['turma'], -1);
+                    $turnos = ['M' => 3, 'T' => 2, 'N' => 1];
+
+                    if ($identificadorA != $identificadorB)
+                    {
+                        return $turnos[$identificadorB] - $turnos[$identificadorA];
+                    }
+
+                    return strcmp($identificadorA, $identificadorB);
+                });
+                
+                $alunoTurma = [];
+                foreach ($turmas as $turma)
+                {
+                    if($turma['num_vaga'] > 0)
+                    {
+                        $alunoTurma[] = [
+                        'turma' => $turma['TurmaAno_id'],
+                        'aluno' => $aluno['aluno_id'],
+                        'nome' => $aluno['nome']
+                        ];
+
+                        $vaga = $turma['num_vaga'] - 1;
+                        $vagaUpdate = [
+                        'id' => $turma['TurmaAno_id'],
+                        'vaga' => $vaga
+                        ];
+                        AlunoController::updateStatusTrue($alunoTurma[0]['aluno']);
+                        AlunoTurmaController::atualizarVaga($vagaUpdate);
+                        break;
+                    }
+                }
+
+                $qtdAlunos = AlunoTurmaController::quantidadeTurma($alunoTurma[0]['turma']);
+                $alunoA = Aluno::find($alunoTurma[0]['aluno']);
+                $alunoA->Anoturma()->attach($alunoTurma[0]['turma'],[
+                    'numero_aluno' => $qtdAlunos + 1,
+                ]);
+
+                $userId = AlunoController::pegarIdUser($alunoTurma[0]['aluno']);
+                $dadosUser=[
+                    'usuario_id'=> $userId,
+                    'status_usuario'=>1,
+                ];
+                $user = UserController::updateAluno($dadosUser);
+                if(!$user)
+                {
+                    return "Algum problema com o aluno ".$alunoTurma['nome'].", tente mais tarde.";
+                }
+                return true;
+        }
+
+        public static function pegarVagas() // Com base a classe, curso e turno...
+        {
+            $turmas = AnoTurmaCood::with('turma', 'ano_lectivo')
+                ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
+                ->get();
+
+            $vagas = [];
+
+            foreach ($turmas as $turmaA) 
+            {
+                $curso = $turmaA->turma->curso->nome_curso;
+                $cursoId = $turmaA->turma->curso->curso_id;
+                $classe = $turmaA->turma->classe->classe;
+                $classeId = $turmaA->turma->classe->classe_id;
+                $turno = $turmaA->turma->turno->nome_turno;
+                $numVagas = $turmaA->num_vagas;
+                $anoLectivo = $turmaA->ano_lectivo->ano_lectivo;
+                $anoId = $turmaA->ano_lectivo->ano_lectivo_id;
+                $turnoId = $turmaA->turma->turno->turno_id;
+
+                $chave = $curso . '-' . $classe . '-' . $turno . '-' . $anoLectivo;
+
+                if (!isset($vagas[$chave])) 
+                {
+                    $vagas[$chave] = [
+                        'curso' => $curso,
+                        'cursoId' => $cursoId,
+                        'classe' => $classe,
+                        'classeId' => $classeId,
+                        'turno' => $turno,
+                        'turnoId' => $turnoId,
+                        'anoLectivo' => $anoLectivo,
+                        'anoId' => $anoId,
+                        'totalVagas' => 0
+                    ];
+                }
+        
+                $vagas[$chave]['totalVagas'] += $numVagas;
+            }
+            return array_values($vagas);
+        }
+
+        public static function pegarVagasTurno() // Com base turno...
+        {
+            $turmas = AnoTurmaCood::with('turma', 'ano_lectivo')
             ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
             ->get();
 
-        $vagas = [];
+            $vagas = [];
 
-        foreach ($turmas as $turmaA) 
-        {
-            $curso = $turmaA->turma->curso->nome_curso;
-            $cursoId = $turmaA->turma->curso->curso_id;
-            $classe = $turmaA->turma->classe->classe;
-            $classeId = $turmaA->turma->classe->classe_id;
-            $turno = $turmaA->turma->turno->nome_turno;
-            $numVagas = $turmaA->num_vagas;
-            $anoLectivo = $turmaA->ano_lectivo->ano_lectivo;
-            $anoId = $turmaA->ano_lectivo->ano_lectivo_id;
-            $turnoId = $turmaA->turma->turno->turno_id;
-
-            $chave = $curso . '-' . $classe . '-' . $turno . '-' . $anoLectivo;
-
-            if (!isset($vagas[$chave])) 
+            foreach ($turmas as $turmaA) 
             {
-                $vagas[$chave] = [
-                    'curso' => $curso,
-                    'cursoId' => $cursoId,
-                    'classe' => $classe,
-                    'classeId' => $classeId,
-                    'turno' => $turno,
-                    'turnoId' => $turnoId,
-                    'anoLectivo' => $anoLectivo,
-                    'anoId' => $anoId,
-                    'totalVagas' => 0
-                ];
+                $turno = $turmaA->turma->turno->nome_turno;
+                $turnoId = $turmaA->turma->turno->turno_id;
+                $anoLectivo = $turmaA->ano_lectivo->ano_lectivo;
+                $anoId = $turmaA->ano_lectivo->ano_lectivo_id;
+                $ano_numSala = $turmaA->ano_lectivo->num_sala_escola;
+
+                $chave = $turno . '-' . $anoLectivo;
+
+                if (!isset($vagas[$chave])) 
+                {
+                    $vagas[$chave] = [
+                        'turno' => $turno,
+                        'turnoId' => $turnoId,
+                        'anoLectivo' => $anoLectivo,
+                        'anoId' => $anoId,
+                        'turmasRestantes' => $ano_numSala
+                    ];
+                }
+        
+                $vagas[$chave]['turmasRestantes']--;
             }
-    
-            $vagas[$chave]['totalVagas'] += $numVagas;
+            return array_values($vagas);
         }
-        return array_values($vagas);
-    }
 
-    public static function pegarVagasTurno() // Com base turno...
-    {
-        $turmas = AnoTurmaCood::with('turma', 'ano_lectivo')
-        ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
-        ->get();
-
-        $vagas = [];
-
-        foreach ($turmas as $turmaA) 
+        public static function AnulouMatricula($Aluno) // Função de anular a matricula
         {
-            $turno = $turmaA->turma->turno->nome_turno;
-            $turnoId = $turmaA->turma->turno->turno_id;
-            $anoLectivo = $turmaA->ano_lectivo->ano_lectivo;
-            $anoId = $turmaA->ano_lectivo->ano_lectivo_id;
-            $ano_numSala = $turmaA->ano_lectivo->num_sala_escola;
-
-            $chave = $turno . '-' . $anoLectivo;
-
-            if (!isset($vagas[$chave])) 
-            {
-                $vagas[$chave] = [
-                    'turno' => $turno,
-                    'turnoId' => $turnoId,
-                    'anoLectivo' => $anoLectivo,
-                    'anoId' => $anoId,
-                    'turmasRestantes' => $ano_numSala
-                ];
-            }
-    
-            $vagas[$chave]['turmasRestantes']--;
-        }
-        return array_values($vagas);
-    }
-
-    public static function AnulouMatricula($Aluno) // Função de anular a matricula
-    {
-        $aluno = Aluno::find($Aluno['aluno']);
-        $aluno->Anoturma()->updateExistingPivot($Aluno['turma'], 
-        [
-            'situacao' => 'Anulou a Matricula',
-            'numero_aluno' => 0,    
-        ]);
-        return $aluno;
-    }
-    public static function alunoTransferido($Aluno) // Função a ser chamada na reabertura do ano lectivo 11ª >
-    {
-            $turma = AlunoTurmaController::pegarTurma($Aluno['curso_id'], $Aluno['classe_id'],$Aluno['turno_id']);
-
-            $vaga = $turma['num_vaga'] - 1;
-            $vagaUpdate = [
-            'id' => $turma['TurmaAno_id'],
-            'vaga' => $vaga
-            ];
-            AlunoTurmaController::atualizarVaga($vagaUpdate);
-            $qtdAlunos = AlunoTurmaController::quantidadeTurma($turma['TurmaAno_id']);
-
-            $alunoA = Aluno::find($Aluno['aluno_id']);
-            $alunoA->Anoturma()->attach($turma['TurmaAno_id'],[
-                'numero_aluno' => $qtdAlunos + 1,
-                'situacao' => 'Transferido'
+            $aluno = Aluno::find($Aluno['aluno']);
+            $aluno->Anoturma()->updateExistingPivot($Aluno['turma'], 
+            [
+                'situacao' => 'Anulou a Matricula',
+                'numero_aluno' => 0,    
             ]);
+            return $aluno;
+        }
+        public static function alunoTransferido($Aluno) // Função a ser chamada na reabertura do ano lectivo 11ª >
+        {
+                $turma = AlunoTurmaController::pegarTurma($Aluno['curso_id'], $Aluno['classe_id'],$Aluno['turno_id']);
 
-            return $alunoA;
+                $vaga = $turma['num_vaga'] - 1;
+                $vagaUpdate = [
+                'id' => $turma['TurmaAno_id'],
+                'vaga' => $vaga
+                ];
+                AlunoTurmaController::atualizarVaga($vagaUpdate);
+                $qtdAlunos = AlunoTurmaController::quantidadeTurma($turma['TurmaAno_id']);
+
+                $alunoA = Aluno::find($Aluno['aluno_id']);
+                $alunoA->Anoturma()->attach($turma['TurmaAno_id'],[
+                    'numero_aluno' => $qtdAlunos + 1,
+                    'situacao' => 'Transferido'
+                ]);
+
+                return $alunoA;
+        }
+
+        public static function alunoAnolectivo() //Função para inicio do ano lectivo:: CRIAR TURMA AUTOMATICAMENTE
+        {
+            $alunosAdmitidos = [];
+            $alunos = AlunoController::alunosTurma();
+
+            foreach( $alunos as $aluno )
+            {
+                if($aluno['situacao'] === "Transita" && $aluno['classeId'] < 4)
+                {
+                    $alunosAdmitidos[] = $aluno;
+                    continue;
+                }
+                if($aluno['situacao'] === "Recurso" && $aluno['classeId'] < 3)
+                {
+                    $alunosAdmitidos[] = $aluno;
+                    continue;
+                }   
+            }
+
+            foreach($alunosAdmitidos as $aluno)
+            {
+                $alunoss[] = [
+                            'aluno' => $aluno['aluno_id'],
+                            'turma' => $aluno['nomeTurma'],
+                            'classeId' => $aluno['classeId'],
+                            'turnoId' => $aluno['turnoId'],
+                            'cursoNome'=> $aluno['curso'],
+                            'Nome'=> $aluno['nome'],
+                            'ano'=> $aluno['anoLectivo'],
+
+                        ];
+    
+            $chave = $aluno['cursoId'] . '-' .$aluno['classeId'] . '-' . $aluno['turnoId'];
+
+            if (!isset($vagas[$chave])) 
+            {
+                $vagas[$chave] = [
+                    'cursoId' =>  intval($aluno['cursoId']),
+                    'classeId' => intval($aluno['classeId']),
+                    'turnoId' =>  intval($aluno['turnoId']),
+                    'num_alunos' => 0
+                ];
+            }
+            $vagas[$chave]['num_alunos']++;
+            }
+            // dd(array_values($vagas), $alunoss);
+            // return array_values($vagas);
+
+        $turmas = array_values($vagas);
+        usort($turmas, function($a, $b) {
+        return $b['classeId'] - $a['classeId'];
+        });
+
+
+    $anoLectivo = AnoLectivoController::pegarAnoLectivo(AnoLectivoController::pegarIdAnoLectivo());
+    $numMaxTurmaT = $anoLectivo->num_sala_escola;
+
+    //    dd($numMaxTurmaT);
+
+    foreach ($turmas as &$turma) {
+        if ($turma['turnoId'] === 3) {
+            while ($turma['num_alunos'] > 0) {
+                repite:
+                $turmaVagas = AlunoTurmaController::pegarTurma(intval($turma['cursoId']), intval($turma['classeId']) + 1, intval($turma['turnoId']));
+    
+                if (!$turmaVagas) {
+                    TurmaController::storeTurmas(intval($turma['classeId']) + 1, intval($turma['cursoId']), intval($turma['turnoId']));
+                    goto repite;
+                    // $turma['num_alunos'] -= $turma['num_vagas']; // Subtrai o número de vagas da turma recém-criada
+                    // $turma['num_alunos'] = max(0, $turma['num_alunos']);
+                    // continue;
+                }
+    
+                $turma['num_alunos'] -= $turmaVagas['num_vaga'];
+                $turma['num_alunos'] = max(0, $turma['num_alunos']);
+            }
+        } elseif ($turma['turnoId'] === 2 || $turma['turnoId'] === 1) {
+            while ($turma['num_alunos'] > 0) {
+                $turnoId = $numMaxTurmaT > 0 ? 2 : 1;
+                back:
+                $turmaVagas = AlunoTurmaController::pegarTurma(intval($turma['cursoId']), intval($turma['classeId']) + 1, $turnoId);
+    
+                if (!$turmaVagas) {
+                    TurmaController::storeTurmas(intval($turma['classeId']) + 1, intval($turma['cursoId']), $turnoId);
+    
+                    if ($numMaxTurmaT > 0) {
+                        --$numMaxTurmaT;
+                    }
+                    
+                    goto back;
+                    // $turma['num_alunos'] -= $turmaVagas['num_vagas']; // Subtrai o número de vagas da turma recém-criada
+                    // $turma['num_alunos'] = max(0, $turma['num_alunos']);
+                    // continue;
+                }
+    
+                $turma['num_alunos'] -= $turmaVagas['num_vaga'];
+                $turma['num_alunos'] = max(0, $turma['num_alunos']);
+            }
+        }
     }
-
+    
+    dd($alunoss, $vagas, $turmas);
+    
+    
+    }
 }
