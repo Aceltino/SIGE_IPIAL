@@ -7,7 +7,7 @@
     <div class="container no-print" style="margin-top: -20px;">
     <div class="row">
         <div class="col" style="display: flex; justify-content: flex-start; align-items: center;">
-        <a href="#"><i class="voltar bi bi-arrow-left-circle-fill"></i></a>
+        <a href="{{route('inscricao-index')}}"><i class="voltar bi bi-arrow-left-circle-fill"></i></a>
         <h1>Recibo de Matricula</h1>      
         </div>
     
@@ -22,7 +22,7 @@
     <thead class="cabecalho-recibo-insc" style="text-align: center;">
         <tr>
         <th rowspan="2" style="width: 100px;">
-            <img src="assets/img/logo.png" width="100px" height="50px">
+            <img src={{URL::asset("img/logo.png")}} width="100px" height="50px">
         </th>
         <th style="padding: 15px;">
             
@@ -41,12 +41,12 @@
 
     </thead>
 
-    <tbody class="corpo-recibo-insc">
+    <tbody class="corpo-recibo-insc" style="font-size: 14px; text-transform: uppercase;">
         <tr>
         <th colspan="2" style="padding: 10px 75px 15px 30px; /*padding-bottom: 15px; padding-top: 10px;*/">
             <div style="display: flex; justify-content: flex-start; align-items: center; gap: 5px;">
             <span>Nome</span>
-            <div style="border-bottom: 1px solid #000; margin-top: 9px; width: 100%;"></div>
+            <div style="border-bottom: 1px solid #000; width: 100%; text-align: center;"><span class="texto-azul">Sungo Afonso</span></div>
             </div>
         </th>
         </tr>
@@ -54,13 +54,13 @@
         <th colspan="2" style="padding-bottom: 15px;">
             <div style="display: flex; justify-content: flex-start; align-items: center; gap: 5px;">
             <span>Data de nascimento</span>
-            <div style="border-bottom: 1px solid #000; margin-top: 9px; width: 40px;"></div>/
-            <div style="border-bottom: 1px solid #000; margin-top: 9px; width: 40px;"></div>/
-            <div style="border-bottom: 1px solid #000; margin-top: 9px; width: 70px;"></div>
+            <div style="border-bottom: 1px solid #000; width: 40px; text-align: center;"><span class="texto-azul">12</span></div>/
+            <div style="border-bottom: 1px solid #000; width: 40px; text-align: center;"><span class="texto-azul">12</span></div>/
+            <div style="border-bottom: 1px solid #000; width: 70px; text-align: center;"><span class="texto-azul">2022</span></div>
             <span>Idade (até Dezembro de 2022):</span>
-            <div style="border-bottom: 1px solid #000; margin-top: 9px; width: 70px;"></div>
+            <div style="border-bottom: 1px solid #000; width: 70px; text-align: center;"><span class="texto-azul">22</span></div>
             <span>anos, Sexo</span>
-            <div style="border-bottom: 1px solid #000; margin-top: 9px; width: 70px;"></div>
+            <div style="border-bottom: 1px solid #000; width: 70px; text-align: center;"><span class="texto-azul">Masculino</span></div>
             </div>
         </th>
         </tr>
@@ -69,7 +69,7 @@
         <th colspan="2" style="padding-bottom: 15px; padding-left: 10px;">
             <div style="display: flex; justify-content: flex-start; align-items: center; gap: 5px;">
             <span>Nome da escola de providência:</span>
-            <div style="border-bottom: 1px solid #000; margin-top: 9px; width: 540px;"></div>
+            <div style="border-bottom: 1px solid #000; width: 540px; text-align: center;"><span class="texto-azul">Escola do Saber</span></div>
             </div>
         </th>
         </tr>
@@ -78,15 +78,15 @@
         <th colspan="2" style="padding-bottom: 15px; padding-left: 10px;">
             <div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
             <span>Turno:</span>
-            <div style="border-bottom: 1px solid #000; margin-top: 9px; width: 70px;"></div>
+            <div style="border-bottom: 1px solid #000; width: 70px; text-align: center;"><span class="texto-azul">Manhã</span></div>
             <span>, Turma:</span>
-            <div style="border-bottom: 1px solid #000; margin-top: 9px; width: 60px;"></div>
+            <div style="border-bottom: 1px solid #000; width: 60px; text-align: center;"><span class="texto-azul">I10AM</span></div>
             <span>, Nº</span>
-            <div style="border-bottom: 1px solid #000; margin-top: 9px; width: 40px;"></div>
+            <div style="border-bottom: 1px solid #000; width: 40px; text-align: center;"><span class="texto-azul">12</span></div>
             <span>, Processo nº:</span>
-            <div style="border-bottom: 1px solid #000; margin-top: 9px; width: 90px;"></div>
+            <div style="border-bottom: 1px solid #000; width: 90px; text-align: center;"><span class="texto-azul">2223</span></div>
             <span>, Ano Lectivo</span>
-            <div style="border-bottom: 1px solid #000; margin-top: 9px; width: 100px;"></div>
+            <div style="border-bottom: 1px solid #000; width: 100px; text-align: center;"><span class="texto-azul">2022-2023</span></div>
             </div>
         </th>
         </tr>
@@ -95,11 +95,11 @@
         <th colspan="2" style="padding-bottom: 15px; padding-left: 40px;">
             <div style="display: flex; justify-content: flex-start; align-items: center; gap: 5px;">
             <span>Luanda, aos</span>
-            <div style="border-bottom: 1px solid #000; margin-top: 9px; width: 70px;"></div>
+            <div style="border-bottom: 1px solid #000; width: 70px; text-align: center;"><span class="texto-azul">12</span></div>
             <span>de</span>
-            <div style="border-bottom: 1px solid #000; margin-top: 9px; width: 200px;"></div>
+            <div style="border-bottom: 1px solid #000; width: 200px; text-align: center;"><span class="texto-azul">Marco</span></div>
             <span>de 20</span>
-            <div style="border-bottom: 1px solid #000; margin-top: 9px; width: 90px;"></div>
+            <div style="border-bottom: 1px solid #000; width: 90px; text-align: center;"><span class="texto-azul">2022</span></div>
             </div>
         </th>
         </tr>
@@ -107,12 +107,12 @@
         <tr>
         <th colspan="2" style="padding-bottom: 15px;">
             <div style="display: flex; justify-content: flex-start; align-items: center; gap: 5px;">
-            <span>O Funcionário:</span>
-            <div style="border-bottom: 1px solid #000; margin-top: 9px; width: 490px;"></div>
+            <span>Funcionário:</span>
+            <div style="border-bottom: 1px solid #000; width: 490px; text-align: center;"><span class="texto-azul">Mario Andre Agostinho Mauro</span></div>
             <span>Data</span>
-            <div style="border-bottom: 1px solid #000; margin-top: 9px; width: 40px;"></div>/
-            <div style="border-bottom: 1px solid #000; margin-top: 9px; width: 40px;"></div>/
-            <div style="border-bottom: 1px solid #000; margin-top: 9px; width: 70px;"></div>
+            <div style="border-bottom: 1px solid #000; width: 40px; text-align: center;"><span class="texto-azul">12</span></div>/
+            <div style="border-bottom: 1px solid #000; width: 40px; text-align: center;"><span class="texto-azul">12</span></div>/
+            <div style="border-bottom: 1px solid #000; width: 70px; text-align: center;"><span class="texto-azul">2022</span></div>
             </div>
         </th>
         </tr>

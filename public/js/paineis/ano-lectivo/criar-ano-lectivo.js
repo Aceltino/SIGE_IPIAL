@@ -283,7 +283,6 @@
         if(retornarADataDeInicioDoAnoLectivo() !== '' && retornarADataDeFimDoAnoLectivo() <= retornarADataDeInicioDoAnoLectivo()){
             apresentarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDoAnoLectivo, "A data de término não pode ser anterior ou igual à data de início");
             dataDeFimDoAnoLectivo.value = "";
-            ocultarMensagemDeErro(paragrafoDeValidacaoDaDataDeFimDoAnoLectivo);
         }
         //Remover a mensagem de erro se a data de fim suceder à de início
         if(retornarADataDeFimDoAnoLectivo() > retornarADataDeInicioDoAnoLectivo()){
@@ -293,6 +292,20 @@
     //Término da validação da data de início do Ano Lectivo
     //Validar a data de fim do Ano Lectivo
     function validarADataDeFimDoAnoLectivo(){
+        var dataParaOLimiteDeTerminoDoAnoLectivo = new Date(retornarADataActual());
+        var maisUmAnoParaOLimiteDeTerminoDoAnoLectivo = dataParaOLimiteDeTerminoDoAnoLectivo.getFullYear() + 1;
+        var mesSelecionadoParaOLimiteDeTerminoDoAnoLectivo = dataParaOLimiteDeTerminoDoAnoLectivo.getMonth() + 1; //Pegar o mês
+        var diaSelecionadoParaOLimiteDeTerminoDoAnoLectivo = dataParaOLimiteDeTerminoDoAnoLectivo.getDate(); //Pegar o dia
+
+            mesSelecionadoParaOLimiteDeTerminoDoAnoLectivo < 10 ? mesSelecionadoParaOLimiteDeTerminoDoAnoLectivo = '0' + mesSelecionadoParaOLimiteDeTerminoDoAnoLectivo : mesSelecionadoParaOLimiteDeTerminoDoAnoLectivo = mesSelecionadoParaOLimiteDeTerminoDoAnoLectivo;
+            diaSelecionadoParaOLimiteDeTerminoDoAnoLectivo < 10 ? diaSelecionadoParaOLimiteDeTerminoDoAnoLectivo = '0' + diaSelecionadoParaOLimiteDeTerminoDoAnoLectivo : diaSelecionadoParaOLimiteDeTerminoDoAnoLectivo = diaSelecionadoParaOLimiteDeTerminoDoAnoLectivo;
+
+        var stringDaDataParaOLimiteDeTerminoDoAnoLectivo = `${maisUmAnoParaOLimiteDeTerminoDoAnoLectivo}-${mesSelecionadoParaOLimiteDeTerminoDoAnoLectivo}-${diaSelecionadoParaOLimiteDeTerminoDoAnoLectivo}`;
+        
+        if(retornarADataDeInicioDoAnoLectivo() !== ''){
+            dataDeFimDoAnoLectivo.setAttribute("max", stringDaDataParaOLimiteDeTerminoDoAnoLectivo);
+        }
+        
         //Transformar a string recebida como valor da input em Date
         var valorDoAnoLectivoFim = new Date(dataDeFimDoAnoLectivo.value);
 
@@ -678,6 +691,13 @@
         }else{
             ocultarMensagemDeErro(paragrafoDeValidacaoDaHoraDeInicioDasAulasNoPeriodoDaTarde);
         }
+
+        if(horaDeInicioDasAulasNoPeriodoDaTarde.value <= horaDeFimDasAulasNoPeriodoDaManha.value){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaHoraDeInicioDasAulasNoPeriodoDaTarde, "A hora do início das aulas no turno da tarde não pode ser inferior ou igual à de termino do turno da manhã");
+            horaDeInicioDasAulasNoPeriodoDaTarde.value = "";
+        }else{
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaHoraDeInicioDasAulasNoPeriodoDaTarde);
+        }
     });
 
     //Ao alterar o valor da input de hora de fim das aulas
@@ -736,6 +756,13 @@
     horaDeInicioDasAulasNoPeriodoDaNoite.addEventListener("input", ()=>{
         if(horaDeInicioDasAulasNoPeriodoDaNoite.value < '17:00' || horaDeInicioDasAulasNoPeriodoDaNoite.value > '19:00'){
             apresentarMensagemDeErro(paragrafoDeValidacaoDaHoraDeInicioDasAulasNoPeriodoDaNoite, horaDeInicioDasAulasNoPeriodoDaNoite.validationMessage);
+            horaDeInicioDasAulasNoPeriodoDaNoite.value = "";
+        }else{
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaHoraDeInicioDasAulasNoPeriodoDaNoite);
+        }
+
+        if(horaDeInicioDasAulasNoPeriodoDaNoite.value <= horaDeFimDasAulasNoPeriodoDaTarde.value){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaHoraDeInicioDasAulasNoPeriodoDaNoite, "A hora do início das aulas no turno da noite não pode ser inferior ou igual à de termino do turno da tarde");
             horaDeInicioDasAulasNoPeriodoDaNoite.value = "";
         }else{
             ocultarMensagemDeErro(paragrafoDeValidacaoDaHoraDeInicioDasAulasNoPeriodoDaNoite);

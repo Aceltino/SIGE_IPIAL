@@ -24,6 +24,8 @@
     <link href={{{URL::asset("css/perfil.css")}}} rel="stylesheet">
     <link href={{{URL::asset("css/calendario.css")}}} rel="stylesheet">
     <link href={{{URL::asset("css/ficha-biografica-doc.css")}}} rel="stylesheet">
+    <link href={{{URL::asset("css/processo.css")}}} rel="stylesheet">
+    
     <link href={{{URL::asset("css/fonts/fontawesome-all.min.css")}}} rel="stylesheet">
 
     <link href={{{URL::asset("tooltipster/dist/css/tooltipster.bundle.min.css")}}} rel="stylesheet">
@@ -72,7 +74,6 @@
   <script src={{{URL::asset("js/paineis/inscricacao/inputnome.js")}}}></script>
   <script src={{{URL::asset("js/paineis/telefone.js")}}}></script>
   <script src={{{URL::asset("js/paineis/disciplina/disciplina.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/curso/curso.js")}}}></script>
   <script src={{{URL::asset("js/paineis/horario/horario.js")}}}></script>
   <script src={{{URL::asset("js/paineis/horario/editar-horario.js")}}}></script>
   <script src={{{URL::asset("js/paineis/perfil/perfil.js")}}}></script>
@@ -80,8 +81,9 @@
   <script src={{{URL::asset("js/paineis/professor/professor.js")}}}></script>
   <script src={{{URL::asset("js/paineis/letrasc.js")}}}></script>
   <script src={{{URL::asset("js/paineis/registrar-aluno/registrar-aluno.js")}}}></script>
+
   
-  
+
 
    <!-- /	Link do js main do projeto -->
   <script src={{{URL::asset("js/axios.min.js")}}}></script>

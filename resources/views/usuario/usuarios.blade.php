@@ -96,9 +96,12 @@
           <td> 
             <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalResg{{$user['usuario_id']}}">Resgatar</button>
           </td>
-          <td style="display: flex; justify-content: center; align-items: center; gap:5px;">
-            <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal{{$user['usuario_id']}}"></i>
-            <a href={{ route('editUser', ['id'=>$user->usuario_id])}}><i class="bi bi-pencil"></i></a> 
+          <td>
+            <div style="display: flex; justify-content: center; align-items: center; gap:5px;">
+              <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal{{$user['usuario_id']}}"></i>
+              <a href={{ route('editUser', ['id'=>$user->usuario_id])}}><i class="bi bi-pencil"></i></a> 
+
+            </div>
           </td>
         </tr>
       @endif
