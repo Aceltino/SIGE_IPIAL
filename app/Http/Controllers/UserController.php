@@ -151,12 +151,16 @@ class UserController extends Controller
 
         //Update dos dados da Pessoa e Endereço
         if(!$this->updatePessoa_ACTUALIZADO($dadosPessoa,$dadosEndereco)){
+            conti:
             return redirect()->back()->with('erro_Update_001', 'Lamentamos! Erro na actualização de alguns dados.');
         }
 
         //Update dos dados do Usuario
         $user->email=$request->email_update;
         $user->cargo_usuario=$request->cargo_usuario_update;
+        if (!AuthController::limitCadastroUser()) {
+            goto conti;
+        }
         if (!$user->save()){
             return redirect()->back()->with('erro_Update_002', 'Lamentamos! Erro na actualização do Email.');
         }
@@ -171,8 +175,17 @@ class UserController extends Controller
 
         if($user->status_usuario===0){
 
+            if($user->cargo_usuario=='Director'){
+                if(!AuthController::limitCadastroUser()){
+                    goto contiErro;
+                }
+                goto conti;
+            }
+           
+            conti:
             $user->status_usuario=1;
             if(!$user->save()){
+                contiErro:
                 return redirect()->back()->with('erro_status_001','Lamentamos! Não foi possivel Desbloquer Usuario');
             }
             return redirect()->back()->with('success_status_001','Usuario Desbloqueado');

@@ -5,8 +5,9 @@
 @section('conteudo')
 <main id="main" class="main" >
             @if(session()->has('Sucesso'))
-            <div class="alert alert-success">
+            <div class="alert alert-success"> 
             {{session('Sucesso')}}
+        </div>
             @endif
     <form method="POST" action="{{route('turma-store')}}" id="formT" method="POST" class="formulario-layout">
         @csrf

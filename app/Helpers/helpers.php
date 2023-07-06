@@ -416,3 +416,23 @@ if (!function_exists('getOBS')) {
         return 'Não Transita';
     }
 }
+
+if (!function_exists('getProfDisciplina')) {
+    function getProfDisciplina($profId)
+    {
+        $disciplinaID = \App\Models\Professor_disciplina::where('professor_id', $profId)
+                            ->get();
+
+        return $disciplinaID;
+    }
+}
+
+if (!function_exists('getDisciplina')) {
+    function getDisciplina($disciplinaID)
+    {
+        $nomeDisciplina = \App\Models\Disciplina::where('disciplina_id', $disciplinaID)
+                            ->first();
+
+        return $nomeDisciplina;
+    }
+}

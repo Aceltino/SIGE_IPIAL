@@ -101,7 +101,7 @@
 
           <tr>
             <th scope="col" colspan="3">
-              <span class="nome-dg">{{$director->pessoa->nome_completo}}</span>
+              <span class="nome-dg">{{$dadosAssinantes['director']->pessoa->nome_completo}}</span>
             </th>
             <th scope="col" colspan="21">
               <h1>PAUTA DE AVALIAÇÃO ANUAL</h1>   
@@ -338,7 +338,7 @@
             <th></th>     
 
             <th colspan="3">              
-              DOMINGOS AGOSTINHO
+              {{$dadosAssinantes['subdirector']->pessoa->nome_completo}}
             </th> 
           </tr>
 
