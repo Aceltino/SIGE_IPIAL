@@ -28,15 +28,13 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                  <input name='nome_completo' type="text" class="input-sm" placeholder="Nome Completo do professor" id="nome-completo-do-professor-input" oninput="this.className = ''" minlength="3" maxlength="70">
-                  <p class="alert alert-danger d-none mt-2" role="alert" id="paragrafo-de-validacao-do-nome-completo-do-professor"></p>
+                  <input name='nome_completo' type="text" class="input-sm" placeholder="Nome Completo do professor" id="letra" oninput="this.className = ''" minlength="3" maxlength="70">
               </div>
             </div>
 
             <div class="col-md-6">
               <div class="form-group">
-                <input name='formacao' type="text" class="input-sm" placeholder="Formação do professor" id="formacao-do-professor-input" oninput="this.className = ''" minlength="3" maxlength="70">
-                <p class="alert alert-danger d-none mt-2" role="alert" id="paragrafo-de-validacao-da-formacao-do-professor"></p>
+                <input name='formacao' type="text" class="input-sm" placeholder="Formação do professor" id="letra" oninput="this.className = ''" minlength="3" maxlength="70">
               </div>
             </div>
           </div>
@@ -44,28 +42,28 @@
           <div class="row">
             <div class="col-md-5">
               <div class="form-group">
-                <input name='num_bi' type="text" placeholder="Número do bilhete de identidade" id="numero-do-bilhete-do-professor-input" oninput="this.className = ''" minlength="14" maxlength="14">
-                <p class="alert alert-danger d-none mt-2" role="alert" id="paragrafo-de-validacao-do-numero-do-bilhete-do-professor"></p>
+                <input name='num_bi' type="text" placeholder="Número do bilhete de identidade" id="bi_input" oninput="this.className = ''" minlength="14" maxlength="14">
+                <p role="alert" id="mensagem1"></p>
               </div>
             </div>
 
             <div class="col-md-5">
               <div class="form-group">
                 <input name='data_nascimento' type="date" id="data-de-nascimento-do-professor-input" oninput="this.className = ''">
+                <p class="alert alert-danger d-none mt-2" role="alert" id="paragrafo-de-validacao-da-idade-do-professor"></p>
               </div> 
             </div>
 
             <div class="col-md-2">
               <div class="form-group">
                 <input type="text" class="form-control" readonly="true" id="idade-do-professor-input" disabled oninput="this.className = ''" value="00">
-                <p class="alert alert-danger d-none mt-2" role="alert" id="paragrafo-de-validacao-da-idade-do-professor"></p>
               </div> 
             </div>
           </div>
 
  
           <div class="row d-flex align-items-center">
-            <div class="col-md-4">
+            <div class="col-md-9">
               <div class="form-group">
                 <label class="me-3">Sexo:</label>
                 <input type="radio" id="masculino" name="genero" value="Masculino" {{ old('genero') == 'Masculino' ? 'checked' : '' }} checked>
@@ -75,32 +73,32 @@
               </div>
             </div>
 
-            <div class="col-md-8" style=" display: flex; justify-content: flex-end;align-items: center; gap: 10px;">
-              <h5>Endereço</h5>
-              <div class="form-group">
-                <input name='municipio' type="text" placeholder="Municipio" id="municipio-do-professor-input">
-                <p class="alert alert-danger d-none mt-2" role="alert" id="paragrafo-de-validacao-do-municipio-do-professor"></p>
+            <div id="col-md-3"class="col-lg-3 gap-1 justify-content-center align-items-center">
+              <div>
+                <span style="color: #777;">+244</span>
               </div>
-              </div> 
-              <div class="form-group">
-                <input name='bairro' type="text" placeholder="Bairro" id="bairro-do-professor-input">
-                <p class="alert alert-danger d-none mt-2" role="alert" id="paragrafo-de-validacao-do-bairro-do-professor"></p>
-              </div> 
-              <div class="form-group">
-                <input name='zona' type="text" placeholder="Zona">
-              </div> 
-              <div class="form-group">
-                <input name='numero_casa' type="number" placeholder="Nº Casa" min="0" max="800">
-              </div> 
+              <div class=" col aa" style="display: flex; flex-direction: column;">
+                <input name='num_tel' type="text" name="" placeholder="Telefone" id="telefoneinput" oninput="this.className = ''" minlength="9" maxlength="9">
+                <div class="alert alert-danger mt-2 mensagem-erro  " style="width: 100%;"></div>
+              </div>
             </div>
           </div> 
 
           <div class="row">
-            <div id="col-md-4"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
-              <span style="color: #777;">+244</span>
-              <input name='num_tel' type="text" name="" placeholder="Telefone" id="contacto-telefonico-do-professor-input" oninput="this.className = ''" minlength="9" maxlength="9">
-              <p class="alert alert-danger d-none mt-2" role="alert" id="paragrafo-de-validacao-do-contacto-telefone-do-professor"></p>
+            <h5>Endereço</h5>
+            <div class="form-group col-md-3">
+              <input name='municipio' type="text" placeholder="Municipio" id="municipio-do-professor-input">
             </div>
+            
+            <div class="form-group col-md-3">
+              <input name='bairro' type="text" placeholder="Bairro" id="bairro-do-professor-input">
+            </div> 
+            <div class="form-group col-md-3">
+              <input name='zona' type="text" placeholder="Zona">
+            </div> 
+            <div class="form-group col-md-3">
+              <input name='numero_casa' type="number" placeholder="Nº Casa" min="0" max="800">
+            </div> 
           </div>
         </div>
 
@@ -120,13 +118,18 @@
 
           <div class="row">
             <div class="form-group col">
-              <select oninput="this.className = ''" class="form-select">
-                <optgroup label="Turno">
-                  <option>Manhã</option>
-                  <option>Tarde</option>
-                  <option>Noite</option>
-                </optgroup>
-              </select>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" value="Manhã">
+                <label class="form-check-label" for="checkboxTurnoManha">Manhã</label>
+              </div>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" value="Tarde">
+                <label class="form-check-label" for="checkboxTurnoTarde">Tarde</label>
+              </div>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" value="Noite">
+                <label class="form-check-label" for="checkboxTurnoNoite">Noite</label>
+              </div>
             </div>
           </div>
 
