@@ -44,10 +44,11 @@ class DisciplinasController extends Controller
     {
         $classes = Classe::all();
         $cursos = Curso::all();
+        $classes = Classe::all();
         $disciplinas = Disciplina::where('disciplina_id',$disciplina_id)->first();
         if(!empty($disciplinas))
         {
-            return view('disciplina.edit-disciplina',['disciplinas' => $disciplinas, 'cursos' => $cursos]);
+            return view('disciplina.edit-disciplina',['disciplinas' => $disciplinas, 'cursos' => $cursos , 'classes' => $classes ]);
         }
         else{
                 return redirect()->route('consultar.disciplina');

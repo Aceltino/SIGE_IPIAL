@@ -43,7 +43,7 @@
                       <select oninput="this.className = ''" class="form-select" name="componente" id="selectComponente">
                         <option selected disabled> Componetes</option>
                         <option  value="Técnicas">Técnicas</option>
-                        <option value="Socio-culturais"> Socio-culturais</option>
+                        <option value="Socio-culturais">Socio-culturais</option>
                         <option value="Cientificas"> Cientificas</option>
                       </select>
                     </div>
@@ -67,24 +67,28 @@
                 <div class="col">
                   @foreach($cursos as $curso)
                   <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="checkboxCurso{{$curso['curso_id']}}" name="curso" value="{{$curso['curso_id']}}">
-                    <label class="form-check-label" for="checkboxCurso{{$curso['curso_id']}}">{{$curso['nome_curso']}}</label>
+                    <input class="form-check-input" type="checkbox" id="checkboxCurso{{$curso['curso_id']}}" name="curso" value="{{$curso['curso_id']}}" disabled>
+                    <label class="form-check-label" for="checkboxCurso{{$curso['curso_id']}}" >{{$curso['nome_curso']}}</label>
                  </div>
                   @endforeach
-                 <div class="row">
-                 <div class="col">
-                     <input type="Time" style=" text-align: center;" name="tempo_prova" value="{{ old('tempo_prova') }}" placeholder="Tempo de prova" oninput="this.className = ''">
-                            @error('tempo_prova')
-                                <div class="alert alert-danger">{{$message}}
-                                <button class="botaofecharerro">
-                                <i class="bi bi-x"></i>
-                                </button></div>
-                            @enderror
+                    <div class="row">
+                      <div class="col">
+                        <input type="Time" style=" text-align: center;" name="tempo_prova" value="{{ old('tempo_prova') }}" placeholder="Tempo de prova" oninput="this.className = ''">
+                               @error('tempo_prova')
+                                   <div class="alert alert-danger">{{$message}}
+                                   <button class="botaofecharerro">
+                                   <i class="bi bi-x"></i>
+                                   </button></div>
+                               @enderror
+                       </div> 
+
+                       <div class="col">
+                          <input type="text" style=" text-align: center;" name="tempo_prova" value="" placeholder="Carga Horária" oninput="this.className = ''">
+    
+                       </div> 
+
                     </div>
-                    <div class="col">
-                     <input type="text" style=" text-align: center;" name="carga_horaria" value="{{ old('carga_horaria') }}" placeholder="Carga horaria" oninput="this.className = ''">
-                    </div>
-                 </div> 
+                    
              </div> 
              <div style="text-align:center;margin-top:10px;">
                 <div>

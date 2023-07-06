@@ -1,62 +1,72 @@
-$(document).ready(function() {
-    // Quando a opção "Técnicas" for selecionada
-    $('#selectComponente').change(function() {
-      if ($(this).val() === 'Técnicas') {
-        // Habilitar todas as checkboxes
-        $('input[name="curso"]').prop('disabled', false);
-      } else {
-        // Desabilitar todas as checkboxes, exceto se uma estiver selecionada
-        if ($('input[name="curso"]:checked').length === 0) {
-          $('input[name="curso"]').prop('disabled', true);
+/*$(document).ready(function() {
+  // Quando o select de componente for alterado
+  $('#selectComponente').change(function() {
+    // Desmarcar todas as checkboxes selecionadas
+    $('input[name="curso"]:checked').prop('checked', false);
+
+    if ($(this).val() === 'Técnicas') {
+      // Habilitar todas as checkboxes
+      $('input[name="curso"]').prop('disabled', false);
+    } else if ($(this).val() === 'Cientificas') {
+      var numTotalCheckboxes = $('input[name="curso"]').length;
+      var numSelecionar = numTotalCheckboxes - 1;
+
+      // Habilitar todas as checkboxes
+      $('input[name="curso"]').prop('disabled', false);
+
+      // Ao selecionar uma checkbox
+      $('input[name="curso"]').change(function() {
+        var numSelecionados = $('input[name="curso"]:checked').length;
+
+        if (numSelecionados > numSelecionar) {
+          $(this).prop('checked', false);
         }
-      }
-    });
-  
-    // Ao selecionar uma checkbox
-    $('input[name="curso"]').change(function() {
-      if ($('#selectComponente').val() === 'Técnicas') {
-        // Desmarcar outras checkboxes
-        $('input[name="curso"]').not(this).prop('checked', false);
-      }
-  
-      // Verificar se alguma checkbox está selecionada
-      if ($('input[name="curso"]:checked').length > 0) {
-        // Habilitar todas as checkboxes
-        $('input[name="curso"]').prop('disabled', false);
-      } else {
-        // Desabilitar todas as checkboxes
-        $('input[name="curso"]').prop('disabled', true);
-      }
-    });
+      });
+    } else {
+      // Desabilitar todas as checkboxes
+      $('input[name="curso"]').prop('disabled', true);
+    }
   });
+  // Ao selecionar uma checkbox
+  $('input[name="curso"]').change(function() {
+    if ($('#selectComponente').val() === 'Técnicas') {
+      // Desmarcar outras checkboxes
+      $('input[name="curso"]').not(this).prop('checked', false);
+    }
+  });
+});*/
 
 
-
-
-
-
-
-
-
-
-
-  $(document).ready(function() {
+$(document).ready(function() {
     // Quando o select de componente for alterado
     $('#selectComponente').change(function() {
+      // Desmarcar todas as checkboxes selecionadas
+      $('input[name="curso"]:checked').prop('checked', false);
+  
       if ($(this).val() === 'Técnicas') {
         // Habilitar todas as checkboxes
         $('input[name="curso"]').prop('disabled', false);
       } else if ($(this).val() === 'Cientificas') {
+        var numTotalCheckboxes = $('input[name="curso"]').length;
+        var numSelecionar = numTotalCheckboxes - 1;
+  
         // Habilitar todas as checkboxes
         $('input[name="curso"]').prop('disabled', false);
-        // Desabilitar outras checkboxes após selecionar duas opções
+  
+        // Ao selecionar uma checkbox
         $('input[name="curso"]').change(function() {
           var numSelecionados = $('input[name="curso"]:checked').length;
-          if (numSelecionados >= 2) {
-            $('input[name="curso"]').not(':checked').prop('disabled', true);
-          } else {
-            $('input[name="curso"]').not(':checked').prop('disabled', false);
+  
+          if (numSelecionados > numSelecionar) {
+            $(this).prop('checked', false);
           }
+        });
+      } else if ($(this).val() === 'Socio-culturais') {
+        // Selecionar todas as checkboxes
+        $('input[name="curso"]').prop('checked', true);
+        // Desabilitar a mudança de seleção para checkboxes não selecionadas
+        $('input[name="curso"]:not(:checked)').change(function() {
+          $(this).prop('checked', true);
         });
       } else {
         // Desabilitar todas as checkboxes

@@ -14,4 +14,10 @@ class ClasseController extends Controller
         return $idClasse;
     }
 
+    public static function pegarClasse($id)
+    {
+        $classe = Classe::where('classe_id', $id)->first();
+        return $classe;
+    }
+
 }

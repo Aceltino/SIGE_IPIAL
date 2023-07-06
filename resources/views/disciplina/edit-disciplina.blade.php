@@ -45,6 +45,7 @@
             </div>
         </div> <br>
 
+            <div class="row">
 
               <div class="form-group">
                 <select oninput="this.className = ''"   class="form-select" name="componente" value="{{ $disciplinas->componente }}" >
@@ -68,15 +69,21 @@
                     <label class="form-check-label" for="flexSwitchCheckDefault">{{$curso['nome_curso']}}</label>
                  </div>
                   @endforeach 
-                <div class="col">
-                     <input type="Time" style=" text-align: center;" value="{{ $disciplinas->tempo_prova }}" name="tempo_prova"    oninput="this.className = ''">
-                     @error('tempo_prova')
-                                <div class="alert alert-danger">{{$message}}
-                                <button class="botaofecharerro">
-                                <i class="bi bi-x"></i>
-                                </button></div>
-                            @enderror
+                <div class="row">
+                    <div class="col">
+                        <input type="Time" style=" text-align: center;" value="{{ $disciplinas->tempo_prova }}" name="tempo_prova"    oninput="this.className = ''">
+                        @error('tempo_prova')
+                                    <div class="alert alert-danger">{{$message}}
+                                    <button class="botaofecharerro">
+                                    <i class="bi bi-x"></i>
+                                    </button></div>
+                                @enderror
                     </div>
+                    <div class="col">
+                        <input type="text" style=" text-align: center;" name="tempo_prova" value="" placeholder="Carga Horária" oninput="this.className = ''">
+  
+                     </div>
+                </div>
              </div> 
              <div style="text-align:center;margin-top:10px;">
                 <div>

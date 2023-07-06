@@ -17,7 +17,6 @@ class AssiduidadeAlunoController extends Controller
     public function index()
     {
         $user = Auth::user();
-        //dd($user);
         if($user->cargo_usuario === "Administrador" || $user->cargo_usuario === "Subdirector"){
             $professor = AvaliacaoTrait::pegarAdmin();
         }
@@ -26,9 +25,15 @@ class AssiduidadeAlunoController extends Controller
             if($coord[0]->cargo === "Coordenador Curso"){
                 $professor = AvaliacaoTrait::pegarCoordenadorCurso($user);
             }
+            if($coord[0]->cargo === "Coordenador Area"){
+                $professor = AvaliacaoTrait::pegarCoordenadorArea($user);
+            }
         }
         if($user->cargo_usuario === "Professor"){
             $professor = AvaliacaoTrait::pegarProfessor($user);
+            if(!$professor){
+                return view('assiduid-aluno/assd-aluno')->with('erro', "Nenhuma turma disponível!");
+            }
         }
         $inc = 0;
         for ($i = 0; $i < count($professor); $i++) {
@@ -66,7 +71,7 @@ class AssiduidadeAlunoController extends Controller
                 }
             }
         }
-        //dd($professor);
+
         $trimestre = AvaliacaoTrait::pegarTrimestre();
         $alunos = AssiduidadeTrait::pegarAssiduidadeAluno($disciplina_id, $turmas);
         return view('assiduid-aluno/assd-aluno', compact(['alunos', 'nome_turma', 'cursos', 'nome_disciplina', 'trimestre', 'professor']));
@@ -81,7 +86,8 @@ class AssiduidadeAlunoController extends Controller
         }
         $data = (string) date('Y-m-d');
         $tot_faltas = Assiduidade_aluno::where('created_at', 'like', '%'.$data.'%')->where('aluno_id', $aluno_id)
-        ->where('id_trimestre', $trimestre[0]->trimestre_id)->where('disciplina_id', $disciplina_id)->get();
+        ->where('id_trimestre', $trimestre[0]->trimestre_id)->where('disciplina_id', $disciplina_id)
+        ->where('tipo_falta', "Presencial")->get();
         if(count($falta) <= count($tot_faltas)){
             return redirect()->back()->with('erro', "Limite de faltas atingido!");
         }

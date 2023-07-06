@@ -87,7 +87,7 @@
         <td>{{ $disciplina->curso->nome_curso }}</td>
         @endif
         <td> 
-          <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal{{ $disciplina['disciplina_id'] }}"></i>
+          <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal{{$disciplina->disciplina_id  }}"></i>
           <a href="{{ route('disciplina.edit', ['disciplina_id' => $disciplina->disciplina_id ])}}"><i class="bi bi-pencil"></i></a>
           <form action="{{ route('disciplina.delete', ['disciplina_id' => $disciplina->disciplina_id]) }}" method="POST">
             @csrf
@@ -96,14 +96,7 @@
           </form>
         </td>
       </tr>
-      @endforeach
-            </tr>
-    </tbody>
-  </table>
-  <!-- Termina a tabela de disciplina -->
-    @foreach($disciplinas as $disciplina)
-      <!--Inicio da modal ver disciplina-->
-      <div class="modal fade" id="ExtralargeModal{{ $disciplina['disciplina_id'] }}" tabindex="-1" data-bs-backdrop="false">
+      <div class="modal fade" id="ExtralargeModal{{$disciplina->disciplina_id}}" tabindex="-1" data-bs-backdrop="false">
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
 
@@ -134,6 +127,12 @@
                 <label>Componete: </label><input type="text" name="socio-culturais" value="{{ $disciplina->componente }}" disabled>
             </div>
             <div class="area-input form-group" style="border: none; ">
+              <label>Classe: </label><input type="text" name="socio-culturais" value="{{ }}" disabled>
+          </div>
+          <div class="area-input form-group" style="border: none; ">
+            <label>Carga Horária: </label><input type="text" name="socio-culturais" value="{{ $disciplina->componente }}" disabled>
+        </div>
+            <div class="area-input form-group" style="border: none; ">
             @if($disciplina->curso_id == '')
             <label>Curso: </label><input type="text" name="" value="Todos os cursos" disabled>
             @else
@@ -153,5 +152,9 @@
         </div>
       </div>
       @endforeach
+            </tr>
+    </tbody>
+  </table>
+
 </main>
 @endsection

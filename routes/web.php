@@ -26,7 +26,7 @@ use App\Http\Controllers\{
 */
 
 // Rota apenas de teste... Não apague -> ACELTINO
-    Route::get('validar-aluno', [AlunoTurmaController::class, 'pegarTurma']);
+    Route::get('validar-aluno', [AlunoTurmaController::class, 'pegarTurmas']);
 // Route::get('validar-aluno', [AlunoController::class, 'situacaoAluno']);
 
 
@@ -209,9 +209,7 @@ Route::prefix('turma')->middleware(['auth','active.session','checkcargo'])->grou
     });
 
     /*Editar turma */
-    Route::get('adicionar-coord-turma', function () {
-        return view('turma/ad-coord-turma');
-    });
+    Route::get('adicionar-coordenador-turma', [inicioController::class,'adcoordTurma'])->name('adcoordTurma')->middleware(['auth','active.session']);
 });
 /**<!--Fim Rotas turma--> */
 

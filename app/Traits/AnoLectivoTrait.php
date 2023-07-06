@@ -5,10 +5,7 @@ namespace App\Traits;
 use App\Http\Controllers\AlunoController;
 use App\Http\Controllers\CandidatoController;
 use App\Models\Ano_lectivo;
-<<<<<<< HEAD
 use App\Models\Candidato;
-=======
->>>>>>> a81daee9dfb2617efcdf511b581ba8c37a55ed93
 use App\Models\Trimestre;
 use DateTime;
 use carbon\Carbon;
@@ -225,7 +222,7 @@ trait AnoLectivoTrait
     }
 
     public static function fecharAnoLectivo(){
-        CandidatoController::eliminarCandidatos(); // Eliminar todos os candidatos não matriculados no ano lectivo
+        //CandidatoController::eliminarCandidatos(); // Eliminar todos os candidatos não matriculados no ano lectivo
         AlunoController::alunosVinculados(); //Cortar o acesso de todos os alunos do sistema
 
 
@@ -235,6 +232,22 @@ trait AnoLectivoTrait
         Ano_lectivo::where('status_ano_lectivo', 1)->update($anoLec);
         Trimestre::where('status', 1)->update($trimestre);
         return true;
+    }
+
+    public static function calcularHoraTempos($hora_inicio, $intervalo, $hora_fim){
+        $h_inicio = (int) substr($hora_inicio, 0, 2);
+        $minutos_inicio = (int) substr($hora_inicio, 3, 2);
+        $h_fim = (int) substr($hora_fim, 0, 2);
+        $minutos_fim = (int) substr($hora_fim, 3, 2);
+        $itervalo = (int) $intervalo;
+        $duracao = (6 * 60) + $intervalo;
+        $x = 0;
+        for ($i=$h_inicio; $i < $h_fim; $i++) {
+            $x++;
+        }
+        // $diff = new DateTime($hora_inicio);
+        // $df = $diff->diff();
+        // dd($df);
     }
 
 }
