@@ -47,11 +47,11 @@
 
 
               <div class="form-group">
-                <select oninput="this.className = ''"  value="{{ $disciplinas->componente }}" class="form-select" name="componente" >
-                  <option  disabled> Componetes</option>
-                  <option selected  value="c.T">Técnicas </option>
-                  <option value="I.E"> Socio-culturais</option>
-                  <option value="I"> Cientificas</option>
+                <select oninput="this.className = ''"   class="form-select" name="componente" value="{{ $disciplinas->componente }}" >
+                  <option  disabled > Componetes</option>
+                  <option value="Técnicas">Técnicas </option>
+                  <option value="Socio-culturais"> Socio-culturais</option>
+                  <option value="Cientificas"> Cientificas</option>
                 </select>
                 @error('componente')
                                 <div class="alert alert-danger">{{$message}}

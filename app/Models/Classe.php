@@ -31,4 +31,10 @@ class Classe extends Model
     {
         return $this->hasMany(CalendarioProva::class, 'calendario_id');
     }
+    public function disciplinas()
+    {
+        return $this->belongsToMany(Disciplina::class, 'classe_disciplina' , 'disciplina_id' , 'classe_id');
+    }
+        
+    
 }
