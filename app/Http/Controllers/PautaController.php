@@ -67,7 +67,7 @@ class PautaController extends Controller
         //Combinei as duas coleções de disciplinas(Tecnicas e Gerais) em uma única variável            
         $disciplinasAll= $disciplinaGerais->concat($disciplinaEspecificas)->all();
         foreach ($disciplinasAll as $key => $value) {
-           $disciplinas[]=$value;
+           $disciplinas[]=$value->nome_disciplina;
             //echo"<hr>";
         } 
       
