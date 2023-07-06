@@ -1,9 +1,6 @@
 //Declaração de variáveis e elementos
     //Primeiro step
         //Inputs
-        const inputNomeCompletoDoProfessor = document.querySelector("#nome-completo-do-professor-input");
-        const inputFormacaoDoProfessor = document.querySelector("#formacao-do-professor-input");
-        const inputNumeroDoBilheteDeIdentidadeDoProfessor = document.querySelector("#numero-do-bilhete-do-professor-input");
         const inputDataDeNascimentoDoProfessor = document.querySelector("#data-de-nascimento-do-professor-input");
         const inputIdadeDoProfessor = document.querySelector("#idade-do-professor-input");
         const inputMunicipioDoProfessor = document.querySelector("#municipio-do-professor-input");
@@ -11,9 +8,6 @@
         const inputContactoTelefonicoDoProfessor = document.querySelector("#contacto-telefonico-do-professor-input");
         const inputEmailDoProfessor = document.querySelector("#email-do-professor-input");
         //Textos de validação dos inputs
-        const textoDeValidacaoDoInputNomeCompletoDoProfessor = document.querySelector("#paragrafo-de-validacao-do-nome-completo-do-professor");
-        const textoDeValidacaoDoInputFormacaoDoProfessor = document.querySelector("#paragrafo-de-validacao-da-formacao-do-professor");
-        const textoDeValidacaoDoInputNumeroDoBilheteDeIdentidadeDoProfessor = document.querySelector("#paragrafo-de-validacao-do-numero-do-bilhete-do-professor");
         const textoDeValidacaoDoInputIdadeDoProfessor = document.querySelector("#paragrafo-de-validacao-da-idade-do-professor");
         const textoDeValidacaoDoInputMunicipioDoProfessor = document.querySelector("#paragrafo-de-validacao-do-municipio-do-professor");
         const textoDeValidacaoDoInputBairroDoProfessor = document.querySelector("#paragrafo-de-validacao-do-bairro-do-professor");
@@ -29,6 +23,7 @@
  //Fim das funções diversas
 
  //Funções dos eventos
+    
     inputDataDeNascimentoDoProfessor.addEventListener("input", ()=>{
         var stringDataDeNascimentoDoProfessor = inputDataDeNascimentoDoProfessor.value;
         var dataDeNascimentoDoProfessor = new Date (stringDataDeNascimentoDoProfessor);
@@ -44,6 +39,21 @@
             idade--;
         }
 
-        inputIdadeDoProfessor.value = idade + " anos";
+        inputIdadeDoProfessor.value = idade === 1 ? idade + " ano" : idade + " anos";
+
+        if(idade < 18){
+            apresentarMensagemDeErro(textoDeValidacaoDoInputIdadeDoProfessor, "O professor não pode ser menor de idade");
+            inputDataDeNascimentoDoProfessor.value = "";
+            inputIdadeDoProfessor.value = "";
+        }
+        if(idade >= 18 && idade <= 122){
+            ocultarMensagemDeErro(textoDeValidacaoDoInputIdadeDoProfessor);
+        }
+        if(idade > 122){
+            apresentarMensagemDeErro(textoDeValidacaoDoInputIdadeDoProfessor, "O professor não pode ter mais de 122 anos");
+            inputDataDeNascimentoDoProfessor.value = "";
+            inputIdadeDoProfessor.value = "";
+        }
+        
     });
  //Fim das funções dos eventos
