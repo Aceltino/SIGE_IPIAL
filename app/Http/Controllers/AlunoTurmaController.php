@@ -64,9 +64,9 @@
                     if($turma['num_vaga'] > 0)
                     {
                         $alunoTurma[] = [
-                        'turma' => $turma['TurmaAno_id'],
-                        'aluno' => $alunos[$i]['aluno_id'],
-                        'nome' => $alunos[$i]['nome']
+                            'turma' => $turma['TurmaAno_id'],
+                            'aluno' => $alunos[$i]['aluno_id'],
+                            'nome' => $alunos[$i]['nome']
                         ];
 
                         $vaga = $turma['num_vaga'] - 1;
@@ -80,6 +80,7 @@
                     }
                 }
             }
+            
             usort($alunoTurma, function($a, $b) {
                 return strcmp($a['nome'], $b['nome']);
             });

@@ -39,7 +39,7 @@ class MatriculaRequest extends FormRequest
             'genero' => 'required|string',
             'num_bi'=>'required|size:14|regex:/^\d{9}[A-Z]{2}\d{3}$/|unique:pessoas,num_bi,'.$candidato->pessoa_id.',pessoa_id',
            //User
-            'email'=>'required|email|unique:users,email',
+            'email'=>'required|email',
             //Formulario escola proveniente
             'nome_escola'=>'required|max:100|min:2',
             'num_processo'=>'required|min:2',
