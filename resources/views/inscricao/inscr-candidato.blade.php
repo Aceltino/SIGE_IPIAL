@@ -130,7 +130,7 @@
         <div class="col">
           <div class="form-group">
             <input type="text" style="margin-top: 15px;" placeholder="Número do Bilhete de identidade" id="bi_input" name="num_bi" value="{{ old('num_bi') }}" oninput="this.className = ''" minlength="14" maxlength="14">
-            <div id="mensagem1" style="color: red;"></div>
+            <div class="" id="mensagem1" style="color: red;"></div>
             @error('num_bi')
               <div class="alert alert-danger">{{$message}}
                 <button class="botaofecharerro">
@@ -148,7 +148,7 @@
           </div>
           <div class=" col aa" style="display: flex; flex-direction: column;">
             <input type="text" value="" id="telefoneinput" placeholder="Telefone"  value="{{ old('num_tel') }}" name="num_tel" oninput="this.className = ''">
-            <div class="mensagem-erro" style="width: 100%;"></div>
+            <div class="alert alert-danger mt-2 mensagem-erro  " style="width: 100%;"></div>
             @error('num_tel')
               <div class="alert alert-danger">{{$message}}
                 <button class="botaofecharerro">
@@ -238,7 +238,7 @@
         @endphp
           @foreach($cursos as $curso)
           <div class="form-group">
-          <select id="select" class="form-select" name="curso{{$a}}" oninput="this.className = ''" >
+          <select  class="form-select" name="curso{{$a}}" oninput="this.className = ''" >
           <option selected disabled>Escolha a {{$a}}ª opção</option>
           @foreach ($cursos as $Curso )
           <option value="{{$Curso['nome_curso']}}">{{$Curso['nome_curso']}}</option>

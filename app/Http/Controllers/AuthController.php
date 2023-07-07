@@ -499,7 +499,7 @@ class AuthController extends Controller
     public static function limitCadastroUser(): bool
     {
 
-        $userDirector = User::where('cargo_usuario', 'Director')
+        $userDirector= User::where('cargo_usuario', 'Director')
                             ->where('status_usuario', 1)
                             ->update(['status_usuario' => 0]);
 

@@ -78,7 +78,7 @@
               O DIRECTOR
             </th>
             <th scope="col" colspan="21">
-              <span class="tx-curso-p">INFORMÁTICA: TÉCNICO DE INFORMÁTICA</span>
+              <span class="tx-curso-p">{{$turma->curso->areaFormacao->nome_area_formacao}}: {{$turma->curso->nome_curso}}</span>
             </th>
             <th scope="col" colspan="3">
               
