@@ -78,10 +78,12 @@ class CandidatoController extends Controller
     public static function eliminarAdmitidos() //Função chamada na atribuição da turma - MatriculaController
     {
         $candidatos = Candidato::where('status', 'Admitido')->get();
+        
         foreach ($candidatos as $candidato)
         {
-            PessoaTrait::deletePessoa($candidato->pessoa_id);
+            PessoaTrait::deletePessoa($candidato->pessoa_id);  
         }
+     
     }
 
     public static function eliminarCandidatos() //Função chamada no final do ano lectivo

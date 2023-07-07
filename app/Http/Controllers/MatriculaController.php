@@ -503,7 +503,7 @@ class MatriculaController extends Controller
             'email'=>$request['email'],
             'password'=>bcrypt($hexAleatorio),
             'cargo_usuario'=>'Aluno',
-            'status_usuario'=>0,
+            'status_usuario'=>1,
             'pessoa_id'=>$pessoa_id,
         ];
         $user = UserController::store($dadosUser);
@@ -515,15 +515,6 @@ class MatriculaController extends Controller
             return redirect()->back()->with("ErroPessoa",$msg);
         }
 
-        $dadosUser=[
-            'nome_usuario'=>$abreNome.count(User::all()).$abreSobreNome,
-            'email'=>$request['email'],
-            'password'=>bcrypt($request['num_tel']),
-            'cargo_usuario'=>'Aluno',
-            'status_usuario'=>1,
-            'pessoa_id'=>$pessoa_id,
-        ];
-        $user = UserController::store($dadosUser);
         if(!$user)
         {
             $msg="Lamentamos! Aluno não registrado, tente este processo mais tarde...";

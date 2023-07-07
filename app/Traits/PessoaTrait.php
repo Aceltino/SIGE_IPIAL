@@ -118,8 +118,15 @@ trait PessoaTrait
     public static function deletePessoa($id)
     {
         $pessoa = Pessoa::find($id);
-        $pessoa->delete();
-        return $pessoa;
+
+        try {
+            $pessoa = Pessoa::find($id);
+            $pessoa->delete();
+            return $pessoa;
+        } catch (\Throwable $th) {
+            return false;
+        }
+
     }
 
 }
