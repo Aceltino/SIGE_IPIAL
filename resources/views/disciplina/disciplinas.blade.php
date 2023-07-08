@@ -86,6 +86,7 @@
         @else
         <td>{{ $disciplina->curso->nome_curso }}</td>
         @endif
+          
         <td> 
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal{{$disciplina->disciplina_id  }}"></i>
           <a href="{{ route('disciplina.edit', ['disciplina_id' => $disciplina->disciplina_id ])}}"><i class="bi bi-pencil"></i></a>
@@ -127,10 +128,10 @@
                 <label>Componete: </label><input type="text" name="socio-culturais" value="{{ $disciplina->componente }}" disabled>
             </div>
             <div class="area-input form-group" style="border: none; ">
-              <label>Classe: </label><input type="text" name="socio-culturais" value="{{ }}" disabled>
-          </div>
+            <label>Classe: </label><input type="text" name="socio-culturais" value="" disabled>
+            </div>
           <div class="area-input form-group" style="border: none; ">
-            <label>Carga Horária: </label><input type="text" name="socio-culturais" value="{{ $disciplina->componente }}" disabled>
+            <label>Carga Horária: </label><input type="text" name="socio-culturais" value="" disabled>
         </div>
             <div class="area-input form-group" style="border: none; ">
             @if($disciplina->curso_id == '')
