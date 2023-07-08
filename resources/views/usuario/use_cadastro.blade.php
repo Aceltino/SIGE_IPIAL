@@ -45,7 +45,7 @@
               <div class="alert alert-danger">{{$message}}</div>
             @enderror
             <div class="col">
-                 <input type="text" style=" text-align: center;" id="letra" placeholder="Ultimo Nome" value="{{old('sobre_nome')}}" name="sobre_nome"  oninput="this.className = ''">
+                 <input type="text" style=" text-align: center;" id="letra2" placeholder="Ultimo Nome" value="{{old('sobre_nome')}}" name="sobre_nome"  oninput="this.className = ''">
              </div>
              @error('sobre_nome')
               <div class="alert alert-danger">{{$message}}</div>
