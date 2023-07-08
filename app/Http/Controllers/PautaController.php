@@ -52,7 +52,7 @@ class PautaController extends Controller
     
         $turma= Turma::find($id);
         $anoTurmaCoord = AnoTurmaCood::where('turma_id', $id)->first();
-        $turmaAluno = Aluno_turma::where('ano_coord_id', $anoTurmaCoord->turmaAno_id)->get();
+        $turmaAluno = Aluno_turma::where('turmaAno_id', $anoTurmaCoord->turmaAno_id)->get();
         $dadosAssinantes=self::entidadesAssinantes();
         $alunos = Aluno::find($turmaAluno);
 
@@ -67,16 +67,16 @@ class PautaController extends Controller
         //Combinei as duas coleções de disciplinas(Tecnicas e Gerais) em uma única variável            
         $disciplinasAll= $disciplinaGerais->concat($disciplinaEspecificas)->all();
         foreach ($disciplinasAll as $key => $value) {
-           $disciplinas[]=$value->nome_disciplina;
-            //echo"<hr>";
+           $disciplinas[]=$value;
         } 
       
-        // dd($disciplinas);
+        // dd($disciplinas[2]["nome_disciplina"]);
         $disciplina_1= "Língua Portuguesa";
 
         foreach ($alunos as $aluno) {
-            $notas[]= self::getNotaDisciplinaAluno($disciplinas,$aluno->aluno_id);  
+            $notas[]= self::getNotaDisciplinaAluno($disciplinas[0]["nome_disciplina"],$aluno->aluno_id);  
         }
+        // dd($notas);
         
         if (!$anoTurmaCoord || !$turmaAluno || !$alunos){
             return redirect()->back()->with('msg_sem_pauta',"Lamentamos! Esta pauta ainda não esta composta... Aguarde o lançamento das notas");
