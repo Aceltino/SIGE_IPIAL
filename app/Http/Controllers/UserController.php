@@ -58,7 +58,6 @@ class UserController extends Controller
     //Metodo para fazer Update nos dados do usuario
     public function updateUser(Request $request,$id)
     {   
-        
         $user= User::findOrFail($id);
 
         $regras_gerais=[
@@ -91,7 +90,7 @@ class UserController extends Controller
             'num_bi_update.size'=> 'Número de identificação esta incorrecto',
             'num_bi_update.unique'=> 'Número de identificação(BI) já esta a ser usado',
             'telefone_update.unique'=>'Número de telefone já esta sendo usado',
-            'telefone.update.size'=> 'Número de telefone esta incorrecto',
+            'telefone_update.size'=> 'Número de telefone esta incorrecto',
 
             //Formulario do user
             'email_update.email'=>'Este campo deve conter um email valido',
@@ -151,20 +150,19 @@ class UserController extends Controller
 
         //Update dos dados da Pessoa e Endereço
         if(!$this->updatePessoa_ACTUALIZADO($dadosPessoa,$dadosEndereco)){
-            conti:
-            return redirect()->back()->with('erro_Update_001', 'Lamentamos! Erro na actualização de alguns dados.');
+            return redirect()->back()->with('erro_Update_002', 'Lamentamos! Erro na actualização de alguns dados.');
         }
 
-        //Update dos dados do Usuario
+        //Update dos dados do Usuario   
         $user->email=$request->email_update;
         $user->cargo_usuario=$request->cargo_usuario_update;
-        if (!AuthController::limitCadastroUser()) {
-            goto conti;
-        }
+
         if (!$user->save()){
             return redirect()->back()->with('erro_Update_002', 'Lamentamos! Erro na actualização do Email.');
         }
-        
+        if (!AuthController::limitCadastroUser()) {
+            return redirect()->back()->with('erro_Update_003', 'Lamentamos! Erro na actualização de alguns dados.');
+        }
         return redirect()->back()->with('success', 'Dados actualizados com sucesso!');
     }
 
