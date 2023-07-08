@@ -92,6 +92,7 @@
   <script src={{{URL::asset("js/paineis/avalicao/inputnota.js")}}}></script>
   <script src={{{URL::asset("js/APIconsumo.js")}}}></script>
   <script src={{{URL::asset("js/APIconsumomatriculas.js")}}}></script>
+  <script src={{{URL::asset("js/APIconsumoturmas.js")}}}></script>
   <script src={{{URL::asset("Datatables/datatables.min.js")}}}></script>
   <script src={{{URL::asset("js/form.js")}}}></script>
   <script src={{{URL::asset("js/clone-contato.js")}}}></script>
