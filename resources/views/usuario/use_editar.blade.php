@@ -151,7 +151,7 @@
                     @enderror
 
                     <div class="form-group">
-                        <select oninput="this.className = ''" name="cargo_usuario_update">
+                        <select oninput="this.className = ''" class="form-select" name="cargo_usuario_update">
                           <option disabled>#Cargos</option>
                           <option value="Subdirector" {{$user->cargo_usuario=='Subdirector'? "selected" : ""}}>Subdirector Pedagogico</option>
                           <option value="Secretaria" {{$user->cargo_usuario=='Secretaria'? "selected" : ""}}>Secretaria Pedagogica</option>
