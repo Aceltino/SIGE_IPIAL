@@ -208,8 +208,6 @@ Route::prefix('turma')->middleware(['auth','active.session','checkcargo'])->grou
         return view('turma/turmas');
     });
 
-    /*Editar turma */
-    Route::get('adicionar-coordenador-turma', [inicioController::class,'adcoordTurma'])->name('adcoordTurma')->middleware(['auth','active.session']);
 });
 /**<!--Fim Rotas turma--> */
 
