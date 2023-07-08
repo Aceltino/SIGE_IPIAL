@@ -114,14 +114,15 @@
             <div class="row">
 
                 <div class="col">
-                    <p><input type="date" name="data_nascimento" value="{{ old('data_nascimento') }}" oninput="this.className = ''"></p>
+                    <p><input type="date" name="data_nascimento" value="{{ old('data_nascimento') }}" oninput="this.className = ''" id="datainput"></p>
                     @error('data_nascimento')
                         <div class="alert alert-danger">{{$message}}</div>
                     @enderror
                 </div>
 
                 <div class="col">
-                    <input type="text" class="form-control" readonly="true" value="00" name="" disabled>
+                    <input type="text" class="form-control" id="idadeinput" readonly="true" value="00" name="" disabled>
+                    <div id="mensagem" style="color: red;"></div>
                 </div>
 
                 <div class="col">
@@ -142,7 +143,8 @@
 
                 <div class="col">
                     <div class="form-group">
-                        <input type="text" placeholder="Número do bilhete de identidade" value="{{ old('num_bi') }}" name="num_bi" oninput="this.className = ''">
+                        <input type="text" id="bi_input" placeholder="Número do bilhete de identidade" value="{{ old('num_bi') }}" name="num_bi" oninput="this.className = ''">
+                        <div class="" id="mensagem1" style="color: red;" maxlength="14"></div>
                         @error('num_bi')
                         <div class="alert alert-danger">{{$message}}</div>
                     @enderror
@@ -152,12 +154,17 @@
             
             <div class="row">
 
-                <div class="col-lg-4 d-flex gap-1 justify-content-center align-items-center">
-                    <span style="color: #777;">+244</span>
-                    <input type="text" name="num_tel" placeholder="Telefone" value="{{ old('num_tel') }}" oninput="this.className = ''">
-                    @error('num_tel')
-                        <div class="alert alert-danger">{{$message}}</div>
-                    @enderror
+                <div class="col-lg-4 gap-1 justify-content-center align-items-center">
+                    <div>
+                        <span style="color: #777;">Telefone (+244):</span>
+                    </div>
+                    <div class=" col aa" style="display: flex; flex-direction: column;">
+                        <input  type="text" id="telefoneinput2" name="num_tel" placeholder="Telefone" value="{{ old('num_tel') }}" oninput="this.className = ''">
+                        <div class=" mensagem-erro  " style="width: 100%;"></div>
+                        @error('num_tel')
+                            <div class="alert alert-danger">{{$message}}</div>
+                        @enderror
+                    </div>
                 </div>
             </div>
         </div> 
@@ -182,18 +189,22 @@
 
             <div class="row">
 
-                <div class="col">
-                    <div class="form-group">
-                        <input type="text" name="turno" value="{{ old('turno') }}" placeholder="Turno" oninput="this.className = ''">
-                        @error('turno')
-                        <div class="alert alert-danger">{{$message}}</div>
+                <div class="form-group col">
+                    <select oninput="this.className = ''" class="form-select"  value="{{ old('turno') }}" name="turno">
+                      <option value="1">Manhã</option>
+                      <option value="2">Tarde</option>
+                      <option value="3">Noite</option>
+                    </select>
+                    @error('turno')
+                     <div class="alert alert-danger">{{$message}}</div>
                     @enderror
-                    </div>
-                </div>
+                  </div>
+
+                
 
                 <div class="col">
                     <div class="form-group">
-                        <input type="text" name="num_aluno" value="{{ old('num_aluno') }}" placeholder="Nº do aluno" oninput="this.className = ''">
+                        <input type="text" name="num_aluno" id="numeroinput1" value="{{ old('num_aluno') }}" placeholder="Nº do aluno" oninput="this.className = ''">
                         @error('num_aluno')
                         <div class="alert alert-danger">{{$message}}</div>
                     @enderror
@@ -212,7 +223,7 @@
 
             <div class="row">
                 <div class=" form-group">
-                    <input type="text" placeholder=" Número de processo" value="{{ old('num_processo') }}" name="num_processo" oninput="this.className = ''">
+                    <input type="text"id="numeroinput" placeholder=" Número de processo" value="{{ old('num_processo') }}" name="num_processo" oninput="this.className = ''">
                     @error('num_processo')
                         <div class="alert alert-danger">{{$message}}</div>
                     @enderror
@@ -245,17 +256,17 @@
                     <select name="grau1" value="{{ old('grau1') }}" id="opcoes" oninput="this.className = ''" class="form-select">
                         <option disabled>Familiares:</option>
                         <option value="Pai"selected>Pai</option>
-                        <option value="Mãe">Mãe</option>
-                        <option value="Outro">Outro</option>
                     </select>
                 </div>
 
-                <div id="clone3"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
-                    <span style="color: #777;">+244</span>
-                    <input type="text" name="telefone1" value="{{ old('telefone1') }}" placeholder="Telefone" oninput="this.className = ''">
-                    @error('telefone1')
-                        <div class="alert alert-danger">{{$message}}</div>
-                    @enderror
+                <div id="clone3"class="col-lg-3  gap-1 justify-content-center align-items-center">
+                    <div class=" col aa" style="display: flex; flex-direction: column;">
+                        <input type="text" id="telefoneinput4" name="telefone1" value="{{ old('telefone1') }}" placeholder="Telefone" oninput="this.className = ''">
+                        <div class="mensagem-erro" style="color: red;"></div>
+                        @error('telefone1')
+                            <div class="alert alert-danger">{{$message}}</div>
+                        @enderror
+                    </div>
                 </div>
 
             </div>
@@ -271,14 +282,15 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <p><input type="date" value="{{ old('data_nascimento_enc1') }}" name="data_nascimento_enc1" oninput="this.className = ''"></p>
+                    <p><input type="date" id="datainput2" value="{{ old('data_nascimento_enc1') }}" name="data_nascimento_enc1" oninput="this.className = ''"></p>
                     @error('data_nascimento_enc1')
                         <div class="alert alert-danger">{{$message}}</div>
                     @enderror
                 </div>
 
                 <div class="col">
-                    <input type="text" class="form-control" readonly="true" value="00" disabled>
+                    <input type="text"  id="idadeinput2" class="form-control" readonly="true" value="00" disabled>
+                    <div id="mensagem08" style="color: red;"></div>
                 </div>
             </div>
             <div class="row">
@@ -292,7 +304,8 @@
 
                 <div class="col-8">
                     <div class="form-group">
-                        <input type="text" placeholder="Número do bilhete de identidade"  name="num_bi_enc1" value="{{ old('num_bi_enc1') }}" oninput="this.className = ''">
+                        <input type="text" id="bi_input1" placeholder="Número do bilhete de identidade"  name="num_bi_enc1" value="{{ old('num_bi_enc1') }}" oninput="this.className = ''">
+                        <div id="mensagem2" style="color: red;" maxlength="14"></div>
                         @error('num_bi_enc1')
                         <div class="alert alert-danger">{{$message}}</div>
                     @enderror
@@ -304,18 +317,18 @@
                 <div class="col-lg-3 form-group gap-1 ">
                     <select name="grau2" value="{{ old('grau2') }}" id="opcoes" oninput="this.className = ''" class="form-select">
                         <option disabled>Familiares:</option>
-                        <option value="Pai">Pai</option>
                         <option value="Mãe" selected>Mãe</option>
-                        <option value="Outro">Outro</option>
                     </select>
                 </div>
 
-                <div id="clone2"class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
-                    <span style="color: #777;">+244</span>
-                    <input type="text" name="telefone2" value="{{ old('telefone2') }}" placeholder="Telefone" oninput="this.className = ''">
-                    @error('telefone2')
-                        <div class="alert alert-danger">{{$message}}</div>
-                    @enderror
+                <div id="clone2" class="col-lg-3 gap-1 justify-content-center align-items-center">
+                    <div class=" col aa" style="display: flex; flex-direction: column;">
+                        <input id="telefoneinput3" type="text" name="telefone2"  value="{{ old('telefone2') }}" placeholder="Telefone" oninput="this.className = ''">
+                        <div class="mensagem-erro" style="color: red;"></div>
+                        @error('telefone2')
+                            <div class="alert alert-danger">{{$message}}</div>
+                        @enderror
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -331,17 +344,18 @@
 
             <div class="row">
                 <div class="col">
-                    <p><input type="date" value="{{ old('data_nascimento_enc2') }}"  name="data_nascimento_enc2" oninput="this.className = ''"></p>
+                    <input type="date" id="datainput10" value="{{ old('data_nascimento_enc2') }}"  name="data_nascimento_enc2" oninput="this.className = ''">
                     @error('data_nascimento_enc2')
                         <div class="alert alert-danger">{{$message}}</div>
                     @enderror
                 </div>
 
                 <div class="col">
-                    <input type="text" class="form-control" readonly="true" value="00" disabled>
+                    <input type="text" id="idadeinput10" class="form-control" readonly="true" value="00" disabled>
+                    <div id="mensagem10" style="color: red;"></div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row"  style="margin-top: 15px;">
 
                 <div class="col">
                     <div class="form-group">
@@ -352,7 +366,8 @@
 
                 <div class="col-8">
                     <div class="form-group">
-                        <input type="text" placeholder="Número do bilhete de identidade"  name="num_bi_enc2" value="{{ old('num_bi_enc2') }}" oninput="this.className = ''">
+                        <input type="text" id="bi_input2"  placeholder="Número do bilhete de identidade"  name="num_bi_enc2" value="{{ old('num_bi_enc2') }}" oninput="this.className = ''">
+                        <div id="mensagem3" style="color: red;" maxlength="14"></div>
                         @error('num_bi_enc2')
                         <div class="alert alert-danger">{{$message}}</div>
                     @enderror
@@ -365,18 +380,22 @@
                 <div class="col-3 form-group gap-1 ">
                     <select name="grau3" value="{{ old('grau3') }}" id="opcoes" oninput="this.className = ''" class="form-select">
                         <option disabled>Familiares:</option>
-                        <option value="Pai">Pai</option>
-                        <option value="Mãe">Mãe</option>
                         <option value="Outro"selected>Outro</option>
                     </select>
                 </div>
 
-                <div id="clone" class="col-lg-3 d-flex gap-1 justify-content-center align-items-center">
-                    <span style="color: #777;">+244</span>
-                    <input type="text" name="telefone3" value="{{ old('telefone3') }}" placeholder="Telefone" oninput="this.className = ''">
-                    @error('telefone3')
-                        <div class="alert alert-danger">{{$message}}</div>
-                    @enderror
+                <div id="clone" class="col-lg-3 gap-1 justify-content-center align-items-center">
+                    <div class=" col aa" style="display: flex; flex-direction: column;">
+                        <input type="text" name="telefone3" id="telefoneinput" value="{{ old('telefone3') }}" placeholder="Telefone" oninput="this.className = ''">
+                        <div class=" mensagem-erro  " style="width: 100%;"></div>
+                        @error('telefone3')
+                            <div class="alert alert-danger">{{$message}}
+                                <button class="botaofecharerro">
+                                    <i class="bi bi-x"></i>
+                                </button>
+                            </div>
+                        @enderror
+                    </div>
                 </div>
             </div>
 
@@ -393,27 +412,29 @@
 
             <div class="row">
                 <div class="col">
-                    <p><input type="date" value="{{ old('data_nascimento_enc3') }}" name="data_nascimento_enc3" oninput="this.className = ''"></p>
+                    <input type="date" id="datainput20" value="{{ old('data_nascimento_enc3') }}" name="data_nascimento_enc3" oninput="this.className = ''">
                     @error('data_nascimento_enc3')
                         <div class="alert alert-danger">{{$message}}</div>
                     @enderror
                 </div>
 
                 <div class="col">
-                    <input type="text" class="form-control" readonly="true" value="00" disabled>
+                    <input type="text" id="idadeinput20" class="form-control" readonly="true" value="00" disabled>
+                    <div id="mensagem080" style="color: red;"></div>
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row" style="margin-top: 15px;">
                 <div class="col">
                     <div class="form-group">
                       <input type="radio" id="masculino" name="genero3" value="Masculino" checked><label for="masculino"> Masculino</label>
                       <input type="radio" id="feminino" name="genero3" value="Femenino"><label for="feminino"> Feminino</label>
                     </div>
                 </div>
-                <div class="col-8">
+                <div class="col-8" >
                     <div class="form-group">
-                        <input type="text" placeholder="Número do bilhete de identidade"  name="num_bi_enc3" value="{{ old('num_bi_enc3') }}" oninput="this.className = ''">
+                        <input type="text" style="margin-top: 5px;" id="bi_input4" placeholder="Número do bilhete de identidade"  name="num_bi_enc3" value="{{ old('num_bi_enc3') }}" oninput="this.className = ''" maxlength="14">
+                        <div id="mensagem5" style="color: red;"></div>
                         @error('num_bi_enc3')
                         <div class="alert alert-danger">{{$message}}</div>
                     @enderror
