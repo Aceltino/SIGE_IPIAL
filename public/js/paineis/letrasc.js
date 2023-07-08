@@ -15,6 +15,19 @@ $(document).ready(function() {
       }
     });
 
+    $('#letra2').on('keydown', function(event) {
+      var regex = /^[A-Z a-z Á-á Ã-ã À-à Ç ç]+$/;
+      var en = event.key;
+
+   //   return en.replace(/);
+
+    if (regex.test(en)) {
+      return true;
+    }else{
+      return false;
+    }
+  });
+
     inputlt.addEventListener("paste", function(){
 
       const regex = new RegExp("^[A-Z a-z\b]+$");
