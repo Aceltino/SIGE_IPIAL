@@ -129,7 +129,7 @@
         
         <tr class="linha-tab-p">
             @foreach ($disciplinas as $nomeDisciplina)
-                <th class="coluna-tab-p" colspan="6"><span class="maisculo-p">{{$nomeDisciplina}}</span></th>
+                <th class="coluna-tab-p" colspan="6"><span class="maisculo-p">{{$nomeDisciplina->sigla}}</span></th>
             @endforeach
         </tr>
 
@@ -163,119 +163,125 @@
 
 
         @foreach ($alunos as $aluno)
-        <tr class="linha-tab-p">
-        <td class="coluna-tab-p">
-            <span class="num-aluno-p">{{$loop->index+1}}</span>
-        </td>
-        <td class="coluna-tab-p">
-            <span class="nome-aluno-p">{{$aluno->candidato->pessoa->nome_completo}}</span>
-        </td>
-        <td class="coluna-tab-p">
-            <span class="num-proc-p">{{$aluno->aluno_id}}</span>
-        </td>          
-        <td class="nota coluna-tab-p"><span class="nota-pos">12</span></td>
-        <td class="nota coluna-tab-p"><span class="nota-neg">8</span></td>
-        <td class="nota coluna-tab-p"><span class="nota-neg">6</span></td>
-        <td class="nota c-tab-amarelo coluna-tab-p"><span class="nota-pos">18</span></td>
-        <td class="nota coluna-tab-p"><span class="nota-pos"></span></td>
 
-        <td class="nota c-tab-sinza-esq coluna-tab-p">
-            <span>
+            <tr class="linha-tab-p">
+            <td class="coluna-tab-p">
+                <span class="num-aluno-p">{{$loop->index+1}}</span>
+            </td>
+            <td class="coluna-tab-p">
+                <span class="nome-aluno-p">{{$aluno->candidato->pessoa->nome_completo}}</span>
+            </td>
+            <td class="coluna-tab-p">
+                <span class="num-proc-p">{{$aluno->aluno_id}}</span>
+            </td>     
             
-            </span>
-        </td>
+            @foreach ($notas as $item)
 
-        <td class="nota coluna-tab-p"><span class="nota-neg">9</span></td>
-        <td class="nota coluna-tab-p"><span class="nota-neg">4</span></td>
-        <td class="nota coluna-tab-p"><span class="nota-pos">14</span></td>
-        <td class="nota c-tab-amarelo coluna-tab-p"><span class="nota-pos">15</span></td>
-        <td class="nota coluna-tab-p"><span class="nota-pos"></span></td>
+                <td class="nota coluna-tab-p"><span class="nota-pos">{{$item[0]->nota_aluno}}</span></td>
+                <td class="nota coluna-tab-p"><span class="nota-neg">{{$item[01]->nota_aluno}}</span></td>
+                <td class="nota coluna-tab-p"><span class="nota-neg">{{$item[0]->nota_aluno}}</span></td>
+                <td class="nota c-tab-amarelo coluna-tab-p"><span class="nota-pos">{{$item[0]->nota_aluno}}</span></td>
+                <td class="nota coluna-tab-p"><span class="nota-pos"></span></td>
 
-        <td class="nota c-tab-sinza-esq coluna-tab-p">
-            <span>
+                <td class="nota c-tab-sinza-esq coluna-tab-p">
+                    <span>
+                    
+                    </span>
+                </td>
+                
+            @endforeach
+
+            <td class="nota coluna-tab-p"><span class="nota-neg">9</span></td>
+            <td class="nota coluna-tab-p"><span class="nota-neg">4</span></td>
+            <td class="nota coluna-tab-p"><span class="nota-pos">14</span></td>
+            <td class="nota c-tab-amarelo coluna-tab-p"><span class="nota-pos">15</span></td>
+            <td class="nota coluna-tab-p"><span class="nota-pos"></span></td>
+
+            <td class="nota c-tab-sinza-esq coluna-tab-p">
+                <span>
+                
+                </span>
+            </td>
+
+            <td class="nota coluna-tab-p"><span class="nota-pos">12</span></td>
+            <td class="nota coluna-tab-p"><span class="nota-neg">8</span></td>
+            <td class="nota coluna-tab-p"><span class="nota-neg">6</span></td>
+            <td class="nota c-tab-amarelo coluna-tab-p"><span class="nota-pos">18</span></td>
+            <td class="nota coluna-tab-p"><span class="nota-pos">19</span></td>
             
-            </span>
-        </td>
+            <td class="nota c-tab-sinza-esq coluna-tab-p">
+                <span>
+                
+                </span>
+            </td>
 
-        <td class="nota coluna-tab-p"><span class="nota-pos">12</span></td>
-        <td class="nota coluna-tab-p"><span class="nota-neg">8</span></td>
-        <td class="nota coluna-tab-p"><span class="nota-neg">6</span></td>
-        <td class="nota c-tab-amarelo coluna-tab-p"><span class="nota-pos">18</span></td>
-        <td class="nota coluna-tab-p"><span class="nota-pos">19</span></td>
-        
-        <td class="nota c-tab-sinza-esq coluna-tab-p">
-            <span>
+            <td class="nota coluna-tab-p"><span class="nota-neg maisculo-p">RPF</span></td>
+            <td class="nota coluna-tab-p"><span class="nota-neg maisculo-p">NÃO TRANSITA</span></td>
+            <td class="nota coluna-tab-p">1</td>
+            </tr>
+            @endforeach
+            <!--Rodape da pauta-->
+            <tr>
+            <th colspan="3" style="padding-top: 10px;">
+                O COORDENADOR DA AREA DE FORMAÇÃO
+
+            </th>
             
-            </span>
-        </td>
+            <th colspan="21" style="text-align: right; padding-right: 5px; padding-top: 10px;">
+                O SUBDIRETOR PEDAGOGICO
 
-        <td class="nota coluna-tab-p"><span class="nota-neg maisculo-p">RPF</span></td>
-        <td class="nota coluna-tab-p"><span class="nota-neg maisculo-p">NÃO TRANSITA</span></td>
-        <td class="nota coluna-tab-p">1</td>
-        </tr>
-        @endforeach
-        <!--Rodape da pauta-->
-        <tr>
-        <th colspan="3" style="padding-top: 10px;">
-            O COORDENADOR DA AREA DE FORMAÇÃO
+            </th>            
+            </tr>
 
-        </th>
-        
-        <th colspan="21" style="text-align: right; padding-right: 5px; padding-top: 10px;">
-            O SUBDIRETOR PEDAGOGICO
+            <tr>
+            <th colspan="24"></th>
 
-        </th>            
-        </tr>
+            </tr>
 
-        <tr>
-        <th colspan="24"></th>
+            <tr>
+            <th colspan="24"></th>
 
-        </tr>
+            </tr>
 
-        <tr>
-        <th colspan="24"></th>
+            <tr>
+            <th colspan="24"></th>
+            </tr>
 
-        </tr>
+            <tr>
+            <th colspan="3">Sivi Lando</th>
+            
+            <th colspan="21" style="text-align: right; padding-right: 15px; padding-top: 10px;">              
+                DOMINGOS AGOSTINHO
+            </th> 
+            </tr>
+            <tr>
+            <th colspan="24"></th>
 
-        <tr>
-        <th colspan="24"></th>
-        </tr>
+            </tr>
 
-        <tr>
-        <th colspan="3">Sivi Lando</th>
-        
-        <th colspan="21" style="text-align: right; padding-right: 15px; padding-top: 10px;">              
-            DOMINGOS AGOSTINHO
-        </th> 
-        </tr>
-        <tr>
-        <th colspan="24"></th>
+            <tr>
+            <th colspan="24"></th>
 
-        </tr>
+            </tr>
 
-        <tr>
-        <th colspan="24"></th>
-
-        </tr>
-
-        <tr>
-        <th colspan="24"></th>
-        </tr>
+            <tr>
+            <th colspan="24"></th>
+            </tr>
 
 
-        <tr>
-        <th colspan="3" style="border-bottom: 2px solid #000;">              
-            <strong>O(A) DIRETOR(A) DE TURMA </strong>
-        </th>
-        <th colspan="21"></th>
-        </tr>
+            <tr>
+            <th colspan="3" style="border-bottom: 2px solid #000;">              
+                <strong>O(A) DIRETOR(A) DE TURMA </strong>
+            </th>
+            <th colspan="21"></th>
+            </tr>
 
 
 
-        <!--Fim Rodape da pauta-->
-    </tbody>
-    </table>
-    <!--Fim da pauta-->
-    <br><br>
-</main>
+            <!--Fim Rodape da pauta-->
+        </tbody>
+        </table>
+        <!--Fim da pauta-->
+        <br><br>
+    </main>
 @endsection
