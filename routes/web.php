@@ -392,6 +392,11 @@ Route::get('edit_exame',  function () {
     return view('avaliac-aluno/edit-exame');
 });
 
+/*ERRO Avaliação de Aluno*/
+Route::get('erroavaliar',  function () {
+    return view('avaliac-aluno/erroaval');
+});
+
 /*Recurso de Aluno*/
 Route::get('recurso_aluno',  function () {
     return view('avaliac-aluno/recurso');
