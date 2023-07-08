@@ -621,6 +621,7 @@
             foreach ($turmas as $turmaA) 
             {
                 $dadosTurma[] = [
+                    'IdTurma' => $turmaA->turma->turma_id,
                     'nomeTurma' => $turmaA->turma->nome_turma,
                     'classeTurma' => $turmaA->turma->classe->classe,
                     'turnoTurma' => $turmaA->turma->turno->nome_turno,

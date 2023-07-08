@@ -59,5 +59,9 @@ class comunicadosController extends Controller
         Comunicado::where('comunicado_id', $comunicado_id)->delete();
         return redirect()->route('comunicado.index')->with('delete','Comunicado eliminada com sucesso ');
     }
+    public function getComunicado()
+    {
+        Comunicado::all();
+    }
 
 }
