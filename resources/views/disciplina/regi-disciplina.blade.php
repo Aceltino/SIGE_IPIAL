@@ -33,19 +33,29 @@
                             @enderror
                     </div>
                     <div class="col">
-                        <input type="text" style=" text-align: center;" placeholder="Sigla" name="sigla"
-                            oninput="this.className = ''" id="sigla_disciplina" maxlength="4"  required>
-                            <span id="mensagem_erro_sigla"  style="color: red"></span>
-                    </div>
+                <input type="text" style=" text-align: center;" value="{{ old('sigla') }}" placeholder="Sigla" name="sigla"  oninput="this.className = ''">
+                         @error('sigla')
+                                <div class="alert alert-danger">{{$message}}
+                                <button class="botaofecharerro">
+                                <i class="bi bi-x"></i>
+                                </button></div>
+                            @enderror
+            </div>
                 </div> <br>
                 <div class="row" style="margin-top: 15px;">
                     <div class="form-group col">
-                      <select oninput="this.className = ''" class="form-select" name="componente" id="selectComponente">
+                      <select oninput="this.className = ''" class="form-select" name="componente" id="selectComponente" value="{{ old('componente') }}">
                         <option selected disabled> Componetes</option>
                         <option  value="Técnicas">Técnicas</option>
                         <option value="Socio-culturais">Socio-culturais</option>
                         <option value="Cientificas"> Cientificas</option>
                       </select>
+                      @error('componente')
+                                <div class="alert alert-danger">{{$message}}
+                                <button class="botaofecharerro">
+                                <i class="bi bi-x"></i>
+                                </button></div>
+                            @enderror
                     </div>
                     <div class="form-group col">
                       <select oninput="this.className = ''" class="form-select" name="classe" id="selectClasse">
@@ -54,13 +64,25 @@
                         <option value="{{$classe['classe_id']}}">{{$classe['classe']}}</option>     
                         @endforeach
                       </select>
+                      @error('classe')
+                                <div class="alert alert-danger">{{$message}}
+                                <button class="botaofecharerro">
+                                <i class="bi bi-x"></i>
+                                </button></div>
+                            @enderror
                     </div>
                     <div class="form-group col">
-                        <select oninput="this.className = ''" class="form-select" name="tipo_disciplina" id="selectTipoDisciplina">
+                        <select oninput="this.className = ''" class="form-select" name="Tipo_disciplina" id="selectTipoDisciplina">
                           <option selected disabled>Tipo de Disciplina</option>
                           <option value="Terminal">Terminal</option> 
                           <option value="Contínua">Contínua</option>    
                         </select>
+                        @error('Tipo_disciplina')
+                                   <div class="alert alert-danger">{{$message}}
+                                   <button class="botaofecharerro">
+                                   <i class="bi bi-x"></i>
+                                   </button></div>
+                               @enderror
                       </div>
                 </div>
               <div class="row">
@@ -81,14 +103,16 @@
                                    </button></div>
                                @enderror
                        </div> 
-
                        <div class="col">
-                          <input type="text" style=" text-align: center;" name="tempo_prova" value="" placeholder="Carga Horária" oninput="this.className = ''">
-    
-                       </div> 
-
+                          <input type="text" style=" text-align: center;" name="carga_horaria" value="{{ old('carga_horaria') }}" placeholder="Carga Horária" oninput="this.className = ''">
+                          @error('carga_horaria')
+                                   <div class="alert alert-danger">{{$message}}
+                                   <button class="botaofecharerro">
+                                   <i class="bi bi-x"></i>
+                                   </button></div>
+                               @enderror
+                        </div> 
                     </div>
-                    
              </div> 
              <div style="text-align:center;margin-top:10px;">
                 <div>
