@@ -6,6 +6,7 @@ axios.get('/api/candidatos')
             const tbody = tabelaRegistros.getElementsByTagName('tbody')[0];
             
             registros.forEach(function(registro) {
+              const curso =registro.Curso;
 
                 const row = tbody.insertRow();
                 let corBotao = '';
@@ -25,11 +26,19 @@ axios.get('/api/candidatos')
                         Botao = `<a href="/matricula/matricular-aluno/${registro.Id_inscricao}" name="" id="" class="btn btn-success"  role="button">Matricular</a>`;
                         break;
                     case 'Não admitido':
-                        Botao = ``;
+                        Botao = "Reprovado";
                         break;
                     default:
-                        Botao = ``;
+                        Botao = "Pendente";
                 }
+                if($.isEmptyObject(curso)){
+                  nomecurso = "Aguarde"
+
+                }else{
+                  nomecurso = curso
+
+                }
+
 
                 const botaoVisualizar = `class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal${registro.Id_inscricao}"`;
                 
@@ -38,7 +47,7 @@ axios.get('/api/candidatos')
                     <td>${registro.Nome}</td>
                     <td>${registro.Media}</td>
                     <td>${registro.Idade}</td>
-                    <td>${registro.Curso}</td>
+                    <td>${nomecurso}</td>
                     <td ${corBotao}> ${registro.Situacao} </td>
                     <td class="no-print">${Botao}</td>
                     <td class="no-print">
@@ -278,6 +287,9 @@ axios.get('/api/candidatos')
                     select: true
                     
                 });
+
+                 
+                 
                 $('#Imprimir').click(function() {
                   // Desabilitar o DataTables
                   $T.destroy();
@@ -329,8 +341,10 @@ axios.get('/api/candidatos')
                             }
                     },
                     select: true
+                    
                   });
                 });
+
                  
                
         
@@ -348,16 +362,30 @@ axios.get('/api/candidatos')
                   });
                   $("#filtro3").on("change", function() {
                     var filtro3 = $(this).val(); 
-                    $T.column(2).search(filtro3).draw(); // Filtra a tabela pela  terceira coluna com o valor selecionado
-                  });
+                    if (filtro3 === 'Todos') {
+                      $T.column(2).search('').draw(); // Remover a filtragem da quinta coluna
+                    } else {
+                      $T.column(2).search(filtro3).draw(); // Filtrar a tabela pela quinta coluna com o valor selecionado
+                    }
+                });
                   $("#filtro4").on("change", function() {
                     var filtro4 = $(this).val(); 
-                    $T.column(3).search(filtro4).draw(); // Filtra a tabela pela quarta coluna com o valor selecionado
-                  });
+                    if (filtro4 === 'Todos') {
+                      $T.column(3).search('').draw(); // Remover a filtragem da quinta coluna
+                    } else {
+                      $T.column(3).search(filtro4).draw(); // Filtrar a tabela pela quinta coluna com o valor selecionado
+                    }
+                });
                   $("#filtro5").on("change", function() {
-                    var filtro5 = $(this).val(); 
-                    $T.column(4).search(filtro5).draw(); // Filtra a tabela pela quinta coluna com o valor selecionado
+                    var filtro5 = $(this).val();
+
+                    if (filtro5 === 'Todos') {
+                        $T.column(4).search('').draw(); // Remover a filtragem da quinta coluna
+                      } else {
+                        $T.column(4).search(filtro5).draw(); // Filtrar a tabela pela quinta coluna com o valor selecionado
+                      }
                   });
+                  
                   $("#filtro7").on("change", function() {
                     var filtro7 = $(this).val(); 
                     $T.column(6).search(filtro7).draw(); // Filtra a tabela pela sétima coluna com o valor selecionado
@@ -393,7 +421,8 @@ axios.get('/api/candidatos')
                   $("#filtro15").on("change", function() {
                     var filtro15 = $(this).val(); 
                     $T.column(14).search(filtro15).draw(); // Filtra a tabela pela Décima-quinta coluna com o valor selecionado
-                  });     
+                  }); 
+                      
                    $("#filtro16").on("change", function() {
                     var filtro16 = $(this).val(); 
                     $T.column(15).search(filtro16).draw(); // Filtra a tabela pela Décima-Sexta coluna com o valor selecionado
@@ -402,6 +431,9 @@ axios.get('/api/candidatos')
                     var filtro17 = $(this).val(); 
                     $T.column(16).search(filtro17).draw(); // Filtra a tabela pela Décima-Sétima coluna com o valor selecionado
                   });
+
+                  // Manipulador de eventos para o select de filtragem
+                
                 
             $(".paginate_button").addClass("paginate_button");
             $(".paginate").addClass("float-end");
