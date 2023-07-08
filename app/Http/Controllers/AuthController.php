@@ -293,9 +293,9 @@ class AuthController extends Controller
             $msg = "Lamentamos! Dados não Cadastrado, tente este processo mais tarde...";
             return redirect()->back()->with("erroCadastroUser",$msg);
 
-        }elseif(!$this->limitCadastroUser()){
-           goto conti;
-        } 
+        }// }elseif(!$this->limitCadastroUser()){
+        //    goto conti;
+        // } 
         
         //Metodo que envia as credencias de acesso ao email do usuario
         if($this->envioCredenciasEmail($user,$hexAleatorio)){
@@ -498,7 +498,6 @@ class AuthController extends Controller
 
     public static function limitCadastroUser(): bool
     {
-
         $userDirector= User::where('cargo_usuario', 'Director')
                             ->where('status_usuario', 1)
                             ->update(['status_usuario' => 0]);

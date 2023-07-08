@@ -17,7 +17,7 @@ class Classe extends Model
         'updated_at',
         'created_at',
     ];
-
+ 
     /*
      *  Disciplina - nota
      *  Nota - aluno
@@ -35,6 +35,4 @@ class Classe extends Model
     {
         return $this->belongsToMany(Disciplina::class, 'classe_disciplina' , 'disciplina_id' , 'classe_id');
     }
-        
-    
 }
