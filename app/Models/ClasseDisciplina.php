@@ -19,7 +19,7 @@ class ClasseDisciplina extends Model
      'created_at',
     ];
     public function cDisciplina()
-    {
+    { 
         return $this->morphTo();
     }
 

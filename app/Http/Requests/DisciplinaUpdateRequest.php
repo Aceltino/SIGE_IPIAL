@@ -35,6 +35,18 @@ class DisciplinaUpdateRequest extends FormRequest
                 'required',
                 'string',
             ],
+            'classe'=>[
+                'required',
+                'string',
+            ],
+            'Tipo_disciplina'=>[
+                'required',
+                'string',
+            ],
+            'carga_horaria'=>[
+                'required',
+                'numeric',
+            ],
             'tempo_prova'=>[
                 'required',
             ],
@@ -55,7 +67,12 @@ class DisciplinaUpdateRequest extends FormRequest
          'nome_disciplina.required'=>'O nome da disciplina deve ser preenchido',
          'componente.required'=>'O componente deve ser preenchido',
          'tempo_prova.required'=>'O Tempo de Prova deve ser preenchido',
+         'carga_horaria.required'=>'A carga horaria deve ser preenchido',
+        'Tipo_disciplina.required'=>'O Tipo_disciplina deve ser preenchido',
          'sigla.required'=>'A sigla deve ser preenchido',
+         'classe.required'=>'A classe deve ser preenchido',
+         //
+         'carga_horaria.numeric'=>'A carga horaria deve ter preenchimento obrigatorio de apenas numeros e não letras, fique mais atento.',
          //Validações de strings
          'nome_disciplina.string'=>'Há campos com preenchimento obrigatorio de apenas letras e não número, fique mais atento.',
          'componente.string'=>'Há campos com preenchimento obrigatorio de apenas letras e não número, fique mais atento.',

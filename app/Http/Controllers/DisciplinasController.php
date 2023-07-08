@@ -30,7 +30,6 @@ class DisciplinasController extends Controller
     public function store(DisciplinaStoreRequest $request)
     { 
        
-        //$disciplinas = new Disciplina();
          $disciplinas = Disciplina::create($request->all());
         $ClasseDisiciplina = ClasseDisciplina::create([
             'carga_horaria' => $request->carga_horaria,
@@ -42,7 +41,6 @@ class DisciplinasController extends Controller
     }
     public function edit($disciplina_id)
     {
-        $classes = Classe::all();
         $cursos = Curso::all();
         $classes = Classe::all();
         $disciplinas = Disciplina::where('disciplina_id',$disciplina_id)->first();
@@ -56,6 +54,7 @@ class DisciplinasController extends Controller
     }
     public function update(DisciplinaUpdateRequest $request, $disciplina_id)
     {
+        
         $dado = [
             'nome_disciplina' =>$request->nome_disciplina,
             'componente' =>$request->componente,
@@ -63,7 +62,12 @@ class DisciplinasController extends Controller
             'sigla' => $request->sigla,
             'curso_id' => $request->curso,
         ];
+        $Classe =[
+            'carga_horaria' => $request->carga_horaria,
+            'classe_id' => $request->classe,
+        ];
         Disciplina::where('disciplina_id', $disciplina_id)->update($dado);
+        ClasseDisciplina::where('disciplina_id', $disciplina_id)->update($Classe);
         return redirect()->route('consultar.disciplina')->with('edit','Disciplina editada com sucesso');
     }
     public function destroy($disciplina_id)

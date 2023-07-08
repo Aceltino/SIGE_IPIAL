@@ -28,18 +28,22 @@ trait PessoaTrait
         return $pessoaCriada->pessoa_id;
     }
 
+    private static function getPessoa($id):mixed
+    {   
+        $pessoa= Pessoa::find($id);
+        return $pessoa;
+    }
    
     public static function updatePessoa_ACTUALIZADO($dadosPessoa,$dadosEndereco=null)
     {      
 
-        $pessoas= Pessoa::all();
-        $pessoa=  Pessoa::find(session('pessoa_id'));
+        $pessoa= self::getPessoa(session('pessoa_id'));
         $contador= 0;
         $id=$pessoa->endereco_id;
 
         $pessoa->nome_completo= $dadosPessoa['nome_completo'];
         $pessoa->num_bi= $dadosPessoa['num_bi'];
-        $pessoa->data_nascimento= $dadosPessoa['data_nascimento'];
+        $pessoa->data_nascimento= $dadosPessoa['data_nascimento'];  
         $pessoa->genero= $dadosPessoa['genero'];
         $pessoa->telefone= $dadosPessoa['telefone'];
 
@@ -53,6 +57,7 @@ trait PessoaTrait
 
             //Neste caso atrela o endereço existente ao usuario, para evitar redundancia
             $consultEndereco= EnderecoController::consultEndereco($dadosEndereco);
+            
             if(!empty($consultEndereco)){
                 $pessoa->endereco_id= $consultEndereco->endereco_id;
                 if(!$pessoa->save()){
@@ -60,33 +65,36 @@ trait PessoaTrait
                 }
                 return true;
             }
-      
-            foreach($pessoas as $pessoa){
+            //Contador de pessoa que usam o mesmo endereço
+            foreach(Pessoa::all() as $pessoa){
                 if($pessoa->endereco_id === session('endereco_id')){
                     $contador++;
                 }
             }
-
+         
             if($contador > 1){
 
-                //Neste caso cria-se novo endereço
-                if(EnderecoController::store($dadosEndereco)){
-                    goto update;  
+                //Neste caso cria-se um novo endereço
+                $novoEndereco= EnderecoController::store($dadosEndereco);
+                $pessoa->endereco_id=$novoEndereco->endereco_id;
+
+                if($pessoa->save()){
+                    sleep(5);
+                    goto update;
                 }
-                return false;  
+                return false;
+                  
             }else{
+
                 update:
                 //Neste caso actualiza-se o endereço existente
                 if(!EnderecoController::update($id, $dadosEndereco)){
                     return false;
                 }
                 return true;
-
             }
         }
-
         return $statePessoa;
-
     }
 
     public static function updatePessoa($dadosPessoa)
