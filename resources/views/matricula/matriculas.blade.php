@@ -51,6 +51,7 @@
       <div class="col-lg-2 no-print">
         <select class="btn-sel form-select no-print" id="filtro3">
           <option class="no-print" selected disabled>Turma</option>
+          <option class="no-print">Todos</option>
           @foreach($turmas as $turma)
           <option class="no-print" value="{{$turma['nome_turma']}}">{{$turma['nome_turma']}}</option>
           @endforeach

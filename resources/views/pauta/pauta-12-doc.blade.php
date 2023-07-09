@@ -242,12 +242,14 @@
           <tr>
             <th colspan="3">
               O COORDENADOR DA AREA DE FORMAÇÃO
-
+              <div style="border-bottom: 1px solid #000; margin-top: 15px;"></div>
             </th>
 
-            <th colspan="33" style="text-align: right; padding-right: 5px; padding-top: 10px;">
-              O SUBDIRETOR PEDAGOGICO
+            <th colspan="29"></th>
 
+            <th colspan="3" style="padding-top: 15px;">
+              O SUBDIRETOR PEDAGOGICO
+              <div style="border-bottom: 1px solid #000; margin-top: 15px;"></div>
             </th>            
           </tr>
 
@@ -268,7 +270,9 @@
           <tr>
             <th colspan="3">Sivi Lando</th>
 
-            <th colspan="33" style="text-align: right; padding-right: 15px; padding-top: 10px;">             
+            <th colspan="29"></th>
+
+            <th colspan="3" style="padding-top: 15px;">             
               DOMINGOS AGOSTINHO
             </th> 
           </tr>
@@ -289,8 +293,9 @@
 
 
           <tr>
-            <th colspan="3" style="border-bottom: 2px solid #000;">              
+            <th colspan="3">              
               <strong>O(A) DIRETOR(A) DE TURMA </strong>
+              <div style="border-bottom: 1px solid #000; margin-top: 15px;"></div>
             </th>
             <th colspan="33"></th>    
           </tr>

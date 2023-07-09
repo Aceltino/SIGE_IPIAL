@@ -7,7 +7,7 @@ use App\Models\Endereco;
 
 class EnderecoController extends Controller
 {
-    public static function store($dadosEndereco):int
+    public static function store($dadosEndereco):mixed
     {
         $enderecoCriado= Endereco::create($dadosEndereco);
         return $enderecoCriado->endereco_id;
@@ -15,7 +15,6 @@ class EnderecoController extends Controller
 
     public static function update($id, $dadosEndereco)
     {
-
         $endereco= Endereco::find($id);
 
         $endereco->municipio=$dadosEndereco['municipio'];
@@ -29,14 +28,13 @@ class EnderecoController extends Controller
         return true;
     }
     
-    public static function consultEndereco($dadosEndereco){
-
+    public static function consultEndereco($dadosEndereco):mixed
+    {
         return Endereco::where('municipio', $dadosEndereco['municipio'])
                             ->where('bairro', $dadosEndereco['bairro'])
                             ->where('zona',$dadosEndereco['zona'])
                             ->where('numero_casa',$dadosEndereco['numero_casa'])->first();
 
     }
-
 
 }
