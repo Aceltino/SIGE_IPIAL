@@ -70,6 +70,8 @@
         <th scope="col">Compoente</th>
         <th scope="col">Tempo de Prova</th>
         <th scope="col">Curso</th>
+        <th scope="col">Classe</th>
+        <th scope="col">Carga Horária</th>
         <th scope="col"></th>
 
       </tr>
@@ -86,7 +88,9 @@
         @else
         <td>{{ $disciplina->curso->nome_curso }}</td>
         @endif
-          
+         @foreach($disciplina->classes as $classe)
+          <td>{{ $classe->classe }}</td>
+          <td>{{ $classe->pivot->carga_horaria }}</td> 
         <td> 
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal{{$disciplina->disciplina_id  }}"></i>
           <a href="{{ route('disciplina.edit', ['disciplina_id' => $disciplina->disciplina_id ])}}"><i class="bi bi-pencil"></i></a>
@@ -128,10 +132,10 @@
                 <label>Componete: </label><input type="text" name="socio-culturais" value="{{ $disciplina->componente }}" disabled>
             </div>
             <div class="area-input form-group" style="border: none; ">
-            <label>Classe: </label><input type="text" name="socio-culturais" value="" disabled>
+            <label>Classe: </label><input type="text" name="socio-culturais" value="{{ $classe->classe }}" disabled>
             </div>
           <div class="area-input form-group" style="border: none; ">
-            <label>Carga Horária: </label><input type="text" name="socio-culturais" value="" disabled>
+            <label>Carga Horária: </label><input type="text" name="socio-culturais" value="{{ $classe->pivot->carga_horaria }}Tempo(s)" disabled>
         </div>
             <div class="area-input form-group" style="border: none; ">
             @if($disciplina->curso_id == '')
@@ -152,6 +156,7 @@
           </div>
         </div>
       </div>
+       @endforeach
       @endforeach
             </tr>
     </tbody>
