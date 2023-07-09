@@ -116,7 +116,7 @@
              </div> 
              <div style="text-align:center;margin-top:10px;">
                 <div>
-                    <button type="submit" class="btn btn-success">Cadastrar</button>
+                    <button type="submit" id="botao" class="btn btn-success">Cadastrar</button>
 
                 </div>
         </form>
