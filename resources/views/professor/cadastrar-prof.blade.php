@@ -112,7 +112,7 @@
 
           <section class="row align-items-center ms-5 mb-4" id="div-disciplina-1">
             <div class="form-group col-7 mb-0">
-              <select name='disciplina' oninput="this.className = ''" class="form-select">
+              <select name='disciplina' oninput="this.className = ''" class="form-select" id="displina-a-leccionar-1" onchange="verificarSelecoes()">
                 <optgroup label="Disciplinas">
                   @foreach($disciplinas as $disciplina)
                     <option value="{{ $disciplina->disciplina_id }}">{{ $disciplina->nome_disciplina }}</option>
@@ -143,7 +143,7 @@
 
           <section class="row align-items-center ms-5 mb-4 d-none" id="div-disciplina-2">
             <div class="form-group col-7 mb-0">
-              <select name='disciplina' oninput="this.className = ''" class="form-select">
+              <select name='disciplina' oninput="this.className = ''" class="form-select" id="displina-a-leccionar-2" onchange="verificarSelecoes()">
                 <optgroup label="Disciplinas">
                   @foreach($disciplinas as $disciplina)
                     <option value="{{ $disciplina->disciplina_id }}">{{ $disciplina->nome_disciplina }}</option>
@@ -174,7 +174,7 @@
 
           <section class="row align-items-center ms-5 mb-4 d-none" id="div-disciplina-3">
             <div class="form-group col-7 mb-0">
-              <select name='disciplina' oninput="this.className = ''" class="form-select">
+              <select name='disciplina' oninput="this.className = ''" class="form-select" id="displina-a-leccionar-3" onchange="verificarSelecoes()">
                 <optgroup label="Disciplinas">
                   @foreach($disciplinas as $disciplina)
                     <option value="{{ $disciplina->disciplina_id }}">{{ $disciplina->nome_disciplina }}</option>
@@ -205,7 +205,7 @@
 
           <section class="row align-items-center ms-5 mb-4 d-none" id="div-disciplina-4">
             <div class="form-group col-7 mb-0">
-              <select name='disciplina' oninput="this.className = ''" class="form-select">
+              <select name='disciplina' oninput="this.className = ''" class="form-select" id="displina-a-leccionar-4" onchange="verificarSelecoes()">
                 <optgroup label="Disciplinas">
                   @foreach($disciplinas as $disciplina)
                     <option value="{{ $disciplina->disciplina_id }}">{{ $disciplina->nome_disciplina }}</option>
