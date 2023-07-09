@@ -11,68 +11,92 @@
     const divDoSelectDoCurso = document.querySelector("#div-do-select-do-curso");
     const divDoSelectDaAreaDeFormacao = document.querySelector("#div-do-select-da-area-de-formacao");
 
+    validarAQuantidadeDeDisciplinas();
+
+    //Funções variadas
+        function validarAQuantidadeDeDisciplinas(){
+            if(parseInt(quantidadeDeDisciplinas.value) < 1 || parseInt(quantidadeDeDisciplinas.value) > 4){
+                quantidadeDeDisciplinas.value = "1";
+            }
+
+            if(parseInt(quantidadeDeDisciplinas.value) === 1){
+                // Habilitar todas as opções nos selects
+                habilitarOpcoes(disciplinaALeccionar1);
+
+                if(!divDoSelectSegundaDisciplina.classList.contains("d-none")){
+                    divDoSelectSegundaDisciplina.classList.add("d-none");
+                }
+
+                if(!divDoSelectTerceiraDisciplina.classList.contains("d-none")){
+                    divDoSelectTerceiraDisciplina.classList.add("d-none");
+                }
+
+                if(!divDoSelectQuartaDisciplina.classList.contains("d-none")){
+                    divDoSelectQuartaDisciplina.classList.add("d-none");
+                }
+            }
+
+            if(parseInt(quantidadeDeDisciplinas.value) === 2){
+                // Habilitar todas as opções nos selects
+                habilitarOpcoes(disciplinaALeccionar1);
+                habilitarOpcoes(disciplinaALeccionar2);
+
+                if(divDoSelectSegundaDisciplina.classList.contains("d-none")){
+                    divDoSelectSegundaDisciplina.classList.remove("d-none");
+                }
+
+                if(!divDoSelectTerceiraDisciplina.classList.contains("d-none")){
+                    divDoSelectTerceiraDisciplina.classList.add("d-none");
+                }
+
+                if(!divDoSelectQuartaDisciplina.classList.contains("d-none")){
+                    divDoSelectQuartaDisciplina.classList.add("d-none");
+                }
+            }
+
+            if(parseInt(quantidadeDeDisciplinas.value) === 3){
+                // Habilitar todas as opções nos selects
+                habilitarOpcoes(disciplinaALeccionar1);
+                habilitarOpcoes(disciplinaALeccionar2);
+                habilitarOpcoes(disciplinaALeccionar3);
+                
+                if(divDoSelectSegundaDisciplina.classList.contains("d-none")){
+                    divDoSelectSegundaDisciplina.classList.remove("d-none");
+                }
+
+                if(divDoSelectTerceiraDisciplina.classList.contains("d-none")){
+                    divDoSelectTerceiraDisciplina.classList.remove("d-none");
+                }
+
+                if(!divDoSelectQuartaDisciplina.classList.contains("d-none")){
+                    divDoSelectQuartaDisciplina.classList.add("d-none");
+                }
+            }
+
+            if(parseInt(quantidadeDeDisciplinas.value) === 4){
+                // Habilitar todas as opções nos selects
+                habilitarOpcoes(disciplinaALeccionar1);
+                habilitarOpcoes(disciplinaALeccionar2);
+                habilitarOpcoes(disciplinaALeccionar3);
+                habilitarOpcoes(disciplinaALeccionar4);
+
+                if(divDoSelectSegundaDisciplina.classList.contains("d-none")){
+                    divDoSelectSegundaDisciplina.classList.remove("d-none");
+                }
+
+                if(divDoSelectTerceiraDisciplina.classList.contains("d-none")){
+                    divDoSelectTerceiraDisciplina.classList.remove("d-none");
+                }
+
+                if(divDoSelectQuartaDisciplina.classList.contains("d-none")){
+                    divDoSelectQuartaDisciplina.classList.remove("d-none");
+                }
+            }
+        }
+    //Término das funções variadas
+
     //Ao alterar o valor da quantidade de inputs
-    quantidadeDeDisciplinas.addEventListener('input', () => {
-        if(parseInt(quantidadeDeDisciplinas.value) < 1 || parseInt(quantidadeDeDisciplinas.value) > 4){
-            quantidadeDeDisciplinas.value = "1";
-        }
-
-        if(parseInt(quantidadeDeDisciplinas.value) === 1){
-            if(!divDoSelectSegundaDisciplina.classList.contains("d-none")){
-                divDoSelectSegundaDisciplina.classList.add("d-none");
-            }
-
-            if(!divDoSelectTerceiraDisciplina.classList.contains("d-none")){
-                divDoSelectTerceiraDisciplina.classList.add("d-none");
-            }
-
-            if(!divDoSelectQuartaDisciplina.classList.contains("d-none")){
-                divDoSelectQuartaDisciplina.classList.add("d-none");
-            }
-        }
-
-        if(parseInt(quantidadeDeDisciplinas.value) === 2){
-            if(divDoSelectSegundaDisciplina.classList.contains("d-none")){
-                divDoSelectSegundaDisciplina.classList.remove("d-none");
-            }
-
-            if(!divDoSelectTerceiraDisciplina.classList.contains("d-none")){
-                divDoSelectTerceiraDisciplina.classList.add("d-none");
-            }
-
-            if(!divDoSelectQuartaDisciplina.classList.contains("d-none")){
-                divDoSelectQuartaDisciplina.classList.add("d-none");
-            }
-        }
-
-        if(parseInt(quantidadeDeDisciplinas.value) === 3){
-            if(divDoSelectSegundaDisciplina.classList.contains("d-none")){
-                divDoSelectSegundaDisciplina.classList.remove("d-none");
-            }
-
-            if(divDoSelectTerceiraDisciplina.classList.contains("d-none")){
-                divDoSelectTerceiraDisciplina.classList.remove("d-none");
-            }
-
-            if(!divDoSelectQuartaDisciplina.classList.contains("d-none")){
-                divDoSelectQuartaDisciplina.classList.add("d-none");
-            }
-        }
-
-        if(parseInt(quantidadeDeDisciplinas.value) === 4){
-            if(divDoSelectSegundaDisciplina.classList.contains("d-none")){
-                divDoSelectSegundaDisciplina.classList.remove("d-none");
-            }
-
-            if(divDoSelectTerceiraDisciplina.classList.contains("d-none")){
-                divDoSelectTerceiraDisciplina.classList.remove("d-none");
-            }
-
-            if(divDoSelectQuartaDisciplina.classList.contains("d-none")){
-                divDoSelectQuartaDisciplina.classList.remove("d-none");
-            }
-        }
-    });
+    quantidadeDeDisciplinas.addEventListener('input', validarAQuantidadeDeDisciplinas);
 
     //Ao alterar o valor do select cargo
     selectCargo.addEventListener("change", () => {
