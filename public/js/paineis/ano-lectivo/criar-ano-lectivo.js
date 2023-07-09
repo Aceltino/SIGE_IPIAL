@@ -649,7 +649,7 @@
     });
 
     //Ao alterar o valor da input de duração do tempo de intervalo menor no período da manhã
-    duracaoDoIntervaloMenorNoPeriodoDaManha.addEventListener("input", ()=>{
+    duracaoDoIntervaloMenorNoPeriodoDaManha.addEventListener("blur", ()=>{
         //Impedir mais de 2 caracteres na input
         limitarOsCaracteresDaInput(duracaoDoIntervaloMenorNoPeriodoDaManha, 2);
         //Impedir menos de 1 e mais de 10 minutos de tempo de intervalo menor no período da manhã
@@ -666,7 +666,7 @@
     });
 
     //Ao alterar o valor da input de duração do tempo de intervalo maior no período da manhã
-    duracaoDoIntervaloMaiorNoPeriodoDaManha.addEventListener("input", ()=>{
+    duracaoDoIntervaloMaiorNoPeriodoDaManha.addEventListener("blur", ()=>{
         //Impedir mais de 2 caracteres na input
         limitarOsCaracteresDaInput(duracaoDoIntervaloMaiorNoPeriodoDaManha, 2);
         //Impedir menos de 1 e mais de 30 minutos de tempo de intervalo maior no período da manhã
@@ -719,7 +719,7 @@
     });
 
     //Ao alterar o valor da input de duração do tempo de intervalo menor no período da tarde
-    duracaoDoIntervaloMenorNoPeriodoDaTarde.addEventListener("input", ()=>{
+    duracaoDoIntervaloMenorNoPeriodoDaTarde.addEventListener("blur", ()=>{
         //Impedir mais de 2 caracteres na input
         limitarOsCaracteresDaInput(duracaoDoIntervaloMenorNoPeriodoDaTarde, 2);
         //Impedir menos de 1 e mais de 10 minutos de tempo de intervalo menor no período da tarde
@@ -736,7 +736,7 @@
     });
 
     //Ao alterar o valor da input de duração do tempo de intervalo maior no período da tarde
-    duracaoDoIntervaloMaiorNoPeriodoDaTarde.addEventListener("input", ()=>{
+    duracaoDoIntervaloMaiorNoPeriodoDaTarde.addEventListener("blur", ()=>{
         //Impedir mais de 2 caracteres na input
         limitarOsCaracteresDaInput(duracaoDoIntervaloMaiorNoPeriodoDaTarde, 2);
         //Impedir menos de 1 e mais de 30 minutos de tempo de intervalo maior no período da tarde
@@ -788,7 +788,7 @@
     });
 
     //Ao alterar o valor da input de duração do tempo de intervalo menor no período da noite
-    duracaoDoIntervaloMenorNoPeriodoDaNoite.addEventListener("input", ()=>{
+    duracaoDoIntervaloMenorNoPeriodoDaNoite.addEventListener("blur", ()=>{
         //Impedir mais de 2 caracteres na input
         limitarOsCaracteresDaInput(duracaoDoIntervaloMenorNoPeriodoDaNoite, 2);
         //Impedir menos de 1 e mais de 10 minutos de tempo de intervalo menor no período da noite
@@ -805,7 +805,7 @@
     });
 
     //Ao alterar o valor da input de duração do tempo de intervalo maior no período da noite
-    duracaoDoIntervaloMaiorNoPeriodoDaNoite.addEventListener("input", ()=>{
+    duracaoDoIntervaloMaiorNoPeriodoDaNoite.addEventListener("blur", ()=>{
         //Impedir mais de 2 caracteres na input
         limitarOsCaracteresDaInput(duracaoDoIntervaloMaiorNoPeriodoDaNoite, 2);
         //Impedir menos de 1 e mais de 30 minutos de tempo de intervalo maior no período da noite
