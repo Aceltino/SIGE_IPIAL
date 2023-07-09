@@ -15,6 +15,7 @@ $(document).ready(function() {
       disableCheckboxes();
     }
   });
+  
 
   // Função para lidar com a opção "Técnicas"
   function handleTecnicas() {

@@ -82,12 +82,14 @@
   <script src={{{URL::asset("js/paineis/letrasc.js")}}}></script>
   <script src={{{URL::asset("js/paineis/registrar-aluno/registrar-aluno.js")}}}></script>
   <script src={{{URL::asset("js/paineis/curso/curso.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/professor/validacoes-professor.js")}}}></script>
+
+  
+
 
    <!-- /	Link do js main do projeto -->
   <script src={{{URL::asset("js/axios.min.js")}}}></script>
-  <script src={{{URL::asset("js/script.js")}}}></script>
-  <script src={{{URL::asset("js/fecharerro.js")}}}></script>
+  <script src={{{URL::asset("js/script.js")}}}></s>
+  <script src={{{URL::asset("js/fecharerro.js")}}}></scri>
   <script src={{{URL::asset("js/select.js")}}}></script>
   <script src={{{URL::asset("js/paineis/avalicao/inputnota.js")}}}></script>
   <script src={{{URL::asset("js/APIconsumo.js")}}}></script>
