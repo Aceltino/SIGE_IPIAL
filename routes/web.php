@@ -104,7 +104,7 @@ Route::prefix('inscricao')->middleware(['auth','active.session','checkcargo'])->
     // });
 
     // /*Incritos rejeitados */
-    
+
     // /*Confirmar inscricao*/
     // Route::get('conf-inscricao', function () {
     //     return view('inscricao/conf-inscricao');
@@ -356,7 +356,7 @@ Route::prefix('calend-prova')->group(function(){
     })->name('editar.calendario');
 });
 
- 
+
 /******************************************
  * Rotas da Assiduidade de Aluno
  */

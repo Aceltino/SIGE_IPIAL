@@ -12,7 +12,6 @@ class Assiduidade_aluno extends Model
     protected $table = 'assiduidade';
     protected $primaryKey = 'assiduidade_id';
     protected $fillable = [
-        'falta_aluno',
         'status_falta',
         'descricao_falta',
         'tipo_falta',

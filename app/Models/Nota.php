@@ -17,7 +17,7 @@ class Nota extends Model
         'descricao_nota',
         'aluno_id',
         'disciplina_id',
-        'trimestre_id',
+        'id_trimestre',
         'created_at',
         'updated_at'
 

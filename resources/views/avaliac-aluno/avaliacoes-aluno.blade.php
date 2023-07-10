@@ -71,7 +71,7 @@
         </div>
     </div>
     <!-- /  Inicio da tabela  -->
-    <table id="avaliacaotab" class="table table-striped" style="margin-top: 20px; width: 100%;" >
+    <table id="" class="table table-striped" style="margin-top: 20px; width: 100%;" >
       <thead style="text-align: center">
         <tr>
           <th scope="col">Nº</th>
@@ -155,7 +155,7 @@
     @foreach ($valor1 as $chave2 => $valor2)
 
         @foreach ($valor2 as $chave3 => $valor3)
-   
+
     <form method="POST" action="{{route('avaliar.aluno', $valor3['disciplina_id'])}}">
         @csrf
       <div class="modal" id="modal_assiduidade{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}" tabindex="-1" data-bs-backdrop="false" >
@@ -221,7 +221,7 @@
     @endforeach
   @endforeach
   </div>
-    
+
   @endif
 
   <!-- Termina a tabela -->
