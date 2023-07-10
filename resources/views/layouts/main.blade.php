@@ -82,7 +82,9 @@
   <script src={{{URL::asset("js/paineis/letrasc.js")}}}></script>
   <script src={{{URL::asset("js/paineis/registrar-aluno/registrar-aluno.js")}}}></script>
   <script src={{{URL::asset("js/paineis/curso/curso.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/professor/validacoes-professor.js")}}}></script>
+
+  
+
 
    <!-- /	Link do js main do projeto -->
   <script src={{{URL::asset("js/axios.min.js")}}}></script>
@@ -92,6 +94,7 @@
   <script src={{{URL::asset("js/paineis/avalicao/inputnota.js")}}}></script>
   <script src={{{URL::asset("js/APIconsumo.js")}}}></script>
   <script src={{{URL::asset("js/APIconsumomatriculas.js")}}}></script>
+  <script src={{{URL::asset("js/APIconsumoturmas.js")}}}></script>
   <script src={{{URL::asset("Datatables/datatables.min.js")}}}></script>
   <script src={{{URL::asset("js/form.js")}}}></script>
   <script src={{{URL::asset("js/clone-contato.js")}}}></script>

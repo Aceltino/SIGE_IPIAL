@@ -32,6 +32,7 @@
     <div class="col-lg-2 no-print">
       <select class="btn-sel form-select no-print" id="filtro5">
         <option class="no-print" selected disabled>Curso</option>
+        <option class="no-print">Todos</option>
         @foreach($cursos as $curso)
         <option class="no-print" value="{{$curso['nome_curso']}}">{{$curso['nome_curso']}}</option>
         @endforeach
@@ -59,7 +60,7 @@
   <div style="margin-top: 10px;" id="conteudo" >
     <a href="{{ route('admitir-inscritos') }}" class="btn btn-success no-print" style="  text-align: center">Ativar Admitido</a>
   </div>
-  <table class="table table-striped display" style="margin-top: 10px; text-align: center;"  id="Inscricoes">
+  <table class="table table-striped display" style="margin-top: 10px; text-align: center;"  id="inscricao">
     <thead id="conteudo">
       <tr style=" text-align: center;">
         <th scope="col">Número do BI</th>

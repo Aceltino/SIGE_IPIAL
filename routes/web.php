@@ -208,8 +208,6 @@ Route::prefix('turma')->middleware(['auth','active.session','checkcargo'])->grou
         return view('turma/turmas');
     });
 
-    /*Editar turma */
-    Route::get('adicionar-coordenador-turma', [inicioController::class,'adcoordTurma'])->name('adcoordTurma')->middleware(['auth','active.session']);
 });
 /**<!--Fim Rotas turma--> */
 
@@ -390,6 +388,11 @@ Route::get('exames_histo',  function () {
 });
 Route::get('edit_exame',  function () {
     return view('avaliac-aluno/edit-exame');
+});
+
+/*ERRO Avaliação de Aluno*/
+Route::get('erroavaliar',  function () {
+    return view('avaliac-aluno/erroaval');
 });
 
 /*Recurso de Aluno*/

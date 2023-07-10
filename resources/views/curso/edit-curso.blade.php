@@ -27,11 +27,11 @@
         @method('put')
         <div class="dados-pessoais">
             <div class="area-input form-group">
-                <label>Nome Do Curso: </label><input type="text" name="nome_curso" value="{{$coordenador_actual[0]['curso']['nome_curso']}}">
+                <label>Nome Do Curso: </label><input type="text" id="letra" name="nome_curso" value="{{$coordenador_actual[0]['curso']['nome_curso']}}">
             </div>
 
             <div class="area-input form-group">
-                <label>Sigla do curso: </label><input type="text" name="sigla_curso" value="{{$coordenador_actual[0]['curso']['sigla']}}">
+                <label>Sigla do curso: </label><input type="text" id="sigla" name="sigla_curso" value="{{$coordenador_actual[0]['curso']['sigla']}}">
             </div>
             <div class="form-group">
                <label for="">Area de Formação:</label>

@@ -13,6 +13,7 @@
     <select class="btn-sel form-select" id="filtro5">
       <optgroup> 
         <option selected disabled>Cargo:</option>
+        <option>Todos</option>
         <option value="Professor">Professor</option>
         <option value="Administrador">Administrador</option>
         <option value="Subdirector">Subdirector Pedagogico</option>
