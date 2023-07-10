@@ -87,9 +87,15 @@ class AssiduidadeAlunoController extends Controller
                 }
             }
         }
+
+        // $teste = Assiduidade_aluno::where('tipo_falta', 'PRESENCIAL')
+        // ->where('aluno_id', 4)
+        // ->where('id_trimestre', 28)->get();
+        // dd($teste);
+
         $trimestre = AvaliacaoTrait::pegarTrimestre();
         $alunos = AssiduidadeTrait::pegarAssiduidadeAluno($disciplina_id, $turmas);
-        dd($alunos);
+        //dd($professor);
         $erro = AvaliacaoTrait::erros($alunos);
         if($erro === true){
             return view('assiduid-aluno/assd-aluno', compact(['alunos', 'nome_turma', 'cursos', 'nome_disciplina', 'trimestre', 'professor']));
@@ -107,7 +113,7 @@ class AssiduidadeAlunoController extends Controller
         $data = (string) date('Y-m-d');
         $tot_faltas = Assiduidade_aluno::where('created_at', 'like', '%'.$data.'%')->where('aluno_id', $aluno_id)
         ->where('id_trimestre', $trimestre[0]->trimestre_id)->where('disciplina_id', $disciplina_id)
-        ->where('tipo_falta', "Presencial")->get();
+        ->where('tipo_falta', "PRESENCIAL")->get();
         if(count($falta) <= count($tot_faltas)){
             return redirect()->back()->with('erro', "Limite de faltas atingido!");
         }

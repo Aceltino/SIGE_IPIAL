@@ -39,7 +39,7 @@ trait AssiduidadeTrait
                         ->where('id_trimestre', $trimestre[0]->trimestre_id)
                         ->where('disciplina_id', $disciplinas[$dis])->get();
                         //dd($faltas);
-                        if(count($faltas) > 0){
+                        if(count($faltas) < 1){
                             $dados[$cont][$tur][$i] = [
                                 'aluno_id' => $aluno[$i]->aluno_id,
                                 'nome' => $aluno[$i]->aluno->candidato->pessoa->nome_completo,
@@ -58,17 +58,17 @@ trait AssiduidadeTrait
                             ];
                         } else{
                             $pres = Assiduidade_aluno::with(['disciplina'])->where('aluno_id', $aluno[$i]->aluno_id)
-                            ->where('tipo_falta', "Presencial")
+                            ->where('tipo_falta', "PRESENCIAL")
                             ->where('id_trimestre', $trimestre[0]->trimestre_id)
                             ->where('disciplina_id', $disciplinas[$dis])->get();
 
                             $discip = Assiduidade_aluno::with(['disciplina'])->where('aluno_id',  $aluno[$i]->aluno_id)
-                            ->where('tipo_falta', 'Disciplinar')
+                            ->where('tipo_falta', 'DISCIPLINAR')
                             ->where('id_trimestre', $trimestre[0]->trimestre_id)
                             ->where('disciplina_id', $disciplinas[$dis])->get();
 
                             $mat = Assiduidade_aluno::with(['disciplina'])->where('aluno_id',  $aluno[$i]->aluno_id)
-                            ->where('tipo_falta', 'Material')
+                            ->where('tipo_falta', 'MATERIAL')
                             ->where('id_trimestre', $trimestre[0]->trimestre_id)
                             ->where('disciplina_id', $disciplinas[$dis])->get();
 
@@ -104,7 +104,7 @@ trait AssiduidadeTrait
         if(!isset($dados)){
             return 6;
         }
-        dd($dados);
+        //dd($dados);
         return $dados;
     }
 
