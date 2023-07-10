@@ -28,6 +28,8 @@
 
 
 
+
+
           <div class="col-lg-2">
             <select class="btn-sel form-select" id="filtro9">
               @foreach ($cursos as $curso)
@@ -39,15 +41,19 @@
 
 
 
+
+
           <div class="col-lg-2">
-            <select class="btn-sel form-select" id="filtro10">
-              @if (isset($nome_disciplina))
-                @foreach ($nome_disciplina as $disciplina)
-                    <option value="{{$disciplina}}">{{$disciplina}}</option>
+            <select class="btn-sel form-select" id="filtro11">
+              @if (isset($nome_turma))
+                @foreach ($nome_turma as $turma)
+                    <option value="{{$turma}}">{{$turma}}</option>
                 @endforeach
               @endif
             </select>
           </div>
+
+
 
 
 

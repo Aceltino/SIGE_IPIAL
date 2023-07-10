@@ -21,26 +21,26 @@ class AssiduidadeAlunoController extends Controller
             $professor = AvaliacaoTrait::pegarAdmin();
             $erro = AvaliacaoTrait::erros($professor);
             if($erro !== true){
-                return redirect()->back()->with('erro', $erro);
+                return redirect()->route('erro.assiduidade')->with('erro', $erro);
             }
         }
         if($user->cargo_usuario === "Coordenacao"){
             $coord = Professor::where('pessoa_id', $user->pessoa_id)->get();
             if(count($coord) < 1){
-                return redirect()->back()->with('erro', "Nenhuma avaliação encontrada!");
+                return redirect()->route('erro.assiduidade')->with('erro', "Nenhuma avaliação encontrada!");
             }
             if($coord[0]->cargo === "Coordenador Curso"){
                 $professor = AvaliacaoTrait::pegarCoordenadorCurso($user);
                 $erro = AvaliacaoTrait::erros($professor);
                 if($erro !== true){
-                    return redirect()->back()->with('erro', $erro);
+                    return redirect()->route('erro.assiduidade')->with('erro', $erro);
                 }
             }
             if($coord[0]->cargo === "Coordenador Area"){
                 $professor = AvaliacaoTrait::pegarCoordenadorArea($user);
                 $erro = AvaliacaoTrait::erros($professor);
                 if($erro !== true){
-                    return redirect()->back()->with('erro', $erro);
+                    return redirect()->route('erro.assiduidade')->with('erro', $erro);
                 }
             }
         }
@@ -48,7 +48,7 @@ class AssiduidadeAlunoController extends Controller
             $professor = AvaliacaoTrait::pegarProfessor($user);
             $erro = AvaliacaoTrait::erros($professor);
             if($erro !== true){
-                return redirect()->back()->with('erro', $erro);
+                return redirect()->route('erro.assiduidade')->with('erro', $erro);
             }
         }
         $inc = 0;
@@ -100,7 +100,7 @@ class AssiduidadeAlunoController extends Controller
         if($erro === true){
             return view('assiduid-aluno/assd-aluno', compact(['alunos', 'nome_turma', 'cursos', 'nome_disciplina', 'trimestre', 'professor']));
         } else{
-            return redirect()->back()->with('erro', $erro);
+            return redirect()->route('erro.assiduidade')->with('erro', $erro);
         }
     }
     public function store(Request $request, $aluno_id, $disciplina_id, $turma_id, $professor_disciplina_id)
