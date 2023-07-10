@@ -91,7 +91,7 @@
          @foreach($disciplina->classes as $classe)
           <td>{{ $classe->classe }}</td>
           <td>{{ $classe->pivot->carga_horaria }}</td> 
-        <td> 
+        <td class="d-flex"> 
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal{{$disciplina->disciplina_id  }}"></i>
           <a href="{{ route('disciplina.edit', ['disciplina_id' => $disciplina->disciplina_id ])}}"><i class="bi bi-pencil"></i></a>
           <form action="{{ route('disciplina.delete', ['disciplina_id' => $disciplina->disciplina_id]) }}" method="POST">
