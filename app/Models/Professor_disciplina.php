@@ -28,7 +28,7 @@ class Professor_disciplina extends Model
         return $this->belongsTo(Disciplina::class, 'disciplina_id');
     }
     public function horario(){
-        return $this->hasMany(Horario::class, 'disc_professor_id');
+        return $this->hasMany(Horario::class, 'prof_disc_id');
     }
 
     public function professor()
@@ -38,7 +38,7 @@ class Professor_disciplina extends Model
 
     public function turmaProf()
     {
-        return $this->belongsToMany(Turma::class, 'horario', 'disc_professor_id', 'turma_id');
+        return $this->belongsToMany(Turma::class, 'horario', 'prof_disc_id', 'turma_id');
     }
 
 }

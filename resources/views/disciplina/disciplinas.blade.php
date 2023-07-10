@@ -39,20 +39,28 @@
   </div>
 
   @if(session('sucess'))
-<div class="alert alert-success">
-          {{(session('sucess'))}}
-      </div>
-@endif
-@if(session('edit'))
-<div class="alert alert-success">
-          {{(session('edit'))}}
-      </div>
-@endif
-@if(session('delete'))
-<div class="alert alert-success">
-          {{(session('delete'))}}
-      </div>
-@endif
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <i class="bi bi-check-circle me-1"></i>
+    {{(session('sucess'))}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  @endif
+
+  @if(session('edit'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <i class="bi bi-check-circle me-1"></i>
+      {{(session('edit'))}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  @endif
+  @if(session('delete'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <i class="bi bi-exclamation-octagon me-1"></i>
+      {{(session('delete'))}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  @endif
+
   <!-- /  Inicio da tabela de disciplina -->
   <table class="table table-striped display" style="margin-top: 10px;" id="Inscricoes-tab">
     <thead>
@@ -62,6 +70,8 @@
         <th scope="col">Compoente</th>
         <th scope="col">Tempo de Prova</th>
         <th scope="col">Curso</th>
+        <th scope="col">Classe</th>
+        <th scope="col">Carga Horária</th>
         <th scope="col"></th>
 
       </tr>
@@ -78,8 +88,11 @@
         @else
         <td>{{ $disciplina->curso->nome_curso }}</td>
         @endif
+         @foreach($disciplina->classes as $classe)
+          <td>{{ $classe->classe }}</td>
+          <td>{{ $classe->pivot->carga_horaria }}</td> 
         <td> 
-          <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal{{ $disciplina['disciplina_id'] }}"></i>
+          <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal{{$disciplina->disciplina_id  }}"></i>
           <a href="{{ route('disciplina.edit', ['disciplina_id' => $disciplina->disciplina_id ])}}"><i class="bi bi-pencil"></i></a>
           <form action="{{ route('disciplina.delete', ['disciplina_id' => $disciplina->disciplina_id]) }}" method="POST">
             @csrf
@@ -88,14 +101,7 @@
           </form>
         </td>
       </tr>
-      @endforeach
-            </tr>
-    </tbody>
-  </table>
-  <!-- Termina a tabela de disciplina -->
-    @foreach($disciplinas as $disciplina)
-      <!--Inicio da modal ver disciplina-->
-      <div class="modal fade" id="ExtralargeModal{{ $disciplina['disciplina_id'] }}" tabindex="-1" data-bs-backdrop="false">
+      <div class="modal fade" id="ExtralargeModal{{$disciplina->disciplina_id}}" tabindex="-1" data-bs-backdrop="false">
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
 
@@ -126,6 +132,12 @@
                 <label>Componete: </label><input type="text" name="socio-culturais" value="{{ $disciplina->componente }}" disabled>
             </div>
             <div class="area-input form-group" style="border: none; ">
+            <label>Classe: </label><input type="text" name="socio-culturais" value="{{ $classe->classe }}" disabled>
+            </div>
+          <div class="area-input form-group" style="border: none; ">
+            <label>Carga Horária: </label><input type="text" name="socio-culturais" value="{{ $classe->pivot->carga_horaria }}Tempo(s)" disabled>
+        </div>
+            <div class="area-input form-group" style="border: none; ">
             @if($disciplina->curso_id == '')
             <label>Curso: </label><input type="text" name="" value="Todos os cursos" disabled>
             @else
@@ -144,6 +156,11 @@
           </div>
         </div>
       </div>
+       @endforeach
       @endforeach
+            </tr>
+    </tbody>
+  </table>
+
 </main>
 @endsection

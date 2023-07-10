@@ -76,7 +76,7 @@
       <tbody>
         @foreach ($notas as $nota)
             <tr style="text-align: center;">
-                <th scope="row">{{date('d/m/Y', strtotime($nota->data_avaliacao))}}</th>
+                <th scope="row">{{date('d/m/Y', strtotime($nota->created_at))}}</th>
                 <td>{{$nota->tipo_prova}}</td>
                 @if (number_format($nota->nota_aluno, 1, ".")<10)
                 <td style="color: rgb(190, 14, 14)">{{number_format($nota->nota_aluno, 1, ".")}}</td>
@@ -136,7 +136,7 @@
                 </thead>
                 <tbody>
                   <tr style="text-align: center;">
-                    <td>{{date('d-m-Y', strtotime($nota->data_avaliacao))}}</td>
+                    <td>{{date('d-m-Y', strtotime($nota->created_at))}}</td>
                     <td>{{$nota->tipo_prova}}</td>
                     <td><input class=" form-control innota" id="notaimput" value="{{$nota->nota_aluno}}" type="text" name="nota_aluno" maxlength="2"></td>
                     <td hidden>Informática</td>

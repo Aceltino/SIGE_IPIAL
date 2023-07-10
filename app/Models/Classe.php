@@ -17,7 +17,7 @@ class Classe extends Model
         'updated_at',
         'created_at',
     ];
-
+ 
     /*
      *  Disciplina - nota
      *  Nota - aluno
@@ -30,5 +30,9 @@ class Classe extends Model
     public function calendarios() 
     {
         return $this->hasMany(CalendarioProva::class, 'calendario_id');
+    }
+    public function disciplinas()
+    {
+        return $this->belongsToMany(Disciplina::class, 'classe_disciplina' , 'disciplina_id' , 'classe_id');
     }
 }

@@ -29,7 +29,7 @@
         </div>
 
         <div class="col-xl-10">
-          <div>
+          <div> 
             <h3>Dados pessoais:</h3>
             <div class="area-dado-pessoal">
               <h4>Nome: </h4> <h5>Mario Developer do Ipial</h5>

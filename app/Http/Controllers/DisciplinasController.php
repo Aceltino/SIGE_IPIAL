@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Curso;
 use App\Models\Disciplina;
 use App\Models\Classe;
+use App\Models\ClasseDisciplina;
 use App\Http\Requests\DisciplinaStoreRequest;
+use App\Http\Requests\DisciplinaUpdateRequest;
 
 
 class DisciplinasController extends Controller
@@ -17,6 +19,9 @@ class DisciplinasController extends Controller
         $pesquisa = $request->pesquisa;
         $disciplinas = Disciplina::all();
         $disciplinas = Disciplina::where('nome_disciplina', 'like', "%$pesquisa%")->get();
+        $disciplinas = Disciplina::with(['classes' => function ($query) {
+            $query->withPivot('carga_horaria');
+        }])->get();        
         return view('disciplina.disciplinas', compact('disciplinas'));
     }
     public function create()
@@ -27,29 +32,32 @@ class DisciplinasController extends Controller
     }
     public function store(DisciplinaStoreRequest $request)
     { 
-        $disciplinas = new Disciplina();
-        $disciplinas->nome_disciplina = $request->nome_disciplina; 
-        $disciplinas->componente = $request->componente;
-        $disciplinas->tempo_prova = $request-> tempo_prova;
-        $disciplinas->sigla = $request->sigla;
-        $disciplinas->curso_id = $request->curso;
-        $disciplinas->save();
+       
+         $disciplinas = Disciplina::create($request->all());
+        $ClasseDisiciplina = ClasseDisciplina::create([
+            'carga_horaria' => $request->carga_horaria,
+            'disciplina_id' =>$disciplinas->disciplina_id,
+            'classe_id' => $request->classe,
+        ]);  
+         
         return redirect()->route('consultar.disciplina',$disciplinas)->with('sucess','Disciplina cadastrada com sucesso');
     }
     public function edit($disciplina_id)
     {
         $cursos = Curso::all();
+        $classes = Classe::all();
         $disciplinas = Disciplina::where('disciplina_id',$disciplina_id)->first();
         if(!empty($disciplinas))
         {
-            return view('disciplina.edit-disciplina',['disciplinas' => $disciplinas, 'cursos' => $cursos]);
+            return view('disciplina.edit-disciplina',['disciplinas' => $disciplinas, 'cursos' => $cursos , 'classes' => $classes ]);
         }
         else{
                 return redirect()->route('consultar.disciplina');
         }
     }
-    public function update(DisciplinaStoreRequest $request, $disciplina_id)
+    public function update(DisciplinaUpdateRequest $request, $disciplina_id)
     {
+        
         $dado = [
             'nome_disciplina' =>$request->nome_disciplina,
             'componente' =>$request->componente,
@@ -57,7 +65,12 @@ class DisciplinasController extends Controller
             'sigla' => $request->sigla,
             'curso_id' => $request->curso,
         ];
+        $Classe =[
+            'carga_horaria' => $request->carga_horaria,
+            'classe_id' => $request->classe,
+        ];
         Disciplina::where('disciplina_id', $disciplina_id)->update($dado);
+        ClasseDisciplina::where('disciplina_id', $disciplina_id)->update($Classe);
         return redirect()->route('consultar.disciplina')->with('edit','Disciplina editada com sucesso');
     }
     public function destroy($disciplina_id)

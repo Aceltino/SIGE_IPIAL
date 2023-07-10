@@ -24,17 +24,18 @@
 
                 </div>  
             </div>
-        <div class="row">
-           <div class="col">
-                <input type="text" style=" text-align: center;"  value="{{ $disciplinas->nome_disciplina }}" placeholder="Nome da disciplina" name="nome_disciplina"  oninput="this.className = ''">
-                    @error('nome_disciplina')
+            <div class="row">
+                    <div class="col">
+                        <input type="text" style=" text-align: center;" placeholder="Nome da disciplina"
+                            id="nome_disciplina" name="nome_disciplina" value="{{ $disciplinas->nome_disciplina }}">
+                            @error('nome_disciplina')
                                 <div class="alert alert-danger">{{$message}}
                                 <button class="botaofecharerro">
                                 <i class="bi bi-x"></i>
                                 </button></div>
                             @enderror
-            </div>
-           <div class="col">
+                    </div>
+                    <div class="col">
                 <input type="text" style=" text-align: center;" value="{{ $disciplinas->sigla }}" placeholder="Sigla" name="sigla"  oninput="this.className = ''">
                          @error('sigla')
                                 <div class="alert alert-danger">{{$message}}
@@ -43,41 +44,79 @@
                                 </button></div>
                             @enderror
             </div>
-        </div> <br>
-
-
-              <div class="form-group">
-                <select oninput="this.className = ''"  value="{{ $disciplinas->componente }}" class="form-select" name="componente" >
-                  <option  disabled> Componetes</option>
-                  <option selected  value="c.T">Técnicas </option>
-                  <option value="I.E"> Socio-culturais</option>
-                  <option value="I"> Cientificas</option>
-                </select>
-                @error('componente')
-                                <div class="alert alert-danger">{{$message}}
-                                <button class="botaofecharerro">
-                                <i class="bi bi-x"></i>
-                                </button></div>
-                            @enderror
-              </div>
-              <div class="row">
-                <div class="col">
-                @foreach($cursos as $curso)
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="curso" value="{{$curso['curso_id']}}">
-                    <label class="form-check-label" for="flexSwitchCheckDefault">{{$curso['nome_curso']}}</label>
-                 </div>
-                  @endforeach 
-                <div class="col">
-                     <input type="Time" style=" text-align: center;" value="{{ $disciplinas->tempo_prova }}" name="tempo_prova"    oninput="this.className = ''">
-                     @error('tempo_prova')
+                </div> <br>
+                <div class="row" style="margin-top: 15px;">
+                    <div class="form-group col">
+                      <select oninput="this.className = ''" class="form-select" name="componente" id="selectComponente" value="{{ old('componente') }}">
+                        <option selected disabled value="{{ $disciplinas->componente }}">{{ $disciplinas->componente }}</option>
+                        <option  value="Técnicas">Técnicas</option>
+                        <option value="Socio-culturais">Socio-culturais</option>
+                        <option value="Cientificas"> Cientificas</option>
+                      </select>
+                      @error('componente')
                                 <div class="alert alert-danger">{{$message}}
                                 <button class="botaofecharerro">
                                 <i class="bi bi-x"></i>
                                 </button></div>
                             @enderror
                     </div>
-             </div> 
+                    <div class="form-group col">
+                      <select oninput="this.className = ''" class="form-select" name="classe" id="selectClasse" >
+                        <option selected disabled value="{{ $disciplinas->classe }}">Classe</option>
+                        @foreach ($classes as $classe)
+                        <option value="{{$classe['classe_id']}}">{{$classe['classe']}}</option>     
+                        @endforeach
+                      </select>
+                      @error('classe')
+                                <div class="alert alert-danger">{{$message}}
+                                <button class="botaofecharerro">
+                                <i class="bi bi-x"></i>
+                                </button></div>
+                            @enderror
+                    </div>
+                    <div class="form-group col">
+                        <select oninput="this.className = ''" class="form-select" name="Tipo_disciplina" id="selectTipoDisciplina">
+                          <option selected disabled value="{{ $disciplinas->Tipo_disciplina }}">{{ $disciplinas->Tipo_disciplina }}</option>
+                          <option value="Terminal">Terminal</option> 
+                          <option value="Contínua">Contínua</option>    
+                        </select>
+                        @error('Tipo_disciplina')
+                                <div class="alert alert-danger">{{$message}}
+                                <button class="botaofecharerro">
+                                <i class="bi bi-x"></i>
+                                </button></div>
+                            @enderror
+                      </div>
+                </div>
+              <div class="row">
+                <div class="col">
+                  @foreach($cursos as $curso)
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="checkboxCurso{{$curso['curso_id']}}" name="curso" value="{{$curso['curso_id']}}" disabled>
+                    <label class="form-check-label" for="checkboxCurso{{$curso['curso_id']}}" value="{{ $disciplinas->curso }}" >{{$curso['nome_curso']}}</label>
+                 </div>
+                  @endforeach
+                    <div class="row">
+                      <div class="col">
+                        <input type="Time" style=" text-align: center;" name="tempo_prova" value="{{ $disciplinas->tempo_prova }}" placeholder="Tempo de prova" oninput="this.className = ''">
+                               @error('tempo_prova')
+                                   <div class="alert alert-danger">{{$message}}
+                                   <button class="botaofecharerro">
+                                   <i class="bi bi-x"></i>
+                                   </button></div>
+                               @enderror
+                       </div> 
+                       <div class="col">
+                          <input type="text" style=" text-align: center;" name="carga_horaria" value="{{ $disciplinas->carga_horaria }}" placeholder="Carga Horária" oninput="this.className = ''">
+                          @error('carga_horaria')
+                                   <div class="alert alert-danger">{{$message}}
+                                   <button class="botaofecharerro">
+                                   <i class="bi bi-x"></i>
+                                   </button></div>
+                               @enderror
+                        </div> 
+                    </div>
+             </div>  
              <div style="text-align:center;margin-top:10px;">
                 <div>
                     <button type="submit" class="btn btn-success">Atualizar Disciplina</button>

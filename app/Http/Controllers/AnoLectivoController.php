@@ -24,7 +24,7 @@ class AnoLectivoController extends Controller
         ->first();
         return $ultimoAno->ano_lectivo_id;
     }
-    
+
     public static function pegarAnoLectivo($id)
     {
         $ultimoAno = Ano_lectivo::orderBy('ano_lectivo_id', 'desc')
@@ -34,7 +34,10 @@ class AnoLectivoController extends Controller
     }
 
     public function indexCadastroAnoLectivo(){
-
+        $hora_inicio_manha = "07:10";
+        $hora_fim_manha = "12:50";
+        $intervalo_manha = "5";
+        AnoLectivoTrait::calcularHoraTempos($hora_inicio_manha, $intervalo_manha, $hora_fim_manha);
         return view('ano-lectivo/criar-ano-lect');
     }
 

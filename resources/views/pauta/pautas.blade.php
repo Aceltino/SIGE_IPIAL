@@ -13,6 +13,7 @@
             <div class="col-lg-2">
             <select class="btn-sel form-select" name="opcoes" id="filtro3" >
                 <option disabled selected>Turma</option>
+                <option value="Todos">Todos</option>
                 <option value="I10AM">I10AM</option>
                 <option value="I11AM">I11AM</option>
                 <option value="I12AT">TI12AT</option>
@@ -34,32 +35,41 @@
         <div class="alert alert-danger">
             {{session('msg_sem_pauta')}}
         </div>
-    
-    @elseif(session('msg_sem_director'))
+    @endif
+
+    @if(session('msg_sem_director'))
         <div class="alert alert-danger">
             {{session('msg_sem_director')}}
         </div>
+    @endif
 
-    @elseif(session('msg_sem_subdirector'))
+    @if(session('msg_sem_subdirector'))
          <div class="alert alert-danger">
             {{session('msg_sem_subdirector')}}
         </div>
+    @endif
 
-    @elseif(session('msg_sem_coordenadorArea'))
+    @if(session('msg_sem_coordenadorArea'))
         <div class="alert alert-danger">
             {{session('msg_sem_coordenadorArea')}}
         </div>
-   
-    @elseif(session('msg_sem_directorTurma'))
+    @endif
+
+    @if(session('msg_sem_directorTurma'))
         <div class="alert alert-danger">
             {{session('msg_sem_directorTurma')}}
         </div>
-        
+    @endif
+    
+    @if(session('erro_anormal'))
+        <div class="alert alert-danger">
+            {{session('erro_anormal')}}
+        </div>
     @endif
   
-
+   
     <!-- /  Inicio da tabela de inscritos -->
-    <table  id="matricula-tab" class="table table-striped" style="margin-top: 20px;" >
+    <table  id="Pauta" class="table table-striped" style="margin-top: 20px;" >
       <thead  style=" text-align: center;">
           <tr>
           <th scope="col">ANO</th>
