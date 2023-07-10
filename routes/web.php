@@ -283,6 +283,7 @@ Route::prefix('ficha-biog')->middleware(['auth','active.session','checkcargo'])-
  */
 Route::prefix('processo')->middleware(['auth','active.session'])->group(function(){
     Route::get('processos',[ProcessoController::class, 'index'])->name('processo.consultar');
+    Route::get('Visual-processo/{aluno_id}', [ProcessoController::class, 'visualizar'])->name('visual-processo');
     Route::delete('{aluno_id}',[ProcessoController::class, 'destroy'])->where('aluno_id', '[0-9]+')->name('processo.deletar');
 });
 

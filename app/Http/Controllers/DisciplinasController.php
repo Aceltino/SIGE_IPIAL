@@ -30,10 +30,11 @@ class DisciplinasController extends Controller
         $cursos = Curso::all();
         return view('disciplina.regi-disciplina', compact('classes','cursos'));
     }
+
     public function store(DisciplinaStoreRequest $request)
     { 
        
-         $disciplinas = Disciplina::create($request->all());
+        $disciplinas = Disciplina::create($request->all());
         $ClasseDisiciplina = ClasseDisciplina::create([
             'carga_horaria' => $request->carga_horaria,
             'disciplina_id' =>$disciplinas->disciplina_id,
