@@ -54,7 +54,7 @@
           <td>{{ $aluno->candidato->cursoAdmitido }}</td>
           <td>{{ $aluno->candidato->escola->turno }}</td>
           <td>
-          <a href="#" class="btn btn-cor-sg-a" data-bs-toggle="modal" data-bs-target="#ExtralargeModal">Ver Processo</a>
+          <a href="{{ route('visual-processo',['aluno_id' => $aluno->aluno_id ] )}}" class="btn btn-cor-sg-a">Ver Processo</a>
           <form method="POST" action="{{ route('processo.deletar',['aluno_id' => $aluno->aluno_id ] )}}">
             @csrf
             @method('delete')

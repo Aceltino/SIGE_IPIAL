@@ -15,6 +15,11 @@ class ProcessoController extends Controller
         $alunos = $this->buscarAluno();
         return view('processo.processos', ['alunos'=>$alunos ]) ;
     } 
+    public function visualizar($aluno_id)
+    {
+        $alunos = $this->buscarAluno();
+        return view('processo.doc-processo', ['alunos'=>$alunos ]) ;
+    }
     public function destroy($aluno_id)
     {
         Aluno::where('aluno_id',$aluno_id)->delete();
@@ -48,4 +53,5 @@ class ProcessoController extends Controller
         }
         return $alunos;
     }
+   
 }
