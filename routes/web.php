@@ -82,15 +82,15 @@ Route::prefix('inscricao')->middleware(['auth','active.session','checkcargo'])->
      Route::get('inscricoes', [InscricaoController::class, 'index'])->name('inscricao-index');
 
     /*Inscrever candidato */
-    Route::get('inscrever', [InscricaoController::class, 'create'])->name('inscricao-view');
-    Route::post('inscrever', [InscricaoController::class, 'store'])->name('inscricao-store');
+    Route::get('inscrever', [InscricaoController::class, 'create'])->name('inscricao-view')->middleware(['inscriCheck']);
+    Route::post('inscrever', [InscricaoController::class, 'store'])->name('inscricao-store')->middleware(['inscriCheck']);
 
     // Admitir inscrito
-    Route::get('admitir', [AdmissaoController::class, 'admitirCandidatos'])->name('admitir-inscritos');
+    Route::get('admitir', [AdmissaoController::class, 'admitirCandidatos'])->name('admitir-inscritos')->middleware(['inscriCheck']);
 
     // Editar inscrito
-    Route::get('editar-candidato/{candidato}/editar', [InscricaoController::class, 'edit'])->name('inscricao-edit');
-    Route::put('editar-candidato/{candidato}', [InscricaoController::class, 'update'])->name('inscricao-update');
+    Route::get('editar-candidato/{candidato}/editar', [InscricaoController::class, 'edit'])->name('inscricao-edit')->middleware(['inscriCheck']);
+    Route::put('editar-candidato/{candidato}', [InscricaoController::class, 'update'])->name('inscricao-update')->middleware(['inscriCheck']);
 
     Route::get('recibo', function () {
             return view('recibo/recibo-incricao');
@@ -200,13 +200,8 @@ Route::prefix('turma')->middleware(['auth','active.session','checkcargo'])->grou
     /* Criar turma*/
     Route::get('criar-turma', [TurmaController::class, 'createTurma'])->name('turma-create');
     Route::post('criar-turma', [TurmaController::class, 'storeTurma'])->name('turma-store');
-
-
-
-    /*Trumas */
-    Route::get('turmas', function () {
-        return view('turma/turmas');
-    });
+     /* Criar turma*/
+    Route::get('turmas', [TurmaController::class, 'turmas'])->name('turmas');
 
 });
 /**<!--Fim Rotas turma--> */

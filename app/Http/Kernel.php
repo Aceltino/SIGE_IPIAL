@@ -68,5 +68,7 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'active.session' => \App\Http\Middleware\CheckActiveSession::class,
         'checkusernecessario'=> \App\Http\Middleware\CheckUserNecessario::class,
+        'inscriCheck' => \App\Http\Middleware\Inscricao::class,
+
     ];
 }
