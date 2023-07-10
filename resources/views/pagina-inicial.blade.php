@@ -9,7 +9,7 @@
 @if(Auth::user()->cargo_usuario == "Administrador" || Auth::user()->cargo_usuario == "Subdirector")
   <div class="area-admin-subd">
     <!-- /	Titulo-->  	
-    <div class="pagetitle">
+    <div class="pagetitle pagetitle-escuro">
       <div class="row">
         <div class="col">
           <h1>Página inicial</h1>      
@@ -33,7 +33,7 @@
       </div>
     </div>
 	  
-    <section id="counts" class="counts">
+    <section id="counts" class="counts counts-escuro">
       <div class="container">
 
         <div class="row" data-aos="fade-up">
@@ -41,7 +41,7 @@
           <div class="col-lg-3 col-md-6 mt-4">
           
             <div class="figura-card">
-              <div class="count-box">
+              <div class="count-box count-box-escuro">
                 <i class="bi bi-people"></i>
                 <span class="total">500</span>
                 <p>INSCRITOS</p>
@@ -61,7 +61,7 @@
           <div class="col-lg-3 col-md-6 mt-4">
 
             <div class="figura-card">
-              <div class="count-box">
+              <div class="count-box count-box-escuro">
                 <i class="bi bi-person"></i>
                 <span class="total">500</span>
                 <p>ADMITIDOS</p>
@@ -82,7 +82,7 @@
           <div class="col-lg-3 col-md-6 mt-4">
 
             <div class="figura-card">
-              <div class="count-box">
+              <div class="count-box count-box-escuro">
                 <i class="bi bi-check2-square"></i>
                 <span class="total">500</span>
                 <p>NÃO ADMITIDOS</p>
@@ -103,7 +103,7 @@
           <div class="col-lg-3 col-md-6 mt-4">
 
             <div class="figura-card">
-              <div class="count-box">
+              <div class="count-box count-box-escuro">
                 <i class="bi bi-clipboard"></i>
                 <span class="total">500</span>
                 <p>MATRICULADOS</p>
@@ -124,7 +124,7 @@
           <div class="col-lg-3 col-md-6 mt-5">
 
             <div class="figura-card">
-              <div class="count-box">
+              <div class="count-box count-box-escuro">
                 <i class="bi bi-arrow-90deg-down"></i>
                 <span class="total">500</span>
                 <p>PROFESSORES</p>
@@ -144,7 +144,7 @@
           <div class="col-lg-3 col-md-6 mt-5">
 
             <div class="figura-card">
-              <div class="count-box">
+              <div class="count-box count-box-escuro">
                 <i class="bi bi-person-check"></i>
                 <span class="total">500</span>
                 <p>TURMAS</p>
@@ -164,7 +164,7 @@
           <div class="col-lg-3 col-md-6 mt-5">
 
             <div class="figura-card">
-              <div class="count-box">
+              <div class="count-box count-box-escuro">
                 <i class="bi bi-people"></i>
                 <span class="total">500</span>
                 <p>VAGAS</p>
@@ -182,7 +182,7 @@
           </div>
 
           <div class="col-lg-3 col-md-6 mt-5">
-            <div class="count-box">
+            <div class="count-box count-box-escuro">
               <i class="bi bi-people"></i>
               <span class="total">500</span>
               <p>CURSOS</p>
@@ -199,7 +199,7 @@
     
     <div class="row">
       <div class="col-lg-8">
-        <div class="cardL">
+        <div class="card-grafico-escuro">
           <div class="card-body">
             <h5 class="card-title">Alunos por ano</h5>
   
@@ -244,7 +244,7 @@
         </div>
       </div>
       <div class="col-lg-4">
-        <div class="cardB">
+        <div class="card-grafico-escuro">
           <div class="card-body">
             <h5 class="card-title">Cargos de Usarios </h5>
 
@@ -303,11 +303,11 @@
           <!-- Card Alunos -->
           <div class="col-lg-12">
 
-            <div class="card info-card">
+            <div class="card info-card card-aluno-escuro">
 
               <div class="card-body">
                 <h5 class="card-title">Alunos <span>| 2022 - 2023</span></h5>
-                <table class="table table-striped" style="font-size: 15px;">
+                <table class="table table-escuro" style="font-size: 15px;">
                   <thead>
                     <tr style="text-transform: uppercase;">
                       <th scope="col">Cursos</th>
@@ -352,11 +352,11 @@
           <!-- Card Turmas -->
           <div class="col-lg-12">
 
-            <div class="card info-card">
+            <div class="card info-card card-turma-escuro">
 
               <div class="card-body">
                 <h5 class="card-title">Turmas <span>| 2022 - 2023</span></h5>
-                <table class="table table-striped" style="font-size: 15px;">
+                <table class="table table-escuro" style="font-size: 15px;">
                   <thead>
                     <tr style="text-transform: uppercase;">
                       <th scope="col">Cursos</th>
@@ -404,7 +404,7 @@
       <!-- Coluna da direita -->
       <div class="col-lg-4">
         <!-- Card comunicado -->
-        <div class="card">
+        <div class="card card-comincado-escuro">
           <div class="card-body">
             <h5 class="card-title">Hoje <span>| 13h:02</span></h5>
 
