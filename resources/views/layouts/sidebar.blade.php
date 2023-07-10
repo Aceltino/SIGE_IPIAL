@@ -206,7 +206,7 @@
       </a>
       <ul id="horario-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="professor/horario-prof">
+          <a href="criar-horario">
             <i class="bi bi-circle"></i><span>Horários</span>
           </a>
         </li>

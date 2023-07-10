@@ -424,6 +424,20 @@ Route::get('/horario-turma', function () {
 Route::get('/editar-horario', function () {
     return view('horario/editar-horario');
 });
+/*Area de formacao*/
+Route::get('/cadastrar_area_formacao', function () {
+    return view('area-formacao/criar-areaformacao');
+});
+
+/*Area de formacao*/
+Route::get(' area_formacao', function () {
+    return view('area-formacao/areaformacao');
+});
+
+/*Editar Area de formacao*/
+Route::get('editar_area_formacao', function () {
+    return view('area-formacao/edit-areaformacao');
+});
 
 
 /******************************************
