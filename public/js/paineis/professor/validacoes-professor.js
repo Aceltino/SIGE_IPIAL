@@ -23,12 +23,34 @@
     //Fim segundo step
 //Fim da declaração de variáveis e elementos   
 
-    if(inputDataDeNascimentoDoProfessor.value !== ""){
-        calcularIdade();
-    }
-
 //Funções diversas
-    function calcularIdade(){
+    function habilitarOpcoes(select) {
+        const opcoes = select.getElementsByTagName('option');
+
+        for (let i = 0; i < opcoes.length; i++) {
+            opcoes[i].disabled = false;
+        }
+    }
+    
+    function desabilitarOpcaoSelecionada(valor, select) {
+        const opcoes = select.getElementsByTagName('option');
+
+        for (let i = 0; i < opcoes.length; i++) {
+            if (opcoes[i].value === valor) {
+                opcoes[i].disabled = true;
+            }
+        }
+    }
+  
+    //Função para validar e-mail
+    function validarEmail(email) {
+        var regra = /\S+@\S+\.\S+/;
+        return regra.test(email);
+    }
+ //Fim das funções diversas
+
+ //Funções dos eventos
+    inputDataDeNascimentoDoProfessor.addEventListener("input", ()=>{
         var stringDataDeNascimentoDoProfessor = inputDataDeNascimentoDoProfessor.value;
         var dataDeNascimentoDoProfessor = new Date (stringDataDeNascimentoDoProfessor);
 
@@ -58,35 +80,7 @@
             inputDataDeNascimentoDoProfessor.value = "";
             inputIdadeDoProfessor.value = "";
         } 
-    }
-
-    function habilitarOpcoes(select) {
-        const opcoes = select.getElementsByTagName('option');
-
-        for (let i = 0; i < opcoes.length; i++) {
-            opcoes[i].disabled = false;
-        }
-    }
-    
-    function desabilitarOpcaoSelecionada(valor, select) {
-        const opcoes = select.getElementsByTagName('option');
-
-        for (let i = 0; i < opcoes.length; i++) {
-            if (opcoes[i].value === valor) {
-                opcoes[i].disabled = true;
-            }
-        }
-    }
-  
-    //Função para validar e-mail
-    function validarEmail(email) {
-        var regra = /\S+@\S+\.\S+/;
-        return regra.test(email);
-    }
- //Fim das funções diversas
-
- //Funções dos eventos
-    inputDataDeNascimentoDoProfessor.addEventListener("input", calcularIdade);
+    });
 
     function verificarSelecoes() {
         const valor1 = disciplinaALeccionar1.value;
