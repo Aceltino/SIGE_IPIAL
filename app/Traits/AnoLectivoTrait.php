@@ -147,24 +147,6 @@ trait AnoLectivoTrait
         }
     }
 
-    public static function verifyHoraManha($hora){
-        $get = substr($hora, 0, 1) . substr($hora, 1, 1);
-        switch ($get) {
-            case '07':
-            case '08':
-            case '09':
-            case '10':
-            case '11':
-            case '12':
-                return true;
-                break;
-
-            default:
-                return false;
-                break;
-        }
-    }
-
     public static function verifyHoraTarde($hora){
         $get = substr($hora, 0, 1) . substr($hora, 1, 1);
         switch ($get) {
@@ -174,24 +156,6 @@ trait AnoLectivoTrait
             case '15':
             case '16':
             case '17':
-                return true;
-                break;
-
-            default:
-                return false;
-                break;
-        }
-    }
-
-    public static function verifyHoraNoite($hora){
-        $get = substr($hora, 0, 1) . substr($hora, 1, 1);
-        switch ($get) {
-            case '17':
-            case '18':
-            case '19':
-            case '20':
-            case '21':
-            case '22':
                 return true;
                 break;
 
@@ -226,7 +190,7 @@ trait AnoLectivoTrait
         AlunoController::alunosVinculados(); //Cortar o acesso de todos os alunos do sistema
 
 
-//Todas as funções devem ser colocadas acima porque depois do ano lectivo estar com o status 0 nenhuma ação é permitida.
+        //Todas as funções devem ser colocadas acima porque depois do ano lectivo estar com o status 0 nenhuma ação é permitida.
         $anoLec = ['status_ano_lectivo' => 0];
         $trimestre = ['status' => 0];
         Ano_lectivo::where('status_ano_lectivo', 1)->update($anoLec);

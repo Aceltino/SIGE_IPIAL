@@ -45,13 +45,14 @@
             </div>
         </div> <br>
 
+            <div class="row">
 
               <div class="form-group">
-                <select oninput="this.className = ''"  value="{{ $disciplinas->componente }}" class="form-select" name="componente" >
-                  <option  disabled> Componetes</option>
-                  <option selected  value="c.T">Técnicas </option>
-                  <option value="I.E"> Socio-culturais</option>
-                  <option value="I"> Cientificas</option>
+                <select oninput="this.className = ''"   class="form-select" name="componente" value="{{ $disciplinas->componente }}" >
+                  <option  disabled > Componetes</option>
+                  <option value="Técnicas">Técnicas </option>
+                  <option value="Socio-culturais"> Socio-culturais</option>
+                  <option value="Cientificas"> Cientificas</option>
                 </select>
                 @error('componente')
                                 <div class="alert alert-danger">{{$message}}
@@ -68,15 +69,21 @@
                     <label class="form-check-label" for="flexSwitchCheckDefault">{{$curso['nome_curso']}}</label>
                  </div>
                   @endforeach 
-                <div class="col">
-                     <input type="Time" style=" text-align: center;" value="{{ $disciplinas->tempo_prova }}" name="tempo_prova"    oninput="this.className = ''">
-                     @error('tempo_prova')
-                                <div class="alert alert-danger">{{$message}}
-                                <button class="botaofecharerro">
-                                <i class="bi bi-x"></i>
-                                </button></div>
-                            @enderror
+                <div class="row">
+                    <div class="col">
+                        <input type="Time" style=" text-align: center;" value="{{ $disciplinas->tempo_prova }}" name="tempo_prova"    oninput="this.className = ''">
+                        @error('tempo_prova')
+                                    <div class="alert alert-danger">{{$message}}
+                                    <button class="botaofecharerro">
+                                    <i class="bi bi-x"></i>
+                                    </button></div>
+                                @enderror
                     </div>
+                    <div class="col">
+                        <input type="text" style=" text-align: center;" name="tempo_prova" value="" placeholder="Carga Horária" oninput="this.className = ''">
+  
+                     </div>
+                </div>
              </div> 
              <div style="text-align:center;margin-top:10px;">
                 <div>
