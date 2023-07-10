@@ -30,6 +30,8 @@
           </div>
 @if ($alunos === true)
 
+
+
           <div class="col-lg-2">
             <select class="btn-sel form-select" id="filtro8">
               @foreach ($cursos as $curso)
