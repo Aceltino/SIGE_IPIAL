@@ -92,7 +92,7 @@
   <script src={{{URL::asset("js/axios.min.js")}}}></script>
   <script src={{{URL::asset("js/script.js")}}}></script>
   <script src={{{URL::asset("js/fecharerro.js")}}}></script>
-  <script src={{{URL::asset("js/select.js")}}}></script>
+  <script src={{{URL::asset("js/darkmode.js")}}}></script>
   <script src={{{URL::asset("js/paineis/avalicao/inputnota.js")}}}></script>
   <script src={{{URL::asset("js/APIconsumo.js")}}}></script>
   <script src={{{URL::asset("js/APIconsumomatriculas.js")}}}></script>
