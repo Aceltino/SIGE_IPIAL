@@ -198,7 +198,7 @@ trait AvaliacaoTrait
                     if (count($prof_disc[$i]->turmaProf) > 0) {
                         $cont = 0;
                         $dados[$ind] = [
-                            'professor_disciplina_id' => $prof_disc[$i]->disc_professor_id,
+                            'professor_disciplina_id' => $prof_disc[$i]->prof_disc_id,
                             'nome_disciplina' =>  $prof_disc[$i]->disciplina->nome_disciplina,
                             'disciplina_id' => $prof_disc[$i]->disciplina->disciplina_id,
                         ];
