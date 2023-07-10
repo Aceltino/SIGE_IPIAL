@@ -24,7 +24,7 @@
                 <div class="row">
                     <div class="col">
                         <input type="text" style=" text-align: center;" placeholder="Nome da disciplina"
-                            id="nome_disciplina" name="nome_disciplina" value="{{ old('nome_disciplina') }}">
+                            id="letra" name="nome_disciplina" value="{{ old('nome_disciplina') }}">
                             @error('nome_disciplina')
                                 <div class="alert alert-danger">{{$message}}
                                 <button class="botaofecharerro">
@@ -33,7 +33,7 @@
                             @enderror
                     </div>
                     <div class="col">
-                <input type="text" style=" text-align: center;" value="{{ old('sigla') }}" placeholder="Sigla" name="sigla"  oninput="this.className = ''">
+                <input type="text" style=" text-align: center;" id="sigla" value="{{ old('sigla') }}" placeholder="Sigla" name="sigla"  oninput="this.className = ''" maxlength="4">
                          @error('sigla')
                                 <div class="alert alert-danger">{{$message}}
                                 <button class="botaofecharerro">
@@ -48,7 +48,7 @@
                         <option selected disabled> Componetes</option>
                         <option  value="Técnicas">Técnicas</option>
                         <option value="Socio-culturais">Socio-culturais</option>
-                        <option value="Cientificas"> Cientificas</option>
+                        <option value="Cientificas">Cientificas</option>
                       </select>
                       @error('componente')
                                 <div class="alert alert-danger">{{$message}}
@@ -104,7 +104,7 @@
                                @enderror
                        </div> 
                        <div class="col">
-                          <input type="text" style=" text-align: center;" name="carga_horaria" value="{{ old('carga_horaria') }}" placeholder="Carga Horária" oninput="this.className = ''">
+                          <input type="text" id="numeroinput1" style=" text-align: center;" name="carga_horaria" value="{{ old('carga_horaria') }}" placeholder="Carga Horária" oninput="this.className = ''" maxlength="4">
                           @error('carga_horaria')
                                    <div class="alert alert-danger">{{$message}}
                                    <button class="botaofecharerro">
@@ -116,7 +116,7 @@
              </div> 
              <div style="text-align:center;margin-top:10px;">
                 <div>
-                    <button type="submit" class="btn btn-success">Cadastrar</button>
+                    <button type="submit" id="botao" class="btn btn-success">Cadastrar</button>
 
                 </div>
         </form>

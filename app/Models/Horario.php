@@ -9,10 +9,10 @@ class Horario extends Model
 {
     use HasFactory;
     protected $table = 'horario';
-    protected $foreignKey = 'disc_professor_id';
+    protected $foreignKey = 'prof_disc_id';
     protected $fillable = [
         'turma_id',
-        'disc_professor_id',
+        'prof_disc_id',
         'turma_id',
         'dia_id',
         'sala_id',
@@ -26,7 +26,7 @@ class Horario extends Model
 
     public function professorDisc()
     {
-        return $this->belongsTo(Professor_disciplina::class, 'disc_professor_id');
+        return $this->belongsTo(Professor_disciplina::class, 'prof_disc_id');
     }
 
     public function tempo(){

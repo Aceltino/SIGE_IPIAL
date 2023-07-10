@@ -49,24 +49,82 @@
               </div>
             </div>
             
-            <div class="form-group">
-              <label for='nome_completo'>Nome Completo</label>
-              <input id="nome_completo" type="text" placeholder="Nome do professor" value="{{ $professor->pessoa->nome_completo }}" name="nome_completo" oninput="this.className = ''">
+            <h3 class="text-uppercase text-center my-3 color-blue-principal">dados pessoais</h3>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                <input id="nome_completo" type="text" placeholder="Nome do professor" value="{{ $professor->pessoa->nome_completo }}" name="nome_completo" id="letra" oninput="this.className = ''" minlength="3" maxlength="70">
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                <input id="formacao" type="text" placeholder="Formação" value="{{ $professor->formacao }}" name="formacao" id="letra" oninput="this.className = ''" minlength="3" maxlength="70">
+                </div>
+              </div>
             </div>
-    
-            <div class="form-group">
-              <label for='num_bi'>Número do BI</label>
-              <input id="num_bi" type="text" placeholder="Número do BI" value="{{ $professor->pessoa->num_bi }}" name="num_bi" oninput="this.className = ''">
+          
+            <div class="row">
+              <div class="col-md-5">
+                <div class="form-group">
+                <input id="num_bi" type="text" placeholder="Número do BI" value="{{ $professor->pessoa->num_bi }}" name="num_bi" id="bi_input" oninput="this.className = ''" minlength="14" maxlength="14">
+                  <p role="alert" id="mensagem1"></p>
+                </div>
+              </div>
+
+              <div class="col-md-5">
+                <div class="form-group">
+                  <input name='data_nascimento' type="date" id="data-de-nascimento-do-professor-input" oninput="this.className = ''">
+                  <p class="alert alert-danger d-none mt-2" role="alert" id="paragrafo-de-validacao-da-idade-do-professor"></p>
+                </div> 
+              </div>
+
+              <div class="col-md-2">
+                <div class="form-group">
+                  <input type="text" class="form-control" readonly="true" id="idade-do-professor-input" oninput="this.className = ''" value="00">
+                </div> 
+              </div>
             </div>
-    
-            <div class="form-group">
-              <label for='telefone'>Número de Telefone</label>
-              <input id="telefone" type="text" placeholder="Telefone" value="{{ $professor->pessoa->telefone }}" name="telefone" oninput="this.className = ''">
-            </div>
-    
-            <div class="form-group">
-              <label for='formacao'>Formação</label>
-              <input id="formacao" type="text" placeholder="Formação" value="{{ $professor->formacao }}" name="formacao" oninput="this.className = ''">
+
+ 
+            <div class="row d-flex align-items-center">
+              <div class="col-md-9">
+                <div class="form-group">
+                  <label class="me-3">Sexo:</label>
+                  <input type="radio" id="masculino" name="genero" value="Masculino" {{ old('genero') == 'Masculino' ? 'checked' : '' }} checked>
+                  <label for="masculino" class="me-2"> Masculino</label>
+                  <input type="radio" id="feminino" name="genero" value="Femenino" {{ old('genero') == 'Femenino' ? 'checked' : '' }}>
+                  <label for="feminino"> Feminino</label>
+                </div>
+              </div>
+
+              <div id="col-md-3"class="col-lg-3 gap-1 justify-content-center align-items-center">
+                <div class=" col aa" style="display: flex; flex-direction: column;">
+                  <div class="row align-items-center">
+                    <span style="color: #777;" class="w-25">+244</span>
+                    <input id="telefone" type="text" placeholder="Telefone" value="{{ $professor->pessoa->telefone }}" name="telefone" id="telefoneinput" oninput="this.className = ''" minlength="9" maxlength="9">
+                  </div>
+                  <div class="alert alert-danger mt-2 mensagem-erro " style="width: 100%;"></div>
+                </div>
+              </div>
+            </div> 
+
+            <div class="row">
+              <h5>Endereço</h5>
+              <div class="form-group col-md-3">
+                <input name='municipio' type="text" placeholder="Municipio" id="municipio-do-professor-input">
+              </div>
+              
+              <div class="form-group col-md-3">
+                <input name='bairro' type="text" placeholder="Bairro" id="bairro-do-professor-input">
+              </div> 
+              <div class="form-group col-md-3">
+                <input name='zona' type="text" placeholder="Zona">
+              </div> 
+              <div class="form-group col-md-3">
+                <input name='numero_casa' type="number" placeholder="Nº Casa" min="0" max="800">
+              </div> 
             </div>
 
           <div style="text-align:center;margin-top:40px;">

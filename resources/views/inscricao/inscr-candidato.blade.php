@@ -233,22 +233,22 @@
     <div class="tab">
       <h2>Escolha o curso segundo a ordem de preferência</h2>
 
-        @php
-            $a=1;
-        @endphp
-          @foreach($cursos as $curso)
+      @php
+      $a = 1;
+       @endphp
+      @foreach($cursos as $curso)
           <div class="form-group">
-          <select  class="form-select" name="curso{{$a}}" oninput="this.className = ''" >
-          <option selected disabled>Escolha a {{$a}}ª opção</option>
-          @foreach ($cursos as $Curso )
-          <option value="{{$Curso['nome_curso']}}">{{$Curso['nome_curso']}}</option>
-          @endforeach
-         </select>
-         @php
-              $a++;
-         @endphp
+              <select class="form-select" name="curso{{$a}}" oninput="this.className = ''" id="cursos{{$a}}">
+                  <option selected disabled>Escolha a {{$a}}ª opção</option>
+                  @foreach ($cursos as $Curso)
+                      <option value="{{$Curso['nome_curso']}}">{{$Curso['nome_curso']}}</option>
+                  @endforeach
+              </select>
           </div>
-          @endforeach
+          @php
+              $a++;
+          @endphp
+      @endforeach
 
     </div>
 

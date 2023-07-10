@@ -19,6 +19,9 @@ class DisciplinasController extends Controller
         $pesquisa = $request->pesquisa;
         $disciplinas = Disciplina::all();
         $disciplinas = Disciplina::where('nome_disciplina', 'like', "%$pesquisa%")->get();
+        $disciplinas = Disciplina::with(['classes' => function ($query) {
+            $query->withPivot('carga_horaria');
+        }])->get();        
         return view('disciplina.disciplinas', compact('disciplinas'));
     }
     public function create()

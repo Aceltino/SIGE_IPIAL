@@ -19,20 +19,36 @@ class AssiduidadeAlunoController extends Controller
         $user = Auth::user();
         if($user->cargo_usuario === "Administrador" || $user->cargo_usuario === "Subdirector"){
             $professor = AvaliacaoTrait::pegarAdmin();
+            $erro = AvaliacaoTrait::erros($professor);
+            if($erro !== true){
+                return redirect()->back()->with('erro', $erro);
+            }
         }
         if($user->cargo_usuario === "Coordenacao"){
             $coord = Professor::where('pessoa_id', $user->pessoa_id)->get();
+            if(count($coord) < 1){
+                return redirect()->back()->with('erro', "Nenhuma avaliação encontrada!");
+            }
             if($coord[0]->cargo === "Coordenador Curso"){
                 $professor = AvaliacaoTrait::pegarCoordenadorCurso($user);
+                $erro = AvaliacaoTrait::erros($professor);
+                if($erro !== true){
+                    return redirect()->back()->with('erro', $erro);
+                }
             }
             if($coord[0]->cargo === "Coordenador Area"){
                 $professor = AvaliacaoTrait::pegarCoordenadorArea($user);
+                $erro = AvaliacaoTrait::erros($professor);
+                if($erro !== true){
+                    return redirect()->back()->with('erro', $erro);
+                }
             }
         }
         if($user->cargo_usuario === "Professor"){
             $professor = AvaliacaoTrait::pegarProfessor($user);
-            if(!$professor){
-                return view('assiduid-aluno/assd-aluno')->with('erro', "Nenhuma turma disponível!");
+            $erro = AvaliacaoTrait::erros($professor);
+            if($erro !== true){
+                return redirect()->back()->with('erro', $erro);
             }
         }
         $inc = 0;
@@ -72,11 +88,21 @@ class AssiduidadeAlunoController extends Controller
             }
         }
 
+        // $teste = Assiduidade_aluno::where('tipo_falta', 'PRESENCIAL')
+        // ->where('aluno_id', 4)
+        // ->where('id_trimestre', 28)->get();
+        // dd($teste);
+
         $trimestre = AvaliacaoTrait::pegarTrimestre();
         $alunos = AssiduidadeTrait::pegarAssiduidadeAluno($disciplina_id, $turmas);
-        return view('assiduid-aluno/assd-aluno', compact(['alunos', 'nome_turma', 'cursos', 'nome_disciplina', 'trimestre', 'professor']));
+        //dd($professor);
+        $erro = AvaliacaoTrait::erros($alunos);
+        if($erro === true){
+            return view('assiduid-aluno/assd-aluno', compact(['alunos', 'nome_turma', 'cursos', 'nome_disciplina', 'trimestre', 'professor']));
+        } else{
+            return redirect()->back()->with('erro', $erro);
+        }
     }
-
     public function store(Request $request, $aluno_id, $disciplina_id, $turma_id, $professor_disciplina_id)
     {
         $trimestre = AvaliacaoTrait::pegarTrimestre();
@@ -87,14 +113,13 @@ class AssiduidadeAlunoController extends Controller
         $data = (string) date('Y-m-d');
         $tot_faltas = Assiduidade_aluno::where('created_at', 'like', '%'.$data.'%')->where('aluno_id', $aluno_id)
         ->where('id_trimestre', $trimestre[0]->trimestre_id)->where('disciplina_id', $disciplina_id)
-        ->where('tipo_falta', "Presencial")->get();
+        ->where('tipo_falta', "PRESENCIAL")->get();
         if(count($falta) <= count($tot_faltas)){
             return redirect()->back()->with('erro', "Limite de faltas atingido!");
         }
 
         $trimestre = AvaliacaoTrait::pegarTrimestre();
         $falta = [
-            'falta_aluno' => 1,
             'status_falta' => "N-JUSTIFICADA",
             'descricao_falta' => $request->conteudo,
             'tipo_falta' => $request->tipo_falta,
@@ -120,7 +145,7 @@ class AssiduidadeAlunoController extends Controller
         return view('assiduid-aluno/edit-assd-aluno', compact(['assiduidade', 'trimestre', 'tempos']));
     }
 
-    public function update(Request $request, $assiduidade_id)
+    public function update($assiduidade_id)
     {
         $assiduidade = Assiduidade_aluno::find($assiduidade_id);
         $assiduidade->status_falta = "JUSTIFICADA";
@@ -128,8 +153,4 @@ class AssiduidadeAlunoController extends Controller
         return redirect()->back()->with('sucesso', "Falta justificada com sucesso!");
     }
 
-    public function delete(Assiduidade_aluno $assiduidade_aluno)
-    {
-
-    }
 }

@@ -13,7 +13,7 @@
 
             <div class="row" >
                 <div class="col">
-                    <p>Designação do ano lectivo<input type="text" id="descricao-do-ano-lectivo" name="ano_lectivo" value="{{old('ano_lectivo', $anoLectivo[0]['ano_lectivo'])}}" required></p>
+                    <p>Designação do ano lectivo<input type="text" id="descricao-do-ano-lectivo" name="ano_lectivo" value="{{old('ano_lectivo', $anoLectivo[0]['ano_lectivo'])}}" required disabled readonly></p>
                     @error('ano_lectivo')
                         <p style="color:red">{{$message}}</p>
                     @enderror

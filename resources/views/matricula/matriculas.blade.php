@@ -39,8 +39,9 @@
     </div>
 
       <div class="col-lg-2 no-print">
-        <select class="btn-sel form-select no-print">
+        <select class="btn-sel form-select no-print" id="filtro5">
           <option class="no-print" selected disabled>Estado</option>
+          <option class="no-print" value="Todos">Todos</option>
           <option class="no-print" >Em curso</option>
           <option class="no-print" >RPF</option>
           <option class="no-print" >Anulou a Matricula</option>
@@ -51,6 +52,7 @@
       <div class="col-lg-2 no-print">
         <select class="btn-sel form-select no-print" id="filtro3">
           <option class="no-print" selected disabled>Turma</option>
+          <option class="no-print">Todos</option>
           @foreach($turmas as $turma)
           <option class="no-print" value="{{$turma['nome_turma']}}">{{$turma['nome_turma']}}</option>
           @endforeach
@@ -60,6 +62,7 @@
       <div class="col-lg-2 no-print">
         <select class="btn-sel form-select no-print" id="filtro">
           <option class="no-print" selected disabled>Curso</option>
+          <option  class="no-print" value="Todos">Todos</option>
           @foreach($cursos as $curso)
           <option class="no-print" value="{{$curso['nome_curso']}}">{{$curso['nome_curso']}}</option>
           @endforeach

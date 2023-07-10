@@ -13,6 +13,7 @@
             <div class="col-lg-2">
             <select class="btn-sel form-select" name="opcoes" id="filtro3" >
                 <option disabled selected>Turma</option>
+                <option value="Todos">Todos</option>
                 <option value="I10AM">I10AM</option>
                 <option value="I11AM">I11AM</option>
                 <option value="I12AT">TI12AT</option>
@@ -68,7 +69,7 @@
   
    
     <!-- /  Inicio da tabela de inscritos -->
-    <table  id="matricula-tab" class="table table-striped" style="margin-top: 20px;" >
+    <table  id="Pauta" class="table table-striped" style="margin-top: 20px;" >
       <thead  style=" text-align: center;">
           <tr>
           <th scope="col">ANO</th>
