@@ -104,7 +104,7 @@ trait AssiduidadeTrait
         if(!isset($dados)){
             return 6;
         }
-        dd($dados);
+        //dd($dados);
         return $dados;
     }
 

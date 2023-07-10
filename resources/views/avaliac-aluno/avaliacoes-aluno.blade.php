@@ -26,16 +26,24 @@
               <h1>Avaliação de Aluno</h1>
           </div>
 
+          
+
+        
+
+
           <div class="col-lg-2">
-            <select class="btn-sel form-select" id="filtro10">
+            <select class="btn-sel form-select" id="filtro9">
               @foreach ($cursos as $curso)
                 <option value="{{$curso}}">{{$curso}}</option>
               @endforeach
             </select>
           </div>
 
+          
+
+
           <div class="col-lg-2">
-            <select class="btn-sel form-select" id="filtro11">
+            <select class="btn-sel form-select" id="filtro10">
               @if (isset($nome_disciplina))
                 @foreach ($nome_disciplina as $disciplina)
                     <option value="{{$disciplina}}">{{$disciplina}}</option>
@@ -44,8 +52,11 @@
             </select>
           </div>
 
+          
+
+
           <div class="col-lg-2">
-            <select class="btn-sel form-select" id="filtro12">
+            <select class="btn-sel form-select" id="filtro11">
               @if (isset($nome_turma))
                 @foreach ($nome_turma as $turma)
                     <option value="{{$turma}}">{{$turma}}</option>
@@ -71,7 +82,7 @@
         </div>
     </div>
     <!-- /  Inicio da tabela  -->
-    <table id="" class="table table-striped" style="margin-top: 20px; width: 100%;" >
+    <table id="avaliacaotab" class="table table-striped" style="margin-top: 20px; width: 100%;" >
       <thead style="text-align: center">
         <tr>
           <th scope="col">Nº</th>
@@ -80,12 +91,11 @@
           <th scope="col">NPP</th>
           <th scope="col">NPT</th>
           <th scope="col">Exame</th>
-          <th scope="col">E.Recurso</th>
           <th scope="col">Avaliar</th>
           <th scope="col">Histórico</th>
           <th scope="col" hidden>curso</th>
           <th scope="col" hidden>Disciplina</th>
-          <th scope="col" hidden>Turma</th>
+          <th scope="col" hidden >Turma</th>
         </tr>
       </thead>
       <tbody>
@@ -124,19 +134,13 @@
                         <td style="color: rgb(10, 10, 255)">{{$valor3['exame']}}</td>
                         @endif
 
-                        @if ($valor3['exame_recurso']<10)
-                        <td style="color: rgb(255, 8, 8)">{{$valor3['exame_recurso']}}</td>
-                        @else
-                        <td style="color: rgb(10, 10, 255)">{{$valor3['exame_recurso']}}</td>
-                        @endif
-
                         <td style="text-align: center">
                         <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}" >Avaliar aluno</a>
                         </td>
                         <td style="text-align: center">
                         <a href="{{route('editar.avaliacao.aluno', [$valor3['aluno_id'], $valor3['disciplina_id']])}}" class="btn linkeditar">Avaliações Aluno</a>
                         </td>
-                        <td hidden>{{$valor3['curso']}}</td>
+                        <td hidden >{{$valor3['curso']}}</td>
                         <td hidden>{{$valor3['nome_disciplina']}}</td>
                         <td hidden>{{$valor3['nome_turma']}}</td>
                     </tr>

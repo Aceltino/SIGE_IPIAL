@@ -89,7 +89,7 @@ class AssiduidadeAlunoController extends Controller
         }
         $trimestre = AvaliacaoTrait::pegarTrimestre();
         $alunos = AssiduidadeTrait::pegarAssiduidadeAluno($disciplina_id, $turmas);
-        dd($alunos);
+        //dd($alunos);
         $erro = AvaliacaoTrait::erros($alunos);
         if($erro === true){
             return view('assiduid-aluno/assd-aluno', compact(['alunos', 'nome_turma', 'cursos', 'nome_disciplina', 'trimestre', 'professor']));
