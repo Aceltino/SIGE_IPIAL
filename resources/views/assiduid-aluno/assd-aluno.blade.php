@@ -28,7 +28,7 @@
           <div class="col">
               <h1>Assiduidade De Aluno</h1>
           </div>
-@if ($alunos === true)
+
 
           <div class="col-lg-2">
             <select class="btn-sel form-select" id="filtro8">
@@ -38,6 +38,8 @@
             </select>
           </div>
 
+
+
           <div class="col-lg-2">
             <select class="btn-sel form-select" id="filtro9">
               @foreach ($nome_disciplina as $disciplina)
@@ -45,6 +47,8 @@
               @endforeach
             </select>
           </div>
+
+
 
           <div class="col-lg-2">
             <select class="btn-sel form-select" id="filtro10">
@@ -250,7 +254,6 @@
   @endforeach
 @endforeach
  <!-- Início da Modal Falta Materiais FIM -->
-@endif
 @endif
 </main>
 @endsection

@@ -205,6 +205,11 @@
             $alunosAdmitidos = [];
             $alunos = AlunoController::alunosTurma();
 
+            if(!$alunos)
+            {
+                return false;
+            }
+
             foreach( $alunos as $aluno )
             {
                 if($aluno['situacao'] === "Transita" && $aluno['classeId'] < 4)
@@ -220,9 +225,9 @@
                 // $alunosNAdmitidos[] = $aluno;
             }
 
-            if(!$alunosAdmitidos) //COmentar este if após terminar, alunos...
+            if(!$alunosAdmitidos) //Comentar este if após terminar, alunos...
             {
-                return "Todos os alunos já estão nas suas devidas turmas.";
+                return false;
             }
             AlunoTurmaController::alunoAdmtido($alunosAdmitidos);
             return true;
@@ -515,6 +520,11 @@
             $alunosAdmitidos = [];
             $alunos = AlunoController::alunosTurma();
 
+            if(!$alunos)
+            {
+                return false;
+            }
+
             foreach( $alunos as $aluno )
             {
                 if($aluno['situacao'] === "Transita" && $aluno['classeId'] < 4)
@@ -527,6 +537,10 @@
                     $alunosAdmitidos[] = $aluno;
                     continue;
                 }   
+            }
+            if(!$alunosAdmitidos)
+            {
+                return false;
             }
 
             foreach($alunosAdmitidos as $aluno)
