@@ -19,26 +19,26 @@ class AvaliacaoAlunoController extends Controller
             $professor = AvaliacaoTrait::pegarAdmin();
             $erro = AvaliacaoTrait::erros($professor);
             if($erro !== true){
-                return redirect()->back()->with('erro', $erro);
+                return redirect()->route('erroavaliar')->with('erro', $erro);
             }
         }
         if($user->cargo_usuario === "Coordenacao"){
             $coord = Professor::where('pessoa_id', $user->pessoa_id)->get();
             if(count($coord) < 1){
-                return redirect()->back()->with('erro', "Nenhuma avaliação encontrada!");
+                return redirect()->route('erroavaliar')->with('erro', "Nenhuma avaliação encontrada!");
             }
             if($coord[0]->cargo === "Coordenador Curso"){
                 $professor = AvaliacaoTrait::pegarCoordenadorCurso($user);
                 $erro = AvaliacaoTrait::erros($professor);
                 if($erro !== true){
-                    return redirect()->back()->with('erro', $erro);
+                    return redirect()->route('erroavaliar')->with('erro', $erro);
                 }
             }
             if($coord[0]->cargo === "Coordenador Area"){
                 $professor = AvaliacaoTrait::pegarCoordenadorArea($user);
                 $erro = AvaliacaoTrait::erros($professor);
                 if($erro !== true){
-                    return redirect()->back()->with('erro', $erro);
+                    return redirect()->route('erroavaliar')->with('erro', $erro);
                 }
             }
         }
@@ -46,7 +46,7 @@ class AvaliacaoAlunoController extends Controller
             $professor = AvaliacaoTrait::pegarProfessor($user);
             $erro = AvaliacaoTrait::erros($professor);
             if($erro !== true){
-                return redirect()->back()->with('erro', $erro);
+                return redirect()->route('erroavaliar')->with('erro', $erro);
             }
         }
         $inc = 0;
@@ -56,7 +56,7 @@ class AvaliacaoAlunoController extends Controller
             for ($j = 0; $j < (count($professor[$i]) - 3); $j++) {
                 $turma =  AvaliacaoTrait::pegarAnoTurmaCoord($professor[$i][$j]['turma_id']);
                 if($turma === false){
-                    return redirect()->back()->with('erro', "Turma(as) sem aluno(os)!");
+                    return view('avaliac-aluno/erroaval')->with('erro', "Turma(as) sem aluno(os)!");
                 }
                 $n_turma = $professor[$i][$j]['nome_turma'];
                 if($j === 0){
@@ -94,7 +94,7 @@ class AvaliacaoAlunoController extends Controller
         if($erro === true){
             return view('avaliac-aluno/avaliacoes-aluno', compact(['aluno', 'nome_disciplina', 'nome_turma', 'cursos']));
         } else{
-            return redirect()->back()->with('erro', $erro);
+            return redirect()->route('erroavaliar')->with('erro', $erro);
         }
     }
 

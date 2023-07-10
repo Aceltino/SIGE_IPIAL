@@ -27,9 +27,7 @@ trait AssiduidadeTrait
                 $aluno = AlunoTurma::with('aluno.candidato.pessoa', 'turmaAno.turma')->where('turmaAno_id', $turmas[$dis][$tur])
                 ->get();
                 if(count($aluno) > 0){
-
                     $disc = Disciplina::find($disciplinas[$dis]);
-
                     for($i = 0; $i < count($aluno); $i++){
                         $presencial = 0;
                         $disciplinar = 0;
