@@ -27,28 +27,28 @@
             </div>
             <hr id="borda-nome">
         </div>
-
+    @foreach($alunos as $aluno)
         <div class="col-xl-10">
           <div> 
             <h3>Dados pessoais:</h3>
             <div class="area-dado-pessoal">
-              <h4>Nome: </h4> <h5>Mario Developer do Ipial</h5>
+              <h4>Nome: </h4> <h5>{{$aluno->candidato->pessoa->nome_completo}}</h5>
             </div>
             <div class="area-dado-pessoal">
-              <h4>Filho de: </h4> <h5>Mario Developer do Ipial</h5><h4>E de: </h4> <h5>Mario Developer do Ipial</h5>
+              <h4>Filho de: </h4> <h5>{{$aluno->candidato->nome_pai_cand}}</h5><h4>E de: </h4> <h5>{{$aluno->candidato->nome_mae_cand}}</h5>
             </div>
             <div class="area-dado-pessoal">
-              <h4>Nascido aos: </h4> <h5>02</h5> <h4>de</h4> <h5>Marco</h5> <h4>de</h4> <h5>2006</h5> <h4>na Província de:</h4><h5>Luanda</h5>
+              <h4>Nascido aos: </h4> <h5>{{$aluno->candidato->pessoa->data_nascimento}}</h5><h4>na Província de:</h4><h5>Luanda</h5>
             </div>
             <div class="area-dado-pessoal">
-              <h4>Munícipio de:</h4><h5>Viana</h5><h4>Portador do BI nº:</h4><h5>000009090LK098</h5>
+              <h4>Munícipio de:</h4><h5>Viana</h5><h4>Portador do BI nº:</h4><h5>{{$aluno->candidato->pessoa->num_bi}}</h5>
               <h4>Emitido em:</h4><h5>03</h5><h4>de</h4><h5>Junho</h5><h4>de</h4><h5>2020</h5>
             </div>
           </div>
           <div class="area-dados-academicos">
             <h3>Dados académicos:</h3>
             <div class="area-dado-pessoal">
-              <h4>Matriculado no curso de:</h4><h5>Técnico de Informática</h5><h4>Na area de formacao:</h4><h5>Informática</h5>
+              <h4>Matriculado no curso de:</h4><h5>{{ $aluno->candidato->cursoAdmitido}}</h5><h5></h5>
             </div>
             <div class="area-dado-pessoal">
               <h4>No ano lectivo:</h4><h5>2020-2021</h5><h4>a</h4><h5>10a</h5><h4>Classe em regime</h4><h5>Diurno</h5>
@@ -74,6 +74,7 @@
             </div>
           </div>
         </div>
+        @endforeach
       </div>
     </section>
   

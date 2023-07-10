@@ -176,18 +176,23 @@
             </td>     
             
             @foreach ($notas as $item)
+                
+                @if (!empty($item[0]))
 
-                <td class="nota coluna-tab-p"><span class="nota-pos">{{$item[0]->nota_aluno}}</span></td>
-                <td class="nota coluna-tab-p"><span class="nota-neg">{{$item[01]->nota_aluno}}</span></td>
-                <td class="nota coluna-tab-p"><span class="nota-neg">{{$item[0]->nota_aluno}}</span></td>
-                <td class="nota c-tab-amarelo coluna-tab-p"><span class="nota-pos">{{$item[0]->nota_aluno}}</span></td>
-                <td class="nota coluna-tab-p"><span class="nota-pos"></span></td>
-
-                <td class="nota c-tab-sinza-esq coluna-tab-p">
-                    <span>
-                    
-                    </span>
-                </td>
+                    <td class="nota coluna-tab-p"><span class="nota-pos">{{$item[0]->nota_aluno}}</span></td>
+                    <td class="nota coluna-tab-p"><span class="nota-neg">{{$item[0]->nota_aluno}}</span></td>
+                    <td class="nota coluna-tab-p"><span class="nota-neg">{{$item[0]->nota_aluno}}</span></td>
+                    <td class="nota c-tab-amarelo coluna-tab-p"><span class="nota-pos">{{$item[0]->nota_aluno}}</span></td>
+                    <td class="nota coluna-tab-p"><span class="nota-pos"></span></td>
+                    <td class="nota c-tab-sinza-esq coluna-tab-p">
+                        <span>
+                           {{-- Faltas --}}
+                        </span>
+                    </td>
+                @else
+                    <td colspan="6">S/N</td>
+                @endif
+                
                 
             @endforeach
 
