@@ -62,7 +62,7 @@
         <td>2020/2029</td>
         <td>
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-          <a href="{{route)()" class="btn btn-success">Ad coordenador</a>
+          <a href="{{route('adcoordTurma')}}" class="btn btn-success">Ad coordenador</a>
          <!-- <a href="/editar-turma"><i class="bi bi-pencil"></i></a>-->
         </td>
       </tr>
