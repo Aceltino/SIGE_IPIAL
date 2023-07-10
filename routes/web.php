@@ -352,6 +352,11 @@ Route::prefix('calend-prova')->group(function(){
  * Rotas da Assiduidade de Aluno
  */
 
+ /*ERRO Avaliação de Aluno*/
+Route::get('erroassid',  function () {
+    return view('assiduid-aluno/erroassid.blade');
+});
+
 /* Assiduidade de alunos*/
 Route::get('/assiduidade-aluno', [AssiduidadeAlunoController::class, 'index'])->name('assiduidade');
 Route::post('/assiduidade-aluno/marcar-falta/{aluno_id}/{disciplina_id}/{turma_id}/{professor_disciplina_id}', [AssiduidadeAlunoController::class, 'store'])->name('marcar.falta');
@@ -388,7 +393,7 @@ Route::get('edit_exame',  function () {
 /*ERRO Avaliação de Aluno*/
 Route::get('erroavaliar',  function () {
     return view('avaliac-aluno/erroaval');
-});
+})->name('erroavaliar');
 
 /*Recurso de Aluno*/
 Route::get('recurso_aluno',  function () {
