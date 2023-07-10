@@ -436,3 +436,14 @@ if (!function_exists('getDisciplina')) {
         return $nomeDisciplina;
     }
 }
+
+if (!function_exists('sendNotas')) {
+    function sendNotas($alunoId, $disciplinaID)
+    {
+        $trimestre1 = getMT1($alunoId, $disciplinaID);
+        $trimestre2 = getMT2($alunoId, $disciplinaID);
+        $trimestre3 = getMT3($alunoId, $disciplinaID);
+
+        $media = \App\Models\Media::where('');
+    }
+}

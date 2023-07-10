@@ -25,18 +25,6 @@ class MiniPautaController extends Controller
 {
     public function index()
     {
-
-        /*$dados = Turma::join('classe_disciplina', 'turmas.classe_id', '=', 'classe_disciplina.classe_id')
-                        ->join('disciplinas', 'classe_disciplina.disciplina_id', '=', 'disciplinas.disciplina_id')
-                        ->select('turmas.*', 'classe_disciplina.*', 'disciplinas.*')
-                        ->get();
-    
-        $dados = ClasseDisciplina::join('turmas', 'turmas.classe_id', '=', 'classe_disciplina.classe_id')
-                    ->join('professor_disciplina', 'professor_disciplina.disciplina_id', '=', 'classe_disciplina.disciplina_id')
-                    ->select('turmas.*', 'classe_disciplina.*', 'professor_disciplina.*')
-                    ->get();*/
-
-        #$turmas = Turma::has('beAlunos')->with('anoTurmaCoord')->distinct()->get();
         $turmas = AnoTurmaCood::has('alunoAno')->with('turma', 'alunoAno')->get();
         
         return view('mini-pauta.mini-pauta', ['turmas' => $turmas]);
@@ -45,20 +33,38 @@ class MiniPautaController extends Controller
     public function turma($turma, $curso)
     {
         $turma = Turma::findOrFail($turma);
-        $disciplinas = DisciplinaCurso::with('disciplinas', 'curso', 'professorDisciplina')
-                        ->where('curso_id', $curso)
+        
+        $disciplinaGerais= Disciplina::where('componente','Cientificas')
+                        ->Orwhere('componente','Socio-culturais')
                         ->get();
 
-        return view('mini-pauta.mini-pauta-discip', ['turma' => $turma, 'disciplinas' => $disciplinas]);
+        $disciplinaEspecificas= Disciplina::where('componente','Técnicas')
+                                            ->where('curso_id',$turma->curso->curso_id)
+                                            ->get();
+
+        //Combinei as duas coleções de disciplinas(Tecnicas e Gerais) em uma única variável            
+        $disciplinasAll = $disciplinaGerais->concat($disciplinaEspecificas)->all();
+        
+        foreach ($disciplinasAll as $key => $value) {
+           $disciplinar[]=$value;
+           $professor = Professor_disciplina::where('disciplina_id', $value->disciplina_id);
+        }
+
+        $total = [
+            'curso' => $turma->curso,
+            'turma' => $turma,
+            'disciplinar' => $disciplinar
+        ];
+        return view('mini-pauta.mini-pauta-discip', $total);
     }
 
-    public function view($turma_id, $prof_id, $disciplina_id)
+    public function view($turma_id, $disciplina_id)
     {
         $turma = Turma::findOrFail($turma_id);
-        $professor = Professor::with('pessoa')->findOrFail($prof_id);
+        #$professor = Professor::with('pessoa')->findOrFail($prof_id);
+        $professor_discip = Professor_disciplina::where('disciplina_id', $disciplina_id)->first();
         $ano_turma_coord = AnoTurmaCood::where('turma_id',  $turma_id)->first();
         $disciplina = Disciplina::where('disciplina_id', $disciplina_id)->first();
-        #$notas  = Nota::where('disciplina_id', $disciplina_id)->first();
         
         $alunos = AlunoTurma::whereHas('anoTurmaCood', function ($query) use ($turma_id) {
             $query->whereHas('turma', function ($query) use ($turma_id) {
@@ -72,7 +78,7 @@ class MiniPautaController extends Controller
         // Realiza a consulta em Nota usando os IDs dos alunos
         $notas = Nota::whereIn('aluno_id', $alunoIds)->get();
 
-        return view('mini-pauta.mini-pauta-doc', ['alunos' => $alunos, 'anoturmacoord' => $ano_turma_coord, 'notas' => $notas, 'disciplina' => $disciplina, 'turma' => $turma, 'professor' => $professor]);
+        return view('mini-pauta.mini-pauta-doc', ['alunos' => $alunos, 'anoturmacoord' => $ano_turma_coord, 'notas' => $notas, 'disciplina' => $disciplina, 'turma' => $turma, 'professor_discip' => $professor_discip]);
     }
 
     public function show()
