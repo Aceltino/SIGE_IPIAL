@@ -444,6 +444,29 @@ if (!function_exists('sendNotas')) {
         $trimestre2 = getMT2($alunoId, $disciplinaID);
         $trimestre3 = getMT3($alunoId, $disciplinaID);
 
-        $media = \App\Models\Media::where('');
+        ($trimestre1 > 0 ? '' : $trimestre1 = 0);
+        ($trimestre2 > 0 ? '' : $trimestre2 = 0);
+        ($trimestre3 > 0 ? '' : $trimestre3 = 0);
+        $media = new \App\Models\Media;
+
+        $media1trim = $media->where('aluno_id', $alunoId)
+                            ->whereHas('trimestres', function($query) {
+                                $query->where('trimestre', 1);
+                            })
+                        ->first();
+        $nota1trim = $media1trim->nota;
+        
+        
+        if ($media1trim->count() > 0) {
+            $find = \App\Models\Media::findOrFail($media->media_id);
+            $find->nota = $trimestre1;
+            $find->trimestre_id = 19;
+            $find->ano_lectivo_id = 14;
+            $find->aluno_id = 4;
+            $find->disciplina_id = 4;
+            $find->save();
+        }
+        
+        return 1;
     }
 }

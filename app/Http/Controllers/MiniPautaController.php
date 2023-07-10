@@ -18,7 +18,8 @@ use App\Models\{
     Professor_disciplina,
     Professor,
     AlunoTurma,
-    DisciplinaCurso
+    DisciplinaCurso,
+    Media
 };
 
 class MiniPautaController extends Controller
@@ -77,7 +78,34 @@ class MiniPautaController extends Controller
 
         // Realiza a consulta em Nota usando os IDs dos alunos
         $notas = Nota::whereIn('aluno_id', $alunoIds)->get();
+        
+        $not = $notas;
+        foreach ($notas as $nota) {
+            $dadosNotaAluno[] = [
+                'nota' => $nota,
+                'aluno' => $nota->aluno_id,
+                'aluno_info' => $nota->aluno->candidato->pessoa->nome_completo,
+                'disciplina' => $nota->disciplina,
+                'trimestre' => $nota->trimestre,
+                'ano_letivo' => $ano_turma_coord->ano_lectivo
+            ];
+        }
+        $mmedia = Media::whereIn('aluno_id', $alunoIds)->get();
 
+        foreach ($dadosNotaAluno as $dd => $key) {
+            #echo $key['ano_letivo'].'<hr>';
+            #echo getMT1($key['aluno'], $key['disciplina']->disciplina_id).'<hr>';
+            
+            
+            $media = Media::create([
+                'nota' => $key['nota'],
+                'aluno_id' => $key['aluno'],
+                'disciplina_id' => $key['disciplina']->disciplina_id,
+                'trimestre_id' => $key['trimestre']->trimestre_id,
+                'ano_lectivo_id' => $key['ano_letivo']->ano_lectivo_id,
+            ]);
+        }
+        
         return view('mini-pauta.mini-pauta-doc', ['alunos' => $alunos, 'anoturmacoord' => $ano_turma_coord, 'notas' => $notas, 'disciplina' => $disciplina, 'turma' => $turma, 'professor_discip' => $professor_discip]);
     }
 
