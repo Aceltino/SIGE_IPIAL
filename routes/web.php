@@ -82,15 +82,15 @@ Route::prefix('inscricao')->middleware(['auth','active.session','checkcargo'])->
      Route::get('inscricoes', [InscricaoController::class, 'index'])->name('inscricao-index');
 
     /*Inscrever candidato */
-    Route::get('inscrever', [InscricaoController::class, 'create'])->name('inscricao-view');
-    Route::post('inscrever', [InscricaoController::class, 'store'])->name('inscricao-store');
+    Route::get('inscrever', [InscricaoController::class, 'create'])->name('inscricao-view')->middleware(['inscriCheck']);
+    Route::post('inscrever', [InscricaoController::class, 'store'])->name('inscricao-store')->middleware(['inscriCheck']);
 
     // Admitir inscrito
-    Route::get('admitir', [AdmissaoController::class, 'admitirCandidatos'])->name('admitir-inscritos');
+    Route::get('admitir', [AdmissaoController::class, 'admitirCandidatos'])->name('admitir-inscritos')->middleware(['inscriCheck']);
 
     // Editar inscrito
-    Route::get('editar-candidato/{candidato}/editar', [InscricaoController::class, 'edit'])->name('inscricao-edit');
-    Route::put('editar-candidato/{candidato}', [InscricaoController::class, 'update'])->name('inscricao-update');
+    Route::get('editar-candidato/{candidato}/editar', [InscricaoController::class, 'edit'])->name('inscricao-edit')->middleware(['inscriCheck']);
+    Route::put('editar-candidato/{candidato}', [InscricaoController::class, 'update'])->name('inscricao-update')->middleware(['inscriCheck']);
 
     Route::get('recibo', function () {
             return view('recibo/recibo-incricao');
@@ -200,13 +200,8 @@ Route::prefix('turma')->middleware(['auth','active.session','checkcargo'])->grou
     /* Criar turma*/
     Route::get('criar-turma', [TurmaController::class, 'createTurma'])->name('turma-create');
     Route::post('criar-turma', [TurmaController::class, 'storeTurma'])->name('turma-store');
-
-
-
-    /*Trumas */
-    Route::get('turmas', function () {
-        return view('turma/turmas');
-    });
+     /* Criar turma*/
+    Route::get('turmas', [TurmaController::class, 'turmas'])->name('turmas');
 
 });
 /**<!--Fim Rotas turma--> */
@@ -283,7 +278,8 @@ Route::prefix('ficha-biog')->middleware(['auth','active.session','checkcargo'])-
  */
 Route::prefix('processo')->middleware(['auth','active.session'])->group(function(){
     Route::get('processos',[ProcessoController::class, 'index'])->name('processo.consultar');
-    Route::delete('{candidato_id}',[ProcessoController::class, 'destroy'])->where('candidato_id', '[0-9]+')->name('processo.deletar');
+    Route::get('Visual-processo/{aluno_id}', [ProcessoController::class, 'visualizar'])->name('visual-processo');
+    Route::delete('{aluno_id}',[ProcessoController::class, 'destroy'])->where('aluno_id', '[0-9]+')->name('processo.deletar');
 });
 
 /******************************************
@@ -357,6 +353,11 @@ Route::prefix('calend-prova')->group(function(){
  * Rotas da Assiduidade de Aluno
  */
 
+ /*ERRO Avaliação de Aluno*/
+Route::get('erroassid',  function () {
+    return view('assiduid-aluno/erroassid.blade');
+});
+
 /* Assiduidade de alunos*/
 Route::get('/assiduidade-aluno', [AssiduidadeAlunoController::class, 'index'])->name('assiduidade');
 Route::post('/assiduidade-aluno/marcar-falta/{aluno_id}/{disciplina_id}/{turma_id}/{professor_disciplina_id}', [AssiduidadeAlunoController::class, 'store'])->name('marcar.falta');
@@ -393,7 +394,7 @@ Route::get('edit_exame',  function () {
 /*ERRO Avaliação de Aluno*/
 Route::get('erroavaliar',  function () {
     return view('avaliac-aluno/erroaval');
-});
+})->name('erroavaliar');
 
 /*Recurso de Aluno*/
 Route::get('recurso_aluno',  function () {

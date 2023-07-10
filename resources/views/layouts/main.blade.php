@@ -56,6 +56,19 @@
 
     @endphp
 
+    @if(session()->has('Erro'))
+    <div class="col" style="display: flex; justify-content: center; align-items: center; padding-top: 70px;">
+        
+      <br>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <i class="bi bi-exclamation-octagon me-1"></i>
+      {{session('Erro')}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    </div>
+    
+    @endif
+
     @yield('conteudo')
 
     @include('layouts.footer')
@@ -79,6 +92,7 @@
   <script src={{{URL::asset("js/paineis/perfil/perfil.js")}}}></script>
   <script src={{{URL::asset("js/paineis/ano-lectivo/criar-ano-lectivo.js")}}}></script>
   <script src={{{URL::asset("js/paineis/professor/professor.js")}}}></script>
+  <script src={{{URL::asset("js/paineis/professor/validacoes-professor.js")}}}></script>
   <script src={{{URL::asset("js/paineis/letrasc.js")}}}></script>
   <script src={{{URL::asset("js/paineis/registrar-aluno/registrar-aluno.js")}}}></script>
   <script src={{{URL::asset("js/paineis/curso/curso.js")}}}></script>

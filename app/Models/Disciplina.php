@@ -46,5 +46,9 @@ class Disciplina extends Model
     {
         return $this->belongsToMany(Classe::class, 'classe_disciplina' , 'disciplina_id' , 'classe_id');
     }
+
+    public function Media(){
+        return $this->hasMany(Media::class,'media_id');
+    }
 }
  

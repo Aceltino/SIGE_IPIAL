@@ -14,6 +14,10 @@ use function PHPUnit\Framework\isEmpty;
 
 class TurmaController extends Controller
 {
+
+    public function turmas(){
+        return view('turma.turmas');
+    }
     public function createTurma()
     {
         $vagas = AlunoTurmaController::pegarVagasTurno();

@@ -44,17 +44,18 @@
           </tr>
       </thead>
       <tbody>
-        @foreach($candidatos as $candidato)
+        @foreach($alunos as $aluno)
           <tr  style=" text-align: center;">
-          <th scope="row">{{ $candidato->pessoa->num_bi }}</th>
-          <td>{{ $candidato->pessoa->nome_completo }}</td>
-          <td>{{ $candidato->escola->num_processo }}</td>
-          <td>{{ $candidato->escola->turma_aluno }}</td>
-          <td>{{ $candidato->cursoAdmitido }}</td>
-          <td>{{ $candidato->escola->turno }}</td>
+          <th scope="row">{{ $aluno->candidato->pessoa->num_bi }}</th>
+          <td>{{ $aluno->candidato->pessoa->nome_completo }}</td>
+          <td>{{ $aluno->aluno_id }}</td>
+          @foreach($aluno->anoturma as $anoturm)
+          <td>{{ $anoturm->turma->nome_turma }}</td>
+          <td>{{ $aluno->candidato->cursoAdmitido }}</td>
+          <td>{{ $aluno->candidato->escola->turno }}</td>
           <td>
-          <a href="#" class="btn btn-cor-sg-a" data-bs-toggle="modal" data-bs-target="#ExtralargeModal">Ver Processo</a>
-          <form method="POST" action="{{ route('processo.deletar',['candidato_id' => $candidato->candidato_id ] )}}">
+          <a href="{{ route('visual-processo',['aluno_id' => $aluno->aluno_id ] )}}" class="btn btn-cor-sg-a">Ver Processo</a>
+          <form method="POST" action="{{ route('processo.deletar',['aluno_id' => $aluno->aluno_id ] )}}">
             @csrf
             @method('delete')
             <button class="bi bi-trash-fill" style="border: none; background: none;"></button>
@@ -62,6 +63,7 @@
           <i ></i>
           </td>
           </tr>
+          @endforeach
         @endforeach  
       </tbody>
     </table>
