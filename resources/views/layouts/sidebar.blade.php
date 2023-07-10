@@ -126,7 +126,7 @@
           </a>
         </li>
         <li>
-          <a href="turma/turmas">
+          <a href="{{route('turmas')}}">
             <i class="bi bi-circle"></i><span>Turmas</span>
           </a>
         </li>

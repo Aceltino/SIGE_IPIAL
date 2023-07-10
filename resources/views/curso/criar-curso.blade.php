@@ -7,11 +7,17 @@
 @if (session()->has('erro'))
 <div class="alert alert-danger">
     {{session('erro')}}
+    <button class="botaofecharerro">
+        <i class="bi bi-x"></i>
+        </button>
 </div>
 @endif
 @if (session()->has('sucesso'))
 <div class="alert alert-success">
     {{session('sucesso')}}
+    <button class="botaofechasucesso">
+        <i class="bi bi-x"></i>
+      </button>
 </div>
 @endif
     <form id="regFormh" action="{{route('cadastrar.curso')}}" class="formulario-layout" method="POST">
