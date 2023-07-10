@@ -71,8 +71,8 @@ class InscricaoUpdateRequest extends FormRequest
     {
         return [
             '*.required'=>'Todos os campos devem ser preenchidos',
-            '*.string'=>'Há campos com preenchimento obrigatorio de apenas letras e não número, fique mais atento.',
-            '*.numeric'=>'Há campos com preenchimento obrigatorio de apenas numeros e não letras, fique mais atento.',
+            '*.string'=>'Há campos com preenchimento obrigatorio de apenas letras e não número.',
+            '*.numeric'=>'Há campos com preenchimento obrigatorio de apenas numeros e não letras.',
 
             //Formulario do candidato
             'nome_pai_cand.max'=>'O nome não deve ter mais de 100 letras.',
