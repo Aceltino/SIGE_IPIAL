@@ -82,7 +82,7 @@ class MiniPautaController extends Controller
         $not = $notas;
         foreach ($notas as $nota) {
             $dadosNotaAluno[] = [
-                'nota' => $nota,
+                'nota' => $nota, 
                 'aluno' => $nota->aluno_id,
                 'aluno_info' => $nota->aluno->candidato->pessoa->nome_completo,
                 'disciplina' => $nota->disciplina,
