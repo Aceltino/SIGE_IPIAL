@@ -26,12 +26,9 @@
               <h1>Avaliação de Aluno</h1>
           </div>
 
-<<<<<<< HEAD
           
 
         
-=======
->>>>>>> be5f78931093e31749b2b3ab352c86f986e4c27b
 
 
           <div class="col-lg-2">
@@ -42,11 +39,7 @@
             </select>
           </div>
 
-<<<<<<< HEAD
           
-=======
-
->>>>>>> be5f78931093e31749b2b3ab352c86f986e4c27b
 
 
           <div class="col-lg-2">
@@ -59,10 +52,7 @@
             </select>
           </div>
 
-<<<<<<< HEAD
           
-=======
->>>>>>> be5f78931093e31749b2b3ab352c86f986e4c27b
 
 
           <div class="col-lg-2">
@@ -144,10 +134,6 @@
                         <td style="color: rgb(10, 10, 255)">{{$valor3['exame']}}</td>
                         @endif
 
-<<<<<<< HEAD
-=======
-
->>>>>>> be5f78931093e31749b2b3ab352c86f986e4c27b
                         <td style="text-align: center">
                         <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}" >Avaliar aluno</a>
                         </td>
