@@ -148,11 +148,13 @@
         <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT3</span></th>
         <th class="c-tab-amarelo coluna-tab-p"><span class="t-vert maisculo-p">CA</span></th>
         <th class="coluna-tab-p" colspan="2"><span class="t-verst-falta-aluno-p maisculo-p">FALTAS</span></th>
+
         <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT1</span></th>
         <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT2</span></th>
         <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT3</span></th>
         <th class="c-tab-amarelo coluna-tab-p"><span class="t-vert maisculo-p">CA</span></th>
         <th class="coluna-tab-p" colspan="2"><span class="t-verts-falta-aluno-p maisculo-p">FALTAS</span></th>
+        
         <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT1</span></th>
         <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT2</span></th>
         <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT3</span></th>
@@ -175,27 +177,20 @@
                 <span class="num-proc-p">{{$aluno->aluno_id}}</span>
             </td>     
             
-            @foreach ($notas as $item)
-                
-                @if (!empty($item[0]))
+          
+            <td class="nota coluna-tab-p"><span class="nota-neg">9</span></td>
+            <td class="nota coluna-tab-p"><span class="nota-neg">4</span></td>
+            <td class="nota coluna-tab-p"><span class="nota-pos">14</span></td>
+            <td class="nota c-tab-amarelo coluna-tab-p"><span class="nota-pos">15</span></td>
+            <td class="nota coluna-tab-p"><span class="nota-pos"></span></td>
 
-                    <td class="nota coluna-tab-p"><span class="nota-pos">{{$item[0]->nota_aluno}}</span></td>
-                    <td class="nota coluna-tab-p"><span class="nota-neg">{{$item[0]->nota_aluno}}</span></td>
-                    <td class="nota coluna-tab-p"><span class="nota-neg">{{$item[0]->nota_aluno}}</span></td>
-                    <td class="nota c-tab-amarelo coluna-tab-p"><span class="nota-pos">{{$item[0]->nota_aluno}}</span></td>
-                    <td class="nota coluna-tab-p"><span class="nota-pos"></span></td>
-                    <td class="nota c-tab-sinza-esq coluna-tab-p">
-                        <span>
-                           {{-- Faltas --}}
-                        </span>
-                    </td>
-                @else
-                    <td colspan="6">S/N</td>
-                @endif
+            <td class="nota c-tab-sinza-esq coluna-tab-p">
+                <span>
                 
-                
-            @endforeach
+                </span>
+            </td>
 
+         
             <td class="nota coluna-tab-p"><span class="nota-neg">9</span></td>
             <td class="nota coluna-tab-p"><span class="nota-neg">4</span></td>
             <td class="nota coluna-tab-p"><span class="nota-pos">14</span></td>
@@ -222,9 +217,11 @@
 
             <td class="nota coluna-tab-p"><span class="nota-neg maisculo-p">RPF</span></td>
             <td class="nota coluna-tab-p"><span class="nota-neg maisculo-p">NÃO TRANSITA</span></td>
-            <td class="nota coluna-tab-p">1</td>
+            <td class="nota coluna-tab-p">5</td>
             </tr>
-            @endforeach
+
+        @endforeach
+        
             <!--Rodape da pauta-->
             <tr>
             <th colspan="3" style="padding-top: 10px;">
@@ -281,11 +278,10 @@
             <th colspan="21"></th>
             </tr>
 
-
-
             <!--Fim Rodape da pauta-->
         </tbody>
         </table>
+
         <!--Fim da pauta-->
         <br><br>
     </main>

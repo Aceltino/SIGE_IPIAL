@@ -6,6 +6,7 @@ use App\Models\{
     Aluno_turma,Aluno,User,Nota,
     AnoTurmaCood,Ano_lectivo,Disciplina,Turma,
 };
+use Symfony\Component\VarDumper\VarDumper;
 
 class PautaController extends Controller
 {   
@@ -47,10 +48,10 @@ class PautaController extends Controller
                     ->get();
     } 
 
-    public static function show($id):mixed
+    public static function show($id,$anoLectivo):mixed
     {
     
-        $turma= Turma::find($id);
+        $turma= Turma::find($id); //Busca na turma
 
         $anoTurmaCoord = AnoTurmaCood::where('turma_id', $turma->turma_id)->first();
         $turmaAluno = Aluno_turma::where('turmaAno_id', $anoTurmaCoord->turmaAno_id)->get();
@@ -68,37 +69,59 @@ class PautaController extends Controller
 
         //Combinei as duas coleções de disciplinas(Tecnicas e Gerais) em uma única variável            
         $disciplinasAll= $disciplinaGerais->concat($disciplinaEspecificas)->all();
-        foreach ($disciplinasAll as $value) {
-           $disciplinas[]=$value;
-        } 
-      
-        // dd($disciplinas[2]["nome_disciplina"]);
-        $disciplina_1= "Língua Portuguesa";
 
+        //Busca todas as diciplinas que existem em uma determinada turma
+        foreach($disciplinasAll as $value){
+
+            $disciplinas[]=$value;//As Disciplinas
+
+            //As medias com base ao numero de alunos
+            foreach($alunos as $aluno){
+             
+                $medias[]= MediasController::getMedias($value->disciplina_id,$aluno->aluno_id, $anoLectivo); 
+            } 
+
+        }   
+        // die;
+
+         //Condição para Pauta ser Gerada
+         if ( (count($turmaAluno) <= 0) && (empty($notas)) ){
+            return redirect()->back()->with('msg_sem_pauta',"Lamentamos! Esta pauta ainda não esta composta... Aguarde o lançamento das notas");
+        }
+
+        foreach ($medias as $value) { 
+
+           $mediasNotas=$value;
+            foreach ($value as $value_1) {
+                echo $value_1->disciplinas->nome_disciplina." Media= ". $value_1->nota;
+                echo "<hr>";
+            }
+        }
+        
+     
+        //Este Siclo entrega as todas as notas do aluno com base a disciplina
         foreach ($alunos as $aluno) {
             $notas[]= self::getNotaDisciplinaAluno($disciplinas[0]["nome_disciplina"],$aluno->aluno_id);  
         }
 
-        // dd($notas);
         
-       
-        if ( (count($turmaAluno) <= 0) && (empty($notas)) ){
-            return redirect()->back()->with('msg_sem_pauta',"Lamentamos! Esta pauta ainda não esta composta... Aguarde o lançamento das notas");
-        }
+        //Dados completos que vão para compor a pauta. 
         $dadosPauta= [
             'alunos' => $alunos, 
             'anoTurmaCoord' => $anoTurmaCoord, 
             'notas'=>$notas,
             'dadosAssinantes'=>$dadosAssinantes,
             'disciplinas'=>$disciplinas,
-            'turma'=>$turma,
+            'turma'=>$turma,    
+            'medias'=>$mediasNotas,
             'colspanDisciplina'=>(count($disciplinas)*6),
 
         ];
        
+        //Condições da apresentação da Pauta com base a class
         switch ($turma->classe_id){
             case 1:
-                return view('pauta.pauta-11-doc', $dadosPauta);
+                return view('pauta.pauta-10-doc', $dadosPauta);
             case 2:
                 return view('pauta.pauta-11-doc', $dadosPauta);
             case 3:
