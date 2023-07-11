@@ -7,7 +7,7 @@ $(document).ready(function () {
         lengthChange: false,
         ordering: false,
         language:{
-            
+
                 "sEmptyTable": "Nenhum registro encontrado",
                 "sInfo": "",
                 "sInfoEmpty": "",
@@ -38,7 +38,7 @@ $(document).ready(function () {
               }
           }
       ]
-        
+
     });
     // Fim de inicialização
 
@@ -49,7 +49,7 @@ $(document).ready(function () {
           side: 'bottom', // Posicionamento do tooltip
           distance: 5 // Distância entre o tooltip e o elemento
       });
-   
+
 
       $("#filtro").on("change", function() {
         var filtro = $(this).val();
@@ -76,7 +76,7 @@ $(document).ready(function () {
         }
       });
       $("#filtro3").on("change", function() {
-        var filtro3 = $(this).val(); 
+        var filtro3 = $(this).val();
         if (filtro3 === 'Todos') {
           $T.column(2).search('').draw(); // Remove a filtragem da terceira coluna
         } else {
@@ -122,7 +122,7 @@ $(document).ready(function () {
         } else {
           $T.column(8).search(filtro9).draw(); // Filtra a tabela pela Nona coluna com o valor selecionado
         }
-       
+
       });
       $("#filtro10").on("change", function() {
         var filtro10 = $(this).val();
@@ -163,7 +163,7 @@ $(document).ready(function () {
         } else {
           $T.column(13).search(filtro14).draw(); // Filtra a tabela pela Décima-quarta coluna com o valor selecionado
         }
-       
+
       });
       $("#filtro15").on("change", function() {
         var filtro15 = $(this).val();
@@ -172,16 +172,16 @@ $(document).ready(function () {
         } else {
           $T.column(14).search(filtro15).draw(); // Filtra a tabela pela Décima-quinta coluna com o valor selecionado
         }
-       
+
       });
        $("#filtro16").on("change", function() {
         var filtro16 = $(this).val();
         if (filtro16 === 'Todos') {
-          $T.column(15).search('').draw(); // Remove a filtragem da  Décima-Sexta 
+          $T.column(15).search('').draw(); // Remove a filtragem da  Décima-Sexta
         } else {
           $T.column(15).search(filtro16).draw(); // Filtra a tabela pela Décima-Sexta coluna com o valor selecionado
         }
-       
+
       });
        $("#filtro17").on("change", function() {
         var filtro17 = $(this).val();
@@ -190,19 +190,19 @@ $(document).ready(function () {
         } else {
           $T.column(16).search(filtro17).draw(); // Filtra a tabela pela Décima-Sétima coluna com o valor selecionado
         }
-       
+
       });
 
-    
+
 $(".paginate_button").addClass("paginate_button");
 $(".paginate").addClass("float-end");
 
 
 $("#pesquisa").on("keyup", function () {
    $T.search(this.value).draw();
-   
+
 });
- 
+
 });
 
 //Fim da tabela de inscrições
@@ -215,7 +215,7 @@ $(document).ready(function () {
         lengthChange: false,
         ordering: false,
         language:{
-            
+
                 "sEmptyTable": "Nenhum registro encontrado",
                 "sInfo": "",
                 "sInfoEmpty": "",
@@ -246,7 +246,7 @@ $(document).ready(function () {
               }
           }
       ]
-        
+
     });
 
         $('.ellipsis').tooltipster({
@@ -256,7 +256,7 @@ $(document).ready(function () {
           side: 'bottom', // Posicionamento do tooltip
           distance: 5 // Distância entre o tooltip e o elemento
       });
-   
+
 
       $("#filtro").on("change", function() {
         var filtro = $(this).val();
@@ -283,7 +283,7 @@ $(document).ready(function () {
         }
       });
       $("#filtro3").on("change", function() {
-        var filtro3 = $(this).val(); 
+        var filtro3 = $(this).val();
         if (filtro3 === 'Todos') {
           $T.column(2).search('').draw(); // Remove a filtragem da terceira coluna
         } else {
@@ -329,7 +329,7 @@ $(document).ready(function () {
         } else {
           $T.column(8).search(filtro9).draw(); // Filtra a tabela pela Nona coluna com o valor selecionado
         }
-       
+
       });
       $("#filtro10").on("change", function() {
         var filtro10 = $(this).val();
@@ -370,7 +370,7 @@ $(document).ready(function () {
         } else {
           $T.column(13).search(filtro14).draw(); // Filtra a tabela pela Décima-quarta coluna com o valor selecionado
         }
-       
+
       });
       $("#filtro15").on("change", function() {
         var filtro15 = $(this).val();
@@ -379,16 +379,16 @@ $(document).ready(function () {
         } else {
           $T.column(14).search(filtro15).draw(); // Filtra a tabela pela Décima-quinta coluna com o valor selecionado
         }
-       
+
       });
        $("#filtro16").on("change", function() {
         var filtro16 = $(this).val();
         if (filtro16 === 'Todos') {
-          $T.column(15).search('').draw(); // Remove a filtragem da  Décima-Sexta 
+          $T.column(15).search('').draw(); // Remove a filtragem da  Décima-Sexta
         } else {
           $T.column(15).search(filtro16).draw(); // Filtra a tabela pela Décima-Sexta coluna com o valor selecionado
         }
-       
+
       });
        $("#filtro17").on("change", function() {
         var filtro17 = $(this).val();
@@ -397,19 +397,19 @@ $(document).ready(function () {
         } else {
           $T.column(16).search(filtro17).draw(); // Filtra a tabela pela Décima-Sétima coluna com o valor selecionado
         }
-       
+
       });
 
-    
+
 $(".paginate_button").addClass("paginate_button");
 $(".paginate").addClass("float-end");
 
 
 $("#pesquisa").on("keyup", function () {
    $T.search(this.value).draw();
-   
+
 });
- 
+
 });
 
 
@@ -420,7 +420,7 @@ $(document).ready(function () {
         lengthChange: false,
         ordering: false,
         language:{
-            
+
                 "sEmptyTable": "Nenhum registro encontrado",
                 "sInfo": "",
                 "sInfoEmpty": "",
@@ -466,7 +466,7 @@ $(document).ready(function () {
       }
     });
     $("#filtro3").on("change", function() {
-      var filtro3 = $(this).val(); 
+      var filtro3 = $(this).val();
       if (filtro3 === 'Todos') {
         $T.column(2).search('').draw(); // Remove a filtragem da terceira coluna
       } else {
@@ -512,7 +512,7 @@ $(document).ready(function () {
       } else {
         $T.column(8).search(filtro9).draw(); // Filtra a tabela pela Nona coluna com o valor selecionado
       }
-     
+
     });
     $("#filtro10").on("change", function() {
       var filtro10 = $(this).val();
@@ -553,7 +553,7 @@ $(document).ready(function () {
       } else {
         $T.column(13).search(filtro14).draw(); // Filtra a tabela pela Décima-quarta coluna com o valor selecionado
       }
-     
+
     });
     $("#filtro15").on("change", function() {
       var filtro15 = $(this).val();
@@ -562,16 +562,16 @@ $(document).ready(function () {
       } else {
         $T.column(14).search(filtro15).draw(); // Filtra a tabela pela Décima-quinta coluna com o valor selecionado
       }
-     
+
     });
      $("#filtro16").on("change", function() {
       var filtro16 = $(this).val();
       if (filtro16 === 'Todos') {
-        $T.column(15).search('').draw(); // Remove a filtragem da  Décima-Sexta 
+        $T.column(15).search('').draw(); // Remove a filtragem da  Décima-Sexta
       } else {
         $T.column(15).search(filtro16).draw(); // Filtra a tabela pela Décima-Sexta coluna com o valor selecionado
       }
-     
+
     });
      $("#filtro17").on("change", function() {
       var filtro17 = $(this).val();
@@ -580,19 +580,19 @@ $(document).ready(function () {
       } else {
         $T.column(16).search(filtro17).draw(); // Filtra a tabela pela Décima-Sétima coluna com o valor selecionado
       }
-     
+
     });
 
-    
+
 $(".paginate_button").addClass("paginate_button");
 $(".paginate").addClass("float-end");
 
 
 $("#pesquisa").on("keyup", function () {
    $T.search(this.value).draw();
-   
+
 });
- 
+
 });
 
 $(document).ready(function () {
@@ -602,7 +602,7 @@ $(document).ready(function () {
         lengthChange: false,
         ordering: false,
         language:{
-            
+
                 "sEmptyTable": "Nenhum registro encontrado",
                 "sInfo": "",
                 "sInfoEmpty": "",
@@ -627,31 +627,31 @@ $(document).ready(function () {
 
     // Função para aplicar os filtros iniciais
     function applyInitialFilters() {
-      var filtro1 = getSelectedOption("filtro8");
-      var filtro2 = getSelectedOption("filtro9");
-      var filtro3 = getSelectedOption("filtro10");
+      var filtro1 = getSelectedOption("filtro9");
+      var filtro2 = getSelectedOption("filtro10");
+      var filtro3 = getSelectedOption("filtro11");
       // Márcio podes adicionar mais selects com base os numeros de selects necessários
-  
+
       // Aplicar os filtros iniciais
-      $T.column(9).search(filtro1).draw();
-      $T.column(10).search(filtro2).draw();
-      $T.column(11).search(filtro3).draw();
+      $T.column(8).search(filtro1).draw();
+      $T.column(9).search(filtro2).draw();
+      $T.column(10).search(filtro3).draw();
     }
-  
+
     // Função para obter a opção selecionada de um select e armazenar no localStorage
     function saveSelectedOption(selectId) {
       var selectedValue = $("#" + selectId).val();
       localStorage.setItem(selectId, selectedValue);
     }
-  
+
     // Função para recuperar a opção selecionada de um select do localStorage
     function getSelectedOption(selectId) {
       var selectedValue = localStorage.getItem(selectId);
       return selectedValue || ""; // Retorna uma string vazia caso não haja valor armazenado
     }
-  
+
     // Evento para salvar a opção selecionada quando um select for alterado
-    $("#filtro8, #filtro9, #filtro10").change(function() {
+    $("#filtro9, #filtro10, #filtro11").change(function() {
       var selectId = $(this).attr("id");
       saveSelectedOption(selectId);
     });
@@ -681,7 +681,7 @@ $(document).ready(function () {
       }
     });
     $("#filtro3").on("change", function() {
-      var filtro3 = $(this).val(); 
+      var filtro3 = $(this).val();
       if (filtro3 === 'Todos') {
         $T.column(2).search('').draw(); // Remove a filtragem da terceira coluna
       } else {
@@ -727,7 +727,7 @@ $(document).ready(function () {
       } else {
         $T.column(8).search(filtro9).draw(); // Filtra a tabela pela Nona coluna com o valor selecionado
       }
-      
+
     });
     $("#filtro10").on("change", function() {
       var filtro10 = $(this).val();
@@ -768,7 +768,7 @@ $(document).ready(function () {
       } else {
         $T.column(13).search(filtro14).draw(); // Filtra a tabela pela Décima-quarta coluna com o valor selecionado
       }
-      
+
     });
     $("#filtro15").on("change", function() {
       var filtro15 = $(this).val();
@@ -777,16 +777,16 @@ $(document).ready(function () {
       } else {
         $T.column(14).search(filtro15).draw(); // Filtra a tabela pela Décima-quinta coluna com o valor selecionado
       }
-      
+
     });
       $("#filtro16").on("change", function() {
       var filtro16 = $(this).val();
       if (filtro16 === 'Todos') {
-        $T.column(15).search('').draw(); // Remove a filtragem da  Décima-Sexta 
+        $T.column(15).search('').draw(); // Remove a filtragem da  Décima-Sexta
       } else {
         $T.column(15).search(filtro16).draw(); // Filtra a tabela pela Décima-Sexta coluna com o valor selecionado
       }
-      
+
     });
       $("#filtro17").on("change", function() {
       var filtro17 = $(this).val();
@@ -795,24 +795,24 @@ $(document).ready(function () {
       } else {
         $T.column(16).search(filtro17).draw(); // Filtra a tabela pela Décima-Sétima coluna com o valor selecionado
       }
-      
+
     });
 
-    
+
 $(".paginate_button").addClass("paginate_button");
 $(".paginate").addClass("float-end");
 
 // Função para Pesquisar os dados apartir da barra de pesquisas
 $("#pesquisa").on("keyup", function () {
    $T.search(this.value).draw();
-   
+
 });
 
   // Recuperar os valores dos selects do localStorage e selecionar as opções correspondentes
-  $("#filtro8").val(getSelectedOption("filtro8"));
   $("#filtro9").val(getSelectedOption("filtro9"));
   $("#filtro10").val(getSelectedOption("filtro10"));
- 
+  $("#filtro11").val(getSelectedOption("filtro11"));
+
 
 
 });
@@ -824,7 +824,7 @@ $(document).ready(function () {
         lengthChange: false,
         ordering: false,
         language:{
-            
+
                 "sEmptyTable": "Nenhum registro encontrado",
                 "sInfo": "",
                 "sInfoEmpty": "",
@@ -853,25 +853,25 @@ $(document).ready(function () {
       var filtro2 = getSelectedOption("filtro9");
       var filtro3 = getSelectedOption("filtro10");
       // Márcio podes adicionar mais selects com base os numeros de selects necessários
-  
+
       // Aplicar os filtros iniciais
       $T.column(7).search(filtro1).draw();
       $T.column(8).search(filtro2).draw();
       $T.column(9).search(filtro3).draw();
     }
-  
+
     // Função para obter a opção selecionada de um select e armazenar no localStorage
     function saveSelectedOption(selectId) {
       var selectedValue = $("#" + selectId).val();
       localStorage.setItem(selectId, selectedValue);
     }
-  
+
     // Função para recuperar a opção selecionada de um select do localStorage
     function getSelectedOption(selectId) {
       var selectedValue = localStorage.getItem(selectId);
       return selectedValue || ""; // Retorna uma string vazia caso não haja valor armazenado
     }
-  
+
     // Evento para salvar a opção selecionada quando um select for alterado
     $("#filtro8, #filtro9, #filtro10").change(function() {
       var selectId = $(this).attr("id");
@@ -903,7 +903,7 @@ $(document).ready(function () {
         }
       });
       $("#filtro3").on("change", function() {
-        var filtro3 = $(this).val(); 
+        var filtro3 = $(this).val();
         if (filtro3 === 'Todos') {
           $T.column(2).search('').draw(); // Remove a filtragem da terceira coluna
         } else {
@@ -949,7 +949,7 @@ $(document).ready(function () {
         } else {
           $T.column(8).search(filtro9).draw(); // Filtra a tabela pela Nona coluna com o valor selecionado
         }
-        
+
       });
       $("#filtro10").on("change", function() {
         var filtro10 = $(this).val();
@@ -990,7 +990,7 @@ $(document).ready(function () {
         } else {
           $T.column(13).search(filtro14).draw(); // Filtra a tabela pela Décima-quarta coluna com o valor selecionado
         }
-        
+
       });
       $("#filtro15").on("change", function() {
         var filtro15 = $(this).val();
@@ -999,16 +999,16 @@ $(document).ready(function () {
         } else {
           $T.column(14).search(filtro15).draw(); // Filtra a tabela pela Décima-quinta coluna com o valor selecionado
         }
-        
+
       });
         $("#filtro16").on("change", function() {
         var filtro16 = $(this).val();
         if (filtro16 === 'Todos') {
-          $T.column(15).search('').draw(); // Remove a filtragem da  Décima-Sexta 
+          $T.column(15).search('').draw(); // Remove a filtragem da  Décima-Sexta
         } else {
           $T.column(15).search(filtro16).draw(); // Filtra a tabela pela Décima-Sexta coluna com o valor selecionado
         }
-        
+
       });
         $("#filtro17").on("change", function() {
         var filtro17 = $(this).val();
@@ -1017,24 +1017,24 @@ $(document).ready(function () {
         } else {
           $T.column(16).search(filtro17).draw(); // Filtra a tabela pela Décima-Sétima coluna com o valor selecionado
         }
-        
+
       });
 
-    
+
 $(".paginate_button").addClass("paginate_button");
 $(".paginate").addClass("float-end");
 
 // Função para Pesquisar os dados apartir da barra de pesquisas
 $("#pesquisa").on("keyup", function () {
    $T.search(this.value).draw();
-   
+
 });
 
   // Recuperar os valores dos selects do localStorage e selecionar as opções correspondentes
   $("#filtro8").val(getSelectedOption("filtro8"));
   $("#filtro9").val(getSelectedOption("filtro9"));
   $("#filtro10").val(getSelectedOption("filtro10"));
- 
+
 
 
 });

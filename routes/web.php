@@ -280,7 +280,8 @@ Route::prefix('ficha-biog')->middleware(['auth','active.session','checkcargo'])-
  */
 Route::prefix('processo')->middleware(['auth','active.session'])->group(function(){
     Route::get('processos',[ProcessoController::class, 'index'])->name('processo.consultar');
-    Route::delete('{candidato_id}',[ProcessoController::class, 'destroy'])->where('candidato_id', '[0-9]+')->name('processo.deletar');
+    Route::get('Visual-processo/{aluno_id}', [ProcessoController::class, 'visualizar'])->name('visual-processo');
+    Route::delete('{aluno_id}',[ProcessoController::class, 'destroy'])->where('aluno_id', '[0-9]+')->name('processo.deletar');
 });
 
 /******************************************
@@ -354,6 +355,11 @@ Route::prefix('calend-prova')->group(function(){
  * Rotas da Assiduidade de Aluno
  */
 
+ /*ERRO Avaliação de Aluno*/
+Route::get('erroassid',  function () {
+    return view('assiduid-aluno/erroassid.blade');
+});
+
 /* Assiduidade de alunos*/
 Route::get('/assiduidade-aluno', [AssiduidadeAlunoController::class, 'index'])->name('assiduidade');
 Route::post('/assiduidade-aluno/marcar-falta/{aluno_id}/{disciplina_id}/{turma_id}/{professor_disciplina_id}', [AssiduidadeAlunoController::class, 'store'])->name('marcar.falta');
@@ -390,7 +396,7 @@ Route::get('edit_exame',  function () {
 /*ERRO Avaliação de Aluno*/
 Route::get('erroavaliar',  function () {
     return view('avaliac-aluno/erroaval');
-});
+})->name('erroavaliar');
 
 /*Recurso de Aluno*/
 Route::get('recurso_aluno',  function () {

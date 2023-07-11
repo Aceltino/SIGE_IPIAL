@@ -31,4 +31,7 @@ class Trimestre extends Model
     public function nota(){
         return $this->hasMany(Nota::class, 'nota_id');
     }
+    public function Media(){
+        return $this->hasMany(Media::class,'media_id');
+    }
 }

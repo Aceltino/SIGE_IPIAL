@@ -160,6 +160,53 @@
             impedirAInsercaoDaVirgulaNoInput(duracaoDoIntervaloMenorNoPeriodoDaNoite);
             impedirAInsercaoDaVirgulaNoInput(duracaoDoIntervaloMaiorNoPeriodoDaNoite);
     //Término do impedimento da inserção da vírgula
+        //Impedir mais de 2 caracteres na input
+        limitarOsCaracteresDaInput(numeroMaximoDeAlunosNasTurmas, 2);
+        //Impedir menos de 1 e mais de 55 alunos nas turmas
+        limitarOsValoresMinimosEMaximosDaInput(numeroMaximoDeAlunosNasTurmas, 1, 55);
+        //Impedir mais de 2 caracteres na input
+        limitarOsCaracteresDaInput(numeroMaximoDeSalas, 2);
+        //Impedir menos de 1 mais de 30 salas
+        limitarOsValoresMinimosEMaximosDaInput(numeroMaximoDeSalas, 1, 30);
+        //Impedir mais de 2 caracteres na input
+        limitarOsCaracteresDaInput(duracaoDoTempoDeAulaNoPeriodoDaManha, 2);
+        //Impedir menos de 1 e mais de 60 minutos de tempo de aula no período da manhã
+        limitarOsValoresMinimosEMaximosDaInput(duracaoDoTempoDeAulaNoPeriodoDaManha, 1, 60);
+        //Impedir mais de 2 caracteres na input
+        limitarOsCaracteresDaInput(duracaoDoIntervaloMenorNoPeriodoDaManha, 2);
+        //Impedir menos de 1 e mais de 10 minutos de tempo de intervalo menor no período da manhã
+        limitarOsValoresMinimosEMaximosDaInput(duracaoDoIntervaloMenorNoPeriodoDaManha, 0, 10);
+        //Impedir mais de 2 caracteres na input
+        limitarOsCaracteresDaInput(duracaoDoIntervaloMaiorNoPeriodoDaManha, 2);
+        //Impedir menos de 1 e mais de 30 minutos de tempo de intervalo maior no período da manhã
+        limitarOsValoresMinimosEMaximosDaInput(duracaoDoIntervaloMaiorNoPeriodoDaManha, 0, 30);
+        //Impedir mais de 2 caracteres na input
+        limitarOsCaracteresDaInput(duracaoDoTempoDeAulaNoPeriodoDaTarde, 2);
+        //Impedir menos de 1 e mais de 60 minutos de tempo de aula no período da tarde
+        limitarOsValoresMinimosEMaximosDaInput(duracaoDoTempoDeAulaNoPeriodoDaTarde, 1, 60);
+        //Impedir mais de 2 caracteres na input
+        limitarOsCaracteresDaInput(duracaoDoIntervaloMenorNoPeriodoDaTarde, 2);
+        //Impedir menos de 1 e mais de 10 minutos de tempo de intervalo menor no período da tarde
+        limitarOsValoresMinimosEMaximosDaInput(duracaoDoIntervaloMenorNoPeriodoDaTarde, 0, 10);
+        //Impedir mais de 2 caracteres na input
+        limitarOsCaracteresDaInput(duracaoDoIntervaloMaiorNoPeriodoDaTarde, 2);
+        //Impedir menos de 1 e mais de 30 minutos de tempo de intervalo maior no período da tarde
+        limitarOsValoresMinimosEMaximosDaInput(duracaoDoIntervaloMaiorNoPeriodoDaTarde, 0, 30);
+        //Impedir mais de 2 caracteres na input
+        limitarOsCaracteresDaInput(duracaoDoTempoDeAulaNoPeriodoDaNoite, 2);
+        //Impedir menos de 1 e mais de 60 minutos de tempo de aula no período da noite
+        limitarOsValoresMinimosEMaximosDaInput(duracaoDoTempoDeAulaNoPeriodoDaNoite, 1, 60);
+        //Impedir mais de 2 caracteres na input
+        limitarOsCaracteresDaInput(duracaoDoIntervaloMenorNoPeriodoDaNoite, 2);
+        //Impedir menos de 1 e mais de 10 minutos de tempo de intervalo menor no período da noite
+        limitarOsValoresMinimosEMaximosDaInput(duracaoDoIntervaloMenorNoPeriodoDaNoite, 0, 10);
+        //Impedir mais de 2 caracteres na input
+        limitarOsCaracteresDaInput(duracaoDoIntervaloMaiorNoPeriodoDaNoite, 2);
+        //Impedir menos de 1 e mais de 30 minutos de tempo de intervalo maior no período da noite
+        limitarOsValoresMinimosEMaximosDaInput(duracaoDoIntervaloMaiorNoPeriodoDaNoite, 0, 30);
+    //Máximos e mínimos (Number)
+
+    //Fim dos Máximos e mínimos (Number)
 //Término das definições que devem ser tomadas de imediato
 
 //Funções para retorno
@@ -465,22 +512,6 @@
         }
     });
 
-    //Ao alterar o valor da input de número máximo de alunos nas turmas
-    numeroMaximoDeAlunosNasTurmas.addEventListener("input", ()=>{
-        //Impedir mais de 2 caracteres na input
-        limitarOsCaracteresDaInput(numeroMaximoDeAlunosNasTurmas, 2);
-        //Impedir menos de 1 e mais de 55 alunos nas turmas
-        limitarOsValoresMinimosEMaximosDaInput(numeroMaximoDeAlunosNasTurmas, 1, 55);
-    });
-
-    //Ao alterar o valor da input de número máximo de salas
-    numeroMaximoDeSalas.addEventListener("input", ()=>{
-        //Impedir mais de 2 caracteres na input
-        limitarOsCaracteresDaInput(numeroMaximoDeSalas, 2);
-        //Impedir menos de 1 mais de 30 salas
-        limitarOsValoresMinimosEMaximosDaInput(numeroMaximoDeSalas, 1, 30);
-    });
-
 //Validações - Segundo step (Trimestres)
     //Ao alterar o valor da input da data de início do primeiro trimestre
     dataDeInicioDoPrimeiroTrimestre.addEventListener('input',()=>{
@@ -640,44 +671,26 @@
         }
     });
 
-    //Ao alterar o valor da input de duração do tempo de aula no período da manhã
-    duracaoDoTempoDeAulaNoPeriodoDaManha.addEventListener("input", ()=>{
-        //Impedir mais de 2 caracteres na input
-        limitarOsCaracteresDaInput(duracaoDoTempoDeAulaNoPeriodoDaManha, 2);
-        //Impedir menos de 1 e mais de 60 minutos de tempo de aula no período da manhã
-        limitarOsValoresMinimosEMaximosDaInput(duracaoDoTempoDeAulaNoPeriodoDaManha, 1, 60);
-    });
-
     //Ao alterar o valor da input de duração do tempo de intervalo menor no período da manhã
     duracaoDoIntervaloMenorNoPeriodoDaManha.addEventListener("blur", ()=>{
-        //Impedir mais de 2 caracteres na input
-        limitarOsCaracteresDaInput(duracaoDoIntervaloMenorNoPeriodoDaManha, 2);
-        //Impedir menos de 1 e mais de 10 minutos de tempo de intervalo menor no período da manhã
-        limitarOsValoresMinimosEMaximosDaInput(duracaoDoIntervaloMenorNoPeriodoDaManha, 0, 10);
-
         //O intervalo maior não pode durar menos do que o menor
-        if(duracaoDoIntervaloMaiorNoPeriodoDaManha.value <= duracaoDoIntervaloMenorNoPeriodoDaManha.value){
+        if(duracaoDoIntervaloMaiorNoPeriodoDaManha.value !== "" && (parseInt(duracaoDoIntervaloMaiorNoPeriodoDaManha.value) <= parseInt(duracaoDoIntervaloMenorNoPeriodoDaManha.value))){
             apresentarMensagemDeErro(paragrafoDeValidacaoDaDuracaoDoIntervaloMaiorNoPeriodoDaManha, "O intervalo maior tem de durar mais tempo que o menor");
             duracaoDoIntervaloMaiorNoPeriodoDaManha.value = "";
         }
-        if(duracaoDoIntervaloMaiorNoPeriodoDaManha.value > duracaoDoIntervaloMenorNoPeriodoDaManha.value){
+        if(parseInt(duracaoDoIntervaloMaiorNoPeriodoDaManha.value) > parseInt(duracaoDoIntervaloMenorNoPeriodoDaManha.value)){
             ocultarMensagemDeErro(paragrafoDeValidacaoDaDuracaoDoIntervaloMaiorNoPeriodoDaManha);
         }
     });
 
     //Ao alterar o valor da input de duração do tempo de intervalo maior no período da manhã
     duracaoDoIntervaloMaiorNoPeriodoDaManha.addEventListener("blur", ()=>{
-        //Impedir mais de 2 caracteres na input
-        limitarOsCaracteresDaInput(duracaoDoIntervaloMaiorNoPeriodoDaManha, 2);
-        //Impedir menos de 1 e mais de 30 minutos de tempo de intervalo maior no período da manhã
-        limitarOsValoresMinimosEMaximosDaInput(duracaoDoIntervaloMaiorNoPeriodoDaManha, 0, 30);
-
         //O intervalo maior não pode durar menos do que o menor
-        if(duracaoDoIntervaloMaiorNoPeriodoDaManha.value <= duracaoDoIntervaloMenorNoPeriodoDaManha.value){
+        if(duracaoDoIntervaloMenorNoPeriodoDaManha.value !== "" && duracaoDoIntervaloMaiorNoPeriodoDaManha.value <= duracaoDoIntervaloMenorNoPeriodoDaManha.value){
             apresentarMensagemDeErro(paragrafoDeValidacaoDaDuracaoDoIntervaloMaiorNoPeriodoDaManha, "O intervalo maior tem de durar mais tempo que o menor");
             duracaoDoIntervaloMaiorNoPeriodoDaManha.value = "";
         }
-        if(duracaoDoIntervaloMaiorNoPeriodoDaManha.value > duracaoDoIntervaloMenorNoPeriodoDaManha.value){
+        if(duracaoDoIntervaloMaiorNoPeriodoDaManha.value === "" || duracaoDoIntervaloMaiorNoPeriodoDaManha.value > duracaoDoIntervaloMenorNoPeriodoDaManha.value){
             ocultarMensagemDeErro(paragrafoDeValidacaoDaDuracaoDoIntervaloMaiorNoPeriodoDaManha);
         }
     });
@@ -710,21 +723,8 @@
         }
     });
 
-    //Ao alterar o valor da input de duração do tempo de aula no período da tarde
-    duracaoDoTempoDeAulaNoPeriodoDaTarde.addEventListener("input", ()=>{
-        //Impedir mais de 2 caracteres na input
-        limitarOsCaracteresDaInput(duracaoDoTempoDeAulaNoPeriodoDaTarde, 2);
-        //Impedir menos de 1 e mais de 60 minutos de tempo de aula no período da tarde
-        limitarOsValoresMinimosEMaximosDaInput(duracaoDoTempoDeAulaNoPeriodoDaTarde, 1, 60);
-    });
-
     //Ao alterar o valor da input de duração do tempo de intervalo menor no período da tarde
     duracaoDoIntervaloMenorNoPeriodoDaTarde.addEventListener("blur", ()=>{
-        //Impedir mais de 2 caracteres na input
-        limitarOsCaracteresDaInput(duracaoDoIntervaloMenorNoPeriodoDaTarde, 2);
-        //Impedir menos de 1 e mais de 10 minutos de tempo de intervalo menor no período da tarde
-        limitarOsValoresMinimosEMaximosDaInput(duracaoDoIntervaloMenorNoPeriodoDaTarde, 0, 10);
-
         //O intervalo maior não pode durar menos do que o menor
         if(duracaoDoIntervaloMaiorNoPeriodoDaTarde.value <= duracaoDoIntervaloMenorNoPeriodoDaTarde.value){
             apresentarMensagemDeErro(paragrafoDeValidacaoDaDuracaoDoIntervaloMaiorNoPeriodoDaTarde, "O intervalo maior tem de durar mais tempo que o menor");
@@ -737,11 +737,6 @@
 
     //Ao alterar o valor da input de duração do tempo de intervalo maior no período da tarde
     duracaoDoIntervaloMaiorNoPeriodoDaTarde.addEventListener("blur", ()=>{
-        //Impedir mais de 2 caracteres na input
-        limitarOsCaracteresDaInput(duracaoDoIntervaloMaiorNoPeriodoDaTarde, 2);
-        //Impedir menos de 1 e mais de 30 minutos de tempo de intervalo maior no período da tarde
-        limitarOsValoresMinimosEMaximosDaInput(duracaoDoIntervaloMaiorNoPeriodoDaTarde, 0, 30);
-
         //O intervalo maior não pode durar menos do que o menor
         if(duracaoDoIntervaloMaiorNoPeriodoDaTarde.value <= duracaoDoIntervaloMenorNoPeriodoDaTarde.value){
             apresentarMensagemDeErro(paragrafoDeValidacaoDaDuracaoDoIntervaloMaiorNoPeriodoDaTarde, "O intervalo maior tem de durar mais tempo que o menor");
@@ -779,21 +774,8 @@
         }
     });
 
-    //Ao alterar o valor da input de duração do tempo de aula no período da noite
-    duracaoDoTempoDeAulaNoPeriodoDaNoite.addEventListener("input", ()=>{
-        //Impedir mais de 2 caracteres na input
-        limitarOsCaracteresDaInput(duracaoDoTempoDeAulaNoPeriodoDaNoite, 2);
-        //Impedir menos de 1 e mais de 60 minutos de tempo de aula no período da noite
-        limitarOsValoresMinimosEMaximosDaInput(duracaoDoTempoDeAulaNoPeriodoDaNoite, 1, 60);
-    });
-
     //Ao alterar o valor da input de duração do tempo de intervalo menor no período da noite
     duracaoDoIntervaloMenorNoPeriodoDaNoite.addEventListener("blur", ()=>{
-        //Impedir mais de 2 caracteres na input
-        limitarOsCaracteresDaInput(duracaoDoIntervaloMenorNoPeriodoDaNoite, 2);
-        //Impedir menos de 1 e mais de 10 minutos de tempo de intervalo menor no período da noite
-        limitarOsValoresMinimosEMaximosDaInput(duracaoDoIntervaloMenorNoPeriodoDaNoite, 0, 10);
-
         //O intervalo maior não pode durar menos do que o menor
         if(duracaoDoIntervaloMaiorNoPeriodoDaNoite.value <= duracaoDoIntervaloMenorNoPeriodoDaNoite.value){
             apresentarMensagemDeErro(paragrafoDeValidacaoDaDuracaoDoIntervaloMaiorNoPeriodoDaNoite, "O intervalo maior tem de durar mais tempo que o menor");
@@ -806,11 +788,6 @@
 
     //Ao alterar o valor da input de duração do tempo de intervalo maior no período da noite
     duracaoDoIntervaloMaiorNoPeriodoDaNoite.addEventListener("blur", ()=>{
-        //Impedir mais de 2 caracteres na input
-        limitarOsCaracteresDaInput(duracaoDoIntervaloMaiorNoPeriodoDaNoite, 2);
-        //Impedir menos de 1 e mais de 30 minutos de tempo de intervalo maior no período da noite
-        limitarOsValoresMinimosEMaximosDaInput(duracaoDoIntervaloMaiorNoPeriodoDaNoite, 0, 30);
-
         //O intervalo maior não pode durar menos do que o menor
         if(duracaoDoIntervaloMaiorNoPeriodoDaNoite.value <= duracaoDoIntervaloMenorNoPeriodoDaNoite.value){
             apresentarMensagemDeErro(paragrafoDeValidacaoDaDuracaoDoIntervaloMaiorNoPeriodoDaNoite, "O intervalo maior tem de durar mais tempo que o menor");
