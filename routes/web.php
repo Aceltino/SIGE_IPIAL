@@ -12,6 +12,7 @@ use App\Http\Controllers\{
     DisciplinasController, AdmissaoController,
     AlunoTurmaController,
     TurmaController, CalendarioController,
+    MediasController,
 };
 
 /*
@@ -283,6 +284,7 @@ Route::prefix('processo')->middleware(['auth','active.session'])->group(function
     Route::get('Visual-processo/{aluno_id}', [ProcessoController::class, 'visualizar'])->name('visual-processo');
     Route::delete('{aluno_id}',[ProcessoController::class, 'destroy'])->where('aluno_id', '[0-9]+')->name('processo.deletar');
 });
+
 
 /******************************************
  * Rotas de pauta
