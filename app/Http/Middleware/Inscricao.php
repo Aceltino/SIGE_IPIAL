@@ -25,7 +25,7 @@ class Inscricao
         $dataAtual = Carbon::now();
         // dd($dataAtual, $dataFimIncricao, $dataInicioIncricao);
 
-        if( $dataAtual <> $dataInicioIncricao || $dataAtual <> $dataFimIncricao )
+        if( $dataAtual < $dataInicioIncricao || $dataAtual > $dataFimIncricao )
         {
             return redirect()->back()->with('Erro', 'Não está na epoca de inscrição.');
         }

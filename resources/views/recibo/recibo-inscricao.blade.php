@@ -4,6 +4,20 @@
 
 @section('conteudo')
 <main id="main" class="main" style="margin-left: 0;">
+
+@if(session()->has('Sucesso'))
+    <div class="alert alert-success no-print">
+    {{session('Sucesso')}}
+    <button class="botaofechasucesso">
+      <i class="bi bi-x"></i>
+    </button>
+    </div>
+    @endif
+
+
+
+
+
     <div class="container no-print" style="margin-top: -20px;">
         <div class="row">
             <div class="col" style="display: flex; justify-content: flex-start; align-items: center;">
@@ -25,7 +39,7 @@
                 <th rowspan="3" class="logo-reciboBLI" style="width: 100px;">
                     <span id="logo-reciboBLISS"></span>
                     <img src={{URL::asset("img/logo.png")}} width="100px" height="50px">
-                    Cod. 2020297878
+                    Cod. {{ $candidato['Id_inscricao'] }} 
                 </th>
                 <th>
                     <span class="tx-cab-mp">INSTITUTO POLITÉCNICO INDUSTRIAL Nº 1.225 - ALDA LARA</span>
@@ -40,7 +54,7 @@
                 
                 <tr>
                 <th>
-                    <span class="tx-cab-mp">Ano lectivo 2022-2023</span>
+                    <span class="tx-cab-mp">Ano lectivo {{ $candidato['Ultimo_AnoLectivo'] }} </span>
                 </th>
                 </tr>
             </thead>
@@ -50,7 +64,7 @@
                     <div style="display: flex; justify-content: flex-start; align-items: center; gap: 5px;">
                     <span>Nome</span>
                     
-                    <div style="border-bottom: 1px solid #000; width: 100%; text-align: center;"><span class="texto-azul">Sungo Afonso</span></div>
+                    <div style="border-bottom: 1px solid #000; width: 100%; text-align: center;"><span class="texto-azul">{{ $candidato['Nome'] }}</span></div>
                     </div>
                 </th>
                 </tr>
@@ -58,13 +72,11 @@
                 <th colspan="2" style="padding-bottom: 20px;">
                     <div style="display: flex; justify-content: flex-start; align-items: center; gap: 5px;">
                     <span>Data de nascimento</span>
-                    <div style="border-bottom: 1px solid #000; width: 40px; text-align: center;"><span class="texto-azul">02</span></div>/
-                    <div style="border-bottom: 1px solid #000; width: 40px; text-align: center;"><span class="texto-azul">10</span></div>/
-                    <div style="border-bottom: 1px solid #000; width: 70px; text-align: center;"><span class="texto-azul">2022</span></div>
+                    <div style="border-bottom: 1px solid #000; text-align: center;"><span class="texto-azul">{{ $funcionario['data_Nasc'] }}</span></div>
                     <span>Idade (até Dezembro de 2022):</span>
-                    <div style="border-bottom: 1px solid #000; width: 70px; text-align: center;"><span class="texto-azul">19</span></div>
+                    <div style="border-bottom: 1px solid #000; width: 70px; text-align: center;"><span class="texto-azul"> {{ $candidato['Idade'] }}</span></div>
                     <span>anos, Sexo</span>
-                    <div style="border-bottom: 1px solid #000; width: 70px; text-align: center;"><span class="texto-azul">Masculino</span></div>
+                    <div style="border-bottom: 1px solid #000; width: 70px; text-align: center;"><span class="texto-azul">{{ $candidato['Genero'] }}</span></div>
                     </div>
                 </th>
                 </tr>
@@ -73,26 +85,28 @@
                 <th colspan="2" style="padding-bottom: 20px;">
                     <div style="display: flex; justify-content: flex-start; align-items: center; gap: 5px;">
                     <span>Funcionario</span>
-                    <div style="border-bottom: 1px solid #000; width: 355px; text-align: center;"><span class="texto-azul">Mario Andre Agostinho Mauro</span></div>
+                    <div style="border-bottom: 1px solid #000; width: 355px; text-align: center;"><span class="texto-azul">{{ $funcionario['funcionario'] }}</span></div>
                     <span>Data</span>
-                    <div style="border-bottom: 1px solid #000; width: 40px; text-align: center;"><span class="texto-azul">20</span></div>/
-                    <div style="border-bottom: 1px solid #000; width: 40px; text-align: center;"><span class="texto-azul">10</span></div>/
-                    <div style="border-bottom: 1px solid #000; width: 70px; text-align: center;"><span class="texto-azul">2022</span></div>
-                    <span>DOC.IPIAL/2022</span>
+                    <div style="border-bottom: 1px solid #000; text-align: center;"><span class="texto-azul">{{ $funcionario['data_actual'] }}</span></div>
+                    <span>DOC.IPIAL/{{ $candidato['Ultimo_AnoLectivo'] }}</span>
                     </div>
                 </th>
                 </tr>
                 <tr>
                 <th colspan="2" style="padding-bottom: 20px;">
-                    <div style="display: flex; justify-content: flex-start; align-items: center; gap: 5px;">
-                    <span>1ª Opção</span>
-                    <div style="border-bottom: 1px solid #000; width: 160px; text-align: center;"><span class="texto-azul">TI</span></div>
-                    <span>2ª Opção</span>
-                    <div style="border-bottom: 1px solid #000; width: 160px; text-align: center;"><span class="texto-azul">DL</span></div>
-                    <span>3ª Opção</span>
-                    <div style="border-bottom: 1px solid #000; width: 160px; text-align: center;"><span class="texto-azul">LS</span></div>
-                    <span>4ª Opção</span><span class="texto-azul">TS</span>
-                    </div>
+                    
+                @php
+                $a = 1;
+                @endphp
+                    @foreach($candidato['Cursos'] as $cursocand)
+                    
+                        <div class="form-group col">
+                            <div style="border-bottom: 1px solid #000; text-align: center;"><span class="texto-azul"> {{$a++}}ª {{$cursocand}}</span></div>
+                         
+                        </div>
+
+                    @endforeach
+                   
                 </th>
                 </tr>
                 <tr>
@@ -107,5 +121,6 @@
     </div>
     <!--Fim recibo de inscricao-->
     <br><br>
+
 </main>
 @endsection

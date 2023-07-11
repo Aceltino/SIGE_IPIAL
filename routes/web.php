@@ -92,9 +92,11 @@ Route::prefix('inscricao')->middleware(['auth','active.session','checkcargo'])->
     Route::get('editar-candidato/{candidato}/editar', [InscricaoController::class, 'edit'])->name('inscricao-edit')->middleware(['inscriCheck']);
     Route::put('editar-candidato/{candidato}', [InscricaoController::class, 'update'])->name('inscricao-update')->middleware(['inscriCheck']);
 
-    Route::get('recibo', function () {
-            return view('recibo/recibo-incricao');
-        });
+    Route::get('recibo-candidato/{candidato}', [InscricaoController::class, 'recibo'])->name('recibo')->middleware(['inscriCheck']);
+
+    // Route::get('recibo', function () {
+    //         return view('recibo/recibo-inscricao');
+    //     });
 
     /*Editar candidato */
 
