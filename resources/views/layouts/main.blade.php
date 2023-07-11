@@ -96,6 +96,8 @@
   <script src={{{URL::asset("js/paineis/letrasc.js")}}}></script>
   <script src={{{URL::asset("js/paineis/registrar-aluno/registrar-aluno.js")}}}></script>
   <script src={{{URL::asset("js/paineis/curso/curso.js")}}}></script>
+  <script src={{{URL::asset("js/paineis/avalicao/inputnota.js")}}}></script>
+
 
   
 

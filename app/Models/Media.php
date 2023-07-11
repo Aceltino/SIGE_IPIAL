@@ -22,6 +22,7 @@ class Media extends Model
         'nota',
         'trimestre_id',
         'aluno_id',
+        'ano_lectivo_id',
         'disciplina_id',
     ];
 
