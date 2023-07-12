@@ -182,10 +182,22 @@
           </div>
 
           <div class="col-lg-3 col-md-6 mt-5">
-            <div class="count-box count-box-escuro">
-              <i class="bi bi-people"></i>
-              <span class="total">500</span>
-              <p>CURSOS</p>
+            <div class="figura-card">
+              <div class="count-box count-box-escuro">
+                <i class="bi bi-people"></i>
+                <span class="total">500</span>
+                <p>CURSOS</p>
+              </div>
+
+              <div class="card-legenda">
+                <ul>
+                  <li>T.I</li>
+                  <li>D.P</li>
+                  <li>T.E.I.E</li>
+                  <li>E.T</li>
+                </ul>
+              </div>
+
             </div>
           </div>
           

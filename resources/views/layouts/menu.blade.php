@@ -40,30 +40,29 @@
 
 			<li class="nav-item">
 				<span class="nav-link nav-icon muda-modo">
-				<input type="checkbox" class="btn-mudar-tema" name="mudar-modo" id="mudar-modo">
-				<label for="mudar-modo">
+				<input type="checkbox" class="btn-mudar-tema" name="change-theme" id="change-theme">
+				<label for="change-theme">
 					<i class="sol bi bi-toggle-on"></i>
 					<i class="lua bi bi-toggle-off"></i>
 				</label>
 				</span>
-			</li>
-
+          	</li>
 			<li class="nav-item">
 				<button type="button" class="btn nav-link nav-icon" data-bs-toggle="modal" data-bs-target="#basicModal">
-					<i class="bi bi-box-arrow-right"></i>
+					<i class="bi bi-box-arrow-right"  style="color: red; font-weight: 800;"></i>
 				</button>
 
         	</li>
 
 
-			<div class="modal fade" id="basicModal" tabindex="-1" data-bs-backdrop="false" style="color: #000;">
+			<div class="modal fade" id="basicModal" tabindex="-1" data-bs-backdrop="false">
     			<div class="modal-dialog">
       				<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 
-						<div class="modal-body" style="color: #000;">
+						<div class="modal-body">
 							<strong>Tem a certeza de que pretende sair do sistema?</strong>
                     	</div>
 
