@@ -132,6 +132,25 @@
         </li>
       </ul>
     </li>
+    
+    <!-- /	Nav Area de formação-->
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#curso-nav" data-bs-toggle="collapse" href="#">
+        <i  class="bi bi-ui-radios-grid"></i><span>Área de formação</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="curso-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="criar-areaformacao">
+            <i class="bi bi-circle"></i><span>Cadastrar</span>
+          </a>
+        </li>
+        <li>
+          <a href="areaformacao">
+            <i class="bi bi-circle"></i><span>Área de formação</span>
+          </a>
+        </li>
+      </ul>
+    </li>
 
     <!-- /	Nav Curso-->
     <li class="nav-item">
