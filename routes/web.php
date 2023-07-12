@@ -12,6 +12,7 @@ use App\Http\Controllers\{
     DisciplinasController, AdmissaoController,
     AlunoTurmaController,
     TurmaController, CalendarioController,
+    MediasController,
 };
 
 /*
@@ -92,9 +93,11 @@ Route::prefix('inscricao')->middleware(['auth','active.session','checkcargo'])->
     Route::get('editar-candidato/{candidato}/editar', [InscricaoController::class, 'edit'])->name('inscricao-edit')->middleware(['inscriCheck']);
     Route::put('editar-candidato/{candidato}', [InscricaoController::class, 'update'])->name('inscricao-update')->middleware(['inscriCheck']);
 
-    Route::get('recibo', function () {
-            return view('recibo/recibo-incricao');
-        });
+    Route::get('recibo-candidato/{candidato}', [InscricaoController::class, 'recibo'])->name('recibo')->middleware(['inscriCheck']);
+
+    // Route::get('recibo', function () {
+    //         return view('recibo/recibo-inscricao');
+    //     });
 
     /*Editar candidato */
 
@@ -278,8 +281,10 @@ Route::prefix('ficha-biog')->middleware(['auth','active.session','checkcargo'])-
  */
 Route::prefix('processo')->middleware(['auth','active.session'])->group(function(){
     Route::get('processos',[ProcessoController::class, 'index'])->name('processo.consultar');
+    Route::get('Visual-processo/{aluno_id}', [ProcessoController::class, 'visualizar'])->name('visual-processo');
     Route::delete('{aluno_id}',[ProcessoController::class, 'destroy'])->where('aluno_id', '[0-9]+')->name('processo.deletar');
 });
+
 
 /******************************************
  * Rotas de pauta
@@ -300,7 +305,7 @@ Route::prefix('mini-pauta')->middleware(['auth','active.session'])->group(functi
     Route::get('mini-pauta', [MiniPautaController::class, 'index'])->name('mini-pauta');
     Route::get('ver-mini-pauta', [MiniPautaController::class, 'show'])->name('mini-pauta.show');
     Route::get('{turma}/{curso}', [MiniPautaController::class, 'turma'])->name('mini-pauta.turma');
-    Route::get('ver/{turma_id}/{prof_id}/{disciplina_id}', [MiniPautaController::class, 'view'])->name('mini-pauta.view');
+    Route::get('ver/{turma_id}/{disciplina_id}', [MiniPautaController::class, 'view'])->name('mini-pauta.view');
 });
 
 /******************************************

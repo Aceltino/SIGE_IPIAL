@@ -105,7 +105,7 @@
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
 
-            <div class="provisorio">
+            <div class="provisorio"> 
               <div class="card-icon-modal rounded-circle d-flex align-items-center justify-content-flex-end">
 
                 <i class="bi bi-x-lg" data-bs-toggle="modal" aria-label="Close" data-bs-dismiss="modal"></i>

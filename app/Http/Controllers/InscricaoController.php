@@ -8,7 +8,10 @@ use App\Http\Requests\InscricaoRequest;
 use App\Http\Requests\InscricaoUpdateRequest;
 use App\Models\Candidato;
 use App\Models\Curso;
+use App\Models\Pessoa;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 // use Illuminate\Support\Facades\Validator;
@@ -19,10 +22,19 @@ class InscricaoController extends Controller
 
     public function index(){
         $cursos = Curso::all();
+        if(!$cursos)
+        {
+            return view('inscricao/inscricoes');
+        }
         return view('inscricao/inscricoes',compact('cursos'));
     }
-    public function create(){
+    public function create()
+    {
         $cursos = Curso::all();
+        if(!$cursos)
+        {
+            return view('inscricao/inscricoes');
+        }
         return view('inscricao/inscr-candidato',compact('cursos'));
     }
 
@@ -122,10 +134,9 @@ class InscricaoController extends Controller
             $msg="Lamentamos! Dados não cadastrado, um candidato não pode escolher o mesmo curso mais de uma vez. ...";
             return redirect()->back()->with("ErroCurso",$msg);
         }
-
-        $msg="Candidato inscrito com sucesso!";
-        return redirect()->back()->with("Sucesso",$msg);
-
+        $msg = "Candidato inscrito com sucesso! Pegue o recibo <a href='".route('recibo', $candidato->candidato_id)."' target='_blank' >aqui</a>.";
+        return redirect()->route('inscricao-store')->with("Sucesso", $msg);
+        
     }
 
     public function edit($id)
@@ -133,6 +144,31 @@ class InscricaoController extends Controller
         $candidato = CandidatoController::pegarDadosCandidato($id);
         return view('inscricao.edit-candidato',[
             'candidato' => $candidato[0]
+        ]);
+    }
+
+    public function recibo($id)
+    {
+        $candidato = CandidatoController::pegarDadosCandidato($id);
+
+        $dataAtual = Carbon::now();
+        $dataNascimento = Carbon::parse($candidato[0]['Data_Nascimento']);
+        $dataNascimento = $dataNascimento->format('d-m-Y');
+        $dataAtual = $dataAtual->format('d-m-Y');
+
+        $dadosFunc = 
+        [
+            'funcionario' =>  Auth::user()->belongPessoa->nome_completo,
+            'data_Nasc' => $dataNascimento ,
+            'data_actual' => $dataAtual ,
+
+        ];
+
+        // dd($dadosFunc, $candidato[0]);
+        // dd($candidato[0]);
+        return view('recibo.recibo-inscricao',[
+            'candidato' => $candidato[0],
+            'funcionario' => $dadosFunc,
         ]);
     }
 

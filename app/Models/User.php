@@ -77,4 +77,5 @@ class User extends Model implements Authenticatable,CanResetPassword
         return $this->hasMany(Active_session::class,'active_session_id');
     }
 
+    
 }

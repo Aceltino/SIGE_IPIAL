@@ -69,7 +69,7 @@
   
    
     <!-- /  Inicio da tabela de inscritos -->
-    <table  id="Pauta" class="table table-striped" style="margin-top: 20px;" >
+    <table  id="Pauta" class="table table-custom table-escuro" style="margin-top: 20px;" >
       <thead  style=" text-align: center;">
           <tr>
           <th scope="col">ANO</th>
@@ -90,7 +90,7 @@
             <td>{{ $item['turma']->belongerCurso->nome_curso}}</td>
             <td>{{ $item['turma']->turno->nome_turno }}</td>
             <td>
-                <a href={{ route('pauta.show', ['id'=> $item['turma']->turma_id, 'ano'=>$item['anoLectivo']->ano_lectivo] ) }} class="btn btn-cor-sg-a">Ver Pauta</a>
+                <a href={{ route('pauta.show', ['id'=> $item['turma']->turma_id, 'ano'=>$item['anoLectivo']->ano_lectivo_id] ) }} class="btn btn-cor-sg-a">Ver Pauta</a>
             </td>
         </tr>
         @endforeach

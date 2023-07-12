@@ -15,8 +15,22 @@ class ProcessoController extends Controller
         $alunos = $this->buscarAluno();
         return view('processo.processos', ['alunos'=>$alunos ]) ;
     } 
+    public function visualizar($aluno_id)
+    {
+        $alunos = Aluno::where('aluno_id',$aluno_id)->first();
+        $alunos = $this->buscarAluno();
+        if(!empty($alunos))
+        {
+            return view('processo.doc-processo', ['alunos' => $alunos ]) ;
+        }
+        else
+        {
+            return view('processo.processos', ['alunos'=>$alunos ]) ;
+        }
+    }
     public function destroy($aluno_id)
     {
+       
         Aluno::where('aluno_id',$aluno_id)->delete();
         return redirect()->route('processo.consultar');
 
@@ -33,8 +47,11 @@ class ProcessoController extends Controller
                     $dadosAluno = [
                         'Nome' => $aluno->candidato->pessoa->nome_completo,
                         'Processo' => $aluno->aluno_id,
+                        'telefone' =>$aluno->candidato->pessoa->telefone,
                         'turma' => $anoTurma->turma->nome_turma,
-                        'turno' => $aluno->candidato->escola->turno,
+                        'turno' => $anoTurma->turma->turno->nome_turno,
+                        'Ano lectivo' =>$anoTurma->ano_lectivo->ano_lectivo,
+                        'Numero' => $anoTurma->pivot->numero_aluno,
                         'Nome do Pai' =>$aluno->candidato->nome_pai_cand,
                         'Nome da mãe' =>$aluno->candidato->nome_mae_cand,
                         'Data de nascimento' =>$aluno->candidato->pessoa->data_nascimento,
@@ -48,4 +65,5 @@ class ProcessoController extends Controller
         }
         return $alunos;
     }
+   
 }

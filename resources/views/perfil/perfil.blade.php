@@ -201,7 +201,7 @@
                    <div class="row mb-3">
                      <label for="nomeComp" class="col-md-4 col-lg-4 col-form-label">Nome Completo</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="letra" name="nome_completo_update" value="{{ Auth::user()->belongPessoa->nome_completo }}" required>
+                       <input type="text" id="letra" name="nome_completo_update" value="{{ Auth::user()->belongPessoa->nome_completo }}" required>
                        <div class="invalid-feedback">Por favor insere o nome completo!</div>
                      </div>
                    </div>
@@ -225,7 +225,7 @@
                    <div class="row mb-3">
                      <label for="dtNascimento" class="col-md-4 col-lg-4 col-form-label">Data de nascimento</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="date" class="form-control" id="datainput10" name="data_nascimento_update" value="{{ Auth::user()->belongPessoa->data_nascimento }}" required>
+                       <input type="date" id="datainput10" name="data_nascimento_update" value="{{ Auth::user()->belongPessoa->data_nascimento }}" required>
                        <div id="mensagem10" style="color: red;"></div>
                        <div class="invalid-feedback">Por favor insere uma data!</div>
                      </div>
@@ -237,8 +237,9 @@
                    <div class="row mb-3">
                      <label for="nBI" class="col-md-4 col-lg-4 col-form-label">Número do BI</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="bi_input" name="num_bi_update" value="{{ Auth::user()->belongPessoa->num_bi }}" oninput="this.className = ''" maxlength="14">
+                       <input type="text" id="bi_input" name="num_bi_update" value="{{ Auth::user()->belongPessoa->num_bi }}" oninput="this.className = ''" maxlength="14" required>
                        <div id="mensagem1" style="color: red;"></div>
+                       <div class="invalid-feedback">Por favor insere um nº de identificação!</div>
                      </div>
                    </div>
                    @error('num_bi_update')
@@ -248,7 +249,7 @@
                    <div class="row mb-3">
                      <label for="Email" class="col-md-4 col-lg-4 col-form-label">E-mail</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="Email" name="email_update" value="{{ Auth::user()->email }}" required>
+                       <input type="text" id="Email" name="email_update" value="{{ Auth::user()->email }}" required>
                        <div class="invalid-feedback">Por favor insere um e-mail!</div>
                      </div>
                    </div>
@@ -260,8 +261,9 @@
                    <div class="row mb-3">
                      <label for="Telefone1" class="col-md-4 col-lg-4 col-form-label">Número telefone</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="telefoneinput" name="telefone_update" value="{{ Auth::user()->pessoa->telefone }}" oninput="this.className = ''">
+                       <input type="text" id="telefoneinput" name="telefone_update" value="{{ Auth::user()->pessoa->telefone }}" oninput="this.className = ''" required>
                        <div class="mensagem-erro" style="width: 100%;"></div>
+                       <div class="invalid-feedback">Por favor insere um nº de telefone!</div>
                      </div>
                    </div>
                    @error('telefone_update')
@@ -271,7 +273,7 @@
                    <div class="row mb-3">
                      <label for="Cargo" class="col-md-4 col-lg-4 col-form-label">Cargo</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" class="form-control" id="Cargo" disabled value="{{ Auth::user()->cargo_usuario }}">
+                       <input type="text" id="Cargo" disabled readonly="true" value="{{ Auth::user()->cargo_usuario }}">
                      </div>
                    </div>
                    
@@ -280,7 +282,7 @@
                      <div class="col-md-8 col-lg-8">
                         <div class="row">
                           <div class="col-lg-3">
-                            <input type="text" class="form-control" name="municipio_update" value="{{ isset($endereco->municipio) ? $endereco->municipio : '' }}" placeholder="Municipio" required>
+                            <input type="text" name="municipio_update" value="{{ isset($endereco->municipio) ? $endereco->municipio : '' }}" placeholder="Municipio" required>
                             <div class="invalid-feedback">Por favor insere um Municipio!</div>
                           </div>
                           @error('municipio_update')
@@ -288,7 +290,7 @@
                           @enderror
 
                           <div class="col-lg-3">
-                            <input type="text" class="form-control" name="bairro_update" value="{{ isset($endereco->bairro) ? $endereco->bairro : '' }}" placeholder="Bairro" required>
+                            <input type="text" name="bairro_update" value="{{ isset($endereco->bairro) ? $endereco->bairro : '' }}" placeholder="Bairro" required>
                             <div class="invalid-feedback">Por favor insere um Bairro!</div>
                           </div>
                           @error('bairro_update')
@@ -296,7 +298,7 @@
                           @enderror
 
                           <div class="col-lg-3">
-                            <input type="text" class="form-control" name="zona_update" value="{{ isset($endereco->zona) ? $endereco->zona : '' }}" placeholder="Zona" required>
+                            <input type="text" name="zona_update" value="{{ isset($endereco->zona) ? $endereco->zona : '' }}" placeholder="Zona" required>
                             <div class="invalid-feedback">Por favor insere uma Zona!</div>
                           </div>
                           @error('zona_update')
@@ -304,7 +306,7 @@
                           @enderror
 
                           <div class="col-lg-3">                          
-                            <input type="number" class="form-control" name="num_casa_update" value="{{ isset($endereco->numero_casa) ? $endereco->numero_casa : '' }}" placeholder="Casa Nº" required>
+                            <input type="number" name="num_casa_update" value="{{ isset($endereco->numero_casa) ? $endereco->numero_casa : '' }}" placeholder="Casa Nº" required>
                             <div class="invalid-feedback">Por favor insere o nº da Casa!</div>
                           </div>
                           @error('num_casa_update')
