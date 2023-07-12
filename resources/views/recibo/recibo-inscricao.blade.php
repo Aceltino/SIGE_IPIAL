@@ -21,7 +21,7 @@
     <div class="container no-print" style="margin-top: -20px;">
         <div class="row">
             <div class="col" style="display: flex; justify-content: flex-start; align-items: center;">
-                <a href="{{route('inscricao-view')}}"><i class="voltar bi bi-arrow-left-circle-fill"></i></a>
+                <a href="{{route('inscricao-index')}}"><i class="voltar bi bi-arrow-left-circle-fill"></i></a>
                 <h1>Recibo de Inscrição</h1>      
             </div>
         

@@ -42,11 +42,12 @@
         <h1>Credenciais de Acesso - SIGE-IPIAL</h1>
         <p>Olá,</p>
         <p>Seu cadastro foi realizado com sucesso no SIGE-IPIAL. Abaixo estão suas credenciais de acesso:</p>
-        <p>Nome de usuário: {{ $nome_usuario }}</p>
-        <p>Senha: {{ $senha }}</p>
+        <p><strong>Nome de usuário:</strong> {{ $nome_usuario }}</p>
+        <p><strong>Senha:</strong> {{ $senha }}</p>
         <p><strong>Recomendamos que você altere sua senha assim que fizer o primeiro login.</strong></p>
         @if(isset($cargo))
-        <p>A sua conta estará activa na seguinte data: <strong> {{ !empty($dataMatri) ? $dataMatri : 'Hoje (' . date('d/m/Y') . ')' }}</strong></p>
+        <p>Recomendamos também que você atualize o seu endereço assim que fizer o primeiro login.</p>
+        <p><strong>A sua conta estará activa na seguinte data:</strong>  {{ !empty($dataMatri) ? $dataMatri : 'Hoje (' . date('d/m/Y') . ')' }}</p>
         @endif
         <p>Para acessar o sistema, clique no botão abaixo:</p>
         <p>

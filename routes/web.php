@@ -27,7 +27,7 @@ use App\Http\Controllers\{
 */
 
 // Rota apenas de teste... Não apague -> ACELTINO
-    Route::get('validar-aluno', [AlunoTurmaController::class, 'pegarTurmas']);
+    Route::get('validar-aluno', [AlunoController::class, 'pegarDadosMatriculados']);
 // Route::get('validar-aluno', [AlunoController::class, 'situacaoAluno']);
 
 
@@ -87,13 +87,13 @@ Route::prefix('inscricao')->middleware(['auth','active.session','checkcargo'])->
     Route::post('inscrever', [InscricaoController::class, 'store'])->name('inscricao-store')->middleware(['inscriCheck']);
 
     // Admitir inscrito
-    Route::get('admitir', [AdmissaoController::class, 'admitirCandidatos'])->name('admitir-inscritos')->middleware(['inscriCheck']);
+    Route::get('admitir', [AdmissaoController::class, 'admitirCandidatos'])->name('admitir-inscritos');
 
     // Editar inscrito
     Route::get('editar-candidato/{candidato}/editar', [InscricaoController::class, 'edit'])->name('inscricao-edit')->middleware(['inscriCheck']);
     Route::put('editar-candidato/{candidato}', [InscricaoController::class, 'update'])->name('inscricao-update')->middleware(['inscriCheck']);
 
-    Route::get('recibo-candidato/{candidato}', [InscricaoController::class, 'recibo'])->name('recibo')->middleware(['inscriCheck']);
+    Route::get('recibo-candidato/{candidato}', [InscricaoController::class, 'recibo'])->name('recibo');
 
     // Route::get('recibo', function () {
     //         return view('recibo/recibo-inscricao');
@@ -143,9 +143,9 @@ Route::prefix('matricula')->middleware(['auth','active.session','checkcargo'])->
     // Atribuir turma 10ª classe
     Route::get('matricula-turma',  [MatriculaController::class, 'atribuirTurma'])->name('matricula-validarTurma');
 
-    /*Matricular aluno */
-    Route::get('matricular-aluno/{candidato}',  [MatriculaController::class, 'create'])->name('matricula-view');
-    Route::post('matricular-aluno/{candidato}', [MatriculaController::class, 'store'])->name('matricula-store');
+    /*Matricular aluno */ 
+    Route::get('matricular-aluno/{candidato}',  [MatriculaController::class, 'create'])->name('matricula-view')->middleware(['matricularCheck']);
+    Route::post('matricular-aluno/{candidato}', [MatriculaController::class, 'store'])->name('matricula-store')->middleware(['matricularCheck']);
 
     /*Editar matricula */
     Route::get('editar-aluno/{aluno}/editar', [MatriculaController::class, 'edit'])->name('matricula-edit');

@@ -174,47 +174,47 @@
            @foreach ($dadosPauta['disciplinas'] as $index => $disciplina )
 
            <?php
-           foreach($dadosPauta['alunos'] as $aluno){
-
-               $mediasDisciplina = $dadosPauta['medias'];
-               if (array_key_exists($index, $mediasDisciplina)) {
-                   $media = $mediasDisciplina[$index];
-                   if (count($media) > 0) {
-                       $primeiraPosicao = $media[0]; 
-                       $mt1 = $primeiraPosicao['nota']; 
-                   } else {
-                    $mt1 = '0'; 
-                   }
-               } else {
-                $mt1 = '0'; 
-               }
-    
-               $mediasDisciplina = $dadosPauta['medias'];
-                if (array_key_exists($index, $mediasDisciplina)) {
-                    $media = $mediasDisciplina[$index];
-                    if (count($media) > 1) {
-                        $segundaPosicao = $media[1]; 
-                        $mt2= $segundaPosicao['nota']; 
-                    } else {
-                        $mt2 = '0'; 
-                    }
-                } else {
-                    $mt2 = '0'; 
-                }
+            foreach($dadosPauta['alunos'] as $aluno){
 
                 $mediasDisciplina = $dadosPauta['medias'];
                 if (array_key_exists($index, $mediasDisciplina)) {
                     $media = $mediasDisciplina[$index];
-                    if (count($media) > 2) {
-                        $segundaPosicao = $media[2]; 
-                        $mt2= $segundaPosicao['nota']; 
+                    if (count($media) > 0) {
+                        $primeiraPosicao = $media[0]; 
+                        $mt1 = $primeiraPosicao['nota']; 
+                    } else {
+                        $mt1 = '0'; 
+                    }
+                } else {
+                    $mt1 = '0'; 
+                }
+        
+                $mediasDisciplina = $dadosPauta['medias'];
+                    if (array_key_exists($index, $mediasDisciplina)) {
+                        $media = $mediasDisciplina[$index];
+                        if (count($media) > 1) {
+                            $segundaPosicao = $media[1]; 
+                            $mt2= $segundaPosicao['nota']; 
+                        } else {
+                            $mt2 = '0'; 
+                        }
+                    } else {
+                        $mt2 = '0'; 
+                    }
+
+                    $mediasDisciplina = $dadosPauta['medias'];
+                    if (array_key_exists($index, $mediasDisciplina)) {
+                        $media = $mediasDisciplina[$index];
+                        if (count($media) > 2) {
+                            $segundaPosicao = $media[2]; 
+                            $mt2= $segundaPosicao['nota']; 
+                        } else {
+                            $mt3 = '0'; 
+                        }
                     } else {
                         $mt3 = '0'; 
                     }
-                } else {
-                    $mt3 = '0'; 
-                }
-           }
+            }
            ?>
            
                       
