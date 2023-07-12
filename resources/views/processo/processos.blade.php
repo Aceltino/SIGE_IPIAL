@@ -52,7 +52,7 @@
           @foreach($aluno->anoturma as $anoturm)
           <td>{{ $anoturm->turma->nome_turma }}</td>
           <td>{{ $aluno->candidato->cursoAdmitido }}</td>
-          <td>{{ $aluno->candidato->escola->turno }}</td>
+          <td>{{ $anoturm->turma->turno->nome_turno }}</td>
           <td>
           <a href="{{ route('visual-processo',['aluno_id' => $aluno->aluno_id ] )}}" class="btn btn-cor-sg-a">Ver Processo</a>
           <form method="POST" action="{{ route('processo.deletar',['aluno_id' => $aluno->aluno_id ] )}}">

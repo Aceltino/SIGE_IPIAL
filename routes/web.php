@@ -12,6 +12,7 @@ use App\Http\Controllers\{
     DisciplinasController, AdmissaoController,
     AlunoTurmaController,
     TurmaController, CalendarioController,
+    MediasController,
 };
 
 /*
@@ -284,6 +285,7 @@ Route::prefix('processo')->middleware(['auth','active.session'])->group(function
     Route::delete('{aluno_id}',[ProcessoController::class, 'destroy'])->where('aluno_id', '[0-9]+')->name('processo.deletar');
 });
 
+
 /******************************************
  * Rotas de pauta
  */
@@ -303,7 +305,7 @@ Route::prefix('mini-pauta')->middleware(['auth','active.session'])->group(functi
     Route::get('mini-pauta', [MiniPautaController::class, 'index'])->name('mini-pauta');
     Route::get('ver-mini-pauta', [MiniPautaController::class, 'show'])->name('mini-pauta.show');
     Route::get('{turma}/{curso}', [MiniPautaController::class, 'turma'])->name('mini-pauta.turma');
-    Route::get('ver/{turma_id}/{prof_id}/{disciplina_id}', [MiniPautaController::class, 'view'])->name('mini-pauta.view');
+    Route::get('ver/{turma_id}/{disciplina_id}', [MiniPautaController::class, 'view'])->name('mini-pauta.view');
 });
 
 /******************************************

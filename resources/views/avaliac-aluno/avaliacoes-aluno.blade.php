@@ -26,6 +26,9 @@
               <h1>Avaliação de Aluno</h1>
           </div>
 
+          
+
+        
 
 
           <div class="col-lg-2">
@@ -36,7 +39,7 @@
             </select>
           </div>
 
-
+          
 
 
           <div class="col-lg-2">
@@ -49,6 +52,7 @@
             </select>
           </div>
 
+          
 
 
           <div class="col-lg-2">
@@ -91,7 +95,7 @@
           <th scope="col">Histórico</th>
           <th scope="col" hidden>curso</th>
           <th scope="col" hidden>Disciplina</th>
-          <th scope="col" hidden>Turma</th>
+          <th scope="col" hidden >Turma</th>
         </tr>
       </thead>
       <tbody>
@@ -130,14 +134,13 @@
                         <td style="color: rgb(10, 10, 255)">{{$valor3['exame']}}</td>
                         @endif
 
-
                         <td style="text-align: center">
                         <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}" >Avaliar aluno</a>
                         </td>
                         <td style="text-align: center">
                         <a href="{{route('editar.avaliacao.aluno', [$valor3['aluno_id'], $valor3['disciplina_id']])}}" class="btn linkeditar">Avaliações Aluno</a>
                         </td>
-                        <td hidden>{{$valor3['curso']}}</td>
+                        <td hidden >{{$valor3['curso']}}</td>
                         <td hidden>{{$valor3['nome_disciplina']}}</td>
                         <td hidden>{{$valor3['nome_turma']}}</td>
                     </tr>
