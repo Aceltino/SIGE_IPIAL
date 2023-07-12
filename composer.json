@@ -13,6 +13,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "nesbot/carbon": "^2.67",
+        "spatie/backtrace": "^1.5",
         "spatie/laravel-backup": "^8.1"
     },
     "require-dev": {

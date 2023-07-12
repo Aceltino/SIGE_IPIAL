@@ -89,7 +89,7 @@ class PautaController extends Controller
             return redirect()->back()->with('msg_sem_pauta',"Lamentamos! Esta pauta ainda não esta composta... Aguarde o lançamento das notas");
         }
 
-       
+
         //Dados completos que vão para compor a pauta. 
         $dadosPauta= [
             'alunos' => $alunos, 
@@ -101,8 +101,16 @@ class PautaController extends Controller
             'medias'=>$medias,
             'colspanDisciplina'=>(count($disciplinas)*6),
 
-        ];
-       
+        ];  
+
+
+        foreach ($medias as $key => $value) {
+            echo $value->aluno->candidato->pessoa->nome_completo;
+            echo "<hr>";
+        }
+        
+
+        die;
         //Condições da apresentação da Pauta com base a class
         switch ($turma->classe_id){
             case 1:

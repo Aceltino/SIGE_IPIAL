@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'ff26c06e440f99e3e6db2810c355ac9ce730267a',
+        'reference' => '3bd58514f54cb96bdc3110a9418f8a760e224191',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -457,7 +457,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'ff26c06e440f99e3e6db2810c355ac9ce730267a',
+            'reference' => '3bd58514f54cb96bdc3110a9418f8a760e224191',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -1056,7 +1056,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../spatie/backtrace',
             'aliases' => array(),
-            'dev_requirement' => true,
+            'dev_requirement' => false,
         ),
         'spatie/db-dumper' => array(
             'pretty_version' => '3.4.0',
