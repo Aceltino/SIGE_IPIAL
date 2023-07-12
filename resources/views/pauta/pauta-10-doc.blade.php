@@ -106,7 +106,7 @@
             <h1>PAUTA DE AVALIAÇÃO ANUAL</h1> 
         </th>
         <th colspan="3">
-            <span class="ano-lec-p nota-neg">ANO LECTIVO: {{$anoTurmaCoord->ano_lectivo->ano_lectivo}}</span>
+            <span class="ano-lec-p nota-neg">ANO LECTIVO: {{$ano->ano_lectivo}}</span>
         </th>
         </tr>
 

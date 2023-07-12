@@ -52,6 +52,7 @@ class PautaController extends Controller
     {
     
         $turma= Turma::find($id); //Busca na turma
+        $ano= Ano_lectivo::find($anoLectivo);
 
         $anoTurmaCoord = AnoTurmaCood::where('turma_id', $turma->turma_id)->first();
         $turmaAluno = Aluno_turma::where('turmaAno_id', $anoTurmaCoord->turmaAno_id)->get();
@@ -82,32 +83,22 @@ class PautaController extends Controller
             } 
 
         }   
-        // die;
 
          //Condição para Pauta ser Gerada
          if ( (count($turmaAluno) <= 0) && (empty($notas)) ){
             return redirect()->back()->with('msg_sem_pauta',"Lamentamos! Esta pauta ainda não esta composta... Aguarde o lançamento das notas");
         }
 
-        foreach ($medias as $valueMedias) { 
-           $mediasNotas[]=$valueMedias;
-        }
        
-        //Este Siclo entrega as todas as notas do aluno com base a disciplina
-        foreach ($alunos as $aluno) {
-            $notas[]= self::getNotaDisciplinaAluno($disciplinas[0]["nome_disciplina"],$aluno->aluno_id);  
-        }
-
-        
         //Dados completos que vão para compor a pauta. 
         $dadosPauta= [
             'alunos' => $alunos, 
             'anoTurmaCoord' => $anoTurmaCoord, 
-            'notas'=>$notas,
             'dadosAssinantes'=>$dadosAssinantes,
             'disciplinas'=>$disciplinas,
-            'turma'=>$turma,    
-            'medias'=>$mediasNotas,
+            'turma'=>$turma,
+            'ano'=>$ano,    
+            'medias'=>$medias,
             'colspanDisciplina'=>(count($disciplinas)*6),
 
         ];
