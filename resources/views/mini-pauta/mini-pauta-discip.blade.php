@@ -28,7 +28,7 @@
             </form>
         </div>
 
-        <table  id="matricula-tab" class="table table-striped" style="margin-top: 20px;" >
+        <table  id="matricula-tab" class="table table-custom table-escuro" style="margin-top: 20px;" >
             <thead  style=" text-align: center;">
                 <tr>
                     <th scope="col">Curso</th>

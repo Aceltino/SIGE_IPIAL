@@ -63,9 +63,9 @@
       {{session('erro_reenvio')}}
     </div>
   @endif
-
+  <br><br><br><br>
   {{-- Inicio da tabela de usuários--}}
-  <table class="table table-striped table-custom" id="matricula-tab">
+  <table class="table table-custom table-escuro" id="matricula-tab">
     <thead>
       <tr style=" text-align: center;">
         <th scope="col">#</th>
@@ -113,14 +113,14 @@
 
 {{--Inicio da modal bloquear e desbloquear usuario--}}  
 @foreach ($users as $user)
-  <div class="modal fade" id="modalbloq{{$user['usuario_id']}}" tabindex="-1" style="color: #000;">
+  <div class="modal fade" id="modalbloq{{$user['usuario_id']}}" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
         <div class="modal-header" style="border: none;">
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        <div class="modal-body" style="color: #000; text-transform: uppercase; text-align: center;">
+        <div class="modal-body" style="text-transform: uppercase; text-align: center;">
           <strong> 
             @if($user->status_usuario===1)
                 Bloquear Usuário?
@@ -151,14 +151,14 @@
 
 {{--Inicio da modal RESGATAR USUARIO--}}
 @foreach ($users as $user)
-  <div class="modal fade" id="modalResg{{$user['usuario_id']}}" tabindex="-1" style="color: #000;">
+  <div class="modal fade" id="modalResg{{$user['usuario_id']}}" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
         <div class="modal-header" style="border: none;">
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        <div class="modal-body" style="color: #000; text-transform: uppercase; text-align: center;"> 
+        <div class="modal-body" style="text-transform: uppercase; text-align: center;"> 
           O sistema irá enviar um nome de usuario para o email <strong>{{$user['email']}}.</strong> Deseja continuar?
           
         </div>
@@ -206,84 +206,90 @@
           <div class="form-inativo">
             <div class="dados-pessoais">        
               
-              <div class="area-input form-group">
-                <label>Nome Completo: </label><input type="text" readonly="true" disabled value="{{$user->pessoa->nome_completo}}">
-              </div>
-    
-              <div class="container">
-                <div class="row">
-                
-                  <div class="col area-input form-group">
-                    <label>Data de nascimento: </label><input type="date" id="datainput" class="form-control" style=" text-align: start;" placeholder="" name="" readonly="true" disabled value="{{$user->pessoa->data_nascimento}}" oninput="this.className = ''">
-                    <div id="mensagem" style="color: red;"></div>  
-                  </div>
-                        
-                  <div class="col area-input form-group" style="margin-left: 10px;">
-                    <label>Idade: </label><input type="text" class="form-control" readonly="true" disabled value="16">
-                  </div>
-    
-                  <div class="col area-input form-group" style="margin-left: 10px;">
-                    <label class="me-3">Sexo:</label>
-                    <input type="radio" id="masculino" name="genero" readonly="true" disabled value="Masculino" {{$user->pessoa->genero=='Masculino'? "checked" : ""}} >
-                    <label for="masculino" class="me-2"> Masculino</label>
-                    <input type="radio" id="feminino" name="genero" readonly="true" disabled value="Femenino" {{$user->pessoa->genero=='Femenino'? "checked" : ""}}>
-                    <label for="feminino"> Femenino</label>
-                  </div>  
-    
-                </div>
-              </div>
-            
-            
-              <div class="container">
-                <div class="row">
-                  <div class=" col area-input form-group" >
-                    <label>Número do BI: </label><input type="text" class="form-control" readonly="true" disabled name="" value="{{$user->pessoa->num_bi}}">
-                  </div>
-    
-                  <div class="col area-input form-group" style="margin-left: 10px;">
-                    <label>Tel: </label><input type="text" name="" readonly="true" disabled value="{{$user->pessoa->telefone}}">
-                  
-                  </div>
-                </div>
-              </div>
-    
-              <div class="container">
-                <div class="row">
-                  <div class="col area-input form-group">
-                    <label>Município: </label><input type="text" name="" readonly="true" disabled value="{{$user->pessoa->endereco->municipio}}">
-                  </div>
-                  
-                  <div class="col area-input form-group" style="margin-left: 10px;">
-                    <label>Bairro: </label><input type="text" name="" readonly="true" disabled value="{{$user->pessoa->endereco->bairro}}">
-                  </div>
-                  
-                  <div class="col area-input form-group" style="margin-left: 10px;">
-                    <label>Zona: </label><input type="text" name="" readonly="true" disabled value="{{$user->pessoa->endereco->zona}}">
-                  </div>
-                  
-                  <div class="col area-input form-group" style="margin-left: 10px;">
-                    <label>N° Casa: </label><input type="text" name="" readonly="true" disabled value="{{$user->pessoa->endereco->numero_casa}}">
-                  </div>
-                </div>              
-              </div>
-    
               <div class="container">
                 <div class="area-input form-group">
-                  <label>Email: </label><input type="text" name="" readonly="true" disabled value="{{$user->email}}">
+                  <label>Nome Completo: </label><input type="text" readonly="true" disabled value="{{$user->pessoa->nome_completo}}">
                 </div>
+      
+                <div class="container">
+                  <div class="row">
+                  
+                    <div class="col area-input form-group">
+                      <label>Data de nascimento: </label><input type="date" id="datainput" class="form-control" style=" text-align: start;" placeholder="" name="" readonly="true" disabled value="{{$user->pessoa->data_nascimento}}" oninput="this.className = ''">
+                      <div id="mensagem" style="color: red;"></div>  
+                    </div>
+                          
+                    <div class="col area-input form-group" style="margin-left: 10px;">
+                      <label>Idade: </label><input type="text" class="form-control" readonly="true" disabled value="16">
+                    </div>
+      
+                    <div class="col area-input form-group" style="margin-left: 10px;">
+                      <label class="me-3">Sexo:</label>
+                      <input type="radio" id="masculino" name="genero" readonly="true" disabled value="Masculino" {{$user->pessoa->genero=='Masculino'? "checked" : ""}} >
+                      <label for="masculino" class="me-2"> Masculino</label>
+                      <input type="radio" id="feminino" name="genero" readonly="true" disabled value="Femenino" {{$user->pessoa->genero=='Femenino'? "checked" : ""}}>
+                      <label for="feminino"> Femenino</label>
+                    </div>  
+      
+                  </div>
+                </div>
+              
+              
+                <div class="container">
+                  <div class="row">
+                    <div class=" col area-input form-group" >
+                      <label>Número do BI: </label><input type="text" class="form-control" readonly="true" disabled name="" value="{{$user->pessoa->num_bi}}">
+                    </div>
+      
+                    <div class="col area-input form-group" style="margin-left: 10px;">
+                      <label>Tel: </label><input type="text" name="" readonly="true" disabled value="{{$user->pessoa->telefone}}">
+                    
+                    </div>
+                  </div>
+                </div>
+      
+                <div class="container">
+                  <div class="row">
+                    <div class="col area-input form-group">
+                      <label>Município: </label><input type="text" name="" readonly="true" disabled value="{{$user->pessoa->endereco->municipio}}">
+                    </div>
+                    
+                    <div class="col area-input form-group" style="margin-left: 10px;">
+                      <label>Bairro: </label><input type="text" name="" readonly="true" disabled value="{{$user->pessoa->endereco->bairro}}">
+                    </div>
+                    
+                    <div class="col area-input form-group" style="margin-left: 10px;">
+                      <label>Zona: </label><input type="text" name="" readonly="true" disabled value="{{$user->pessoa->endereco->zona}}">
+                    </div>
+                    
+                    <div class="col area-input form-group" style="margin-left: 10px;">
+                      <label>N° Casa: </label><input type="text" name="" readonly="true" disabled value="{{$user->pessoa->endereco->numero_casa}}">
+                    </div>
+                  </div>              
+                </div>
+      
+                <div class="container">
+                  <div class="row">
+                    <div class="col area-input form-group">
+                      <label>Email: </label><input type="text" name="" readonly="true" disabled value="{{$user->email}}">
+                    </div>
+    
+                    <div class="col form-group">
+                      <select oninput="this.className = ''" class="form-select" name="cargo_usuario_update">
+                        <option disabled>#Cargos</option>
+                        <option value="Subdirector" readonly="true" disabled {{$user->cargo_usuario=='Subdirector'? "selected" : ""}}>Subdirector Pedagogico</option>
+                        <option value="Secretaria" readonly="true" disabled {{$user->cargo_usuario=='Secretaria'? "selected" : ""}}>Secretaria Pedagogica</option>
+                        <option value="Administrador" readonly="true" disabled {{$user->cargo_usuario=='Administrador'? "selected" : ""}}>Adminstrador</option>
+                        <option value="Director" readonly="true" disabled {{$user->cargo_usuario=='Director'? "selected" : ""}}>Director Geral</option>
+                        <option value="Professor" readonly="true" disabled {{$user->cargo_usuario=='Professor'? "selected" : ""}}>Professor</option>
+                        <option value="Coordenacao" readonly="true" disabled {{$user->cargo_usuario=='Coordenacao'? "selected" : ""}}>Coordenador</option>
+                        <option value="insc_user" readonly="true" disabled {{$user->cargo_usuario=='insc_user'? "selected" : ""}}>Colaborador-Inscrição</option>
+                        <option value="matri_user" readonly="true" disabled {{$user->cargo_usuario=='matri_user'? "selected" : ""}}>Colaborador-Matricula</option>
+                      </select>
+                    </div>
 
-                <div class="form-group">
-                  <select oninput="this.className = ''" class="form-select" name="cargo_usuario_update">
-                    <option disabled>#Cargos</option>
-                    <option value="Subdirector" readonly="true" disabled {{$user->cargo_usuario=='Subdirector'? "selected" : ""}}>Subdirector Pedagogico</option>
-                    <option value="Secretaria" readonly="true" disabled {{$user->cargo_usuario=='Secretaria'? "selected" : ""}}>Secretaria Pedagogica</option>
-                    <option value="Administrador" readonly="true" disabled {{$user->cargo_usuario=='Administrador'? "selected" : ""}}>Adminstrador</option>
-                    <option value="Director" readonly="true" disabled {{$user->cargo_usuario=='Director'? "selected" : ""}}>Director Geral</option>
-                    <option value="Professor" readonly="true" disabled {{$user->cargo_usuario=='Professor'? "selected" : ""}}>Professor</option>
-                    <option value="Coordenacao" readonly="true" disabled {{$user->cargo_usuario=='Coordenacao'? "selected" : ""}}>Coordenador</option>
-                    <option value="insc_user" readonly="true" disabled {{$user->cargo_usuario=='insc_user'? "selected" : ""}}>Colaborador-Inscrição</option>
-                    <option value="matri_user" readonly="true" disabled {{$user->cargo_usuario=='matri_user'? "selected" : ""}}>Colaborador-Matricula</option>
-                  </select>
+                  </div>
+  
                 </div>
 
               </div>

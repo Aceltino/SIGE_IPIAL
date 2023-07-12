@@ -86,7 +86,7 @@
   </div>
 
   <!-- /  Inicio da tabela de inscritos -->
-  <table class="table table-striped table-custom" id="matriculas">
+  <table class="table table-custom table-escuro" id="matriculas">
     <thead>
       <tr style=" text-align: center;" id="conteudo">
           <th scope="col">Nº Processo</th>
