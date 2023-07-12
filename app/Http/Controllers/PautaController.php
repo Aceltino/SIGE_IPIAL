@@ -89,15 +89,36 @@ class PautaController extends Controller
             return redirect()->back()->with('msg_sem_pauta',"Lamentamos! Esta pauta ainda não esta composta... Aguarde o lançamento das notas");
         }
 
+<<<<<<< HEAD
+=======
+        foreach ($medias as $valueMedias) { 
+           $mediasNotas[]=$valueMedias;
+        }
+       
+        //Este Siclo entrega as todas as notas do aluno com base a disciplina
+        foreach ($alunos as $aluno) {
+            $notas[]= self::getNotaDisciplinaAluno($disciplinas[0]["nome_disciplina"],$aluno->aluno_id);  
+        }
+
+        
+>>>>>>> parent of 88b7b46a (Merge pull request #215 from Carlos-Marques50/main)
         //Dados completos que vão para compor a pauta. 
         $dadosPauta= [
             'alunos' => $alunos, 
             'anoTurmaCoord' => $anoTurmaCoord, 
+<<<<<<< HEAD
             // 'notas'=>$notas,
             'dadosAssinantes'=>$dadosAssinantes,
             'disciplinas'=>$disciplinas,
             'turma'=>$turma,    
             // 'medias'=>$mediasNotas,
+=======
+            'notas'=>$notas,
+            'dadosAssinantes'=>$dadosAssinantes,
+            'disciplinas'=>$disciplinas,
+            'turma'=>$turma,    
+            'medias'=>$mediasNotas,
+>>>>>>> parent of 88b7b46a (Merge pull request #215 from Carlos-Marques50/main)
             'colspanDisciplina'=>(count($disciplinas)*6),
 
         ];  
