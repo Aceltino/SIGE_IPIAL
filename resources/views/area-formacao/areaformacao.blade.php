@@ -43,7 +43,7 @@
       </div>
 
       <!-- /  Inicio da tabela de inscritos -->
-      <table class="table table-striped" id="matricula-tab">
+      <table class="table table-striped table table-custom table-escuro" id="matricula-tab">
         <thead>
           <tr style=" text-align: center;">
             <th scope="col">Area de Formação</th>
