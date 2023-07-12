@@ -31,6 +31,16 @@ class MatriculaController extends Controller
 
     public function create($id)
     {
+        $anoLectivo = AnoLectivoController::pegarAnoLectivo(AnoLectivoController::pegarIdAnoLectivo());
+        $dataInicioMAtricula = Carbon::parse($anoLectivo->data_inicio_matricula);
+        $dataFimMatricula = Carbon::parse($anoLectivo->data_fim_matricula);
+        $dataAtual = Carbon::now();
+
+        if( $dataAtual < $dataInicioMAtricula || $dataAtual > $dataFimMatricula )
+        {
+            return redirect()->back()->with('Erro', 'Não está na epoca de matricula.');
+        }
+
         $candidato = CandidatoController::pegarDadosCandidato($id);
         return view('matricula.matricular-aluno',[
             'candidato' => $candidato[0]
@@ -40,6 +50,14 @@ class MatriculaController extends Controller
     public function store(MatriculaRequest $input)
     {
         $request = $input->validated(); // Inputs validadas
+
+        $candidato = Candidato::find($request['id']);
+        if($candidato->status != 'admitido')
+        {
+            abort(404);
+        }
+
+        
         // dd($request);
         $encarregado = [];
         for($i = 1; $i <= 3; $i++)
