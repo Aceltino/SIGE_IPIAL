@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <table class="tabela-calendario">
+    <table class="tabela-calendario table table-custom table-escuro">
       <thead class="cabecalho-tab-calend">
         <tr class="linha-tab-calend">
           <th scope="col" class="coluna-tab-calend coluna-centro">Data</th>
@@ -114,7 +114,7 @@
     </table>
 
     <div class="area-hora-prova">
-      <table class="tabela-hora-prova table table-striped">
+      <table class="tabela-hora-prova table table-custom table-escuro">
         <thead class="cabecalho-tab-calend">
           <tr class="linha-tab-hr">
             <th scope="col" class="coluna-tab-hr coluna-centro">Data</th>

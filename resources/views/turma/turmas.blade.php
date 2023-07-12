@@ -29,7 +29,7 @@
   </div>
 
   {{-- /  Inicio da tabela de inscritos --}}
-  <table class="table table-striped display" style="margin-top: 10px; text-align: center;"  id="Tabturmas">
+  <table class="table table-custom table-escuro" style="margin-top: 10px; text-align: center;"  id="Tabturmas">
     <thead id="turma-conteudo">
       <tr style=" text-align: center;">
         <th scope="col">Nome da Turma</th>

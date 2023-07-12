@@ -41,7 +41,7 @@
   @endif
 
   {{-- /  Inicio da tabela dos comunicados --}}
-  <table class="table table-striped table-custom" id="matricula-tab">
+  <table class="table table-custom table-escuro" id="matricula-tab">
     <thead>
       <tr style=" text-align: center;">
         <th scope="col">Titulo do comunicado</th>
@@ -68,7 +68,7 @@
 
   {{--Inicio da modal apagarComunicado--}}
   @foreach ($comunicados as $com)
-  <div class="modal fade" id="modalApagar{{$com['comunicado_id']}}" tabindex="-1" style="color: #000;">
+  <div class="modal fade" id="modalApagar{{$com['comunicado_id']}}" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
 
@@ -76,7 +76,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        <div class="modal-body" style="color: #000; text-transform: uppercase; text-align: center;">
+        <div class="modal-body" style="text-transform: uppercase; text-align: center;">
           <strong>Deseja eliminar esse comunicado?</strong>
         </div>
 

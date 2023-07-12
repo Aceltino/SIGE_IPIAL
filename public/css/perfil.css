@@ -70,14 +70,6 @@
     border-radius: 20px;
   }
   
-  .perfil .perfil-card .social-links a {
-    font-size: 20px;
-    display: inline-block;
-    color: rgba(1, 41, 112, 0.5);
-    line-height: 0;
-    margin-right: 10px;
-    transition: 0.3s;
-  }
   
   
   .perfil .dados .row {
@@ -128,7 +120,7 @@
   }
   
   .nav-tabs-bordered .nav-link.active {
-    background-color: #fff;
+    background-color: transparent;
     color: #174183;
     border-bottom: 2px solid #174183;
   }
