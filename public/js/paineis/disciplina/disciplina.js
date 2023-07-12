@@ -139,3 +139,27 @@ $(document).ready(function() {
     $(this).val(upperCaseValue);
   });
 });
+
+var contador = 1;
+
+function adicionarInput() {
+  contador++;
+  var container = document.getElementById("inputs-container");
+  var div = document.createElement("div");
+  div.className = "input-container";
+  var input = document.createElement("input");
+  input.type = "text";
+  input.name = "input-" + contador;
+  
+  var button = document.createElement("button");
+  button.textContent = "Eliminar";
+  button.onclick = function() {
+    container.removeChild(div);
+  };
+  
+  div.appendChild(input);
+  div.appendChild(button);
+  container.appendChild(div);
+}
+
+ 

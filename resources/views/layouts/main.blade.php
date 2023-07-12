@@ -105,6 +105,7 @@
   <script src={{{URL::asset("js/paineis/telefone.js")}}}></script>
   <script src={{{URL::asset("js/paineis/disciplina/disciplina.js")}}}></script>
   <script src={{{URL::asset("js/paineis/horario/horario.js")}}}></script>
+  <script src={{{URL::asset("js/paineis/horario/validacao_horario.js")}}}></script>
   <script src={{{URL::asset("js/paineis/horario/editar-horario.js")}}}></script>
   <script src={{{URL::asset("js/paineis/perfil/perfil.js")}}}></script>
   <script src={{{URL::asset("js/paineis/ano-lectivo/criar-ano-lectivo.js")}}}></script>

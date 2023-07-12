@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Criar Curso')
+@section('title', 'Cadastrar área de formação')
 
 @section('conteudo')
 <main id="main" class="main" >

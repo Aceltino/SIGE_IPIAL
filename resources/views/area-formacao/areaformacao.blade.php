@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Cursos')
+@section('title', 'Área de formação')
 
 @section('conteudo')
 <main id="main" class="main">
