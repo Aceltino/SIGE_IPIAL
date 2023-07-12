@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit5d6b96744462d75d754cb2842bc4996b
+class ComposerStaticInit777558dd43fd8e9b964d24fd919a7ee9
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -635,6 +635,7 @@ class ComposerStaticInit5d6b96744462d75d754cb2842bc4996b
         'App\\Http\\Controllers\\EnderecoController' => __DIR__ . '/../..' . '/app/Http/Controllers/EnderecoController.php',
         'App\\Http\\Controllers\\EscolaController' => __DIR__ . '/../..' . '/app/Http/Controllers/EscolaController.php',
         'App\\Http\\Controllers\\HoraController' => __DIR__ . '/../..' . '/app/Http/Controllers/HoraController.php',
+        'App\\Http\\Controllers\\InicioController' => __DIR__ . '/../..' . '/app/Http/Controllers/InicioController.php',
         'App\\Http\\Controllers\\InscricaoController' => __DIR__ . '/../..' . '/app/Http/Controllers/InscricaoController.php',
         'App\\Http\\Controllers\\MatriculaController' => __DIR__ . '/../..' . '/app/Http/Controllers/MatriculaController.php',
         'App\\Http\\Controllers\\MediasController' => __DIR__ . '/../..' . '/app/Http/Controllers/MediasController.php',
@@ -654,6 +655,7 @@ class ComposerStaticInit5d6b96744462d75d754cb2842bc4996b
         'App\\Http\\Middleware\\CheckUserNecessario' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckUserNecessario.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\Inscricao' => __DIR__ . '/../..' . '/app/Http/Middleware/Inscricao.php',
+        'App\\Http\\Middleware\\MatricularCheck' => __DIR__ . '/../..' . '/app/Http/Middleware/MatricularCheck.php',
         'App\\Http\\Middleware\\PreventRequestsDuringMaintenance' => __DIR__ . '/../..' . '/app/Http/Middleware/PreventRequestsDuringMaintenance.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
@@ -683,6 +685,7 @@ class ComposerStaticInit5d6b96744462d75d754cb2842bc4996b
         'App\\Models\\Calendario' => __DIR__ . '/../..' . '/app/Models/Calendario.php',
         'App\\Models\\CalendarioProva' => __DIR__ . '/../..' . '/app/Models/CalendarioProva.php',
         'App\\Models\\Candidato' => __DIR__ . '/../..' . '/app/Models/Candidato.php',
+        'App\\Models\\CandidatoCurso' => __DIR__ . '/../..' . '/app/Models/CandidatoCurso.php',
         'App\\Models\\Classe' => __DIR__ . '/../..' . '/app/Models/Classe.php',
         'App\\Models\\ClasseDisciplina' => __DIR__ . '/../..' . '/app/Models/ClasseDisciplina.php',
         'App\\Models\\Comunicado' => __DIR__ . '/../..' . '/app/Models/Comunicado.php',
@@ -6803,9 +6806,9 @@ class ComposerStaticInit5d6b96744462d75d754cb2842bc4996b
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit5d6b96744462d75d754cb2842bc4996b::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit5d6b96744462d75d754cb2842bc4996b::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit5d6b96744462d75d754cb2842bc4996b::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit777558dd43fd8e9b964d24fd919a7ee9::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit777558dd43fd8e9b964d24fd919a7ee9::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit777558dd43fd8e9b964d24fd919a7ee9::$classMap;
 
         }, null, ClassLoader::class);
     }
