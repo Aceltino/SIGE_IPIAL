@@ -36,7 +36,23 @@ class AdmissaoController extends Controller
     // INICIO ADMISSÃO DA 10ª CLASSE
     public static function validarCandidato()
     {
+        $anoLectivo = AnoLectivoController::pegarAnoLectivo(AnoLectivoController::pegarIdAnoLectivo());
+        $dataFimIncricao = Carbon::parse($anoLectivo->data_fim_inscricao);
+        $dataFimIncricao->addDay();
+        $dataFimIncricao = $dataFimIncricao->format('d-m-Y');
         $dataAtual = Carbon::now();
+        $dataFormated = $dataAtual->format('d-m-Y');
+        if( $dataFormated != $dataFimIncricao )
+        {
+            return 'O processo de admissão é feito apenas um dia após o fim da inscrição: '. $dataFimIncricao;      
+        }
+
+        $pendente = CandidatoController::pegarPendentes();
+        if( $pendente === 0 )
+        {
+            return 'O processo de admissão já foi efetuado';      
+        }
+
             $numVagasCurso = AdmissaoController::numeroVagas();
             $vagasTotal = 0;
             $admitidos = CandidatoController::pegarAdmitidos();
@@ -49,7 +65,7 @@ class AdmissaoController extends Controller
 
             if($numeroVagasTotal === 0)
             {
-                return "As vagas esgotaram, aguarde o inicio das matriculas.";
+                return "As vagas esgotaram.";
             }
 
             $candidatos = CandidatoController::pegarCandidatos();
@@ -159,11 +175,17 @@ class AdmissaoController extends Controller
     public function admitirCandidatos()
     {
         $admitidos = AdmissaoController::validarCandidato();
-
+        if(!$admitidos)
+        {
+            return redirect()->back()->with("ErroCandidato", );
+        }
         if($admitidos !== true)
         {
             return redirect()->back()->with("ErroCandidato", $admitidos);
         }
+
+        
+
             $msg = "Novo(s) alunos admitidos!";
             return Redirect::route('inscricao-index')->with("Sucesso", $msg);
     }

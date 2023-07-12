@@ -121,7 +121,7 @@ class AlunoController extends Controller
         }
 
         $Alunos = [];
-
+dd( $alunos);
         foreach ($alunos as $aluno) {
             $turmaAtual = null;
             foreach ($aluno->anoturma as $anoturma) {

@@ -7,7 +7,6 @@ use Closure;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
-
 class Inscricao
 {
     /**
