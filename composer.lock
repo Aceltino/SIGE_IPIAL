@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ebad29258ac48b65eec6de119bf3141e",
+    "content-hash": "20e2d030e30817211ff4402788af3532",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -3351,6 +3351,68 @@
                 }
             ],
             "time": "2023-04-15T23:01:58+00:00"
+        },
+        {
+            "name": "spatie/backtrace",
+            "version": "1.5.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/backtrace.git",
+                "reference": "483f76a82964a0431aa836b6ed0edde0c248e3ab"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/backtrace/zipball/483f76a82964a0431aa836b6ed0edde0c248e3ab",
+                "reference": "483f76a82964a0431aa836b6ed0edde0c248e3ab",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "ext-json": "*",
+                "phpunit/phpunit": "^9.3",
+                "spatie/phpunit-snapshot-assertions": "^4.2",
+                "symfony/var-dumper": "^5.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Backtrace\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van de Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A better backtrace",
+            "homepage": "https://github.com/spatie/backtrace",
+            "keywords": [
+                "Backtrace",
+                "spatie"
+            ],
+            "support": {
+                "source": "https://github.com/spatie/backtrace/tree/1.5.3"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/spatie",
+                    "type": "github"
+                },
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "other"
+                }
+            ],
+            "time": "2023-06-28T12:59:17+00:00"
         },
         {
             "name": "spatie/db-dumper",
@@ -8864,68 +8926,6 @@
                 }
             ],
             "time": "2020-09-28T06:39:44+00:00"
-        },
-        {
-            "name": "spatie/backtrace",
-            "version": "1.5.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/backtrace.git",
-                "reference": "483f76a82964a0431aa836b6ed0edde0c248e3ab"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/backtrace/zipball/483f76a82964a0431aa836b6ed0edde0c248e3ab",
-                "reference": "483f76a82964a0431aa836b6ed0edde0c248e3ab",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.3|^8.0"
-            },
-            "require-dev": {
-                "ext-json": "*",
-                "phpunit/phpunit": "^9.3",
-                "spatie/phpunit-snapshot-assertions": "^4.2",
-                "symfony/var-dumper": "^5.1"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\Backtrace\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Freek Van de Herten",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A better backtrace",
-            "homepage": "https://github.com/spatie/backtrace",
-            "keywords": [
-                "Backtrace",
-                "spatie"
-            ],
-            "support": {
-                "source": "https://github.com/spatie/backtrace/tree/1.5.3"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/sponsors/spatie",
-                    "type": "github"
-                },
-                {
-                    "url": "https://spatie.be/open-source/support-us",
-                    "type": "other"
-                }
-            ],
-            "time": "2023-06-28T12:59:17+00:00"
         },
         {
             "name": "spatie/flare-client-php",

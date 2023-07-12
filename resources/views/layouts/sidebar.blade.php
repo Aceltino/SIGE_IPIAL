@@ -1,5 +1,5 @@
 <!-- /	Sidebar -->
-<aside id="sidebar" class="sidebar sidebar-escuro" >
+<aside id="sidebar" class="sidebar sidebar-escuro">
 
 {{-- Administrador ou Subdirector Pedagogico ----- / Menu do Administrador ou Subdirector Pedagogico --}}
 @if(Auth::user()->cargo_usuario == "Administrador" || Auth::user()->cargo_usuario == "Subdirector")

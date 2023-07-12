@@ -9710,7 +9710,6 @@
         "sebastian/resource-operations",
         "sebastian/type",
         "sebastian/version",
-        "spatie/backtrace",
         "spatie/flare-client-php",
         "spatie/ignition",
         "spatie/laravel-ignition",
