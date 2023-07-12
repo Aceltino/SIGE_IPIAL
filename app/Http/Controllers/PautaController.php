@@ -89,16 +89,10 @@ class PautaController extends Controller
             return redirect()->back()->with('msg_sem_pauta',"Lamentamos! Esta pauta ainda não esta composta... Aguarde o lançamento das notas");
         }
 
-        foreach ($medias as $value) { 
-
-           $mediasNotas=$value;
-            foreach ($value as $value_1) {
-                echo $value_1->disciplinas->nome_disciplina." Media= ". $value_1->nota;
-                echo "<hr>";
-            }
+        foreach ($medias as $valueMedias) { 
+           $mediasNotas[]=$valueMedias;
         }
-        
-     
+       
         //Este Siclo entrega as todas as notas do aluno com base a disciplina
         foreach ($alunos as $aluno) {
             $notas[]= self::getNotaDisciplinaAluno($disciplinas[0]["nome_disciplina"],$aluno->aluno_id);  
