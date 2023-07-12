@@ -9,7 +9,7 @@ Candidato,Professor,Turma,
 Curso,Aluno,User,
 };
 
-class inicioController extends Controller
+class InicioController extends Controller
 {
     public function inicio(){
 
