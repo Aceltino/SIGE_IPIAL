@@ -91,11 +91,10 @@ class PautaController extends Controller
 
         foreach ($medias as $value) { 
 
-           $mediasNotas=$value;
+           $mediasNotas[]=$value;
             
         }
-        
-     
+       
         //Este Siclo entrega as todas as notas do aluno com base a disciplina
         foreach ($alunos as $aluno) {
             $notas[]= self::getNotaDisciplinaAluno($disciplinas[0]["nome_disciplina"],$aluno->aluno_id);  

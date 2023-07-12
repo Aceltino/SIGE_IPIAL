@@ -155,7 +155,6 @@
         @endforeach        
         </tr>
 
-
         
             @foreach ($dadosPauta['alunos'] as $aluno  )
                 
@@ -168,32 +167,78 @@
             </td>
             <td class="coluna-tab-p">
                 <span class="num-proc-p">{{$aluno->aluno_id}}</span>
-            </td>     
-
+            </td> 
             
+            
+
+           @foreach ($dadosPauta['disciplinas'] as $index => $disciplina )
+
+           <?php
+           foreach($dadosPauta['alunos'] as $aluno){
+
+               $mediasDisciplina = $dadosPauta['medias'];
+               if (array_key_exists($index, $mediasDisciplina)) {
+                   $media = $mediasDisciplina[$index];
+                   if (count($media) > 0) {
+                       $primeiraPosicao = $media[0]; 
+                       $mt1 = $primeiraPosicao['nota']; 
+                   } else {
+                    $mt1 = '0'; 
+                   }
+               } else {
+                $mt1 = '0'; 
+               }
+    
+               $mediasDisciplina = $dadosPauta['medias'];
+                if (array_key_exists($index, $mediasDisciplina)) {
+                    $media = $mediasDisciplina[$index];
+                    if (count($media) > 1) {
+                        $segundaPosicao = $media[1]; 
+                        $mt2= $segundaPosicao['nota']; 
+                    } else {
+                        $mt2 = '0'; 
+                    }
+                } else {
+                    $mt2 = '0'; 
+                }
+
+                $mediasDisciplina = $dadosPauta['medias'];
+                if (array_key_exists($index, $mediasDisciplina)) {
+                    $media = $mediasDisciplina[$index];
+                    if (count($media) > 2) {
+                        $segundaPosicao = $media[2]; 
+                        $mt2= $segundaPosicao['nota']; 
+                    } else {
+                        $mt3 = '0'; 
+                    }
+                } else {
+                    $mt3 = '0'; 
+                }
+           }
+           ?>
            
-            
-          @foreach ( $dadosPauta['disciplinas'] as $notass)
-            
-          <td class="nota coluna-tab-p"><span class="nota-neg"></span></td>
-          <td class="nota coluna-tab-p"><span class="nota-neg">4</span></td>
-          <td class="nota coluna-tab-p"><span class="nota-pos">14</span></td>
-          <td class="nota c-tab-amarelo coluna-tab-p"><span class="nota-pos">15</span></td>
-          <td class="nota coluna-tab-p"><span class="nota-pos"></span></td>
-
-          <td class="nota c-tab-sinza-esq coluna-tab-p">
-              <span>
-              
-              </span>
-          </td>
+                      
+          
+            <td class="nota coluna-tab-p"><span class="nota-neg">{{$mt1}}</span></td>
+            <td class="nota coluna-tab-p"><span class="nota-neg">{{$mt2}}</span></td>
+            <td class="nota coluna-tab-p"><span class="nota-pos">{{$mt3}}</span></td>
+            <td class="nota c-tab-amarelo coluna-tab-p"><span class="nota-pos">15</span></td>
+            <td class="nota coluna-tab-p"><span class="nota-pos"></span></td>
+  
+            <td class="nota c-tab-sinza-esq coluna-tab-p">
+                <span>
+                
+                </span>
+            </td>
+           
          
-          @endforeach
+           @endforeach 
          
-
             <td class="nota coluna-tab-p"><span class="nota-neg maisculo-p">RPF</span></td>
             <td class="nota coluna-tab-p"><span class="nota-neg maisculo-p">NÃO TRANSITA</span></td>
             <td class="nota coluna-tab-p">5</td>
             </tr>
+         
          @endforeach
 
         
