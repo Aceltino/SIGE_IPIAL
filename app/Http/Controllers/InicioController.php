@@ -5,12 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Models\{
-    Candidato, 
-    Professor,
-    Turma,
-    Curso,
-    Aluno,
-    User,
+Candidato,Professor,Turma,
+Curso,Aluno,User,
 };
 
 class InicioController extends Controller
