@@ -6,7 +6,6 @@ use App\Models\{
     Aluno_turma,Aluno,User,Nota,
     AnoTurmaCood,Ano_lectivo,Disciplina,Turma,
 };
-use Symfony\Component\VarDumper\VarDumper;
 
 class PautaController extends Controller
 {   
@@ -82,55 +81,35 @@ class PautaController extends Controller
             } 
 
         }   
-        // die;
 
          //Condição para Pauta ser Gerada
          if ( (count($turmaAluno) <= 0) && (empty($notas)) ){
             return redirect()->back()->with('msg_sem_pauta',"Lamentamos! Esta pauta ainda não esta composta... Aguarde o lançamento das notas");
         }
 
-<<<<<<< HEAD
-=======
         foreach ($medias as $valueMedias) { 
            $mediasNotas[]=$valueMedias;
         }
-       
-        //Este Siclo entrega as todas as notas do aluno com base a disciplina
-        foreach ($alunos as $aluno) {
-            $notas[]= self::getNotaDisciplinaAluno($disciplinas[0]["nome_disciplina"],$aluno->aluno_id);  
-        }
 
-        
->>>>>>> parent of 88b7b46a (Merge pull request #215 from Carlos-Marques50/main)
         //Dados completos que vão para compor a pauta. 
         $dadosPauta= [
             'alunos' => $alunos, 
             'anoTurmaCoord' => $anoTurmaCoord, 
-<<<<<<< HEAD
-            // 'notas'=>$notas,
-            'dadosAssinantes'=>$dadosAssinantes,
-            'disciplinas'=>$disciplinas,
-            'turma'=>$turma,    
-            // 'medias'=>$mediasNotas,
-=======
-            'notas'=>$notas,
             'dadosAssinantes'=>$dadosAssinantes,
             'disciplinas'=>$disciplinas,
             'turma'=>$turma,    
             'medias'=>$mediasNotas,
->>>>>>> parent of 88b7b46a (Merge pull request #215 from Carlos-Marques50/main)
             'colspanDisciplina'=>(count($disciplinas)*6),
 
         ];  
 
 
-        foreach ($medias as $key => $value) {
-            echo $value->aluno->candidato->pessoa->nome_completo;
-            echo "<hr>";
-        }
+        // foreach ($medias as $key => $value) {
+        //     echo $value->aluno->candidato->pessoa->nome_completo;
+        //     echo "<hr>";
+        // }
         
 
-        die;
         //Condições da apresentação da Pauta com base a class
         switch ($turma->classe_id){
             case 1:
@@ -162,6 +141,6 @@ class PautaController extends Controller
         ];
     } 
 
-    //Metodo que Busca as disciplinas da Turma
+
 
 }
