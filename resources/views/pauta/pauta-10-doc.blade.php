@@ -161,7 +161,7 @@
                 
             <tr class="linha-tab-p">
             <td class="coluna-tab-p">
-                <span class="num-aluno-p">1</span>
+                <span class="num-aluno-p">{{$loop->index+1}}</span>
             </td>
             <td class="coluna-tab-p">
                 <span class="nome-aluno-p">{{$aluno->candidato->pessoa->nome_completo}}</span>
@@ -169,35 +169,32 @@
             <td class="coluna-tab-p">
                 <span class="num-proc-p">{{$aluno->aluno_id}}</span>
             </td>     
+
+            
            
             
           @foreach ( $dadosPauta['disciplinas'] as $notass)
-           
-                
-            <td class="nota coluna-tab-p"><span class="nota-neg">{{$notass->notas}}</span></td>
-            <td class="nota coluna-tab-p"><span class="nota-neg">4</span></td>
-            <td class="nota coluna-tab-p"><span class="nota-pos">14</span></td>
-            <td class="nota c-tab-amarelo coluna-tab-p"><span class="nota-pos">15</span></td>
-            <td class="nota coluna-tab-p"><span class="nota-pos"></span></td>
-
-            <td class="nota c-tab-sinza-esq coluna-tab-p">
-                <span>
-                
-                </span>
-            </td>
-           
-          @endforeach
-          @endforeach
-
-         
-           
-
             
+          <td class="nota coluna-tab-p"><span class="nota-neg"></span></td>
+          <td class="nota coluna-tab-p"><span class="nota-neg">4</span></td>
+          <td class="nota coluna-tab-p"><span class="nota-pos">14</span></td>
+          <td class="nota c-tab-amarelo coluna-tab-p"><span class="nota-pos">15</span></td>
+          <td class="nota coluna-tab-p"><span class="nota-pos"></span></td>
+
+          <td class="nota c-tab-sinza-esq coluna-tab-p">
+              <span>
+              
+              </span>
+          </td>
+         
+          @endforeach
+         
 
             <td class="nota coluna-tab-p"><span class="nota-neg maisculo-p">RPF</span></td>
             <td class="nota coluna-tab-p"><span class="nota-neg maisculo-p">NÃO TRANSITA</span></td>
             <td class="nota coluna-tab-p">5</td>
             </tr>
+         @endforeach
 
         
         
@@ -229,10 +226,10 @@
             </tr>
 
             <tr>
-            <th colspan="3">Sivi Lando</th>
+            <th colspan="3">{{$dadosPauta['dadosAssinantes']['coordenadorArea']->pessoa->nome_completo}}</th>
             
             <th colspan="21" style="text-align: right; padding-right: 15px; padding-top: 10px;">              
-                DOMINGOS AGOSTINHO
+                {{$dadosPauta['dadosAssinantes']['subdirector']->pessoa->nome_completo}}
             </th> 
             </tr>
             <tr>

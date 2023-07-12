@@ -92,10 +92,7 @@ class PautaController extends Controller
         foreach ($medias as $value) { 
 
            $mediasNotas=$value;
-            foreach ($value as $value_1) {
-                echo $value_1->disciplinas->nome_disciplina." Media= ". $value_1->nota;
-                echo "<hr>";
-            }
+            
         }
         
      
