@@ -14,7 +14,7 @@ use App\Models\{
     Comunicado,
 };
 
-class inicioController extends Controller
+class InicioController extends Controller
 {
     public function inicio(){
 

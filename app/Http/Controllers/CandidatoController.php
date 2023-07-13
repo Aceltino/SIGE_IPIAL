@@ -56,6 +56,19 @@ class CandidatoController extends Controller
         return $candAdmitidos;
     }
 
+    public static function pegarPendentes()
+    {
+        $candidatos = Candidato::with('pessoa', 'escola')
+        ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
+        ->where(function ($query) {
+            $query->where('status', 'Pendente');
+        })->get();
+
+        $candAdmitidos = count($candidatos);
+
+        return $candAdmitidos;
+    }
+
     public static function atualizarStatus($candidatoStatus) //Atualizar status
     {
         // Atualizar os dados do candidato
@@ -107,7 +120,7 @@ class CandidatoController extends Controller
         ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
         ->where(function ($query) {
             $query->where('status', 'não admitido')
-                ->orWhere('status', 'pendente')
+                ->orWhere('status', 'Pendente')
                 ->orWhere('status', 'admitido');
         })->get();
 

@@ -136,7 +136,7 @@ class InscricaoController extends Controller
         }
         $msg = "Candidato inscrito com sucesso! Pegue o recibo <a href='".route('recibo', $candidato->candidato_id)."' target='_blank' >aqui</a>.";
         return redirect()->route('inscricao-store')->with("Sucesso", $msg);
-        
+          
     }
 
     public function edit($id)

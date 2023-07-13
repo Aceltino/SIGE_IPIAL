@@ -1,5 +1,5 @@
 <!-- /	Sidebar -->
-<aside id="sidebar" class="sidebar sidebar-escuro" >
+<aside id="sidebar" class="sidebar sidebar-escuro">
 
 {{-- Administrador ou Subdirector Pedagogico ----- / Menu do Administrador ou Subdirector Pedagogico --}}
 @if(Auth::user()->cargo_usuario == "Administrador" || Auth::user()->cargo_usuario == "Subdirector")
@@ -218,7 +218,7 @@
       <a class="nav-link collapsed" data-bs-target="#calprova-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-table"></i><span>Calendário de Prova</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
-      <ul id="calprova-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+      <ul id="calprova-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
         <li>
           <a href={{ route('consultar.calendario') }}>
             <i class="bi bi-circle"></i><span>Calendários de Provas</span>
