@@ -32,12 +32,13 @@ use App\Http\Controllers\{
 // Route::get('validar-aluno', [AlunoController::class, 'situacaoAluno']);
 
 
-//Rotas inicial do Painel
+//Rotas inicial do Painel\
 Route::get('/', [inicioController::class,'inicio'])->name('inicio')->middleware(['auth','active.session']);
-/*
-Route::get('/', function () {
-    return view('pagina-inicial');
-})->name('inicio')->middleware(['auth','active.session']);*/
+
+
+// Route::get('/', function () {
+//     return view('pagina-inicial');
+// })->name('inicio')->middleware(['auth','active.session']);
 
  //Rota final do painel
  Route::get('logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
