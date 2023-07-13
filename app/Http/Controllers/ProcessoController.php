@@ -20,7 +20,7 @@ class ProcessoController extends Controller
     {
         $alunos = Aluno::where('aluno_id', $aluno_id)->first();
         $alunos = $this->buscarAluno();
-        
+         
         if(!empty($alunos))
         {
             return view('processo.doc-processo', ['alunos' => $alunos ]) ;

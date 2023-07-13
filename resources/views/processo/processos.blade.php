@@ -28,7 +28,7 @@
         <input id="pesquisa" type="text" placeholder="Digite o Número de processo ou o número do B.I do Aluno" name="" class="campo-pesq">
         <button id="pesquisa" type="submit" title="Search"><i class="bi bi-search"></i></button>   
     </form>
-    </div>
+    </div> 
 
     <!-- /  Inicio da tabela de inscritos -->
     <table  id="matricula-tab" class="table table-striped" style="margin-top: 20px;" >

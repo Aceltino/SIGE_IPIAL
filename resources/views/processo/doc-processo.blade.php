@@ -20,7 +20,7 @@
     <section class="section perfil">
       <div class="processo-al row">
         <div class="col-xl-2">
-
+ 
             <div class="card-bodys">
 
             <img src= {{ URL::asset( isset(Auth::user()->imagem_usuario) ? Auth::user()->imagem_usuario : '' ) }} alt="perfil" class="l">
