@@ -50,14 +50,6 @@ class MatriculaController extends Controller
     public function store(MatriculaRequest $input)
     {
         $request = $input->validated(); // Inputs validadas
-
-        $candidato = Candidato::find($request['id']);
-        if($candidato->status != 'admitido')
-        {
-            abort(404);
-        }
-
-        
         // dd($request);
         $encarregado = [];
         for($i = 1; $i <= 3; $i++)
@@ -199,7 +191,7 @@ class MatriculaController extends Controller
 
         $dataFimMatricula = AnoLectivoController::pegarAnoLectivo(AnoLectivoController::pegarIdAnoLectivo());
         $dataMatriculaCarboon = Carbon::parse($dataFimMatricula->data_fim_matricula);
-        $dataMatriculaCarboon->addDay();
+        $dataMatriculaCarboon->addDay(2);
         $dataAcesso = $dataMatriculaCarboon->format('d-m-Y');
         $hexAleatorio = Str::random(8);
         $dadosUser=

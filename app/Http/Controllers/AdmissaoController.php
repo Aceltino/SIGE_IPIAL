@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Turma;
+use App\Models\AnoTurmaCood;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Redirect;
 
@@ -19,17 +19,20 @@ class AdmissaoController extends Controller
 
         for ($i = 0; $i < $quantCursos; $i++)
         {
-            $curso[$i] = CursoController::pegarIdCurso($cursoNome[$i]);
+            $curso = CursoController::pegarIdCurso($cursoNome[$i]);
+            $turmas = AnoTurmaCood::with('turma','ano_lectivo')
+            ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
+            ->whereHas('turma', function ($query)  use ($curso, $classe) {
+                $query->where('curso_id', $curso);
+                $query->where('classe_id', $classe);
+            })
+            ->get();
 
-            $turmas = Turma::where('classe_id', $classe)
-                ->where('curso_id', $curso[$i])
-                ->get();
             $vagaCurso[$i] = [
                 'Curso' => $cursoNome[$i],
                 'Vagas da 10ª Classe' => $turmas->count() * $num_aluno,
             ];
         }
-
         return $vagaCurso;
     }
 

@@ -68,7 +68,7 @@
 
     <div class="row">
         <div class="col-12">
-            <table class="table table-striped" style="margin-top: 20px;" id="matricula-tab">
+            <table class="table table-striped table-custom table-escuro" style="margin-top: 20px;" id="matricula-tab">
             <thead>
                 <tr style=" text-align: center;">
                     <th scope="col-lg-2">Nº do Bilhete</th>
