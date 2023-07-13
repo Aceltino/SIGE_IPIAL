@@ -23,7 +23,7 @@
           
             <div class="row mb-3">
                 <div class="col">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select oninput="this.className = ''" name= class="form-select">
                         <optgroup label="Área de formação">
                             <option value="Informática">Informática</option>
                             <option value="Contrução civil">Electricidade</option>
