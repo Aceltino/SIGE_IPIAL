@@ -15,10 +15,15 @@ class ProcessoController extends Controller
         $alunos = $this->buscarAluno();
         return view('processo.processos', ['alunos'=>$alunos ]) ;
     } 
+
     public function visualizar($aluno_id)
     {
         $alunos = Aluno::where('aluno_id',$aluno_id)->first();
         $alunos = $this->buscarAluno();
+
+
+        dd($alunos);
+      
         if(!empty($alunos))
         {
             return view('processo.doc-processo', ['alunos' => $alunos ]) ;
@@ -28,6 +33,8 @@ class ProcessoController extends Controller
             return view('processo.processos', ['alunos'=>$alunos ]) ;
         }
     }
+
+
     public function destroy($aluno_id)
     {
        
@@ -39,7 +46,7 @@ class ProcessoController extends Controller
     {
         $alunos = Aluno::with('candidato','curso','anoturma')->get();
         $dadosAluno = [];
-       foreach($alunos as $aluno)
+        foreach($alunos as $aluno)
         {
             if (!empty($aluno->anoturma)){
                 foreach($aluno->anoturma as $anoTurma)
