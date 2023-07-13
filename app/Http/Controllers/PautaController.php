@@ -116,7 +116,7 @@ class PautaController extends Controller
             default:
                 return redirect()->back()->with('erro_anormal',"Lamentamos, Detectamos um comportamento anormal e grave no sistema...");
         }
-
+ 
     }
 
     //Metodo que retorna todos os usuario que devem assinar a Pauta

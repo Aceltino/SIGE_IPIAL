@@ -20,7 +20,7 @@ class DisciplinasController extends Controller
         $disciplinas = Disciplina::all();
         $disciplinas = Disciplina::where('nome_disciplina', 'like', "%$pesquisa%")->get();
         $disciplinas = Disciplina::with(['classes' => function ($query) {
-            $query->withPivot('carga_horaria');
+            $query->withPivot('carga_horaria','tipo_disciplina');
         }])->get();        
         return view('disciplina.disciplinas', compact('disciplinas'));
     }
@@ -33,12 +33,13 @@ class DisciplinasController extends Controller
 
     public function store(DisciplinaStoreRequest $request)
     { 
-       
+       dd($request);
         $disciplinas = Disciplina::create($request->all());
         $ClasseDisiciplina = ClasseDisciplina::create([
             'carga_horaria' => $request->carga_horaria,
             'disciplina_id' =>$disciplinas->disciplina_id,
             'classe_id' => $request->classe,
+            'tipo_disciplina' => $request->tipo_disciplina,
         ]);  
          
         return redirect()->route('consultar.disciplina',$disciplinas)->with('sucess','Disciplina cadastrada com sucesso');
@@ -69,6 +70,7 @@ class DisciplinasController extends Controller
         $Classe =[
             'carga_horaria' => $request->carga_horaria,
             'classe_id' => $request->classe,
+            'tipo_disciplina' => $request->tipo_disciplina,
         ];
         Disciplina::where('disciplina_id', $disciplina_id)->update($dado);
         ClasseDisciplina::where('disciplina_id', $disciplina_id)->update($Classe);

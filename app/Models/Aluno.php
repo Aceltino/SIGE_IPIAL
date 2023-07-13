@@ -48,7 +48,7 @@ class Aluno extends Model
     {
         return $this->belongsToMany(AnoTurmaCood::class, 'aluno_turma', 'aluno_id', 'turmaAno_id')->withPivot('numero_aluno','situacao');
     }
-
+ 
     public function Media(){
         return $this->hasMany(Media::class,'media_id');
     }

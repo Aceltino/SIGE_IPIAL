@@ -54,7 +54,7 @@
                                 <div class="alert alert-danger">{{$message}}
                                 <button class="botaofecharerro">
                                 <i class="bi bi-x"></i>
-                                </button></div>
+                                 </button></div>
                             @enderror
                     </div>
                     <div class="form-group col">
@@ -72,12 +72,12 @@
                             @enderror
                     </div>
                     <div class="form-group col">
-                        <select oninput="this.className = ''" class="form-select" name="Tipo_disciplina" id="selectTipoDisciplina">
+                        <select oninput="this.className = ''" class="form-select" name="tipo_disciplina" id="selectTipoDisciplina">
                           <option selected disabled>Tipo de Disciplina</option>
                           <option value="Terminal">Terminal</option> 
                           <option value="Contínua">Contínua</option>    
                         </select>
-                        @error('Tipo_disciplina')
+                        @error('tipo_disciplina')
                                    <div class="alert alert-danger">{{$message}}
                                    <button class="botaofecharerro">
                                    <i class="bi bi-x"></i>

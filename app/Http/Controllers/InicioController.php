@@ -11,6 +11,7 @@ use App\Models\{
     Curso,
     Aluno,
     User,
+    Comunicado,
 };
 
 class inicioController extends Controller
@@ -62,7 +63,13 @@ class inicioController extends Controller
         //Contando cada registro da tabela professores
         foreach($professores as $prof)
             $totalprofessores +=1;
-
+        
+        //Consultar tabela comunicado
+        $Comunicados = Comunicado::all();
+        $totalComunicados = 0;
+        //
+        foreach($Comunicados as $Comunicado)
+        $totalComunicados += 1;
         //Consultando a tabela dos turmas
         $turmas = Turma::all();
         $totalturmas = 0;
@@ -129,7 +136,7 @@ class inicioController extends Controller
         //dd($usCargos);
      //   return view('pagina-inicial', compact('alunoAno', 'alunoTotal'));
 
-        return view('pagina-inicial', compact('totalinscritos', 'totaladmitidos', 'totalnadmitidos', 'totalmatriculados', 'totalprofessores', 'totalturmas', 'totalcursos', 'totalUs', 'titulo', 'alunoAno', 'alunoTotal', 'cargoNome', 'cargoTotal'));
+        return view('pagina-inicial', compact('totalinscritos', 'totaladmitidos', 'totalnadmitidos', 'totalmatriculados', 'totalprofessores', 'totalturmas', 'totalcursos', 'totalUs', 'titulo', 'alunoAno', 'alunoTotal', 'cargoNome', 'cargoTotal',  'Comunicados'));
         //redirect()->route('inicio');
     }
 

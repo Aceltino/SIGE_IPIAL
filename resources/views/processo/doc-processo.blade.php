@@ -29,51 +29,44 @@
         </div>
         <div class="col-xl-10">
           <div> 
+          @foreach($alunos as $aluno)
             <h3>Dados pessoais:</h3>
             <div class="area-dado-pessoal">
-              <h4>Nome: </h4> <h5 value="{{ $alunos->candidato->pessoa->nome_completo }}"></h5>
+              <h4>Nome: </h4> <h5 >{{ $aluno->candidato->pessoa->nome_completo }}</h5>
             </div>
             <div class="area-dado-pessoal">
-              <h4>Filho de: </h4> <h5 value="">{{$aluno->candidato->nome_pai_cand}}</h5><h4>E de: </h4> <h5 value="">{{$aluno->candidato->nome_mae_cand}}</h5>
+              <h4>Filho de: </h4> <h5 >{{$aluno->candidato->nome_pai_cand}}</h5><h4>E de: </h4> <h5 >{{$aluno->candidato->nome_mae_cand}}</h5>
             </div>
             <div class="area-dado-pessoal">
-              <h4>Nascido aos: </h4> <h5 value="">{{$aluno->candidato->pessoa->data_nascimento}}</h5><h4>na Província de:</h4><h5 value="">Luanda</h5>
+              <h4>Nascido aos: </h4> <h5 >{{$aluno->candidato->pessoa->data_nascimento}}</h5><h4>na Província de:</h4><h5 >Luanda</h5>
             </div>
             <div class="area-dado-pessoal">
-              <h4>Portador do BI nº:</h4><h5 value="">{{$aluno->candidato->pessoa->num_bi}}</h5>
+              <h4>Portador do BI nº:</h4><h5 >{{$aluno->candidato->pessoa->num_bi}}</h5>
             </div>
           </div>
           <div class="area-dados-academicos">
             <h3>Dados académicos:</h3>
             <div class="area-dado-pessoal">
-              <h4>Matriculado no curso de:</h4><h5 value="">{{ $aluno->candidato->cursoAdmitido}}</h5><h5></h5>
+              <h4>Matriculado no curso de:</h4><h5 >{{ $aluno->candidato->cursoAdmitido}}</h5><h5></h5>
+            </div>
+            @foreach($aluno->anoturma as $anoturm)
+            <div class="area-dado-pessoal">
+              <h4>No ano lectivo:</h4><h5 >{{$anoturm->ano_lectivo->ano_lectivo}}</h5><h4>a</h4><h5>10a</h5><h4>Classe em regime</h4><h5>Diurno</h5>
             </div>
             <div class="area-dado-pessoal">
-              <h4>No ano lectivo:</h4><h5 value="">{{$anoturm->ano_lectivo->ano_lectivo}}</h5><h4>a</h4><h5>10a</h5><h4>Classe em regime</h4><h5>Diurno</h5>
-            </div>
-            <div class="area-dado-pessoal">
-              <h4>Na turma:</h4><h5 value="">{{$anoturm->turma->nome_turma}}</h5><h4>com o Número</h4><h5 value="">{{$anoturm->pivot->numero_aluno}}</h5><h4>Processo nº</h4><h5 value="">{{$aluno->aluno_id}}</h5><h4>Telefone:</h4><h5 value="">{{$aluno->candidato->pessoa->telefone}}</h5>
+              <h4>Na turma:</h4><h5 >{{$anoturm->turma->nome_turma}}</h5><h4>com o Número</h4><h5 >{{$anoturm->pivot->numero_aluno}}</h5><h4>Processo nº</h4><h5 >{{$aluno->aluno_id}}</h5><h4>Telefone:</h4><h5 >{{$aluno->candidato->pessoa->telefone}}</h5>
             </div>
             
             <div class="area-turmas">
               <div class="area-dado-pessoal">
-                <h4>Dados da 10a Class, Turma:</h4><h5>{{$anoturm->turma->nome_turma}}</h5><h4>Nº</h4><h5>{{$anoturm->pivot->numero_aluno}}</h5><h4>ano lectivo</h4><h5 value="">{{$anoturm->ano_lectivo->ano_lectivo}}</h5>
-              </div>
-              <div class="area-dado-pessoal">
-                <h4>Dados da 11a Class, Turma:</h4><h5>I11AM</h5><h4>Nº</h4><h5>15</h5><h4>ano lectivo</h4><h5>2021-2022</h5>
-              </div>
-              <div class="area-dado-pessoal">
-                <h4>Dados da 12a Class, Turma:</h4><h5>I12BT</h5><h4>Nº</h4><h5>10</h5><h4>ano lectivo</h4><h5>2022-2023</h5>
-              </div>
-              <div class="area-dado-pessoal">
-                <h4>Dados da 13a Class, Turma:</h4><h5>I13BT</h5><h4>Nº</h4><h5>10</h5><h4>ano lectivo</h4><h5>2023-2024</h5>
-              </div>
-              
+                <h4>Dados da 10a Class, Turma:</h4><h5>{{$anoturm->turma->nome_turma}}</h5><h4>Nº</h4><h5>{{$anoturm->pivot->numero_aluno}}</h5><h4>ano lectivo</h4><h5 >{{$anoturm->ano_lectivo->ano_lectivo}}</h5>
+              </div>              
             </div>
           </div>
         </div>
       </div>
     </section>
-  
+    @endforeach
+  @endforeach
 </main>
 @endsection

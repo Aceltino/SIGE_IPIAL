@@ -75,12 +75,12 @@
                             @enderror
                     </div>
                     <div class="form-group col">
-                        <select oninput="this.className = ''" class="form-select" name="Tipo_disciplina" id="selectTipoDisciplina">
-                          <option selected disabled value="{{ $disciplinas->Tipo_disciplina }}">{{ $disciplinas->Tipo_disciplina }}</option>
+                        <select oninput="this.className = ''" class="form-select" name="tipo_disciplina" id="selectTipoDisciplina">
+                          <option selected disabled value="{{ $disciplinas->classe->pivot->tipo_disciplina }}">{{ $disciplinas->classe->pivot->tipo_disciplina }}</option>
                           <option value="Terminal">Terminal</option> 
                           <option value="Contínua">Contínua</option>    
                         </select>
-                        @error('Tipo_disciplina')
+                        @error('tipo_disciplina')
                                 <div class="alert alert-danger">{{$message}}
                                 <button class="botaofecharerro">
                                 <i class="bi bi-x"></i>

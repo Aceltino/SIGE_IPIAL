@@ -42,7 +42,7 @@
           <th scope="col">Período</th>
           <th scope="col"></th>
           </tr>
-      </thead>
+      </thead> 
       <tbody>
         @foreach($alunos as $aluno)
           <tr  style=" text-align: center;">

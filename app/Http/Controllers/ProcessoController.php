@@ -12,13 +12,15 @@ class ProcessoController extends Controller
 {
     public function index()
     {
+        $alunos = Aluno::with(['anoturma'])->get();
         $alunos = $this->buscarAluno();
         return view('processo.processos', ['alunos'=>$alunos ]) ;
     } 
     public function visualizar($aluno_id)
     {
-        $alunos = Aluno::where('aluno_id',$aluno_id)->first();
+        $alunos = Aluno::where('aluno_id', $aluno_id)->first();
         $alunos = $this->buscarAluno();
+        
         if(!empty($alunos))
         {
             return view('processo.doc-processo', ['alunos' => $alunos ]) ;

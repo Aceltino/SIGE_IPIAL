@@ -29,7 +29,7 @@
 
 
 
-  </div>
+  </div> 
 
   <div class="procurar">
     <form action="{{ route('consultar.disciplina') }}" class="proc-form d-flex align-items-center" method="GET">
@@ -68,10 +68,10 @@
         <th scope="col">Nome da disciplina</th>
         <th scope="col">Sigla</th>
         <th scope="col">Compoente</th>
-        <th scope="col">Tempo de Prova</th>
         <th scope="col">Curso</th>
         <th scope="col">Classe</th>
         <th scope="col">Carga Horária</th>
+        <th scope="col">Tempo de Prova</th>
         <th scope="col"></th>
 
       </tr>
@@ -82,7 +82,6 @@
         <td>{{ $disciplina->nome_disciplina }}</td>
         <td>{{ $disciplina->sigla		}}</td>
         <td>{{ $disciplina->componente	}}</td>
-        <td>{{ $disciplina->tempo_prova }}</td> 
         @if($disciplina->curso_id == '')
         <td>Todos cursos</td>
         @else
@@ -91,6 +90,7 @@
          @foreach($disciplina->classes as $classe)
           <td>{{ $classe->classe }}</td>
           <td>{{ $classe->pivot->carga_horaria }}</td> 
+          <td>{{ $classe->pivot->tipo_disciplina }}</td>
         <td class="d-flex"> 
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal{{$disciplina->disciplina_id  }}"></i>
           <a href="{{ route('disciplina.edit', ['disciplina_id' => $disciplina->disciplina_id ])}}"><i class="bi bi-pencil"></i></a>
@@ -145,7 +145,7 @@
             @endif
               </div>
            <div class="area-input form-group" style="border: none; ">
-                <label>Tempo de prova: </label><input type="text" name="tempo_prova" value="{{ $disciplina->tempo_prova }}" disabled>
+                <label>Tempo de prova: </label><input type="text" name="tempo_prova" value="{{ $classe->pivot->tipo_disciplina }}" disabled>
             </div>
                       <div class="footer-modal" style="text-align: center;">
                         <a href="{{ route('disciplina.edit', ['disciplina_id' => $disciplina->disciplina_id ])}}" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
