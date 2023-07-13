@@ -443,6 +443,20 @@ Route::get('areaformacao', function () {
 Route::get('/edit-areaformacao', function () {
     return view('area-formacao/edit-areaformacao');
 });
+/*Sala*/
+Route::get('/cadastrar-sala', function () {
+    return view('sala\cadastrar-sala');
+});
+
+/*Area de formacao*/
+Route::get('/sala', function () {
+    return view('sala\sala');
+});
+
+/*Editar Area de formacao*/
+Route::get('/edit-sala', function () {
+    return view('sala\edit-sala');
+});
 
 
 /******************************************
