@@ -12,6 +12,7 @@ use App\Http\Controllers\{
     DisciplinasController, AdmissaoController,
     AlunoTurmaController,
     TurmaController, CalendarioController,
+    HorarioController,
     MediasController,
 };
 
@@ -415,10 +416,17 @@ Route::get('edit_recurso',  function () {
  * Rotas do horário
 ******************************************/
 
-/*Criar horário*/
-Route::get('/criar-horario', function () {
-    return view('horario/criar-horario');
+Route::prefix('horario')->group(function(){
+    /*Criar horário*/
+    Route::get('criar-horario',[HorarioController::class,'create'])->name('criar-horario');
+
+    // Route::get('cri-calend-prov',[CalendarioController::class, 'index'])->name('criar.calendario');
+    // Route::get('edit-calend-prova', function(){
+    //     return view('calend-prova/edit-calend-prova');
+    // })->name('editar.calendario');
 });
+
+
 
 /*Ver o horário da turma*/
 Route::get('/horario-turma', function () {
