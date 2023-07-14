@@ -4,6 +4,8 @@
 
 @section('conteudo')
 <main id="main" class="main">
+
+   
     
     <div class="container no-print">
     <div class="row">
@@ -146,30 +148,32 @@
         <th class="coluna-tab-p">
             <span class="txproc-p maisculo-p">Nº PROC</span>
         </th>  
+
         @foreach ($dadosPauta['disciplinas'] as $essesmambos)    
-        <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT1</span></th>
-        <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT2</span></th>
-        <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT3</span></th>
-        <th class="c-tab-amarelo coluna-tab-p"><span class="t-vert maisculo-p">CA</span></th>
-        <th class="coluna-tab-p" colspan="2"><span class="t-verst-falta-aluno-p maisculo-p">FALTAS</span></th>     
-        @endforeach        
+            <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT1</span></th>
+            <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT2</span></th>
+            <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT3</span></th>
+            <th class="c-tab-amarelo coluna-tab-p"><span class="t-vert maisculo-p">CA</span></th>
+            <th class="coluna-tab-p" colspan="2"><span class="t-verst-falta-aluno-p maisculo-p">FALTAS</span></th>     
+        @endforeach  
+
         </tr>
 
         
             @foreach ($dadosPauta['alunos'] as $indexaluno => $aluno  )
                 
-            <tr class="linha-tab-p">
-            <td class="coluna-tab-p">
-                <span class="num-aluno-p">{{$loop->index+1}}</span>
-            </td>
-            <td class="coluna-tab-p">
-                <span class="nome-aluno-p">{{$aluno->candidato->pessoa->nome_completo}}</span>
-            </td>
-            <td class="coluna-tab-p">
-                <span class="num-proc-p">{{$aluno->aluno_id}}</span>
-            </td> 
+                <tr class="linha-tab-p">
+                <td class="coluna-tab-p">
+                    <span class="num-aluno-p">{{$loop->index+1}}</span>
+                </td>
+                <td class="coluna-tab-p">
+                    <span class="nome-aluno-p">{{$aluno->candidato->pessoa->nome_completo}}</span>
+                </td>
+                <td class="coluna-tab-p">
+                    <span class="num-proc-p">{{$aluno->aluno_id}}</span>
+                </td> 
             
-            
+           
           
 
             @foreach ($dadosPauta['disciplinas'] as $indexDisciplina => $disciplina)
@@ -178,27 +182,13 @@
                 <?php
 
 
-                    $mediaTrimestre1 = '0';
-                    $mediaTrimestre2 = '0';
-                    $mediaTrimestre3 = '0';
 
-                    $mediasDisciplina = $dadosPauta['medias'];
-
-                    if (isset($mediasDisciplina[$indexaluno][$indexDisciplina])) {
-                        $mediaAluno = $mediasDisciplina[$indexaluno][$indexDisciplina];
-
-                        if ($mediaAluno instanceof \App\Models\Media) {
-                            $mediaTrimestre1 = $mediaAluno->nota ?? '0';
-                            $mediaTrimestre2 = $mediaAluno->nota ?? '0';
-                            $mediaTrimestre3 = $mediaAluno->nota ?? '0';
-                        }
-                    }
                                     
                 ?>
                
-                <td class="nota coluna-tab-p"><span class="nota-neg">{{$mediaTrimestre1}}</span></td>
-                <td class="nota coluna-tab-p"><span class="nota-neg"></span></td>
-                <td class="nota coluna-tab-p"><span class="nota-pos"></span></td>
+                <td class="nota coluna-tab-p"><span class="nota-neg">1</span></td>
+                <td class="nota coluna-tab-p"><span class="nota-neg">2</span></td>
+                <td class="nota coluna-tab-p"><span class="nota-pos">3</span></td>
                 <td class="nota c-tab-amarelo coluna-tab-p"><span class="nota-pos">15</span></td>
                 <td class="nota coluna-tab-p"><span class="nota-pos"></span></td>
         

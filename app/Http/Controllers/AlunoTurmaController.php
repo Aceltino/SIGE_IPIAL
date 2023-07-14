@@ -2,6 +2,7 @@
 
     namespace App\Http\Controllers;
 
+    use Carbon\Carbon;
     use App\Http\Controllers\AlunoController;
     use App\Http\Controllers\UserController;
     use App\Models\Aluno;
@@ -17,11 +18,22 @@
         }
         public static function SelecionarTurma() //10ª Classe, função a ser chamada na atribuição de alunos, matriculados.
         {
+            $anoLectivo = AnoLectivoController::pegarAnoLectivo(AnoLectivoController::pegarIdAnoLectivo());
+            $dataFimIncricao = Carbon::parse($anoLectivo->data_fim_matricula);
+            $dataFimIncricao->addDay();
+            $dataFimIncricao = $dataFimIncricao->format('d-m-Y');
+            $dataAtual = Carbon::now();
+            $dataFormated = $dataAtual->format('d-m-Y');
+
+            if( $dataFormated != $dataFimIncricao )
+            {
+                return 'O processo de atribuição de turma é feito apenas um dia após o fim da matricula: '. $dataFimIncricao;      
+            }
         $alunos = AlunoController::alunosSemturma();
     // dd($alunos);
         if(!$alunos)
         {
-                return "Todos os alunos matriculados atualmente estão nas suas devidas turmas.";
+            return "Todos os alunos matriculados atualmente estão nas suas devidas turmas.";
         }
         $alunoTurma = [];
 
@@ -628,8 +640,8 @@
     public static function pegarTurmas() // http://127.0.0.1:8000/api/turmas
         {
             $turmas = AnoTurmaCood::with('turma', 'ano_lectivo')
+            ->orderBy('ano_lectivo_id', 'desc')
             ->get();
-            // dd($turmas);
 
             $dadosTurma = [];
             foreach ($turmas as $turmaA) 
@@ -644,7 +656,6 @@
                     'anolectivoTurma' => $turmaA->ano_lectivo->ano_lectivo
                 ];
             }
-            // dd($dadosTurma);
             return $dadosTurma;
         }
 }

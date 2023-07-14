@@ -46,7 +46,7 @@
       </div>
 
       <!-- /  Inicio da tabela de inscritos -->
-      <table id="matricula-tab" class="table table-striped mt-4">
+      <table id="matricula-tab" class="table table-striped mt-4 table-custom table-escuro">
         <thead>
           <tr style=" text-align: center;">
             <th scope="col">Designação</th>
