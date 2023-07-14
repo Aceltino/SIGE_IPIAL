@@ -68,6 +68,7 @@ class PautaController extends Controller
                 $OneMedia[]= MediasController::getMediaOneTrimestre($value->disciplina_id,$aluno->aluno_id, $anoLectivo); 
                 $TwoMedia[]= MediasController::getMediaTwoTrimestre($value->disciplina_id,$aluno->aluno_id, $anoLectivo); 
                 $ThreeMedia[]= MediasController::getMediaThreeTrimestre($value->disciplina_id,$aluno->aluno_id, $anoLectivo); 
+                $ca =MediasController::classificacaoAnual($value->disciplina_id,$aluno->aluno_id, $anoLectivo);
             } 
         }   
 
@@ -76,22 +77,6 @@ class PautaController extends Controller
             return redirect()->back()->with('msg_sem_pauta',"Lamentamos! Esta pauta ainda não esta composta... Aguarde o lançamento das notas");
         }
 
-       
-        // //1º Trimestre
-        // foreach ($OneMedia as $valueMedias) { 
-        //     $OneMedia[]= $valueMedias;
-        // }
-        // //2º Trimestre
-        // foreach ($TwoMedia as $valueMedias) { 
-        //     $OneMedia[]= $valueMedias;
-        // }
-        // //3º Trimestre
-        // foreach ($ThreeMedia as $valueMedias) { 
-        //     $OneMedia[]= $valueMedias;
-        // }
-        
-
-     
         //Dados completos que vão para compor a pauta. 
         $dadosPauta= [
             'alunos' => $alunos, 
@@ -103,6 +88,7 @@ class PautaController extends Controller
             'OneMedia'=>$OneMedia,
             'TwoMedia'=>$TwoMedia,
             'ThreeMedia'=>$ThreeMedia,
+            'CA'=>$ca,
             'colspanDisciplina'=>(count($disciplinas)*6),
 
         ];  

@@ -15,10 +15,10 @@
         <div class="tab">
           <h2 class="text-uppercase text-center my-3 color-blue-principal">introduza os dados pessoais </h2>
           
-          @if($errors->any())
+          @if ($errors->any())
             <div class="alert alert-danger">
               <ul>
-                  @foreach($errors->all() as $error)
+                  @foreach ($errors->all() as $error)
                     <li>{{ $error }}
                       <button class="botaofecharerro">
                         <i class="bi bi-x"></i>
@@ -26,6 +26,18 @@
                     </li>
                   @endforeach
               </ul>
+            </div>
+          @endif
+
+          @if(session()->has('error'))
+            <div class="alert alert-danger"> 
+              {{ session('error') }}
+            </div>
+          @endif
+
+          @if(session()->has('success'))
+            <div class="alert alert-success"> 
+              {{ session('success') }}
             </div>
           @endif
 
@@ -72,7 +84,7 @@
                 <label class="me-3">Sexo:</label>
                 <input type="radio" id="masculino" name="genero" value="Masculino" {{ old('genero') == 'Masculino' ? 'checked' : '' }} checked>
                 <label for="masculino" class="me-2"> Masculino</label>
-                <input type="radio" id="feminino" name="genero" value="Femenino" {{ old('genero') == 'Femenino' ? 'checked' : '' }}>
+                <input type="radio" id="feminino" name="genero" value="Feminino" {{ old('genero') == 'Feminino' ? 'checked' : '' }}>
                 <label for="feminino"> Feminino</label>
               </div>
             </div>
@@ -91,7 +103,7 @@
           <div class="row">
             <h5>Endereço</h5>
             <div class="form-group col-md-3">
-              <input name='municipio' type="text" placeholder="Municipio" id="municipio-do-professor-input">
+              <input name='municipio' type="text" placeholder="Municipio">
             </div>
             
             <div class="form-group col-md-3">
@@ -111,7 +123,7 @@
 
           <div class="form-group col-md-6 offset-md-3 mb-3">
             <h6 class="color-blue-principal">Introduza o número de disciplinas que o professor vai lecionar.</h6>
-            <input type="number" placeholder="Quantidade de disciplinas" id="quantidade-de-disciplinas" min="1" value="1" max="4" required='false'>
+            <input name="qtd_disciplinas" type="number" placeholder="Quantidade de disciplinas" id="quantidade-de-disciplinas" min="1" value="1" max="4" required='false'>
           </div>
 
           <section class="row align-items-center ms-5 mb-4" id="div-disciplina-1">
