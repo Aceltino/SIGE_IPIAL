@@ -57,4 +57,29 @@ class MediasController extends Controller
     }
 
 
+    //Metodo retorna a Classificação Anual do Aluno em uma determinada Disciplina e Ano lectivo
+    public static function classificacaoAnual($disciplina_id,$aluno_id,$anoLectivo)
+    {
+
+        $mt1= []; // Inicializa a variável $mt1 como um array vazio
+        $media_1= self::getMediaOneTrimestre($disciplina_id,$aluno_id,$anoLectivo);
+        foreach ($media_1 as $value) {
+            $mt1[] = !empty($value->nota) ? $value->nota : 0;
+        }
+        
+        $mt2= []; // Inicializa a variável $mt2 como um array vazio
+        $media_2 = self::getMediaTwoTrimestre($disciplina_id, $aluno_id, $anoLectivo);
+        foreach ($media_2 as $value) {
+            $mt2[] = !empty($value->nota) ? $value->nota : 0;
+        }
+        
+        $mt3= []; // Inicializa a variável $mt3 como um array vazio
+        $media_3 = self::getMediaThreeTrimestre($disciplina_id, $aluno_id, $anoLectivo);
+        foreach ($media_3 as $value) {
+            $mt3[] = !empty($value->nota) ? $value->nota : 0;
+        }
+        
+       return ( array_sum($mt1) + array_sum($mt2) + array_sum($mt3) )/3 ;
+    }
+
 } //Fim da classe "MediasController"
