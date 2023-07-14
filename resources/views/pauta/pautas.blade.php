@@ -34,36 +34,54 @@
     @if(session('msg_sem_pauta'))
         <div class="alert alert-danger">
             {{session('msg_sem_pauta')}}
+            <button class="botaofecharerro">
+                <i class="bi bi-x"></i>
+              </button>
         </div>
     @endif
 
     @if(session('msg_sem_director'))
         <div class="alert alert-danger">
             {{session('msg_sem_director')}}
+            <button class="botaofecharerro">
+                <i class="bi bi-x"></i>
+              </button>
         </div>
     @endif
 
     @if(session('msg_sem_subdirector'))
          <div class="alert alert-danger">
             {{session('msg_sem_subdirector')}}
+            <button class="botaofecharerro">
+                <i class="bi bi-x"></i>
+              </button>
         </div>
     @endif
 
     @if(session('msg_sem_coordenadorArea'))
         <div class="alert alert-danger">
             {{session('msg_sem_coordenadorArea')}}
+            <button class="botaofecharerro">
+                <i class="bi bi-x"></i>
+              </button>
         </div>
     @endif
 
     @if(session('msg_sem_directorTurma'))
         <div class="alert alert-danger">
             {{session('msg_sem_directorTurma')}}
+            <button class="botaofecharerro">
+                <i class="bi bi-x"></i>
+              </button>
         </div>
     @endif
     
     @if(session('erro_anormal'))
         <div class="alert alert-danger">
             {{session('erro_anormal')}}
+            <button class="botaofecharerro">
+                <i class="bi bi-x"></i>
+              </button>
         </div>
     @endif
   

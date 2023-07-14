@@ -74,11 +74,11 @@
     </div>
     </div>
   </div>
-  <div class="bortabela">
+  <div class="bortabela" style="box-shadow: 0 5px 15px 0 rgba(82, 63, 105, 0.2); border: 1px solid white; border-radius: 3px; padding: 2px;">
     <div class="pagetitle">
         <div class="row">
             <div class="col" style="padding-left: 25px; padding-top: 15px;">
-                <h4 style="text-align: center">Data: {{date('d/m/Y')}}</h3>
+                <h1 style="text-align: center; font-size: 25px; ">Data: {{date('d/m/Y')}}</h1>
             </div>
         </div>
     </div>
