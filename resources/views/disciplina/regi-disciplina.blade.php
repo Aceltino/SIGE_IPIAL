@@ -71,7 +71,7 @@
                                 </button></div>
                             @enderror
                     </div>
-                    <div class="form-group col">
+                    <div class="form-group col" class="clone2">
                         <select oninput="this.className = ''" class="form-select" name="Tipo_disciplina" id="selectTipoDisciplina">
                           <option selected disabled>Tipo de Disciplina</option>
                           <option value="Terminal">Terminal</option> 
@@ -83,6 +83,9 @@
                                    <i class="bi bi-x"></i>
                                    </button></div>
                                @enderror
+                               <div >
+                                <i id="clonebtn2"class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>
+                               </div>
                       </div>
                 </div>
               <div class="row">
@@ -103,7 +106,7 @@
                                    </button></div>
                                @enderror
                        </div> 
-                       <div class="col">
+                       <div class="col" id="clone1">
                           <input type="text" id="numeroinput1" style=" text-align: center;" name="carga_horaria" value="{{ old('carga_horaria') }}" placeholder="Carga Horária" oninput="this.className = ''" maxlength="4">
                           @error('carga_horaria')
                                    <div class="alert alert-danger">{{$message}}
@@ -111,6 +114,9 @@
                                    <i class="bi bi-x"></i>
                                    </button></div>
                                @enderror
+                               <div >
+                                <i id="clonebtn1"class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>
+                               </div>
                         </div> 
                     </div>
              </div> 

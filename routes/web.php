@@ -438,6 +438,34 @@ Route::get('/horario-turma', function () {
 Route::get('/editar-horario', function () {
     return view('horario/editar-horario');
 });
+/*Area de formacao*/
+Route::get('/criar-areaformacao', function () {
+    return view('area-formacao/criar-areaformacao');
+});
+
+/*Area de formacao*/
+Route::get('areaformacao', function () {
+    return view('area-formacao/areaformacao');
+});
+
+/*Editar Area de formacao*/
+Route::get('/edit-areaformacao', function () {
+    return view('area-formacao/edit-areaformacao');
+});
+/*Sala*/
+Route::get('/cadastrar-sala', function () {
+    return view('sala\cadastrar-sala');
+});
+
+/*Area de formacao*/
+Route::get('/sala', function () {
+    return view('sala\sala');
+});
+
+/*Editar Area de formacao*/
+Route::get('/edit-sala', function () {
+    return view('sala\edit-sala');
+});
 
 
 /******************************************
