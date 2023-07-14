@@ -5,7 +5,7 @@
 @section('conteudo')
 <main id="main" class="main">
 
-   
+    
     
     <div class="container no-print">
     <div class="row">
@@ -173,7 +173,7 @@
                     <span class="num-proc-p">{{$aluno->aluno_id}}</span>
                 </td> 
             
-           
+            
           
 
             @foreach ($dadosPauta['disciplinas'] as $indexDisciplina => $disciplina)
@@ -182,13 +182,57 @@
                 <?php
 
 
+                    $mediaTrimestre1 = '0';
+                    $mediaTrimestre2 = '0';
+                    $mediaTrimestre3 = '0';
+                    
 
+                    $mediasDisciplina = $dadosPauta['OneMedia'];
+                    $mediasDisciplina2 = $dadosPauta['TwoMedia'];
+                    $mediasDisciplina3 = $dadosPauta['ThreeMedia'];
+
+                    if (isset($mediasDisciplina[$indexaluno][$indexDisciplina])) {
+                        $mediaAluno = $mediasDisciplina[$indexaluno][$indexDisciplina];
+
+                        if ($mediaAluno instanceof \App\Models\Media) {
+                            $mediaTrimestre1 = $mediaAluno->nota ?? '0';
+                        }
+                    }
+
+                    if (isset($mediasDisciplina2[$indexaluno][$indexDisciplina])) {
+                        $mediaAluno = $mediasDisciplina2[$indexaluno][$indexDisciplina];
+
+                        if ($mediaAluno instanceof \App\Models\Media) {
+                            $mediaTrimestre2 = $mediaAluno->nota ?? '0';
+                        }
+                    }
+
+                    if (isset($mediasDisciplina3[$indexaluno][$indexDisciplina])) {
+                        $mediaAluno = $mediasDisciplina3[$indexaluno][$indexDisciplina];
+
+                        if ($mediaAluno instanceof \App\Models\Media) {
+                            $mediaTrimestre3 = $mediaAluno->nota ?? '0';
+                        }
+                    }
+
+                    
                                     
                 ?>
-               
-                <td class="nota coluna-tab-p"><span class="nota-neg">1</span></td>
-                <td class="nota coluna-tab-p"><span class="nota-neg">2</span></td>
-                <td class="nota coluna-tab-p"><span class="nota-pos">3</span></td>
+               @if($mediaTrimestre1<10)
+                <td class="nota coluna-tab-p"><span class="nota-neg" style="color: rgb(255, 12, 12)">{{$mediaTrimestre1}}</span></td>
+                @else
+                <td class="nota coluna-tab-p"><span class="nota-neg" style="color: rgb(38, 6, 221)">{{$mediaTrimestre1}}</span></td>
+                @endif
+                @if($mediaTrimestre2<10)
+                <td class="nota coluna-tab-p"><span class="nota-neg" style="color: rgb(255, 12, 12)">{{$mediaTrimestre2}}</span></td>
+                @else
+                <td class="nota coluna-tab-p"><span class="nota-neg" style="color: rgb(38, 6, 221)">{{$mediaTrimestre2}}</span></td>
+                @endif
+                @if($mediaTrimestre3<10)
+                <td class="nota coluna-tab-p"><span class="nota-neg" style="color: rgb(255, 12, 12)">{{$mediaTrimestre3}}</span></td>
+                @else
+                <td class="nota coluna-tab-p"><span class="nota-neg" style="color: rgb(38, 6, 221)">{{$mediaTrimestre3}}</span></td>
+                @endif
                 <td class="nota c-tab-amarelo coluna-tab-p"><span class="nota-pos">15</span></td>
                 <td class="nota coluna-tab-p"><span class="nota-pos"></span></td>
         
