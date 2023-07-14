@@ -146,76 +146,80 @@
         <th class="coluna-tab-p">
             <span class="txproc-p maisculo-p">Nº PROC</span>
         </th>  
+
         @foreach ($dadosPauta['disciplinas'] as $essesmambos)    
-        <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT1</span></th>
-        <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT2</span></th>
-        <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT3</span></th>
-        <th class="c-tab-amarelo coluna-tab-p"><span class="t-vert maisculo-p">CA</span></th>
-        <th class="coluna-tab-p" colspan="2"><span class="t-verst-falta-aluno-p maisculo-p">FALTAS</span></th>     
-        @endforeach        
+            <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT1</span></th>
+            <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT2</span></th>
+            <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT3</span></th>
+            <th class="c-tab-amarelo coluna-tab-p"><span class="t-vert maisculo-p">CA</span></th>
+            <th class="coluna-tab-p" colspan="2"><span class="t-verst-falta-aluno-p maisculo-p">FALTAS</span></th>     
+        @endforeach  
+
         </tr>
 
         
             @foreach ($dadosPauta['alunos'] as $aluno  )
                 
-            <tr class="linha-tab-p">
-            <td class="coluna-tab-p">
-                <span class="num-aluno-p">{{$loop->index+1}}</span>
-            </td>
-            <td class="coluna-tab-p">
-                <span class="nome-aluno-p">{{$aluno->candidato->pessoa->nome_completo}}</span>
-            </td>
-            <td class="coluna-tab-p">
-                <span class="num-proc-p">{{$aluno->aluno_id}}</span>
-            </td> 
+                <tr class="linha-tab-p">
+                <td class="coluna-tab-p">
+                    <span class="num-aluno-p">{{$loop->index+1}}</span>
+                </td>
+                <td class="coluna-tab-p">
+                    <span class="nome-aluno-p">{{$aluno->candidato->pessoa->nome_completo}}</span>
+                </td>
+                <td class="coluna-tab-p">
+                    <span class="num-proc-p">{{$aluno->aluno_id}}</span>
+                </td> 
             
             
 
            @foreach ($dadosPauta['disciplinas'] as $index => $disciplina )
 
-           <?php
-            foreach($dadosPauta['alunos'] as $aluno){
+            <?php
+                foreach($dadosPauta['alunos'] as  $aluno){
+
+
+            $mediasDisciplina = $dadosPauta['medias'];
+            if (array_key_exists($index, $mediasDisciplina)) {
+                $media = $mediasDisciplina[$index];
+                if (count($media) > 0) {
+                    $primeiraPosicao = $media[0]; 
+                    $mt1 = $primeiraPosicao['nota']; 
+                } else {
+                    $mt1 = '0'; 
+                }
+            } else {
+                $mt1 = '0'; 
+            }
+    
+            $mediasDisciplina = $dadosPauta['medias'];
+                if (array_key_exists($index, $mediasDisciplina)) {
+                    $media = $mediasDisciplina[$index];
+                    if (count($media) > 1) {
+                        $segundaPosicao = $media[1]; 
+                        $mt2= $segundaPosicao['nota']; 
+                    } else {
+                        $mt2 = '0'; 
+                    }
+                } else {
+                    $mt2 = '0'; 
+                }
 
                 $mediasDisciplina = $dadosPauta['medias'];
                 if (array_key_exists($index, $mediasDisciplina)) {
                     $media = $mediasDisciplina[$index];
-                    if (count($media) > 0) {
-                        $primeiraPosicao = $media[0]; 
-                        $mt1 = $primeiraPosicao['nota']; 
-                    } else {
-                        $mt1 = '0'; 
-                    }
-                } else {
-                    $mt1 = '0'; 
-                }
-        
-                $mediasDisciplina = $dadosPauta['medias'];
-                    if (array_key_exists($index, $mediasDisciplina)) {
-                        $media = $mediasDisciplina[$index];
-                        if (count($media) > 1) {
-                            $segundaPosicao = $media[1]; 
-                            $mt2= $segundaPosicao['nota']; 
-                        } else {
-                            $mt2 = '0'; 
-                        }
-                    } else {
-                        $mt2 = '0'; 
-                    }
-
-                    $mediasDisciplina = $dadosPauta['medias'];
-                    if (array_key_exists($index, $mediasDisciplina)) {
-                        $media = $mediasDisciplina[$index];
-                        if (count($media) > 2) {
-                            $segundaPosicao = $media[2]; 
-                            $mt2= $segundaPosicao['nota']; 
-                        } else {
-                            $mt3 = '0'; 
-                        }
+                    if (count($media) > 2) {
+                        $segundaPosicao = $media[2]; 
+                        $mt2= $segundaPosicao['nota']; 
                     } else {
                         $mt3 = '0'; 
                     }
-            }
-           ?>
+                } else {
+                    $mt3 = '0'; 
+                }
+                }
+                
+            ?>
            
                       
           
