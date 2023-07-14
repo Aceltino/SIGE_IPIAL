@@ -5,19 +5,20 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Models\{
-    Candidato, 
+    Candidato,
     Professor,
     Turma,
     Curso,
     Aluno,
     User,
 };
+use App\Traits\AnoLectivoTrait;
 
 class inicioController extends Controller
 {
     public function inicio(){
 
-        //Consultando a tabela dos candidatos 
+        //Consultando a tabela dos candidatos
         $inscritos = Candidato::all();
         $totalinscritos = 0;
 
@@ -44,7 +45,7 @@ class inicioController extends Controller
             //filtrando candidatos com o estado de Não admitido
             if($nadmitid->status == "Não admitido")
                 $totalnadmitidos +=1;
-        
+
         // Consultando a tabela dos candidatos para os Matriculados
         $matriculados = Candidato::all();
         $totalmatriculados = 0;
@@ -98,7 +99,7 @@ class inicioController extends Controller
 
         //Variaveis necessarias para o grafico
         $titulo = "Alunos no Alda";
-        $alunoAno = implode(',', $ano); 
+        $alunoAno = implode(',', $ano);
         $alunoTotal = implode(',', $total);
 
         //          #Cargos do usuario
@@ -114,7 +115,7 @@ class inicioController extends Controller
         ->orderBy('cargo', 'asc')
         ->get();
 
-        //Percorrendo cada posicao 
+        //Percorrendo cada posicao
         foreach($usCargos as $usCargo){
             $nomeCargo[] = "'".$usCargo->cargo."'";
             $totalCargo[] = $usCargo->totalc;
@@ -124,10 +125,12 @@ class inicioController extends Controller
 
         //Variaveis necessarias para o grafico
         $cargoNome = implode(',', $nomeCargo);
-        $cargoTotal = implode(',', $totalCargo); 
+        $cargoTotal = implode(',', $totalCargo);
 
         //dd($usCargos);
      //   return view('pagina-inicial', compact('alunoAno', 'alunoTotal'));
+
+
 
         return view('pagina-inicial', compact('totalinscritos', 'totaladmitidos', 'totalnadmitidos', 'totalmatriculados', 'totalprofessores', 'totalturmas', 'totalcursos', 'totalUs', 'titulo', 'alunoAno', 'alunoTotal', 'cargoNome', 'cargoTotal'));
         //redirect()->route('inicio');

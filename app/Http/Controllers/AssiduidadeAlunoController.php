@@ -9,13 +9,14 @@ use App\Traits\AvaliacaoTrait;
 use App\Traits\AssiduidadeTrait;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Professor;
-
+use App\Traits\AnoLectivoTrait;
 
 class AssiduidadeAlunoController extends Controller
 {
 
     public function index()
     {
+        //AnoLectivoTrait::abrirTrimestre();
         $user = Auth::user();
         if($user->cargo_usuario === "Administrador" || $user->cargo_usuario === "Subdirector"){
             $professor = AvaliacaoTrait::pegarAdmin();
@@ -107,14 +108,15 @@ class AssiduidadeAlunoController extends Controller
     {
         $trimestre = AvaliacaoTrait::pegarTrimestre();
         $falta = AssiduidadeTrait::pegarTempoFalta($turma_id, $professor_disciplina_id);
-        if(!$falta){
-            return redirect()->back()->with('erro', "Não é possível marcar faltas!");
+        $erro = AvaliacaoTrait::erros($falta);
+        if($erro !== true){
+            return redirect()->back()->with('erro', $erro);
         }
         $data = (string) date('Y-m-d');
         $tot_faltas = Assiduidade_aluno::where('created_at', 'like', '%'.$data.'%')->where('aluno_id', $aluno_id)
         ->where('id_trimestre', $trimestre[0]->trimestre_id)->where('disciplina_id', $disciplina_id)
         ->where('tipo_falta', "PRESENCIAL")->get();
-        if(count($falta) <= count($tot_faltas)){
+        if(count($falta) <= count($tot_faltas) && $request->tipo_falta === "PRESENCIAL"){
             return redirect()->back()->with('erro', "Limite de faltas atingido!");
         }
 
@@ -145,10 +147,12 @@ class AssiduidadeAlunoController extends Controller
         return view('assiduid-aluno/edit-assd-aluno', compact(['assiduidade', 'trimestre', 'tempos']));
     }
 
-    public function update($assiduidade_id)
+    public function update(Request $request, $assiduidade_id)
     {
+
         $assiduidade = Assiduidade_aluno::find($assiduidade_id);
         $assiduidade->status_falta = "JUSTIFICADA";
+        $assiduidade->descricao_falta = $assiduidade->descricao_falta . "</br></br></br></br>" . $request->conteudo;
         $assiduidade->save();
         return redirect()->back()->with('sucesso', "Falta justificada com sucesso!");
     }

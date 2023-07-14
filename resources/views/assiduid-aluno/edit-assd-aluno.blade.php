@@ -88,9 +88,9 @@
                 <td>{{$assid->tipo_falta}}</td>
                 <td>{{$assid->status_falta}}</td>
                 <td style="text-align: center">
-                    <a class="btn linkeditar" data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$assid['disciplina_id']}}">Justificar</a>
+                    <a class="btn linkeditar" data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$assid['assiduidade_id']}}">Justificar</a>
                 </td>
-                <td> <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#Descricaoassid{{$assid['disciplina_id']}}"></i></td>
+                <td> <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#Descricaoassid{{$assid['assiduidade_id']}}"></i></td>
                 </tr>
         @endforeach
 
@@ -104,7 +104,7 @@
     <form method="POST" action="{{route('justificar.falta', $assid->assiduidade_id)}}">
         @csrf
         @method('put')
-      <div class="modal" id="modal_assiduidade{{$assid['disciplina_id']}}" tabindex="-1" data-bs-backdrop="false" >
+      <div class="modal" id="modal_assiduidade{{$assid['assiduidade_id']}}" tabindex="-1" data-bs-backdrop="false" >
           <div class="modal-dialog">
           <div class="modal-content">
           <div class="modal-header">
@@ -136,7 +136,7 @@
 <!-- Fím da modal -->
 
 @foreach ($assiduidade as $assid)
-    <div class="modal fade" id="Descricaoassid{{$assid['disciplina_id']}}" tabindex="-1" data-bs-backdrop="false">
+    <div class="modal fade" id="Descricaoassid{{$assid['assiduidade_id']}}" tabindex="-1" data-bs-backdrop="false">
       <div class="modal-dialog modal-xl">
         <div class="modal-content">
 
@@ -170,7 +170,7 @@
                       <div class="jnt">
                           <a class="btn" data-bs-toggle="modal" aria-label="Close" data-bs-dismiss="modal" style="background-color: #070b17; color: #fff;">Retroceder</a>
 
-                          <a class="btn" data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$assid['disciplina_id']}}" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
+                          <a class="btn" data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$assid['assiduidade_id']}}" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
                       </div>
                     </div>
 
