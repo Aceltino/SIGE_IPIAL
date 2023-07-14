@@ -89,9 +89,8 @@
 
             <div class="row mb-3" id="horario-div-que-pode-desaparecer-1">
                 <div class="col-sm-6">
-                    <select oninput="this.className = ''" name='ed_fisica_dia1' class="form-select" id="criar-horario-select-primeiro-dia-de-educacao-fisica">
-                        <optgroup label="Primeiro dia de Educação Física">
-                            <option value="Nenhum">Nenhum</option>
+                    <select oninput="this.className = ''" name='ed_fisica_dia1' class="form-select" id="criar-horario-select-primeiro-dia-de-educacao-fisica" onchange="verificarSelecoesEducacaoFisica()">
+                        <optgroup label="Primeiro dia de Educação Física"> 
                             <option value="Segunda-Feira">Segunda-Feira</option>
                             <option value="Terça-Feira">Terça-Feira</option>
                             <option value="Quarta-Feira">Quarta-Feira</option>
@@ -112,7 +111,7 @@
 
             <div class="row" id="horario-div-que-pode-desaparecer-2">
                 <div class="col-sm-6">
-                    <select oninput="this.className = ''" name='ed_fisica_dia2' class="form-select" id="criar-horario-select-segundo-dia-de-educacao-fisica">
+                    <select oninput="this.className = ''" class="form-select" id="criar-horario-select-segundo-dia-de-educacao-fisica">
                         <optgroup label="Segundo dia de Educação Física">
                             <option value="Nenhum">Nenhum</option>
                             <option value="Segunda-Feira">Segunda-Feira</option>

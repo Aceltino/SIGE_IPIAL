@@ -3,11 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-<<<<<<< HEAD
-        'reference' => 'f1520945e924da431b41374e41e69a1ab57e62ba',
-=======
-        'reference' => '4b4853ac3c31fa9e152909eb318b90b2f2c80287',
->>>>>>> 3a7ea98a63cfd10df9e05f0f29669c2a372ed674
+        'reference' => 'abaa3e6aabc60460eae2fc9414d40460d66b0a1c',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -153,9 +149,9 @@
             'dev_requirement' => true,
         ),
         'filp/whoops' => array(
-            'pretty_version' => '2.15.2',
-            'version' => '2.15.2.0',
-            'reference' => 'aac9304c5ed61bf7b1b7a6064bf9806ab842ce73',
+            'pretty_version' => '2.15.3',
+            'version' => '2.15.3.0',
+            'reference' => 'c83e88a30524f9360b11f585f71e6b17313b7187',
             'type' => 'library',
             'install_path' => __DIR__ . '/../filp/whoops',
             'aliases' => array(),
@@ -461,11 +457,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-<<<<<<< HEAD
-            'reference' => 'f1520945e924da431b41374e41e69a1ab57e62ba',
-=======
-            'reference' => '4b4853ac3c31fa9e152909eb318b90b2f2c80287',
->>>>>>> 3a7ea98a63cfd10df9e05f0f29669c2a372ed674
+            'reference' => 'abaa3e6aabc60460eae2fc9414d40460d66b0a1c',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

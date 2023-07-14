@@ -113,7 +113,24 @@
         </li>
       </ul>
     </li>
-
+   <!-- /	Nav Sala-->
+   <li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#sala-nav" data-bs-toggle="collapse" href="#">
+      <i class="bi bi-building-fill"></i><span>Sala</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="sala-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+      <li>
+        <a href="/cadastrar-sala">
+          <i class="bi bi-circle"></i><span>Cadastrar sala</span>
+        </a>
+      </li>
+      <li>
+        <a href="/sala">
+          <i class="bi bi-circle"></i><span>Salas</span>
+        </a>
+      </li>
+    </ul>
+  </li>
     <!-- /	Nav Turma-->
     <li class="nav-item">
       <a class="nav-link collapsed" data-bs-target="#turma-nav" data-bs-toggle="collapse" href="#">
@@ -128,6 +145,25 @@
         <li>
           <a href="{{route('turmas')}}">
             <i class="bi bi-circle"></i><span>Turmas</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+    
+    <!-- /	Nav Area de formação-->
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#area-formacao-nav" data-bs-toggle="collapse" href="#">
+        <i  class="bi bi-ui-radios-grid"></i><span>Área de formação</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="area-formacao-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="criar-areaformacao">
+            <i class="bi bi-circle"></i><span>Cadastrar</span>
+          </a>
+        </li>
+        <li>
+          <a href="areaformacao">
+            <i class="bi bi-circle"></i><span>Área de formação</span>
           </a>
         </li>
       </ul>
@@ -206,7 +242,7 @@
       </a>
       <ul id="horario-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-          <a href="professor/horario-prof">
+          <a href="criar-horario">
             <i class="bi bi-circle"></i><span>Horários</span>
           </a>
         </li>

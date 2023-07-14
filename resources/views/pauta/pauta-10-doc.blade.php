@@ -4,6 +4,8 @@
 
 @section('conteudo')
 <main id="main" class="main">
+
+    
     
     <div class="container no-print">
     <div class="row">
@@ -146,93 +148,102 @@
         <th class="coluna-tab-p">
             <span class="txproc-p maisculo-p">Nº PROC</span>
         </th>  
+
         @foreach ($dadosPauta['disciplinas'] as $essesmambos)    
-        <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT1</span></th>
-        <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT2</span></th>
-        <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT3</span></th>
-        <th class="c-tab-amarelo coluna-tab-p"><span class="t-vert maisculo-p">CA</span></th>
-        <th class="coluna-tab-p" colspan="2"><span class="t-verst-falta-aluno-p maisculo-p">FALTAS</span></th>     
-        @endforeach        
+            <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT1</span></th>
+            <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT2</span></th>
+            <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT3</span></th>
+            <th class="c-tab-amarelo coluna-tab-p"><span class="t-vert maisculo-p">CA</span></th>
+            <th class="coluna-tab-p" colspan="2"><span class="t-verst-falta-aluno-p maisculo-p">FALTAS</span></th>     
+        @endforeach  
+
         </tr>
 
         
-            @foreach ($dadosPauta['alunos'] as $aluno  )
+            @foreach ($dadosPauta['alunos'] as $indexaluno => $aluno  )
                 
-            <tr class="linha-tab-p">
-            <td class="coluna-tab-p">
-                <span class="num-aluno-p">{{$loop->index+1}}</span>
-            </td>
-            <td class="coluna-tab-p">
-                <span class="nome-aluno-p">{{$aluno->candidato->pessoa->nome_completo}}</span>
-            </td>
-            <td class="coluna-tab-p">
-                <span class="num-proc-p">{{$aluno->aluno_id}}</span>
-            </td> 
+                <tr class="linha-tab-p">
+                <td class="coluna-tab-p">
+                    <span class="num-aluno-p">{{$loop->index+1}}</span>
+                </td>
+                <td class="coluna-tab-p">
+                    <span class="nome-aluno-p">{{$aluno->candidato->pessoa->nome_completo}}</span>
+                </td>
+                <td class="coluna-tab-p">
+                    <span class="num-proc-p">{{$aluno->aluno_id}}</span>
+                </td> 
             
             
-
-           @foreach ($dadosPauta['disciplinas'] as $index => $disciplina )
-
-           <?php
-            foreach($dadosPauta['alunos'] as $aluno){
-
-                $mediasDisciplina = $dadosPauta['medias'];
-                if (array_key_exists($index, $mediasDisciplina)) {
-                    $media = $mediasDisciplina[$index];
-                    if (count($media) > 0) {
-                        $primeiraPosicao = $media[0]; 
-                        $mt1 = $primeiraPosicao['nota']; 
-                    } else {
-                        $mt1 = '0'; 
-                    }
-                } else {
-                    $mt1 = '0'; 
-                }
-        
-                $mediasDisciplina = $dadosPauta['medias'];
-                    if (array_key_exists($index, $mediasDisciplina)) {
-                        $media = $mediasDisciplina[$index];
-                        if (count($media) > 1) {
-                            $segundaPosicao = $media[1]; 
-                            $mt2= $segundaPosicao['nota']; 
-                        } else {
-                            $mt2 = '0'; 
-                        }
-                    } else {
-                        $mt2 = '0'; 
-                    }
-
-                    $mediasDisciplina = $dadosPauta['medias'];
-                    if (array_key_exists($index, $mediasDisciplina)) {
-                        $media = $mediasDisciplina[$index];
-                        if (count($media) > 2) {
-                            $segundaPosicao = $media[2]; 
-                            $mt2= $segundaPosicao['nota']; 
-                        } else {
-                            $mt3 = '0'; 
-                        }
-                    } else {
-                        $mt3 = '0'; 
-                    }
-            }
-           ?>
-           
-                      
           
-            <td class="nota coluna-tab-p"><span class="nota-neg">{{$mt1}}</span></td>
-            <td class="nota coluna-tab-p"><span class="nota-neg">{{$mt2}}</span></td>
-            <td class="nota coluna-tab-p"><span class="nota-pos">{{$mt3}}</span></td>
-            <td class="nota c-tab-amarelo coluna-tab-p"><span class="nota-pos">15</span></td>
-            <td class="nota coluna-tab-p"><span class="nota-pos"></span></td>
-  
-            <td class="nota c-tab-sinza-esq coluna-tab-p">
-                <span>
-                
-                </span>
-            </td>
+
+            @foreach ($dadosPauta['disciplinas'] as $indexDisciplina => $disciplina)
+            
            
-         
-           @endforeach 
+                <?php
+
+
+                    $mediaTrimestre1 = '0';
+                    $mediaTrimestre2 = '0';
+                    $mediaTrimestre3 = '0';
+                    
+
+                    $mediasDisciplina = $dadosPauta['OneMedia'];
+                    $mediasDisciplina2 = $dadosPauta['TwoMedia'];
+                    $mediasDisciplina3 = $dadosPauta['ThreeMedia'];
+
+                    if (isset($mediasDisciplina[$indexaluno][$indexDisciplina])) {
+                        $mediaAluno = $mediasDisciplina[$indexaluno][$indexDisciplina];
+
+                        if ($mediaAluno instanceof \App\Models\Media) {
+                            $mediaTrimestre1 = $mediaAluno->nota ?? '0';
+                        }
+                    }
+
+                    if (isset($mediasDisciplina2[$indexaluno][$indexDisciplina])) {
+                        $mediaAluno = $mediasDisciplina2[$indexaluno][$indexDisciplina];
+
+                        if ($mediaAluno instanceof \App\Models\Media) {
+                            $mediaTrimestre2 = $mediaAluno->nota ?? '0';
+                        }
+                    }
+
+                    if (isset($mediasDisciplina3[$indexaluno][$indexDisciplina])) {
+                        $mediaAluno = $mediasDisciplina3[$indexaluno][$indexDisciplina];
+
+                        if ($mediaAluno instanceof \App\Models\Media) {
+                            $mediaTrimestre3 = $mediaAluno->nota ?? '0';
+                        }
+                    }
+
+                    
+                                    
+                ?>
+               @if($mediaTrimestre1<10)
+                <td class="nota coluna-tab-p"><span class="nota-neg" style="color: rgb(255, 12, 12)">{{$mediaTrimestre1}}</span></td>
+                @else
+                <td class="nota coluna-tab-p"><span class="nota-neg" style="color: rgb(38, 6, 221)">{{$mediaTrimestre1}}</span></td>
+                @endif
+                @if($mediaTrimestre2<10)
+                <td class="nota coluna-tab-p"><span class="nota-neg" style="color: rgb(255, 12, 12)">{{$mediaTrimestre2}}</span></td>
+                @else
+                <td class="nota coluna-tab-p"><span class="nota-neg" style="color: rgb(38, 6, 221)">{{$mediaTrimestre2}}</span></td>
+                @endif
+                @if($mediaTrimestre3<10)
+                <td class="nota coluna-tab-p"><span class="nota-neg" style="color: rgb(255, 12, 12)">{{$mediaTrimestre3}}</span></td>
+                @else
+                <td class="nota coluna-tab-p"><span class="nota-neg" style="color: rgb(38, 6, 221)">{{$mediaTrimestre3}}</span></td>
+                @endif
+                <td class="nota c-tab-amarelo coluna-tab-p"><span class="nota-pos">15</span></td>
+                <td class="nota coluna-tab-p"><span class="nota-pos"></span></td>
+        
+                <td class="nota c-tab-sinza-esq coluna-tab-p">
+                    <span>
+                        <!-- Aqui você pode exibir informações do aluno -->
+                        
+                    </span>
+                </td>
+           
+        @endforeach
          
             <td class="nota coluna-tab-p"><span class="nota-neg maisculo-p">RPF</span></td>
             <td class="nota coluna-tab-p"><span class="nota-neg maisculo-p">NÃO TRANSITA</span></td>

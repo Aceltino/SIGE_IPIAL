@@ -34,7 +34,7 @@
                 <div class="col-sm-6">
                     <select oninput="this.className = ''" class="form-select">
                         <optgroup label="Primeiro dia de Educação Física">
-                            <option value="Nenhum">Nenhum</option>
+                            
                             <option value="Segunda-Feira">Segunda-Feira</option>
                             <option value="Terça-Feira">Terça-Feira</option>
                             <option value="Quarta-Feira">Quarta-Feira</option>
@@ -56,8 +56,8 @@
             <div class="row" id="editar-horario-div-que-pode-desaparecer-2">
                 <div class="col-sm-6">
                     <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Primeiro dia de Educação Física">
-                            <option value="Nenhum">Nenhum</option>
+                        <optgroup label="Segundo dia de Educação Física">
+                         
                             <option value="Segunda-Feira">Segunda-Feira</option>
                             <option value="Terça-Feira">Terça-Feira</option>
                             <option value="Quarta-Feira">Quarta-Feira</option>

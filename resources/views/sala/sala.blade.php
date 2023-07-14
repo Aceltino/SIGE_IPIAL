@@ -16,20 +16,13 @@
     @endif
       <div class="row">
         <div class="col">
-          <h2>Áreas de formação</h2>
+          <h2>Salas</h2>
         </div>
 
          <div class="col-lg-4">
             <select class="btn-sel form-select" id="filtro3">
-                <option selected disabled>Area de Formação</option>
-                <option value="e">Area de formação</option>
-           </select>
-         </div>
-
-         <div class="col-lg-4">
-           <select class="btn-sel form-select" id="filtro4">
-            <option selected disabled>Coordenador</option>
-            <option value="e">Nome coordenador</option>
+                <option selected disabled>Tipo de sala</option>
+                <option value="e"></option>
            </select>
          </div>
 
@@ -37,28 +30,26 @@
 
       <div class="procurar">
         <form class="proc-form d-flex align-items-center">
-          <input id="pesquisa" type="text" name="" class="campo-pesq" placeholder="Digite a area de formação que pretende que estás a procurar">
+          <input id="pesquisa" type="text" name="" class="campo-pesq" placeholder="Digite a sala que pretendes">
           <button type="submit" title="Search"><i class="bi bi-search"></i></button>
         </form>
       </div>
 
-      <!-- /  Inicio da tabela de inscritos -->
       <table class="table table-striped table table-custom table-escuro" id="matricula-tab">
         <thead>
           <tr style=" text-align: center;">
-            <th scope="col">Area de Formação</th>
-            <th scope="col">Coordenador</th>
+            <th scope="col">Sala</th>
+            <th scope="col">Tipo de sala</th>
             <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
               <tr style=" text-align: center;">
-                  <th scope="row">Nome da area de formação</th>
-                  <td>Nome do Professor</td>
+                  <th scope="row">12</th>
+                  <td>asdsfgdhjkr</td>
                   <td>
                     <section style="display: flex;">
                     <i class="bi bi-eye-fill"  data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-                    <a style="margin-left: 6px;"  href="#" class="bi bi-pencil"></a>
                     <form  method="POST"action="">
                         @csrf
 
@@ -82,7 +73,7 @@
                     <div class="cabecalho-modal">
                       <div class="row">
                         <div class="col" style="display: flex; justify-content: flex-start; align-items: center;">
-                          <h1>Dados Da Area de formação</h1>
+                          <h1>Dados Da Sala</h1>
                         </div>
 
                       </div>
@@ -92,23 +83,23 @@
                       <form class="form-inativo">
                         <div class="dados-pessoais">
                         <div class="area-input form-group" disabled>
-                        <label>Nome da area de formação: </label><input type="text" name="" disabled>
+                        <label>Sala: </label><input type="text" name="" disabled>
                         </div>
 
 
                     <div class="form-group">
-                        <label for="">Coordenador:</label>
+                        <label for="">:</label>
                         <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select" disabled>
-                            <option  disabled>Coordenador:</option>
-                           <option value="e">Nome do Prof</option>
+                            <option  disabled>Tipo de sala</option>
+                           <option value="e"></option>
                         </select>
                     </div>
 
                     <div class="footer-modal" style="text-align: center;">
 
                         <div class="jnt">
-                            <a href="#" class="btn" style="background-color: #070b17; color: #fff;">Retrocer aos Cursos</a>
-                        <a href="#" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
+                            <a href="#" class="btn" style="background-color: #070b17; color: #fff;">Retrocer as salas</a>
+                        <a href="edit-sala" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
                         </div>
                     </div>
                     </div>
@@ -119,13 +110,7 @@
 
         </tbody>
       </table>
-      <!-- Termina a tabela de matriculas -->
-
-      <!--Inicio da modal ver inscrito-->
-
-
-
-      <!--  / Termina a modal ver inscrito-->
+    
 
     </main>
 @endsection
