@@ -10,13 +10,6 @@
     <div class="tab">
             <h2 class="text-uppercase text-center my-3 color-blue-principal">Editar dados do horário</h2>
             <h4 class="text-uppercase text-center my-4 color-blue-principal">Informações gerais.</h4>
-          
-            <div class="row mb-3">
-                <div class="col">
-                    <input type="text" oninput="this.className = ''" class="form-control" value="Contrução civil" disabled>
-                </div>
-            </div>
-
 
             <div class="row mb-3">
                 <div class="col">
@@ -34,7 +27,6 @@
                 <div class="col-sm-6">
                     <select oninput="this.className = ''" class="form-select">
                         <optgroup label="Primeiro dia de Educação Física">
-                            
                             <option value="Segunda-Feira">Segunda-Feira</option>
                             <option value="Terça-Feira">Terça-Feira</option>
                             <option value="Quarta-Feira">Quarta-Feira</option>
@@ -45,7 +37,16 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="time" title="Hora de início da Educação Física" class="form-control" id="editar-horario-hora-de-inicio-da-educacao-fisica-no-primeiro-dia" name="" oninput="this.className = ''" required>
+                    <select oninput="this.className = ''" name='ed_fisica_dia1' class="form-select" id="editar-horario-select-tempo-de-aula-1">
+                        <optgroup label="Tempos de aula"> 
+                            <option value="1">Primeiro tempo</option>
+                            <option value="2">Segundo tempo</option>
+                            <option value="3">Terceiro tempo</option>
+                            <option value="4">Quarto tempo</option>
+                            <option value="5">Quinto tempo</option>
+                            <option value="6">Sexto tempo</option>
+                        </optgroup>
+                    </select>
                 </div>
 
                 <div class="col-sm-3">
@@ -68,7 +69,16 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="time" title="Hora de início da Educação Física" class="form-control" id="editar-horario-hora-de-inicio-da-educacao-fisica-no-segundo-dia" name="" oninput="this.className = ''" required>
+                    <select oninput="this.className = ''" name='ed_fisica_dia1' class="form-select" id="editar-horario-select-tempo-de-aula-2">
+                        <optgroup label="Tempos de aula"> 
+                            <option value="1">Primeiro tempo</option>
+                            <option value="2">Segundo tempo</option>
+                            <option value="3">Terceiro tempo</option>
+                            <option value="4">Quarto tempo</option>
+                            <option value="5">Quinto tempo</option>
+                            <option value="6">Sexto tempo</option>
+                        </optgroup>
+                    </select>
                 </div>
 
                 <div class="col-sm-3">
