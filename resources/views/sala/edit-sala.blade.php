@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Editar área de formação')
+@section('title', 'Editar sala')
 
 @section('conteudo')
 <main id="main" class="main" >
@@ -26,23 +26,23 @@
                 <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
 
                     <div style="  text-align: center;">
-                        <h2>EDITAR AREA DE FORMAÇÃO</h2>
+                        <h2>EDITAR SALA</h2>
                     </div>
 
                 </div>
             </div>
 
             <div class="form-group">
-                <input type="text" style=" text-align: center;" value="Qualquercoisa" placeholder="Nome da Area de formação" name="nome_curso" id="nome_curso" oninput="this.className = ''" required >
+                <input type="text" style=" text-align: center;" placeholder="Sala" name="nome_sala" id="nome_sala" oninput="this.className = ''" required >
                 <span id=" erro_nome"  style="color: red"></span>
             </div>
 
             <div class="row">
 
                 <div class=" col form-group">
-                    <select name="coordenador" id="opcoes" oninput="this.className = ''" class="form-select">
-                        <option selected disabled>Coordenador:</option>
-                        <option value="area">Nome do Prof</option>
+                    <select name="tipo-sala" id="opcoes" oninput="this.className = ''" class="form-select">
+                        <option selected disabled>Tipo de sala</option>
+                        <option></option>
 
                     </select>
                 </div>
@@ -51,10 +51,11 @@
 
             <div style="text-align:center;margin-top:10px;">
                 <div>
-                    <button type="submit" class="btn btn-success">Criar Area de Formação</button>
+                    <button type="submit" class="btn btn-success">Actualizar</button>
                 </div>
             </div>
         </div>
     </form>
 </main>
 @endsection
+
