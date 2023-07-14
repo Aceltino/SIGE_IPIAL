@@ -180,7 +180,6 @@ Route::prefix('matricula')->middleware(['auth','active.session','checkcargo'])->
  **/
 Route::prefix('professor')->middleware(['auth','active.session','checkcargo'])->group(function(){
 
-    Route::get('rota/{segmento}', [ProfessorController::class, 'editarProfessor'])->name('prof.rota');
 
     Route::get('cadastrar-professor', [ProfessorController::class, 'create'])->name('professor.cadastrar');
     Route::post('cadastrar-professor', [ProfessorController::class, 'store'])->name('prof.postRegistar');
@@ -304,7 +303,7 @@ Route::prefix('pautas')->middleware(['auth','active.session'])->group(function()
  * Rotas de mini-pauta
  */
 Route::prefix('mini-pauta')->middleware(['auth','active.session'])->group(function(){
-    Route::get('mini-pauta', [MiniPautaController::class, 'index'])->name('mini-pauta');
+    Route::get('', [MiniPautaController::class, 'index'])->name('mini-pauta');
     Route::get('ver-mini-pauta', [MiniPautaController::class, 'show'])->name('mini-pauta.show');
     Route::get('{turma}/{curso}', [MiniPautaController::class, 'turma'])->name('mini-pauta.turma');
     Route::get('ver/{turma_id}/{disciplina_id}', [MiniPautaController::class, 'view'])->name('mini-pauta.view');

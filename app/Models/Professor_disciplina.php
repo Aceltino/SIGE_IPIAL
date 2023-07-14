@@ -15,7 +15,8 @@ class Professor_disciplina extends Model
         'disciplina_id',
         'professor_id',
         'ano_lectivo_id',
-        'prioridade'
+        'prioridade',
+        'turno_id'
     ];
 
     public function turma(){
