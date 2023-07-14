@@ -35,7 +35,7 @@
 
   <div class="row"id="conteudo">
     <div class="col no-print">
-      <h2 class="no-print">Matriculas</h2>
+      <h1 class="no-print">Matriculas</h1>
     </div>
 
       <div class="col-lg-2 no-print">

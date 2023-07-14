@@ -12,6 +12,7 @@ use App\Http\Controllers\{
     DisciplinasController, AdmissaoController,
     AlunoTurmaController,
     TurmaController, CalendarioController,
+    HorarioController,
     MediasController,
 };
 
@@ -31,12 +32,13 @@ use App\Http\Controllers\{
 // Route::get('validar-aluno', [AlunoController::class, 'situacaoAluno']);
 
 
-//Rotas inicial do Painel
+//Rotas inicial do Painel\
 Route::get('/', [inicioController::class,'inicio'])->name('inicio')->middleware(['auth','active.session']);
-/*
-Route::get('/', function () {
-    return view('pagina-inicial');
-})->name('inicio')->middleware(['auth','active.session']);*/
+
+
+// Route::get('/', function () {
+//     return view('pagina-inicial');
+// })->name('inicio')->middleware(['auth','active.session']);
 
  //Rota final do painel
  Route::get('logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
@@ -415,10 +417,17 @@ Route::get('edit_recurso',  function () {
  * Rotas do horário
 ******************************************/
 
-/*Criar horário*/
-Route::get('/criar-horario', function () {
-    return view('horario/criar-horario');
+Route::prefix('horario')->group(function(){
+    /*Criar horário*/
+    Route::get('criar-horario',[HorarioController::class,'create'])->name('criar-horario');
+
+    // Route::get('cri-calend-prov',[CalendarioController::class, 'index'])->name('criar.calendario');
+    // Route::get('edit-calend-prova', function(){
+    //     return view('calend-prova/edit-calend-prova');
+    // })->name('editar.calendario');
 });
+
+
 
 /*Ver o horário da turma*/
 Route::get('/horario-turma', function () {
@@ -428,6 +437,34 @@ Route::get('/horario-turma', function () {
 /*Editar horário*/
 Route::get('/editar-horario', function () {
     return view('horario/editar-horario');
+});
+/*Area de formacao*/
+Route::get('/criar-areaformacao', function () {
+    return view('area-formacao/criar-areaformacao');
+});
+
+/*Area de formacao*/
+Route::get('areaformacao', function () {
+    return view('area-formacao/areaformacao');
+});
+
+/*Editar Area de formacao*/
+Route::get('/edit-areaformacao', function () {
+    return view('area-formacao/edit-areaformacao');
+});
+/*Sala*/
+Route::get('/cadastrar-sala', function () {
+    return view('sala\cadastrar-sala');
+});
+
+/*Area de formacao*/
+Route::get('/sala', function () {
+    return view('sala\sala');
+});
+
+/*Editar Area de formacao*/
+Route::get('/edit-sala', function () {
+    return view('sala\edit-sala');
 });
 
 

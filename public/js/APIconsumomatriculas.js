@@ -17,7 +17,17 @@ axios.get('/api/matriculados')
                 } else if(turma && situacao == 'Anulou a Matricula'){
                   Botao = `<a name="" id="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target=" #basicModalll${registro.N_processo}"  role="button">Eliminar</a>`;
 
-                }else{
+                }else if(turma && situacao == 'Exame'){
+                  Botao = `<a name="" id="" class="btn btn-dark" data-bs-toggle="modal" data-bs-target=" #basicModalll${registro.N_processo}"  role="button">exame</a>`;
+
+                }else if(turma && situacao == 'Recurso'){
+                  Botao = `<a  name="" id="" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#basicModal${registro.N_processo}"  role="button">inativar</a>
+
+                  <a name="" id="" class="btn btn-dark" data-bs-toggle="modal" data-bs-target=" #basicModalll${registro.N_processo}" role="button">Recurso</a>
+                  `;
+
+                }
+                else{
                   Botao = `<a  name="" id="" class="btn btn-danger"  data-bs-toggle="modal" data-bs-target="#basicModal${registro.N_processo}"  role="button">inativar</a>`;
 
                 }
@@ -279,25 +289,27 @@ axios.get('/api/matriculados')
 
                 const modall2 =`
 
-                <div class="modal fade" id="basicModal${registro.N_processo}" tabindex="-1" data-bs-backdrop="false" style="color: #000;">
-                  <div class="modal-dialog">
-                      <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
+                <div class="modal fade" id="basicModal${registro.N_processo}" tabindex="-1">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
 
-                    <div class="modal-body" style="color: #696969;">
-                      Tem a certeza de que deseja Inativar o Aluno ${registro.nome} ? 
-                              </div>
+                      <div class="modal-header" style="border: none;">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
 
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancelar</button>
-                      <a class="btn btn-danger" href="/matricula/inativar/${registro.N_processo}">Inativar</a>
-                    </div>
+                      <div class="modal-body" style="text-transform: uppercase; text-align: center;">
+                        <strong> Tem a certeza de que deseja Inativar o Aluno ${registro.nome} ?</strong>
+                      </div>
+
+                      <div class="modal-footer" style="border: none;">
+                        <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancelar</button>
+                        <a class="btn btn-danger" href="/matricula/inativar/${registro.N_processo}">Inativar</a>
+                        
+                      </div>
 
                     </div>
                   </div>
-                </div> 
+                </div>
                 `;
                  document.body.insertAdjacentHTML('beforeend', modall2);
 
@@ -305,25 +317,29 @@ axios.get('/api/matriculados')
 
                  const modall3 =`
 
-                 <div class="modal fade" id="basicModalll${registro.N_processo}" tabindex="-1" data-bs-backdrop="false" style="color: #000;">
-                   <div class="modal-dialog">
-                       <div class="modal-content">
-                     <div class="modal-header">
+                 <div class="modal fade" id="basicModalll${registro.N_processo}" tabindex="-1">
+                 <div class="modal-dialog modal-dialog-centered">
+                   <div class="modal-content">
+
+                     <div class="modal-header" style="border: none;">
                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                      </div>
- 
-                     <div class="modal-body" style="color: #696969;">
-                       Tem a certeza de que deseja Eliminar o Aluno ${registro.nome} ? 
-                               </div>
- 
-                     <div class="modal-footer">
+
+                     <div class="modal-body" style="text-transform: uppercase; text-align: center;">
+                       <strong>  Tem a certeza de que deseja Eliminar o Aluno ${registro.nome} ?</strong>
+                     </div>
+
+                     <div class="modal-footer" style="border: none;">
                        <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancelar</button>
                        <a class="btn btn-danger"href="/matricula/eliminar/${registro.N_processo}"">Eliminar</a>
+                       
                      </div>
- 
-                     </div>
+
                    </div>
-                 </div> 
+                 </div>
+               </div>
+
+                
                  `;
                   document.body.insertAdjacentHTML('beforeend', modall3);
 

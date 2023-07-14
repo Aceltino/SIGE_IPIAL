@@ -91,7 +91,7 @@
               </div>
             <div class="bortabelasemscroll">
               <!-- /  Inicio da tabela  -->
-              <table class="table table-striped" style="margin-top: 20px; width: 100%;" >
+              <table class="table table-custom table-escuro display" style="margin-top: 20px; width: 100%;" >
                 <thead style="text-align: center">
                   <tr>
                     <th scope="col">Disciplina</th>

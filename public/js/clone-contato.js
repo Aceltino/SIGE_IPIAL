@@ -34,9 +34,9 @@ var cliks1=0;
 
 $("#clonebtn2").on("click",function(){
     if(cliks1<2){
-        var $cl2 = $("#clone2").clone().find("input").val("").end();
+        var $cl2 = $("#clone2").clone().find("select").val("").end();
         // Obtém o valor atual do atributo "name"
-    var $clone2=$cl2.find('input');
+    var $clone2=$cl2.find('select');
 
     var $atualneme2 = $clone2.attr('name');
     

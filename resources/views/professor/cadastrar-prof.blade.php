@@ -141,15 +141,15 @@
               <div class="col-8 offset-2">
                 <div class="row justify-content-between">
                   <div class="form-check form-switch w-25">
-                    <input class="form-check-input" type="checkbox" value="Manhã">
+                    <input class="form-check-input" type="checkbox" value="Manhã" id="turno-manha-disciplina-1">
                     <label class="form-check-label" for="checkboxTurnoManha">Manhã</label>
                   </div>
                   <div class="form-check form-switch w-25">
-                    <input class="form-check-input" type="checkbox" value="Tarde">
+                    <input class="form-check-input" type="checkbox" value="Tarde" id="turno-tarde-disciplina-1">
                     <label class="form-check-label" for="checkboxTurnoTarde">Tarde</label>
                   </div>
                   <div class="form-check form-switch w-25">
-                    <input class="form-check-input" type="checkbox" value="Noite">
+                    <input class="form-check-input" type="checkbox" value="Noite" id="turno-noite-disciplina-1">
                     <label class="form-check-label" for="checkboxTurnoNoite">Noite</label>
                   </div>
                 </div>
@@ -172,15 +172,15 @@
               <div class="col-8 offset-2">
                 <div class="row justify-content-between">
                   <div class="form-check form-switch w-25">
-                    <input class="form-check-input" type="checkbox" value="Manhã">
+                    <input class="form-check-input" type="checkbox" value="Manhã" id="turno-manha-disciplina-2">
                     <label class="form-check-label" for="checkboxTurnoManha">Manhã</label>
                   </div>
                   <div class="form-check form-switch w-25">
-                    <input class="form-check-input" type="checkbox" value="Tarde">
+                    <input class="form-check-input" type="checkbox" value="Tarde" id="turno-tarde-disciplina-2">
                     <label class="form-check-label" for="checkboxTurnoTarde">Tarde</label>
                   </div>
                   <div class="form-check form-switch w-25">
-                    <input class="form-check-input" type="checkbox" value="Noite">
+                    <input class="form-check-input" type="checkbox" value="Noite" id="turno-noite-disciplina-2">
                     <label class="form-check-label" for="checkboxTurnoNoite">Noite</label>
                   </div>
                 </div>
@@ -203,15 +203,15 @@
               <div class="col-8 offset-2">
                 <div class="row justify-content-between">
                   <div class="form-check form-switch w-25">
-                    <input class="form-check-input" type="checkbox" value="Manhã">
+                    <input class="form-check-input" type="checkbox" value="Manhã" id="turno-manha-disciplina-3">
                     <label class="form-check-label" for="checkboxTurnoManha">Manhã</label>
                   </div>
                   <div class="form-check form-switch w-25">
-                    <input class="form-check-input" type="checkbox" value="Tarde">
+                    <input class="form-check-input" type="checkbox" value="Tarde" id="turno-tarde-disciplina-3">
                     <label class="form-check-label" for="checkboxTurnoTarde">Tarde</label>
                   </div>
                   <div class="form-check form-switch w-25">
-                    <input class="form-check-input" type="checkbox" value="Noite">
+                    <input class="form-check-input" type="checkbox" value="Noite" id="turno-noite-disciplina-3">
                     <label class="form-check-label" for="checkboxTurnoNoite">Noite</label>
                   </div>
                 </div>
@@ -234,15 +234,15 @@
               <div class="col-8 offset-2">
                 <div class="row justify-content-between">
                   <div class="form-check form-switch w-25">
-                    <input class="form-check-input" type="checkbox" value="Manhã">
+                    <input class="form-check-input" type="checkbox" value="Manhã" id="turno-manha-disciplina-4">
                     <label class="form-check-label" for="checkboxTurnoManha">Manhã</label>
                   </div>
                   <div class="form-check form-switch w-25">
-                    <input class="form-check-input" type="checkbox" value="Tarde">
+                    <input class="form-check-input" type="checkbox" value="Tarde" id="turno-tarde-disciplina-4">
                     <label class="form-check-label" for="checkboxTurnoTarde">Tarde</label>
                   </div>
                   <div class="form-check form-switch w-25">
-                    <input class="form-check-input" type="checkbox" value="Noite">
+                    <input class="form-check-input" type="checkbox" value="Noite" id="turno-noite-disciplina-4">
                     <label class="form-check-label" for="checkboxTurnoNoite">Noite</label>
                   </div>
                 </div>
