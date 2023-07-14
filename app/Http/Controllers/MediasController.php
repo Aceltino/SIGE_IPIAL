@@ -56,4 +56,5 @@ class MediasController extends Controller
                     ->get();
     }
 
+
 } //Fim da classe "MediasController"
