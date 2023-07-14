@@ -62,7 +62,7 @@
                     <span>Turno: {{ $turma->turno->nome_turno }}</span>
                 </th>
                 <th class="coluna-tab-mp" colspan="7">
-                    Ano Lectivo: <span class="largura-18">{{ $anoturmacoord->ano_lectivo->ano_lectivo }}</span>
+                    Ano Lectivo: <span class="largura-18">{{ $ano_turma_coord->ano_lectivo->ano_lectivo }}</span>
                 </th>
             </tr>
 
@@ -238,17 +238,17 @@
                     <td class="coluna-tab-mp">{{ $aluno->numero_aluno }}</td>
 
                     <td class="sm-cor"></td>
-                    <td class="coluna-tab-mp" style="font-size: 11pt;">{{ $aluno->aluno->candidato->pessoa->nome_completo }}</td>
+                    <td class="coluna-tab-mp" style="font-size: 11pt;">{{ $aluno->candidato->pessoa->nome_completo }}</td>
 
                     {{-- Idade --}}
                     <td class="coluna-tab-mp">
-                        <span class="largura-10">{{ getIdade($aluno->aluno->candidato->pessoa->data_nascimento) }}</span>
+                        <span class="largura-10">{{ getIdade($aluno->candidato->pessoa->data_nascimento) }}</span>
                     </td>
 
                     {{-- Genero --}}
                     <td class="coluna-tab-mp">
                         @php
-                            $genero = getGenero($aluno->aluno->candidato->pessoa->genero);
+                            $genero = getGenero($aluno->candidato->pessoa->genero);
                             if ($genero === "F")
                                 $f++;
                         @endphp
@@ -257,7 +257,7 @@
 
                     {{-- MAC --}}
                     @php
-                        $nota = getMAC1($aluno->aluno->aluno_id, $disciplina->disciplina_id);
+                        $nota = getMAC1($aluno->aluno_id, $disciplina->disciplina_id);
                     @endphp
                     <td class="coluna-tab-mp">
                         @if ($nota <= 9)
@@ -271,7 +271,7 @@
 
                     {{-- NPP --}}
                     @php
-                        $nota = getNPP1($aluno->aluno->aluno_id, $disciplina->disciplina_id);
+                        $nota = getNPP1($aluno->aluno_id, $disciplina->disciplina_id);
                     @endphp
                     <td class="coluna-tab-mp">
                         @if ($nota <= 9)
@@ -285,7 +285,7 @@
 
                     {{-- NPT --}}
                     @php
-                        $nota = getNPT1($aluno->aluno->aluno_id, $disciplina->disciplina_id);
+                        $nota = getNPT1($aluno->aluno_id, $disciplina->disciplina_id);
                     @endphp
                     <td class="coluna-tab-mp">
                         @if ($nota <= 9)
@@ -299,7 +299,7 @@
 
                     {{-- MT1 --}}
                     @php
-                        $nota = getMT1($aluno->aluno->aluno_id, $disciplina->disciplina_id);
+                        $nota = getMT1($aluno->aluno_id, $disciplina->disciplina_id);
                     @endphp
                     <td class="coluna-tab-mp">
                         @if ($nota <= 9)
@@ -313,7 +313,7 @@
 
                     {{-- FNJ --}}
                     @php
-                        $nota = getFNJ1($aluno->aluno->aluno_id, $disciplina->disciplina_id);
+                        $nota = getFNJ1($aluno->aluno_id, $disciplina->disciplina_id);
                     @endphp
                     <td class="coluna-tab-mp">
                         @if ($nota <= 9)
@@ -328,13 +328,13 @@
                     {{-- FJ --}}
                     <td class="coluna-tab-mp">
                         <span class="largura-10">
-                            {{ getFJ1($aluno->aluno->aluno_id, $disciplina->disciplina_id) }}
+                            {{ getFJ1($aluno->aluno_id, $disciplina->disciplina_id) }}
                         </span>
                     </td>
 
                     {{-- MAC 2 --}}
                     @php
-                        $nota = getMAC2($aluno->aluno->aluno_id, $disciplina->disciplina_id);
+                        $nota = getMAC2($aluno->aluno_id, $disciplina->disciplina_id);
                     @endphp
                     <td class="coluna-tab-mp">
                         @if ($nota <= 9)
@@ -348,7 +348,7 @@
 
                     {{-- NPP 2 --}}
                     @php
-                        $nota = getNPP2($aluno->aluno->aluno_id, $disciplina->disciplina_id);
+                        $nota = getNPP2($aluno->aluno_id, $disciplina->disciplina_id);
                     @endphp
                     <td class="coluna-tab-mp">
                         @if ($nota <= 9)
@@ -362,7 +362,7 @@
 
                     {{-- NPT 2 --}}
                     @php
-                        $nota = getNPT2($aluno->aluno->aluno_id, $disciplina->disciplina_id);
+                        $nota = getNPT2($aluno->aluno_id, $disciplina->disciplina_id);
                     @endphp
                     <td class="coluna-tab-mp">
                         @if ($nota <= 9)
@@ -376,7 +376,7 @@
 
                     {{-- MT 2 --}}
                     @php
-                        $nota = getMT2($aluno->aluno->aluno_id, $disciplina->disciplina_id);
+                        $nota = getMT2($aluno->aluno_id, $disciplina->disciplina_id);
                     @endphp
                     <td class="coluna-tab-mp">
                         @if ($nota <= 9)
@@ -391,20 +391,20 @@
                     {{-- Faltas FNJ 2--}}
                     <td class="coluna-tab-mp">
                         <span class="largura-10">
-                            {{ getFNJ2($aluno->aluno->aluno_id, $disciplina->disciplina_id) }}
+                            {{ getFNJ2($aluno->aluno_id, $disciplina->disciplina_id) }}
                         </span>
                     </td>            
 
                     {{-- FJ 2--}}
                     <td class="coluna-tab-mp">
                         <span class="largura-10">
-                            {{ getFJ2($aluno->aluno->aluno_id, $disciplina->disciplina_id) }}
+                            {{ getFJ2($aluno->aluno_id, $disciplina->disciplina_id) }}
                         </span>
                     </td>        
 
                     {{-- MAC 3--}}
                     @php
-                        $nota = getMAC3($aluno->aluno->aluno_id, $disciplina->disciplina_id);
+                        $nota = getMAC3($aluno->aluno_id, $disciplina->disciplina_id);
                     @endphp
                     <td class="coluna-tab-mp">
                         @if ($nota <= 9)
@@ -418,7 +418,7 @@
 
                     {{--  NPP 3--}}
                     @php
-                        $nota = getNPP3($aluno->aluno->aluno_id, $disciplina->disciplina_id);
+                        $nota = getNPP3($aluno->aluno_id, $disciplina->disciplina_id);
                     @endphp
                     <td class="coluna-tab-mp">
                         @if ($nota <= 9)
@@ -432,7 +432,7 @@
 
                     {{-- NPT 3--}}
                     @php
-                        $nota = getNPT3($aluno->aluno->aluno_id, $disciplina->disciplina_id);
+                        $nota = getNPT3($aluno->aluno_id, $disciplina->disciplina_id);
                     @endphp
                     <td class="coluna-tab-mp">
                         @if ($nota <= 9)
@@ -446,7 +446,7 @@
                     
                     {{--  MT3 3  --}}
                     @php
-                        $nota = getMT3($aluno->aluno->aluno_id, $disciplina->disciplina_id);
+                        $nota = getMT3($aluno->aluno_id, $disciplina->disciplina_id);
                     @endphp
                     <td class="coluna-tab-mp">
                         @if ($nota <= 9)
@@ -461,20 +461,20 @@
                     {{--  FNJ 3  --}}
                     <td class="coluna-tab-mp">
                         <span class="largura-10">
-                            {{ getFNJ3($aluno->aluno->aluno_id, $disciplina->disciplina_id) }}
+                            {{ getFNJ3($aluno->aluno_id, $disciplina->disciplina_id) }}
                         </span>
                     </td>      
 
                     {{--  TOTAL de Faltas  --}}  
                     <td class="coluna-tab-mp">
                         <span class="largura-10">
-                            {{ getFTotal($aluno->aluno->aluno_id, $disciplina->disciplina_id) }}
+                            {{ getFTotal($aluno->aluno_id, $disciplina->disciplina_id) }}
                         </span>
                     </td>         
 
                     {{--  EXAME  --}}   
                     @php
-                        $nota = getExame($aluno->aluno->aluno_id, $disciplina->disciplina_id);
+                        $nota = getExame($aluno->aluno_id, $disciplina->disciplina_id);
                     @endphp
                     <td class="coluna-tab-mp">
                         @if ($nota <= 9)
@@ -488,7 +488,7 @@
 
                     {{--  MFD 3  --}}
                     @php
-                        $nota = getMFD($aluno->aluno->aluno_id, $disciplina->disciplina_id);
+                        $nota = getMFD($aluno->aluno_id, $disciplina->disciplina_id);
                     @endphp
                     <td class="coluna-tab-mp">
                         @if ($nota <= 9)
@@ -513,7 +513,7 @@
                     </td>         
 
                     @php
-                        $resultado = getOBS($aluno->aluno->aluno_id, $disciplina->disciplina_id);
+                        $resultado = getOBS($aluno->aluno_id, $disciplina->disciplina_id);
                     @endphp
                     {{--  OBS  --}}   
                     <td class="coluna-tab-mp">

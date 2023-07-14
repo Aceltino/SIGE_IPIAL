@@ -66,7 +66,7 @@ class TurmaController extends Controller
             'curso'=> $request->curso,
             'turno'=> $request->turno,
         ];
-// dd($request);
+        // dd($request);
         $validator= Validator::make($filtrados,$regras_gerais,$msg_erro);
         if ($validator->fails())
         {
