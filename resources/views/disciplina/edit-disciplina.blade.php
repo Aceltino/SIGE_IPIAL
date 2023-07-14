@@ -76,7 +76,7 @@
                     </div>
                     <div class="form-group col">
                         <select oninput="this.className = ''" class="form-select" name="tipo_disciplina" id="selectTipoDisciplina">
-                          <option selected disabled value="{{ $disciplinas->classe->pivot->tipo_disciplina }}">{{ $disciplinas->classe->pivot->tipo_disciplina }}</option>
+                          <option selected disabled value="">Tipo de Disciplina</option>
                           <option value="Terminal">Terminal</option> 
                           <option value="Contínua">Contínua</option>    
                         </select>

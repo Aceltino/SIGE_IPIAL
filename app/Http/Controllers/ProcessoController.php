@@ -12,41 +12,21 @@ class ProcessoController extends Controller
 {
     public function index()
     {
-        $alunos = Aluno::with(['anoturma'])->get();
-        $alunos = $this->buscarAluno();
+        $alunos = Aluno::with('candidato','curso','anoturma')->get();
         return view('processo.processos', ['alunos'=>$alunos ]) ;
     } 
     public function visualizar($aluno_id)
     {
-        $alunos = Aluno::where('aluno_id', $aluno_id)->first();
-        $alunos = $this->buscarAluno();
-         
-        if(!empty($alunos))
-        {
-            return view('processo.doc-processo', ['alunos' => $alunos ]) ;
-        }
-        else
-        {
-            return view('processo.processos', ['alunos'=>$alunos ]) ;
-        }
-    }
-    public function destroy($aluno_id)
-    {
-       
-        Aluno::where('aluno_id',$aluno_id)->delete();
-        return redirect()->route('processo.consultar');
-
-    }
-    public function buscarAluno()
-    {
+        
         $alunos = Aluno::with('candidato','curso','anoturma')->get();
         $dadosAluno = [];
-       foreach($alunos as $aluno)
+        foreach($alunos as $aluno)
         {
             if (!empty($aluno->anoturma)){
                 foreach($aluno->anoturma as $anoTurma)
                 {
-                    $dadosAluno = [
+                    $dadosAluno[] = 
+                    [
                         'Nome' => $aluno->candidato->pessoa->nome_completo,
                         'Processo' => $aluno->aluno_id,
                         'telefone' =>$aluno->candidato->pessoa->telefone,
@@ -65,7 +45,16 @@ class ProcessoController extends Controller
             }
             
         }
-        return $alunos;
+        return view('processo.doc-processo', compact('alunos')) ;
+    
+        
     }
-   
+    public function destroy($aluno_id)
+    {
+       
+        Aluno::where('aluno_id',$aluno_id)->delete();
+        return redirect()->route('processo.consultar')->with('delete','Processo eliminado com sucesso ');
+
+    }
+    
 }

@@ -14,14 +14,11 @@ use App\Http\Requests\DisciplinaUpdateRequest;
 
 class DisciplinasController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $pesquisa = $request->pesquisa;
-        $disciplinas = Disciplina::all();
-        $disciplinas = Disciplina::where('nome_disciplina', 'like', "%$pesquisa%")->get();
-        $disciplinas = Disciplina::with(['classes' => function ($query) {
-            $query->withPivot('carga_horaria','tipo_disciplina');
-        }])->get();        
+        $disciplinas = Disciplina::has('curso')->with(['classes' => function ($query) {
+        $query->withPivot('carga_horaria','tipo_disciplina');
+        }])->get();       
         return view('disciplina.disciplinas', compact('disciplinas'));
     }
     public function create()
@@ -33,8 +30,13 @@ class DisciplinasController extends Controller
 
     public function store(DisciplinaStoreRequest $request)
     { 
-       dd($request);
-        $disciplinas = Disciplina::create($request->all());
+        $disciplinas = new Disciplina();
+        $disciplinas->nome_disciplina = $request->nome_disciplina;
+        $disciplinas->componente = $request->componente;
+        $disciplinas->tempo_prova = $request-> tempo_prova;
+        $disciplinas->sigla = $request->sigla;
+        $disciplinas->curso_id = $request->curso;
+        $disciplinas->save();
         $ClasseDisiciplina = ClasseDisciplina::create([
             'carga_horaria' => $request->carga_horaria,
             'disciplina_id' =>$disciplinas->disciplina_id,

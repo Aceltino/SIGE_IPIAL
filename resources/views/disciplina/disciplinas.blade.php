@@ -82,7 +82,7 @@
         <td>{{ $disciplina->nome_disciplina }}</td>
         <td>{{ $disciplina->sigla		}}</td>
         <td>{{ $disciplina->componente	}}</td>
-        @if($disciplina->curso_id == '')
+        @if($disciplina->componente == "Socio-culturais" || $disciplina->componente == "Cientificas" || $disciplina->curso_id == '' ) 
         <td>Todos cursos</td>
         @else
         <td>{{ $disciplina->curso->nome_curso }}</td>
@@ -138,7 +138,7 @@
             <label>Carga Horária: </label><input type="text" name="socio-culturais" value="{{ $classe->pivot->carga_horaria }}Tempo(s)" disabled>
         </div>
             <div class="area-input form-group" style="border: none; ">
-            @if($disciplina->curso_id == '')
+            @if($disciplina->componente == "Socio-culturais" || $disciplina->componente == "Cientificas" || $disciplina->curso_id == '' )
             <label>Curso: </label><input type="text" name="" value="Todos os cursos" disabled>
             @else
                 <label>Curso: </label><input type="text" name="" value="{{ $disciplina->curso->nome_curso }}" disabled>

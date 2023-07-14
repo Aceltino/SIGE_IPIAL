@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Inscritos via online')
+@section('title', 'Processo de aluno')
 
 @section('conteudo')
 <main id="main" class="main">
@@ -29,6 +29,13 @@
         <button id="pesquisa" type="submit" title="Search"><i class="bi bi-search"></i></button>   
     </form>
     </div> 
+    @if(session('delete'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <i class="bi bi-exclamation-octagon me-1"></i>
+      {{(session('delete'))}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  @endif
 
     <!-- /  Inicio da tabela de inscritos -->
     <table  id="matricula-tab" class="table table-striped" style="margin-top: 20px;" >

@@ -28,7 +28,7 @@
             <hr id="borda-nome">
         </div>
         <div class="col-xl-10">
-          <div> 
+          <div>  
           @foreach($alunos as $aluno)
             <h3>Dados pessoais:</h3>
             <div class="area-dado-pessoal">
