@@ -30,7 +30,7 @@ if (!function_exists('getMAC1')) {
     function getMAC1($alunoId, $disciplina)
     {
         $notas = \App\Models\Nota::where('aluno_id', $alunoId)
-                            ->where('tipo_prova', "AvaliacaoContinua")
+                            ->where('tipo_prova', "Avaliação Contínua")
                             ->where('disciplina_id', $disciplina)
                             ->whereHas('trimestre', function ($query) {
                                 $query->where('trimestre', 1);
@@ -68,7 +68,7 @@ if (!function_exists('getNPP1')) {
 if (!function_exists('getNPT1')) {
     function getNPT1($alunoId, $disciplina) {
         $notas = \App\Models\Nota::where('aluno_id', $alunoId)
-                        ->where('tipo_prova', "ProvaTrimestre")
+                        ->where('tipo_prova', "Prova Trimestre")
                         ->where('disciplina_id', $disciplina)
                         ->whereHas('trimestre', function ($query) {
                             $query->where('trimestre', 1);
@@ -139,7 +139,7 @@ if (!function_exists('getMAC2')) {
     function getMAC2($alunoId, $disciplina)
     {
         $notas = \App\Models\Nota::where('aluno_id', $alunoId)
-                            ->where('tipo_prova', "AvaliacaoContinua")
+                            ->where('tipo_prova', "Avaliação Contínua")
                             ->where('disciplina_id', $disciplina)
                             ->whereHas('trimestre', function ($query) {
                                 $query->where('trimestre', 2);
@@ -177,7 +177,7 @@ if (!function_exists('getNPP2')) {
 if (!function_exists('getNPT2')) {
     function getNPT2($alunoId, $disciplina) {
         $notas = \App\Models\Nota::where('aluno_id', $alunoId)
-                        ->where('tipo_prova', "ProvaTrimestre")
+                        ->where('tipo_prova', "Prova Trimestre")
                         ->where('disciplina_id', $disciplina)
                         ->whereHas('trimestre', function ($query) {
                             $query->where('trimestre', 2);
@@ -248,7 +248,7 @@ if (!function_exists('getMAC3')) {
     function getMAC3($alunoId, $disciplina)
     {
         $notas = \App\Models\Nota::where('aluno_id', $alunoId)
-                            ->where('tipo_prova', "AvaliacaoContinua")
+                            ->where('tipo_prova', "Avaliação Contínua")
                             ->where('disciplina_id', $disciplina)
                             ->whereHas('trimestre', function ($query) {
                                 $query->where('trimestre', 3);
@@ -286,7 +286,7 @@ if (!function_exists('getNPP3')) {
 if (!function_exists('getNPT3')) {
     function getNPT3($alunoId, $disciplina) {
         $notas = \App\Models\Nota::where('aluno_id', $alunoId)
-                        ->where('tipo_prova', "ProvaTrimestre")
+                        ->where('tipo_prova', "Prova Trimestre")
                         ->where('disciplina_id', $disciplina)
                         ->whereHas('trimestre', function ($query) {
                             $query->where('trimestre', 3);

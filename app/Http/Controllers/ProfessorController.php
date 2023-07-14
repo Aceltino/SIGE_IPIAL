@@ -91,13 +91,14 @@ class ProfessorController extends Controller
     public function store(Request $request)
     {
         try {
+            /*
             $validatedEndereco = $request->validate([
                 'municipio' => 'nullable|string',
                 'bairro' => 'nullable|string',
                 'zona' => 'nullable|string',
                 'numero_casa' => 'nullable|int',
             ]);
-
+            
             $validatedPessoa = $request->validate([
                 'nome_completo' => 'required|string|max:255',
                 'num_bi' => 'required|regex:/^\d{9}[A-Z]{2}\d{3}$/',
@@ -105,8 +106,67 @@ class ProfessorController extends Controller
                 'num_tel' => ['required', 'regex:/^\d{9}$/'],
                 'data_nascimento' => 'required|date',
             ]);
+            */
 
-            $endereco = Endereco::create($validatedEndereco);
+            $validatedEndereco = [
+                'municipio' => 'nullable|string',
+                'bairro' => 'nullable|string',
+                'zona' => 'nullable|string',
+                'numero_casa' => 'nullable|int',
+            ];
+
+
+            $msg_erroEndereco = [
+                '*.required' => 'Este campo é obrigatório',
+                'municipio' => 'Informe o nome do seu municipio.',
+                'bairro' => 'Informe o nome do seu bairro',
+                'zona' => 'Informe a zona em que vive',
+                'numero_casa' => 'Informe o número da casa',
+            ];
+
+            $filtro_Endereco = [
+                'municipio' => $request->input('municipio'),
+                'bairro' => $request->input('bairro'),
+                'zona' => $request->input('zona'),
+                'numero_casa' => $request->input('numero_casa'),
+            ];
+
+
+            $validatedPessoa = [
+                'nome_completo' => 'required|string|max:255',
+                'num_bi' => 'required|regex:/^\d{9}[A-Z]{2}\d{3}$/',
+                'genero' => 'required|in:Masculino,Feminino',
+                'num_tel' => ['required', 'regex:/^\d{9}$/'],
+                'data_nascimento' => 'required|date',
+            ];
+
+            $msg_erroPessoa = [
+                '*.required' => 'Este campo é obrigatório',
+                'nome_completo' => 'Informe o seu nome completo.',
+                'genero' => 'Informe o seu genero',
+                'num_tel' => 'Informe um número de telefone válido',
+                'data_nascimento' => 'Informe uma data de nascimento válida',
+            ];
+
+            $filtro_Pessoa = [
+                'nome_completo' => $request->input('nome_completo'),
+                'num_bi' => $request->input('num_bi'),
+                'genero' => $request->input('genero'),
+                'num_tel' => $request->input('num_tel'),
+                'data_nascimento' => $request->input('data_nascimento'),
+            ];
+
+            /*$validarEndereco = Validator::make($filtro_Endereco, $validatedEndereco, $msg_erroEndereco);
+            if ($validarEndereco) {
+                return redirect()->back()->withErrors($validarEndereco)->withInput();
+            }*/
+
+            $validarPessoa = Validator::make($filtro_Pessoa, $validatedPessoa, $msg_erroPessoa);
+            if ($validarPessoa) {
+                return redirect()->back()->withErrors($validarPessoa)->withInput();
+            }
+
+            /*$endereco = Endereco::create($validatedEndereco);
 
             $validatedPessoa['endereco_id'] = $endereco->endereco_id;
             $validatedPessoa['telefone'] = $request->input('num_tel');
@@ -119,9 +179,9 @@ class ProfessorController extends Controller
                 'professor_id'  => $prof->professor_id,
                 'ano_lectivo_id' => $ano_letivo->ano_lectivo_id,
                 'prioridade'    => 1
-            ]);
+            ]); */
 
-            return redirect()->route('professor')->with('success', 'Registro criado com sucesso!');
+            return redirect()->route('professor.cadastrar')->with('success', 'Registro criado com sucesso!');
         } catch (ValidationException $e) {
             // Captura a exceção de validação e trata os erros
             return redirect()->back()->withErrors($e->errors())->withInput();
