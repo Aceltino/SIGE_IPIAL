@@ -119,6 +119,18 @@ class AssiduidadeAlunoController extends Controller
         if(count($falta) <= count($tot_faltas) && $request->tipo_falta === "PRESENCIAL"){
             return redirect()->back()->with('erro', "Limite de faltas atingido!");
         }
+        $tot_faltas = Assiduidade_aluno::where('created_at', 'like', '%'.$data.'%')->where('aluno_id', $aluno_id)
+        ->where('id_trimestre', $trimestre[0]->trimestre_id)->where('disciplina_id', $disciplina_id)
+        ->where('tipo_falta', "DISCIPLINAR")->get();
+        if(count($falta) <= count($tot_faltas) && $request->tipo_falta === "DISCIPLINAR"){
+            return redirect()->back()->with('erro', "Limite de faltas atingido!");
+        }
+        $tot_faltas = Assiduidade_aluno::where('created_at', 'like', '%'.$data.'%')->where('aluno_id', $aluno_id)
+        ->where('id_trimestre', $trimestre[0]->trimestre_id)->where('disciplina_id', $disciplina_id)
+        ->where('tipo_falta', "MATERIAL")->get();
+        if(count($falta) <= count($tot_faltas) && $request->tipo_falta === "MATERIAL"){
+            return redirect()->back()->with('erro', "Limite de faltas atingido!");
+        }
 
         $trimestre = AvaliacaoTrait::pegarTrimestre();
         $falta = [
@@ -149,7 +161,6 @@ class AssiduidadeAlunoController extends Controller
 
     public function update(Request $request, $assiduidade_id)
     {
-
         $assiduidade = Assiduidade_aluno::find($assiduidade_id);
         $assiduidade->status_falta = "JUSTIFICADA";
         $assiduidade->descricao_falta = $assiduidade->descricao_falta . "</br></br></br></br>" . $request->conteudo;

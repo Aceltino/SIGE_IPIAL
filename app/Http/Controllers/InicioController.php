@@ -5,17 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Models\{
-<<<<<<< HEAD
-    Candidato,
-    Professor,
-    Turma,
-    Curso,
-    Aluno,
-    User,
-=======
 Candidato,Professor,Turma,
 Curso,Aluno,User,
->>>>>>> 2805296dd092a27d2a7e331d614f6fdcd410290c
 };
 use App\Traits\AnoLectivoTrait;
 
