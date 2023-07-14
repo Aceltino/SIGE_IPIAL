@@ -30,6 +30,7 @@ return array(
     'App\\Http\\Controllers\\EnderecoController' => $baseDir . '/app/Http/Controllers/EnderecoController.php',
     'App\\Http\\Controllers\\EscolaController' => $baseDir . '/app/Http/Controllers/EscolaController.php',
     'App\\Http\\Controllers\\HoraController' => $baseDir . '/app/Http/Controllers/HoraController.php',
+    'App\\Http\\Controllers\\HorarioController' => $baseDir . '/app/Http/Controllers/HorarioController.php',
     'App\\Http\\Controllers\\InicioController' => $baseDir . '/app/Http/Controllers/InicioController.php',
     'App\\Http\\Controllers\\InscricaoController' => $baseDir . '/app/Http/Controllers/InscricaoController.php',
     'App\\Http\\Controllers\\MatriculaController' => $baseDir . '/app/Http/Controllers/MatriculaController.php',

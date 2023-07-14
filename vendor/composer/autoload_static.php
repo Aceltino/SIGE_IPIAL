@@ -587,6 +587,7 @@ class ComposerStaticInit777558dd43fd8e9b964d24fd919a7ee9
         'App\\Http\\Controllers\\EnderecoController' => __DIR__ . '/../..' . '/app/Http/Controllers/EnderecoController.php',
         'App\\Http\\Controllers\\EscolaController' => __DIR__ . '/../..' . '/app/Http/Controllers/EscolaController.php',
         'App\\Http\\Controllers\\HoraController' => __DIR__ . '/../..' . '/app/Http/Controllers/HoraController.php',
+        'App\\Http\\Controllers\\HorarioController' => __DIR__ . '/../..' . '/app/Http/Controllers/HorarioController.php',
         'App\\Http\\Controllers\\InicioController' => __DIR__ . '/../..' . '/app/Http/Controllers/InicioController.php',
         'App\\Http\\Controllers\\InscricaoController' => __DIR__ . '/../..' . '/app/Http/Controllers/InscricaoController.php',
         'App\\Http\\Controllers\\MatriculaController' => __DIR__ . '/../..' . '/app/Http/Controllers/MatriculaController.php',
