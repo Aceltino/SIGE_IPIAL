@@ -27,7 +27,7 @@
 
   <div class="row" id="conteudo">
     <div class="col no-print">
-      <h2 class="no-print">Inscritos</h2>
+      <h1 class="no-print">Inscritos</h1>
     </div>
     <div class="col-lg-2 no-print">
       <select class="btn-sel form-select no-print" id="filtro5">
