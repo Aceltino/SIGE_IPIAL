@@ -8,6 +8,7 @@ use App\Models\{
     Curso,
 };
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
 use function PHPUnit\Framework\isEmpty;
@@ -20,9 +21,24 @@ class TurmaController extends Controller
     }
     public function createTurma()
     {
+        $anoLectivo = AnoLectivoController::pegarAnoLectivo(AnoLectivoController::pegarIdAnoLectivo());
+        $dataFimIncricao = Carbon::parse($anoLectivo->data_fim_inscricao);
+        $dataFimIncricao = $dataFimIncricao->format('d-m-Y');
+        $dataAtual = Carbon::now();
+        $dataFormated = $dataAtual->format('d-m-Y');
+        if( $dataFimIncricao > $dataFormated )
+        {
+            return redirect()->back()->with('Erro', 'Não pode criar turmas após o ultimo dia das inscrições.'); 
+        }
+
         $vagas = AlunoTurmaController::pegarVagasTurno();
 
         $cursos = Curso::all();
+
+        if(!$cursos)
+        {
+            return redirect()->back()->with('Erro', 'Cadastre algum curso antes de criar alguma turma.');
+        }
         $turnos = Turno::all();
         //dd($vagas);
         return view('turma.cri-turma', compact('vagas','cursos','turnos'));
@@ -50,7 +66,7 @@ class TurmaController extends Controller
             'curso'=> $request->curso,
             'turno'=> $request->turno,
         ];
-// dd($request);
+        // dd($request);
         $validator= Validator::make($filtrados,$regras_gerais,$msg_erro);
         if ($validator->fails())
         {

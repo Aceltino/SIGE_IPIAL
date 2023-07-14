@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Controllers\Controller;
 use App\Models\{
-    Aluno_turma,Aluno,User,Nota,
-    AnoTurmaCood,Ano_lectivo,Disciplina,Turma,
+    Aluno_turma,Aluno,User,AnoTurmaCood,
+    Ano_lectivo,Disciplina,Turma,
 };
 
 class PautaController extends Controller
@@ -32,32 +33,20 @@ class PautaController extends Controller
         return $anoTurmaCoord;
     }
 
-    //Metodo que retorna Notas de um determinado aluno
-    public static function getNotaAluno($alunos):mixed
-    {
-        return Nota::where('aluno_id',$alunos)->get();
-    }
 
-    //Metodo que retorna Nota da Disciplina de um determinado Aluno
-    public static function getNotaDisciplinaAluno($nomeDisicplina,$alunos):mixed
-    {
-        $idDiscipliana=Disciplina::where('nome_disciplina',$nomeDisicplina)->first();
-        return Nota::where('disciplina_id',$idDiscipliana->disciplina_id)
-                    ->where('aluno_id',$alunos)
-                    ->get();
-    } 
-
-    public static function show($id):mixed
+    public static function show($id,$anoLectivo):mixed
     {
     
-        $turma= Turma::find($id);
+        $turma= Turma::find($id); //Busca na turma
+        $ano= Ano_lectivo::find($anoLectivo);//Buscar Ano Lectivo
 
         $anoTurmaCoord = AnoTurmaCood::where('turma_id', $turma->turma_id)->first();
         $turmaAluno = Aluno_turma::where('turmaAno_id', $anoTurmaCoord->turmaAno_id)->get();
 
-        $dadosAssinantes=self::entidadesAssinantes();
-        $alunos = Aluno::find($turmaAluno);
-
+        $dadosAssinantes=self::entidadesAssinantes(); //Dados das Assinantes da Pauta
+        $alunos = Aluno::find($turmaAluno);//Buscar os alunos pertecente a turma buscada acima. 
+        
+        //Buscar as Disciplinas de uma Turma pelos seu Curso
         $disciplinaGerais= Disciplina::where('componente','Cientificas')
                                         ->Orwhere('componente','Socio-culturais')
                                         ->get();
@@ -68,39 +57,48 @@ class PautaController extends Controller
 
         //Combinei as duas coleções de disciplinas(Tecnicas e Gerais) em uma única variável            
         $disciplinasAll= $disciplinaGerais->concat($disciplinaEspecificas)->all();
-        foreach ($disciplinasAll as $value) {
-           $disciplinas[]=$value;
-        } 
-      
-        // dd($disciplinas[2]["nome_disciplina"]);
-        $disciplina_1= "Língua Portuguesa";
 
-        foreach ($alunos as $aluno) {
-            $notas[]= self::getNotaDisciplinaAluno($disciplinas[0]["nome_disciplina"],$aluno->aluno_id);  
-        }
+        //Busca todas as diciplinas que existem em uma determinada turma
+        foreach($disciplinasAll as $value){
+            $disciplinas[]=$value;//As Disciplinas
 
-        // dd($notas);
-        
-       
+            //As Medias com base ao numero de alunos
+            foreach($alunos as $aluno){
+                //Busca da Media dos alunos com base a Disciplina
+                $OneMedia[]= MediasController::getMediaOneTrimestre($value->disciplina_id,$aluno->aluno_id, $anoLectivo); 
+                $TwoMedia[]= MediasController::getMediaTwoTrimestre($value->disciplina_id,$aluno->aluno_id, $anoLectivo); 
+                $ThreeMedia[]= MediasController::getMediaThreeTrimestre($value->disciplina_id,$aluno->aluno_id, $anoLectivo); 
+                $ca =MediasController::classificacaoAnual($value->disciplina_id,$aluno->aluno_id, $anoLectivo);
+            } 
+        }   
+
+        //Condição para Pauta ser Gerada
         if ( (count($turmaAluno) <= 0) && (empty($notas)) ){
             return redirect()->back()->with('msg_sem_pauta',"Lamentamos! Esta pauta ainda não esta composta... Aguarde o lançamento das notas");
         }
+
+        //Dados completos que vão para compor a pauta. 
         $dadosPauta= [
             'alunos' => $alunos, 
             'anoTurmaCoord' => $anoTurmaCoord, 
-            'notas'=>$notas,
             'dadosAssinantes'=>$dadosAssinantes,
             'disciplinas'=>$disciplinas,
-            'turma'=>$turma,
+            'turma'=>$turma,  
+            'ano'=>$ano,  
+            'OneMedia'=>$OneMedia,
+            'TwoMedia'=>$TwoMedia,
+            'ThreeMedia'=>$ThreeMedia,
+            'CA'=>$ca,
             'colspanDisciplina'=>(count($disciplinas)*6),
 
-        ];
-       
+        ];  
+        
+        //Condições da apresentação da Pauta com base a class
         switch ($turma->classe_id){
             case 1:
-                return view('pauta.pauta-11-doc', $dadosPauta);
+                return view('pauta.pauta-10-doc',compact('dadosPauta') );
             case 2:
-                return view('pauta.pauta-11-doc', $dadosPauta);
+                return view('pauta.pauta-11-doc',compact('dadosPauta'));
             case 3:
                 return view('pauta.pauta-12-doc', $dadosPauta);
             case 4:
@@ -126,6 +124,6 @@ class PautaController extends Controller
         ];
     } 
 
-    //Metodo que Busca as disciplinas da Turma
+   
 
 }

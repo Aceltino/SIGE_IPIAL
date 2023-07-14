@@ -30,7 +30,7 @@ if (!function_exists('getMAC1')) {
     function getMAC1($alunoId, $disciplina)
     {
         $notas = \App\Models\Nota::where('aluno_id', $alunoId)
-                            ->where('tipo_prova', "AvaliacaoContinua")
+                            ->where('tipo_prova', "Avaliação Contínua")
                             ->where('disciplina_id', $disciplina)
                             ->whereHas('trimestre', function ($query) {
                                 $query->where('trimestre', 1);
@@ -68,7 +68,7 @@ if (!function_exists('getNPP1')) {
 if (!function_exists('getNPT1')) {
     function getNPT1($alunoId, $disciplina) {
         $notas = \App\Models\Nota::where('aluno_id', $alunoId)
-                        ->where('tipo_prova', "ProvaTrimestre")
+                        ->where('tipo_prova', "Prova Trimestre")
                         ->where('disciplina_id', $disciplina)
                         ->whereHas('trimestre', function ($query) {
                             $query->where('trimestre', 1);
@@ -139,7 +139,7 @@ if (!function_exists('getMAC2')) {
     function getMAC2($alunoId, $disciplina)
     {
         $notas = \App\Models\Nota::where('aluno_id', $alunoId)
-                            ->where('tipo_prova', "AvaliacaoContinua")
+                            ->where('tipo_prova', "Avaliação Contínua")
                             ->where('disciplina_id', $disciplina)
                             ->whereHas('trimestre', function ($query) {
                                 $query->where('trimestre', 2);
@@ -177,7 +177,7 @@ if (!function_exists('getNPP2')) {
 if (!function_exists('getNPT2')) {
     function getNPT2($alunoId, $disciplina) {
         $notas = \App\Models\Nota::where('aluno_id', $alunoId)
-                        ->where('tipo_prova', "ProvaTrimestre")
+                        ->where('tipo_prova', "Prova Trimestre")
                         ->where('disciplina_id', $disciplina)
                         ->whereHas('trimestre', function ($query) {
                             $query->where('trimestre', 2);
@@ -248,7 +248,7 @@ if (!function_exists('getMAC3')) {
     function getMAC3($alunoId, $disciplina)
     {
         $notas = \App\Models\Nota::where('aluno_id', $alunoId)
-                            ->where('tipo_prova', "AvaliacaoContinua")
+                            ->where('tipo_prova', "Avaliação Contínua")
                             ->where('disciplina_id', $disciplina)
                             ->whereHas('trimestre', function ($query) {
                                 $query->where('trimestre', 3);
@@ -286,7 +286,7 @@ if (!function_exists('getNPP3')) {
 if (!function_exists('getNPT3')) {
     function getNPT3($alunoId, $disciplina) {
         $notas = \App\Models\Nota::where('aluno_id', $alunoId)
-                        ->where('tipo_prova', "ProvaTrimestre")
+                        ->where('tipo_prova', "Prova Trimestre")
                         ->where('disciplina_id', $disciplina)
                         ->whereHas('trimestre', function ($query) {
                             $query->where('trimestre', 3);
@@ -434,5 +434,39 @@ if (!function_exists('getDisciplina')) {
                             ->first();
 
         return $nomeDisciplina;
+    }
+}
+
+if (!function_exists('sendNotas')) {
+    function sendNotas($alunoId, $disciplinaID)
+    {
+        $trimestre1 = getMT1($alunoId, $disciplinaID);
+        $trimestre2 = getMT2($alunoId, $disciplinaID);
+        $trimestre3 = getMT3($alunoId, $disciplinaID);
+
+        ($trimestre1 > 0 ? '' : $trimestre1 = 0);
+        ($trimestre2 > 0 ? '' : $trimestre2 = 0);
+        ($trimestre3 > 0 ? '' : $trimestre3 = 0);
+        $media = new \App\Models\Media;
+
+        $media1trim = $media->where('aluno_id', $alunoId)
+                            ->whereHas('trimestres', function($query) {
+                                $query->where('trimestre', 1);
+                            })
+                        ->first();
+        $nota1trim = $media1trim->nota;
+        
+        
+        if ($media1trim->count() > 0) {
+            $find = \App\Models\Media::findOrFail($media->media_id);
+            $find->nota = $trimestre1;
+            $find->trimestre_id = 19;
+            $find->ano_lectivo_id = 14;
+            $find->aluno_id = 4;
+            $find->disciplina_id = 4;
+            $find->save();
+        }
+        
+        return 1;
     }
 }

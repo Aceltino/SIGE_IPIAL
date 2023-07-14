@@ -1,28 +1,19 @@
-const btnMudarTema = document.querySelector("#mudar-modo");
+//Pegando o selector#chenge-theme 
+const btnMudarTema = document.querySelector("#change-theme");
 
-function AcaoModoEscuro(){
-	document.body.classList.toggle("modo-escuro");
-	document.header.classList.toggle("modo-escuro");
-	document.footer.classList.toggle("modo-escuro");
+//Verificando a existencia do tema dark 
+if (localStorage.getItem('data-theme') == 'dark') {
+	btnMudarTema.checked = true;
 }
 
-//Guardar o valor escolhido pelo usuario
-function guardaModo(){
-	const ModoEsc = localStorage.getItem("modo-escuro");
+//Criando a função para a mudança de tema
+btnMudarTema.addEventListener('change', () => {
+	let theme = localStorage.getItem('data-theme');
 
-	if(ModoEsc){
-		AcaoModoEscuro();
-	}
-}
-guardaModo(); 
-
-
-btnMudarTema.addEventListener("change", function() {
-	AcaoModoEscuro();
-
-	localStorage.removeItem("modo-escuro");
-
-	if((document.body.classList.contains("modo-escuro")) && (document.header.classList.contains("modo-escuro")) && (document.footer.classList.contains("modo-escuro"))){
-		localStorage.setItem("modo-escuro", 1,1,1);
+	//Ativando temas de acordo a sua existência
+	if (!btnMudarTema.checked) {
+		changeThemeToLight()
+	}else{
+		changeThemeToDark()
 	}
 });

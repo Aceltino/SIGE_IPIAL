@@ -12,6 +12,8 @@ use App\Http\Controllers\{
     DisciplinasController, AdmissaoController,
     AlunoTurmaController,
     TurmaController, CalendarioController,
+    HorarioController,
+    MediasController,
 };
 
 /*
@@ -26,16 +28,17 @@ use App\Http\Controllers\{
 */
 
 // Rota apenas de teste... Não apague -> ACELTINO
-    Route::get('validar-aluno', [AlunoTurmaController::class, 'pegarTurmas']);
+    Route::get('validar-aluno', [AdmissaoController::class, 'numeroVagas']);
 // Route::get('validar-aluno', [AlunoController::class, 'situacaoAluno']);
 
 
-//Rotas inicial do Painel
+//Rotas inicial do Painel\
 Route::get('/', [inicioController::class,'inicio'])->name('inicio')->middleware(['auth','active.session']);
-/*
-Route::get('/', function () {
-    return view('pagina-inicial');
-})->name('inicio')->middleware(['auth','active.session']);*/
+
+
+// Route::get('/', function () {
+//     return view('pagina-inicial');
+// })->name('inicio')->middleware(['auth','active.session']);
 
  //Rota final do painel
  Route::get('logout',[AuthController::class,'logout'])->name('logout')->middleware('auth');
@@ -86,15 +89,17 @@ Route::prefix('inscricao')->middleware(['auth','active.session','checkcargo'])->
     Route::post('inscrever', [InscricaoController::class, 'store'])->name('inscricao-store')->middleware(['inscriCheck']);
 
     // Admitir inscrito
-    Route::get('admitir', [AdmissaoController::class, 'admitirCandidatos'])->name('admitir-inscritos')->middleware(['inscriCheck']);
+    Route::get('admitir', [AdmissaoController::class, 'admitirCandidatos'])->name('admitir-inscritos');
 
     // Editar inscrito
     Route::get('editar-candidato/{candidato}/editar', [InscricaoController::class, 'edit'])->name('inscricao-edit')->middleware(['inscriCheck']);
     Route::put('editar-candidato/{candidato}', [InscricaoController::class, 'update'])->name('inscricao-update')->middleware(['inscriCheck']);
 
-    Route::get('recibo', function () {
-            return view('recibo/recibo-incricao');
-        });
+    Route::get('recibo-candidato/{candidato}', [InscricaoController::class, 'recibo'])->name('recibo');
+
+    // Route::get('recibo', function () {
+    //         return view('recibo/recibo-inscricao');
+    //     });
 
     /*Editar candidato */
 
@@ -140,9 +145,9 @@ Route::prefix('matricula')->middleware(['auth','active.session','checkcargo'])->
     // Atribuir turma 10ª classe
     Route::get('matricula-turma',  [MatriculaController::class, 'atribuirTurma'])->name('matricula-validarTurma');
 
-    /*Matricular aluno */
-    Route::get('matricular-aluno/{candidato}',  [MatriculaController::class, 'create'])->name('matricula-view');
-    Route::post('matricular-aluno/{candidato}', [MatriculaController::class, 'store'])->name('matricula-store');
+    /*Matricular aluno */ 
+    Route::get('matricular-aluno/{candidato}',  [MatriculaController::class, 'create'])->name('matricula-view')->middleware(['matricularCheck']);
+    Route::post('matricular-aluno/{candidato}', [MatriculaController::class, 'store'])->name('matricula-store')->middleware(['matricularCheck']);
 
     /*Editar matricula */
     Route::get('editar-aluno/{aluno}/editar', [MatriculaController::class, 'edit'])->name('matricula-edit');
@@ -175,7 +180,6 @@ Route::prefix('matricula')->middleware(['auth','active.session','checkcargo'])->
  **/
 Route::prefix('professor')->middleware(['auth','active.session','checkcargo'])->group(function(){
 
-    Route::get('rota/{segmento}', [ProfessorController::class, 'editarProfessor'])->name('prof.rota');
 
     Route::get('cadastrar-professor', [ProfessorController::class, 'create'])->name('professor.cadastrar');
     Route::post('cadastrar-professor', [ProfessorController::class, 'store'])->name('prof.postRegistar');
@@ -282,6 +286,7 @@ Route::prefix('processo')->middleware(['auth','active.session'])->group(function
     Route::delete('{aluno_id}',[ProcessoController::class, 'destroy'])->where('aluno_id', '[0-9]+')->name('processo.deletar');
 });
 
+
 /******************************************
  * Rotas de pauta
  */
@@ -298,10 +303,10 @@ Route::prefix('pautas')->middleware(['auth','active.session'])->group(function()
  * Rotas de mini-pauta
  */
 Route::prefix('mini-pauta')->middleware(['auth','active.session'])->group(function(){
-    Route::get('mini-pauta', [MiniPautaController::class, 'index'])->name('mini-pauta');
+    Route::get('', [MiniPautaController::class, 'index'])->name('mini-pauta');
     Route::get('ver-mini-pauta', [MiniPautaController::class, 'show'])->name('mini-pauta.show');
     Route::get('{turma}/{curso}', [MiniPautaController::class, 'turma'])->name('mini-pauta.turma');
-    Route::get('ver/{turma_id}/{prof_id}/{disciplina_id}', [MiniPautaController::class, 'view'])->name('mini-pauta.view');
+    Route::get('ver/{turma_id}/{disciplina_id}', [MiniPautaController::class, 'view'])->name('mini-pauta.view');
 });
 
 /******************************************
@@ -411,10 +416,17 @@ Route::get('edit_recurso',  function () {
  * Rotas do horário
 ******************************************/
 
-/*Criar horário*/
-Route::get('/criar-horario', function () {
-    return view('horario/criar-horario');
+Route::prefix('horario')->group(function(){
+    /*Criar horário*/
+    Route::get('criar-horario',[HorarioController::class,'create'])->name('criar-horario');
+
+    // Route::get('cri-calend-prov',[CalendarioController::class, 'index'])->name('criar.calendario');
+    // Route::get('edit-calend-prova', function(){
+    //     return view('calend-prova/edit-calend-prova');
+    // })->name('editar.calendario');
 });
+
+
 
 /*Ver o horário da turma*/
 Route::get('/horario-turma', function () {
@@ -424,6 +436,34 @@ Route::get('/horario-turma', function () {
 /*Editar horário*/
 Route::get('/editar-horario', function () {
     return view('horario/editar-horario');
+});
+/*Area de formacao*/
+Route::get('/criar-areaformacao', function () {
+    return view('area-formacao/criar-areaformacao');
+});
+
+/*Area de formacao*/
+Route::get('areaformacao', function () {
+    return view('area-formacao/areaformacao');
+});
+
+/*Editar Area de formacao*/
+Route::get('/edit-areaformacao', function () {
+    return view('area-formacao/edit-areaformacao');
+});
+/*Sala*/
+Route::get('/cadastrar-sala', function () {
+    return view('sala\cadastrar-sala');
+});
+
+/*Area de formacao*/
+Route::get('/sala', function () {
+    return view('sala\sala');
+});
+
+/*Editar Area de formacao*/
+Route::get('/edit-sala', function () {
+    return view('sala\edit-sala');
 });
 
 

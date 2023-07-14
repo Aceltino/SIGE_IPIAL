@@ -46,7 +46,7 @@
       </div>
 
       <!-- /  Inicio da tabela de inscritos -->
-      <table id="matricula-tab" class="table table-striped mt-4">
+      <table id="matricula-tab" class="table table-striped mt-4 table-custom table-escuro">
         <thead>
           <tr style=" text-align: center;">
             <th scope="col">Designação</th>
@@ -68,11 +68,7 @@
                 <td class="d-flex justify-content-between align-items-center">
                     <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
                     <a href="{{route('editar.ano.lectivo', $al['ano_lectivo_id'])}}"><i class="bi bi-pencil"></i></a>
-                    <form action="{{route('apagar.ano.lectivo', $al['ano_lectivo_id'])}}" method="POST">
-                        @csrf
-                        @method('delete')
-                        <button type="submit" class="btn d-flex align-items-center p-0"><i class="bi bi-trash-fill" ></i></button>
-                    </form>
+                    <button type="button" class="btn d-flex align-items-center p-0" data-bs-toggle="modalDesactivar" data-bs-target="#basicModalDesactivar"><i class="bi bi-power" ></i></button>    
                 </td>
             </tr>
         @endforeach
@@ -80,6 +76,29 @@
         </tbody>
       </table>
       <!-- Termina a tabela de matriculas -->
+
+      <div class="modal fade" id="basicModalDesactivar" tabindex="-1" data-bs-backdrop="false">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="btn-close" data-bs-dismiss="modalDesactivar" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+              <strong>Tem a certeza de que pretende desactivar o ano lectivo?</strong>
+            </div>
+
+            <div class="modal-footer" style="border: none;">
+              <button type="button" class="btn btn-warning" data-bs-dismiss="modalDesactivar">Cancelar</button>
+              <form action="{{route('apagar.ano.lectivo', $al['ano_lectivo_id'])}}" method="POST">
+                @csrf
+                @method('delete')
+                <button type="submit" class="btn btn-danger d-flex align-items-center p-0">Desactivar</button>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
 
     <!--Inicio da modal ver inscrito-->
     <div class="modal fade" id="ExtralargeModal" tabindex="-1" data-bs-backdrop="false">

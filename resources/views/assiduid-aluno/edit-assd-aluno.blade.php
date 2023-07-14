@@ -67,7 +67,7 @@
         </div>
     </div>
     <!-- /  Inicio da tabela  -->
-    <table id="matricula-tab" class="table table-striped" style="margin-top: 20px; width: 100%;" >
+    <table id="matricula-tab" class="table table-custom table-escuro display" style="margin-top: 20px; width: 100%;" >
       <thead style="text-align: center">
         <tr>
           <th scope="col">Data</th>

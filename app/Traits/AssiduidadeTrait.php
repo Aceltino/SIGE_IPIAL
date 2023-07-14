@@ -177,6 +177,7 @@ trait AssiduidadeTrait
                 $dia = "TERÇA-FEIRA";
                 break;
             case 'Wed':
+            case 'Fri':
                 $dia = "QUARTA-FEIRA";
                 break;
             case 'Thu':

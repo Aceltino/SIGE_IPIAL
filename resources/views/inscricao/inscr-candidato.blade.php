@@ -21,6 +21,7 @@
             </div>
              @endif
     
+
             @if (session()->has('ErroTelefone'))
             <div class="alert alert-warning">
                 {{ session('ErroTelefone') }}
@@ -50,14 +51,15 @@
             @endif
     
             @if(session()->has('Sucesso'))
-            <div class="alert alert-success">
-            {{session('Sucesso')}}
-            <button class="botaofechasucesso">
-              <i class="bi bi-x"></i>
-            </button>
-            </div>
-            @endif
-         </div>
+    <div class="alert alert-success">
+        {!! html_entity_decode(Session::get('Sucesso')) !!}
+        <button class="botaofechasucesso">
+            <i class="bi bi-x"></i>
+        </button>
+    </div>
+@endif
+</div>
+
       <h2>Introduza os dados pessoais</h2>
 
       <div class="form-group">

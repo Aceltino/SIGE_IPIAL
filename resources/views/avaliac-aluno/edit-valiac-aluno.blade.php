@@ -70,7 +70,6 @@
           <th scope="col">Tipo de Nota</th>
           <th scope="col">Nota</th>
           <th scope="col">Editar</th>
-          <th scope="col">Descrição</th>
         </tr>
       </thead>
       <tbody>
@@ -84,9 +83,10 @@
                 <td style="color: rgb(7, 7, 129)">{{number_format($nota->nota_aluno, 1, ".")}}</td>
                 @endif
                 <td style="text-align: center">
+                  <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#Descricaonota{{$nota['nota_id']}}"></i>
                 <a class="btn linkeditar" data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$nota['nota_id']}}">Editar Nota do Aluno</a>
                 </td>
-                <td> <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#Descricaonota{{$nota['nota_id']}}"></i></td>
+                
             </tr>
         @endforeach
 
@@ -209,7 +209,5 @@
       </div>
     </div>
 @endforeach
-<!-- Modal para visualizar a Descrição no Comunicado  FIM-->
-
 </main>
 @endsection

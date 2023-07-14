@@ -35,7 +35,7 @@
 
   <div class="row"id="conteudo">
     <div class="col no-print">
-      <h2 class="no-print">Matriculas</h2>
+      <h1 class="no-print">Matriculas</h1>
     </div>
 
       <div class="col-lg-2 no-print">
@@ -86,7 +86,7 @@
   </div>
 
   <!-- /  Inicio da tabela de inscritos -->
-  <table class="table table-striped table-custom" id="matriculas">
+  <table class="table table-custom table-escuro" id="matriculas">
     <thead>
       <tr style=" text-align: center;" id="conteudo">
           <th scope="col">Nº Processo</th>

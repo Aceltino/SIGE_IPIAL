@@ -56,7 +56,7 @@
     </div>
     </div>
   </div>
-  <div class="bortabela">
+  <div class="bortabela" style="box-shadow: 0 5px 15px 0 rgba(82, 63, 105, 0.2); border: 1px solid white; border-radius: 3px; padding: 2px;">
     <div class="pagetitle">
         <div class="row">
             <div class="col" style="padding-left: 25px; padding-top: 15px;">
@@ -65,7 +65,7 @@
         </div>
     </div>
     <!-- /  Inicio da tabela  -->
-    <table id="avaliacaotab" class="table table-striped" style="margin-top: 20px; width: 100%;" >
+    <table id="avaliacaotab" class="table table-custom table-escuro display" style="margin-top: 20px; width: 100%;" >
       <thead style="text-align: center">
         <tr>
           <th scope="col">Nº</th>

@@ -34,42 +34,60 @@
     @if(session('msg_sem_pauta'))
         <div class="alert alert-danger">
             {{session('msg_sem_pauta')}}
+            <button class="botaofecharerro">
+                <i class="bi bi-x"></i>
+              </button>
         </div>
     @endif
 
     @if(session('msg_sem_director'))
         <div class="alert alert-danger">
             {{session('msg_sem_director')}}
+            <button class="botaofecharerro">
+                <i class="bi bi-x"></i>
+              </button>
         </div>
     @endif
 
     @if(session('msg_sem_subdirector'))
          <div class="alert alert-danger">
             {{session('msg_sem_subdirector')}}
+            <button class="botaofecharerro">
+                <i class="bi bi-x"></i>
+              </button>
         </div>
     @endif
 
     @if(session('msg_sem_coordenadorArea'))
         <div class="alert alert-danger">
             {{session('msg_sem_coordenadorArea')}}
+            <button class="botaofecharerro">
+                <i class="bi bi-x"></i>
+              </button>
         </div>
     @endif
 
     @if(session('msg_sem_directorTurma'))
         <div class="alert alert-danger">
             {{session('msg_sem_directorTurma')}}
+            <button class="botaofecharerro">
+                <i class="bi bi-x"></i>
+              </button>
         </div>
     @endif
     
     @if(session('erro_anormal'))
         <div class="alert alert-danger">
             {{session('erro_anormal')}}
+            <button class="botaofecharerro">
+                <i class="bi bi-x"></i>
+              </button>
         </div>
     @endif
   
    
     <!-- /  Inicio da tabela de inscritos -->
-    <table  id="Pauta" class="table table-striped" style="margin-top: 20px;" >
+    <table  id="Pauta" class="table table-custom table-escuro" style="margin-top: 20px;" >
       <thead  style=" text-align: center;">
           <tr>
           <th scope="col">ANO</th>
@@ -90,7 +108,7 @@
             <td>{{ $item['turma']->belongerCurso->nome_curso}}</td>
             <td>{{ $item['turma']->turno->nome_turno }}</td>
             <td>
-                <a href={{ route('pauta.show', ['id'=> $item['turma']->turma_id, 'ano'=>$item['anoLectivo']->ano_lectivo] ) }} class="btn btn-cor-sg-a">Ver Pauta</a>
+                <a href={{ route('pauta.show', ['id'=> $item['turma']->turma_id, 'ano'=>$item['anoLectivo']->ano_lectivo_id] ) }} class="btn btn-cor-sg-a">Ver Pauta</a>
             </td>
         </tr>
         @endforeach

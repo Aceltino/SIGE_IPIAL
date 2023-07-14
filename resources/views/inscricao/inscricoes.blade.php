@@ -27,7 +27,7 @@
 
   <div class="row" id="conteudo">
     <div class="col no-print">
-      <h2 class="no-print">Inscritos</h2>
+      <h1 class="no-print">Inscritos</h1>
     </div>
     <div class="col-lg-2 no-print">
       <select class="btn-sel form-select no-print" id="filtro5">
@@ -60,7 +60,7 @@
   <div style="margin-top: 10px;" id="conteudo" >
     <a href="{{ route('admitir-inscritos') }}" class="btn btn-success no-print" style="  text-align: center">Ativar Admitido</a>
   </div>
-  <table class="table table-striped display" style="margin-top: 10px; text-align: center;"  id="inscricao">
+  <table class="table table-custom table-escuro display" style="margin-top: 10px; text-align: center;"  id="inscricao">
     <thead id="conteudo">
       <tr style=" text-align: center;">
         <th scope="col">Número do BI</th>

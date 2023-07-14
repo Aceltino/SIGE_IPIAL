@@ -53,19 +53,24 @@
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #212529;
+    color: var(--cor-label-inativa);
     background-clip: padding-box;
     border: 1px solid #ced4da;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     border-radius: 0.25rem;
+    background-color: var(--cor-input-inativa);
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+
+  textarea{
+    color: var(--cor-label-inativa);
+    background-color: var(--cor-input-inativa);
   }
   
   input:focus, select:focus {
-    color: #212529;
-    background-color: #fff;
+    background-color: var(--cor-input-inativa);
     border-color: #86b7fe;
     outline: 0;
     box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
@@ -311,7 +316,7 @@
     border-radius: 10px;
     display: flex;
     font-size: 15px;
-    background-color: #fff;
+    background-color: var(--cor-input-inativa);
     justify-content: flex-start;
     align-items: center;
   }
@@ -322,11 +327,10 @@
     border: 1px solid #ccc;
     border-radius: 10px;
     font-size: 15px;
-    background-color: #fff;
    }
   
   .form-inativo label{
-    color: #000;
+    color: var(--cor-label-inativa);
     font-weight: 600;
   }
   
@@ -337,6 +341,7 @@
     outline: none;
     color: #777;
     margin-left: 5px;
+    background-color: var(--cor-input-inativa);
   }
   
   
@@ -579,9 +584,15 @@ span.f-normal{
   background-color: rgb(0, 0, 0, 0.4);
 }
 
+.modal-header .btn-close{
+  color: #00ff22;
+}
+
 .modal-content{
   border: none;
   padding: 0px;
+  color: var(--modal-cor-texto);
+  background-color: var(--modal-cor-fundo);
 }
 
 .cabecalho-modal{

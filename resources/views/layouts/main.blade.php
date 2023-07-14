@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,10 +40,27 @@
     <script src={{{URL::asset("tooltipster/dist/js/tooltipster.bundle.min.js")}}}></script>
     <script src={{{URL::asset("Datatables/datatables.min.js")}}}></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
     <script src={{{URL::asset("js/gerarpdf.js")}}}></script>
-    
+    <script src={{{URL::asset("js/darkmode.js")}}} defer></script>
 
+    <script>
+
+      const changeThemeToDark = () => {
+        document.documentElement.setAttribute("data-theme", "dark");
+        localStorage.setItem("data-theme", "dark");
+      }
+
+      const changeThemeToLight = () => {
+        document.documentElement.setAttribute("data-theme", "light");
+        localStorage.setItem("data-theme", "light");
+      }
+
+      let theme = localStorage.getItem('data-theme');
+
+      if (theme == 'dark') changeThemeToDark();
+
+    </script>
 
     
 </head>
@@ -88,6 +105,7 @@
   <script src={{{URL::asset("js/paineis/telefone.js")}}}></script>
   <script src={{{URL::asset("js/paineis/disciplina/disciplina.js")}}}></script>
   <script src={{{URL::asset("js/paineis/horario/horario.js")}}}></script>
+  <script src={{{URL::asset("js/paineis/horario/validacao_horario.js")}}}></script>
   <script src={{{URL::asset("js/paineis/horario/editar-horario.js")}}}></script>
   <script src={{{URL::asset("js/paineis/perfil/perfil.js")}}}></script>
   <script src={{{URL::asset("js/paineis/ano-lectivo/criar-ano-lectivo.js")}}}></script>
@@ -96,6 +114,8 @@
   <script src={{{URL::asset("js/paineis/letrasc.js")}}}></script>
   <script src={{{URL::asset("js/paineis/registrar-aluno/registrar-aluno.js")}}}></script>
   <script src={{{URL::asset("js/paineis/curso/curso.js")}}}></script>
+  <script src={{{URL::asset("js/paineis/avalicao/inputnota.js")}}}></script>
+
 
   
 
@@ -104,7 +124,6 @@
   <script src={{{URL::asset("js/axios.min.js")}}}></script>
   <script src={{{URL::asset("js/script.js")}}}></script>
   <script src={{{URL::asset("js/fecharerro.js")}}}></script>
-  <script src={{{URL::asset("js/darkmode.js")}}}></script>
   <script src={{{URL::asset("js/paineis/avalicao/inputnota.js")}}}></script>
   <script src={{{URL::asset("js/APIconsumo.js")}}}></script>
   <script src={{{URL::asset("js/APIconsumomatriculas.js")}}}></script>

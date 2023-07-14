@@ -75,21 +75,16 @@
                             </td>
                             <td>1º</td>
                             <td>
-                                I10AM <br>
                                 TLP
                             </td>
                             <td>
-                                I10BM <br>
                                 TLP
                             <td>
-                                I10CM <br>
                                 TLP
                             </td>
                             <td>
-                                I10DM <br>
                                 TLP
                             <td>
-                                I11AM <br>
                                 TLP
                             </td>
                         </tr>
@@ -101,21 +96,16 @@
                             </td>
                             <td>2º</td>
                             <td>
-                                I10AM <br>
                                 TLP
                             </td>
                             <td>
-                                I10BM <br>
                                 TLP
                             <td>
-                                I10CM <br>
                                 TLP
                             </td>
                             <td>
-                                I10DM <br>
                                 TLP
                             <td>
-                                I11AM <br>
                                 TLP
                             </td>
                         </tr>
@@ -127,21 +117,16 @@
                             </td>
                             <td>3º</td>
                             <td>
-                                I10AM <br>
                                 TLP
                             </td>
                             <td>
-                                I10BM <br>
                                 TLP
                             <td>
-                                I10CM <br>
                                 TLP
                             </td>
                             <td>
-                                I10DM <br>
                                 TLP
                             <td>
-                                I11AM <br>
                                 TLP
                             </td>
                         </tr>
@@ -153,21 +138,16 @@
                             </td>
                             <td>4º</td>
                             <td>
-                                I10AM <br>
                                 TLP
                             </td>
                             <td>
-                                I10BM <br>
                                 TLP
                             <td>
-                                I10CM <br>
                                 TLP
                             </td>
                             <td>
-                                I10DM <br>
                                 TLP
                             <td>
-                                I11AM <br>
                                 TLP
                             </td>
                         </tr>
@@ -179,21 +159,16 @@
                             </td>
                             <td>5º</td>
                             <td>
-                                I10AM <br>
                                 TLP
                             </td>
                             <td>
-                                I10BM <br>
                                 TLP
                             <td>
-                                I10CM <br>
                                 TLP
                             </td>
                             <td>
-                                I10DM <br>
                                 TLP
                             <td>
-                                I11AM <br>
                                 TLP
                             </td>
                         </tr>
@@ -205,21 +180,16 @@
                             </td>
                             <td>6º</td>
                             <td>
-                                I10AM <br>
                                 TLP
                             </td>
                             <td>
-                                I10BM <br>
                                 TLP
                             <td>
-                                I10CM <br>
                                 TLP
                             </td>
                             <td>
-                                I10DM <br>
                                 TLP
                             <td>
-                                I11AM <br>
                                 TLP
                             </td>
                         </tr>

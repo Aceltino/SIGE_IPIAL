@@ -12,7 +12,9 @@ use App\Models\{
     Telefone,
     Disciplina,
     Professor_disciplina,
-    Ano_lectivo
+    Ano_lectivo,
+    Turno,
+    Area_formacao
 };
 use Illuminate\Support\Facades\{
     Validator,
@@ -29,18 +31,12 @@ class ProfessorController extends Controller
      */
     public function index()
     {
-        $professores = Professor::with('pessoa', 'professorDisciplina')->get();
+        $professores = Professor::with('pessoa', 'professorDisciplina')
+            ->get();
+        $cursos = Curso::all(['nome_curso', 'sigla', 'curso_id']);
+        $prof_disc = Professor_disciplina::with('disciplina')->get();
 
-        return view('professor.consultar-prof', compact('professores'));
-    }
-
-    public function editarProfessor(Request $request, $segmento)
-    {
-        // Lógica do controlador aqui
-        // $request é uma instância da classe Request, que pode ser usada para acessar outros dados da requisição, como query parameters, headers, etc.
-        // $segmento é o valor passado na URL como segmento
-
-        return "Você digitou o segmento: " . $segmento;
+        return view('professor.consultar-prof', compact('professores', 'cursos', 'prof_disc'));
     }
 
     /**
@@ -50,9 +46,10 @@ class ProfessorController extends Controller
      */
     public function create()
     {
-        $cursos = Curso::all(['nome_curso', 'sigla']);
+        $cursos = Curso::all(['nome_curso', 'sigla', 'curso_id']);
         $disciplinas = Disciplina::all();
-        return view('professor.cadastrar-prof', ['disciplinas' => $disciplinas, 'cursos' => $cursos]);
+        $area_formacao = Area_formacao::all();
+        return view('professor.cadastrar-prof', ['area_formacao' => $area_formacao, 'disciplinas' => $disciplinas, 'cursos' => $cursos]);
     }
 
     public function profEditar($uuid)
@@ -91,22 +88,130 @@ class ProfessorController extends Controller
     public function store(Request $request)
     {
         try {
-            $validatedEndereco = $request->validate([
-                'municipio' => 'nullable|string',
-                'bairro' => 'nullable|string',
-                'zona' => 'nullable|string',
-                'numero_casa' => 'nullable|int',
-            ]);
-
-            $validatedPessoa = $request->validate([
+            $validator = Validator::make($request->all(), [
                 'nome_completo' => 'required|string|max:255',
                 'num_bi' => 'required|regex:/^\d{9}[A-Z]{2}\d{3}$/',
-                'genero' => 'required|in:Masculino,Femenino',
+                'genero' => 'required|in:Masculino,Feminino',
                 'num_tel' => ['required', 'regex:/^\d{9}$/'],
                 'data_nascimento' => 'required|date',
+
+                'qtd_disciplinas' => 'required|integer|min:1|max:4',
+                'disciplina' => 'required|array|min:1',
+                'disciplina.*' => 'required|integer',
+
+                'turno' => 'required|array|min:1',
+                'turno.*' => 'array',
+
+                'curso' => 'required|array|min:1',
+                'curso.*' => 'required|integer',
+
+                'course' => 'required|integer|min:1|max:7',
+            ], [
+                'nome_completo.required' => 'O campo nome completo é obrigatório.',
+                'nome_completo.string' => 'O campo nome completo deve ser uma string.',
+                'nome_completo.max' => 'O campo nome completo não pode ter mais de :max caracteres.',
+                'num_bi.required' => 'O campo número do BI é obrigatório.',
+                'num_bi.regex' => 'O campo número do BI não está no formato válido.',
+                'genero.required' => 'O campo género é obrigatório.',
+                'genero.in' => 'O campo género deve ser Masculino ou Feminino.',
+                'num_tel.required' => 'O campo número de telefone é obrigatório.',
+                'num_tel.regex' => 'O campo número de telefone não está no formato válido.',
+                'data_nascimento.required' => 'O campo data de nascimento é obrigatório.',
+                'data_nascimento.date' => 'O campo data de nascimento não está no formato válido.',
+
+                'qtd_disciplinas.required' => 'O campo quantidade de disciplinas é obrigatório.',
+                'qtd_disciplinas.integer' => 'O campo quantidade de disciplinas deve ser um número inteiro.',
+                'qtd_disciplinas.min' => 'O campo quantidade de disciplinas deve ser no mínimo :min.',
+                'qtd_disciplinas.max' => 'O campo quantidade de disciplinas deve ser no máximo :max.',
+                'disciplina.*.required' => 'O campo disciplina é obrigatório.',
+            ]);
+        
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+
+            $disciplinas = $request->input('disciplina');
+            $turnos = $request->input('turno');
+            $curso = $request->input('curso');
+            $dadosDisciplina = [];
+
+            for ($i = 1; $i <= count($turnos); $i++) {
+                for ($d=0; $d < count($turnos[$i]); $d++) {
+                    if ( isset($disciplinas[$i-1])) {
+                        $disciplina = Disciplina::where('disciplina_id', $disciplinas[$i-1])->first();
+                        if ( isset($turnos[$i][$d]) ) {
+                            $dadosDisciplina[] = [
+                                'disciplina_id' => $disciplina->disciplina_id,
+                                'nome_disciplina' => $disciplina->nome_disciplina,
+                                'turno' => $turnos[$i][$d],
+                            ];
+                        }
+                    }
+                }
+            }
+
+            $dadosPessoa = [
+                $request->input('nome_completo'),
+                $request->input('num_bi'),
+                $request->input('genero'),
+                $request->input('num_tel'),
+                $request->input('data_nascimento'),
+            ];
+            $dadosProf = [
+                $request->input('formacao'),
+                $request->input('area_formacao'),
+                $request->input('course'),
+                $request->input('cargo'),
+            ];
+
+            $pessoa = Pessoa::create([
+                'nome_completo' => $request->input('nome_completo'),
+                'num_bi' => $request->input('num_bi'),
+                'genero' => $request->input('genero'),
+                'telefone' => $request->input('num_tel'),
+                'data_nascimento' => $request->input('data_nascimento'),
             ]);
 
-            $endereco = Endereco::create($validatedEndereco);
+            for ($i = 0; $i < count($curso); $i++) {
+                $cr = Curso::where('curso_id', $curso[$i])->first();
+                $dadosDisciplina[] = [
+                    'curso_id' => $cr->curso_id,
+                    'area_formacao' => $request->input('area_formacao'),
+                    'cargo' => $request->input('cargo')
+                ];
+                // Aqui cadastra o professeor de acordo o numero de cursos
+                $professor = Professor::create([
+                    'formacao' => $request->input('formacao'),
+                    'pessoa_id' => $pessoa->pessoa_id,
+                    'area_formacao_id' => $request->input('area_formacao'),
+                    'curso_id' => $cr->curso_id,
+                    'cargo' => $request->input('cargo'),
+                ]);
+            }
+
+            $ano_let = Ano_lectivo::where('status_ano_lectivo', 1)->first();
+            for ($i = 0; $i < count($dadosDisciplina); $i++) {
+                if ( isset($dadosDisciplina[$i]['nome_disciplina']) && isset($dadosDisciplina[$i]['turno']) ) {
+                    $prof_disc = Professor_disciplina::create([
+                        'disciplina_id' => $dadosDisciplina[$i]['disciplina_id'],
+                        'professor_id' => $professor->professor_id,
+                        'ano_lectivo_id' => $ano_let->ano_lectivo_id,
+                        'prioridade' => 1,
+                        'turno_id' => $dadosDisciplina[$i]['turno'],
+                    ]);
+                }                    
+            }
+            //var_dump($dadosDisciplina); exit;
+            //dd($request);
+            /*$pessoa = Pessoa::create([
+                'nome_completo' => $request->input('nome_completo'),
+                'num_bi' => $request->input('num_bi'),
+                'genero' => $request->input('genero'),
+                'telefone' => $request->input('num_tel'),
+                'data_nascimento' => $request->input('data_nascimento'),
+            ]); 
+
+            #$endereco = Endereco::create($validatedEndereco);
 
             $validatedPessoa['endereco_id'] = $endereco->endereco_id;
             $validatedPessoa['telefone'] = $request->input('num_tel');
@@ -119,7 +224,7 @@ class ProfessorController extends Controller
                 'professor_id'  => $prof->professor_id,
                 'ano_lectivo_id' => $ano_letivo->ano_lectivo_id,
                 'prioridade'    => 1
-            ]);
+            ]); */
 
             return redirect()->route('professor')->with('success', 'Registro criado com sucesso!');
         } catch (ValidationException $e) {
