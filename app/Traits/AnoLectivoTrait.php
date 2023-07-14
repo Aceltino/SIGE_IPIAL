@@ -3,13 +3,10 @@
 namespace App\Traits;
 
 use App\Http\Controllers\AlunoController;
-use App\Http\Controllers\CandidatoController;
 use App\Models\Ano_lectivo;
-use App\Models\Candidato;
 use App\Models\Trimestre;
 use DateTime;
-use carbon\Carbon;
-use Illuminate\Support\Fluent;
+
 
 trait AnoLectivoTrait
 {
@@ -191,10 +188,14 @@ trait AnoLectivoTrait
 
 
         //Todas as funções devem ser colocadas acima porque depois do ano lectivo estar com o status 0 nenhuma ação é permitida.
-        $anoLec = ['status_ano_lectivo' => 0];
-        $trimestre = ['status' => 0];
-        Ano_lectivo::where('status_ano_lectivo', 1)->update($anoLec);
-        Trimestre::where('status', 1)->update($trimestre);
+
+        $anoLectivo = Ano_lectivo::with('trimestres')->latest()->where('status_ano_lectivo', 1)->get()->first();
+        $data_corrente = strtotime(date('Y-m-d'));
+        $fim_ano_lectivo = strtotime($anoLectivo->data_fim_ano_lectivo);
+        if ($data_corrente >= $fim_ano_lectivo) {
+            Trimestre::where('status', 1)->update(['status' => 0]);
+            Ano_lectivo::where('status_ano_lectivo', 1)->update(['status_ano_lectivo' => 0]);
+        }
         return true;
     }
 
@@ -214,4 +215,27 @@ trait AnoLectivoTrait
         // dd($df);
     }
 
+    public static function abrirTrimestre(){
+
+        $anoLectivo = Ano_lectivo::with('trimestres')->latest()->where('status_ano_lectivo', 1)->get()->first();
+        $data_corrente = strtotime(date('Y-m-d'));
+        for ($i = 0; $i < count($anoLectivo->trimestres); $i++) {
+            $inicio_trimestre = strtotime($anoLectivo->trimestres[$i]->data_inicio);
+            $fim_trimestre = strtotime($anoLectivo->trimestres[$i]->data_fim);
+            if($data_corrente >= $inicio_trimestre && $data_corrente < $fim_trimestre){
+                Trimestre::find($anoLectivo->trimestres[$i]->trimestre_id)->update(['status' => 1]);
+            }
+        }
+    }
+
+    public static function fecharTrimestre(){
+        $trimestre = Trimestre::where('status', 1)->get()->first();
+        if($trimestre){
+            $data_corrente = strtotime(date('Y-m-d'));
+            $fim_trimestre = strtotime($trimestre->data_fim);
+            if ($data_corrente >= $fim_trimestre) {
+                Trimestre::find($trimestre->trimestre_id)->update(['status' => 0]);
+            }
+        }
+    }
 }

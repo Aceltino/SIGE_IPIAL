@@ -21,7 +21,7 @@
           <i class="bi bi-x"></i>
         </button>
     </div>
-    @endif 
+    @endif
 
   <div class="pagetitle">
     <div class="row">
@@ -74,7 +74,6 @@
           <th scope="col">NPP</th>
           <th scope="col">NPT</th>
           <th scope="col">Exame</th>
-          <th scope="col">E.Recurso</th>
           <th scope="col">Avaliar</th>
           <th scope="col">Histórico</th>
           <th scope="col" hidden>curso</th>

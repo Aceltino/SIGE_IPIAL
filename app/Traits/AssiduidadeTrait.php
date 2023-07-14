@@ -108,7 +108,7 @@ trait AssiduidadeTrait
 
     public static function pegarTempo($assiduidade){
         for($i = 0; $i < count($assiduidade); $i++){
-            $hora_falta = new Carbon($assiduidade[$i]->data_hora);
+            $hora_falta = new Carbon($assiduidade[$i]->updated_at);
             $hora_tempo = Hora::with('tempo')->get();
             for ($j = 0; $j < count($hora_tempo); $j++) {
                 $h_falta = strtotime($hora_falta->toTimeString());
@@ -119,35 +119,42 @@ trait AssiduidadeTrait
                 }
             }
         }
+        if(!isset($tempo)){
+            for ($i = 0; $i < count($assiduidade); $i++) {
+                $tempo[$i] = null;
+            }
+
+        }
         return $tempo;
     }
 
     public static function pegarTempoFalta($turma_id, $professor_disciplina_id){
         $dia = self::pegarDiaBanco();
-
-        if(!$dia){
-            return false;
+        if(!$dia || count($dia) < 1){
+            return 8;
         }
         $tempo = Horario::with('tempo.hora', 'turma.turno')->where('dia_id', $dia[0]->dia_id)
         ->where('turma_id', $turma_id)
         ->where('prof_disc_id', $professor_disciplina_id)
         ->get();
 
+        if(count($tempo) < 1){
+            return 9;
+        }
         $hora_falta = now();
         $hora_falta = substr($hora_falta, 11, 5);
         $h_falta = strtotime($hora_falta);
         for($i = 0; $i < count($tempo); $i++){
             $hora_banco = Hora::where('turno_id', $tempo[$i]->turma->turno_id)->get();
-
             for ($j = 0; $j < count($hora_banco); $j++) {
                 $inicio = substr($hora_banco[$j]->hora, 0, 5);
                 $fim = substr($hora_banco[$j]->hora, 8, 5);
                 if($h_falta >= strtotime($inicio) && $h_falta <= strtotime($fim)){
-                    return $tempo;
+                    return $tempo->toArray();
                 }
             }
         }
-        return false;
+        return 10;
     }
 
     public static function pegarDiaBanco(){
@@ -170,6 +177,7 @@ trait AssiduidadeTrait
                 $dia = "TERÇA-FEIRA";
                 break;
             case 'Wed':
+            case 'Fri':
                 $dia = "QUARTA-FEIRA";
                 break;
             case 'Thu':

@@ -9,6 +9,7 @@ use App\Models\Professor_disciplina;
 use App\Models\AnoTurmaCood;
 use App\Models\AlunoTurma;
 use App\Models\Ano_lectivo;
+use App\Models\Horario;
 
 trait AvaliacaoTrait
 {
@@ -28,7 +29,7 @@ trait AvaliacaoTrait
         $trimestre = self::pegarTrimestre();
         $ano_lectivo = self::pegarAnoLectivo();
         if(count($trimestre) < 1 || count($ano_lectivo) < 1){
-            return 5;
+            return 4;
         }
         $cont = 0;
         for ($dis = 0; $dis < count($disciplinas); $dis++) {
@@ -241,8 +242,11 @@ trait AvaliacaoTrait
         $prof_disc = Professor_disciplina::with('turmaProf.curso', 'disciplina')
         ->where('ano_lectivo_id', $ano_lectivo[0]->ano_lectivo_id)
         ->get();
-        if(count($ano_lectivo) < 1 || count($prof_disc) < 1){
-            return 2;
+        if(count($ano_lectivo) < 1){
+            return 4;
+        }
+        if(count($prof_disc) < 1){
+            return 7;
         }
         $inc = 0;
         for ($i = 0; $i < count($prof_disc); $i++) {
@@ -275,13 +279,13 @@ trait AvaliacaoTrait
         $prof_disc = Professor_disciplina::with('turmaProf.curso', 'disciplina')
         ->where('ano_lectivo_id', $ano_lectivo[0]->ano_lectivo_id)
         ->get();
-        if ($coordenador[0]->curso_id === null) {
-            return 8;
+        if (count($coordenador) < 1 || $coordenador[0]->curso_id === null) {
+            return 5;
         }
         if(count($ano_lectivo) < 1){
             return 4;
         }
-        if (count($coordenador) < 1 || count($prof_disc) < 1) {
+        if (count($prof_disc) < 1) {
             return 7;
         }
         $inc = 0;
@@ -324,13 +328,13 @@ trait AvaliacaoTrait
         $prof_disc = Professor_disciplina::with('turmaProf.curso', 'disciplina')
         ->where('ano_lectivo_id', $ano_lectivo[0]->ano_lectivo_id)
         ->get();
-        if ($coordenador[0]->area_formacao_id === null) {
-            return 8;
+        if (count($coordenador) < 1 || $coordenador[0]->area_formacao_id === null) {
+            return 5;
         }
         if(count($ano_lectivo) < 1){
             return 4;
         }
-        if (count($coordenador) < 1 || count($prof_disc) < 1) {
+        if ( count($prof_disc) < 1) {
             return 7;
         }
 
@@ -369,27 +373,29 @@ trait AvaliacaoTrait
     }
 
     public static function erros($erro){
+        //dd($erro);
         switch ($erro) {
             case 1:
                 return "Este usuário não está cadastrado como professor!";
             case 2:
-                return "Este professor não foi associado a uma disciplina!";
+                return "Horário indisponível!";
             case 3:
                 return "Nenhuma turma disponível!";
             case 4:
                 return "Impossível acessar sem que o ano lectivo e/ou algum trimestre comece!";
             case 5:
-                return "Este usuário não está cadastrado como professor!";
+                return "Por favor, verifique se este usuário possui as credenciais correctas!";
             case 6:
                 return "Turma(as) sem aluno(os)!";
             case 7:
-                return "Não há turmas relacionadas!";
+                return "Verifique se o horário está devidamente criado para este ano lectivo!";
             case 8:
-                return "Este coordenador não possui nehum departamento!";
+                return "As faltas devem ser marcadas nos dias úteis!";
             case 9:
-                return "Este usuário não está cadastrado como professor!";
+                return "As faltas só podem ser marcadas em dias em que o professor lecciona a mesma turma!";
             case 10:
-                return "Este usuário não está cadastrado como professor!";
+                return "Limite de hora para a marcação da falta excedido!";
+
 
             default:
                 return true;
@@ -397,5 +403,170 @@ trait AvaliacaoTrait
         }
     }
 
+    public static function atribuirNota(){
+        $ano_lectivo = self::pegarAnoLectivo();
+        $trimestre = self::pegarTrimestre();
+        $turmas = AnoTurmaCood::with('turma.belongClasse', 'alunoAno')->where('ano_lectivo_id',  $ano_lectivo[0]->ano_lectivo_id)->get();
+        for ($i = 0; $i < count($turmas); $i++) {
+            $horario = Horario::with('professorDisc.disciplina')->where('turma_id', $turmas[$i]->turma->turma_id)->get();
+            if ($turmas[$i]->turma->belongClasse->classe !== "12ª" && $turmas[$i]->turma->belongClasse->classe !== "13ª") {
+                for ($j = 0; $j  < count($turmas[$i]->alunoAno); $j ++) {
+                    for ($k= 0; $k < count($horario); $k++) {
+                        $nota = Nota::where('aluno_id', $turmas[$i]->alunoAno[$j]->aluno_id)
+                        ->where('disciplina_id', $horario[$k]->professorDisc->disciplina_id)
+                        ->where('tipo_prova', "Avaliação Contínua")
+                        ->where('id_trimestre', $trimestre[0]->trimestre_id)
+                        ->get();
+                        if (count($nota) < 1) {
+                            Nota::create(['nota_aluno' => 0, 'tipo_prova' => "Avaliação Contínua", 'descricao_nota' => null,
+                            'aluno_id' => $turmas[$i]->alunoAno[$j]->aluno_id, 'disciplina_id' => $horario[$k]->professorDisc->disciplina_id,
+                            'id_trimestre' => $trimestre[0]->trimestre_id]);
+                        }
+                        $nota = Nota::where('aluno_id', $turmas[$i]->alunoAno[$j]->aluno_id)
+                        ->where('disciplina_id', $horario[$k]->professorDisc->disciplina_id)
+                        ->where('tipo_prova', "Prova Professor")
+                        ->where('id_trimestre', $trimestre[0]->trimestre_id)
+                        ->get();
+                        if (count($nota) < 1) {
+                            Nota::create(['nota_aluno' => 0, 'tipo_prova' => "Prova Professor", 'descricao_nota' => null,
+                            'aluno_id' => $turmas[$i]->alunoAno[$j]->aluno_id, 'disciplina_id' => $horario[$k]->professorDisc->disciplina_id,
+                            'id_trimestre' => $trimestre[0]->trimestre_id]);
+                        }
+                        $nota = Nota::where('aluno_id', $turmas[$i]->alunoAno[$j]->aluno_id)
+                        ->where('disciplina_id', $horario[$k]->professorDisc->disciplina_id)
+                        ->where('tipo_prova', "Prova Trimestre")
+                        ->where('id_trimestre', $trimestre[0]->trimestre_id)
+                        ->get();
+                        if (count($nota) < 1) {
+                            Nota::create(['nota_aluno' => 0, 'tipo_prova' => "Prova Trimestre", 'descricao_nota' => null,
+                            'aluno_id' => $turmas[$i]->alunoAno[$j]->aluno_id, 'disciplina_id' => $horario[$k]->professorDisc->disciplina_id,
+                            'id_trimestre' => $trimestre[0]->trimestre_id]);
+                        }
+                    }
+                }
+            } elseif($turmas[$i]->turma->belongClasse->classe === "12ª" && $turmas[$i]->turma->belongClasse->classe === "13ª") {
+                for ($j = 0; $j  < count($turmas[$i]->alunoAno); $j ++) {
+                    for ($k= 0; $k < count($horario); $k++) {
+                        $nota = Nota::where('aluno_id', $turmas[$i]->alunoAno[$j]->aluno_id)
+                        ->where('disciplina_id', $horario[$k]->professorDisc->disciplina_id)
+                        ->where('tipo_prova', "Avaliação Contínua")
+                        ->where('id_trimestre', $trimestre[0]->trimestre_id)
+                        ->get();
+                        if (count($nota) < 1) {
+                            Nota::create(['nota_aluno' => 0, 'tipo_prova' => "Avaliação Contínua", 'descricao_nota' => null,
+                            'aluno_id' => $turmas[$i]->alunoAno[$j]->aluno_id, 'disciplina_id' => $horario[$k]->professorDisc->disciplina_id,
+                            'id_trimestre' => $trimestre[0]->trimestre_id]);
+                        }
+                        $nota = Nota::where('aluno_id', $turmas[$i]->alunoAno[$j]->aluno_id)
+                        ->where('disciplina_id', $horario[$k]->professorDisc->disciplina_id)
+                        ->where('tipo_prova', "Prova Professor")
+                        ->where('id_trimestre', $trimestre[0]->trimestre_id)
+                        ->get();
+                        if (count($nota) < 1) {
+                            Nota::create(['nota_aluno' => 0, 'tipo_prova' => "Prova Professor", 'descricao_nota' => null,
+                            'aluno_id' => $turmas[$i]->alunoAno[$j]->aluno_id, 'disciplina_id' => $horario[$k]->professorDisc->disciplina_id,
+                            'id_trimestre' => $trimestre[0]->trimestre_id]);
+                        }
+                        if($trimestre[0]->trimestre === "3º" && $horario[0]->professorDisc->disciplina->sigla === "PT"){
+                            $nota = Nota::where('aluno_id', $turmas[$i]->alunoAno[$j]->aluno_id)
+                            ->where('disciplina_id', $horario[$k]->professorDisc->disciplina_id)
+                            ->where('tipo_prova', "Exame")
+                            ->where('id_trimestre', $trimestre[0]->trimestre_id)
+                            ->get();
+                            if (count($nota) < 1) {
+                                Nota::create(['nota_aluno' => 0, 'tipo_prova' => "Exame", 'descricao_nota' => null,
+                                'aluno_id' => $turmas[$i]->alunoAno[$j]->aluno_id, 'disciplina_id' => $horario[$k]->professorDisc->disciplina_id,
+                                'id_trimestre' => $trimestre[0]->trimestre_id]);
+                            }
+                        } else{
+                            $nota = Nota::where('aluno_id', $turmas[$i]->alunoAno[$j]->aluno_id)
+                            ->where('disciplina_id', $horario[$k]->professorDisc->disciplina_id)
+                            ->where('tipo_prova', "Prova Trimestre")
+                            ->where('id_trimestre', $trimestre[0]->trimestre_id)
+                            ->get();
+                            if (count($nota) < 1) {
+                                Nota::create(['nota_aluno' => 0, 'tipo_prova' => "Prova Trimestre", 'descricao_nota' => null,
+                                'aluno_id' => $turmas[$i]->alunoAno[$j]->aluno_id, 'disciplina_id' => $horario[$k]->professorDisc->disciplina_id,
+                                'id_trimestre' => $trimestre[0]->trimestre_id]);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
+    public static function AtribuirNotaAdministrativa($turma_id, $disciplina_id, $tipo_prova, $nota_aluno){
+        $ano_lectivo = self::pegarAnoLectivo();
+        $trimestre = self::pegarTrimestre();
+        $turmas = AnoTurmaCood::with('turma.belongClasse', 'alunoAno')
+        ->where('turma_id', $turma_id)
+        ->where('ano_lectivo_id',  $ano_lectivo[0]->ano_lectivo_id)->get();
+        for ($i = 0; $i  < count($turmas[0]->alunoAno); $i ++) {
+            $nota = Nota::where('aluno_id', $turmas[0]->alunoAno[$i]->aluno_id)
+            ->where('disciplina_id', $disciplina_id)
+            ->where('tipo_prova', $tipo_prova)
+            ->where('id_trimestre', $trimestre[0]->trimestre_id)
+            ->get();
+            if (count($nota) < 1) {
+                Nota::create(['nota_aluno' => $nota_aluno, 'tipo_prova' => "Avaliação Contínua", 'descricao_nota' => null,
+                'aluno_id' => $turmas[0]->alunoAno[$i]->aluno_id, 'disciplina_id' => $disciplina_id,
+                'id_trimestre' => $trimestre[0]->trimestre_id]);
+            }
+        }
+    }
+
+    public static function AtribuirNotaAdministrativaTransferidos($aluno_id, $turma_id){
+        $ano_lectivo = self::pegarAnoLectivo();
+        $trimestre = self::pegarTrimestre();
+        if ($trimestre[0]->trimestre === "1º") {
+            $cont = 1;
+        }
+        if ($trimestre[0]->trimestre === "2º") {
+            $cont = 2;
+        }
+        $horario = Horario::with('professorDisc.disciplina')->where('turma_id', $turma_id)->get();
+        $x = 0;
+        $disciplina_id[$x] = $horario[$x]->professorDisc->disciplina_id;
+        for ($i = 0; $i < count($horario); $i++) {
+            if(!in_array($horario[$i]->professorDisc->disciplina_id, $disciplina_id)){
+                $disciplina_id[$x] = $horario[$i]->professorDisc->disciplina_id;
+                $x++;
+            }
+        }
+        for ($i = 0; $i < $cont; $i++) {
+            $tri = Trimestre::where('trimestre', $i+1 . "º")->get();
+            if(count($tri) > 0){
+                for ($j = 0; $j < count($disciplina_id); $j++) {
+                    $nota = Nota::where('disciplina_id', $disciplina_id[$j])
+                    ->where('id_trimestre', $tri[0]->trimestre_id)
+                    ->where('tipo_prova', "Avaliação Contínua")->get();
+                    if(count($nota) > 0){
+                        Nota::create(['nota_aluno' => 10, 'tipo_prova' => "Avaliação Contínua", 'descricao_nota' => "Nota administrativa.",
+                        'aluno_id' => $aluno_id, 'disciplina_id' => $disciplina_id[$j],
+                        'id_trimestre' => $tri[0]->trimestre_id]);
+                    }
+                    $nota = Nota::where('disciplina_id', $disciplina_id[$j])
+                    ->where('id_trimestre', $tri[0]->trimestre_id)
+                    ->where('tipo_prova', "Prova Professor")->get();
+                    if(count($nota) > 0){
+                        Nota::create(['nota_aluno' => 10, 'tipo_prova' => "Prova Professor", 'descricao_nota' => "Nota administrativa.",
+                        'aluno_id' => $aluno_id, 'disciplina_id' => $disciplina_id[$j],
+                        'id_trimestre' => $tri[0]->trimestre_id]);
+                    }
+                    $nota = Nota::where('disciplina_id', $disciplina_id[$j])
+                    ->where('id_trimestre', $tri[0]->trimestre_id)
+                    ->where('tipo_prova', "Prova Trimestre")->get();
+                    if(count($nota) > 0){
+                        Nota::create(['nota_aluno' => 10, 'tipo_prova' => "Prova Trimestre", 'descricao_nota' => "Nota administrativa.",
+                        'aluno_id' => $aluno_id, 'disciplina_id' => $disciplina_id[$j],
+                        'id_trimestre' => $tri[0]->trimestre_id]);
+                    }
+                }
+            }
+        }
+    }
+
+    
 }
+

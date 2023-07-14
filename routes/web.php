@@ -358,10 +358,10 @@ Route::prefix('calend-prova')->group(function(){
  * Rotas da Assiduidade de Aluno
  */
 
- /*ERRO Avaliação de Aluno*/
+ /*ERRO Assiduidade de Aluno*/
 Route::get('erroassid',  function () {
-    return view('assiduid-aluno/erroassid.blade');
-});
+    return view('assiduid-aluno/erroassid');
+})->name('erro.assiduidade');
 
 /* Assiduidade de alunos*/
 Route::get('/assiduidade-aluno', [AssiduidadeAlunoController::class, 'index'])->name('assiduidade');

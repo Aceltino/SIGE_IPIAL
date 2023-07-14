@@ -5,15 +5,25 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Models\{
+<<<<<<< HEAD
+    Candidato,
+    Professor,
+    Turma,
+    Curso,
+    Aluno,
+    User,
+=======
 Candidato,Professor,Turma,
 Curso,Aluno,User,
+>>>>>>> 2805296dd092a27d2a7e331d614f6fdcd410290c
 };
+use App\Traits\AnoLectivoTrait;
 
 class InicioController extends Controller
 {
     public function inicio(){
 
-        //Consultando a tabela dos candidatos 
+        //Consultando a tabela dos candidatos
         $inscritos = Candidato::all();
         $totalinscritos = 0;
 
@@ -40,7 +50,7 @@ class InicioController extends Controller
             //filtrando candidatos com o estado de Não admitido
             if($nadmitid->status == "Não admitido")
                 $totalnadmitidos +=1;
-        
+
         // Consultando a tabela dos candidatos para os Matriculados
         $matriculados = Candidato::all();
         $totalmatriculados = 0;
@@ -94,7 +104,7 @@ class InicioController extends Controller
 
         //Variaveis necessarias para o grafico
         $titulo = "Alunos no Alda";
-        $alunoAno = implode(',', $ano); 
+        $alunoAno = implode(',', $ano);
         $alunoTotal = implode(',', $total);
 
         //          #Cargos do usuario
@@ -110,7 +120,7 @@ class InicioController extends Controller
         ->orderBy('cargo', 'asc')
         ->get();
 
-        //Percorrendo cada posicao 
+        //Percorrendo cada posicao
         foreach($usCargos as $usCargo){
             $nomeCargo[] = "'".$usCargo->cargo."'";
             $totalCargo[] = $usCargo->totalc;
@@ -120,10 +130,12 @@ class InicioController extends Controller
 
         //Variaveis necessarias para o grafico
         $cargoNome = implode(',', $nomeCargo);
-        $cargoTotal = implode(',', $totalCargo); 
+        $cargoTotal = implode(',', $totalCargo);
 
         //dd($usCargos);
      //   return view('pagina-inicial', compact('alunoAno', 'alunoTotal'));
+
+
 
         return view('pagina-inicial', compact('totalinscritos', 'totaladmitidos', 'totalnadmitidos', 'totalmatriculados', 'totalprofessores', 'totalturmas', 'totalcursos', 'totalUs', 'titulo', 'alunoAno', 'alunoTotal', 'cargoNome', 'cargoTotal'));
         //redirect()->route('inicio');
