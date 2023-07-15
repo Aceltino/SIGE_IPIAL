@@ -181,16 +181,15 @@ class CursoController extends Controller
         }
     }
 
-    public function delete($id, Request $request){
-        if(isset($request->_method)){
-            $professor = ['curso_id' => null];
-            Professor::where('curso_id', $id)->update($professor);
-            Curso::where('curso_id', $id)->delete();
-            return redirect()->back()->with('sucesso', "Curso eliminado com sucesso!");
-
-        } else{
-            return redirect()->back();
+    public function delete($id){
+        $curso = Curso::with('candidato', 'turmas', 'aluno', 'disciplinas', 'calendarios')->find($id);
+        if (count($curso->candidato) > 0 || count($curso->turmas) > 0 || count($curso->aluno) > 0 || count($curso->disciplinas) > 0 || count($curso->calendarios) > 0) {
+            return redirect()->back()->with('erro', "Este curso não pode ser eliminado porque contém outros dados relacionados a ele!");
         }
+        $professor = ['curso_id' => null];
+        Professor::where('curso_id', $id)->update($professor);
+        Curso::where('curso_id', $id)->delete();
+        return redirect()->back()->with('sucesso', "Curso eliminado com sucesso!");
 
     }
 }
