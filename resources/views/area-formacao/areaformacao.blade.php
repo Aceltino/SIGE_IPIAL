@@ -22,14 +22,19 @@
          <div class="col-lg-4">
             <select class="btn-sel form-select" id="filtro3">
                 <option selected disabled>Area de Formação</option>
-                <option value="e">Area de formação</option>
+                @foreach ($area_formacao as $af)
+                    <option value="{{$af->nome_area_formacao}}">{{$af->nome_area_formacao}}</option>
+                @endforeach
+
            </select>
          </div>
 
          <div class="col-lg-4">
            <select class="btn-sel form-select" id="filtro4">
             <option selected disabled>Coordenador</option>
-            <option value="e">Nome coordenador</option>
+            @foreach ($coordenador as $coord)
+                    <option value="{{$coord->pessoa->nome_completo}}">{{$coord->pessoa->nome_completo}}</option>
+                @endforeach
            </select>
          </div>
 
@@ -52,21 +57,23 @@
           </tr>
         </thead>
         <tbody>
+            @foreach ($area_formacao as $af)
               <tr style=" text-align: center;">
-                  <th scope="row">Nome da area de formação</th>
-                  <td>Nome do Professor</td>
+                  <th scope="row">{{$af->nome_area_formacao}}</th>
+                  <td>{{$af->coordenador->pessoa->nome_completo}}</td>
                   <td>
                     <section style="display: flex;">
                     <i class="bi bi-eye-fill"  data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-                    <a style="margin-left: 6px;"  href="#" class="bi bi-pencil"></a>
-                    <form  method="POST"action="">
+                    <a style="margin-left: 6px;"  href="{{route('editar.area.formacao', $af->area_formacao_id)}}" class="bi bi-pencil"></a>
+                    <form  method="POST"action="{{route('eliminar.area.formacao', $af->area_formacao_id)}}">
                         @csrf
-
+                        @method('delete')
                         <button type="submit" class="bi bi-trash-fill" style="border: none; background: none;"></button>
                     </form>
                     </section>
                   </td>
               </tr>
+            @endforeach
 
               <div class="modal fade" id="ExtralargeModal" tabindex="-1" data-bs-backdrop="false">
                 <div class="modal-dialog modal-xl">

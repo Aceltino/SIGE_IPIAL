@@ -212,7 +212,7 @@ trait CursoTrait
         if($erro == 1){
             return redirect()->back()->with("erro", "Os campos não podem conter nenhum espaço no início!");
         } elseif($erro == 2){
-            return redirect()->back()->with("erro", "Espaçamento a mais entre os nomes!");
+            return redirect()->back()->with("erro", "Espaçamento amais entre os nomes!");
         } elseif ($erro == 3) {
             return redirect()->back()->with("erro", "Os campos não podem conter nenhum número!");
         } elseif ($erro == 4) {
@@ -224,9 +224,19 @@ trait CursoTrait
     }
 
 
-    public static function hasSigla($sigla){
-        //Função para verificar se já existe a sigla cadastrada
-        return 0;
+    public static function erroAreaFormacao($erro){
+        if($erro == 1){
+            return "Os campos não podem conter nenhum espaço no início!";
+        } elseif($erro == 2){
+            return "Espaçamento amais entre os nomes!";
+        } elseif ($erro == 3) {
+            return "Os campos não podem conter nenhum número!";
+        } elseif ($erro == 4) {
+            return "Os campos devem conter apenas letras do alfabeto";
+        }
+        elseif ($erro == 5) {
+            return "Preencha todos os campos!";
+        }
     }
 }
 ?>
