@@ -17,7 +17,7 @@
                 <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
 
                     <div style="  text-align: center;">
-                        <h2>CRIAR COMUNICADO</h2>
+                        <h1>CRIAR COMUNICADO</h1>
                     </div>
 
                 </div>

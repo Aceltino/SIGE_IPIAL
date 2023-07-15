@@ -64,6 +64,10 @@
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
 
+  select option{
+    color: #121212;
+  }
+
   textarea{
     color: var(--cor-label-inativa);
     background-color: var(--cor-input-inativa);
@@ -115,7 +119,7 @@
     color: var(--darkest-blue);
   }
   
-  .btn-sel{
+  .btn-sel, .btn-sel option{
     background-color: var(--bs-cor-principal);
     color: #fff;
   }

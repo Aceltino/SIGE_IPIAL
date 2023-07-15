@@ -18,7 +18,7 @@
                 <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
 
                     <div style="  text-align: center;">
-                        <h2>Atualizar Dados do Comunicado</h2>
+                        <h1>Atualizar Dados do Comunicado</h1>
                     </div>
 
                 </div>

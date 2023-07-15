@@ -6,7 +6,7 @@
 <main id="main" class="main">
   <div class="row">
     <div class="col">
-      <h2>Comunicados</h2>
+      <h1>Comunicados</h1>
     </div>
   </div> 
  
@@ -122,14 +122,14 @@
               <form class="form-inativo">
                 <div class="dados-pessoais">
                     <div class="area-input form-group">
-                        <label>Título do Comunicado: </label><input class="form-control" type="text" name="" value="{{ $com['titulo_com'] }}" readonly disabled>
+                        <label>Título do Comunicado: </label><input class="form-control" type="text" name="" value="{{ $com['titulo_com'] }}" readonly disabled style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;">
                     </div>
                 </div>
 
                     <div class="row">
                         <div class="col">
                           
-                            <textarea class="form-control" style="border: 1px solid; border-color: rgb(204, 204, 204); border-radius: 5px; outline: none" class="w-100 "  rows="13" name="conteudo"  id="area" placeholder="Escreve aqui o conteúdo do Comunicado" readonly disabled>{{ $com['conteudo_com'] }} </textarea>
+                            <textarea class="form-control" style="border: 1px solid; border-color: rgb(204, 204, 204); border-radius: 5px; outline: none; color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" class="w-100 "  rows="13" name="conteudo"  id="area" placeholder="Escreve aqui o conteúdo do Comunicado" readonly disabled>{{ $com['conteudo_com'] }} </textarea>
                         </div>
                     </div>
 
