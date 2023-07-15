@@ -157,6 +157,30 @@ trait AssiduidadeTrait
         return 10;
     }
 
+    public static function calcularTempo($turma_id, $professor_disciplina_id){
+        $dia = self::pegarDiaBanco();
+        if(!$dia || count($dia) < 1){
+            return 8;
+        }
+        $tempo = Horario::with('tempo.hora', 'turma.turno')->where('dia_id', $dia[0]->dia_id)
+        ->where('turma_id', $turma_id)
+        ->where('prof_disc_id', $professor_disciplina_id)
+        ->get();
+
+        if(count($tempo) < 1){
+            return 9;
+        }
+
+        for ($i = 0; $i < count($tempo); $i++) {
+            $tempos[$i] = [
+                'tempo_id' => $tempo[$i]->tempo_id,
+                'tempo' => $tempo[$i]->tempo->tempo
+            ];
+        }
+
+        return $tempos;
+    }
+
     public static function pegarDiaBanco(){
         $dia_corrente = self::pegarDiaSemana(date('D'));
         if($dia_corrente){

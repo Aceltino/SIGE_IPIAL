@@ -14,6 +14,7 @@ use App\Http\Controllers\{
     TurmaController, CalendarioController,
     HorarioController,
     MediasController,
+    AreaFormacaoController
 };
 
 /*
@@ -145,7 +146,7 @@ Route::prefix('matricula')->middleware(['auth','active.session','checkcargo'])->
     // Atribuir turma 10ª classe
     Route::get('matricula-turma',  [MatriculaController::class, 'atribuirTurma'])->name('matricula-validarTurma');
 
-    /*Matricular aluno */ 
+    /*Matricular aluno */
     Route::get('matricular-aluno/{candidato}',  [MatriculaController::class, 'create'])->name('matricula-view')->middleware(['matricularCheck']);
     Route::post('matricular-aluno/{candidato}', [MatriculaController::class, 'store'])->name('matricula-store')->middleware(['matricularCheck']);
 
@@ -438,19 +439,19 @@ Route::get('/editar-horario', function () {
     return view('horario/editar-horario');
 });
 /*Area de formacao*/
-Route::get('/criar-areaformacao', function () {
-    return view('area-formacao/criar-areaformacao');
-});
+Route::get('/criar-areaformacao', [AreaFormacaoController::class, 'indexCadastro'])->name('criar.area.formacao');
+Route::post('/criar-areaformacao', [AreaFormacaoController::class, 'store'])->name('cadastrar.area.formacao');
 
 /*Area de formacao*/
-Route::get('areaformacao', function () {
-    return view('area-formacao/areaformacao');
-});
+Route::get('areaformacao', [AreaFormacaoController::class, 'index'])->name('area.formacao');
 
 /*Editar Area de formacao*/
-Route::get('/edit-areaformacao', function () {
-    return view('area-formacao/edit-areaformacao');
-});
+Route::get('/edit-areaformacao/{id}', [AreaFormacaoController::class, 'indexEdicao'])->name('editar.area.formacao');
+Route::put('/edit-areaformacao/{id}', [AreaFormacaoController::class, 'update'])->name('actualizar.area.formacao');
+
+/*Editar Area de formacao*/
+Route::delete('/eliminar-areaformacao/{id}', [AreaFormacaoController::class, 'delete'])->name('eliminar.area.formacao');
+
 /*Sala*/
 Route::get('/cadastrar-sala', function () {
     return view('sala\cadastrar-sala');

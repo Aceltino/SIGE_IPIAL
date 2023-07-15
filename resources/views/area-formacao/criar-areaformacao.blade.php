@@ -14,7 +14,25 @@
     {{session('sucesso')}}
 </div>
 @endif
-    <form id="regFormh" action="" class="formulario-layout" method="POST">
+<span id=" erro_nome"  style="color: red">
+    @error('nome_area_formacao')
+        <p class="alert alert-danger" role="alert">{{$message}}
+            <button class="botaofecharerro">
+                <i class="bi bi-x"></i>
+            </button>
+        </p>
+    @enderror
+</span>
+<span id=" erro_nome"  style="color: red">
+    @error('coordenador')
+        <p class="alert alert-danger" role="alert">{{$message}}
+            <button class="botaofecharerro">
+                <i class="bi bi-x"></i>
+            </button>
+        </p>
+    @enderror
+</span>
+    <form id="regFormh" action="{{route('cadastrar.area.formacao')}}" class="formulario-layout" method="POST">
         @csrf
         <div style="text-align:center;margin-top:10px;">
             <span class="step"></span>
@@ -33,8 +51,7 @@
             </div>
 
             <div class="form-group">
-                <input type="text" style=" text-align: center;" placeholder="Nome da Area de formação" name="nome_curso" id="nome_curso" oninput="this.className = ''" required >
-                <span id=" erro_nome"  style="color: red"></span>
+                <input type="text" style=" text-align: center;" placeholder="Nome da Area de formação" name="nome_area_formacao" value="{{old('nome_area_formacao')}}" id="nome_curso" oninput="this.className = ''" required >
             </div>
 
             <div class="row">
@@ -42,7 +59,10 @@
                 <div class=" col form-group">
                     <select name="coordenador" id="opcoes" oninput="this.className = ''" class="form-select">
                         <option selected disabled>Coordenador:</option>
-                        <option value="area">Nome do Prof</option>
+                        @foreach ($coordenador as $coord)
+                            <option value="{{$coord->professor_id}}">{{$coord->pessoa->nome_completo}}</option>
+                        @endforeach
+
 
                     </select>
                 </div>
