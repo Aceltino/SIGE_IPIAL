@@ -42,7 +42,7 @@
         </form>
       </div>
 
-      <!-- /  Inicio da tabela de inscritos -->
+     
       <table class="table table-striped table table-custom table-escuro" id="matricula-tab">
         <thead>
           <tr style=" text-align: center;">
@@ -58,7 +58,7 @@
                   <td>
                     <section style="display: flex;">
                     <i class="bi bi-eye-fill"  data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-                    <a style="margin-left: 6px;"  href="#" class="bi bi-pencil"></a>
+                    <a style="margin-left: 6px;"  href="edit-areaformacao" class="bi bi-pencil"></a>
                     <form  method="POST"action="">
                         @csrf
 
@@ -107,8 +107,8 @@
                     <div class="footer-modal" style="text-align: center;">
 
                         <div class="jnt">
-                            <a href="#" class="btn" style="background-color: #070b17; color: #fff;">Retrocer aos Cursos</a>
-                        <a href="#" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
+                            <a href="areaformacao" class="btn" style="background-color: #070b17; color: #fff;">Retrocer aos Cursos</a>
+                        <a href="edit-areaformacao" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
                         </div>
                     </div>
                     </div>

@@ -51,7 +51,7 @@
 
             <div style="text-align:center;margin-top:10px;">
                 <div>
-                    <button type="submit" class="btn btn-success">Criar Area de Formação</button>
+                    <button type="submit" class="btn btn-success">Actualizar</button>
                 </div>
             </div>
         </div>
