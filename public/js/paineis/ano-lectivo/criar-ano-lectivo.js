@@ -9,7 +9,7 @@
         const numeroMaximoDeAlunosNasTurmas = document.querySelector("#numero-maximo-de-alunos-nas-turmas");
         const numeroMaximoDeSalas = document.querySelector("#numero-maximo-de-salas");
         //Paragrafos de validação
-            const paragrafoDeValidacaoDaDataDeInicioDoAnoLectivo = document.querySelector("#paragrafo-de-validacao-da-data-de-inicio-do-ano-lectivo");
+            const paragrafoDeValidacaoDaDescricaoDoAnoLectivo = document.querySelector("#paragrafo-de-validacao-da-descricao-do-ano-lectivo");
             const paragrafoDeValidacaoDaDataDeInicioDasInscricoes = document.querySelector("#paragrafo-de-validacao-da-data-de-inicio-das-inscricoes");
             const paragrafoDeValidacaoDaDataDeFimDasInscricoes = document.querySelector("#paragrafo-de-validacao-da-data-de-fim-das-inscricoes");
             const paragrafoDeValidacaoDaDataDeInicioDasMatriculas = document.querySelector("#paragrafo-de-validacao-da-data-de-inicio-das-matriculas");
@@ -57,6 +57,8 @@
     //Váriavel da data actual
         const dataActual = new Date();
 //Término da declaração de variáveis
+
+    dataDeInicioDoAnoLectivo.value = retornarADataActual();
 
 //Funções diversas
     //Função que retorna a data actual
@@ -232,20 +234,6 @@
 //Fim das funções diversas
 
 //Funções para validações
-    //Validar a data de início do Ano Lectivo
-    function validarADataDeInicioDoAnoLectivo(){
-        dataDeInicioDoAnoLectivo.setAttribute("min", retornarADataActual());
-        //Transformar a string recebida como valor da input em Date
-        //var valorDoAnoLectivoInicio = new Date(dataDeInicioDoAnoLectivo.value);
-
-        //Armazenar o ano de início do ano lectivo
-        //anoDeInicioDoAnoLectivo = valorDoAnoLectivoInicio.getFullYear();
-
-        //Apresentar descrição
-        //descricaoDoAnoLectivo.value = anoDeInicioDoAnoLectivo;
-    }
-    //Término da validação da data de início do Ano Lectivo
-    
     //Impedir a inserção da vírgula nos inputs type number
         function impedirAInsercaoDaVirgulaNoInput(input){
             input.addEventListener('keydown', function(event){
@@ -257,8 +245,19 @@
     //Término do impedimento da inserção da vírgula nos inputs type number
 //Fim das funções para validações
 //Validações - Primeiro step (Informações do sistema)
-    //Ao alterar o valor da input da data de início do ano lectivo
-    dataDeInicioDoAnoLectivo.addEventListener("input", validarADataDeInicioDoAnoLectivo);
+    //Ao alterar o valor da input da descrição do ano lectivo
+    descricaoDoAnoLectivo.addEventListener("blur", ()=>{
+        //Padrão desejado
+        const padraoDaDescricao = /^\d{4}-\d{4}$/;
+        
+        //Verificar se o valor corresponde ao padrão desejado
+        if(!padraoDaDescricao.test(descricaoDoAnoLectivo.value)){
+            apresentarMensagemDeErro(paragrafoDeValidacaoDaDescricaoDoAnoLectivo, "O valor deve ter quatro dígitos numéricos antes e depois do hífen.");
+            descricaoDoAnoLectivo.value = "";
+        }else{
+            ocultarMensagemDeErro(paragrafoDeValidacaoDaDescricaoDoAnoLectivo);
+        }
+    });
 
     //Ao alterar o valor da input da data de início das inscrições
     dataDeInicioDasInscricoes.addEventListener("input", ()=>{  

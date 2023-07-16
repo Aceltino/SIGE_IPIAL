@@ -23,7 +23,7 @@
 
             <div class="card-bodys">
 
-            <img src= {{ URL::asset( isset(Auth::user()->imagem_usuario) ? Auth::user()->imagem_usuario : '' ) }} alt="perfil" class="l">
+            <img value ="{{$alunos->candidato->pessoa->user->imagem_usuario,}}">
             </div>
             <hr id="borda-nome">
         </div>
@@ -51,7 +51,8 @@
             </div>
             @foreach($alunos->anoturma as $anoturm)
             <div class="area-dado-pessoal">
-              <h4>No ano lectivo:</h4><h5 value="">{{$anoturm->ano_lectivo->ano_lectivo}}</h5><h4>a</h4><h5>10a</h5><h4>Classe em regime</h4><h5>Diurno</h5>
+              <h4>No ano lectivo:</h4><h5 value="">{{$anoturm->ano_lectivo->ano_lectivo}}</h5><h4>a</h4><h5>10a</h5><h4>Classe em regime</h4>
+              @if($anoturm->turma->turno->nome_turno =="Manhã" || $anoturm->turma->turno->nome_turno =="'Tarde")<h5>Diurno</h5>@else<h5>Noturno</h5>@endif
             </div>
             <div class="area-dado-pessoal">
               <h4>Na turma:</h4><h5 value="">{{$anoturm->turma->nome_turma}}</h5><h4>com o Número</h4><h5 value="">{{$anoturm->pivot->numero_aluno}}</h5><h4>Processo nº</h4><h5 value="">{{$alunos->aluno_id}}</h5><h4>Telefone:</h4><h5 value="">{{$alunos->candidato->pessoa->telefone}}</h5>

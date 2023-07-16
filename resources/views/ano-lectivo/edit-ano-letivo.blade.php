@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="col">
-                    <p>Data de início do ano lectivo<input type="date" name="data_inicio_ano_lectivo" id="data-de-inicio-do-ano-lectivo" value="{{old('data_inicio_ano_lectivo', $anoLectivo[0]['data_inicio_ano_lectivo'])}}" oninput="this.className = ''" required></p>
+                    <p>Data de início do ano lectivo<input type="date" name="data_inicio_ano_lectivo" id="" value="{{old('data_inicio_ano_lectivo', $anoLectivo[0]['data_inicio_ano_lectivo'])}}" oninput="this.className = ''" disabled readonly required></p>
                     @error('data_inicio_ano_lectivo')
                         <p style="color:red">{{$message}}
                             <button class="botaofecharerro">
@@ -32,7 +32,6 @@
                             </button>
                         </p>
                     @enderror
-                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-data-de-inicio-do-ano-lectivo"></p>
                 </div>
             </div>
 
