@@ -13,7 +13,7 @@ use App\Http\Controllers\{
     AlunoTurmaController,
     TurmaController, CalendarioController,
     HorarioController,
-    MediasController,
+    CandidatoController,
     AreaFormacaoController
 };
 
@@ -29,7 +29,7 @@ use App\Http\Controllers\{
 */
 
 // Rota apenas de teste... Não apague -> ACELTINO
-    Route::get('validar-aluno', [AdmissaoController::class, 'numeroVagas']);
+    Route::get('validar-aluno', [AnoLectivoController::class, 'AnoLectivoConfig']);
 // Route::get('validar-aluno', [AlunoController::class, 'situacaoAluno']);
 
 

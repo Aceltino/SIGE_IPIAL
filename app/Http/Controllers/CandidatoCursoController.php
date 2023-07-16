@@ -53,6 +53,23 @@ class CandidatoCursoController extends Controller
 
     }
 
+    public static function cursoEscolhidoPreferencia($candidato)
+{
+    $candidato = Candidato::find($candidato);
+    $candidato->load('curso');
+
+    foreach ($candidato->curso as $escolhido) {
+        if ($escolhido->pivot->preferencia === 1) 
+        {
+            $cursoPreferencia = [
+                'idCurso' => $escolhido->curso_id,
+                'siglaCurso' => $escolhido->sigla,
+            ];
+        }
+    }
+    return $cursoPreferencia;
+}
+
     public static function cursoEscolhido($candidato)
     {
         $candidato = Candidato::find($candidato);

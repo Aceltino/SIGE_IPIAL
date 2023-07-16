@@ -186,9 +186,6 @@ class AdmissaoController extends Controller
         {
             return redirect()->back()->with("ErroCandidato", $admitidos);
         }
-
-        
-
             $msg = "Novo(s) alunos admitidos!";
             return Redirect::route('inscricao-index')->with("Sucesso", $msg);
     }
