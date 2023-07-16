@@ -33,6 +33,7 @@ class ProcessoController extends Controller
                         'turno' => $anoTurma->turma->turno->nome_turno,
                         'Ano lectivo' =>$anoTurma->ano_lectivo->ano_lectivo,
                         'Numero' => $anoTurma->pivot->numero_aluno,
+                        'foto' =>$aluno->candidato->pessoa->user->imagem_usuario,
                         'naturalidade' =>$aluno->candidato->naturalidade_cand,
                         'Nome do Pai' =>$aluno->candidato->nome_pai_cand,
                         'Nome da mãe' =>$aluno->candidato->nome_mae_cand,
