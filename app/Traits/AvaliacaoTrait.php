@@ -567,6 +567,10 @@ trait AvaliacaoTrait
         }
     }
 
-    
+    public static function pegarDadosRecurso($aluno_id){
+        $nota = Nota::where('aluno_id', 1)->get();
+        
+    }
+
 }
 

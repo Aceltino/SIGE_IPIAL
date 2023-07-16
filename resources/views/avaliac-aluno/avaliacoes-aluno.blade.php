@@ -27,9 +27,9 @@
               <h1>Avaliação de Aluno</h1>
           </div>
 
-          
 
-        
+
+
 
 
 
@@ -42,29 +42,22 @@
             </select>
           </div>
 
-          
+
 
 
 
 
           <div class="col-lg-2">
-<<<<<<< HEAD
-            <select class="btn-sel form-select" id="filtro11">
-              @if (isset($nome_turma))
-                @foreach ($nome_turma as $turma)
-                    <option value="{{$turma}}">{{$turma}}</option>
-=======
             <select  class="btn-sel form-select" id="filtro10" >
               @if (isset($nome_disciplina))
                 @foreach ($nome_disciplina as $disciplina)
                     <option value="{{$disciplina}}">{{$disciplina}}</option>
->>>>>>> 2805296dd092a27d2a7e331d614f6fdcd410290c
                 @endforeach
               @endif
             </select>
           </div>
 
-          
+
 
 
 
@@ -405,7 +398,7 @@ $(document).ready(function () {
         },
         select: true
     });
-  
+
         $("#filtro").on("change", function() {
         var filtro = $(this).val();
         if (filtro === 'Todos') {
@@ -551,9 +544,9 @@ $(document).ready(function () {
     $("#filtro9").trigger("change");
     $("#filtro10").trigger("change");
     $("#filtro11").trigger("change");
-      
-  
-    
+
+
+
 
 
 $(".paginate_button").addClass("paginate_button");
