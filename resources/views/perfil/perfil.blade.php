@@ -273,7 +273,7 @@
                    <div class="row mb-3">
                      <label for="Cargo" class="col-md-4 col-lg-4 col-form-label">Cargo</label>
                      <div class="col-md-8 col-lg-8">
-                       <input type="text" id="Cargo" disabled readonly="true" value="{{ Auth::user()->cargo_usuario }}">
+                       <input type="text" id="Cargo" disabled readonly="true" value="{{ Auth::user()->cargo_usuario }}" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;">
                      </div>
                    </div>
                    

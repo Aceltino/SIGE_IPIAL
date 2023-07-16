@@ -4,9 +4,36 @@
 
 @section('conteudo')
 <main id="main" class="main">
+    <?php
 
+    //Organização dos alunos que estão a vir da back
+    $medias = [];
+            
+            for ($i = 0; $i < count($OneMedia); $i++) {
+                $mt1 = isset($OneMedia[$i][0]->nota) ? $OneMedia[$i][0]->nota : '0';
+                $mt2 = isset($TwoMedia[$i][0]->nota) ? $TwoMedia[$i][0]->nota : '0';
+                $mt3 = isset($ThreeMedia[$i][0]->nota) ? $ThreeMedia[$i][0]->nota : '0';
+            
+                $alunoIndex = $i % count($alunos); // Índice do aluno
+                $disciplinaIndex = $i % count($disciplinas); // Índice da disciplina
+            
+                $aluno = $alunos[$alunoIndex]; // Aluno correspondente ao índice atual
+                $disciplina = $disciplinas[$disciplinaIndex]; // Disciplina correspondente ao índice atual
+            
+                $medias[] = [
+                    'aluno' => $aluno,
+                    'disciplina' => $disciplina,
+                    'media_trimestre1' => $mt1,
+                    'media_trimestre2' => $mt2,
+                    'media_trimestre3' => $mt3
+                ];
+            }
+            
+    ?>
+
+  
     
-    
+ 
     <div class="container no-print">
     <div class="row">
         <div class="col" style="display: flex; justify-content: flex-start; align-items: center;">
@@ -28,7 +55,7 @@
             
         </th>
 
-        <th scope="col" colspan="{{$dadosPauta['colspanDisciplina']}}">
+        <th scope="col" colspan="{{$colspanDisciplina}}">
             <img src={{URL::asset("img/insignia.jpg")}} alt="Insígnia" class="insignia">
         </th>
         <th scope="col" colspan="3">
@@ -41,7 +68,7 @@
             
         </th>
         
-        <th scope="col" colspan="{{$dadosPauta['colspanDisciplina']}}">
+        <th scope="col" colspan="{{$colspanDisciplina}}">
             <span class="tx-cab-p">REPÚBLICA DE ANGOLA</span> 
         </th>
         <th scope="col" colspan="3">
@@ -54,7 +81,7 @@
             
         </th>
         
-        <th scope="col" colspan="{{$dadosPauta['colspanDisciplina']}}">
+        <th scope="col" colspan="{{$colspanDisciplina}}">
             <span class="tx-cab-p">GOVERNO PROVINCIAL DE LUANDA</span>
         </th>
         <th scope="col" colspan="3">
@@ -66,7 +93,7 @@
         <th scope="col" colspan="3">
             VISTO
         </th>
-        <th scope="col" colspan="{{$dadosPauta['colspanDisciplina']}}">
+        <th scope="col" colspan="{{$colspanDisciplina}}">
             <span class="tx-cab-p">INSTITUTO POLITÉCNICO INDUSTRIAL "ALDA LARA"</span>
         </th>
         <th scope="col" colspan="3">
@@ -79,8 +106,8 @@
         <th scope="col" colspan="3">
             O DIRECTOR
         </th>
-        <th scope="col" colspan="{{$dadosPauta['colspanDisciplina']}}">
-            <span class="tx-curso-p">{{ $dadosPauta['turma']->curso->areaFormacao->nome_area_formacao}} : {{ $dadosPauta['turma']->curso->nome_curso}}</span>
+        <th scope="col" colspan="{{$colspanDisciplina}}">
+            <span class="tx-curso-p">{{$turma->curso->areaFormacao->nome_area_formacao}}: {{$turma->curso->nome_curso}}</span>
         </th>
         <th scope="col" colspan="3">
             
@@ -94,7 +121,7 @@
         <td colspan="2" style="background-color: #fff; border-bottom: 1px solid #000; padding-bottom: 8px;">
             
         </td>
-        <td colspan="{{$dadosPauta['colspanDisciplina']}}"></td>
+        <td colspan="{{$colspanDisciplina}}"></td>
         
         <td colspan="3">
             
@@ -103,13 +130,13 @@
 
         {{-- <tr> --}}
         <th scope="col" colspan="3">
-            <span class="nome-dg">{{$dadosPauta['dadosAssinantes']['director']->pessoa->nome_completo}}</span>
+            <span class="nome-dg">{{$dadosAssinantes['director']->pessoa->nome_completo}}</span>
         </th>
-        <th scope="col" colspan="{{$dadosPauta['colspanDisciplina']}}">
+        <th scope="col" colspan="{{$colspanDisciplina}}">
             <h1>PAUTA DE AVALIAÇÃO ANUAL </h1> 
         </th>
         <th colspan="3">
-            <span class="ano-lec-p nota-neg">ANO LECTIVO: {{$dadosPauta['ano']->ano_lectivo}}</span>
+            <span class="ano-lec-p nota-neg">ANO LECTIVO: {{$anoTurmaCoord->ano_lectivo->ano_lectivo}}</span>
         </th>
         </tr>
 
@@ -118,9 +145,9 @@
         
         <tr class="linha-tab-p">
         <th class="coluna-tab-p" colspan="3" rowspan="2">
-            <span class="tx-turma-p maisculo-p">TURMA: {{$dadosPauta['turma']->nome_turma}}</span>
+            <span class="tx-turma-p maisculo-p">TURMA: {{$turma->nome_turma}}</span>
         </th>
-        <th class="coluna-tab-p" colspan="{{$dadosPauta['colspanDisciplina']}}">
+        <th class="coluna-tab-p" colspan="{{$colspanDisciplina}}">
             <span class="tx-disciplina-p maisculo-p">DISICPLINAS</span>
         </th> 
 
@@ -131,9 +158,12 @@
         </tr>
         
         <tr class="linha-tab-p">
-            @foreach ($dadosPauta['disciplinas'] as $disciplinass )
-            <th class="coluna-tab-p" colspan="6"><span class="maisculo-p">{{ $disciplinass->sigla}}</span></th>
+            @foreach ($disciplinas as  $disciplina)
+            <th class="coluna-tab-p" colspan="6"><span class="maisculo-p">{{ $disciplina->sigla}}</span></th>
+                
             @endforeach
+            
+            
            
             
         </tr>
@@ -148,111 +178,91 @@
         <th class="coluna-tab-p">
             <span class="txproc-p maisculo-p">Nº PROC</span>
         </th>  
-
-        @foreach ($dadosPauta['disciplinas'] as $essesmambos)    
+   
+        @foreach ($disciplinas as  $disciplina)
             <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT1</span></th>
             <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT2</span></th>
             <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT3</span></th>
             <th class="c-tab-amarelo coluna-tab-p"><span class="t-vert maisculo-p">CA</span></th>
-            <th class="coluna-tab-p" colspan="2"><span class="t-verst-falta-aluno-p maisculo-p">FALTAS</span></th>     
+            <th class="coluna-tab-p" colspan="2"><span class="t-verst-falta-aluno-p maisculo-p">FALTAS</span></th>   
         @endforeach  
+        
 
         </tr>
+       
 
-        
-            @foreach ($dadosPauta['alunos'] as $indexaluno => $aluno  )
+        @php
+        foreach ($alunos as $aluno) {
+            $alunoId = $aluno->aluno_id;
+    @endphp
+    
+    <tr class="linha-tab-p">
+        <td class="coluna-tab-p">
+            <span class="num-aluno-p">1</span>
+        </td>
+        <td class="coluna-tab-p">
+            <span class="nome-aluno-p">{{ $aluno->candidato->pessoa->nome_completo }}</span>
+        </td>
+        <td class="coluna-tab-p">
+            <span class="num-proc-p">{{$aluno->aluno_id}}</span>
+        </td>
+    
+        <!-- Aqui você pode adicionar outros elementos afetados pelo foreach dos alunos -->
+    
+        @php
+            foreach ($medias as $media) {
+                $mediaAlunoId = $media['aluno']->aluno_id;
+                $mediaDisciplinaId = $media['disciplina']->disciplina_id;
+                $mediaTrimestre1 = $media['media_trimestre1'];
+                $mediaTrimestre2 = $media['media_trimestre2'];
+                $mediaTrimestre3 = $media['media_trimestre3'];
                 
-                <tr class="linha-tab-p">
-                <td class="coluna-tab-p">
-                    <span class="num-aluno-p">{{$loop->index+1}}</span>
-                </td>
-                <td class="coluna-tab-p">
-                    <span class="nome-aluno-p">{{$aluno->candidato->pessoa->nome_completo}}</span>
-                </td>
-                <td class="coluna-tab-p">
-                    <span class="num-proc-p">{{$aluno->aluno_id}}</span>
-                </td> 
-            
-            
-          
-
-            @foreach ($dadosPauta['disciplinas'] as $indexDisciplina => $disciplina)
-            
-           
-                <?php
-
-
-                    $mediaTrimestre1 = '0';
-                    $mediaTrimestre2 = '0';
-                    $mediaTrimestre3 = '0';
-                    
-
-                    $mediasDisciplina = $dadosPauta['OneMedia'];
-                    $mediasDisciplina2 = $dadosPauta['TwoMedia'];
-                    $mediasDisciplina3 = $dadosPauta['ThreeMedia'];
-
-                    if (isset($mediasDisciplina[$indexaluno][$indexDisciplina])) {
-                        $mediaAluno = $mediasDisciplina[$indexaluno][$indexDisciplina];
-
-                        if ($mediaAluno instanceof \App\Models\Media) {
-                            $mediaTrimestre1 = $mediaAluno->nota ?? '0';
-                        }
-                    }
-
-                    if (isset($mediasDisciplina2[$indexaluno][$indexDisciplina])) {
-                        $mediaAluno = $mediasDisciplina2[$indexaluno][$indexDisciplina];
-
-                        if ($mediaAluno instanceof \App\Models\Media) {
-                            $mediaTrimestre2 = $mediaAluno->nota ?? '0';
-                        }
-                    }
-
-                    if (isset($mediasDisciplina3[$indexaluno][$indexDisciplina])) {
-                        $mediaAluno = $mediasDisciplina3[$indexaluno][$indexDisciplina];
-
-                        if ($mediaAluno instanceof \App\Models\Media) {
-                            $mediaTrimestre3 = $mediaAluno->nota ?? '0';
-                        }
-                    }
-
-                    
-                                    
-                ?>
-               @if($mediaTrimestre1<10)
-                <td class="nota coluna-tab-p"><span class="nota-neg" style="color: rgb(255, 12, 12)">{{$mediaTrimestre1}}</span></td>
-                @else
-                <td class="nota coluna-tab-p"><span class="nota-neg" style="color: rgb(38, 6, 221)">{{$mediaTrimestre1}}</span></td>
-                @endif
-                @if($mediaTrimestre2<10)
-                <td class="nota coluna-tab-p"><span class="nota-neg" style="color: rgb(255, 12, 12)">{{$mediaTrimestre2}}</span></td>
-                @else
-                <td class="nota coluna-tab-p"><span class="nota-neg" style="color: rgb(38, 6, 221)">{{$mediaTrimestre2}}</span></td>
-                @endif
-                @if($mediaTrimestre3<10)
-                <td class="nota coluna-tab-p"><span class="nota-neg" style="color: rgb(255, 12, 12)">{{$mediaTrimestre3}}</span></td>
-                @else
-                <td class="nota coluna-tab-p"><span class="nota-neg" style="color: rgb(38, 6, 221)">{{$mediaTrimestre3}}</span></td>
-                @endif
-                <td class="nota c-tab-amarelo coluna-tab-p"><span class="nota-pos">15</span></td>
-                <td class="nota coluna-tab-p"><span class="nota-pos"></span></td>
+                if ($mediaAlunoId === $alunoId) {
+        @endphp
         
-                <td class="nota c-tab-sinza-esq coluna-tab-p">
-                    <span>
-                        <!-- Aqui você pode exibir informações do aluno -->
-                        
-                    </span>
-                </td>
-           
-        @endforeach
-         
-            <td class="nota coluna-tab-p"><span class="nota-neg maisculo-p">RPF</span></td>
-            <td class="nota coluna-tab-p"><span class="nota-neg maisculo-p">NÃO TRANSITA</span></td>
-            <td class="nota coluna-tab-p">5</td>
-            </tr>
-         
-         @endforeach
-
+        <td class="nota coluna-tab-p">
+            <span class="nota-neg" style="color: rgb(38, 6, 221)">{{ $mediaTrimestre1 }}</span>
+        </td>
+        <td class="nota coluna-tab-p">
+            <span class="nota-neg" style="color: rgb(38, 6, 221)">{{ $mediaTrimestre2 }}</span>
+        </td>
+        <td class="nota coluna-tab-p">
+            <span class="nota-neg" style="color: rgb(38, 6, 221)">{{ $mediaTrimestre3 }}</span>
+        </td>
+        <td class="nota c-tab-amarelo coluna-tab-p">
+            <span class="nota-pos">15</span>
+        </td> 
         
+        <td class="nota coluna-tab-p">
+            <span class="nota-pos"></span>
+        </td>
+        <td class="nota c-tab-sinza-esq coluna-tab-p">
+            <span>
+                 falta
+            </span>
+        </td>
+        
+        @php
+                }
+            }
+        @endphp
+        
+        <!-- Aqui você pode adicionar os elementos afetados pelo foreach do aluno -->
+    
+        <td class="nota coluna-tab-p">
+            <span class="nota-neg maisculo-p">RPF</span>
+        </td>
+        <td class="nota coluna-tab-p">
+            <span class="nota-neg maisculo-p">NÃO TRANSITA</span>
+        </td>
+        <td class="nota coluna-tab-p">5</td>
+    </tr>
+    
+    @php
+        }
+    @endphp
+    
+
         
             <!--Rodape da pauta-->
             <tr>
@@ -261,7 +271,7 @@
 
             </th>
             
-            <th colspan="21" style="text-align: right; padding-right: 5px; padding-top: 10px;">
+            <th colspan="{{$colspanDisciplina}}" style="text-align: right; padding-right: 5px; padding-top: 10px;">
                 O SUBDIRETOR PEDAGOGICO
 
             </th>            
@@ -282,15 +292,15 @@
             </tr>
 
             <tr>
-            <th colspan="3">{{$dadosPauta['dadosAssinantes']['coordenadorArea']->pessoa->nome_completo}}</th>
+            <th colspan="3">{{$dadosAssinantes['subdirector']->pessoa->nome_completo}}</th>
             
-            <th colspan="21" style="text-align: right; padding-right: 15px; padding-top: 10px;">              
-                {{$dadosPauta['dadosAssinantes']['subdirector']->pessoa->nome_completo}}
+            <th colspan="{{$colspanDisciplina}}" style="text-align: right; padding-right: 15px; padding-top: 10px;">              
+                {{$dadosAssinantes['coordenadorArea']->pessoa->nome_completo}}
             </th> 
             </tr>
             <tr>
             <th colspan="24"></th>
-
+            
             </tr>
 
             <tr>
@@ -307,7 +317,7 @@
             <th colspan="3" style="border-bottom: 2px solid #000;">              
                 <strong>O(A) DIRETOR(A) DE TURMA </strong>
             </th>
-            <th colspan="21"></th>
+            <th colspan="{{$colspanDisciplina}}"></th>
             </tr>
 
             <!--Fim Rodape da pauta-->
@@ -316,5 +326,13 @@
 
         <!--Fim da pauta-->
         <br><br>
+
+
+
+
+
+
+
+        
     </main>
 @endsection

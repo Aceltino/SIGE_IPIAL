@@ -17,13 +17,12 @@
   --cor-input-inativa: #fff;
   --cor-label-inativa: #000;
   --cor-titulo-principal: #174183;
+  --cor-fundo-disable: #dadbdb;
 }
 
-*{
-  transition: all 0.5s;
-}
 
 html[data-theme="dark"]{
+  --bs-cor-principal: #1b1b1b;
   --background-body: #070b17;
   --bs-cor-sidebar: rgb(0,0,0,0.7);
   --bs-scroll-cor: #1b1b1b;
@@ -32,6 +31,7 @@ html[data-theme="dark"]{
   --cor-input-inativa: transparent;
   --cor-label-inativa: #fff;
   --cor-titulo-principal: #fff;
+  --cor-fundo-disable: #131c3b;
 } 
 
 
@@ -1188,7 +1188,7 @@ html[data-theme="dark"] .card-aluno-escuro, html[data-theme="dark"] .card-turma-
   color: #fff;
 }
 
-html[data-theme="dark"] .card-aluno-escuro .card-title, html[data-theme="dark"] .card-turma-escuro .card-title{
+html[data-theme="dark"] .card-title{
   color: #899bbd;
 }
 
@@ -1200,8 +1200,4 @@ html[data-theme="dark"] .table-escuro tr{
 
 html[data-theme="dark"] .card-comincado-escuro{
   background-color: var(--bs-cor-escura);
-}
-
-html[data-theme="dark"] .card-comincado-escuro .card-title{
-  color: #899bbd;
 }

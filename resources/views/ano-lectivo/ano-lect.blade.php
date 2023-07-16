@@ -16,7 +16,7 @@
     @endif
       <div class="row">
         <div class="col">
-          <h2 class="color-blue-principal">ANO LECTIVO</h2>
+          <h2 class="color-blue-principal text-uppercase">Anos lectivos</h2>
         </div>
          <div class="col-lg-4">
            <select class="btn-sel form-select" id="filtro1">
@@ -45,7 +45,7 @@
         </form>
       </div>
 
-      <!-- /  Inicio da tabela de inscritos -->
+      <!--Inicío da tabela de ver ano lectivo-->
       <table id="matricula-tab" class="table table-striped mt-4 table-custom table-escuro">
         <thead>
           <tr style=" text-align: center;">
@@ -58,24 +58,24 @@
           </tr>
         </thead>
         <tbody>
-        @foreach ($anoLectivo as $al)
+        @for ($i = count($anoLectivo) - 1; $i >= 0; $i--)
           <tr style=" text-align: center;">
-                <td>{{$al['ano_lectivo']}}</td>
-                <td>{{$al['data_inicio_ano_lectivo']}}</td>
-                <td>{{$al['data_fim_ano_lectivo']}}</td>
-                <td>{{$al['num_aluno_na_turma']}}</td>
-                <td>{{$al['num_sala_escola']}}</td>
+                <td>{{$anoLectivo[$i]['ano_lectivo']}}</td>
+                <td>{{$anoLectivo[$i]['data_inicio_ano_lectivo']}}</td>
+                <td>{{$anoLectivo[$i]['data_fim_ano_lectivo']}}</td>
+                <td>{{$anoLectivo[$i]['num_aluno_na_turma']}}</td>
+                <td>{{$anoLectivo[$i]['num_sala_escola']}}</td>
                 <td class="d-flex justify-content-between align-items-center">
                     <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-                    <a href="{{route('editar.ano.lectivo', $al['ano_lectivo_id'])}}"><i class="bi bi-pencil"></i></a>
-                    <button type="button" class="btn d-flex align-items-center p-0" data-bs-toggle="modalDesactivar" data-bs-target="#basicModalDesactivar"><i class="bi bi-power" ></i></button>    
+                    <a href="{{route('editar.ano.lectivo', $anoLectivo[$i]['ano_lectivo_id'])}}"><i class="bi bi-pencil"></i></a>
+                    <button type="button" class="btn d-flex align-items-center p-0" data-bs-toggle="modalDesactivar" data-bs-target="#basicModalDesactivar"><i class="bi bi-power" ></i></button>
                 </td>
             </tr>
-        @endforeach
+        @endfor
 
         </tbody>
       </table>
-      <!-- Termina a tabela de matriculas -->
+      <!-- Termina a tabela de ver ano lectivo -->
 
       <div class="modal fade" id="basicModalDesactivar" tabindex="-1" data-bs-backdrop="false">
         <div class="modal-dialog">
@@ -90,7 +90,7 @@
 
             <div class="modal-footer" style="border: none;">
               <button type="button" class="btn btn-warning" data-bs-dismiss="modalDesactivar">Cancelar</button>
-              <form action="{{route('apagar.ano.lectivo', $al['ano_lectivo_id'])}}" method="POST">
+              <form action="" method="POST">
                 @csrf
                 @method('delete')
                 <button type="submit" class="btn btn-danger d-flex align-items-center p-0">Desactivar</button>
@@ -100,14 +100,12 @@
         </div>
       </div>
 
-    <!--Inicio da modal ver inscrito-->
+    <!--Início da modal ver dados ano lectivo-->
     <div class="modal fade" id="ExtralargeModal" tabindex="-1" data-bs-backdrop="false">
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
-
             <div class="provisorio">
               <div class="card-icon-modal rounded-circle d-flex align-items-center justify-content-flex-end">
-
                 <i class="bi bi-x-lg" data-bs-toggle="modal" aria-label="Close" data-bs-dismiss="modal"></i>
               </div>
             </div>
@@ -117,7 +115,6 @@
                 <div class="col" style="display: flex; justify-content: flex-start; align-items: center;">
                   <h1>Dados Do Ano Lectivo</h1>
                 </div>
-
               </div>
             </div>
 
@@ -125,14 +122,12 @@
               <form class="form-inativo">
                 <div class="dados-pessoais">
                   <div Class="row">
-
                     <div class=" col area-input form-group" disabled>
                      <label>Nome do Ano Letivo: </label><input class="form-control" type="text" name="" value="Ano-Alda-2023" style="text-align: center;" disabled>
                     </div>
                   </div>
 
                   <div Class="row">
-
                     <div class=" col area-input form-group" disabled>
                      <label>Data de Inicio: </label><input class="form-control" type="text" name="" value="2020" disabled>
                     </div>
@@ -150,11 +145,9 @@
                     <div class="col area-input form-group" style="margin-left: 10px;" disabled>
                       <label>Número Máximo de Sala: </label><input class="form-control" type="text" name="" value="29" disabled>
                     </div>
-
                   </div>
 
                   <div Class="row">
-
                     <div class=" col area-input form-group" disabled>
                       <label>Início das Incrições:</label><input class="form-control" type="text" name="" value="2002" disabled>
                     </div>
@@ -165,7 +158,6 @@
                   </div>
 
                   <div Class="row">
-
                     <div class=" col area-input form-group" disabled>
                       <label>Início das Matriculas:</label><input class="form-control" type="text" name="" value="2002" disabled>
                     </div>
@@ -182,8 +174,6 @@
                       <a href="/ano-letivo" class="btn" style="background-color: #070b17; color: #fff;">Retrocer aos Anos Lectivos</a>
 
                       <a href="/editar-ano-letivo" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
-
-
                   </div>
                 </div>
 
@@ -194,7 +184,7 @@
         </div>
       </div>
 
-      <!--  / Termina a modal ver inscrito-->
+      <!--Termina a modal ver dados do ano lectivo-->
 
 
     </main>

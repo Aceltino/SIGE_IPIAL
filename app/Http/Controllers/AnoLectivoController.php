@@ -34,10 +34,10 @@ class AnoLectivoController extends Controller
     }
 
     public function indexCadastroAnoLectivo(){
-        $hora_inicio_manha = "07:10";
-        $hora_fim_manha = "12:50";
-        $intervalo_manha = "5";
-        AnoLectivoTrait::calcularHoraTempos($hora_inicio_manha, $intervalo_manha, $hora_fim_manha);
+        $ano_lectivo = Ano_lectivo::where('status_ano_lectivo', 1)->get();
+        if (count($ano_lectivo) > 0) {
+            return redirect()->route('ano.lectivo')->with('erro', 'Ainda há um ano lectivo em curso.');
+        }
         return view('ano-lectivo/criar-ano-lect');
     }
 
@@ -48,7 +48,6 @@ class AnoLectivoController extends Controller
             'ano_lectivo' => date('Y', strtotime($request['data_inicio_ano_lectivo'])) . "-" . date('Y', strtotime($request['data_fim_ano_lectivo'])),
             'status_ano_lectivo' => 1,
             'data_inicio_ano_lectivo' => $request['data_inicio_ano_lectivo'],
-            'data_fim_ano_lectivo' => $request['data_fim_ano_lectivo'],
             'num_aluno_na_turma' => $request['num_aluno_na_turma'],
             'num_sala_escola' => $request['num_sala_escola'],
             'data_inicio_inscricao' => $request['data_inicio_inscricao'],
@@ -83,22 +82,22 @@ class AnoLectivoController extends Controller
         $trimestre[0] = [
             'trimestre' => "1º",
             'status' => 0,
-            'data_inicio' => $request['data_inicio1'],
-            'data_fim' => $request['data_fim1'],
+            'data_inicio' => null,
+            'data_fim' => null,
             'ano_lectivo_id' => $id->ano_lectivo_id
         ];
         $trimestre[1] = [
             'trimestre' => "2º",
             'status' => 0,
-            'data_inicio' => $request['data_inicio2'],
-            'data_fim' => $request['data_fim2'],
+            'data_inicio' => null,
+            'data_fim' => null,
             'ano_lectivo_id' => $id->ano_lectivo_id
         ];
         $trimestre[2] = [
             'trimestre' => "3º",
             'status' => 0,
-            'data_inicio' => $request['data_inicio3'],
-            'data_fim' => $request['data_fim3'],
+            'data_inicio' => null,
+            'data_fim' => null,
             'ano_lectivo_id' => $id->ano_lectivo_id
         ];
 
@@ -147,7 +146,6 @@ class AnoLectivoController extends Controller
                 'ano_lectivo' => $request['ano_lectivo'],
                 'status_ano_lectivo' => 1,
                 'data_inicio_ano_lectivo' => $request['data_inicio_ano_lectivo'],
-                'data_fim_ano_lectivo' => $request['data_fim_ano_lectivo'],
                 'num_aluno_na_turma' => $request['num_aluno_na_turma'],
                 'num_sala_escola' => $request['num_sala_escola'],
                 'data_inicio_inscricao' => $request['data_inicio_inscricao'],
@@ -171,43 +169,12 @@ class AnoLectivoController extends Controller
                 'duracao_int_maior_noite' => $request['duracao_int_maior_noite'],
             ];
 
-            $trimestre[0] = [
-                'trimestre' => "1º",
-                'status' => 0,
-                'data_inicio' => $request['data_inicio1'],
-                'data_fim' => $request['data_fim1'],
-            ];
-            $trimestre[1] = [
-                'trimestre' => "2º",
-                'status' => 0,
-                'data_inicio' => $request['data_inicio2'],
-                'data_fim' => $request['data_fim2'],
-            ];
-            $trimestre[2] = [
-                'trimestre' => "3º",
-                'status' => 0,
-                'data_inicio' => $request['data_inicio3'],
-                'data_fim' => $request['data_fim3'],
-            ];
-
             Ano_Lectivo::where('ano_lectivo_id', $request['id'])->update($anoLectivo);
-            $t = Trimestre::where('ano_lectivo_id', $request['id'])->get();
-            $t[0]->update($trimestre[0]);
-            $t[1]->update($trimestre[1]);
-            $t[2]->update($trimestre[2]);
 
             return redirect()->route('ano.lectivo')->with('sucesso', 'Ano lectivo actualizado com sucesso.');
         }
     }
 
-    public function delete($id){
-        $anoLectivo = Ano_lectivo::where('ano_lectivo_id', $id)->get();
-        if($anoLectivo[0]->status_ano_lectivo === 1){
-            return redirect()->route('ano.lectivo')->with('erro', "Não pode eliminar um ano lectivo em curso!");
-        }
-        Ano_lectivo::where('ano_lectivo_id', $id)->delete();
-        return redirect()->route('ano.lectivo')->with('sucesso', "Ano lectivo eliminado com sucesso!");
-    }
     public static function pegarNumVagas()
     {
         $ultimoAno = Ano_lectivo::latest()->first();
@@ -218,5 +185,47 @@ class AnoLectivoController extends Controller
     {
         $ultimoAno = Ano_lectivo::latest()->first();
         return $ultimoAno->data_fim_inscricao;
+    }
+
+    public static function abrirTrimestre($trimestre){
+
+        $anoLectivo = Ano_lectivo::latest()->where('status_ano_lectivo', 1)->get()->first();
+        $trimestre = Trimestre::where('trimestre', $trimestre)->where('ano_lectivo_id', $anoLectivo->ano_lectivo_id)->get()->first();
+        $trimestre->data_inicio = date('Y-m-d');
+        $trimestre->status = 1;
+        $trimestre->save();
+        return true;
+    }
+    public static function fecharTrimestre($trimestre){
+        $anoLectivo = Ano_lectivo::latest()->where('status_ano_lectivo', 1)->get()->first();
+        $trimestre = Trimestre::where('trimestre', $trimestre)->where('ano_lectivo_id', $anoLectivo->ano_lectivo_id)->get()->first();
+        $trimestre->data_fim = date('Y-m-d');
+        $trimestre->status = 0;
+        $trimestre->save();
+        return true;
+    }
+
+    public function fecharAnoLectivo($ano_lectivo_id){
+        $ano_lectivo = Ano_lectivo::find($ano_lectivo_id);
+        if($ano_lectivo->status_ano_lectivo === 0){
+            return redirect()->back()->with('erro', 'Este ano lectivo já se encontra fechado.');
+        }
+        if(!empty($ano_lectivo) && $ano_lectivo->status_ano_lectivo === 1){
+            $trimestre = Trimestre::where('ano_lectivo_id', $ano_lectivo_id)->where('status', 1)->get()->first();
+            if($trimestre){
+                return redirect()->back()->with('erro', 'Ano lectivo não pode ser fechado se existir algum trimestre em curso.');
+            }
+            //CandidatoController::eliminarCandidatos(); // Eliminar todos os candidatos não matriculados no ano lectivo
+            AlunoController::alunosVinculados(); //Cortar o acesso de todos os alunos do sistema
+
+
+            //Todas as funções devem ser colocadas acima porque depois do ano lectivo estar com o status 0 nenhuma ação é permitida.
+            $ano_lectivo->status_ano_lectivo = 0;
+            $ano_lectivo->data_fim_ano_lectivo = date('Y-m-d');
+            $ano_lectivo->save();
+            return redirect()->route('ano.lectivo')->with('sucesso', 'Ano lectivo fechado com sucesso.');
+        } else{
+            return redirect()->back()->with('erro', 'Ano lectivo não encontrado.');
+        }
     }
 }

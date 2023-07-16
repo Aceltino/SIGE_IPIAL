@@ -13,7 +13,6 @@ class MediasController extends Controller
     //Metodo que Busca Medias de todos os Trimestres Refente ao Ano, Aluno e Disciplina
     public static function getMediasDisciplina($disciplina_id,$aluno_id,$anoLectivo):mixed
     {
-
        return Media::where('disciplina_id',$disciplina_id)
                     ->where('aluno_id',$aluno_id)
                     ->where('ano_lectivo_id',$anoLectivo)
@@ -23,7 +22,6 @@ class MediasController extends Controller
     //Metodo que Busca as Medias do 1º Trimestre Refente ao Ano, Aluno e Disciplina
     public static function getMediaOneTrimestre($disciplina_id,$aluno_id,$anoLectivo):mixed
     {
-
         $trimestre= Trimestre::where('ano_lectivo_id',$anoLectivo)->get();
         return Media::where('disciplina_id',$disciplina_id)
                     ->where('aluno_id',$aluno_id)
@@ -79,7 +77,9 @@ class MediasController extends Controller
             $mt3[] = !empty($value->nota) ? $value->nota : 0;
         }
         
-       return ( array_sum($mt1) + array_sum($mt2) + array_sum($mt3) )/3 ;
+        return $mediaTotal = ( array_sum($mt1) + array_sum($mt2) + array_sum($mt3) )/3 ;
+        // echo round($mediaTotal);
+        
     }
 
 } //Fim da classe "MediasController"

@@ -14,6 +14,7 @@ use App\Http\Controllers\{
     TurmaController, CalendarioController,
     HorarioController,
     MediasController,
+    AreaFormacaoController
 };
 
 /*
@@ -145,7 +146,7 @@ Route::prefix('matricula')->middleware(['auth','active.session','checkcargo'])->
     // Atribuir turma 10ª classe
     Route::get('matricula-turma',  [MatriculaController::class, 'atribuirTurma'])->name('matricula-validarTurma');
 
-    /*Matricular aluno */ 
+    /*Matricular aluno */
     Route::get('matricular-aluno/{candidato}',  [MatriculaController::class, 'create'])->name('matricula-view')->middleware(['matricularCheck']);
     Route::post('matricular-aluno/{candidato}', [MatriculaController::class, 'store'])->name('matricula-store')->middleware(['matricularCheck']);
 
@@ -180,7 +181,6 @@ Route::prefix('matricula')->middleware(['auth','active.session','checkcargo'])->
  **/
 Route::prefix('professor')->middleware(['auth','active.session','checkcargo'])->group(function(){
 
-    Route::get('rota/{segmento}', [ProfessorController::class, 'editarProfessor'])->name('prof.rota');
 
     Route::get('cadastrar-professor', [ProfessorController::class, 'create'])->name('professor.cadastrar');
     Route::post('cadastrar-professor', [ProfessorController::class, 'store'])->name('prof.postRegistar');
@@ -260,7 +260,10 @@ Route::prefix('ano-lectivo')->middleware(['auth','active.session','checkcargo'])
 
 });
 
-
+    /*Editar Area de formacao*/
+    Route::get('/configuracoes-do-ano-lectivo', function () {
+        return view('ano-lectivo/configuracoes-do-ano-lectivo');
+    });
 /**<!--Fim Rotas ano lectivo--> */
 
 
@@ -304,7 +307,7 @@ Route::prefix('pautas')->middleware(['auth','active.session'])->group(function()
  * Rotas de mini-pauta
  */
 Route::prefix('mini-pauta')->middleware(['auth','active.session'])->group(function(){
-    Route::get('mini-pauta', [MiniPautaController::class, 'index'])->name('mini-pauta');
+    Route::get('', [MiniPautaController::class, 'index'])->name('mini-pauta');
     Route::get('ver-mini-pauta', [MiniPautaController::class, 'show'])->name('mini-pauta.show');
     Route::get('{turma}/{curso}', [MiniPautaController::class, 'turma'])->name('mini-pauta.turma');
     Route::get('ver/{turma_id}/{disciplina_id}', [MiniPautaController::class, 'view'])->name('mini-pauta.view');
@@ -359,10 +362,10 @@ Route::prefix('calend-prova')->group(function(){
  * Rotas da Assiduidade de Aluno
  */
 
- /*ERRO Avaliação de Aluno*/
+ /*ERRO Assiduidade de Aluno*/
 Route::get('erroassid',  function () {
-    return view('assiduid-aluno/erroassid.blade');
-});
+    return view('assiduid-aluno/erroassid');
+})->name('erro.assiduidade');
 
 /* Assiduidade de alunos*/
 Route::get('/assiduidade-aluno', [AssiduidadeAlunoController::class, 'index'])->name('assiduidade');
@@ -438,20 +441,24 @@ Route::get('/horario-turma', function () {
 Route::get('/editar-horario', function () {
     return view('horario/editar-horario');
 });
-/*Area de formacao*/
-Route::get('/criar-areaformacao', function () {
-    return view('area-formacao/criar-areaformacao');
+/*Ver horário*/
+Route::get('/ver-horarios', function () {
+    return view('horario/horarios');
 });
+/*Area de formacao*/
+Route::get('/criar-areaformacao', [AreaFormacaoController::class, 'indexCadastro'])->name('criar.area.formacao');
+Route::post('/criar-areaformacao', [AreaFormacaoController::class, 'store'])->name('cadastrar.area.formacao');
 
 /*Area de formacao*/
-Route::get('areaformacao', function () {
-    return view('area-formacao/areaformacao');
-});
+Route::get('areaformacao', [AreaFormacaoController::class, 'index'])->name('area.formacao');
 
 /*Editar Area de formacao*/
-Route::get('/edit-areaformacao', function () {
-    return view('area-formacao/edit-areaformacao');
-});
+Route::get('/edit-areaformacao/{id}', [AreaFormacaoController::class, 'indexEdicao'])->name('editar.area.formacao');
+Route::put('/edit-areaformacao/{id}', [AreaFormacaoController::class, 'update'])->name('actualizar.area.formacao');
+
+/*Editar Area de formacao*/
+Route::delete('/eliminar-areaformacao/{id}', [AreaFormacaoController::class, 'delete'])->name('eliminar.area.formacao');
+
 /*Sala*/
 Route::get('/cadastrar-sala', function () {
     return view('sala\cadastrar-sala');

@@ -162,4 +162,47 @@ function adicionarInput() {
   container.appendChild(div);
 }
 
- 
+//clones dos selects
+
+
+var numerominimo = 0;
+var numeromaximo = 2;
+
+function clonar() {
+  if (numerominimo >= numeromaximo) {
+    return;
+  }
+
+  var carga = document.getElementById("input");
+  var horaria = carga.cloneNode(true);
+ carga.parentNode.appendChild(horaria);
+
+  var selectclasse = document.getElementById("selectclasse");
+  var classe = selectclasse.cloneNode(true);
+ selectclasse.parentNode.appendChild(classe);
+
+  var tipo = document.getElementById("selecttipodisciplina");
+  var disciplina =tipo.cloneNode(true);
+  tipo.parentNode.appendChild(disciplina);
+
+
+
+
+
+  var removeButton = document.createElement("button");
+  removeButton.innerHTML = '<i class="bi bi-dash-circle" style="font-size: 30px; cursor: pointer;"></i>';
+  removeButton.onclick = function() {
+    carga.parentNode.removeChild(horaria);
+    selectclasse.parentNode.removeChild(classe);
+   tipo.parentNode.removeChild(disciplina);
+    removeButton.parentNode.removeChild(removeButton);
+    numerominimo--;
+  };
+
+  classe.parentNode.appendChild(removeButton);
+  numerominimo++;
+}
+
+
+
+

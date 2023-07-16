@@ -14,6 +14,9 @@ class Professor extends Model
     protected $fillable = [
         'formacao',
         'pessoa_id',
+        'area_formacao_id',
+        'curso_id',
+        'cargo',
     ];
 
     // Criei essa nova relação > Augusto Kussema

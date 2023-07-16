@@ -6,7 +6,7 @@
 <main id="main" class="main">
   <div class="row">
     <div class="col">
-      <h2>Usuários</h2>     
+      <h1>Usuários</h1>     
   </div>
   
   <div class="col-md-12 col-lg-4 mb-2">
@@ -208,19 +208,19 @@
               
               <div class="container">
                 <div class="area-input form-group">
-                  <label>Nome Completo: </label><input type="text" readonly="true" disabled value="{{$user->pessoa->nome_completo}}">
+                  <label>Nome Completo: </label><input type="text" readonly="true" disabled value="{{$user->pessoa->nome_completo}}" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;">
                 </div>
       
                 <div class="container">
                   <div class="row">
                   
                     <div class="col area-input form-group">
-                      <label>Data de nascimento: </label><input type="date" id="datainput" class="form-control" style=" text-align: start;" placeholder="" name="" readonly="true" disabled value="{{$user->pessoa->data_nascimento}}" oninput="this.className = ''">
+                      <label>Data de nascimento: </label><input type="date" id="datainput" class="form-control" placeholder="" name="" readonly="true" disabled value="{{$user->pessoa->data_nascimento}}" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;">
                       <div id="mensagem" style="color: red;"></div>  
                     </div>
                           
                     <div class="col area-input form-group" style="margin-left: 10px;">
-                      <label>Idade: </label><input type="text" class="form-control" readonly="true" disabled value="16">
+                      <label>Idade: </label><input type="text" class="form-control" readonly="true" disabled value="16" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;">
                     </div>
       
                     <div class="col area-input form-group" style="margin-left: 10px;">
@@ -238,11 +238,11 @@
                 <div class="container">
                   <div class="row">
                     <div class=" col area-input form-group" >
-                      <label>Número do BI: </label><input type="text" class="form-control" readonly="true" disabled name="" value="{{$user->pessoa->num_bi}}">
+                      <label>Número do BI: </label><input type="text" class="form-control" readonly="true" disabled name="" value="{{$user->pessoa->num_bi}}" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;">
                     </div>
       
                     <div class="col area-input form-group" style="margin-left: 10px;">
-                      <label>Tel: </label><input type="text" name="" readonly="true" disabled value="{{$user->pessoa->telefone}}">
+                      <label>Tel: </label><input type="text" name="" readonly="true" disabled value="{{$user->pessoa->telefone}}" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;">
                     
                     </div>
                   </div>
@@ -251,19 +251,19 @@
                 <div class="container">
                   <div class="row">
                     <div class="col area-input form-group">
-                      <label>Município: </label><input type="text" name="" readonly="true" disabled value="{{$user->pessoa->endereco->municipio}}">
+                      <label>Município: </label><input type="text" name="" readonly="true" disabled value="{{$user->pessoa->endereco->municipio}}" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;">
                     </div>
                     
                     <div class="col area-input form-group" style="margin-left: 10px;">
-                      <label>Bairro: </label><input type="text" name="" readonly="true" disabled value="{{$user->pessoa->endereco->bairro}}">
+                      <label>Bairro: </label><input type="text" name="" readonly="true" disabled value="{{$user->pessoa->endereco->bairro}}" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;">
                     </div>
                     
                     <div class="col area-input form-group" style="margin-left: 10px;">
-                      <label>Zona: </label><input type="text" name="" readonly="true" disabled value="{{$user->pessoa->endereco->zona}}">
+                      <label>Zona: </label><input type="text" name="" readonly="true" disabled value="{{$user->pessoa->endereco->zona}}" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;">
                     </div>
                     
                     <div class="col area-input form-group" style="margin-left: 10px;">
-                      <label>N° Casa: </label><input type="text" name="" readonly="true" disabled value="{{$user->pessoa->endereco->numero_casa}}">
+                      <label>N° Casa: </label><input type="text" name="" readonly="true" disabled value="{{$user->pessoa->endereco->numero_casa}}" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;">
                     </div>
                   </div>              
                 </div>
@@ -271,11 +271,11 @@
                 <div class="container">
                   <div class="row">
                     <div class="col area-input form-group">
-                      <label>Email: </label><input type="text" name="" readonly="true" disabled value="{{$user->email}}">
+                      <label>Email: </label><input type="text" name="" readonly="true" disabled value="{{$user->email}}" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;">
                     </div>
     
                     <div class="col form-group">
-                      <select oninput="this.className = ''" class="form-select" name="cargo_usuario_update">
+                      <select oninput="this.className = ''" class="form-select" name="cargo_usuario_update" readonly="true" disabled style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;">
                         <option disabled>#Cargos</option>
                         <option value="Subdirector" readonly="true" disabled {{$user->cargo_usuario=='Subdirector'? "selected" : ""}}>Subdirector Pedagogico</option>
                         <option value="Secretaria" readonly="true" disabled {{$user->cargo_usuario=='Secretaria'? "selected" : ""}}>Secretaria Pedagogica</option>

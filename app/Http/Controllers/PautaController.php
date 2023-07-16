@@ -33,7 +33,6 @@ class PautaController extends Controller
         return $anoTurmaCoord;
     }
 
-
     public static function show($id,$anoLectivo):mixed
     {
     
@@ -68,9 +67,11 @@ class PautaController extends Controller
                 $OneMedia[]= MediasController::getMediaOneTrimestre($value->disciplina_id,$aluno->aluno_id, $anoLectivo); 
                 $TwoMedia[]= MediasController::getMediaTwoTrimestre($value->disciplina_id,$aluno->aluno_id, $anoLectivo); 
                 $ThreeMedia[]= MediasController::getMediaThreeTrimestre($value->disciplina_id,$aluno->aluno_id, $anoLectivo); 
-                $ca =MediasController::classificacaoAnual($value->disciplina_id,$aluno->aluno_id, $anoLectivo);
+                $ca[]= MediasController::classificacaoAnual($value->disciplina_id,$aluno->aluno_id, $anoLectivo);
             } 
         }   
+
+        // dd($ca);
 
         //Condição para Pauta ser Gerada
         if ( (count($turmaAluno) <= 0) && (empty($notas)) ){
@@ -88,7 +89,6 @@ class PautaController extends Controller
             'OneMedia'=>$OneMedia,
             'TwoMedia'=>$TwoMedia,
             'ThreeMedia'=>$ThreeMedia,
-            'CA'=>$ca,
             'colspanDisciplina'=>(count($disciplinas)*6),
 
         ];  
@@ -96,7 +96,7 @@ class PautaController extends Controller
         //Condições da apresentação da Pauta com base a class
         switch ($turma->classe_id){
             case 1:
-                return view('pauta.pauta-10-doc',compact('dadosPauta') );
+                return view('pauta.pauta-10-doc',$dadosPauta);
             case 2:
                 return view('pauta.pauta-11-doc',compact('dadosPauta'));
             case 3:

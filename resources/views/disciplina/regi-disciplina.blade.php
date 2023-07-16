@@ -33,14 +33,14 @@
                             @enderror
                     </div>
                     <div class="col">
-                <input type="text" style=" text-align: center;" id="sigla" value="{{ old('sigla') }}" placeholder="Sigla" name="sigla"  oninput="this.className = ''" maxlength="4">
+                        <input type="text" style=" text-align: center;" id="sigla" value="{{ old('sigla') }}" placeholder="Sigla" name="sigla"  oninput="this.className = ''" maxlength="4">
                          @error('sigla')
                                 <div class="alert alert-danger">{{$message}}
                                 <button class="botaofecharerro">
                                 <i class="bi bi-x"></i>
                                 </button></div>
                             @enderror
-            </div>
+                    </div>
                 </div> <br>
                 <div class="row" style="margin-top: 15px;">
                     <div class="form-group col">
@@ -58,7 +58,7 @@
                             @enderror
                     </div>
                     <div class="form-group col">
-                      <select oninput="this.className = ''" class="form-select" name="classe" id="selectClasse">
+                      <select oninput="this.className = ''" class="form-select" name="classe" id="selectclasse">
                         <option selected disabled>Classe</option>
                         @foreach ($classes as $classe)
                         <option value="{{$classe['classe_id']}}">{{$classe['classe']}}</option>     
@@ -70,6 +70,10 @@
                                 <i class="bi bi-x"></i>
                                 </button></div>
                             @enderror
+
+                            <div>
+                                <i class="bi bi-plus-circle" onclick="clonar()" style="font-size: 30px; cursor: pointer;"></i>
+                            </div>
                     </div>
                     <div class="form-group col" class="clone2">
                         <select oninput="this.className = ''" class="form-select" name="tipo_disciplina" id="selectTipoDisciplina">
@@ -83,11 +87,10 @@
                                    <i class="bi bi-x"></i>
                                    </button></div>
                                @enderror
-                               <div >
-                                <i id="clonebtn2"class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>
-                               </div>
-                      </div>
+                             
+                    </div>
                 </div>
+                <div id="inputsContainer"></div>
               <div class="row">
                 <div class="col">
                   @foreach($cursos as $curso)
@@ -106,17 +109,15 @@
                                    </button></div>
                                @enderror
                        </div> 
-                       <div class="col" id="clone1">
-                          <input type="text" id="numeroinput1" style=" text-align: center;" name="carga_horaria" value="{{ old('carga_horaria') }}" placeholder="Carga Horária" oninput="this.className = ''" maxlength="4">
+                       <div class="col" >
+                          <input type="text" id="input" style=" text-align: center;" name="carga_horaria" value="{{ old('carga_horaria') }}" placeholder="Carga Horária" oninput="this.className = ''" maxlength="4">
                           @error('carga_horaria')
                                    <div class="alert alert-danger">{{$message}}
                                    <button class="botaofecharerro">
                                    <i class="bi bi-x"></i>
                                    </button></div>
                                @enderror
-                               <div >
-                                <i id="clonebtn1"class="bi bi-plus-circle" style="font-size: 30px; cursor: pointer;"></i>
-                               </div>
+                             
                         </div> 
                     </div>
              </div> 

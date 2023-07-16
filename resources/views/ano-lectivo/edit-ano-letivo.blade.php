@@ -11,9 +11,9 @@
           <h2 class="text-uppercase text-center my-3 color-blue-principal">editar dados do ano lectivo</h2>
           <h4 class="text-uppercase text-center my-4 color-blue-principal">Informações gerais</h4>
 
-            <div class="row" >
+            <div class="row">
                 <div class="col">
-                    <p>Designação do ano lectivo<input type="text" id="descricao-do-ano-lectivo" name="ano_lectivo" value="{{old('ano_lectivo', $anoLectivo[0]['ano_lectivo'])}}" required disabled readonly></p>
+                    <p>Designação do ano lectivo<input type="text" id="descricao-do-ano-lectivo" name="ano_lectivo" value="{{old('ano_lectivo', $anoLectivo[0]['ano_lectivo'])}}" required></p>
                     @error('ano_lectivo')
                         <p style="color:red">{{$message}}
                             <button class="botaofecharerro">
@@ -22,10 +22,7 @@
                         </p>
                     @enderror
                 </div>
-            </div>
 
-
-            <div class="row" >
                 <div class="col">
                     <p>Data de início do ano lectivo<input type="date" name="data_inicio_ano_lectivo" id="data-de-inicio-do-ano-lectivo" value="{{old('data_inicio_ano_lectivo', $anoLectivo[0]['data_inicio_ano_lectivo'])}}" oninput="this.className = ''" required></p>
                     @error('data_inicio_ano_lectivo')
@@ -36,18 +33,6 @@
                         </p>
                     @enderror
                     <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-data-de-inicio-do-ano-lectivo"></p>
-                </div>
-
-                <div class="col">
-                    <p>Data de fim do ano lectivo<input type="date" name="data_fim_ano_lectivo" id="data-de-fim-do-ano-lectivo" value="{{old('data_fim_ano_lectivo', $anoLectivo[0]['data_fim_ano_lectivo'])}}" oninput="this.className = ''" required></p>
-                    @error('data_fim_ano_lectivo')
-                        <p style="color:red">{{$message}}
-                            <button class="botaofecharerro">
-                                <i class="bi bi-x"></i>
-                            </button>
-                        </p>
-                    @enderror
-                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-data-de-fim-do-ano-lectivo"></p>
                 </div>
             </div>
 
@@ -128,88 +113,6 @@
                     <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-do-numero-maximo-de-salas"></p>
                 </div>
             </div>
-
-
-            <h4 class="text-uppercase text-center my-3 color-blue-principal">sobre os trimestres</h4>
-
-            <div class="row" >
-                <div class="col">
-                    <p>Data de início do 1º trimestre<input type="date" name="data_inicio1" id="data-de-inicio-do-primeiro-trimestre" value="{{old('data_inicio1', $trimestre[0]['data_inicio'])}}" oninput="this.className = ''" required></p>
-                    @error('data_inicio1')
-                        <p style="color:red">{{$message}}
-                            <button class="botaofecharerro">
-                                <i class="bi bi-x"></i>
-                            </button>
-                        </p>
-                    @enderror
-                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-data-de-inicio-do-primeiro-trimestre"></p>
-                </div>
-
-                <div class="col">
-                    <p>Data de fim do 1º trimestre<input type="date" name="data_fim1" id="data-de-fim-do-primeiro-trimestre" value="{{old('data_fim1', $trimestre[0]['data_fim'])}}" oninput="this.className = ''" required></p>
-                    @error('data_fim1')
-                        <p style="color:red">{{$message}}
-                            <button class="botaofecharerro">
-                                <i class="bi bi-x"></i>
-                            </button>
-                        </p>
-                    @enderror
-                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-data-de-fim-do-primeiro-trimestre"></p>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col">
-                    <p>Data de início do 2º trimestre<input type="date" name="data_inicio2" id="data-de-inicio-do-segundo-trimestre" value="{{old('data_inicio2', $trimestre[1]['data_inicio'])}}" oninput="this.className = ''" required></p>
-                    @error('data_inicio2')
-                        <p style="color:red">{{$message}}
-                            <button class="botaofecharerro">
-                                <i class="bi bi-x"></i>
-                            </button>
-                        </p>
-                    @enderror
-                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-data-de-inicio-do-segundo-trimestre"></p>
-                </div>
-
-                <div class="col">
-                    <p>Data de fim do 2º trimestre<input type="date" name="data_fim2" id="data-de-fim-do-segundo-trimestre" value="{{old('data_fim2', $trimestre[1]['data_fim'])}}" oninput="this.className = ''" required></p>
-                    @error('data_fim2')
-                        <p style="color:red">{{$message}}
-                            <button class="botaofecharerro">
-                                <i class="bi bi-x"></i>
-                            </button>
-                        </p>
-                    @enderror
-                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-data-de-fim-do-segundo-trimestre"></p>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col">
-                    <p>Data de início do 3º trimestre<input type="date" name="data_inicio3" id="data-de-inicio-do-terceiro-trimestre" value="{{old('data_inicio3', $trimestre[2]['data_inicio'])}}" oninput="this.className = ''" required></p>
-                    @error('data_inicio3')
-                        <p style="color:red">{{$message}}
-                            <button class="botaofecharerro">
-                                <i class="bi bi-x"></i>
-                            </button>
-                        </p>
-                    @enderror
-                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-data-de-inicio-do-terceiro-trimestre"></p>
-                </div>
-
-                <div class="col">
-                    <p>Data de fim do 3º trimestre<input type="date" name="data_fim3" id="data-de-fim-do-terceiro-trimestre" value="{{old('data_fim3', $trimestre[2]['data_fim'])}}" oninput="this.className = ''" required></p>
-                    @error('data_fim3')
-                        <p style="color:red">{{$message}}
-                            <button class="botaofecharerro">
-                                <i class="bi bi-x"></i>
-                            </button>
-                        </p>
-                    @enderror
-                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-data-de-fim-do-terceiro-trimestre"></p>
-                </div>
-            </div>
-
 
             <h4 class="text-uppercase text-center my-3 color-blue-principal">manhã</h4>
 
