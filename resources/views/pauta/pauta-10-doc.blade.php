@@ -4,6 +4,34 @@
 
 @section('conteudo')
 <main id="main" class="main">
+    <?php
+
+    //Organização dos alunos que estão a vir da back
+    $medias = [];
+            
+            for ($i = 0; $i < count($OneMedia); $i++) {
+                $mt1 = isset($OneMedia[$i][0]->nota) ? $OneMedia[$i][0]->nota : '0';
+                $mt2 = isset($TwoMedia[$i][0]->nota) ? $TwoMedia[$i][0]->nota : '0';
+                $mt3 = isset($ThreeMedia[$i][0]->nota) ? $ThreeMedia[$i][0]->nota : '0';
+            
+                $alunoIndex = $i % count($alunos); // Índice do aluno
+                $disciplinaIndex = $i % count($disciplinas); // Índice da disciplina
+            
+                $aluno = $alunos[$alunoIndex]; // Aluno correspondente ao índice atual
+                $disciplina = $disciplinas[$disciplinaIndex]; // Disciplina correspondente ao índice atual
+            
+                $medias[] = [
+                    'aluno' => $aluno,
+                    'disciplina' => $disciplina,
+                    'media_trimestre1' => $mt1,
+                    'media_trimestre2' => $mt2,
+                    'media_trimestre3' => $mt3
+                ];
+            }
+            
+    ?>
+
+  
     
  
     <div class="container no-print">
@@ -161,7 +189,7 @@
         
 
         </tr>
-        {{dd($dadosAssinantes)}}
+       
 
         @php
         foreach ($alunos as $aluno) {
@@ -210,7 +238,7 @@
         </td>
         <td class="nota c-tab-sinza-esq coluna-tab-p">
             <span>
-                Disciplina ID: {{ $mediaDisciplinaId }}
+                 falta
             </span>
         </td>
         
