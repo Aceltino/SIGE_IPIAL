@@ -66,6 +66,18 @@
       <button  title="Search"><i class="bi bi-search"></i></button>
   </div>
   </div>
+  <form method="POST" action="">
+
+    <div class="col">
+      <div class="form-group" style="display: flex; justify-content: end; margin-top: 4px;">
+        <a class="btn botaoazul"  type="submit" style="margin-right: 3px;">Presencial</a>
+        <a class="btn botaovermelho" type="submit" style="margin-right: 3px;">Disciplinar</a>
+        <a class="btn botaopreto" style="background-color: rgb(92, 75, 20)" type="submit" style="margin-right: 3px;">Material</a>
+      </div>
+
+    </div>
+
+   
 
   <div class="bortabela" style="box-shadow: 0 5px 15px 0 rgba(82, 63, 105, 0.2); border: 1px solid white; border-radius: 3px; padding: 2px;">
     <div class="pagetitle">
@@ -75,54 +87,60 @@
             </div>
         </div>
     </div>
-    <!-- /  Inicio da tabela  -->
-    <table id="assid" class=" table table-custom table-escuro " style="margin-top: 20px; width: 100%;" >
-      <thead style="text-align: center">
-        <tr>
-          <th scope="col">Nº</th>
-          <th scope="col">Nome do Aluno</th>
-          <th scope="col">F.Presencial</th>
-          <th scope="col">F.Disciplinar</th>
-          <th scope="col">f.Material</th>
-          <th scope="col">Marcar Falta</th>
-          <th scope="col">Histórico</th>
-          <th scope="col" hidden>curso</th>
-          <th scope="col" hidden>Disciplina</th>
-          <th scope="col" hidden>Turma</th>
-        </tr>
-      </thead>
-      <tbody>
-        @if (!empty($alunos))
-          @foreach ($alunos as $chave1 => $valor1)
+    
 
-            @foreach ($valor1 as $chave2 => $valor2)
+      <!-- /  Inicio da tabela  -->
+      <table id="assid" class=" table table-custom table-escuro " style="margin-top: 20px; width: 100%;" >
+        <thead style="text-align: center">
+          <tr>
+            <th scope="col">Nº</th>
+            <th scope="col">Nome do Aluno</th>
+            <th scope="col">F.Presencial</th>
+            <th scope="col">F.Disciplinar</th>
+            <th scope="col">f.Material</th>
+            <th scope="col">Marcar Falta</th>
+            <th scope="col">Histórico</th>
+            <th scope="col" hidden>curso</th>
+            <th scope="col" hidden>Disciplina</th>
+            <th scope="col" hidden>Turma</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (!empty($alunos))
+            @foreach ($alunos as $chave1 => $valor1)
+  
+              @foreach ($valor1 as $chave2 => $valor2)
+  
+                  @foreach ($valor2 as $chave3 => $valor3)
 
-                @foreach ($valor2 as $chave3 => $valor3)
+  
+                      <tr style="text-align: center;">
+                          <th scope="row">{{$valor3['numero_aluno']}}</th>
+                          <td>{{$valor3['nome']}}</td>
+                          <td>{{$valor3['falta_presencial']}}</td>
+                          <td>{{$valor3['falta_disciplinar']}}</td>
+                          <td>{{$valor3['falta_material']}}</td>
+                          <td>
+                            <div class="btn-group-toggle" data-toggle="buttons">
+                                <input style="width: 20px; height: 20px;" type="checkbox" name="{{$valor3['aluno_id']}}[]" value="">
+                            </div>
+                             
+                            </td>
+                            <td style="text-align: center">
+                              <a href="{{route('editar.assiduidade', [$valor3['aluno_id'], $valor3['disciplina_id']])}}" class="btn linkeditar">Hiatórico</a>
+                            </td>
+  
+                          <td hidden>{{$valor3['curso']}}</td>
+                          <td hidden>{{$valor3['nome_disciplina']}}</td>
+                          <td hidden>{{$valor3['nome_turma']}}</td>
+                      </tr>
+                  @endforeach
+              @endforeach
+          @endforeach
+      </tbody>
+    </table>
+    </form>
 
-                    <tr style="text-align: center;">
-                        <th scope="row">{{$valor3['numero_aluno']}}</th>
-                        <td>{{$valor3['nome']}}</td>
-                        <td>{{$valor3['falta_presencial']}}</td>
-                        <td>{{$valor3['falta_disciplinar']}}</td>
-                        <td>{{$valor3['falta_material']}}</td>
-                        <td>
-                            <a class="btn botaoazul" data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}">Presencial</a>
-                            <a class="btn botaovermelho" data-bs-toggle="modal" data-bs-target="#modal_assiduidadee{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}">Disciplinar</a>
-                            <a class="btn botaopreto" style="background-color: rgb(92, 75, 20)" data-bs-toggle="modal" data-bs-target="#modal_assiduidadeee{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}">Material</a>
-                          </td>
-                          <td style="text-align: center">
-                            <a href="{{route('editar.assiduidade', [$valor3['aluno_id'], $valor3['disciplina_id']])}}" class="btn linkeditar">Hiatórico</a>
-                          </td>
-
-                        <td hidden>{{$valor3['curso']}}</td>
-                        <td hidden>{{$valor3['nome_disciplina']}}</td>
-                        <td hidden>{{$valor3['nome_turma']}}</td>
-                    </tr>
-                @endforeach
-            @endforeach
-        @endforeach
-    </tbody>
-  </table>
   </div>
   <!-- Termina a tabela -->
 
