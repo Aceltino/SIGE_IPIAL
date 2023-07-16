@@ -147,7 +147,97 @@
                 </div>
 
                 <div class="col">
-                <select oninput="this.className = ''" name='professor1' class="form-select">
+                    <select oninput="this.className = ''" name='professor1' class="form-select">
+                        <optgroup label="Professores">
+                        <option value="Sungo Afonso">Sungo Afonso</option>
+                        <option value="Brigith Barros">Brigith Barros</option>
+                        <option value="Sivi Lando">Sivi Lando</option>
+                        <option value="Anatoli Lussati">Anatoli Lussati</option>
+                        <option value="Rosa António">Rosa António</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row" >
+                <div class="col">
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
+                </div>
+
+                <div class="col">
+                    <select oninput="this.className = ''" class="form-select">
+                        <optgroup label="Professores">
+                        <option value="Sungo Afonso">Sungo Afonso</option>
+                        <option value="Brigith Barros">Brigith Barros</option>
+                        <option value="Sivi Lando">Sivi Lando</option>
+                        <option value="Anatoli Lussati">Anatoli Lussati</option>
+                        <option value="Rosa António">Rosa António</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row" >
+                <div class="col">
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
+                </div>
+
+                <div class="col">
+                    <select oninput="this.className = ''" class="form-select">
+                        <optgroup label="Professores">
+                        <option value="Sungo Afonso">Sungo Afonso</option>
+                        <option value="Brigith Barros">Brigith Barros</option>
+                        <option value="Sivi Lando">Sivi Lando</option>
+                        <option value="Anatoli Lussati">Anatoli Lussati</option>
+                        <option value="Rosa António">Rosa António</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row" >
+                <div class="col">
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
+                </div>
+
+                <div class="col">
+                    <select oninput="this.className = ''" class="form-select">
+                        <optgroup label="Professores">
+                        <option value="Sungo Afonso">Sungo Afonso</option>
+                        <option value="Brigith Barros">Brigith Barros</option>
+                        <option value="Sivi Lando">Sivi Lando</option>
+                        <option value="Anatoli Lussati">Anatoli Lussati</option>
+                        <option value="Rosa António">Rosa António</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row" >
+                <div class="col">
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
+                </div>
+
+                <div class="col">
+                    <select oninput="this.className = ''" class="form-select">
+                        <optgroup label="Professores">
+                        <option value="Sungo Afonso">Sungo Afonso</option>
+                        <option value="Brigith Barros">Brigith Barros</option>
+                        <option value="Sivi Lando">Sivi Lando</option>
+                        <option value="Anatoli Lussati">Anatoli Lussati</option>
+                        <option value="Rosa António">Rosa António</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row" >
+                <div class="col">
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
+                </div>
+
+                <div class="col">
+                    <select oninput="this.className = ''" class="form-select">
                         <optgroup label="Professores">
                         <option value="Sungo Afonso">Sungo Afonso</option>
                         <option value="Brigith Barros">Brigith Barros</option>
@@ -183,7 +273,7 @@
                 </div>
 
                 <div class="col">
-                <select oninput="this.className = ''" class="form-select">
+                    <select oninput="this.className = ''" class="form-select">
                         <optgroup label="Professores">
                         <option value="Sungo Afonso">Sungo Afonso</option>
                         <option value="Brigith Barros">Brigith Barros</option>
@@ -201,97 +291,7 @@
                 </div>
 
                 <div class="col">
-                <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Professores">
-                        <option value="Sungo Afonso">Sungo Afonso</option>
-                        <option value="Brigith Barros">Brigith Barros</option>
-                        <option value="Sivi Lando">Sivi Lando</option>
-                        <option value="Anatoli Lussati">Anatoli Lussati</option>
-                        <option value="Rosa António">Rosa António</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
-                </div>
-
-                <div class="col">
-                <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Professores">
-                        <option value="Sungo Afonso">Sungo Afonso</option>
-                        <option value="Brigith Barros">Brigith Barros</option>
-                        <option value="Sivi Lando">Sivi Lando</option>
-                        <option value="Anatoli Lussati">Anatoli Lussati</option>
-                        <option value="Rosa António">Rosa António</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
-                </div>
-
-                <div class="col">
-                <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Professores">
-                        <option value="Sungo Afonso">Sungo Afonso</option>
-                        <option value="Brigith Barros">Brigith Barros</option>
-                        <option value="Sivi Lando">Sivi Lando</option>
-                        <option value="Anatoli Lussati">Anatoli Lussati</option>
-                        <option value="Rosa António">Rosa António</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
-                </div>
-
-                <div class="col">
-                <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Professores">
-                        <option value="Sungo Afonso">Sungo Afonso</option>
-                        <option value="Brigith Barros">Brigith Barros</option>
-                        <option value="Sivi Lando">Sivi Lando</option>
-                        <option value="Anatoli Lussati">Anatoli Lussati</option>
-                        <option value="Rosa António">Rosa António</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
-                </div>
-
-                <div class="col">
-                <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Professores">
-                        <option value="Sungo Afonso">Sungo Afonso</option>
-                        <option value="Brigith Barros">Brigith Barros</option>
-                        <option value="Sivi Lando">Sivi Lando</option>
-                        <option value="Anatoli Lussati">Anatoli Lussati</option>
-                        <option value="Rosa António">Rosa António</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
-                </div>
-
-                <div class="col">
-                <select oninput="this.className = ''" class="form-select">
+                    <select oninput="this.className = ''" class="form-select">
                         <optgroup label="Professores">
                         <option value="Sungo Afonso">Sungo Afonso</option>
                         <option value="Brigith Barros">Brigith Barros</option>
@@ -1760,7 +1760,5 @@
           </div>
         </div>
       </form>
-
-
     </main>
 @endsection
