@@ -5,16 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Models\{
-    Aluno,
-    AlunoTurma,
-    AnoTurmaCood,
-    User,
+Candidato,Professor,Turma,
+Curso,Aluno,User,Comunicado,
 };
 use App\Traits\AnoLectivoTrait;
 
 class InicioController extends Controller
 {
-    public function inicio(){
+    public function inicio()
+    {
         //      #Alunos por ano
         if(count(Aluno::all())!=0){
             $dadosAlunos = Aluno::select([
@@ -62,22 +61,17 @@ class InicioController extends Controller
                 $totalCargo[] = $usCargo->totalc;
             }
 
-            //Variaveis necessarias para o grafico
-            $titulografUsuarios= "Cargos de usuarios";
-            $titulografUsuarios2= "";
-            $cargoNome = implode(',', $nomeCargo);
-            $cargoTotal = implode(',', $totalCargo); 
-        }else{
-            $titulografUsuarios= "";
-            $titulografUsuarios2 = "Gráfico indisponível";
-            $totalUs = 0;
-            $cargoNome = "";
-            $cargoTotal = "";
-        }
+        //Variaveis necessarias para o grafico
+        $cargoNome = implode(',', $nomeCargo);
+        $cargoTotal = implode(',', $totalCargo); 
+
+        $comunicados = Comunicado::all();
         //dd($usCargos);
         //   return view('pagina-inicial', compact('alunoAno', 'alunoTotal'));
 
-        return view('pagina-inicial', compact('totalUs', 'titulo', 'alunoAno', 'alunoTotal', 'cargoNome', 'cargoTotal', 'titulografAlunos','titulografAlunos2', 'titulografUsuarios','titulografUsuarios2'));        
+        return view('pagina-inicial', compact('comunicados','totalinscritos', 'totaladmitidos', 'totalnadmitidos', 'totalmatriculados', 'totalprofessores', 'totalturmas', 'totalcursos', 'totalUs', 'titulo', 'alunoAno', 'alunoTotal', 'cargoNome', 'cargoTotal'));
+        //redirect()->route('inicio');
     }
 
+}
 }
