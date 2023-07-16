@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Area_formacao;
 use App\Models\Professor;
+use App\Models\Curso;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\AreaFormacaoRequest;
 use App\Traits\CursoTrait;
 
@@ -73,6 +73,10 @@ class AreaFormacaoController extends Controller
 
     public function delete($id)
     {
+        $area_formacao = Area_formacao::with('curso')->find($id);
+        if (count($area_formacao->curso) > 0) {
+            return redirect()->back()->with('erro', "Área de formação não pode ser eliminada porque contém cursos relacionados a ela!");
+        }
         $professor = ['area_formacao_id' => null];
         Professor::where('area_formacao_id', $id)->update($professor);
         Area_formacao::where('area_formacao_id', $id)->delete();

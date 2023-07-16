@@ -58,20 +58,20 @@
           </tr>
         </thead>
         <tbody>
-        @foreach ($anoLectivo as $al)
+        @for ($i = count($anoLectivo) - 1; $i >= 0; $i--)
           <tr style=" text-align: center;">
-                <td>{{$al['ano_lectivo']}}</td>
-                <td>{{$al['data_inicio_ano_lectivo']}}</td>
-                <td>{{$al['data_fim_ano_lectivo']}}</td>
-                <td>{{$al['num_aluno_na_turma']}}</td>
-                <td>{{$al['num_sala_escola']}}</td>
+                <td>{{$anoLectivo[$i]['ano_lectivo']}}</td>
+                <td>{{$anoLectivo[$i]['data_inicio_ano_lectivo']}}</td>
+                <td>{{$anoLectivo[$i]['data_fim_ano_lectivo']}}</td>
+                <td>{{$anoLectivo[$i]['num_aluno_na_turma']}}</td>
+                <td>{{$anoLectivo[$i]['num_sala_escola']}}</td>
                 <td class="d-flex justify-content-between align-items-center">
                     <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-                    <a href="{{route('editar.ano.lectivo', $al['ano_lectivo_id'])}}"><i class="bi bi-pencil"></i></a>
-                    <a href="/configuracoes-do-ano-lectivo" class="btn d-flex align-items-center p-0"><i class="bi bi-gear" ></i></a>    
+                    <a href="{{route('editar.ano.lectivo', $anoLectivo[$i]['ano_lectivo_id'])}}"><i class="bi bi-pencil"></i></a>
+                    <button type="button" class="btn d-flex align-items-center p-0" data-bs-toggle="modalDesactivar" data-bs-target="#basicModalDesactivar"><i class="bi bi-power" ></i></button>
                 </td>
             </tr>
-        @endforeach
+        @endfor
 
         </tbody>
       </table>
@@ -90,7 +90,7 @@
 
             <div class="modal-footer" style="border: none;">
               <button type="button" class="btn btn-warning" data-bs-dismiss="modalDesactivar">Cancelar</button>
-              <form action="{{route('apagar.ano.lectivo', $al['ano_lectivo_id'])}}" method="POST">
+              <form action="" method="POST">
                 @csrf
                 @method('delete')
                 <button type="submit" class="btn btn-danger d-flex align-items-center p-0">Desactivar</button>

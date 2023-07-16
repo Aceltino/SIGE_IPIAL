@@ -182,23 +182,6 @@ trait AnoLectivoTrait
         }
     }
 
-    public static function fecharAnoLectivo(){
-        //CandidatoController::eliminarCandidatos(); // Eliminar todos os candidatos não matriculados no ano lectivo
-        AlunoController::alunosVinculados(); //Cortar o acesso de todos os alunos do sistema
-
-
-        //Todas as funções devem ser colocadas acima porque depois do ano lectivo estar com o status 0 nenhuma ação é permitida.
-
-        $anoLectivo = Ano_lectivo::with('trimestres')->latest()->where('status_ano_lectivo', 1)->get()->first();
-        $data_corrente = strtotime(date('Y-m-d'));
-        $fim_ano_lectivo = strtotime($anoLectivo->data_fim_ano_lectivo);
-        if ($data_corrente >= $fim_ano_lectivo) {
-            Trimestre::where('status', 1)->update(['status' => 0]);
-            Ano_lectivo::where('status_ano_lectivo', 1)->update(['status_ano_lectivo' => 0]);
-        }
-        return true;
-    }
-
     public static function calcularHoraTempos($hora_inicio, $intervalo, $hora_fim){
         $h_inicio = (int) substr($hora_inicio, 0, 2);
         $minutos_inicio = (int) substr($hora_inicio, 3, 2);
@@ -215,7 +198,7 @@ trait AnoLectivoTrait
         // dd($df);
     }
 
-    public static function abrirTrimestre(){
+    public static function abrirTrimestreAuto(){
 
         $anoLectivo = Ano_lectivo::with('trimestres')->latest()->where('status_ano_lectivo', 1)->get()->first();
         $data_corrente = strtotime(date('Y-m-d'));
@@ -228,7 +211,7 @@ trait AnoLectivoTrait
         }
     }
 
-    public static function fecharTrimestre(){
+    public static function fecharTrimestreAuto(){
         $trimestre = Trimestre::where('status', 1)->get()->first();
         if($trimestre){
             $data_corrente = strtotime(date('Y-m-d'));
@@ -238,4 +221,6 @@ trait AnoLectivoTrait
             }
         }
     }
+
+
 }
