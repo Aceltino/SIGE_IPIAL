@@ -213,8 +213,12 @@
       <div class="col-lg-8">
         <div class="card-grafico-escuro">
           <div class="card-body">
-            <h5 class="card-title">Alunos por ano</h5>
+            <h5 class="card-title">{{$titulografAlunos}}</h5>
   
+            @if($titulografAlunos == "")
+            <h5 class="card-title">{{$titulografAlunos2}}</h5>
+            <br>
+            @else
             <!-- inicio grafico de consulta -->
             <div id="lineChart"></div>
   
@@ -251,15 +255,19 @@
               });
             </script>
             <!-- Fim grafico de consulta -->
-  
+            @endif
+
           </div>
         </div>
       </div>
       <div class="col-lg-4">
         <div class="card-grafico-escuro">
           <div class="card-body">
-            <h5 class="card-title">Cargos de Usarios </h5>
-
+            <h5 class="card-title">{{$titulografUsuarios}} </h5>
+            @if($titulografUsuarios == "")
+            <h5 class="card-title">{{$titulografUsuarios2}}</h5>
+            <br>
+            @else
             <!-- inicio grafico de consulta de usuarios -->
             <div id="radialBarChart"></div>
             
@@ -299,7 +307,7 @@
               });
             </script>
             <!-- Fim grafico de consulta de usuarios -->
-
+            @endif
           </div>
         </div>
       </div>

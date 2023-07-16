@@ -57,26 +57,26 @@ axios.get('/api/turmas')
                         <form class="form-inativo">
                             <div class="dados-pessoais">        
                             <div class="area-input form-group">
-                                <label>Nome Da Turma: </label><input class="form-control" type="text" name="" value="${tregistro.nomeTurma}"  disabled>
+                                <label>Nome Da Turma: </label><input class="form-control" type="text" name="" value="${tregistro.nomeTurma}"  disabled style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;">
                             </div>
 
                             <div class="row">
                                 <div class="col form-group gap-1 ">
-                                <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select"  disabled>
+                                <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select"  disabled style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;">
                                     <option  disabled>Classe:</option>
                                     <option value="${tregistro.classeTurma}" selected>${tregistro.classeTurma}</option>
                                 </select>
                                 </div>
                                         
                                 <div class="col form-group gap-1 ">
-                                <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select"  disabled>
+                                <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select"  disabled style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;">
                                     <option disabled>Turno:</option>
                                     <option value="${tregistro.turnoTurma}" selected>${tregistro.turnoTurma}</option>
                                 </select>
                                 </div>
 
                                 <div class="form-group col">
-                                <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select"  disabled>
+                                <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select"  disabled style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;">
                                     <option  disabled>CURSO</option>
                                     <option value ="${tregistro.cursoTurma}" selected>${tregistro.cursoTurma}</option>
                                 </select>
@@ -86,11 +86,11 @@ axios.get('/api/turmas')
                             <div class="container">
                                 <div class="row">
                                     <div class=" col area-input form-group " style="margin-left: 10px;" >
-                                        <label for=""> Ano Lectivo:</label><input class="form-control" type="text" name="" value="${tregistro.anolectivoTurma}"  disabled >
+                                        <label for=""> Ano Lectivo:</label><input class="form-control" type="text" name="" value="${tregistro.anolectivoTurma}"  disabled style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;">
                                     </div>
 
                                     <div class=" col area-input form-group " style="margin-left: 10px;" >
-                                        <label for=""> Vagas:</label><input class="form-control" type="text" name="" value="${tregistro.vagasTurma}" disabled>
+                                        <label for=""> Vagas:</label><input class="form-control" type="text" name="" value="${tregistro.vagasTurma}" disabled style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;">
                                     </div>
                                 </div>
                             </div>

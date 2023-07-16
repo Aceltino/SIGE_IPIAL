@@ -21,7 +21,7 @@
                 <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
 
                     <div style="  text-align: center;">
-                        <h2>CRIAR TURMA</h2>
+                        <h1>CRIAR TURMA</h1>
                     </div>
 
                 </div>

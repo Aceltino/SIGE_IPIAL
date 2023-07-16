@@ -6,7 +6,7 @@
 <main id="main" class="main">
   <div class="row">
     <div class="col">
-      <h2>TURMAS</h2>      
+      <h1>TURMAS</h1>      
     </div>
   
     <div class="col-lg-2">
