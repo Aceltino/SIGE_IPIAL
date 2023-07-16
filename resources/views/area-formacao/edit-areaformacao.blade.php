@@ -72,7 +72,7 @@
 
             <div style="text-align:center;margin-top:10px;">
                 <div>
-                    <button type="submit" class="btn btn-success" name="id" value="{{$area_formacao->area_formacao_id}}">Criar Area de Formação</button>
+                    <button type="submit" class="btn btn-success" name="id" value="{{$area_formacao->area_formacao_id}}">Actualizar</button>
                 </div>
             </div>
         </div>

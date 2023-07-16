@@ -47,7 +47,7 @@
         </form>
       </div>
 
-      <!-- /  Inicio da tabela de inscritos -->
+     
       <table class="table table-striped table table-custom table-escuro" id="matricula-tab">
         <thead>
           <tr style=" text-align: center;">
@@ -114,8 +114,8 @@
                     <div class="footer-modal" style="text-align: center;">
 
                         <div class="jnt">
-                            <a href="#" class="btn" style="background-color: #070b17; color: #fff;">Retrocer aos Cursos</a>
-                        <a href="#" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
+                            <a href="areaformacao" class="btn" style="background-color: #070b17; color: #fff;">Retrocer aos Cursos</a>
+                        <a href="edit-areaformacao" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
                         </div>
                     </div>
                     </div>
