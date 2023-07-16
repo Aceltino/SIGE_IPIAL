@@ -279,8 +279,8 @@
             <select name='cargo' oninput="this.className = ''" class="form-select" id="select-cargo-cadastrar-professor">
               <optgroup label="Cargo">
                 <option value="Professor">Professor</option>
-                <option value="Coordenador Curso">Coordenador do curso</option>
-                <option value="Coordenador Area">Coordenador da área de formação</option>
+                <option value="Coordenador do curso">Coordenador do curso</option>
+                <option value="Coordenador da área de formação">Coordenador da área de formação</option>
               </optgroup>
             </select>
           </div>

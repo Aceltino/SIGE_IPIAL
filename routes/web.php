@@ -260,7 +260,10 @@ Route::prefix('ano-lectivo')->middleware(['auth','active.session','checkcargo'])
 
 });
 
-
+    /*Editar Area de formacao*/
+    Route::get('/configuracoes-do-ano-lectivo', function () {
+        return view('ano-lectivo/configuracoes-do-ano-lectivo');
+    });
 /**<!--Fim Rotas ano lectivo--> */
 
 
@@ -437,6 +440,10 @@ Route::get('/horario-turma', function () {
 /*Editar horário*/
 Route::get('/editar-horario', function () {
     return view('horario/editar-horario');
+});
+/*Ver horário*/
+Route::get('/ver-horarios', function () {
+    return view('horario/horarios');
 });
 /*Area de formacao*/
 Route::get('/criar-areaformacao', [AreaFormacaoController::class, 'indexCadastro'])->name('criar.area.formacao');
