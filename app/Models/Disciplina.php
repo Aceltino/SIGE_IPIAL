@@ -49,5 +49,9 @@ class Disciplina extends Model
     public function Media(){
         return $this->hasMany(Media::class,'media_id');
     }
+
+    public function classificacaofinal(){
+        return $this->hasMany(Classificacaofinal::class,'classificaoFinal_id');
+    }
 }
  

@@ -35,7 +35,9 @@ class PautaController extends Controller
 
     public static function show($id,$anoLectivo):mixed
     {
-    
+        
+
+        
         $turma= Turma::find($id); //Busca na turma
         $ano= Ano_lectivo::find($anoLectivo);//Buscar Ano Lectivo
 
@@ -46,11 +48,11 @@ class PautaController extends Controller
         $alunos = Aluno::find($turmaAluno);//Buscar os alunos pertecente a turma buscada acima. 
         
         //Buscar as Disciplinas de uma Turma pelos seu Curso
-        $disciplinaGerais= Disciplina::where('componente','Cientificas')
-                                        ->Orwhere('componente','Socio-culturais')
+        $disciplinaGerais= Disciplina::where('componente','Componente Científica')
+                                        ->Orwhere('componente','Componente Socio-Cultural')
                                         ->get();
-
-        $disciplinaEspecificas= Disciplina::where('componente','Técnicas')
+      
+        $disciplinaEspecificas= Disciplina::where('componente','Componente Técnica, Tecnológica e Prática')
                                             ->where('curso_id',$turma->curso->curso_id)
                                             ->get();
 
@@ -67,17 +69,20 @@ class PautaController extends Controller
                 $OneMedia[]= MediasController::getMediaOneTrimestre($value->disciplina_id,$aluno->aluno_id, $anoLectivo); 
                 $TwoMedia[]= MediasController::getMediaTwoTrimestre($value->disciplina_id,$aluno->aluno_id, $anoLectivo); 
                 $ThreeMedia[]= MediasController::getMediaThreeTrimestre($value->disciplina_id,$aluno->aluno_id, $anoLectivo); 
-                $ca[]= MediasController::classificacaoAnual($value->disciplina_id,$aluno->aluno_id, $anoLectivo);
+                $ca_cfd[]= MediasController::classificacaoAnual($value->disciplina_id,$aluno->aluno_id,$anoLectivo,$turma->classe->classe_id);
             } 
         }   
 
-        // dd($ca);
+        // foreach ($ca_cfd as $key => $value) {
+        //     echo $value;
+        //     echo "<hr>";
+        // }
 
         //Condição para Pauta ser Gerada
         if ( (count($turmaAluno) <= 0) && (empty($notas)) ){
             return redirect()->back()->with('msg_sem_pauta',"Lamentamos! Esta pauta ainda não esta composta... Aguarde o lançamento das notas");
         }
-
+       
         //Dados completos que vão para compor a pauta. 
         $dadosPauta= [
             'alunos' => $alunos, 
@@ -89,6 +94,7 @@ class PautaController extends Controller
             'OneMedia'=>$OneMedia,
             'TwoMedia'=>$TwoMedia,
             'ThreeMedia'=>$ThreeMedia,
+            'ca_cdf'=>$ca_cfd,
             'colspanDisciplina'=>(count($disciplinas)*6),
 
         ];  
