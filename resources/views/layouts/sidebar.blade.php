@@ -924,8 +924,14 @@
         </a>
         <ul id="horario-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="professor/horario-prof">
-              <i class="bi bi-circle"></i><span>Horários</span>
+            <a href="/horario/criar-horario">
+              <i class="bi bi-circle"></i><span>Criar horário</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/ver-horarios">
+              <i class="bi bi-circle"></i><span>Ver horários</span>
             </a>
           </li>
         </ul>
