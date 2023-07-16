@@ -72,6 +72,7 @@
         <th scope="col">Curso</th>
         <th scope="col">Classe</th>
         <th scope="col">Carga Horária</th>
+        <th scope="col">Tipo de disciplina</th>
         <th scope="col"></th>
 
       </tr>
@@ -83,7 +84,7 @@
         <td>{{ $disciplina->sigla		}}</td>
         <td>{{ $disciplina->componente	}}</td>
         <td>{{ $disciplina->tempo_prova }}</td> 
-        @if($disciplina->curso_id == '')
+        @if($disciplina->componente =="Socio-culturais" || $disciplina->componente =="Cientificas" || $disciplina->curso_id == '')
         <td>Todos cursos</td>
         @else
         <td>{{ $disciplina->curso->nome_curso }}</td>
@@ -91,7 +92,8 @@
          @foreach($disciplina->classes as $classe)
           <td>{{ $classe->classe }}</td>
           <td>{{ $classe->pivot->carga_horaria }}</td> 
-        <td class="d-flex"> 
+          <td>{{ $classe->pivot->tipo_disciplina }}</td>
+        <td style="display: flex; justify-content: center; align-items: center; gap:5px;"> 
           <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal{{$disciplina->disciplina_id  }}"></i>
           <a href="{{ route('disciplina.edit', ['disciplina_id' => $disciplina->disciplina_id ])}}"><i class="bi bi-pencil"></i></a>
           <form action="{{ route('disciplina.delete', ['disciplina_id' => $disciplina->disciplina_id]) }}" method="POST">
@@ -137,8 +139,11 @@
           <div class="area-input form-group" style="border: none; ">
             <label>Carga Horária: </label><input type="text" name="socio-culturais" value="{{ $classe->pivot->carga_horaria }}Tempo(s)" disabled>
         </div>
+             <div class="area-input form-group" style="border: none; ">
+                <label>Tipo_disciplina: </label><input type="text" name="Tipo_disciplina" value="{{ $classe->pivot->tipo_disciplina }}" disabled>
+            </div>
             <div class="area-input form-group" style="border: none; ">
-            @if($disciplina->curso_id == '')
+            @if($disciplina->componente =="Socio-culturais" || $disciplina->componente =="Cientificas" || $disciplina->curso_id == '')
             <label>Curso: </label><input type="text" name="" value="Todos os cursos" disabled>
             @else
                 <label>Curso: </label><input type="text" name="" value="{{ $disciplina->curso->nome_curso }}" disabled>

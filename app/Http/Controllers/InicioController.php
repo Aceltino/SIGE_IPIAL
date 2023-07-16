@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Models\{
 Candidato,Professor,Turma,
-Curso,Aluno,User,
+Curso,Aluno,User,Comunicado,
 };
 
 class InicioController extends Controller
@@ -122,10 +122,11 @@ class InicioController extends Controller
         $cargoNome = implode(',', $nomeCargo);
         $cargoTotal = implode(',', $totalCargo); 
 
+        $comunicados = Comunicado::all();
         //dd($usCargos);
      //   return view('pagina-inicial', compact('alunoAno', 'alunoTotal'));
 
-        return view('pagina-inicial', compact('totalinscritos', 'totaladmitidos', 'totalnadmitidos', 'totalmatriculados', 'totalprofessores', 'totalturmas', 'totalcursos', 'totalUs', 'titulo', 'alunoAno', 'alunoTotal', 'cargoNome', 'cargoTotal'));
+        return view('pagina-inicial', compact('comunicados','totalinscritos', 'totaladmitidos', 'totalnadmitidos', 'totalmatriculados', 'totalprofessores', 'totalturmas', 'totalcursos', 'totalUs', 'titulo', 'alunoAno', 'alunoTotal', 'cargoNome', 'cargoTotal'));
         //redirect()->route('inicio');
     }
 

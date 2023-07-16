@@ -16,8 +16,7 @@ class Disciplina extends Model
         'nome_disciplina',
         'componente',
         'tempo_prova',
-        'sigla',    
-        'Tipo_disciplina',    
+        'sigla',        
      ]; 
  
     public function professor(){

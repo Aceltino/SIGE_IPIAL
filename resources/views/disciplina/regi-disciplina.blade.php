@@ -72,7 +72,7 @@
                             @enderror
                     </div>
                     <div class="form-group col" class="clone2">
-                        <select oninput="this.className = ''" class="form-select" name="Tipo_disciplina" id="selectTipoDisciplina">
+                        <select oninput="this.className = ''" class="form-select" name="tipo_disciplina" id="selectTipoDisciplina">
                           <option selected disabled>Tipo de Disciplina</option>
                           <option value="Terminal">Terminal</option> 
                           <option value="Contínua">Contínua</option>    
