@@ -68,7 +68,7 @@
                 <td class="d-flex justify-content-between align-items-center">
                     <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
                     <a href="{{route('editar.ano.lectivo', $anoLectivo[$i]['ano_lectivo_id'])}}"><i class="bi bi-pencil"></i></a>
-                    <button type="button" class="btn d-flex align-items-center p-0" data-bs-toggle="modalDesactivar" data-bs-target="#basicModalDesactivar"><i class="bi bi-power" ></i></button>
+                    <a href="{{route('config.ano.lectivo', $anoLectivo[$i]['ano_lectivo_id'])}}" class="btn d-flex align-items-center p-0" data-bs-toggle="modalDesactivar" data-bs-target="#basicModalDesactivar"><i class="bi bi-gear" ></i></a>
                 </td>
             </tr>
         @endfor

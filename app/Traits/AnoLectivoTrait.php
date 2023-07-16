@@ -222,5 +222,45 @@ trait AnoLectivoTrait
         }
     }
 
+    public static function abrirTrimestre($trimestre){
+        $anoLectivo = Ano_lectivo::latest()->where('status_ano_lectivo', 1)->get()->first();
+        $trimestre = Trimestre::where('trimestre', $trimestre)->where('ano_lectivo_id', $anoLectivo->ano_lectivo_id)->get()->first();
+        $trimestre->data_inicio = date('Y-m-d');
+        $trimestre->status = 1;
+        $trimestre->save();
+        return true;
+    }
+    public static function fecharTrimestre($trimestre){
+        $anoLectivo = Ano_lectivo::latest()->where('status_ano_lectivo', 1)->get()->first();
+        $trimestre = Trimestre::where('trimestre', $trimestre)->where('ano_lectivo_id', $anoLectivo->ano_lectivo_id)->get()->first();
+        $trimestre->data_fim = date('Y-m-d');
+        $trimestre->status = 0;
+        $trimestre->save();
+        return true;
+    }
+
+    public static function fecharAnoLectivo($ano_lectivo_id){
+        $ano_lectivo = Ano_lectivo::find($ano_lectivo_id);
+        if($ano_lectivo->status_ano_lectivo === 0){
+            return redirect()->back()->with('erro', 'Este ano lectivo já se encontra fechado.');
+        }
+        if(!empty($ano_lectivo) && $ano_lectivo->status_ano_lectivo === 1){
+            $trimestre = Trimestre::where('ano_lectivo_id', $ano_lectivo_id)->where('status', 1)->get()->first();
+            if($trimestre){
+                return redirect()->back()->with('erro', 'Ano lectivo não pode ser fechado se existir algum trimestre em curso.');
+            }
+            //CandidatoController::eliminarCandidatos(); // Eliminar todos os candidatos não matriculados no ano lectivo
+            AlunoController::alunosVinculados(); //Cortar o acesso de todos os alunos do sistema
+
+
+            //Todas as funções devem ser colocadas acima porque depois do ano lectivo estar com o status 0 nenhuma ação é permitida.
+            $ano_lectivo->status_ano_lectivo = 0;
+            $ano_lectivo->data_fim_ano_lectivo = date('Y-m-d');
+            $ano_lectivo->save();
+            return redirect()->route('ano.lectivo')->with('sucesso', 'Ano lectivo fechado com sucesso.');
+        } else{
+            return redirect()->back()->with('erro', 'Ano lectivo não encontrado.');
+        }
+    }
 
 }

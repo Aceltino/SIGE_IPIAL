@@ -256,7 +256,9 @@ Route::prefix('ano-lectivo')->middleware(['auth','active.session','checkcargo'])
     Route::get('editar-ano-letivo/{id}', [AnoLectivoController::class, 'indexUpdate'])->name('editar.ano.lectivo');
     Route::put('editar-ano-letivo/editar', [AnoLectivoController::class, 'update'])->name('update.ano.lectivo');
 
-    Route::delete('apagar-ano-lectivo/{id}', [AnoLectivoController::class, 'delete'])->name('apagar.ano.lectivo');
+    Route::get('configurar-ano-lectivo/{id}', [AnoLectivoController::class, 'indexConfiguracao'])->name('config.ano.lectivo');
+    Route::post('configurar-ano-lectivo', [AnoLectivoController::class, 'ConfiguracaoAnoLectivo'])->name('configurar.ano.lectivo');
+
 
 });
 
