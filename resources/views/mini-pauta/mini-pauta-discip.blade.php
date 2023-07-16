@@ -13,8 +13,8 @@
                 <div class="col-lg-2">
                     <select class="btn-sel form-select" name="opcoes" id="filtro3" >
                         <option disabled selected>Disciplinas</option>
-                        @foreach ($disciplinar as $discipl)
-                            <option value="I10AM">{{ $discipl->nome_disciplina }}</option>
+                        @foreach ($disciplinar as $item)
+                            <option value="I10AM">{{ $item['disciplina']->nome_disciplina }}</option>
                         @endforeach
                     </select>
                 </div>        
@@ -41,10 +41,10 @@
                 @foreach($disciplinar as $disciplina)
                     <tr  style=" text-align: center;">
                         <td>{{ $curso->nome_curso }}</td>
-                        <td>{{ $disciplina->nome_disciplina }}</td>
+                        <td>{{ $disciplina['disciplina']->nome_disciplina }}</td>
                         <td>{{ $turma->turno->nome_turno }}</td>
                         <td>
-                            <a href="{{ route('mini-pauta.view', ['turma_id' => $turma->turma_id, 'disciplina_id' => $disciplina->disciplina_id]) }}" class="btn btn-cor-sg-a">Ver Mini-pauta</a>
+                            <a href="{{ route('mini-pauta.view', ['turma_id' => $turma->turma_id, 'disciplina_id' => $disciplina['disciplina']->disciplina_id]) }}" class="btn btn-cor-sg-a">Ver Mini-pauta</a>
                         </td>
                     </tr>
                 @endforeach

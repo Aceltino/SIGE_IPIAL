@@ -20,24 +20,10 @@
             <h2 class="text-uppercase text-center my-3 color-blue-principal">Dados do horário</h2>
             <h6 class="text-uppercase text-center my-4 color-blue-principal">Selecione a área de formação, o curso, a turma,
             os dias de educação física (turmas da 12ª, 13ª e noite não inclusas), sem esquecer as horas de início e fim.</h6>
-          
-            <div class="row mb-3">
-                <div class="col">
-                    <select oninput="this.className = ''" name= class="form-select">
-                        <optgroup label="Área de formação">
-                            <option value="Informática">Informática</option>
-                            <option value="Contrução civil">Electricidade</option>
-                            <option value="Eletronica">Electrônica</option>
-                            <option value="Contrução civil">Construção civil</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-
 
             <div class="row mb-3">
                 <div class="col">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select oninput="this.className = ''"name='curso' class="form-select">
                         <optgroup label="Curso">
                         <option value="Desenhador Projectista">Desenhador Projetista</option>
                         <option value="Técnico de Energia e Instalações Eléctricas">Técnico de Energia e Instalações Eléctricas</option>
@@ -50,7 +36,7 @@
 
             <div class="row mb-3">
                 <div class="col">
-                    <select oninput="this.className = ''" class="form-select" id="horario-select-turma">
+                    <select oninput="this.className = ''" name='turma' class="form-select" id="horario-select-turma">
                         <optgroup label="Turma">
                             <option value="I10AM">I10AM</option>
                             <option value="I11BM">I11BM</option>
@@ -89,7 +75,7 @@
 
             <div class="row mb-3" id="horario-div-que-pode-desaparecer-1">
                 <div class="col-sm-6">
-                    <select oninput="this.className = ''" class="form-select" id="criar-horario-select-primeiro-dia-de-educacao-fisica" onchange="verificarSelecoesEducacaoFisica()">
+                    <select oninput="this.className = ''" name='ed_fisica_dia1' class="form-select" id="criar-horario-select-primeiro-dia-de-educacao-fisica" onchange="verificarSelecoesEducacaoFisica()">
                         <optgroup label="Primeiro dia de Educação Física"> 
                             <option value="Segunda-Feira">Segunda-Feira</option>
                             <option value="Terça-Feira">Terça-Feira</option>
@@ -101,18 +87,28 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="time" title="Hora de início da Educação Física" class="form-control" value="00:00" id="criar-horario-hora-de-inicio-da-educacao-fisica-no-primeiro-dia" name="" oninput="this.className = ''" required>
+                    <select oninput="this.className = ''" name='ed_fisica_dia1' class="form-select" id="criar-horario-select-tempo-de-aula-1">
+                        <optgroup label="Tempos de aula"> 
+                            <option value="1">Primeiro tempo</option>
+                            <option value="2">Segundo tempo</option>
+                            <option value="3">Terceiro tempo</option>
+                            <option value="4">Quarto tempo</option>
+                            <option value="5">Quinto tempo</option>
+                            <option value="6">Sexto tempo</option>
+                        </optgroup>
+                    </select>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="time" title="Hora de fim da Educação Física" class="form-control" value="00:00" id="criar-horario-hora-de-fim-da-educacao-fisica-no-primeiro-dia" name="" oninput="this.className = ''" required>
+                    <input type="text" title="Hora de fim da Educação Física" class="form-control" name='ed_fisica_hora1' value="00:00 - 00:00" id="criar-horario-hora-de-fim-da-educacao-fisica-no-primeiro-dia" name="" oninput="this.className = ''" disabled required>
                 </div>
             </div>
 
             <div class="row" id="horario-div-que-pode-desaparecer-2">
                 <div class="col-sm-6">
-                    <select oninput="this.className = ''" class="form-select" id="criar-horario-select-segundo-dia-de-educacao-fisica" onchange="verificarSelecoesEducacaoFisica()">
-                        <optgroup label = "Segundo dia de Educação Física"> 
+                    <select oninput="this.className = ''" class="form-select" id="criar-horario-select-segundo-dia-de-educacao-fisica">
+                        <optgroup label="Segundo dia de Educação Física">
+                            <option value="Nenhum">Nenhum</option>
                             <option value="Segunda-Feira">Segunda-Feira</option>
                             <option value="Terça-Feira">Terça-Feira</option>
                             <option value="Quarta-Feira">Quarta-Feira</option>
@@ -123,11 +119,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="time" title="Hora de início da Educação Física" class="form-control" value="00:00" id="criar-horario-hora-de-inicio-da-educacao-fisica-no-segundo-dia" name="" oninput="this.className = ''" required>
+                    <select oninput="this.className = ''" name='ed_fisica_dia1' class="form-select" id="criar-horario-select-tempo-de-aula-2">
+                        <optgroup label="Tempos de aula"> 
+                            <option value="1">Primeiro tempo</option>
+                            <option value="2">Segundo tempo</option>
+                            <option value="3">Terceiro tempo</option>
+                            <option value="4">Quarto tempo</option>
+                            <option value="5">Quinto tempo</option>
+                            <option value="6">Sexto tempo</option>
+                        </optgroup>
+                    </select>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="time" title="Hora de fim da Educação Física" class="form-control" value="00:00" id="criar-horario-hora-de-fim-da-educacao-fisica-no-segundo-dia" name="" oninput="this.className = ''" required>
+                    <input type="text" title="Hora de fim da Educação Física" class="form-control" name='ed_fisica_hora1' value="00:00 - 00:00" id="criar-horario-hora-de-fim-da-educacao-fisica-no-segundo-dia" name="" oninput="this.className = ''" disabled required>
                 </div>
             </div>
         </div>
@@ -138,11 +143,101 @@
           
           <div class="row" >
                 <div class="col">
+                    <input type="text" value="Língua Portuguesa" name="disciplina1" oninput="this.className = ''" disabled></p>
+                </div>
+
+                <div class="col">
+                    <select oninput="this.className = ''" name='professor1' class="form-select">
+                        <optgroup label="Professores">
+                        <option value="Sungo Afonso">Sungo Afonso</option>
+                        <option value="Brigith Barros">Brigith Barros</option>
+                        <option value="Sivi Lando">Sivi Lando</option>
+                        <option value="Anatoli Lussati">Anatoli Lussati</option>
+                        <option value="Rosa António">Rosa António</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row" >
+                <div class="col">
                     <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
                 </div>
 
                 <div class="col">
-                <select oninput="this.className = ''" class="form-select">
+                    <select oninput="this.className = ''" class="form-select">
+                        <optgroup label="Professores">
+                        <option value="Sungo Afonso">Sungo Afonso</option>
+                        <option value="Brigith Barros">Brigith Barros</option>
+                        <option value="Sivi Lando">Sivi Lando</option>
+                        <option value="Anatoli Lussati">Anatoli Lussati</option>
+                        <option value="Rosa António">Rosa António</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row" >
+                <div class="col">
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
+                </div>
+
+                <div class="col">
+                    <select oninput="this.className = ''" class="form-select">
+                        <optgroup label="Professores">
+                        <option value="Sungo Afonso">Sungo Afonso</option>
+                        <option value="Brigith Barros">Brigith Barros</option>
+                        <option value="Sivi Lando">Sivi Lando</option>
+                        <option value="Anatoli Lussati">Anatoli Lussati</option>
+                        <option value="Rosa António">Rosa António</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row" >
+                <div class="col">
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
+                </div>
+
+                <div class="col">
+                    <select oninput="this.className = ''" class="form-select">
+                        <optgroup label="Professores">
+                        <option value="Sungo Afonso">Sungo Afonso</option>
+                        <option value="Brigith Barros">Brigith Barros</option>
+                        <option value="Sivi Lando">Sivi Lando</option>
+                        <option value="Anatoli Lussati">Anatoli Lussati</option>
+                        <option value="Rosa António">Rosa António</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row" >
+                <div class="col">
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
+                </div>
+
+                <div class="col">
+                    <select oninput="this.className = ''" class="form-select">
+                        <optgroup label="Professores">
+                        <option value="Sungo Afonso">Sungo Afonso</option>
+                        <option value="Brigith Barros">Brigith Barros</option>
+                        <option value="Sivi Lando">Sivi Lando</option>
+                        <option value="Anatoli Lussati">Anatoli Lussati</option>
+                        <option value="Rosa António">Rosa António</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row" >
+                <div class="col">
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
+                </div>
+
+                <div class="col">
+                    <select oninput="this.className = ''" class="form-select">
                         <optgroup label="Professores">
                         <option value="Sungo Afonso">Sungo Afonso</option>
                         <option value="Brigith Barros">Brigith Barros</option>
@@ -178,7 +273,7 @@
                 </div>
 
                 <div class="col">
-                <select oninput="this.className = ''" class="form-select">
+                    <select oninput="this.className = ''" class="form-select">
                         <optgroup label="Professores">
                         <option value="Sungo Afonso">Sungo Afonso</option>
                         <option value="Brigith Barros">Brigith Barros</option>
@@ -196,97 +291,7 @@
                 </div>
 
                 <div class="col">
-                <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Professores">
-                        <option value="Sungo Afonso">Sungo Afonso</option>
-                        <option value="Brigith Barros">Brigith Barros</option>
-                        <option value="Sivi Lando">Sivi Lando</option>
-                        <option value="Anatoli Lussati">Anatoli Lussati</option>
-                        <option value="Rosa António">Rosa António</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
-                </div>
-
-                <div class="col">
-                <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Professores">
-                        <option value="Sungo Afonso">Sungo Afonso</option>
-                        <option value="Brigith Barros">Brigith Barros</option>
-                        <option value="Sivi Lando">Sivi Lando</option>
-                        <option value="Anatoli Lussati">Anatoli Lussati</option>
-                        <option value="Rosa António">Rosa António</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
-                </div>
-
-                <div class="col">
-                <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Professores">
-                        <option value="Sungo Afonso">Sungo Afonso</option>
-                        <option value="Brigith Barros">Brigith Barros</option>
-                        <option value="Sivi Lando">Sivi Lando</option>
-                        <option value="Anatoli Lussati">Anatoli Lussati</option>
-                        <option value="Rosa António">Rosa António</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
-                </div>
-
-                <div class="col">
-                <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Professores">
-                        <option value="Sungo Afonso">Sungo Afonso</option>
-                        <option value="Brigith Barros">Brigith Barros</option>
-                        <option value="Sivi Lando">Sivi Lando</option>
-                        <option value="Anatoli Lussati">Anatoli Lussati</option>
-                        <option value="Rosa António">Rosa António</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
-                </div>
-
-                <div class="col">
-                <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Professores">
-                        <option value="Sungo Afonso">Sungo Afonso</option>
-                        <option value="Brigith Barros">Brigith Barros</option>
-                        <option value="Sivi Lando">Sivi Lando</option>
-                        <option value="Anatoli Lussati">Anatoli Lussati</option>
-                        <option value="Rosa António">Rosa António</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
-                </div>
-
-                <div class="col">
-                <select oninput="this.className = ''" class="form-select">
+                    <select oninput="this.className = ''" class="form-select">
                         <optgroup label="Professores">
                         <option value="Sungo Afonso">Sungo Afonso</option>
                         <option value="Brigith Barros">Brigith Barros</option>
@@ -363,7 +368,7 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="hora_segunda1" oninput="this.className = ''" disabled></p>
                 </div>
 
                 <div class="col-sm-5">
@@ -638,7 +643,7 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="hora_terça1" oninput="this.className = ''" disabled></p>
                 </div>
 
                 <div class="col-sm-5">
@@ -1734,7 +1739,7 @@
           
             <div class="row" >
                 <div class="col">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select oninput="this.className = ''" name='coordenador_turma' class="form-select">
                         <optgroup label="Director de turma">
                         <option value="Sungo Afonso">Sungo Afonso</option>
                         <option value="Brigith Barros">Brigith Barros</option>
@@ -1755,7 +1760,5 @@
           </div>
         </div>
       </form>
-
-
     </main>
 @endsection

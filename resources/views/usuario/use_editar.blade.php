@@ -57,7 +57,7 @@
                     </div>
                     
                     <div class="col form-group" style="margin-left: 10px;">
-                        <input type="text" id="idadeinput10" class="form-control" readonly="true" disabled name="" value="Idade">
+                        <input type="text" id="idadeinput10" class="form-control" readonly="true" disabled name="" value="Idade" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;">
                     </div>
                     <div class="col form-group" style="margin-left: 10px;">
                             <label class="me-3">Sexo:</label>

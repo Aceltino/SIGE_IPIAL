@@ -50,8 +50,8 @@ class Ano_lectivo extends Model
         return $this->hasMany(Candidato::class, 'ano_lectivo_id');
     }
 
-    public function trimestre(){
-        return $this->hasMany(Trimestre::class, 'trimestre_id', 'ano_lectivo_id');
+    public function trimestres(){
+        return $this->hasMany(Trimestre::class, 'ano_lectivo_id');
     }
     public function comunicados()
     {

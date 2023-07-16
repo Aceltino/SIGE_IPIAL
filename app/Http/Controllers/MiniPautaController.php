@@ -19,7 +19,8 @@ use App\Models\{
     Professor,
     AlunoTurma,
     DisciplinaCurso,
-    Media
+    Media,
+    Trimestre
 };
 
 class MiniPautaController extends Controller
@@ -35,20 +36,27 @@ class MiniPautaController extends Controller
     {
         $turma = Turma::findOrFail($turma);
         
-        $disciplinaGerais= Disciplina::where('componente','Cientificas')
+        $disciplinaGerais = Disciplina::where('componente','Cientificas')
                         ->Orwhere('componente','Socio-culturais')
                         ->get();
 
-        $disciplinaEspecificas= Disciplina::where('componente','Técnicas')
+        $disciplinaEspecificas = Disciplina::where('componente','Técnicas')
                                             ->where('curso_id',$turma->curso->curso_id)
                                             ->get();
 
         //Combinei as duas coleções de disciplinas(Tecnicas e Gerais) em uma única variável            
         $disciplinasAll = $disciplinaGerais->concat($disciplinaEspecificas)->all();
         
-        foreach ($disciplinasAll as $key => $value) {
-           $disciplinar[]=$value;
-           $professor = Professor_disciplina::where('disciplina_id', $value->disciplina_id);
+        $disciplinar = [];
+
+        foreach ($disciplinasAll as $disciplina) {
+            $professor = Professor_disciplina::where('disciplina_id', $disciplina->disciplina_id)->first();
+            if ($professor) {
+                $disciplinar[] = [
+                    'disciplina' => $disciplina,
+                    'professor' => $professor
+                ];
+            }
         }
 
         $total = [
@@ -62,51 +70,59 @@ class MiniPautaController extends Controller
     public function view($turma_id, $disciplina_id)
     {
         $turma = Turma::findOrFail($turma_id);
-        #$professor = Professor::with('pessoa')->findOrFail($prof_id);
         $professor_discip = Professor_disciplina::where('disciplina_id', $disciplina_id)->first();
-        $ano_turma_coord = AnoTurmaCood::where('turma_id',  $turma_id)->first();
-        $disciplina = Disciplina::where('disciplina_id', $disciplina_id)->first();
+        $ano_turma_coord = AnoTurmaCood::where('turma_id', $turma->turma_id)->first();
+        $disciplina = Disciplina::findOrFail($disciplina_id);
         
-        $alunos = AlunoTurma::whereHas('anoTurmaCood', function ($query) use ($turma_id) {
-            $query->whereHas('turma', function ($query) use ($turma_id) {
-                $query->where('turma_id', $turma_id);
-            });
-        })->orderBy('numero_aluno', 'asc')->get();
+        $alunos = $turma->beAluno()
+            ->orderBy('numero_aluno', 'asc')
+            ->get();
 
-        // Extrai os IDs dos alunos
-        $alunoIds = $alunos->pluck('aluno_id')->toArray();
-
-        // Realiza a consulta em Nota usando os IDs dos alunos
-        $notas = Nota::whereIn('aluno_id', $alunoIds)->get();
-        
-        $not = $notas;
-        foreach ($notas as $nota) {
-            $dadosNotaAluno[] = [
-                'nota' => $nota, 
-                'aluno' => $nota->aluno_id,
-                'aluno_info' => $nota->aluno->candidato->pessoa->nome_completo,
-                'disciplina' => $nota->disciplina,
-                'trimestre' => $nota->trimestre,
-                'ano_letivo' => $ano_turma_coord->ano_lectivo
-            ];
-        }
-        $mmedia = Media::whereIn('aluno_id', $alunoIds)->get();
-
-        foreach ($dadosNotaAluno as $dd => $key) {
-            #echo $key['ano_letivo'].'<hr>';
-            #echo getMT1($key['aluno'], $key['disciplina']->disciplina_id).'<hr>';
+        $notas = Nota::whereIn('aluno_id', $alunos->pluck('aluno_id'))
+            ->get();
             
-            
-            $media = Media::create([
-                'nota' => $key['nota'],
-                'aluno_id' => $key['aluno'],
-                'disciplina_id' => $key['disciplina']->disciplina_id,
-                'trimestre_id' => $key['trimestre']->trimestre_id,
-                'ano_lectivo_id' => $key['ano_letivo']->ano_lectivo_id,
-            ]);
+        $trimestres = Trimestre::all();
+
+        $medias = [];
+
+        foreach ($alunos as $aluno) {
+            foreach ($trimestres as $trimestre) {
+                $notasTrimestre = Nota::where('aluno_id', $aluno->aluno_id)
+                    ->where('disciplina_id', $disciplina_id)
+                    ->where('id_trimestre', $trimestre->trimestre_id)
+                    ->whereIn('tipo_prova', ['Avaliação Contínua', 'Prova Professor', 'Prova Trimestre'])
+                    ->get();
+    
+                if ($notasTrimestre->isNotEmpty()) {
+                    $mediaTrimestre = $notasTrimestre->average('nota_aluno');
+                    
+                    $media = Media::where('aluno_id', $aluno->aluno_id)
+                        ->where('disciplina_id', $disciplina_id)
+                        ->where('ano_lectivo_id', $ano_turma_coord->ano_lectivo_id)
+                        ->where('trimestre_id', $trimestre->trimestre_id)
+                        ->first();
+    
+                    if (!$media) {
+                        // Caso não exista média, insira uma nova média
+                        $media = new Media();
+                        $media->aluno_id = $aluno->aluno_id;
+                        $media->disciplina_id = $disciplina_id;
+                        $media->ano_lectivo_id = $ano_turma_coord->ano_lectivo_id;
+                        $media->trimestre_id = $trimestre->trimestre_id;
+                    }
+                    $media->nota = $mediaTrimestre;
+    
+                    // Defina outros atributos da média, se houver
+    
+                    // Salve a média
+                    $media->save();
+    
+                    $medias[$aluno->aluno_id][$trimestre->trimestre_id] = $media;
+                }
+            }
         }
         
-        return view('mini-pauta.mini-pauta-doc', ['alunos' => $alunos, 'anoturmacoord' => $ano_turma_coord, 'notas' => $notas, 'disciplina' => $disciplina, 'turma' => $turma, 'professor_discip' => $professor_discip]);
+        return view('mini-pauta.mini-pauta-doc', compact('alunos', 'ano_turma_coord', 'notas', 'disciplina', 'turma', 'professor_discip'));
     }
 
     public function show()

@@ -31,20 +31,20 @@
 
 
           <div class="col-lg-2">
-            <select class="btn-sel form-select" id="filtro8">
-                <option value="curso">curso</option>
+            <select class="btn-sel form-select" >
+                <option value="curso" selected>curso</option>
             </select>
           </div>
 
           <div class="col-lg-2">
-            <select class="btn-sel form-select" id="filtro9">
-                <option value="disciplina">disciplina</option>
+            <select class="btn-sel form-select" >
+                <option value="disciplina" selected>disciplina</option>
             </select>
           </div>
 
           <div class="col-lg-2">
-            <select class="btn-sel form-select" id="filtro10">
-                <option value="turma">turma</option>
+            <select class="btn-sel form-select">
+                <option value="turma" selected>turma</option>
             </select>
           </div>
     </div>
@@ -87,5 +87,5 @@
   </div>
   <!-- Termina a tabela -->
 
-@endif
 </main>
+@endsection

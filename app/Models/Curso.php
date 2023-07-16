@@ -18,7 +18,7 @@ class Curso extends Model
         'area_formacao_id',
         'professor_id',
         'created_at',
-        'updated_at' 
+        'updated_at'
     ];
 
     public function coordenador(){
@@ -47,10 +47,13 @@ class Curso extends Model
     {
         return $this->hasMany(Disciplina::class, 'disciplina_id');
     }
-    public function calendarios() 
+    public function calendarios()
     {
         return $this->hasMany(CalendarioProva::class, 'calendario_id');
     }
 
-
+    public function turmas()
+    {
+        return $this->hasMany(Turma::class, 'curso_id');
+    }
 }

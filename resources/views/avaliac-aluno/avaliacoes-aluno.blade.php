@@ -27,9 +27,11 @@
               <h1>Avaliação de Aluno</h1>
           </div>
 
-          
 
-        
+
+
+
+
 
 
           <div class="col-lg-2">
@@ -40,7 +42,9 @@
             </select>
           </div>
 
-          
+
+
+
 
 
           <div class="col-lg-2">
@@ -53,7 +57,9 @@
             </select>
           </div>
 
-          
+
+
+
 
 
           <div class="col-lg-2">
@@ -392,7 +398,7 @@ $(document).ready(function () {
         },
         select: true
     });
-  
+
         $("#filtro").on("change", function() {
         var filtro = $(this).val();
         if (filtro === 'Todos') {
@@ -538,9 +544,9 @@ $(document).ready(function () {
     $("#filtro9").trigger("change");
     $("#filtro10").trigger("change");
     $("#filtro11").trigger("change");
-      
-  
-    
+
+
+
 
 
 $(".paginate_button").addClass("paginate_button");
