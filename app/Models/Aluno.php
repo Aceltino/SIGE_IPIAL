@@ -52,4 +52,7 @@ class Aluno extends Model
     public function Media(){
         return $this->hasMany(Media::class,'media_id');
     }
+    public function classificacaofincal(){
+        return $this->hasMany(Classificacaofinal::class,'classificaoFinal_id');
+    }
 }
