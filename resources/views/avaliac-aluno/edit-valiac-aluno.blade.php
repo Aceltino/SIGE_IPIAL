@@ -63,7 +63,7 @@
         </div>
       </div>
     <!-- /  Inicio da tabela  -->
-    <table id="matricula-tab" class="table table-striped" style="margin-top: 14px; " >
+    <table id="matricula-tab" class="table table-custom table-escuro" style="margin-top: 14px; " >
       <thead style="text-align: center">
         <tr>
           <th scope="col">Data</th>
@@ -123,7 +123,7 @@
               </div>
             <div class="bortabelasemscroll">
               <!-- /  Inicio da tabela  -->
-              <table  class="table table-striped" style="margin-top: 20px; width: 100%;" >
+              <table  class="table table-custom table-escuro" style="margin-top: 20px; width: 100%;" >
                 <thead style="text-align: center">
                   <tr>
                     <th scope="col">Data</th>
