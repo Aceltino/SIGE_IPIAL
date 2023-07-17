@@ -70,8 +70,9 @@ class AlunoController extends Controller
     public static function alunosVinculados() // Fechamento do ano lectivo, ano lectivo status 0 -> Colocar esta função no fechamento do Ano Lectivo
     {
         $alunos = Aluno::where('status', 1 )->get();
-
-        $Alunos = [];
+        if ($alunos->isEmpty()) {
+            return false;
+        }
 
         foreach ($alunos as $aluno)
         {
@@ -82,24 +83,27 @@ class AlunoController extends Controller
             ];
 
             UserController::updateAluno($dadosUser);
-            $Alunos[] =
+            
+            $Alunos =
             [
                 $aluno->status = 0,
                 $aluno->save()
             ];
         }
+        dd($Alunos);
         return $Alunos;
     }
 
     public static function pegarIdUser($idAluno)
     {
-        $alunos = Aluno::with('candidato.pessoa.user')
+        $aluno = Aluno::with('candidato.pessoa.user')
         ->where('aluno_id', $idAluno)
-        ->get();
+        ->get()
+        ->first();
 
-        foreach ($alunos as $aluno) {
-            $userId = $aluno->candidato->pessoa->user[0]->usuario_id;
-        }
+        
+        $userId = $aluno->candidato->pessoa->user[0]->usuario_id;
+
         return $userId;
     }
     // API MATRICULADOS... http://127.0.0.1:8000/api/matriculados
@@ -305,7 +309,7 @@ class AlunoController extends Controller
             })
             ->where('aluno_id', $id)
             ->first();
-    
+
             $alunoReprovado = [
                 'aluno_id' => $aluno->aluno_id,
                 'aluno_status' => $aluno->status,
@@ -316,7 +320,7 @@ class AlunoController extends Controller
                 'classeId' => $aluno->anoturma->first()->turma->classe->classe_id,
                 'nomeTurma' => $aluno->anoturma->first()->turma->nome_turma
             ];
-    
+
         return $alunoReprovado;
     }
 
@@ -325,7 +329,7 @@ class AlunoController extends Controller
         $pessoas = Aluno::with('encarregado')
         ->where('aluno_id', $id)
         ->get();
-        
+
         foreach ($pessoas as $pessoa) {
             foreach ($pessoa->encarregado as $encarregado) {
                 $alunos[] = [
@@ -371,14 +375,14 @@ class AlunoController extends Controller
 
             $chave = $curso;
 
-            if (!isset($alun[$chave])) 
+            if (!isset($alun[$chave]))
             {
                 $alun[$chave] = [
                         'sigla' => $sigla,
                         'alunos' => 0
                 ];
             }
-    
+
             $alun[$chave]['alunos']++;
         }
         return array_values($alun);
@@ -386,7 +390,7 @@ class AlunoController extends Controller
 
         public static function situacaoAluno() // Função a ser chamada na reabertura do ano lectivo 11ª >
         {
-           
+
             $alunos = AlunoController::alunosTurmaTotal();
 
             if(!$alunos)
