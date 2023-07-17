@@ -70,9 +70,9 @@
 
     <div class="col">
       <div class="form-group" style="display: flex; justify-content: end; margin-top: 4px;">
-        <a class="btn botaoazul"  type="submit" style="margin-right: 3px;">Presencial</a>
-        <a class="btn botaovermelho" type="submit" style="margin-right: 3px;">Disciplinar</a>
-        <a class="btn botaopreto" style="background-color: rgb(92, 75, 20)" type="submit" style="margin-right: 3px;">Material</a>
+        <button class="btn botaoazul"  type="submit" style="margin-right: 3px;">Presencial</button>
+        <button class="btn botaovermelho" type="submit" style="margin-right: 3px;">Disciplinar</button>
+        <button class="btn botaopreto" style="background-color: rgb(92, 75, 20)" type="submit" style="margin-right: 3px;">Material</button>
       </div>
 
     </div>
@@ -103,6 +103,9 @@
             <th scope="col" hidden>curso</th>
             <th scope="col" hidden>Disciplina</th>
             <th scope="col" hidden>Turma</th>
+            <th scope="col" hidden>disciplina</th>
+            <th scope="col" hidden>turma</th>
+            <th scope="col" hidden>professordisciplina</th>
           </tr>
         </thead>
         <tbody>
@@ -122,7 +125,7 @@
                           <td>{{$valor3['falta_material']}}</td>
                           <td>
                             <div class="btn-group-toggle" data-toggle="buttons">
-                                <input style="width: 20px; height: 20px;" type="checkbox" name="{{$valor3['aluno_id']}}[]" value="">
+                                <input style="width: 20px; height: 20px;" type="checkbox" name="aluno[]"  value="{{$valor3['aluno_id']}}">
                             </div>
                              
                             </td>
@@ -133,6 +136,9 @@
                           <td hidden>{{$valor3['curso']}}</td>
                           <td hidden>{{$valor3['nome_disciplina']}}</td>
                           <td hidden>{{$valor3['nome_turma']}}</td>
+                          <td hidden><input type="text" name="disciplina[]" value="{{$valor3['disciplina_id']}}"></td>
+                          <td hidden><input type="text" name="turma[]" value="{{$valor3['turma_id']}}"></td>
+                          <td hidden><input type="text" name="professordisciplina[]" value="{{$professor[$chave1]['professor_disciplina_id']}}"></td>
                       </tr>
                   @endforeach
               @endforeach
