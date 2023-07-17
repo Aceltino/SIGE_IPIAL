@@ -84,7 +84,7 @@
                 <label class="me-3">Sexo:</label>
                 <input type="radio" id="masculino" name="genero" value="Masculino" {{ old('genero') == 'Masculino' ? 'checked' : '' }} checked>
                 <label for="masculino" class="me-2"> Masculino</label>
-                <input type="radio" id="feminino" name="genero" value="Feminino" {{ old('genero') == 'Feminino' ? 'checked' : '' }}>
+                <input type="radio" id="feminino" name="genero" value="Femenino" {{ old('genero') == 'Femenino' ? 'checked' : '' }}>
                 <label for="feminino"> Feminino</label>
               </div>
             </div>
