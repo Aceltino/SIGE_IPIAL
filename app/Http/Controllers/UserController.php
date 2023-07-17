@@ -47,7 +47,6 @@ class UserController extends Controller
     //Metodo para fazer Update nos dados dos alunos
     public static function updateAluno($dadosUser)
     {
-        dd($dadosUser);
         $user = User::find($dadosUser['usuario_id']);
 
         foreach ($dadosUser as $campo => $valor)
