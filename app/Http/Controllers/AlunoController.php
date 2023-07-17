@@ -97,9 +97,8 @@ class AlunoController extends Controller
         ->where('aluno_id', $idAluno)
         ->get();
         foreach ($alunos as $aluno) {
-            $userId = $aluno->candidato->pessoa->user->usuario_id;
+            $userId = $aluno->candidato->pessoa->user[0]->usuario_id;
         }
-
         return $userId;
     }
     // API MATRICULADOS... http://127.0.0.1:8000/api/matriculados
