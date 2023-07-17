@@ -133,11 +133,10 @@ trait AnoLectivoTrait
             $ini = new DateTime($inicioTrimestre);
             $fn = new DateTime($fimTrimestre);
             $f = $ini->diff($fn);
-            //dd($f);
-            if($f->m == 3 && $f->y == 0){
+            if($f->m >= 3 && $f->y == 0){
                 return true;
             } else{
-                return 2;
+                return false;
             }
         } else{
             return false;
@@ -222,5 +221,98 @@ trait AnoLectivoTrait
         }
     }
 
+    public static function abrirTrimestre($trimestre_id){
+        $trimestre = Trimestre::find($trimestre_id);
+        $trimestre->data_inicio = date('Y-m-d');
+        $trimestre->status = 1;
+        $trimestre->save();
+        return true;
+    }
+    public static function validarAberturaTrimestre(){
+        $trimestre = Trimestre::where('data_inicio', date('Y-m-d'))->get();
+        if(count($trimestre) > 0){
+            return false;
+        } else{
+            return true;
+        }
+    }
+    public static function validarStatusTrimestre(){
+        $trimestre = Trimestre::where('status', 1)->get();
+        if(count($trimestre) > 0){
+            return false;
+        } else{
+            return true;
+        }
+    }
+    public static function validarProcessoAberturaTrimestre($trimestre_id){
+        $trimestre = Trimestre::find($trimestre_id);
+        if($trimestre->trimestre === "1º"){
+            $ano_lectivo = Ano_lectivo::where('status', 1)->get()->latest()->first();
+            $data_corrente = strtotime(date('Y-m-d'));
+            $fim_matricula = strtotime($ano_lectivo->data_fim_matricula);
+            if ($data_corrente <= $fim_matricula) {
+                return false;
+            } else{
+                return true;
+            }
+        } elseif($trimestre->trimestre === "2º"){
+            $tri = Trimestre::where('trimestre', "1º")->get()->latest()->first();
+            if ($tri->data_fim === null) {
+                return false;
+            } else{
+                return true;
+            }
+        } elseif($trimestre->trimestre === "3º"){
+            $tri = Trimestre::where('trimestre', "2º")->get()->latest()->first();
+            if ($tri->data_fim === null) {
+                return false;
+            } else{
+                return true;
+            }
+        }
+    }
+    public static function fecharTrimestre($trimestre_id){
+        $trimestre = Trimestre::find($trimestre_id);
+        $trimestre->data_fim = date('Y-m-d');
+        $trimestre->status = 0;
+        $trimestre->save();
+        return true;
+    }
+    public static function validarFechamentoTrimestre(){
+        $trimestre = Trimestre::where('data_fim', date('Y-m-d'))->get();
+        if(count($trimestre) > 0){
+            return false;
+        } else{
+            return true;
+        }
+    }
+
+    public static function verificarStatusAnoLectivo($ano_lectivo_id){
+        $ano_lectivo = Ano_lectivo::find($ano_lectivo_id);
+        if($ano_lectivo->status_ano_lectivo === 0){
+            return false;
+        } else{
+            return true;
+        }
+    }
+
+    public static function verificarTrimestresAnoLectivo($ano_lectivo_id){
+        $trimestre = Trimestre::where('ano_lectivo_id', $ano_lectivo_id)->where('status', 1)->get()->first();
+        if($trimestre){
+            return false;
+        } else{
+            return true;
+        }
+    }
+
+    public static function validarDataFimAnoLectivo($fim_trimestre, $fim_ano_lectivo){
+        $fimTri = strtotime($fim_trimestre);
+        $fimAno = strtotime($fim_ano_lectivo);
+        if($fimAno >= $fimTri){
+            return true;
+        } else{
+            return false;
+        }
+    }
 
 }

@@ -220,6 +220,9 @@ class AvaliacaoAlunoController extends Controller
 
     public function update($nota, Request $request)
     {
+        if($request->nota_aluno == null){
+            return redirect()->back()->with('erro', "O campo para a inserção da nota não pode estar vazio!");
+        }
         $nota = Nota::find($nota);
 
         $nota->nota_aluno = $request->nota_aluno;
