@@ -14,11 +14,13 @@
                 $mt2 = isset($TwoMedia[$i][0]->nota) ? $TwoMedia[$i][0]->nota : '0';
                 $mt3 = isset($ThreeMedia[$i][0]->nota) ? $ThreeMedia[$i][0]->nota : '0';
             
-                $alunoIndex = $i % count($alunos); // Índice do aluno
-                $disciplinaIndex = $i % count($disciplinas); // Índice da disciplina
+                $alunoIndex = $i % count($alunos); 
+                $disciplinaIndex = $i % count($disciplinas);
             
-                $aluno = $alunos[$alunoIndex]; // Aluno correspondente ao índice atual
-                $disciplina = $disciplinas[$disciplinaIndex]; // Disciplina correspondente ao índice atual
+                $aluno = $alunos[$alunoIndex]; 
+                $disciplina = $disciplinas[$disciplinaIndex]; 
+
+                
             
                 $medias[] = [
                     'aluno' => $aluno,
@@ -30,7 +32,7 @@
             }
             
     ?>
-
+{{dd($disciplina )}}
   
     
  
@@ -262,7 +264,7 @@
         }
     @endphp
     
-
+    
         
             <!--Rodape da pauta-->
             <tr>
