@@ -11,4 +11,9 @@ class HorarioController extends Controller
     {
         return view('horario/criar-horario');
     }
+
+    public function pegarDadosHorario()
+    {
+        
+    }
 }
