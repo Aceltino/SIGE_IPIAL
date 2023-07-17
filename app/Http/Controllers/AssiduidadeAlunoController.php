@@ -9,13 +9,15 @@ use App\Traits\AvaliacaoTrait;
 use App\Traits\AssiduidadeTrait;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Professor;
-use App\Traits\AnoLectivoTrait;
+use App\Models\Tempo;
 
 class AssiduidadeAlunoController extends Controller
 {
 
     public function index()
     {
+       // $id = [1, 2, 3];
+        //dd($id);
         //AnoLectivoTrait::abrirTrimestre();
         $user = Auth::user();
         if($user->cargo_usuario === "Administrador" || $user->cargo_usuario === "Subdirector"){
@@ -93,40 +95,43 @@ class AssiduidadeAlunoController extends Controller
         // ->where('aluno_id', 4)
         // ->where('id_trimestre', 28)->get();
         // dd($teste);
-
+        $tempos = Tempo::all();
         $trimestre = AvaliacaoTrait::pegarTrimestre();
         $alunos = AssiduidadeTrait::pegarAssiduidadeAluno($disciplina_id, $turmas);
         //dd($professor);
         $erro = AvaliacaoTrait::erros($alunos);
         if($erro === true){
-            return view('assiduid-aluno/assd-aluno', compact(['alunos', 'nome_turma', 'cursos', 'nome_disciplina', 'trimestre', 'professor']));
+            return view('assiduid-aluno/assd-aluno', compact(['alunos', 'nome_turma', 'cursos', 'nome_disciplina', 'trimestre', 'professor', 'tempos']));
         } else{
             return redirect()->route('erro.assiduidade')->with('erro', $erro);
         }
     }
-    public function store(Request $request, $aluno_id, $disciplina_id, $turma_id, $professor_disciplina_id)
+    public function store(Request $request)
     {
+        dd($request->disciplina[0]);
+        //$aluno_id, $disciplina_id, $turma_id, $professor_disciplina_id
+
         $trimestre = AvaliacaoTrait::pegarTrimestre();
-        $falta = AssiduidadeTrait::pegarTempoFalta($turma_id, $professor_disciplina_id);
+        $falta = AssiduidadeTrait::pegarTempoFalta($request->turma[0], $request->professor_disciplina[0]);
         $erro = AvaliacaoTrait::erros($falta);
         if($erro !== true){
             return redirect()->back()->with('erro', $erro);
         }
         $data = (string) date('Y-m-d');
         $tot_faltas = Assiduidade_aluno::where('created_at', 'like', '%'.$data.'%')->where('aluno_id', $aluno_id)
-        ->where('id_trimestre', $trimestre[0]->trimestre_id)->where('disciplina_id', $disciplina_id)
+        ->where('id_trimestre', $trimestre[0]->trimestre_id)->where('disciplina_id', $request->disciplina[0])
         ->where('tipo_falta', "PRESENCIAL")->get();
         if(count($falta) <= count($tot_faltas) && $request->tipo_falta === "PRESENCIAL"){
             return redirect()->back()->with('erro', "Limite de faltas atingido!");
         }
         $tot_faltas = Assiduidade_aluno::where('created_at', 'like', '%'.$data.'%')->where('aluno_id', $aluno_id)
-        ->where('id_trimestre', $trimestre[0]->trimestre_id)->where('disciplina_id', $disciplina_id)
+        ->where('id_trimestre', $trimestre[0]->trimestre_id)->where('disciplina_id', $request->disciplina[0])
         ->where('tipo_falta', "DISCIPLINAR")->get();
         if(count($falta) <= count($tot_faltas) && $request->tipo_falta === "DISCIPLINAR"){
             return redirect()->back()->with('erro', "Limite de faltas atingido!");
         }
         $tot_faltas = Assiduidade_aluno::where('created_at', 'like', '%'.$data.'%')->where('aluno_id', $aluno_id)
-        ->where('id_trimestre', $trimestre[0]->trimestre_id)->where('disciplina_id', $disciplina_id)
+        ->where('id_trimestre', $trimestre[0]->trimestre_id)->where('disciplina_id', $request->disciplina[0])
         ->where('tipo_falta', "MATERIAL")->get();
         if(count($falta) <= count($tot_faltas) && $request->tipo_falta === "MATERIAL"){
             return redirect()->back()->with('erro', "Limite de faltas atingido!");
@@ -139,7 +144,7 @@ class AssiduidadeAlunoController extends Controller
             'tipo_falta' => $request->tipo_falta,
             'aluno_id' => $aluno_id,
             'id_trimestre' => $trimestre[0]->trimestre_id,
-            'disciplina_id' => $disciplina_id
+            'disciplina_id' => $request->disciplina[0]
         ];
         Assiduidade_aluno::create($falta);
         return redirect()->back()->with('sucesso', "Falta aplicada com sucesso!");
