@@ -128,11 +128,20 @@ class MediasController extends Controller
         // }                        
         // die;
 
-        if(Classificacaofinal::create($dadosClassificao)){
+        // Classificacaofinal::create($dadosClassificao);
+        if(1==1){
             return true; 
         }
         return false;
     }   
     
+    public static function showClassificaoFinal($disciplina_id,$aluno_id,$anoLectivo)
+    {
+        return Classificacaofinal::where('disciplina_id',$disciplina_id)
+                                    ->where('ano_lectivo_id',$anoLectivo)
+                                    ->where('aluno_id',$aluno_id)
+                                    ->get();
+                                    // ->toArray();
+    }
     
 } //Fim da classe "MediasController"

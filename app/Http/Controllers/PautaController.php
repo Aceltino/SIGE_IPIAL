@@ -69,20 +69,20 @@ class PautaController extends Controller
                 $OneMedia[]= MediasController::getMediaOneTrimestre($value->disciplina_id,$aluno->aluno_id, $anoLectivo); 
                 $TwoMedia[]= MediasController::getMediaTwoTrimestre($value->disciplina_id,$aluno->aluno_id, $anoLectivo); 
                 $ThreeMedia[]= MediasController::getMediaThreeTrimestre($value->disciplina_id,$aluno->aluno_id, $anoLectivo); 
-                $ca_cfd[]= MediasController::classificacaoAnual($value->disciplina_id,$aluno->aluno_id,$anoLectivo,$turma->classe->classe_id);
+
+                //Guardar as Classificação final das disciplinas 
+                MediasController::classificacaoAnual($value->disciplina_id,$aluno->aluno_id,$anoLectivo,$turma->classe->classe_id);
+
+                //Busca a media final da Disciplina com base ao Ano-Lectivo e o Aluno
+                $ca_cfd[]=MediasController::showClassificaoFinal($value->disciplina_id,$aluno->aluno_id,$anoLectivo);
             } 
         }   
-
-        // foreach ($ca_cfd as $key => $value) {
-        //     echo $value;
-        //     echo "<hr>";
-        // }
-
+      
         //Condição para Pauta ser Gerada
         if ( (count($turmaAluno) <= 0) && (empty($notas)) ){
             return redirect()->back()->with('msg_sem_pauta',"Lamentamos! Esta pauta ainda não esta composta... Aguarde o lançamento das notas");
         }
-       
+        
         //Dados completos que vão para compor a pauta. 
         $dadosPauta= [
             'alunos' => $alunos, 
@@ -116,7 +116,7 @@ class PautaController extends Controller
     }
 
     //Metodo que retorna todos os usuario que devem assinar a Pauta
-    private static function entidadesAssinantes():mixed
+    private static function entidadesAssinantes():array
     {
         $director = User::where('cargo_usuario', 'Director')->where('status_usuario',1)->first();
         $subdirector = User::where('cargo_usuario', 'Subdirector')->where('status_usuario',1)->first();
