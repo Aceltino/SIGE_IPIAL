@@ -227,7 +227,7 @@
                     <span class="t-obliqua largura-8">TOTAL</span>
                 </th>            
             </tr>
-
+            
             @php
                 $m = 0; // Genero Masculino
                 $f = 0; // Genero Feminino
@@ -238,7 +238,7 @@
                     <td class="coluna-tab-mp">{{ $aluno->numero_aluno }}</td>
 
                     <td class="sm-cor"></td>
-                    <td class="coluna-tab-mp" style="font-size: 11pt;">{{ $aluno->candidato->pessoa->nome_completo }}</td>
+                    <td class="coluna-tab-mp" style="font-size: 11pt;">{{ $aluno->candidato->pessoa->nome_completo }} - {{ $aluno->candidato->pessoa->pessoa_id }}</td>
 
                     {{-- Idade --}}
                     <td class="coluna-tab-mp">
