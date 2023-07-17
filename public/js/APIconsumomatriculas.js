@@ -13,6 +13,8 @@ axios.get('/api/matriculados')
                 
                 if($.isEmptyObject(turma)){
 
+                  turma = "Aguarde";
+
                   Botao = `<a href="/matricula/readmitir-aluno/${registro.N_processo}/readmitir" name="" id="" class="btn btn-success"  role="button">Ativar</a>`;
                 } else if(turma && situacao == 'Anulou a Matricula'){
                   Botao = `<a name="" id="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target=" #basicModalll${registro.N_processo}"  role="button">Eliminar</a>`;
@@ -35,7 +37,7 @@ axios.get('/api/matriculados')
                 row.innerHTML = `
                     <td>${registro.N_processo}</td>
                     <td>${registro.nome}</td>
-                    <td>${registro.nomeTurma}</td>
+                    <td>${turma}</td>
                     <td>${registro.idade}</td>
                     <td class="no-print">${registro.situacao}</td>
                     <td>${registro.curso} </td>
