@@ -17,7 +17,8 @@ class Assiduidade_aluno extends Model
         'tipo_falta',
         'aluno_id',
         'id_trimestre',
-        'disciplina_id'
+        'disciplina_id',
+        'tempo_id'
     ];
 
     public function disciplina(){
@@ -32,5 +33,8 @@ class Assiduidade_aluno extends Model
     }
     public function trimestre(){
         return $this->belongsTo(Trimestre::class, 'id_trimestre', 'trimestre_id');
+    }
+    public function tempo(){
+        return $this->belongsTo(Tempo::class, 'tempo_id');
     }
 }
