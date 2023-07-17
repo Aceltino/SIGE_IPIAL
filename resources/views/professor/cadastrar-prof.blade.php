@@ -72,7 +72,7 @@
 
             <div class="col-md-2">
               <div class="form-group">
-                <input type="text" class="form-control" readonly="true" id="idade-do-professor-input" disabled oninput="this.className = ''" value="00">
+                <input type="text" class="form-control" readonly="true" id="idade-do-professor-input" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled oninput="this.className = ''" value="00">
               </div> 
             </div>
           </div>
