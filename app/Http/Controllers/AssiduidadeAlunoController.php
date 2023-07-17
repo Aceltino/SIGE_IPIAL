@@ -16,6 +16,8 @@ class AssiduidadeAlunoController extends Controller
 
     public function index()
     {
+        $id = [1, 2, 3];
+        dd($id);
         //AnoLectivoTrait::abrirTrimestre();
         $user = Auth::user();
         if($user->cargo_usuario === "Administrador" || $user->cargo_usuario === "Subdirector"){
@@ -106,6 +108,7 @@ class AssiduidadeAlunoController extends Controller
     }
     public function store(Request $request, $aluno_id, $disciplina_id, $turma_id, $professor_disciplina_id)
     {
+
         $trimestre = AvaliacaoTrait::pegarTrimestre();
         $falta = AssiduidadeTrait::pegarTempoFalta($turma_id, $professor_disciplina_id);
         $erro = AvaliacaoTrait::erros($falta);

@@ -28,7 +28,7 @@
           <div class="col">
               <h1>Assiduidade De Aluno</h1>
           </div>
-          
+
           <div class="col-lg-2">
             <select  class="btn-sel form-select" id="filtro8">
               @foreach ($cursos as $curso)
@@ -36,7 +36,7 @@
               @endforeach
             </select>
           </div>
-         
+
 
 
 
@@ -66,8 +66,8 @@
       <button  title="Search"><i class="bi bi-search"></i></button>
   </div>
   </div>
-  <form method="POST" action="">
-
+  <form method="POST" action="{{route('marcar.falta')}}">
+    @csrf
     <div class="col">
       <div class="form-group" style="display: flex; justify-content: end; margin-top: 4px;">
         <a class="btn botaoazul"  type="submit" style="margin-right: 3px;">Presencial</a>
@@ -77,7 +77,7 @@
 
     </div>
 
-   
+
 
   <div class="bortabela" style="box-shadow: 0 5px 15px 0 rgba(82, 63, 105, 0.2); border: 1px solid white; border-radius: 3px; padding: 2px;">
     <div class="pagetitle">
@@ -87,7 +87,7 @@
             </div>
         </div>
     </div>
-    
+
 
       <!-- /  Inicio da tabela  -->
       <table id="assid" class=" table table-custom table-escuro " style="margin-top: 20px; width: 100%;" >
@@ -108,12 +108,12 @@
         <tbody>
           @if (!empty($alunos))
             @foreach ($alunos as $chave1 => $valor1)
-  
+
               @foreach ($valor1 as $chave2 => $valor2)
-  
+
                   @foreach ($valor2 as $chave3 => $valor3)
 
-  
+
                       <tr style="text-align: center;">
                           <th scope="row">{{$valor3['numero_aluno']}}</th>
                           <td>{{$valor3['nome']}}</td>
@@ -122,14 +122,14 @@
                           <td>{{$valor3['falta_material']}}</td>
                           <td>
                             <div class="btn-group-toggle" data-toggle="buttons">
-                                <input style="width: 20px; height: 20px;" type="checkbox" name="{{$valor3['aluno_id']}}[]" value="">
+                                <input style="width: 20px; height: 20px;" type="checkbox" name="{{$valor3['aluno_id']}}[]" value="{{$valor3['aluno_id']}}">
                             </div>
-                             
+
                             </td>
                             <td style="text-align: center">
                               <a href="{{route('editar.assiduidade', [$valor3['aluno_id'], $valor3['disciplina_id']])}}" class="btn linkeditar">Hiatórico</a>
                             </td>
-  
+
                           <td hidden>{{$valor3['curso']}}</td>
                           <td hidden>{{$valor3['nome_disciplina']}}</td>
                           <td hidden>{{$valor3['nome_turma']}}</td>
@@ -276,7 +276,7 @@
 @endif
 
 <script>
-  
+
 //**************************************************************************************************** ****************/
 
 
@@ -287,7 +287,7 @@ $(document).ready(function () {
           lengthChange: false,
           ordering: false,
           language:{
-  
+
                   "sEmptyTable": "Nenhum registro encontrado",
                   "sInfo": "",
                   "sInfoEmpty": "",
@@ -308,8 +308,8 @@ $(document).ready(function () {
           },
           select: true,
       });
-  
-  
+
+
           $("#filtro").on("change", function() {
           var filtro = $(this).val();
           if (filtro === 'Todos') {
@@ -381,7 +381,7 @@ $(document).ready(function () {
           } else {
             $T.column(8).search(filtro9).draw(); // Filtra a tabela pela Nona coluna com o valor selecionado
           }
-  
+
         });
         $("#filtro10").on("change", function() {
           var filtro10 = $(this).val();
@@ -422,7 +422,7 @@ $(document).ready(function () {
           } else {
             $T.column(13).search(filtro14).draw(); // Filtra a tabela pela Décima-quarta coluna com o valor selecionado
           }
-  
+
         });
         $("#filtro15").on("change", function() {
           var filtro15 = $(this).val();
@@ -431,7 +431,7 @@ $(document).ready(function () {
           } else {
             $T.column(14).search(filtro15).draw(); // Filtra a tabela pela Décima-quinta coluna com o valor selecionado
           }
-  
+
         });
           $("#filtro16").on("change", function() {
           var filtro16 = $(this).val();
@@ -440,7 +440,7 @@ $(document).ready(function () {
           } else {
             $T.column(15).search(filtro16).draw(); // Filtra a tabela pela Décima-Sexta coluna com o valor selecionado
           }
-  
+
         });
           $("#filtro17").on("change", function() {
           var filtro17 = $(this).val();
@@ -449,32 +449,32 @@ $(document).ready(function () {
           } else {
             $T.column(16).search(filtro17).draw(); // Filtra a tabela pela Décima-Sétima coluna com o valor selecionado
           }
-  
+
         });
-  
-        
-  
+
+
+
       $("#filtro8").trigger("change");
       $("#filtro9").trigger("change");
       $("#filtro10").trigger("change");
 
-         
-  
+
+
   $(".paginate_button").addClass("paginate_button");
   $(".paginate").addClass("float-end");
-  
+
   // Função para Pesquisar os dados apartir da barra de pesquisas
   $("#pesquisa").on("keyup", function () {
      $T.search(this.value).draw();
-  
+
   });
-  
-  
+
+
     // Recuperar os valores dos selects do localStorage e selecionar as opções correspondentes
     $("#filtro8").val(getSelectedOption("filtro8"));
     $("#filtro9").val(getSelectedOption("filtro9"));
     $("#filtro10").val(getSelectedOption("filtro10"));
-  
+
   });
 </script>
 </main>
