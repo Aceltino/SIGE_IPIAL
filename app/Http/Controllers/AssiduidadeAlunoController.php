@@ -9,7 +9,7 @@ use App\Traits\AvaliacaoTrait;
 use App\Traits\AssiduidadeTrait;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Professor;
-use App\Traits\AnoLectivoTrait;
+use App\Models\Tempo;
 
 class AssiduidadeAlunoController extends Controller
 {
@@ -95,13 +95,13 @@ class AssiduidadeAlunoController extends Controller
         // ->where('aluno_id', 4)
         // ->where('id_trimestre', 28)->get();
         // dd($teste);
-
+        $tempos = Tempo::all();
         $trimestre = AvaliacaoTrait::pegarTrimestre();
         $alunos = AssiduidadeTrait::pegarAssiduidadeAluno($disciplina_id, $turmas);
         //dd($professor);
         $erro = AvaliacaoTrait::erros($alunos);
         if($erro === true){
-            return view('assiduid-aluno/assd-aluno', compact(['alunos', 'nome_turma', 'cursos', 'nome_disciplina', 'trimestre', 'professor']));
+            return view('assiduid-aluno/assd-aluno', compact(['alunos', 'nome_turma', 'cursos', 'nome_disciplina', 'trimestre', 'professor', 'tempos']));
         } else{
             return redirect()->route('erro.assiduidade')->with('erro', $erro);
         }

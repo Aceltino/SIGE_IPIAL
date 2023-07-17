@@ -71,10 +71,11 @@ class AlunoController extends Controller
     {
         $alunos = Aluno::where('status', 1 )->get();
 
-        $Alunos = [];
-
-        foreach ($alunos as $aluno)
+        //$Alunos = [];
+// dd($alunos);
+        foreach ($alunos as $posicao => $aluno)
         {
+             //dd($posicao);
             $userId = AlunoController::pegarIdUser($aluno->aluno_id);
             $dadosUser=[
                 'usuario_id'=> $userId,
@@ -82,12 +83,14 @@ class AlunoController extends Controller
             ];
 
             UserController::updateAluno($dadosUser);
-            $Alunos[] =
+            dd($dadosUser);
+            $Alunos[$posicao] =
             [
                 $aluno->status = 0,
                 $aluno->save()
             ];
         }
+        dd($Alunos);
         return $Alunos;
     }
 
@@ -95,10 +98,9 @@ class AlunoController extends Controller
     {
         $alunos = Aluno::with('candidato.pessoa.user')
         ->where('aluno_id', $idAluno)
-        ->get();
-        foreach ($alunos as $aluno) {
-            $userId = $aluno->candidato->pessoa->user[0]->usuario_id;
-        }
+        ->get()->first();
+            $userId = $alunos->candidato->pessoa->user[0]->usuario_id;
+
         return $userId;
     }
     // API MATRICULADOS... http://127.0.0.1:8000/api/matriculados

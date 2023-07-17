@@ -74,8 +74,8 @@
 
         <div class="ola" style="margin-top: 4px; width: 50%;">
             <select  class="btn-sel form-select" id="filtro10" >
-              @foreach ($nome_turma as $turma)
-                <option value="{{$turma}}">{{$turma}}</option>
+              @foreach ($tempos as $tempo)
+                <option value="{{$tempo->tempo_id}}">{{$tempo->tempo}} TEMPO</option>
               @endforeach
             </select>
           </div>
