@@ -96,7 +96,6 @@ class AlunoController extends Controller
         $alunos = Aluno::with('candidato.pessoa.user')
         ->where('aluno_id', $idAluno)
         ->get();
-
         foreach ($alunos as $aluno) {
             $userId = $aluno->candidato->pessoa->user->usuario_id;
         }
@@ -306,7 +305,7 @@ class AlunoController extends Controller
             })
             ->where('aluno_id', $id)
             ->first();
-    
+
             $alunoReprovado = [
                 'aluno_id' => $aluno->aluno_id,
                 'aluno_status' => $aluno->status,
@@ -317,7 +316,7 @@ class AlunoController extends Controller
                 'classeId' => $aluno->anoturma->first()->turma->classe->classe_id,
                 'nomeTurma' => $aluno->anoturma->first()->turma->nome_turma
             ];
-    
+
         return $alunoReprovado;
     }
 
@@ -326,7 +325,7 @@ class AlunoController extends Controller
         $pessoas = Aluno::with('encarregado')
         ->where('aluno_id', $id)
         ->get();
-        
+
         foreach ($pessoas as $pessoa) {
             foreach ($pessoa->encarregado as $encarregado) {
                 $alunos[] = [
@@ -372,14 +371,14 @@ class AlunoController extends Controller
 
             $chave = $curso;
 
-            if (!isset($alun[$chave])) 
+            if (!isset($alun[$chave]))
             {
                 $alun[$chave] = [
                         'sigla' => $sigla,
                         'alunos' => 0
                 ];
             }
-    
+
             $alun[$chave]['alunos']++;
         }
         return array_values($alun);
@@ -387,7 +386,7 @@ class AlunoController extends Controller
 
         public static function situacaoAluno() // Função a ser chamada na reabertura do ano lectivo 11ª >
         {
-           
+
             $alunos = AlunoController::alunosTurmaTotal();
 
             if(!$alunos)

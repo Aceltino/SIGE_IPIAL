@@ -68,12 +68,27 @@
   </div>
   <form method="POST" action="{{route('marcar.falta')}}">
     @csrf
-    <div class="col">
-      <div class="form-group" style="display: flex; justify-content: end; margin-top: 4px;">
-        <button class="btn botaoazul"  type="submit" style="margin-right: 3px;">Presencial</button>
-        <button class="btn botaovermelho" type="submit" style="margin-right: 3px;">Disciplinar</button>
-        <button class="btn botaopreto" style="background-color: rgb(92, 75, 20)" type="submit" style="margin-right: 3px;">Material</button>
-      </div>
+    <div class="row" style="display: flex
+    " >
+    <div class="col-4" style="display: flex; justify-content: start margin-top: 4px;" >
+
+        <div class="ola" style="margin-top: 4px; width: 50%;">
+            <select  class="btn-sel form-select" id="filtro10" >
+              @foreach ($nome_turma as $turma)
+                <option value="{{$turma}}">{{$turma}}</option>
+              @endforeach
+            </select>
+          </div>
+    </div>
+    <div class="col" style=" display: flex; justify-content: end;  margin-top: 4px;">
+
+        <div class="form-group" >
+          <button class="btn botaoazul" name="tipo_falta" value="presencial"  type="submit" style="margin-right: 3px;">Presencial</button>
+          <button class="btn botaovermelho" type="submit" style="margin-right: 3px;">Disciplinar</button>
+          <button class="btn botaopreto" style="background-color: rgb(92, 75, 20)" type="submit" style="margin-right: 3px;">Material</button>
+        </div>
+    </div>
+
 
     </div>
 
@@ -138,7 +153,7 @@
                           <td hidden>{{$valor3['nome_turma']}}</td>
                           <td hidden><input type="text" name="disciplina[]" value="{{$valor3['disciplina_id']}}"></td>
                           <td hidden><input type="text" name="turma[]" value="{{$valor3['turma_id']}}"></td>
-                          <td hidden><input type="text" name="professordisciplina[]" value="{{$professor[$chave1]['professor_disciplina_id']}}"></td>
+                          <td hidden><input type="text" name="professor_disciplina[]" value="{{$professor[$chave1]['professor_disciplina_id']}}"></td>
                       </tr>
                   @endforeach
               @endforeach
