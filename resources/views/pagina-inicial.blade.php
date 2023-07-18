@@ -21,197 +21,187 @@
                 
           </div>
         </div>
-        
-        <div class="col-lg-2">
-          <span class="breadcrumb">
-            <select class="btn-sel form-select" style="padding: 10px;">
-              <option selected>2022 - 2023</option>
-              <option value="2021-2022">2021 - 2022</option>
-            </select>
-          </span>      
-        </div>
+      
       </div>
     </div>
-	  
-    <div id="DadosInicioCount">
-      <section id="countsInicio" class="counts counts-escuro" name = "angola">
+    
+    {{--  json  --}}
+      {{dd($dadosapiInicio)}}  
+    
+    <section id="counts" class="counts counts-escuro">
+      <div class="container">
+        
+        <div class="row" data-aos="fade-up">
 
-      </section>
-      <section id="countsInicio" class="counts counts-escuro">
-        <div class="container">
-  
-          <div class="row" data-aos="fade-up">
-  
-            <div class="col-lg-3 col-md-6 mt-4">
-            
-              <div class="figura-card">
-                <div class="count-box count-box-escuro">
-                  <i class="bi bi-people"></i>
-                  <span class="total">500</span>
-                  <p>INSCRITOS</p>
-                </div>
-  
-                <div class="card-legenda">
-                  <ul>
-                    <li>T.I: 23</li>
-                    <li>D.P: 100</li>
-                    <li>T.E.I.E: 50</li>
-                    <li>E.T: 122</li>
-                  </ul>
-                </div>
+          <div class="col-lg-3 col-md-6 mt-4">
+          
+            <div class="figura-card">
+              <div class="count-box count-box-escuro">
+                <i class="bi bi-people"></i>
+                <span class="total">500</span>
+                <p>INSCRITOS</p>
+              </div>
+
+              <div class="card-legenda">
+                <ul>
+                  <li>T.I: 23</li>
+                  <li>D.P: 100</li>
+                  <li>T.E.I.E: 50</li>
+                  <li>E.T: 122</li>
+                </ul>
               </div>
             </div>
-  
-            <div class="col-lg-3 col-md-6 mt-4">
-  
-              <div class="figura-card">
-                <div class="count-box count-box-escuro">
-                  <i class="bi bi-person"></i>
-                  <span class="total">500</span>
-                  <p>ADMITIDOS</p>
-                </div>
-                
-                <div class="card-legenda">
-                  <ul>
-                    <li>T.I: 200</li>
-                    <li>D.P: 200</li>
-                    <li>T.E.I.E: 50</li>
-                    <li>E.T: 122</li>
-                  </ul>
-                </div>
-              </div>
-  
-            </div>
-  
-            <div class="col-lg-3 col-md-6 mt-4">
-  
-              <div class="figura-card">
-                <div class="count-box count-box-escuro">
-                  <i class="bi bi-check2-square"></i>
-                  <span class="total">500</span>
-                  <p>NÃO ADMITIDOS</p>
-                </div>
-                
-                <div class="card-legenda">
-                  <ul>
-                    <li>T.I: 300</li>
-                    <li>D.P: 200</li>
-                    <li>T.E.I.E: 150</li>
-                    <li>E.T: 122</li>
-                  </ul>
-                </div>
-              </div>
-  
-            </div>
-  
-            <div class="col-lg-3 col-md-6 mt-4">
-  
-              <div class="figura-card">
-                <div class="count-box count-box-escuro">
-                  <i class="bi bi-clipboard"></i>
-                  <span class="total">500</span>
-                  <p>MATRICULADOS</p>
-                </div>
-                
-                <div class="card-legenda">
-                  <ul>
-                    <li>T.I: 200</li>
-                    <li>D.P: 150</li>
-                    <li>T.E.I.E: 100</li>
-                    <li>E.T: 132</li>
-                  </ul>
-                </div>
-              </div>
-  
-            </div>
-            
-            <div class="col-lg-3 col-md-6 mt-5">
-  
-              <div class="figura-card">
-                <div class="count-box count-box-escuro">
-                  <i class="bi bi-arrow-90deg-down"></i>
-                  <span class="total">500</span>
-                  <p>PROFESSORES</p>
-                </div>
-                
-                <div class="card-legenda">
-                  <ul>
-                    <li>T.I: 63</li>
-                    <li>D.P: 50</li>
-                    <li>T.E.I.E: 50</li>
-                    <li>E.T: 70</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-  
-            <div class="col-lg-3 col-md-6 mt-5">
-  
-              <div class="figura-card">
-                <div class="count-box count-box-escuro">
-                  <i class="bi bi-person-check"></i>
-                  <span class="total">500</span>
-                  <p>TURMAS</p>
-                </div>
-                
-                <div class="card-legenda">
-                  <ul>
-                    <li>T.I: 20</li>
-                    <li>D.P: 20</li>
-                    <li>T.E.I.E: 16</li>
-                    <li>E.T: 10</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-  
-            <div class="col-lg-3 col-md-6 mt-5">
-  
-              <div class="figura-card">
-                <div class="count-box count-box-escuro">
-                  <i class="bi bi-people"></i>
-                  <span class="total">500</span>
-                  <p>VAGAS</p>
-                </div>
-                
-                <div class="card-legenda">
-                  <ul>
-                    <li>T.I: 200</li>
-                    <li>D.P: 100</li>
-                    <li>T.E.I.E: 300</li>
-                    <li>E.T: 200</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-  
-            <div class="col-lg-3 col-md-6 mt-5">
-              <div class="figura-card">
-                <div class="count-box count-box-escuro">
-                  <i class="bi bi-people"></i>
-                  <span class="total">500</span>
-                  <p>CURSOS</p>
-                </div>
-  
-                <div class="card-legenda">
-                  <ul>
-                    <li>T.I</li>
-                    <li>D.P</li>
-                    <li>T.E.I.E</li>
-                    <li>E.T</li>
-                  </ul>
-                </div>
-  
-              </div>
-            </div>
-            
-                          
           </div>
-  
-        </div>
-      </section><!-- Termina seccao do dashboard -->
-    </div>
 
+          <div class="col-lg-3 col-md-6 mt-4">
+
+            <div class="figura-card">
+              <div class="count-box count-box-escuro">
+                <i class="bi bi-person"></i>
+                <span class="total">500</span>
+                <p>ADMITIDOS</p>
+              </div>
+              
+              <div class="card-legenda">
+                <ul>
+                  <li>T.I: 200</li>
+                  <li>D.P: 200</li>
+                  <li>T.E.I.E: 50</li>
+                  <li>E.T: 122</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-lg-3 col-md-6 mt-4">
+
+            <div class="figura-card">
+              <div class="count-box count-box-escuro">
+                <i class="bi bi-check2-square"></i>
+                <span class="total">500</span>
+                <p>NÃO ADMITIDOS</p>
+              </div>
+              
+              <div class="card-legenda">
+                <ul>
+                  <li>T.I: 300</li>
+                  <li>D.P: 200</li>
+                  <li>T.E.I.E: 150</li>
+                  <li>E.T: 122</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-lg-3 col-md-6 mt-4">
+
+            <div class="figura-card">
+              <div class="count-box count-box-escuro">
+                <i class="bi bi-clipboard"></i>
+                <span class="total">500</span>
+                <p>MATRICULADOS</p>
+              </div>
+              
+              <div class="card-legenda">
+                <ul>
+                  <li>T.I: 200</li>
+                  <li>D.P: 150</li>
+                  <li>T.E.I.E: 100</li>
+                  <li>E.T: 132</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+          
+          <div class="col-lg-3 col-md-6 mt-5">
+
+            <div class="figura-card">
+              <div class="count-box count-box-escuro">
+                <i class="bi bi-arrow-90deg-down"></i>
+                <span class="total">500</span>
+                <p>PROFESSORES</p>
+              </div>
+              
+              <div class="card-legenda">
+                <ul>
+                  <li>T.I: 63</li>
+                  <li>D.P: 50</li>
+                  <li>T.E.I.E: 50</li>
+                  <li>E.T: 70</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mt-5">
+
+            <div class="figura-card">
+              <div class="count-box count-box-escuro">
+                <i class="bi bi-person-check"></i>
+                <span class="total">500</span>
+                <p>TURMAS</p>
+              </div>
+              
+              <div class="card-legenda">
+                <ul>
+                  <li>T.I: 20</li>
+                  <li>D.P: 20</li>
+                  <li>T.E.I.E: 16</li>
+                  <li>E.T: 10</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mt-5">
+
+            <div class="figura-card">
+              <div class="count-box count-box-escuro">
+                <i class="bi bi-people"></i>
+                <span class="total">500</span>
+                <p>VAGAS</p>
+              </div>
+              
+              <div class="card-legenda">
+                <ul>
+                  <li>T.I: 200</li>
+                  <li>D.P: 100</li>
+                  <li>T.E.I.E: 300</li>
+                  <li>E.T: 200</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mt-5">
+            <div class="figura-card">
+              <div class="count-box count-box-escuro">
+                <i class="bi bi-people"></i>
+                <span class="total">500</span>
+                <p>CURSOS</p>
+              </div>
+
+              <div class="card-legenda">
+                <ul>
+                  <li>T.I</li>
+                  <li>D.P</li>
+                  <li>T.E.I.E</li>
+                  <li>E.T</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+          
+                        
+        </div>
+
+      </div>
+    </section><!-- Termina seccao do dashboard -->
+    
     <br><br>
     
     <div class="row">
@@ -319,136 +309,139 @@
 
     </div>
 
-    <div id="DadosInicio">
-      <div class="row">
-  
-        <!-- Coluna da esquerda -->
-        <div class="col-lg-8">
-          <div class="row">
-  
-            <!-- Card Alunos -->
-            <div class="col-lg-12">
-  
-              <div class="card info-card card-aluno-escuro">
-  
-                <div class="card-body">
-                  <h5 class="card-title">Alunos <span>| 2022 - 2023</span></h5>
-                  <table class="table table-escuro" style="font-size: 15px;">
-                    <thead>
-                      <tr style="text-transform: uppercase;">
-                        <th scope="col">Cursos</th>
-                        <th scope="col">Manhã</th>
-                        <th scope="col">Tarde</th>
-                        <th scope="col">Noite</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td><span>Técnico de Informática</span></td>
-                        <td>64</td>
-                        <td>90</td>
-                        <td>48</td>
-                      </tr>
-                      <tr>
-                        <td><span>Desenhador Projetista</span></td>
-                        <td>79</td>
-                        <td>41</td>
-                        <td>39</td>
-                      </tr>
-                      <tr>
-                        <td><span>Técnico de Energia e Instalações Electricas</span></td>
-                        <td>79</td>
-                        <td>41</td>
-                        <td>39</td>
-                      </tr>
-                      <tr>
-                        <td><span>Electronica e Telecomunicação</span></td>
-                        <td>79</td>
-                        <td>41</td>
-                        <td>39</td>
-                      </tr>
-                    </tbody>
-                  </table>
-  
-                </div>
-              </div>
-  
-            </div><!-- Fim Card Alunos -->
-  
-            <!-- Card Turmas -->
-            <div class="col-lg-12">
-  
-              <div class="card info-card card-turma-escuro">
-  
-                <div class="card-body">
-                  <h5 class="card-title">Turmas <span>| 2022 - 2023</span></h5>
-                  <table class="table table-escuro" style="font-size: 15px;">
-                    <thead>
-                      <tr style="text-transform: uppercase;">
-                        <th scope="col">Cursos</th>
-                        <th scope="col">Manhã</th>
-                        <th scope="col">Tarde</th>
-                        <th scope="col">Noite</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td><span>Técnico de Informática</span></td>
-                        <td>8</td>
-                        <td>6</td>
-                        <td>6</td>
-                      </tr>
-                      <tr>
-                        <td><span>Desenhador Projetista</span></td>
-                        <td>6</td>
-                        <td>8</td>
-                        <td>6</td>
-                      </tr>
-                      <tr>
-                        <td><span>Técnico de Energia e Instalações Electricas</span></td>
-                        <td>6</td>
-                        <td>5</td>
-                        <td>5</td>
-                      </tr>
-                      <tr>
-                        <td><span>Electronica e Telecomunicação</span></td>
-                        <td>3</td>
-                        <td>4</td>
-                        <td>3</td>
-                      </tr>
-                    </tbody>
-                  </table>
-  
-                </div>
-              </div>
-  
-            </div><!-- Fim Card Turmas -->
-  
-          </div>
-        </div><!-- Fim Coluna da esquerda -->
-  
-        <!-- Coluna da direita -->
-        <div class="col-lg-4">
-          <!-- Card comunicado -->
-          <div class="card card-comincado-escuro">
-            <div class="card-body">
-              <h5 class="card-title">Hoje <span>| 13h:02</span></h5>
-  
-              <div class="activity" style="text-align: justify;">
-  
-                <h5 class="card-title" style="text-align: center;">Comunicado</h5>
-  
-                 <p>Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado-nav Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicadoAqui o Texto do comunicado v Aqui o Texto do comunicado Aqui o Texto do comunicado</p> 
-              </div>
-  
-            </div>
-          </div><!-- Fim Card comunicado -->
-  
-        </div><!-- Fim Coluna da direita -->
-  
-      </div>    
-    </div>
+    <div class="row">
 
+      <!-- Coluna da esquerda -->
+      <div class="col-lg-8">
+        <div class="row">
+
+          <!-- Card Alunos -->
+          <div class="col-lg-12">
+
+            <div class="card info-card card-aluno-escuro">
+
+              <div class="card-body">
+                <h5 class="card-title">Alunos <span>| 2022 - 2023</span></h5>
+                <table class="table table-escuro" style="font-size: 15px;">
+                  <thead>
+                    <tr style="text-transform: uppercase;">
+                      <th scope="col">Cursos</th>
+                      <th scope="col">Manhã</th>
+                      <th scope="col">Tarde</th>
+                      <th scope="col">Noite</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span>Técnico de Informática</span></td>
+                      <td>64</td>
+                      <td>90</td>
+                      <td>48</td>
+                    </tr>
+                    <tr>
+                      <td><span>Desenhador Projetista</span></td>
+                      <td>79</td>
+                      <td>41</td>
+                      <td>39</td>
+                    </tr>
+                    <tr>
+                      <td><span>Técnico de Energia e Instalações Electricas</span></td>
+                      <td>79</td>
+                      <td>41</td>
+                      <td>39</td>
+                    </tr>
+                    <tr>
+                      <td><span>Electronica e Telecomunicação</span></td>
+                      <td>79</td>
+                      <td>41</td>
+                      <td>39</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+
+          </div><!-- Fim Card Alunos -->
+
+          <!-- Card Turmas -->
+          <div class="col-lg-12">
+
+            <div class="card info-card card-turma-escuro">
+
+              <div class="card-body">
+                <h5 class="card-title">Turmas <span>| 2022 - 2023</span></h5>
+                <table class="table table-escuro" style="font-size: 15px;">
+                  <thead>
+                    <tr style="text-transform: uppercase;">
+                      <th scope="col">Cursos</th>
+                      <th scope="col">Manhã</th>
+                      <th scope="col">Tarde</th>
+                      <th scope="col">Noite</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span>Técnico de Informática</span></td>
+                      <td>8</td>
+                      <td>6</td>
+                      <td>6</td>
+                    </tr>
+                    <tr>
+                      <td><span>Desenhador Projetista</span></td>
+                      <td>6</td>
+                      <td>8</td>
+                      <td>6</td>
+                    </tr>
+                    <tr>
+                      <td><span>Técnico de Energia e Instalações Electricas</span></td>
+                      <td>6</td>
+                      <td>5</td>
+                      <td>5</td>
+                    </tr>
+                    <tr>
+                      <td><span>Electronica e Telecomunicação</span></td>
+                      <td>3</td>
+                      <td>4</td>
+                      <td>3</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+
+          </div><!-- Fim Card Turmas -->
+
+        </div>
+      </div><!-- Fim Coluna da esquerda -->
+
+      <!-- Coluna da direita -->
+      <div class="col-lg-4">
+      @foreach($comunicados as $comunicado)
+        <!-- Card comunicado -->
+        <div class="card card-comincado-escuro">
+          <div class="card-body">
+            <h5 class="card-title">Hoje <span>| 13h:02</span></h5>
+
+            <div class="activity" style="text-align: justify;">
+
+              <h5 class="card-title" style="text-align: center;">{{$comunicado->titulo_com}}</h5>
+
+               <p>{{$comunicado->conteudo_com}}</p> 
+               
+               
+              
+            </div>
+
+          </div>
+        </div><!-- Fim Card comunicado -->
+      @endforeach
+      {{$comunicados->links()}}
+
+      </div><!-- Fim Coluna da direita -->
+
+    </div>    
     <br><br><br>
   </div><!-- Fim da dashboard Admin e Subdireção -->
   
