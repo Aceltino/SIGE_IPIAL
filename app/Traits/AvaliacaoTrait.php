@@ -392,7 +392,7 @@ trait AvaliacaoTrait
             case 8:
                 return "As faltas devem ser marcadas nos dias úteis!";
             case 9:
-                return "As faltas só podem ser marcadas em dias em que o professor lecciona a mesma turma!";
+                return "As faltas só podem ser marcadas em dias e tempos em que o professor lecciona a mesma turma!";
             case 10:
                 return "Limite de hora para a marcação da falta excedido!";
 
@@ -569,7 +569,7 @@ trait AvaliacaoTrait
 
     public static function pegarDadosRecurso($aluno_id){
         $nota = Nota::where('aluno_id', 1)->get();
-        
+
     }
 
 }

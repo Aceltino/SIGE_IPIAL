@@ -32,6 +32,11 @@ class ProfessorController extends Controller
     public function index()
     {
         $professores = Professor::with('pessoa', 'professorDisciplina')
+            ->whereIn('professor_id', function ($query) {
+                $query->selectRaw('MIN(professor_id)')
+                    ->from('professores')
+                    ->groupBy('pessoa_id');
+            })
             ->get();
         $cursos = Curso::all(['nome_curso', 'sigla', 'curso_id']);
         $prof_disc = Professor_disciplina::with('disciplina')->get();
@@ -91,7 +96,7 @@ class ProfessorController extends Controller
             $validator = Validator::make($request->all(), [
                 'nome_completo' => 'required|string|max:255',
                 'num_bi' => 'required|regex:/^\d{9}[A-Z]{2}\d{3}$/',
-                'genero' => 'required|in:Masculino,Feminino',
+                'genero' => 'required|in:Masculino,Feminino,Femenino',
                 'num_tel' => ['required', 'regex:/^\d{9}$/'],
                 'data_nascimento' => 'required|date',
 
@@ -164,10 +169,20 @@ class ProfessorController extends Controller
                 $request->input('cargo'),
             ];
 
+            $validatedEndereco = [
+                'municipio' => $request->input('municipio'),
+                'bairro' => $request->input('bairro'),
+                'zona' => $request->input('zona'),
+                'numero_casa' => $request->input('numero_casa')
+            ];
+
+            $endereco = Endereco::create($validatedEndereco);
+
             $pessoa = Pessoa::create([
                 'nome_completo' => $request->input('nome_completo'),
                 'num_bi' => $request->input('num_bi'),
                 'genero' => $request->input('genero'),
+                'endereco_id' => $endereco->endereco_id,
                 'telefone' => $request->input('num_tel'),
                 'data_nascimento' => $request->input('data_nascimento'),
             ]);

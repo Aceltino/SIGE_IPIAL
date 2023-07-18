@@ -23,12 +23,12 @@
             <div class="row">
                 <div class="col-lg-10">
                     <div class="nomenumeroalunoinfo">
-                        <h5 style="margin-left: 3px;"> <b>Nome:</b></h5>
+                        <h5 style="margin-left: 3px;"> <b>Nome: {{$dados[0]->aluno->candidato->pessoa->nome_completo}}</b></h5>
                     </div>
                 </div>
                 <div class="col-lg-2">
                     <div class="nofimnomenumeroaluno">
-                        <h5 class="nomenumeroalunoinfo"> <b>Nº:</b></h5>
+                        <h5 class="nomenumeroalunoinfo"> <b>Nº: {{$dados[0]->aluno->turmaAno[count($dados[0]->aluno->turmaAno) - 1]->numero_aluno}}</b></h5>
                     </div>
                 </div>
             </div>
@@ -56,14 +56,14 @@
       <tbody>
 
         <tr style="text-align: center;">
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>{{date('d/m/Y', strtotime($dados[0]->created_at))}}</td>
+            <td>{{$dados[0]->disciplina->nome_disciplina}}</td>
+            <td>{{$dados[0]->nota_aluno}}</td>
             <td style="text-align: center">
             <a class="btn linkeditar" data-bs-toggle="modal" data-bs-target="#modal_assiduidade">Editar Nota</a>
             </td>
         </tr>
- 
+
         </tbody>
     </table>
     <form method="POST" action="">
@@ -103,7 +103,7 @@
                   <tr>
                     <td></td>
                     <td><input class="form-control innota" type="text" name="npp" maxlength="5" id="notaimput"></td>
-                
+
                   </tr>
                 </tbody>
               </table>
