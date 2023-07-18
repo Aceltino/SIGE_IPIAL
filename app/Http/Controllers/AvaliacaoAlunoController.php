@@ -9,7 +9,7 @@ use App\Traits\AvaliacaoTrait;
 use App\Models\Trimestre;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Professor;
-use App\Models\SituacaoFinalAluno;
+use App\Models\ResultadoFinalAluno;
 use App\Models\Disciplina;
 
 class AvaliacaoAlunoController extends Controller
@@ -258,7 +258,7 @@ class AvaliacaoAlunoController extends Controller
         $busca = (int) request('busca');
         if ($busca) {
             $ano_lectivo = AvaliacaoTrait::pegarAnoLectivo();
-            $dados = SituacaoFinalAluno::with('alunos.candidato.pessoa', 'alunos.anoTurma.turma.curso', 'ano_lectivos')
+            $dados = ResultadoFinalAluno::with('alunos.candidato.pessoa', 'alunos.anoTurma.turma.curso', 'ano_lectivos')
             ->where('aluno_id', $busca)
             ->where('ano_lectivo_id', $ano_lectivo[0]->ano_lectivo_id)
             ->where('situacao', "Exame")
@@ -294,7 +294,7 @@ class AvaliacaoAlunoController extends Controller
         $busca = (int) request('busca');
         if ($busca) {
             $ano_lectivo = AvaliacaoTrait::pegarAnoLectivo();
-            $dados = SituacaoFinalAluno::with('alunos.candidato.pessoa', 'alunos.anoTurma.turma.curso', 'ano_lectivos')
+            $dados = ResultadoFinalAluno::with('alunos.candidato.pessoa', 'alunos.anoTurma.turma.curso', 'ano_lectivos')
             ->where('aluno_id', $busca)
             ->where('ano_lectivo_id', $ano_lectivo[0]->ano_lectivo_id)
             ->where('situacao', "Ñ/Transita")

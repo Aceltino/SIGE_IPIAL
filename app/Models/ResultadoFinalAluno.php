@@ -25,4 +25,10 @@ class ResultadoFinalAluno extends Model
     public function aluno(){
         $this->belongsTo(Aluno::class,'aluno_id');
     }
+    public function alunos(){
+        return $this->belongsTo(Aluno::class,'aluno_id');
+    }
+    public function ano_lectivos(){
+        return $this->belongsTo(Ano_lectivo::class,'ano_lectivo_id');
+    }
 }
