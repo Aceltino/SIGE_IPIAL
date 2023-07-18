@@ -10,6 +10,7 @@ use App\Traits\AssiduidadeTrait;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Professor;
 use App\Models\Tempo;
+use App\Models\Ano_lectivo;
 
 class AssiduidadeAlunoController extends Controller
 {
@@ -175,6 +176,15 @@ class AssiduidadeAlunoController extends Controller
         $assiduidade->descricao_falta = $request->conteudo;
         $assiduidade->save();
         return redirect()->back()->with('sucesso', "Falta justificada com sucesso!");
+    }
+
+    //Função que retorna todas as faltas do aluno para o Carlos Marques
+    public static function assiduidadeAnual($aluno_id, $ano_lectivo_id){
+        $ano_lectivo = Ano_lectivo::with('trimestres')->latest()->where('ano_lectivo_id', $ano_lectivo_id)->first();
+        for ($i = 0; $i < count($ano_lectivo->trimestres); $i++) {
+            $faltas[$i] = Assiduidade_aluno::where('aluno_id', $aluno_id)->where('id_trimestre', $ano_lectivo->trimestres[$i]->trimestre_id)->get();
+        }
+        return $faltas;
     }
 
 }
