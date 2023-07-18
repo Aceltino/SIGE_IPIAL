@@ -84,10 +84,11 @@
         <td>{{ $disciplina->sigla		}}</td>
         <td>{{ $disciplina->componente	}}</td>
         <td>{{ $disciplina->tempo_prova }}</td> 
-        @if($disciplina->componente =="Socio-culturais" || $disciplina->componente =="Cientificas" || $disciplina->curso_id == '')
-        <td>Todos cursos</td>
+        @if($disciplina->componente =="Socio-culturais")
+        <td>Todos cursos</td> 
         @else
         <td>{{ $disciplina->curso->nome_curso }}</td>
+        
         @endif
          @foreach($disciplina->classes as $classe)
           <td>{{ $classe->classe }}</td>

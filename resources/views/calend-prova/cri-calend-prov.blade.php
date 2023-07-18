@@ -4,7 +4,7 @@
 
 @section('conteudo')
 <main id="main" class="main">
-    <form method="POST" action="" id="regForm" class="form-nscricao" method ="POST">
+    <form method="POST" action="{{ route('store.calendario') }}" id="regForm" class="form-nscricao" method ="POST">
     @csrf
         <div style="text-align:center;margin-top:0px;">
             <span class="step"></span>
@@ -25,31 +25,29 @@
 
         <!-- Tras de forma dinamica-->
             <div class="form-group">
-                <select oninput="this.className = ''" class="form-select">
-                    <option selected disabled>Curso</option>
-                    <option value="D.P">Desenhador projetista - D.P</option>
-                    <option value="T.E.I.E">Técnico de Energia e Instalações Electricas - T.E.I.E</option>
-                    <option value="T.I">Técnico de Informática - T.I</option>
-                    <option value="E.T">Electronica e Telecomunicação - E.T</option>
+                <select oninput="this.className = ''" class="form-select"  name="curso">
+                    <option selected disabled>Curso</option> 
+                    @foreach ($curso as $curs)
+                        <option value="{{ $curs['curso_id'] }}">{{ $curs['nome_curso'] }}</option>
+                    @endforeach
                 </select>
             </div>
 <!-- Tras de forma dinamica-->
             <div class="form-group">
-                <select oninput="this.className = ''" class="form-select">
+                <select oninput="this.className = ''" class="form-select"  name="classe">
                     <option selected disabled>Classe</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
+                    @foreach ($classe as $class)
+                        <option value="{{ $class['classe_id'] }}">{{ $class['classe'] }}</option>
+                    @endforeach
                 </select>
             </div>
             <!-- Tras de forma dinamica-->
             <div class="form-group">
-                <select oninput="this.className = ''" class="form-select">
+                <select oninput="this.className = ''" class="form-select" name="turno">
                     <option selected disabled>Turno</option>
-                    <option value="manha">Manhã</option>
-                    <option value="tarde">Tarde</option>
-                    <option value="noite">Noite</option>
+                    @foreach ($turno as $turn)
+                        <option value="{{ $turn['turno_id'] }}">{{ $turn['nome_turno'] }}</option>
+                    @endforeach
                 </select>
             </div>
 <!-- Tras de forma dinamica-->
@@ -85,7 +83,7 @@
                     <div class="row">
                         <div class="col-lg-5">
                             <div class="form-group">
-                                <input type="time">
+                                <input type="time" name="Time1">
                             </div>
                         </div>
 
@@ -93,7 +91,7 @@
 
                         <div class="col-lg-5">
                             <div class="form-group">
-                                <input type="time">
+                                <input type="time" name="Time2">
                             </div>
                         </div>
 
@@ -106,7 +104,7 @@
                     <div class="row">
                         <div class="col-lg-5">
                             <div class="form-group">
-                                <input type="time">
+                                <input type="time" name="TimeS1">
                             </div>
                         </div>
 
@@ -114,7 +112,7 @@
 
                         <div class="col-lg-5">
                             <div class="form-group">
-                                <input type="time">
+                                <input type="time" name="TimeS2">
                             </div>
                         </div>
 
@@ -141,7 +139,7 @@
                 <div class="col-lg-6">
                     <span class="span-calend">.</span>  
                     <div class="form-group">
-                        <select oninput="this.className = ''" class="form-select form-control">
+                        <select oninput="this.className = ''" class="form-select form-control" name="Dia_semana1">
                             <option selected disabled>Dia da semana</option>
                             <option value="segunda-f">Segunda-Feira</option>
                             <option value="terca-f">Terça-Feira</option>
@@ -160,7 +158,7 @@
                     <span class="span-calend">Primeira prova</span>  
                     <div class="form-group">
                         <!--Trazer de forma dinamica-->
-                        <select oninput="this.className = ''" class="form-select form-control">
+                        <select oninput="this.className = ''" class="form-select form-control" name="Disciplina1">
                             <option selected disabled>Disciplina</option>
                             <option>Português</option>
                             <option>Inglês</option>
@@ -182,7 +180,7 @@
                     <span class="span-calend">Segunda prova</span>
                     <div class="form-group">
                         <!--Trazer de forma dinamica-->
-                        <select oninput="this.className = ''" class="form-select form-control">
+                        <select oninput="this.className = ''" class="form-select form-control" name="Disciplina2">
                             <option selected disabled>Disciplina</option>
                             <option>Português</option>
                             <option>Inglês</option>
@@ -211,14 +209,14 @@
             <div class="row dv-sel-dias">
                 <div class="col-lg-6">
                     <span class="span-calend">Data da prova</span>  
-                    <input type="date" oninput="this.className = ''">
+                    <input type="date" oninput="this.className = ''" name="Data_prova">
                 </div>
 
                 <!--Trazer de forma dinamica-->
                 <div class="col-lg-6">
                     <span class="span-calend">.</span>  
                     <div class="form-group">
-                        <select oninput="this.className = ''" class="form-select form-control">
+                        <select oninput="this.className = ''" class="form-select form-control" name="Dia_semana2">
                             <option selected disabled>Dia da semana</option>
                             <option value="segunda-f">Segunda-Feira</option>
                             <option value="terca-f">Terça-Feira</option>
@@ -236,7 +234,7 @@
                 <div class="col-lg-6">
                     <span class="span-calend">Primeira prova</span>  
                     <div class="form-group">
-                        <select oninput="this.className = ''" class="form-select form-control">
+                        <select oninput="this.className = ''" class="form-select form-control" name="Disciplina3">
                             <option selected disabled>Disciplina</option>
                             <option>Português</option>
                             <option>Inglês</option>
@@ -257,7 +255,7 @@
                 <div class="col-lg-6">
                     <span class="span-calend">Segunda prova</span>
                     <div class="form-group">
-                        <select oninput="this.className = ''" class="form-select form-control">
+                        <select oninput="this.className = ''" class="form-select form-control" name="Disciplina4">
                             <option selected disabled>Disciplina</option>
                             <option>Português</option>
                             <option>Inglês</option>
@@ -293,7 +291,7 @@
                 <div class="col-lg-6">
                     <span class="span-calend">.</span>  
                     <div class="form-group">
-                        <select oninput="this.className = ''" class="form-select form-control">
+                        <select oninput="this.className = ''" class="form-select form-control" name="Dia_semana3">
                             <option selected disabled>Dia da semana</option>
                             <option value="segunda-f">Segunda-Feira</option>
                             <option value="terca-f">Terça-Feira</option>
@@ -311,7 +309,7 @@
                 <div class="col-lg-6">
                     <span class="span-calend">Primeira prova</span>  
                     <div class="form-group">
-                        <select oninput="this.className = ''" class="form-select form-control">
+                        <select oninput="this.className = ''" class="form-select form-control" name="Disciplina5">
                             <option selected disabled>Disciplina</option>
                             <option>Português</option>
                             <option>Inglês</option>
@@ -332,7 +330,7 @@
                 <div class="col-lg-6">
                     <span class="span-calend">Segunda prova</span>
                     <div class="form-group">
-                        <select oninput="this.className = ''" class="form-select form-control">
+                        <select oninput="this.className = ''" class="form-select form-control" name="Disciplina6">
                             <option selected disabled>Disciplina</option>
                             <option>Português</option>
                             <option>Inglês</option>
@@ -368,7 +366,7 @@
                 <div class="col-lg-6">
                     <span class="span-calend">.</span>  
                     <div class="form-group">
-                        <select oninput="this.className = ''" class="form-select form-control">
+                        <select oninput="this.className = ''" class="form-select form-control" name="Dia_semana4">
                             <option selected disabled>Dia da semana</option>
                             <option value="segunda-f">Segunda-Feira</option>
                             <option value="terca-f">Terça-Feira</option>
@@ -386,7 +384,7 @@
                 <div class="col-lg-6">
                     <span class="span-calend">Primeira prova</span>  
                     <div class="form-group">
-                        <select oninput="this.className = ''" class="form-select form-control">
+                        <select oninput="this.className = ''" class="form-select form-control" name="Disciplina7 ">
                             <option selected disabled>Disciplina</option>
                             <option>Português</option>
                             <option>Inglês</option>
@@ -407,7 +405,7 @@
                 <div class="col-lg-6">
                     <span class="span-calend">Segunda prova</span>
                     <div class="form-group">
-                        <select oninput="this.className = ''" class="form-select form-control">
+                        <select oninput="this.className = ''" class="form-select form-control" name="Disciplina8">
                             <option selected disabled>Disciplina</option>
                             <option>Português</option>
                             <option>Inglês</option>
@@ -443,7 +441,7 @@
                 <div class="col-lg-6">
                     <span class="span-calend">.</span>  
                     <div class="form-group">
-                        <select oninput="this.className = ''" class="form-select form-control">
+                        <select oninput="this.className = ''" class="form-select form-control" name="Dia_semana5">
                             <option selected disabled>Dia da semana</option>
                             <option value="segunda-f">Segunda-Feira</option>
                             <option value="terca-f">Terça-Feira</option>
@@ -461,7 +459,7 @@
                 <div class="col-lg-6">
                     <span class="span-calend">Primeira prova</span>  
                     <div class="form-group">
-                        <select oninput="this.className = ''" class="form-select form-control">
+                        <select oninput="this.className = ''" class="form-select form-control" name="Disciplina9">
                             <option selected disabled>Disciplina</option>
                             <option>Português</option>
                             <option>Inglês</option>
@@ -482,7 +480,7 @@
                 <div class="col-lg-6">
                     <span class="span-calend">Segunda prova</span>
                     <div class="form-group">
-                        <select oninput="this.className = ''" class="form-select form-control">
+                        <select oninput="this.className = ''" class="form-select form-control" name="Disciplina10">
                             <option selected disabled>Disciplina</option>
                             <option>Português</option>
                             <option>Inglês</option>
@@ -518,7 +516,7 @@
                 <div class="col-lg-6">
                     <span class="span-calend">.</span>  
                     <div class="form-group">
-                        <select oninput="this.className = ''" class="form-select form-control">
+                        <select oninput="this.className = ''" class="form-select form-control" name="Dia_semana6">
                             <option selected disabled>Dia da semana</option>
                             <option value="segunda-f">Segunda-Feira</option>
                             <option value="terca-f">Terça-Feira</option>
@@ -536,7 +534,7 @@
                 <div class="col-lg-6">
                     <span class="span-calend">Primeira prova</span>  
                     <div class="form-group">
-                        <select oninput="this.className = ''" class="form-select form-control">
+                        <select oninput="this.className = ''" class="form-select form-control" name="Disciplina11">
                             <option selected disabled>Disciplina</option>
                             <option>Português</option>
                             <option>Inglês</option>
@@ -557,7 +555,7 @@
                 <div class="col-lg-6">
                     <span class="span-calend">Segunda prova</span>
                     <div class="form-group">
-                        <select oninput="this.className = ''" class="form-select form-control">
+                        <select oninput="this.className = ''" class="form-select form-control" name="Disciplina12">
                             <option selected disabled>Disciplina</option>
                             <option>Português</option>
                             <option>Inglês</option>
@@ -593,7 +591,7 @@
                 <div class="col-lg-6">
                     <span class="span-calend">.</span>  
                     <div class="form-group">
-                        <select oninput="this.className = ''" class="form-select form-control">
+                        <select oninput="this.className = ''" class="form-select form-control" name="Dia_semana7">
                             <option selected disabled>Dia da semana</option>
                             <option value="segunda-f">Segunda-Feira</option>
                             <option value="terca-f">Terça-Feira</option>
@@ -611,7 +609,7 @@
                 <div class="col-lg-6">
                     <span class="span-calend">Primeira prova</span>  
                     <div class="form-group">
-                        <select oninput="this.className = ''" class="form-select form-control">
+                        <select oninput="this.className = ''" class="form-select form-control"name="Disciplina13">
                             <option selected disabled>Disciplina</option>
                             <option>Português</option>
                             <option>Inglês</option>
@@ -632,7 +630,7 @@
                 <div class="col-lg-6">
                     <span class="span-calend">Segunda prova</span>
                     <div class="form-group">
-                        <select oninput="this.className = ''" class="form-select form-control">
+                        <select oninput="this.className = ''" class="form-select form-control" name="Disciplina14">
                             <option selected disabled>Disciplina</option>
                             <option>Português</option>
                             <option>Inglês</option>

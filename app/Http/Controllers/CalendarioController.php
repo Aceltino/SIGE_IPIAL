@@ -15,7 +15,15 @@ class CalendarioController extends Controller
     }
     public function create()
     {
-        return view('calend-prova.cri-calend-prov');
+        $curso = Curso::all();
+        $classe = Classe::all();
+        $turno = Turno::all();
+        $trimestre = Trimestre::all();
+        return view('calend-prova.cri-calend-prov',compact('curso','classe','turno','trimestre'));
+    }
+    public function store(Request $request)
+    {
+        dd($request);
     }
     
 }

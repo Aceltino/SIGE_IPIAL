@@ -42,10 +42,10 @@ class DisciplinaStoreRequest extends FormRequest
                 'required',
                 'string',
             ],
-            'Tipo_disciplina'=>[
+            'tipo_disciplina'=>[
                 'required',
                 'string',
-            ],
+            ], 
             'carga_horaria'=>[
                 'required',
                 'numeric',
@@ -71,7 +71,7 @@ class DisciplinaStoreRequest extends FormRequest
             'componente.required'=>'O componente deve ser preenchido',
             'tempo_prova.required'=>'O Tempo de Prova deve ser preenchido',
             'carga_horaria.required'=>'A carga horaria deve ser preenchido',
-            'Tipo_disciplina.required'=>'O Tipo_disciplina deve ser preenchido',
+            'tipo_disciplina.required'=>'O Tipo_disciplina deve ser preenchido',
             'sigla.required'=>'A sigla deve ser preenchido',
             'classe.required'=>'A classe deve ser preenchido',
             //
