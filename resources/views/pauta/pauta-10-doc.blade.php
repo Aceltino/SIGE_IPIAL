@@ -4,6 +4,7 @@
 
 @section('conteudo')
 <main id="main" class="main">
+    
     <?php
 
     //Organização dos alunos que estão a vir da back
@@ -13,7 +14,8 @@
                 $mt1 = isset($OneMedia[$i][0]->nota) ? $OneMedia[$i][0]->nota : '0';
                 $mt2 = isset($TwoMedia[$i][0]->nota) ? $TwoMedia[$i][0]->nota : '0';
                 $mt3 = isset($ThreeMedia[$i][0]->nota) ? $ThreeMedia[$i][0]->nota : '0';
-            
+                $ca = isset($ca_cfd[$i][0]->ca) ? $ca_cfd[$i][0]->ca: '0';
+                $cfd = isset($ca_cfd[$i][0]->cfd) ? $ca_cfd[$i][0]->cfd : '0';
                 $alunoIndex = $i % count($alunos); 
                 $disciplinaIndex = $i % count($disciplinas);
             
@@ -27,12 +29,14 @@
                     'disciplina' => $disciplina,
                     'media_trimestre1' => $mt1,
                     'media_trimestre2' => $mt2,
-                    'media_trimestre3' => $mt3
+                    'media_trimestre3' => $mt3,
+                    'ca' => $ca,
+                    'cfd' => $cfd
                 ];
             }
             
     ?>
-{{dd($disciplina )}}
+{{dd($ca)}}
   
     
  
@@ -48,6 +52,7 @@
         </div>
     </div>
     </div>
+    {{dd($ca_cdf)}}
     <!--Inicio da puta -->
     <table class="pauta-geral" id="pauta-g">
     <thead class="cabecalho-tab-p">
@@ -185,6 +190,7 @@
             <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT1</span></th>
             <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT2</span></th>
             <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT3</span></th>
+
             <th class="c-tab-amarelo coluna-tab-p"><span class="t-vert maisculo-p">CA</span></th>
             <th class="coluna-tab-p" colspan="2"><span class="t-verst-falta-aluno-p maisculo-p">FALTAS</span></th>   
         @endforeach  
@@ -218,6 +224,7 @@
                 $mediaTrimestre1 = $media['media_trimestre1'];
                 $mediaTrimestre2 = $media['media_trimestre2'];
                 $mediaTrimestre3 = $media['media_trimestre3'];
+                
                 
                 if ($mediaAlunoId === $alunoId) {
         @endphp
