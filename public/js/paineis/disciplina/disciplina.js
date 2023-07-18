@@ -153,11 +153,9 @@ function clonar() {
 }
 
 function montarInput(id) {
-  for(var i = 1; i<2 ; i++)
-  {
-    return `<div id="${id}"< class="row">
+  return `<div id="${id}"< class="row">
   <div class="form-group col-4">
-      <select oninput="this.className = ''" class="form-select" name="tipo_disciplina${i}"
+      <select oninput="this.className = ''" class="form-select" name="tipo_disciplina"
           id="selectTipoDisciplina">
           <option selected disabled>Tipo de Disciplina</option>
           <option value="Terminal">Terminal</option>
@@ -166,7 +164,7 @@ function montarInput(id) {
   </div>
 
   <div class="form-group col-4">
-      <select oninput="this.className = ''" class="form-select" name="classe${i}"
+      <select oninput="this.className = ''" class="form-select" name="classe"
           id="selectclasse">
           <option selected disabled>Classe</option>
           ${Options()}
@@ -175,17 +173,15 @@ function montarInput(id) {
   </div>
 
   <div class="form-group col-3">
-      <input type="text" id="input" style=" text-align: center;" name="carga_horaria${i}"
+      <input type="text" id="input" style=" text-align: center;" name="carga_horaria"
           placeholder="Carga Horária"
           oninput="this.className = ''" maxlength="4">
      
   </div>
   
-  
-  
   <button class="form-group col-1 btn btn-danger" type="button" onclick="remove('${id}')">Remover</button>
-    </div>`;
-  }
+  
+</div>`;
 }
 function remove(id) {
   let el = document.getElementById(id);

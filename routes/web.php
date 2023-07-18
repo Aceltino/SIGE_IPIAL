@@ -357,8 +357,6 @@ Route::prefix('calend-prova')->group(function(){
     Route::get('edit-calend-prova', function(){
         return view('calend-prova/edit-calend-prova');
     })->name('editar.calendario');
-    Route::post('calend-prova.store',[CalendarioController::class, 'store'])->name('store.calendario');
-    
 });
 
 

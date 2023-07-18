@@ -43,13 +43,7 @@ class DisciplinasController extends Controller
             'classe_id' => $request->classe,
             'tipo_disciplina' => $request->tipo_disciplina,
         ]);  
-        sleep(2);
-        $ClasseDisiciplina = ClasseDisciplina::create([
-            'carga_horaria' => $request->carga_horaria1,
-            'disciplina_id' =>$disciplinas->disciplina_id,
-            'classe_id' => $request->classe1,
-            'tipo_disciplina' => $request->tipo_disciplina1,
-        ]);
+         
         return redirect()->route('consultar.disciplina',$disciplinas)->with('sucess','Disciplina cadastrada com sucesso');
     }
     public function edit($disciplina_id)
