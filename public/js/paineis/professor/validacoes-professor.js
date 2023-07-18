@@ -50,7 +50,7 @@
  //Fim das funções diversas
 
  //Funções dos eventos
-    inputDataDeNascimentoDoProfessor.addEventListener("input", ()=>{
+    inputDataDeNascimentoDoProfessor.addEventListener("blur", ()=>{
         var stringDataDeNascimentoDoProfessor = inputDataDeNascimentoDoProfessor.value;
         var dataDeNascimentoDoProfessor = new Date (stringDataDeNascimentoDoProfessor);
 

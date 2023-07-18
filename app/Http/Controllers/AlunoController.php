@@ -70,12 +70,12 @@ class AlunoController extends Controller
     public static function alunosVinculados() // Fechamento do ano lectivo, ano lectivo status 0 -> Colocar esta função no fechamento do Ano Lectivo
     {
         $alunos = Aluno::where('status', 1 )->get();
+        if ($alunos->isEmpty()) {
+            return false;
+        }
 
-        //$Alunos = [];
-// dd($alunos);
-        foreach ($alunos as $posicao => $aluno)
+        foreach ($alunos as $aluno)
         {
-             //dd($posicao);
             $userId = AlunoController::pegarIdUser($aluno->aluno_id);
             $dadosUser=[
                 'usuario_id'=> $userId,
@@ -83,8 +83,8 @@ class AlunoController extends Controller
             ];
 
             UserController::updateAluno($dadosUser);
-            dd($dadosUser);
-            $Alunos[$posicao] =
+            
+            $Alunos =
             [
                 $aluno->status = 0,
                 $aluno->save()
@@ -96,10 +96,13 @@ class AlunoController extends Controller
 
     public static function pegarIdUser($idAluno)
     {
-        $alunos = Aluno::with('candidato.pessoa.user')
+        $aluno = Aluno::with('candidato.pessoa.user')
         ->where('aluno_id', $idAluno)
-        ->get()->first();
-            $userId = $alunos->candidato->pessoa->user[0]->usuario_id;
+        ->get()
+        ->first();
+
+        
+        $userId = $aluno->candidato->pessoa->user[0]->usuario_id;
 
         return $userId;
     }

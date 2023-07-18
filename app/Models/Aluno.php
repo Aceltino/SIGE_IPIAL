@@ -60,4 +60,7 @@ class Aluno extends Model
     {
         return $this->hasMany(AlunoTurma::class, 'aluno_id');
     }
+    public function resultadoFinalAluno(){
+        return $this->hasMany(ResultadoFinalAluno::class,'resultadoFinalAluno_id');
+    }
 }

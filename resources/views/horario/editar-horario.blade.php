@@ -13,17 +13,17 @@
 
             <div class="row mb-3">
                 <div class="col">
-                    <input type="text" oninput="this.className = ''" class="form-control" value="Desenhador Projectista" disabled>
+                    <input type="text" oninput="this.className = ''" class="form-control" value="Desenhador Projectista" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
             </div>
 
             <div class="row mb-3">
                 <div class="col">
-                    <input type="text" oninput="this.className = ''" class="form-control" value="EI10AN" id="input-editar-horario-turma" disabled>
+                    <input type="text" oninput="this.className = ''" class="form-control" value="EI10AN" id="input-editar-horario-turma" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
             </div>
 
-            <div class="row mb-3" id="editar-horario-div-que-pode-desaparecer-1">
+            <div class="row d-flex align-items-center mb-3" id="editar-horario-div-que-pode-desaparecer-1">
                 <div class="col-sm-6">
                     <select oninput="this.className = ''" class="form-select">
                         <optgroup label="Primeiro dia de Educação Física">
@@ -54,11 +54,10 @@
                 </div>
             </div>
 
-            <div class="row" id="editar-horario-div-que-pode-desaparecer-2">
+            <div class="row d-flex align-items-center" id="editar-horario-div-que-pode-desaparecer-2">
                 <div class="col-sm-6">
                     <select oninput="this.className = ''" class="form-select">
                         <optgroup label="Segundo dia de Educação Física">
-                         
                             <option value="Segunda-Feira">Segunda-Feira</option>
                             <option value="Terça-Feira">Terça-Feira</option>
                             <option value="Quarta-Feira">Quarta-Feira</option>
@@ -90,233 +89,231 @@
         
             <h4 class="text-uppercase text-center my-3 color-blue-principal">Disciplinas e Professores</h4>
           
-            <div class="row" >
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
-                </div>
-
-                <div class="col">
-                <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Professores">
-                        <option value="Sungo Afonso">Sungo Afonso</option>
-                        <option value="Brigith Barros">Brigith Barros</option>
-                        <option value="Sivi Lando">Sivi Lando</option>
-                        <option value="Anatoli Lussati">Anatoli Lussati</option>
-                        <option value="Rosa António">Rosa António</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
-                </div>
-
-                <div class="col">
-                <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Professores">
-                        <option value="Sungo Afonso">Sungo Afonso</option>
-                        <option value="Brigith Barros">Brigith Barros</option>
-                        <option value="Sivi Lando">Sivi Lando</option>
-                        <option value="Anatoli Lussati">Anatoli Lussati</option>
-                        <option value="Rosa António">Rosa António</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
-                </div>
-
-                <div class="col">
-                <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Professores">
-                        <option value="Sungo Afonso">Sungo Afonso</option>
-                        <option value="Brigith Barros">Brigith Barros</option>
-                        <option value="Sivi Lando">Sivi Lando</option>
-                        <option value="Anatoli Lussati">Anatoli Lussati</option>
-                        <option value="Rosa António">Rosa António</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
-                </div>
-
-                <div class="col">
-                <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Professores">
-                        <option value="Sungo Afonso">Sungo Afonso</option>
-                        <option value="Brigith Barros">Brigith Barros</option>
-                        <option value="Sivi Lando">Sivi Lando</option>
-                        <option value="Anatoli Lussati">Anatoli Lussati</option>
-                        <option value="Rosa António">Rosa António</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
-                </div>
-
-                <div class="col">
-                <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Professores">
-                        <option value="Sungo Afonso">Sungo Afonso</option>
-                        <option value="Brigith Barros">Brigith Barros</option>
-                        <option value="Sivi Lando">Sivi Lando</option>
-                        <option value="Anatoli Lussati">Anatoli Lussati</option>
-                        <option value="Rosa António">Rosa António</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
-                </div>
-
-                <div class="col">
-                <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Professores">
-                        <option value="Sungo Afonso">Sungo Afonso</option>
-                        <option value="Brigith Barros">Brigith Barros</option>
-                        <option value="Sivi Lando">Sivi Lando</option>
-                        <option value="Anatoli Lussati">Anatoli Lussati</option>
-                        <option value="Rosa António">Rosa António</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
-                </div>
-
-                <div class="col">
-                <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Professores">
-                        <option value="Sungo Afonso">Sungo Afonso</option>
-                        <option value="Brigith Barros">Brigith Barros</option>
-                        <option value="Sivi Lando">Sivi Lando</option>
-                        <option value="Anatoli Lussati">Anatoli Lussati</option>
-                        <option value="Rosa António">Rosa António</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
-                </div>
-
-                <div class="col">
-                <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Professores">
-                        <option value="Sungo Afonso">Sungo Afonso</option>
-                        <option value="Brigith Barros">Brigith Barros</option>
-                        <option value="Sivi Lando">Sivi Lando</option>
-                        <option value="Anatoli Lussati">Anatoli Lussati</option>
-                        <option value="Rosa António">Rosa António</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
-                </div>
-
-                <div class="col">
-                <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Professores">
-                        <option value="Sungo Afonso">Sungo Afonso</option>
-                        <option value="Brigith Barros">Brigith Barros</option>
-                        <option value="Sivi Lando">Sivi Lando</option>
-                        <option value="Anatoli Lussati">Anatoli Lussati</option>
-                        <option value="Rosa António">Rosa António</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
-                </div>
-
-                <div class="col">
-                <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Professores">
-                        <option value="Sungo Afonso">Sungo Afonso</option>
-                        <option value="Brigith Barros">Brigith Barros</option>
-                        <option value="Sivi Lando">Sivi Lando</option>
-                        <option value="Anatoli Lussati">Anatoli Lussati</option>
-                        <option value="Rosa António">Rosa António</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
-                </div>
-
-                <div class="col">
-                <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Professores">
-                        <option value="Sungo Afonso">Sungo Afonso</option>
-                        <option value="Brigith Barros">Brigith Barros</option>
-                        <option value="Sivi Lando">Sivi Lando</option>
-                        <option value="Anatoli Lussati">Anatoli Lussati</option>
-                        <option value="Rosa António">Rosa António</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col">
                     <select oninput="this.className = ''" class="form-select">
                         <optgroup label="Professores">
-                        <option value="Sungo Afonso">Sungo Afonso</option>
-                        <option value="Brigith Barros">Brigith Barros</option>
-                        <option value="Sivi Lando">Sivi Lando</option>
-                        <option value="Anatoli Lussati">Anatoli Lussati</option>
-                        <option value="Rosa António">Rosa António</option>
+                            <option value="Sungo Afonso">Sungo Afonso</option>
+                            <option value="Brigith Barros">Brigith Barros</option>
+                            <option value="Sivi Lando">Sivi Lando</option>
+                            <option value="Anatoli Lussati">Anatoli Lussati</option>
+                            <option value="Rosa António">Rosa António</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row d-flex align-items-center mb-3">
+                <div class="col">
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                </div>
+
+                <div class="col">
+                    <select oninput="this.className = ''" class="form-select">
+                        <optgroup label="Professores">
+                            <option value="Sungo Afonso">Sungo Afonso</option>
+                            <option value="Brigith Barros">Brigith Barros</option>
+                            <option value="Sivi Lando">Sivi Lando</option>
+                            <option value="Anatoli Lussati">Anatoli Lussati</option>
+                            <option value="Rosa António">Rosa António</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row d-flex align-items-center mb-3">
+                <div class="col">
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                </div>
+
+                <div class="col">
+                    <select oninput="this.className = ''" class="form-select">
+                        <optgroup label="Professores">
+                            <option value="Sungo Afonso">Sungo Afonso</option>
+                            <option value="Brigith Barros">Brigith Barros</option>
+                            <option value="Sivi Lando">Sivi Lando</option>
+                            <option value="Anatoli Lussati">Anatoli Lussati</option>
+                            <option value="Rosa António">Rosa António</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row d-flex align-items-center mb-3">
+                <div class="col">
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                </div>
+
+                <div class="col">
+                    <select oninput="this.className = ''" class="form-select">
+                        <optgroup label="Professores">
+                            <option value="Sungo Afonso">Sungo Afonso</option>
+                            <option value="Brigith Barros">Brigith Barros</option>
+                            <option value="Sivi Lando">Sivi Lando</option>
+                            <option value="Anatoli Lussati">Anatoli Lussati</option>
+                            <option value="Rosa António">Rosa António</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row d-flex align-items-center mb-3">
+                <div class="col">
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                </div>
+
+                <div class="col">
+                    <select oninput="this.className = ''" class="form-select">
+                        <optgroup label="Professores">
+                            <option value="Sungo Afonso">Sungo Afonso</option>
+                            <option value="Brigith Barros">Brigith Barros</option>
+                            <option value="Sivi Lando">Sivi Lando</option>
+                            <option value="Anatoli Lussati">Anatoli Lussati</option>
+                            <option value="Rosa António">Rosa António</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row d-flex align-items-center mb-3">
+                <div class="col">
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                </div>
+
+                <div class="col">
+                    <select oninput="this.className = ''" class="form-select">
+                        <optgroup label="Professores">
+                            <option value="Sungo Afonso">Sungo Afonso</option>
+                            <option value="Brigith Barros">Brigith Barros</option>
+                            <option value="Sivi Lando">Sivi Lando</option>
+                            <option value="Anatoli Lussati">Anatoli Lussati</option>
+                            <option value="Rosa António">Rosa António</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row d-flex align-items-center mb-3">
+                <div class="col">
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                </div>
+
+                <div class="col">
+                    <select oninput="this.className = ''" class="form-select">
+                        <optgroup label="Professores">
+                            <option value="Sungo Afonso">Sungo Afonso</option>
+                            <option value="Brigith Barros">Brigith Barros</option>
+                            <option value="Sivi Lando">Sivi Lando</option>
+                            <option value="Anatoli Lussati">Anatoli Lussati</option>
+                            <option value="Rosa António">Rosa António</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row d-flex align-items-center mb-3">
+                <div class="col">
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                </div>
+
+                <div class="col">
+                    <select oninput="this.className = ''" class="form-select">
+                        <optgroup label="Professores">
+                            <option value="Sungo Afonso">Sungo Afonso</option>
+                            <option value="Brigith Barros">Brigith Barros</option>
+                            <option value="Sivi Lando">Sivi Lando</option>
+                            <option value="Anatoli Lussati">Anatoli Lussati</option>
+                            <option value="Rosa António">Rosa António</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row d-flex align-items-center mb-3">
+                <div class="col">
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                </div>
+
+                <div class="col">
+                    <select oninput="this.className = ''" class="form-select">
+                        <optgroup label="Professores">
+                            <option value="Sungo Afonso">Sungo Afonso</option>
+                            <option value="Brigith Barros">Brigith Barros</option>
+                            <option value="Sivi Lando">Sivi Lando</option>
+                            <option value="Anatoli Lussati">Anatoli Lussati</option>
+                            <option value="Rosa António">Rosa António</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row d-flex align-items-center mb-3">
+                <div class="col">
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                </div>
+
+                <div class="col">
+                    <select oninput="this.className = ''" class="form-select">
+                        <optgroup label="Professores">
+                            <option value="Sungo Afonso">Sungo Afonso</option>
+                            <option value="Brigith Barros">Brigith Barros</option>
+                            <option value="Sivi Lando">Sivi Lando</option>
+                            <option value="Anatoli Lussati">Anatoli Lussati</option>
+                            <option value="Rosa António">Rosa António</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row d-flex align-items-center mb-3">
+                <div class="col">
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                </div>
+
+                <div class="col">
+                    <select oninput="this.className = ''" class="form-select">
+                        <optgroup label="Professores">
+                            <option value="Sungo Afonso">Sungo Afonso</option>
+                            <option value="Brigith Barros">Brigith Barros</option>
+                            <option value="Sivi Lando">Sivi Lando</option>
+                            <option value="Anatoli Lussati">Anatoli Lussati</option>
+                            <option value="Rosa António">Rosa António</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row d-flex align-items-center mb-3">
+                <div class="col">
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                </div>
+
+                <div class="col">
+                    <select oninput="this.className = ''" class="form-select">
+                        <optgroup label="Professores">
+                            <option value="Sungo Afonso">Sungo Afonso</option>
+                            <option value="Brigith Barros">Brigith Barros</option>
+                            <option value="Sivi Lando">Sivi Lando</option>
+                            <option value="Anatoli Lussati">Anatoli Lussati</option>
+                            <option value="Rosa António">Rosa António</option>
                         </optgroup>
                     </select>
                 </div>
             </div>
         
-
-        
             <h4 class="text-uppercase text-center my-3 color-blue-principal">Segunda-Feira</h4>
           
-            <div class="row mb-3">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>1º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -355,13 +352,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>2º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -400,13 +397,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>3º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -445,13 +442,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>4º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -490,13 +487,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>5º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -535,13 +532,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>6º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -579,18 +576,16 @@
                     </select>
                 </div>
             </div>
-        
-
         
             <h4 class="text-uppercase text-center my-3 color-blue-principal">Terça-Feira</h4>
           
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>1º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -629,13 +624,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>2º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -674,13 +669,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>3º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -719,13 +714,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>4º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -764,13 +759,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>5º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -809,13 +804,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>6º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -853,18 +848,16 @@
                     </select>
                 </div>
             </div>
-        
-        
         
             <h4 class="text-uppercase text-center my-3 color-blue-principal">Quarta-Feira</h4>
           
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>1º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -903,13 +896,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>2º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -948,13 +941,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>3º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -993,13 +986,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>4º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1038,13 +1031,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>5º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1083,13 +1076,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>6º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1132,13 +1125,13 @@
         
             <h4 class="text-uppercase text-center my-3 color-blue-principal">Quinta-Feira</h4>
           
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>1º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1177,13 +1170,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>2º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1222,13 +1215,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>3º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1267,13 +1260,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>4º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1312,13 +1305,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>5º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1357,13 +1350,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>6º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1406,13 +1399,13 @@
         
             <h4 class="text-uppercase text-center my-3 color-blue-principal">Sexta-Feira</h4>
           
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>1º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1451,13 +1444,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>2º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1496,13 +1489,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>3º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1541,13 +1534,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>4º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1586,13 +1579,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>5º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1631,13 +1624,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>6º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">

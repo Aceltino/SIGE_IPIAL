@@ -4,36 +4,11 @@
 
 @section('conteudo')
 <main id="main" class="main">
-    <div class="d-flex align-items-center bg-blue-principal ms-4 border-radius-right py-2" style="padding-left: 56px;">
-        <a class="d-flex align-items-center pe-0" href="#">
-            <img src="img/foto.jpg" alt="perfil" class="mini-foto-perf mini-foto-perfil-2">
-            <span class="d-flex align-items-center ps-2">
-                <div class="col-sm-3">
-                    <a class="color-white" href="/editar-dados-professor">Disciplina(s)</a>
-                </div>
-                <div class="col-sm-3">
-                    <a class="color-white" href="/horario-professor"><strong>Horário</strong></a>
-                </div>
-                <div class="col-sm-3">
-                    <a class="color-white" href="/avaliacao-professor">Avaliação</a>
-                </div>
-                <div class="col-sm-3">
-                    <a class="color-white" href="/editar-dados-pessoais-professor">Dados pessoais</a>
-                </div>
-            </span>
-        </a>
-    </div>
-
     <form method="POST" action="">
         <div>
             <div class="row">
-                <div class="col-sm-12 d-flex justify-content-end">
-                    <select class="form-select bg-blue-principal color-white my-3 w-25 ms-auto" title="Professor em actividade">
-                        <optgroup label="Ano lectivo">
-                            <option>2022 - 2023</option>
-                            <option>2023 - 2024</option>
-                        </optgroup>
-                    </select>
+                <div class="col-sm-12 d-flex justify-content-center">
+                    <h2 class="text-uppercase text-center my-3 color-blue-principal">Horário</h2>
                 </div>
             </div>
             
@@ -55,7 +30,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <!-- /  Inicio da tabela do horário -->
-                    <table class="table table-striped align-middle text-center" style="margin-top: 5px;">
+                    <table class="table table-striped align-middle table-custom table-escuro text-center" style="margin-top: 5px;">
                     <thead>
                         <tr>
                             <th scope="col-sm-4" class="text-uppercase">Hora</th>
@@ -200,7 +175,7 @@
             </div>
 
             <!-- Início da tabela de observações -->
-            <table class="table border align-middle mt-4">
+            <table class="table border align-middle table-custom table-escuro mt-4">
                 <thead>
                     <tr>
                         <th scope="col-sm-12" class="text-uppercase">Disciplinas</th>
@@ -271,15 +246,16 @@
                 </tbody>
             </table>
             <!-- Termina a tabela de observações -->
-            
         </div>
 
-        <div style="text-align:center;margin-top:30px;">
-            <div>
-                <button type="button" class="btn color-white bg-blue-principal mt-2" id="prevBtn" onclick="nextPrev(-1)">Retroceder</button>
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center mt-4">
+                <div>
+                    <a href="/ver-horarios" class="btn color-white bg-blue-principal ">Retroceder</a>
+                    <button type="button" class="btn btn-success color-white" onclick="window.print()">Imprimir horário</button>
+                </div>
             </div>
         </div>
     </form>
-
 </main>
 @endsection

@@ -27,7 +27,37 @@ class MiniPautaController extends Controller
 {
     public function index()
     {
-        $turmas = AnoTurmaCood::has('alunoAno')->with('turma', 'alunoAno')->get();
+        $turmas = AnoTurmaCood::has('alunoAno')->with('turma', 'alunoAno')
+            ->whereHas('ano_lectivo', function ($query) {
+                $query->where('status_ano_lectivo', 1);
+            })
+            ->get();
+        $disciplinas = Disciplina::all();
+
+        $tem = 0;
+        $n_tem = 0;
+        $qual = [];
+        
+        foreach ($disciplinas as $dd) {
+            $tem_prof = Professor_disciplina::where('disciplina_id', $dd->disciplina_id)->first();
+            
+            if (!$tem_prof){
+                ++$n_tem;
+                $qual[] = $dd->nome_disciplina;
+            }else{
+                ++$tem;
+            }
+        }
+        
+        if ($tem <= 0)
+            return redirect()->back()->with('Erro', 'Nenhuma disciplina está associada a pelo menos um professor.'); 
+        if ($n_tem > 0) {
+            session()->flash('Erro', sprintf(
+                'Existem %d disciplinas não associadas a pelo menos um professor %s.', $n_tem, implode(', ', $qual) ) );
+        }
+
+        if ($this->turmaCoordenador() > 0)
+            session()->flash('Erro', 'Existem turmas que não têm coordenador' );
         
         return view('mini-pauta.mini-pauta', ['turmas' => $turmas]);
     }
@@ -36,11 +66,11 @@ class MiniPautaController extends Controller
     {
         $turma = Turma::findOrFail($turma);
         
-        $disciplinaGerais = Disciplina::where('componente','Cientificas')
-                        ->Orwhere('componente','Socio-culturais')
+        $disciplinaGerais = Disciplina::where('componente','Componente Científica')
+                        ->Orwhere('componente','Componente Socio-Cultural')
                         ->get();
 
-        $disciplinaEspecificas = Disciplina::where('componente','Técnicas')
+        $disciplinaEspecificas = Disciplina::where('componente','Componente Técnica, Tecnológica e Prática')
                                             ->where('curso_id',$turma->curso->curso_id)
                                             ->get();
 
@@ -70,9 +100,13 @@ class MiniPautaController extends Controller
     public function view($turma_id, $disciplina_id)
     {
         $turma = Turma::findOrFail($turma_id);
-        $professor_discip = Professor_disciplina::where('disciplina_id', $disciplina_id)->first();
-        $ano_turma_coord = AnoTurmaCood::where('turma_id', $turma->turma_id)->first();
-        $disciplina = Disciplina::findOrFail($disciplina_id);
+        $professor_discip   = Professor_disciplina::where('disciplina_id', $disciplina_id)->first();
+        $ano_turma_coord    = AnoTurmaCood::where('turma_id', $turma->turma_id)
+                                    ->whereHas('ano_lectivo', function ($query) {
+                                        $query->where('status_ano_lectivo', 1);
+                                    })
+                                    ->first();
+        $disciplina         = Disciplina::findOrFail($disciplina_id);
         
         $alunos = $turma->beAluno()
             ->orderBy('numero_aluno', 'asc')
@@ -84,7 +118,7 @@ class MiniPautaController extends Controller
         $trimestres = Trimestre::all();
 
         $medias = [];
-
+        
         foreach ($alunos as $aluno) {
             foreach ($trimestres as $trimestre) {
                 $notasTrimestre = Nota::where('aluno_id', $aluno->aluno_id)
@@ -147,5 +181,22 @@ class MiniPautaController extends Controller
         $idade = $diferenca->y;
 
         return $idade;
+    }
+
+    private function turmaCoordenador()
+    {
+        $at = AnoTurmaCood::all();
+
+        $tem = 0;
+        $n_tem = 0;
+        foreach ($at as $coord) {
+            if ($coord->professor_id) {
+                $tem++;
+            }else{
+                $n_tem++;
+            }
+        }
+
+        return $n_tem;
     }
 }
