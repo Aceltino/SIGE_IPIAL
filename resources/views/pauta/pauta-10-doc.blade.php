@@ -4,6 +4,8 @@
 
 @section('conteudo')
 <main id="main" class="main">
+
+    
     
     <?php
 
@@ -11,11 +13,11 @@
     $medias = [];
             
             for ($i = 0; $i < count($OneMedia); $i++) {
+                $ca = isset($ca_cdf[$i][0]->ca) ? $ca_cdf[$i][0]->ca: '0';
+                $cfd = isset($ca_cdf[$i][0]->cfd) ? $ca_cdf[$i][0]->cfd : '0';
                 $mt1 = isset($OneMedia[$i][0]->nota) ? $OneMedia[$i][0]->nota : '0';
                 $mt2 = isset($TwoMedia[$i][0]->nota) ? $TwoMedia[$i][0]->nota : '0';
                 $mt3 = isset($ThreeMedia[$i][0]->nota) ? $ThreeMedia[$i][0]->nota : '0';
-                $ca = isset($ca_cfd[$i][0]->ca) ? $ca_cfd[$i][0]->ca: '0';
-                $cfd = isset($ca_cfd[$i][0]->cfd) ? $ca_cfd[$i][0]->cfd : '0';
                 $alunoIndex = $i % count($alunos); 
                 $disciplinaIndex = $i % count($disciplinas);
             
@@ -36,7 +38,7 @@
             }
             
     ?>
-{{dd($ca)}}
+
   
     
  
@@ -52,7 +54,7 @@
         </div>
     </div>
     </div>
-    {{dd($ca_cdf)}}
+    
     <!--Inicio da puta -->
     <table class="pauta-geral" id="pauta-g">
     <thead class="cabecalho-tab-p">
@@ -184,29 +186,60 @@
         </th>
         <th class="coluna-tab-p">
             <span class="txproc-p maisculo-p">Nº PROC</span>
-        </th>  
-   
-        @foreach ($disciplinas as  $disciplina)
+        </th>
+        
+        
+        @php
+        foreach ($disciplinas as  $disciplina){
+            $disciplinaId = $disciplina->disciplina_id
+            
+        @endphp
             <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT1</span></th>
             <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT2</span></th>
             <th class="coluna-tab-p"><span class="t-vert maisculo-p">MT3</span></th>
-
-            <th class="c-tab-amarelo coluna-tab-p"><span class="t-vert maisculo-p">CA</span></th>
-            <th class="coluna-tab-p" colspan="2"><span class="t-verst-falta-aluno-p maisculo-p">FALTAS</span></th>   
-        @endforeach  
+            @php
+            foreach ($medias as $media) {
+                $mediaAlunoId = $media['aluno']->aluno_id;
+                $mediaDisciplinaId = $media['disciplina']->disciplina_id;
+                $mediaTrimestre1 = $media['media_trimestre1'];
+                $mediaTrimestre2 = $media['media_trimestre2'];
+                $mediaTrimestre3 = $media['media_trimestre3'];
+                $caa = $media['ca'];
+                $cfdd = $media['cfd'];
+                
+                
+                if ($mediaDisciplinaId === $disciplinaId ) {
+        @endphp
+        
+            @if ($caa < 0)   
+            <th class="c-tab-amarelo coluna-tab-p"><span class="t-vert maisculo-p">CFD</span></th>
+            <th class="coluna-tab-p"><span class="t-vert maisculo-p">Exame</span></th>
+            <th class="coluna-tab-p"><span class="t-vert maisculo-p">Faltas</span></th>
+            @else
+            <th class="c-tab-amarelo coluna-tab-p"><span class="t-vert maisculo-p">Ca</span></th>
+            <th class="coluna-tab-p" colspan="2"><span class="t-verst-falta-aluno-p maisculo-p">FALTAS</span></th> 
+            @endif
+            @php
+                }
+            }
+        @endphp
+              
+            @php
+        }
+    @endphp 
         
 
         </tr>
        
 
         @php
-        foreach ($alunos as $aluno) {
+        foreach ($alunos as $index => $aluno) {
             $alunoId = $aluno->aluno_id;
     @endphp
     
     <tr class="linha-tab-p">
         <td class="coluna-tab-p">
-            <span class="num-aluno-p">1</span>
+            <span class="num-aluno-p">{{$loop+1}}</span>
         </td>
         <td class="coluna-tab-p">
             <span class="nome-aluno-p">{{ $aluno->candidato->pessoa->nome_completo }}</span>
@@ -224,32 +257,89 @@
                 $mediaTrimestre1 = $media['media_trimestre1'];
                 $mediaTrimestre2 = $media['media_trimestre2'];
                 $mediaTrimestre3 = $media['media_trimestre3'];
+                $caa = $media['ca'];
+                $cfdd = $media['cfd'];
                 
                 
                 if ($mediaAlunoId === $alunoId) {
         @endphp
-        
+
+        @if ($mediaTrimestre1<9)
+        <td class="nota coluna-tab-p">
+            <span class="nota-neg" style="color: rgb(236, 9, 28)">{{ $mediaTrimestre1 }}</span>
+        </td>
+        @else
         <td class="nota coluna-tab-p">
             <span class="nota-neg" style="color: rgb(38, 6, 221)">{{ $mediaTrimestre1 }}</span>
+        </td>    
+        @endif
+
+        @if ($mediaTrimestre2<9)
+        <td class="nota coluna-tab-p">
+            <span class="nota-neg" style="color: rgb(236, 9, 28)">{{ $mediaTrimestre2 }}</span>
         </td>
+        @else
         <td class="nota coluna-tab-p">
             <span class="nota-neg" style="color: rgb(38, 6, 221)">{{ $mediaTrimestre2 }}</span>
+        </td>    
+        @endif
+
+        @if ($mediaTrimestre3<9)
+        <td class="nota coluna-tab-p">
+            <span class="nota-neg" style="color: rgb(236, 9, 28)">{{ $mediaTrimestre3 }}</span>
         </td>
+        @else
         <td class="nota coluna-tab-p">
             <span class="nota-neg" style="color: rgb(38, 6, 221)">{{ $mediaTrimestre3 }}</span>
-        </td>
-        <td class="nota c-tab-amarelo coluna-tab-p">
-            <span class="nota-pos">15</span>
-        </td> 
+        </td>    
+        @endif
         
-        <td class="nota coluna-tab-p">
-            <span class="nota-pos"></span>
-        </td>
-        <td class="nota c-tab-sinza-esq coluna-tab-p">
-            <span>
-                 falta
-            </span>
-        </td>
+
+        @if ($caa<0) 
+            @if ($cfdd<9)  
+                <td class="nota c-tab-amarelo coluna-tab-p">
+                    <span class="nota-pos" style="color: rgb(236, 9, 28)">{{$cfdd }}</span>
+                </td> 
+                <td class="nota coluna-tab-p">
+                    <span class="nota-neg"></span>
+                </td>
+                <td class="nota c-tab-sinza-esq ">
+                    <span>
+                        
+                    </span>
+                </td>
+            @else 
+                <td class="nota c-tab-amarelo coluna-tab-p">
+                    <span class="nota-pos" style="color: rgb(38, 6, 221)">{{$cfdd }}</span>
+                </td> 
+                <td class="nota coluna-tab-p">
+                    <span class="nota-neg"></span>
+                </td>
+                <td class="nota c-tab-sinza-esq ">
+                    <span>
+                        
+                    </span>
+                </td>
+
+            @endif
+
+        @else
+        
+            <td class="nota c-tab-amarelo coluna-tab-p">
+                    <span class="nota-pos" style="color: rgb(38, 6, 221)">{{$caa }}</span>
+                </td>
+                <td class="nota coluna-tab-p">
+                    <span class="nota-pos"></span>
+                </td>
+                
+                <td class="nota c-tab-sinza-esq ">
+                    <span>
+                        
+                    </span>
+                </td>
+        @endif
+        
+      
         
         @php
                 }
@@ -264,7 +354,7 @@
         <td class="nota coluna-tab-p">
             <span class="nota-neg maisculo-p">NÃO TRANSITA</span>
         </td>
-        <td class="nota coluna-tab-p">5</td>
+        <td class="nota coluna-tab-p">{{$loop+1}}</td>
     </tr>
     
     @php
