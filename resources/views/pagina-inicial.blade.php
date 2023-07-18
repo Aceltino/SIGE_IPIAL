@@ -21,21 +21,16 @@
                 
           </div>
         </div>
-        
-        <div class="col-lg-2">
-          <span class="breadcrumb">
-            <select class="btn-sel form-select" style="padding: 10px;">
-              <option selected>2022 - 2023</option>
-              <option value="2021-2022">2021 - 2022</option>
-            </select>
-          </span>      
-        </div>
+      
       </div>
     </div>
-	  
+    
+    {{--  json  --}}
+      {{dd($dadosapiInicio)}}  
+    
     <section id="counts" class="counts counts-escuro">
       <div class="container">
-
+        
         <div class="row" data-aos="fade-up">
 
           <div class="col-lg-3 col-md-6 mt-4">
@@ -423,6 +418,7 @@
 
       <!-- Coluna da direita -->
       <div class="col-lg-4">
+      @foreach($comunicados as $comunicado)
         <!-- Card comunicado -->
         <div class="card card-comincado-escuro">
           <div class="card-body">
@@ -430,13 +426,18 @@
 
             <div class="activity" style="text-align: justify;">
 
-              <h5 class="card-title" style="text-align: center;">Comunicado</h5>
+              <h5 class="card-title" style="text-align: center;">{{$comunicado->titulo_com}}</h5>
 
-               <p>Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado-nav Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicadoAqui o Texto do comunicado v Aqui o Texto do comunicado Aqui o Texto do comunicado</p> 
+               <p>{{$comunicado->conteudo_com}}</p> 
+               
+               
+              
             </div>
 
           </div>
         </div><!-- Fim Card comunicado -->
+      @endforeach
+      {{$comunicados->links()}}
 
       </div><!-- Fim Coluna da direita -->
 
