@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use App\Models\{
 Candidato,Professor,Turma,
 Curso,Aluno,User,Comunicado,
@@ -74,11 +75,19 @@ class InicioController extends Controller
             $cargoTotal = "";
         } 
 
-        $comunicados = Comunicado::all();
+        $comunicados = Comunicado::latest()->paginate(2);
         //dd($usCargos);
         //   return view('pagina-inicial', compact('alunoAno', 'alunoTotal'));
 
-        return view('pagina-inicial', compact('comunicados','totalUs', 'titulo', 'alunoAno', 'alunoTotal', 'cargoNome', 'cargoTotal', 'titulografAlunos','titulografAlunos2', 'titulografUsuarios','titulografUsuarios2'));
+        $dadosapiInicio = Http::get(url:'http://sige_ipial.test/api/settings')->json();
+
+
+
+    //    dd($dadosapiInicio->json());
+
+        
+
+        return view('pagina-inicial', compact('dadosapiInicio','comunicados','totalUs', 'titulo', 'alunoAno', 'alunoTotal', 'cargoNome', 'cargoTotal', 'titulografAlunos','titulografAlunos2', 'titulografUsuarios','titulografUsuarios2'));
         //redirect()->route('inicio');
     }
 
