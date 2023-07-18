@@ -73,7 +73,7 @@
                 </div>
             </div>
 
-            <div class="row mb-3" id="horario-div-que-pode-desaparecer-1">
+            <div class="row d-flex align-items-center mb-3" id="horario-div-que-pode-desaparecer-1">
                 <div class="col-sm-6">
                     <select oninput="this.className = ''" name='ed_fisica_dia1' class="form-select" id="criar-horario-select-primeiro-dia-de-educacao-fisica" onchange="verificarSelecoesEducacaoFisica()">
                         <optgroup label="Primeiro dia de Educação Física"> 
@@ -100,11 +100,11 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" title="Hora de fim da Educação Física" class="form-control" name='ed_fisica_hora1' value="00:00 - 00:00" id="criar-horario-hora-de-fim-da-educacao-fisica-no-primeiro-dia" name="" oninput="this.className = ''" disabled required>
+                    <input type="text" title="Hora de fim da Educação Física" class="form-control" name='ed_fisica_hora1' value="00:00 - 00:00" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" id="criar-horario-hora-de-fim-da-educacao-fisica-no-primeiro-dia" name="" oninput="this.className = ''" disabled required>
                 </div>
             </div>
 
-            <div class="row" id="horario-div-que-pode-desaparecer-2">
+            <div class="row d-flex align-items-center" id="horario-div-que-pode-desaparecer-2">
                 <div class="col-sm-6">
                     <select oninput="this.className = ''" class="form-select" id="criar-horario-select-segundo-dia-de-educacao-fisica">
                         <optgroup label="Segundo dia de Educação Física">
@@ -132,7 +132,7 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" title="Hora de fim da Educação Física" class="form-control" name='ed_fisica_hora1' value="00:00 - 00:00" id="criar-horario-hora-de-fim-da-educacao-fisica-no-segundo-dia" name="" oninput="this.className = ''" disabled required>
+                    <input type="text" title="Hora de fim da Educação Física" class="form-control" name='ed_fisica_hora1' value="00:00 - 00:00" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" id="criar-horario-hora-de-fim-da-educacao-fisica-no-segundo-dia" name="" oninput="this.className = ''" disabled required>
                 </div>
             </div>
         </div>
@@ -141,9 +141,9 @@
           <h2 class="text-uppercase text-center my-3 color-blue-principal">Disciplinas e Professores</h2>
           <h6 class="text-uppercase text-center my-4 color-blue-principal">Selecione os professores para as disciplinas apresentadas.</h6>
           
-          <div class="row" >
+          <div class="row d-flex align-items-center mb-3">
                 <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="disciplina1" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="Língua Portuguesa" name="disciplina1" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col">
@@ -159,9 +159,9 @@
                 </div>
             </div>
 
-            <div class="row" >
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col">
@@ -177,9 +177,9 @@
                 </div>
             </div>
 
-            <div class="row" >
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col">
@@ -195,9 +195,9 @@
                 </div>
             </div>
 
-            <div class="row" >
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col">
@@ -213,9 +213,9 @@
                 </div>
             </div>
 
-            <div class="row" >
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col">
@@ -231,9 +231,9 @@
                 </div>
             </div>
 
-            <div class="row" >
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col">
@@ -249,9 +249,9 @@
                 </div>
             </div>
 
-            <div class="row" >
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col">
@@ -267,9 +267,9 @@
                 </div>
             </div>
 
-            <div class="row" >
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col">
@@ -285,9 +285,9 @@
                 </div>
             </div>
 
-            <div class="row" >
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col">
@@ -303,9 +303,9 @@
                 </div>
             </div>
 
-            <div class="row" >
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col">
@@ -321,9 +321,9 @@
                 </div>
             </div>
 
-            <div class="row" >
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col">
@@ -339,9 +339,9 @@
                 </div>
             </div>
 
-            <div class="row" >
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col">
-                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="Língua Portuguesa" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col">
@@ -362,13 +362,13 @@
         <h2 class="text-uppercase text-center my-3 color-blue-principal">Segunda-Feira</h2>
           <h6 class="text-uppercase text-center my-4 color-blue-principal">Selecione as disciplinas e as salas em que as mesmas serão lecionadas, respectivamente.</h6>
           
-          <div class="row mb-3">
+          <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>1º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="hora_segunda1" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="hora_segunda1" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -407,13 +407,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>2º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -452,13 +452,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>3º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -497,13 +497,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>4º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -542,13 +542,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>5º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -587,13 +587,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>6º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -637,13 +637,13 @@
         <h2 class="text-uppercase text-center my-3 color-blue-principal">Terça-Feira</h2>
           <h6 class="text-uppercase text-center my-4 color-blue-principal">Selecione as disciplinas e as salas em que as mesmas serão lecionadas, respectivamente.</h6>
           
-          <div class="row form-group">
+          <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>1º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="hora_terça1" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="hora_terça1" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -682,13 +682,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>2º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -727,13 +727,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>3º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -772,13 +772,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>4º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -817,13 +817,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>5º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -862,13 +862,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>6º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -912,13 +912,13 @@
         <h2 class="text-uppercase text-center my-3 color-blue-principal">Quarta-Feira</h2>
           <h6 class="text-uppercase text-center my-4 color-blue-principal">Selecione as disciplinas e as salas em que as mesmas serão lecionadas, respectivamente.</h6>
           
-          <div class="row form-group">
+          <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>1º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -957,13 +957,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>2º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1002,13 +1002,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>3º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1047,13 +1047,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>4º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1092,13 +1092,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>5º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1137,13 +1137,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>6º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1187,13 +1187,13 @@
         <h2 class="text-uppercase text-center my-3 color-blue-principal">Quinta-Feira</h2>
           <h6 class="text-uppercase text-center my-4 color-blue-principal">Selecione as disciplinas e as salas em que as mesmas serão lecionadas, respectivamente.</h6>
           
-          <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>1º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1232,13 +1232,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>2º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1277,13 +1277,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>3º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1322,13 +1322,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>4º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1367,13 +1367,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>5º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1412,13 +1412,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>6º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1462,13 +1462,13 @@
         <h2 class="text-uppercase text-center my-3 color-blue-principal">Sexta-Feira</h2>
           <h6 class="text-uppercase text-center my-4 color-blue-principal">Selecione as disciplinas e as salas em que as mesmas serão lecionadas, respectivamente.</h6>
           
-          <div class="row form-group">
+          <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>1º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1507,13 +1507,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>2º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1552,13 +1552,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>3º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1597,13 +1597,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>4º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1642,13 +1642,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>5º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
@@ -1687,13 +1687,13 @@
                 </div>
             </div>
 
-            <div class="row form-group">
+            <div class="row d-flex align-items-center mb-3">
                 <div class="col-sm-2 d-flex align-items-center">
                     <p><strong>6º TEMPO</strong></p>
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" disabled></p>
+                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">

@@ -28,7 +28,7 @@
           <div class="col">
               <h1>Assiduidade De Aluno</h1>
           </div>
-          
+
           <div class="col-lg-2">
             <select  class="btn-sel form-select" id="filtro8">
               @foreach ($cursos as $curso)
@@ -36,7 +36,7 @@
               @endforeach
             </select>
           </div>
-         
+
 
 
 
@@ -66,6 +66,33 @@
       <button  title="Search"><i class="bi bi-search"></i></button>
   </div>
   </div>
+  <form method="POST" action="{{route('marcar.falta')}}">
+    @csrf
+    <div class="row" style="display: flex
+    " >
+    <div class="col-4" style="display: flex; justify-content: start margin-top: 4px;" >
+
+        <div class="ola" style="margin-top: 4px; width: 50%;">
+            <select  class="btn-sel form-select" id="filtro10" name="tempo">
+              @foreach ($tempos as $tempo)
+                <option  value="{{$tempo->tempo_id}}">{{$tempo->tempo}} TEMPO</option>
+              @endforeach
+            </select>
+          </div>
+    </div>
+    <div class="col" style=" display: flex; justify-content: end;  margin-top: 4px;">
+
+        <div class="form-group" >
+          <button class="btn botaoazul" name="tipo_falta" value="presencial"  type="submit" style="margin-right: 3px;">Presencial</button>
+          <button class="btn botaovermelho" name="tipo_falta" value="disciplinar" type="submit" style="margin-right: 3px;">Disciplinar</button>
+          <button class="btn botaopreto" name="tipo_falta" value="material" style="background-color: rgb(92, 75, 20)" type="submit" style="margin-right: 3px;">Material</button>
+        </div>
+    </div>
+
+
+    </div>
+
+
 
   <div class="bortabela" style="box-shadow: 0 5px 15px 0 rgba(82, 63, 105, 0.2); border: 1px solid white; border-radius: 3px; padding: 2px;">
     <div class="pagetitle">
@@ -75,54 +102,66 @@
             </div>
         </div>
     </div>
-    <!-- /  Inicio da tabela  -->
-    <table id="assid" class=" table table-custom table-escuro " style="margin-top: 20px; width: 100%;" >
-      <thead style="text-align: center">
-        <tr>
-          <th scope="col">Nº</th>
-          <th scope="col">Nome do Aluno</th>
-          <th scope="col">F.Presencial</th>
-          <th scope="col">F.Disciplinar</th>
-          <th scope="col">f.Material</th>
-          <th scope="col">Marcar Falta</th>
-          <th scope="col">Histórico</th>
-          <th scope="col" hidden>curso</th>
-          <th scope="col" hidden>Disciplina</th>
-          <th scope="col" hidden>Turma</th>
-        </tr>
-      </thead>
-      <tbody>
-        @if (!empty($alunos))
-          @foreach ($alunos as $chave1 => $valor1)
 
-            @foreach ($valor1 as $chave2 => $valor2)
 
-                @foreach ($valor2 as $chave3 => $valor3)
+      <!-- /  Inicio da tabela  -->
+      <table id="assid" class=" table table-custom table-escuro " style="margin-top: 20px; width: 100%;" >
+        <thead style="text-align: center">
+          <tr>
+            <th scope="col">Nº</th>
+            <th scope="col">Nome do Aluno</th>
+            <th scope="col">F.Presencial</th>
+            <th scope="col">F.Disciplinar</th>
+            <th scope="col">f.Material</th>
+            <th scope="col">Marcar Falta</th>
+            <th scope="col">Histórico</th>
+            <th scope="col" hidden>curso</th>
+            <th scope="col" hidden>Disciplina</th>
+            <th scope="col" hidden>Turma</th>
+            <th scope="col" hidden>disciplina</th>
+            <th scope="col" hidden>turma</th>
+            <th scope="col" hidden>professordisciplina</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (!empty($alunos))
+            @foreach ($alunos as $chave1 => $valor1)
 
-                    <tr style="text-align: center;">
-                        <th scope="row">{{$valor3['numero_aluno']}}</th>
-                        <td>{{$valor3['nome']}}</td>
-                        <td>{{$valor3['falta_presencial']}}</td>
-                        <td>{{$valor3['falta_disciplinar']}}</td>
-                        <td>{{$valor3['falta_material']}}</td>
-                        <td>
-                            <a class="btn botaoazul" data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}">Presencial</a>
-                            <a class="btn botaovermelho" data-bs-toggle="modal" data-bs-target="#modal_assiduidadee{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}">Disciplinar</a>
-                            <a class="btn botaopreto" style="background-color: rgb(92, 75, 20)" data-bs-toggle="modal" data-bs-target="#modal_assiduidadeee{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}">Material</a>
-                          </td>
-                          <td style="text-align: center">
-                            <a href="{{route('editar.assiduidade', [$valor3['aluno_id'], $valor3['disciplina_id']])}}" class="btn linkeditar">Hiatórico</a>
-                          </td>
+              @foreach ($valor1 as $chave2 => $valor2)
 
-                        <td hidden>{{$valor3['curso']}}</td>
-                        <td hidden>{{$valor3['nome_disciplina']}}</td>
-                        <td hidden>{{$valor3['nome_turma']}}</td>
-                    </tr>
-                @endforeach
-            @endforeach
-        @endforeach
-    </tbody>
-  </table>
+                  @foreach ($valor2 as $chave3 => $valor3)
+
+
+                      <tr style="text-align: center;">
+                          <th scope="row">{{$valor3['numero_aluno']}}</th>
+                          <td>{{$valor3['nome']}}</td>
+                          <td>{{$valor3['falta_presencial']}}</td>
+                          <td>{{$valor3['falta_disciplinar']}}</td>
+                          <td>{{$valor3['falta_material']}}</td>
+                          <td>
+                            <div class="btn-group-toggle" data-toggle="buttons">
+                                <input style="width: 20px; height: 20px;" type="checkbox" name="aluno[]"  value="{{$valor3['aluno_id']}}">
+                            </div>
+
+                            </td>
+                            <td style="text-align: center">
+                              <a href="{{route('editar.assiduidade', [$valor3['aluno_id'], $valor3['disciplina_id']])}}" class="btn linkeditar">Hiatórico</a>
+                            </td>
+
+                          <td hidden>{{$valor3['curso']}}</td>
+                          <td hidden>{{$valor3['nome_disciplina']}}</td>
+                          <td hidden>{{$valor3['nome_turma']}}</td>
+                          <td hidden><input type="text" name="disciplina[]" value="{{$valor3['disciplina_id']}}"></td>
+                          <td hidden><input type="text" name="turma[]" value="{{$valor3['turma_id']}}"></td>
+                          <td hidden><input type="text" name="professor_disciplina[]" value="{{$professor[$chave1]['professor_disciplina_id']}}"></td>
+                      </tr>
+                  @endforeach
+              @endforeach
+          @endforeach
+      </tbody>
+    </table>
+    </form>
+
   </div>
   <!-- Termina a tabela -->
 
@@ -258,7 +297,7 @@
 @endif
 
 <script>
-  
+
 //**************************************************************************************************** ****************/
 
 
@@ -269,7 +308,7 @@ $(document).ready(function () {
           lengthChange: false,
           ordering: false,
           language:{
-  
+
                   "sEmptyTable": "Nenhum registro encontrado",
                   "sInfo": "",
                   "sInfoEmpty": "",
@@ -290,8 +329,8 @@ $(document).ready(function () {
           },
           select: true,
       });
-  
-  
+
+
           $("#filtro").on("change", function() {
           var filtro = $(this).val();
           if (filtro === 'Todos') {
@@ -363,7 +402,7 @@ $(document).ready(function () {
           } else {
             $T.column(8).search(filtro9).draw(); // Filtra a tabela pela Nona coluna com o valor selecionado
           }
-  
+
         });
         $("#filtro10").on("change", function() {
           var filtro10 = $(this).val();
@@ -404,7 +443,7 @@ $(document).ready(function () {
           } else {
             $T.column(13).search(filtro14).draw(); // Filtra a tabela pela Décima-quarta coluna com o valor selecionado
           }
-  
+
         });
         $("#filtro15").on("change", function() {
           var filtro15 = $(this).val();
@@ -413,7 +452,7 @@ $(document).ready(function () {
           } else {
             $T.column(14).search(filtro15).draw(); // Filtra a tabela pela Décima-quinta coluna com o valor selecionado
           }
-  
+
         });
           $("#filtro16").on("change", function() {
           var filtro16 = $(this).val();
@@ -422,7 +461,7 @@ $(document).ready(function () {
           } else {
             $T.column(15).search(filtro16).draw(); // Filtra a tabela pela Décima-Sexta coluna com o valor selecionado
           }
-  
+
         });
           $("#filtro17").on("change", function() {
           var filtro17 = $(this).val();
@@ -431,32 +470,32 @@ $(document).ready(function () {
           } else {
             $T.column(16).search(filtro17).draw(); // Filtra a tabela pela Décima-Sétima coluna com o valor selecionado
           }
-  
+
         });
-  
-        
-  
+
+
+
       $("#filtro8").trigger("change");
       $("#filtro9").trigger("change");
       $("#filtro10").trigger("change");
 
-         
-  
+
+
   $(".paginate_button").addClass("paginate_button");
   $(".paginate").addClass("float-end");
-  
+
   // Função para Pesquisar os dados apartir da barra de pesquisas
   $("#pesquisa").on("keyup", function () {
      $T.search(this.value).draw();
-  
+
   });
-  
-  
+
+
     // Recuperar os valores dos selects do localStorage e selecionar as opções correspondentes
     $("#filtro8").val(getSelectedOption("filtro8"));
     $("#filtro9").val(getSelectedOption("filtro9"));
     $("#filtro10").val(getSelectedOption("filtro10"));
-  
+
   });
 </script>
 </main>

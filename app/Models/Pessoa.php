@@ -28,8 +28,9 @@ class Pessoa extends Model
     public function endereco(){
        return $this->belongsTo(Endereco::class, 'endereco_id');
     }
-    public function user(){
-        return $this->hasOne(User::class, 'pessoa_id');
+    public function user()
+    {
+        return $this->hasMany(User::class, 'pessoa_id');
     }
     public function candidato(){
         return $this->hasOne(Candidato::class,'candidato_id');

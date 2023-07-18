@@ -57,4 +57,11 @@ class Ano_lectivo extends Model
     {
         return $this->hasMany(Comunicado::class);
     }
+    public function classificacaofincal(){
+        return $this->hasMany(Classificacaofinal::class,'classificaoFinal_id');
+    }
+
+    public function resultadoFinalAluno(){
+        return $this->hasMany(ResultadoFinalAluno::class,'resultadoFinalAluno_id');
+    }
 }

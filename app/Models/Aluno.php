@@ -34,7 +34,7 @@ class Aluno extends Model
         return $this->belongsTo(Candidato::class, 'candidato_id');
     }
 
-    public function curso() 
+    public function curso()
     {
         return $this->belongsTo(Curso::class, 'curso_id');
     }
@@ -51,5 +51,16 @@ class Aluno extends Model
 
     public function Media(){
         return $this->hasMany(Media::class,'media_id');
+    }
+    public function classificacaofincal(){
+        return $this->hasMany(Classificacaofinal::class,'classificaoFinal_id');
+    }
+
+    public function turmaAno()
+    {
+        return $this->hasMany(AlunoTurma::class, 'aluno_id');
+    }
+    public function resultadoFinalAluno(){
+        return $this->hasMany(ResultadoFinalAluno::class,'resultadoFinalAluno_id');
     }
 }

@@ -9,14 +9,14 @@ use App\Traits\AvaliacaoTrait;
 use App\Traits\AssiduidadeTrait;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Professor;
-use App\Traits\AnoLectivoTrait;
+use App\Models\Tempo;
+use App\Models\Ano_lectivo;
 
 class AssiduidadeAlunoController extends Controller
 {
 
     public function index()
     {
-        //AnoLectivoTrait::abrirTrimestre();
         $user = Auth::user();
         if($user->cargo_usuario === "Administrador" || $user->cargo_usuario === "Subdirector"){
             $professor = AvaliacaoTrait::pegarAdmin();
@@ -93,79 +93,96 @@ class AssiduidadeAlunoController extends Controller
         // ->where('aluno_id', 4)
         // ->where('id_trimestre', 28)->get();
         // dd($teste);
-
+        $tempos = Tempo::all();
         $trimestre = AvaliacaoTrait::pegarTrimestre();
         $alunos = AssiduidadeTrait::pegarAssiduidadeAluno($disciplina_id, $turmas);
         //dd($professor);
         $erro = AvaliacaoTrait::erros($alunos);
         if($erro === true){
-            return view('assiduid-aluno/assd-aluno', compact(['alunos', 'nome_turma', 'cursos', 'nome_disciplina', 'trimestre', 'professor']));
+            return view('assiduid-aluno/assd-aluno', compact(['alunos', 'nome_turma', 'cursos', 'nome_disciplina', 'trimestre', 'professor', 'tempos']));
         } else{
             return redirect()->route('erro.assiduidade')->with('erro', $erro);
         }
     }
-    public function store(Request $request, $aluno_id, $disciplina_id, $turma_id, $professor_disciplina_id)
+    public function store(Request $request)
     {
-        $trimestre = AvaliacaoTrait::pegarTrimestre();
-        $falta = AssiduidadeTrait::pegarTempoFalta($turma_id, $professor_disciplina_id);
-        $erro = AvaliacaoTrait::erros($falta);
+        if(!isset($request->aluno)){
+            return redirect()->back()->with('erro', "Seleccione os alunos que pretende marcar a falta!");
+
+        }
+        $dia = AssiduidadeTrait::pegarDiaBanco();
+
+        $erro = AvaliacaoTrait::erros($dia);
         if($erro !== true){
             return redirect()->back()->with('erro', $erro);
         }
-        $data = (string) date('Y-m-d');
-        $tot_faltas = Assiduidade_aluno::where('created_at', 'like', '%'.$data.'%')->where('aluno_id', $aluno_id)
-        ->where('id_trimestre', $trimestre[0]->trimestre_id)->where('disciplina_id', $disciplina_id)
-        ->where('tipo_falta', "PRESENCIAL")->get();
-        if(count($falta) <= count($tot_faltas) && $request->tipo_falta === "PRESENCIAL"){
-            return redirect()->back()->with('erro', "Limite de faltas atingido!");
+        $tempo = AssiduidadeTrait::verifyTempo($dia[0]['dia_id'], $request->tempo, $request->turma[0], $request->professor_disciplina[0]);
+        $erro = AvaliacaoTrait::erros($tempo);
+        if($erro !== true){
+            return redirect()->back()->with('erro', $erro);
         }
-        $tot_faltas = Assiduidade_aluno::where('created_at', 'like', '%'.$data.'%')->where('aluno_id', $aluno_id)
-        ->where('id_trimestre', $trimestre[0]->trimestre_id)->where('disciplina_id', $disciplina_id)
-        ->where('tipo_falta', "DISCIPLINAR")->get();
-        if(count($falta) <= count($tot_faltas) && $request->tipo_falta === "DISCIPLINAR"){
-            return redirect()->back()->with('erro', "Limite de faltas atingido!");
+        $trimestre = AvaliacaoTrait::pegarTrimestre();
+        $falha = 0;
+        $sucesso = 0;
+        foreach ($request->aluno as $key => $value) {
+            $tot_faltas = Assiduidade_aluno::where('created_at', 'like', '%'.date('Y-m-d').'%')->where('aluno_id', $value)
+            ->where('id_trimestre', $trimestre[0]->trimestre_id)->where('disciplina_id', $request->disciplina[0])
+            ->where('tipo_falta', $request->tipo_falta)->get();
+            if (count($tot_faltas) > 0) {
+                $falha++;
+            } else{
+                $falta = [
+                    'status_falta' => "N-JUSTIFICADA",
+                    'tipo_falta' => $request->tipo_falta,
+                    'aluno_id' => $value,
+                    'id_trimestre' => $trimestre[0]->trimestre_id,
+                    'disciplina_id' => $request->disciplina[0],
+                    'tempo_id' => $request->tempo
+                ];
+                Assiduidade_aluno::create($falta);
+                $sucesso++;
+            }
         }
-        $tot_faltas = Assiduidade_aluno::where('created_at', 'like', '%'.$data.'%')->where('aluno_id', $aluno_id)
-        ->where('id_trimestre', $trimestre[0]->trimestre_id)->where('disciplina_id', $disciplina_id)
-        ->where('tipo_falta', "MATERIAL")->get();
-        if(count($falta) <= count($tot_faltas) && $request->tipo_falta === "MATERIAL"){
-            return redirect()->back()->with('erro', "Limite de faltas atingido!");
+        if ($sucesso > 0 && $falha > 0) {
+            return redirect()->back()->with('sucesso', "As faltas foram aplicadas com sucesso, mas há " . $falha . " aluno(s) que já possuía(m) uma falta neste tempo!");
+        } elseif($sucesso > 0 && $falha === 0){
+            return redirect()->back()->with('sucesso', "Falta(s) aplicada(s) com sucesso!");
+        } elseif ($sucesso === 0 && $falha > 0) {
+            return redirect()->back()->with('erro', "Não foi possível marcar falta porque o(s) aluno(s) já possuem uma falta neste tempo!");
         }
 
-        $trimestre = AvaliacaoTrait::pegarTrimestre();
-        $falta = [
-            'status_falta' => "N-JUSTIFICADA",
-            'descricao_falta' => $request->conteudo,
-            'tipo_falta' => $request->tipo_falta,
-            'aluno_id' => $aluno_id,
-            'id_trimestre' => $trimestre[0]->trimestre_id,
-            'disciplina_id' => $disciplina_id
-        ];
-        Assiduidade_aluno::create($falta);
-        return redirect()->back()->with('sucesso', "Falta aplicada com sucesso!");
-    }
+     }
 
     public function show($aluno_id, $disciplina_id)
     {
         $trimestre = AvaliacaoTrait::pegarTrimestre();
-        $assiduidade = Assiduidade_aluno::with('aluno.candidato.pessoa', 'aluno.turmas', 'trimestre')->where('aluno_id', $aluno_id)
+        $assiduidade = Assiduidade_aluno::with('aluno.candidato.pessoa', 'aluno.turmas', 'trimestre', 'tempo')->where('aluno_id', $aluno_id)
         ->where('disciplina_id', $disciplina_id)
         ->where('id_trimestre', $trimestre[0]->trimestre_id)
         ->get();
         if(count($assiduidade) < 1){
             return redirect()->back()->with('erro', "Nenhuma falta encontrada!");
         }
-        $tempos = AssiduidadeTrait::pegarTempo($assiduidade);
-        return view('assiduid-aluno/edit-assd-aluno', compact(['assiduidade', 'trimestre', 'tempos']));
+        return view('assiduid-aluno/edit-assd-aluno', compact(['assiduidade', 'trimestre']));
     }
 
     public function update(Request $request, $assiduidade_id)
     {
         $assiduidade = Assiduidade_aluno::find($assiduidade_id);
         $assiduidade->status_falta = "JUSTIFICADA";
-        $assiduidade->descricao_falta = $assiduidade->descricao_falta . "</br></br></br></br>" . $request->conteudo;
+        $assiduidade->descricao_falta = $request->conteudo;
         $assiduidade->save();
         return redirect()->back()->with('sucesso', "Falta justificada com sucesso!");
+    }
+
+    //Função que retorna todas as faltas do aluno para o Carlos Marques
+    public static function assiduidadeAnual($aluno_id, $ano_lectivo_id){
+        $ano_lectivo = Ano_lectivo::with('trimestres')->latest()->where('ano_lectivo_id', $ano_lectivo_id)->first();
+        for ($i = 0; $i < count($ano_lectivo->trimestres); $i++) {
+            $faltas[$i] = Assiduidade_aluno::with('disciplina')->where('aluno_id', $aluno_id)->where('id_trimestre', $ano_lectivo->trimestres[$i]->trimestre_id)->get();
+        }
+        dd($faltas);
+        return $faltas;
     }
 
 }

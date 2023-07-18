@@ -6,17 +6,14 @@
 
 <main id="main" class="main">
 
-      <form method="POST" id="regForm" action="{{route('cadastrar.ano.lectivo')}}" class="formulario-layout">
+    <form method="POST" id="regForm" action="{{route('cadastrar.ano.lectivo')}}" class="formulario-layout">
         @csrf
         <div style="text-align:center;margin-top:40px;">
-          <span class="step"></span>
-          <span class="step"></span>
-          <span class="step"></span>
           <span class="step"></span>
         </div>
 
         <div class="tab">
-          <h2 class="text-uppercase text-center my-3 color-blue-principal">informações gerais</h2>
+          <h2 class="text-uppercase text-center my-3 color-blue-principal">Ano lectivo</h2>
           <h6 class="text-uppercase text-center my-4 color-blue-principal">preencha atentamente os campos abaixo.</h6>
 
           <div class="row" >
@@ -29,9 +26,10 @@
                             </button>
                         </p>
                     @enderror
+                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-descricao-do-ano-lectivo"></p>
                 </div>
                 <div class="col">
-                    <p>Data de início do ano lectivo<input type="date" name="data_inicio_ano_lectivo" id="data-de-inicio-do-ano-lectivo" value="{{old('data_inicio_ano_lectivo')}}" oninput="this.className = ''" required></p>
+                    <p>Data de início do ano lectivo<input type="date" name="data_inicio_ano_lectivo" id="data-de-inicio-do-ano-lectivo" value="retornarADataActual()" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" oninput="this.className = ''" disabled readonly required></p>
                     @error('data_inicio_ano_lectivo')
                         <p class="alert alert-danger" role="alert">{{$message}}
                             <button class="botaofecharerro">
@@ -39,7 +37,6 @@
                             </button>
                         </p>
                     @enderror
-                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-data-de-inicio-do-ano-lectivo"></p>
                 </div>
             </div>
 
@@ -106,7 +103,7 @@
                             </button>
                         </p>
                     @enderror
-                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-do-numero-maximo-de-alunos-nas-turmas"></p>
+                    <p class="alert alert-danger d-none mt-3" role="alert" id="paragrafo-de-validacao-do-numero-maximo-de-alunos-nas-turmas"></p>
                 </div>
 
                 <div class="col-6">
@@ -118,232 +115,16 @@
                             </button>
                         </p>
                     @enderror
-                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-do-numero-maximo-de-salas"></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="tab">
-        <h2 class="text-uppercase text-center my-3 color-blue-principal">manhã</h2>
-          <h6 class="text-uppercase text-center my-4 color-blue-principal">preencha atentamente os campos abaixo.</h6>
-
-          <div class="row" >
-                <div class="col">
-                    <p>Hora do início das aulas<input type="time" name="hora_inicio_manha" id="hora-de-inicio-das-aulas-no-periodo-da-manha"  value="{{old('hora_inicio_manha')}}" min="05:00" max="09:00" oninput="this.className = ''" required></p>
-                    @error('hora_inicio_manha')
-                        <p class="alert alert-danger" role="alert">{{$message}}
-                            <button class="botaofecharerro">
-                                <i class="bi bi-x"></i>
-                            </button>
-                        </p>
-                    @enderror
-                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-hora-de-inicio-das-aulas-no-periodo-da-manha"></p>
-                </div>
-
-                <div class="col">
-                    <p>Hora do fim das aulas<input type="time" name="hora_fim_manha" id="hora-de-fim-das-aulas-no-periodo-da-manha" value="{{old('hora_fim_manha')}}" min="11:00" max="13:00" oninput="this.className = ''" required></p>
-                    @error('hora_fim_manha')
-                        <p class="alert alert-danger" role="alert">{{$message}}
-                            <button class="botaofecharerro">
-                                <i class="bi bi-x"></i>
-                            </button>
-                        </p>
-                    @enderror
-                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-hora-de-fim-das-aulas-no-periodo-da-manha"></p>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col">
-                    <p>Duração de cada tempo (em minutos)<input type="number" placeholder="Ex:50" name="duracao_tempo_manha" id="duracao-do-tempo-de-aula-no-periodo-da-manha" value="{{old('duracao_tempo_manha')}}" oninput="this.className = ''" required></p>
-                    @error('duracao_tempo_manha')
-                        <p class="alert alert-danger" role="alert">{{$message}}
-                            <button class="botaofecharerro">
-                                <i class="bi bi-x"></i>
-                            </button>
-                        </p>
-                    @enderror
-                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-duracao-do-tempo-de-aula-no-periodo-da-manha"></p>
-                </div>
-
-                <div class="col">
-                    <p>Duração do intervalo menor (em minutos)<input type="number" placeholder="Ex:5" name="duracao_int_menor_manha" id="duracao-do-intervalo-menor-no-periodo-da-manha" value="{{old('duracao_int_menor_manha')}}" oninput="this.className = ''" required></p>
-                    @error('duracao_int_menor_manha')
-                        <p class="alert alert-danger" role="alert">{{$message}}
-                            <button class="botaofecharerro">
-                                <i class="bi bi-x"></i>
-                            </button>
-                        </p>
-                    @enderror
-                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-duracao-do-intervalo-menor-no-periodo-da-manha"></p>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col-6">
-                    <p>Duração do intervalo maior (em minutos)<input type="number" placeholder="Ex:15" name="duracao_int_maior_manha" id="duracao-do-intervalo-maior-no-periodo-da-manha" value="{{old('duracao_int_maior_manha')}}" oninput="this.className = ''" required></p>
-                    @error('duracao_int_maior_manha')
-                        <p class="alert alert-danger" role="alert">{{$message}}
-                            <button class="botaofecharerro">
-                                <i class="bi bi-x"></i>
-                            </button>
-                        </p>
-                    @enderror
-                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-duracao-do-intervalo-maior-no-periodo-da-manha"></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="tab">
-        <h2 class="text-uppercase text-center my-3 color-blue-principal">tarde</h2>
-          <h6 class="text-uppercase text-center my-4 color-blue-principal">preencha atentamente os campos abaixo.</h6>
-
-          <div class="row" >
-                <div class="col">
-                    <p>Hora do início das aulas<input type="time" name="hora_inicio_tarde" id="hora-de-inicio-das-aulas-no-periodo-da-tarde" value="{{old('hora_inicio_tarde')}}" min="12:00" max="13:30"  oninput="this.className = ''" required></p>
-                    @error('hora_inicio_tarde')
-                        <p class="alert alert-danger" role="alert">{{$message}}
-                            <button class="botaofecharerro">
-                                <i class="bi bi-x"></i>
-                            </button>
-                        </p>
-                    @enderror
-                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-hora-de-inicio-das-aulas-no-periodo-da-tarde"></p>
-                </div>
-
-                <div class="col">
-                    <p>Hora do fim das aulas<input type="time" name="hora_fim_tarde" id="hora-de-fim-das-aulas-no-periodo-da-tarde" value="{{old('hora_fim_tarde')}}" min="17:00" max="18:50"  oninput="this.className = ''" required></p>
-                    @error('hora_fim_tarde')
-                        <p class="alert alert-danger" role="alert">{{$message}}
-                            <button class="botaofecharerro">
-                                <i class="bi bi-x"></i>
-                            </button>
-                        </p>
-                    @enderror
-                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-hora-de-fim-das-aulas-no-periodo-da-tarde"></p>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col">
-                    <p>Duração de cada tempo (em minutos)<input type="number" placeholder="Ex:50" name="duracao_tempo_tarde" id="duracao-do-tempo-de-aula-no-periodo-da-tarde" value="{{old('duracao_tempo_tarde')}}" oninput="this.className = ''" required></p>
-                    @error('duracao_tempo_tarde')
-                        <p class="alert alert-danger" role="alert">{{$message}}
-                            <button class="botaofecharerro">
-                                <i class="bi bi-x"></i>
-                            </button>
-                        </p>
-                    @enderror
-                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-duracao-do-tempo-de-aula-no-periodo-da-tarde"></p>
-                </div>
-
-                <div class="col">
-                    <p>Duração do intervalo menor (em minutos)<input type="number" placeholder="Ex:5" name="duracao_int_menor_tarde" id="duracao-do-intervalo-menor-no-periodo-da-tarde" value="{{old('duracao_int_menor_tarde')}}" oninput="this.className = ''" required></p>
-                    @error('duracao_int_menor_tarde')
-                        <p class="alert alert-danger" role="alert">{{$message}}
-                            <button class="botaofecharerro">
-                                <i class="bi bi-x"></i>
-                            </button>
-                        </p>
-                    @enderror
-                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-duracao-do-intervalo-menor-no-periodo-da-tarde"></p>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col-6">
-                    <p>Duração do intervalo maior (em minutos)<input type="number" placeholder="Ex:15" name="duracao_int_maior_tarde" id="duracao-do-intervalo-maior-no-periodo-da-tarde" value="{{old('duracao_int_maior_tarde')}}" oninput="this.className = ''" required></p>
-                    @error('duracao_int_maior_tarde')
-                        <p class="alert alert-danger" role="alert">{{$message}}
-                            <button class="botaofecharerro">
-                                <i class="bi bi-x"></i>
-                            </button>
-                        </p>
-                    @enderror
-                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-duracao-do-intervalo-maior-no-periodo-da-tarde"></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="tab">
-        <h2 class="text-uppercase text-center my-3 color-blue-principal">noite</h2>
-          <h6 class="text-uppercase text-center my-4 color-blue-principal">preencha atentamente os campos abaixo.</h6>
-
-          <div class="row" >
-                <div class="col">
-                    <p>Hora do início das aulas<input type="time" name="hora_inicio_noite" id="hora-de-inicio-das-aulas-no-periodo-da-noite" value="{{old('hora_inicio_noite')}}" min="17:00" max="19:00" oninput="this.className = ''" required></p>
-                    @error('hora_inicio_noite')
-                        <p class="alert alert-danger" role="alert">{{$message}}
-                            <button class="botaofecharerro">
-                                <i class="bi bi-x"></i>
-                            </button>
-                        </p>
-                    @enderror
-                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-hora-de-inicio-das-aulas-no-periodo-da-noite"></p>
-                </div>
-
-                <div class="col">
-                    <p>Hora do fim das aulas<input type="time" name="hora_fim_noite" id="hora-de-fim-das-aulas-no-periodo-da-noite" value="{{old('hora_fim_noite')}}" min="21:00" max="23:00" oninput="this.className = ''" required></p>
-                    @error('hora_fim_noite')
-                        <p class="alert alert-danger" role="alert">{{$message}}
-                            <button class="botaofecharerro">
-                                <i class="bi bi-x"></i>
-                            </button>
-                        </p>
-                    @enderror
-                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-hora-de-fim-das-aulas-no-periodo-da-noite"></p>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col">
-                    <p>Duração de cada tempo (em minutos)<input type="number" placeholder="Ex:50" name="duracao_tempo_noite" id="duracao-do-tempo-de-aula-no-periodo-da-noite" value="{{old('duracao_tempo_noite')}}" oninput="this.className = ''" required></p>
-                    @error('duracao_tempo_noite')
-                        <p class="alert alert-danger" role="alert">{{$message}}
-                            <button class="botaofecharerro">
-                                <i class="bi bi-x"></i>
-                            </button>
-                        </p>
-                    @enderror
-                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-duracao-do-tempo-de-aula-no-periodo-da-noite"></p>
-                </div>
-
-                <div class="col">
-                    <p>Duração do intervalo menor (em minutos)<input type="number" placeholder="Ex:5" name="duracao_int_menor_noite" id="duracao-do-intervalo-menor-no-periodo-da-noite" value="{{old('duracao_int_menor_noite')}}" oninput="this.className = ''" required></p>
-                    @error('duracao_int_menor_noite')
-                        <p class="alert alert-danger" role="alert">{{$message}}
-                            <button class="botaofecharerro">
-                                <i class="bi bi-x"></i>
-                            </button>
-                        </p>
-                    @enderror
-                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-duracao-do-intervalo-menor-no-periodo-da-noite"></p>
-                </div>
-            </div>
-
-            <div class="row" >
-                <div class="col-6">
-                    <p>Duração do intervalo maior (em minutos)<input type="number" placeholder="Ex:15" name="duracao_int_maior_noite" id="duracao-do-intervalo-maior-no-periodo-da-noite" value="{{old('duracao_int_maior_noite')}}" oninput="this.className = ''" required></p>
-                    @error('duracao_int_maior_noite')
-                        <p class="alert alert-danger" role="alert">{{$message}}
-                            <button class="botaofecharerro">
-                                <i class="bi bi-x"></i>
-                            </button>
-                        </p>
-                    @enderror
-                    <p class="alert alert-danger d-none" role="alert" id="paragrafo-de-validacao-da-duracao-do-intervalo-maior-no-periodo-da-noite"></p>
+                    <p class="alert alert-danger d-none mt-2" role="alert" id="paragrafo-de-validacao-do-numero-maximo-de-salas"></p>
                 </div>
             </div>
         </div>
 
         <div style="text-align:center;margin-top:40px;">
           <div>
-            <button type="button" class="btn btn-danger" id="prevBtn" onclick="nextPrev(-1)">Retroceder</button>
-            <button type="button" class="btn btn-success our-green-bg" id="nextBtn" onclick="nextPrev(1)">Avançar</button>
+            <button type="submit" class="btn btn-success">Criar ano lectivo</button>
           </div>
         </div>
-      </form>
-
-
-    </main>
+    </form>
+</main>
 @endsection
