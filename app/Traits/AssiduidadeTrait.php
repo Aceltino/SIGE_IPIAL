@@ -185,9 +185,14 @@ trait AssiduidadeTrait
         $dia_corrente = self::pegarDiaSemana(date('D'));
         if($dia_corrente){
             $dia = Dia::where('nome_dia', $dia_corrente)->get();
-            return $dia;
+            if(count($dia) > 0){
+                return $dia->toArray();
+            }else{
+                return 9;
+            }
+
         } else{
-            return false;
+            return 9;
         }
     }
 
@@ -195,26 +200,50 @@ trait AssiduidadeTrait
         //dd($day);
         switch ($day) {
             case 'Mon':
-                $dia = "SEGUNDA-FEIRA";
+                $dia = "Segunda-Feira";
                 break;
             case 'Tue':
-                $dia = "TERÇA-FEIRA";
+                $dia = "Terça-Feira";
                 break;
             case 'Wed':
-            case 'Fri':
-                $dia = "QUARTA-FEIRA";
+                $dia = "Quarta-Feira";
                 break;
             case 'Thu':
-                $dia = "QUINTA-FEIRA";
+                $dia = "Quinta-Feira";
                 break;
             case 'Fri':
-                $dia = "SEXTA-FEIRA";
+                $dia = "Sexta-Feira";
                 break;
             default:
                 $dia = false;
-                break;
         }
         return $dia;
+    }
+
+    public static function verifyTempo($dia_id, $tempo_id, $turma_id, $prof_disc_id){
+        $horario = Horario::where('dia_id', $dia_id)
+        ->where('tempo_id', $tempo_id)
+        ->where('turma_id', $turma_id)
+        ->where('prof_disc_id', $prof_disc_id)
+        ->get()->first();
+        if($horario){
+            return $horario->toArray();
+        } else{
+            return 9;
+        }
+    }
+
+    public static function verifyFalta($aluno_id, $data_corrente, $disciplina_id, $tempo_id){
+        $assiduidade = Assiduidade_aluno::where('aluno_id', $aluno_id)
+        ->where('tempo_id', $tempo_id)
+        ->where('disciplina_id',$disciplina_id)
+        ->where('created_at', $data_corrente)
+        ->get()->first();
+        if($assiduidade){
+            return true;
+        } else{
+            return false;
+        }
     }
 
 }
