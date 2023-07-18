@@ -83,7 +83,7 @@
         @foreach ($assiduidade as $key => $assid)
             <tr style="text-align: center;">
                 <th scope="row">{{date('d/m/Y', strtotime($assid->created_at))}}</th>
-                <td>{{$tempos[$key]}}</td>
+                <td>{{$assid->tempo->tempo}}</td>
                 <td>{{$trimestre[0]->trimestre}}</td>
                 <td>{{$assid->tipo_falta}}</td>
                 <td>{{$assid->status_falta}}</td>

@@ -73,9 +73,9 @@
     <div class="col-4" style="display: flex; justify-content: start margin-top: 4px;" >
 
         <div class="ola" style="margin-top: 4px; width: 50%;">
-            <select  class="btn-sel form-select" id="filtro10" >
+            <select  class="btn-sel form-select" id="filtro10" name="tempo">
               @foreach ($tempos as $tempo)
-                <option value="{{$tempo->tempo_id}}">{{$tempo->tempo}} TEMPO</option>
+                <option  value="{{$tempo->tempo_id}}">{{$tempo->tempo}} TEMPO</option>
               @endforeach
             </select>
           </div>
@@ -84,8 +84,8 @@
 
         <div class="form-group" >
           <button class="btn botaoazul" name="tipo_falta" value="presencial"  type="submit" style="margin-right: 3px;">Presencial</button>
-          <button class="btn botaovermelho" type="submit" style="margin-right: 3px;">Disciplinar</button>
-          <button class="btn botaopreto" style="background-color: rgb(92, 75, 20)" type="submit" style="margin-right: 3px;">Material</button>
+          <button class="btn botaovermelho" name="tipo_falta" value="disciplinar" type="submit" style="margin-right: 3px;">Disciplinar</button>
+          <button class="btn botaopreto" name="tipo_falta" value="material" style="background-color: rgb(92, 75, 20)" type="submit" style="margin-right: 3px;">Material</button>
         </div>
     </div>
 
