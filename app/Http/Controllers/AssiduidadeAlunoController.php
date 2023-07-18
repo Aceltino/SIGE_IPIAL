@@ -17,9 +17,6 @@ class AssiduidadeAlunoController extends Controller
 
     public function index()
     {
-       // $id = [1, 2, 3];
-        //dd($id);
-        //AnoLectivoTrait::abrirTrimestre();
         $user = Auth::user();
         if($user->cargo_usuario === "Administrador" || $user->cargo_usuario === "Subdirector"){
             $professor = AvaliacaoTrait::pegarAdmin();
@@ -182,8 +179,9 @@ class AssiduidadeAlunoController extends Controller
     public static function assiduidadeAnual($aluno_id, $ano_lectivo_id){
         $ano_lectivo = Ano_lectivo::with('trimestres')->latest()->where('ano_lectivo_id', $ano_lectivo_id)->first();
         for ($i = 0; $i < count($ano_lectivo->trimestres); $i++) {
-            $faltas[$i] = Assiduidade_aluno::where('aluno_id', $aluno_id)->where('id_trimestre', $ano_lectivo->trimestres[$i]->trimestre_id)->get();
+            $faltas[$i] = Assiduidade_aluno::with('disciplina')->where('aluno_id', $aluno_id)->where('id_trimestre', $ano_lectivo->trimestres[$i]->trimestre_id)->get();
         }
+        dd($faltas);
         return $faltas;
     }
 
