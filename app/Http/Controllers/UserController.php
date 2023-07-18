@@ -31,7 +31,7 @@ class UserController extends Controller
         return view('usuario/usuarios',compact('users'));
     }
 
-    //Metodo que cadastra usuario no banco de dados 
+    //Metodo que cadastra usuario no banco de dados
     public static function store($dados)
     {
         return User::create($dados);
@@ -48,6 +48,7 @@ class UserController extends Controller
     public static function updateAluno($dadosUser)
     {
         $user = User::find($dadosUser['usuario_id']);
+
         foreach ($dadosUser as $campo => $valor)
         {
             $user->$campo = $valor;
@@ -57,7 +58,7 @@ class UserController extends Controller
 
     //Metodo para fazer Update nos dados do usuario
     public function updateUser(Request $request,$id)
-    {   
+    {
         $user= User::findOrFail($id);
 
         $regras_gerais=[
@@ -96,7 +97,7 @@ class UserController extends Controller
             'email_update.email'=>'Este campo deve conter um email valido',
             'email_update.max'=>'Lamentamos! Digita um email com menos caracter(letra)',
             'email_update.unique'=>'Lamentamos, este email já esta em uso',
-            
+
             //Formulario do endereço
             'municipio_update.min'=>'O seu municipio não pode conter menos de 2 Letras',
             'num_casa_update.numeric'=>'Número de casa deve conter apenas digitos validos.',
@@ -146,14 +147,14 @@ class UserController extends Controller
             'data_nascimento'=>$request->data_nascimento_update,
             'genero'=>$request->genero_update,
             'telefone'=>$request->telefone_update,
-        ];              
+        ];
 
         //Update dos dados da Pessoa e Endereço
         if(!$this->updatePessoa_ACTUALIZADO($dadosPessoa,$dadosEndereco)){
             return redirect()->back()->with('erro_Update_002', 'Lamentamos! Erro na actualização de alguns dados.');
         }
 
-        //Update dos dados do Usuario   
+        //Update dos dados do Usuario
         $user->email=$request->email_update;
         $user->cargo_usuario=$request->cargo_usuario_update;
 
@@ -178,19 +179,19 @@ class UserController extends Controller
 
                     $status=User::where('cargo_usuario','Director')->get();
                     foreach ($status as $value) {
-                        
+
                         if(!$value->status_usuario){
                             goto conti;
                         }
                         goto contiErro;
                     }
-                  
+
                     goto contiErro;
                 }
-                
+
                 goto conti;
             }
-           
+
             conti:
             $user->status_usuario=1;
             if(!$user->save()){
@@ -207,7 +208,7 @@ class UserController extends Controller
             }
             AuthController::detectarLogin($user); //Assim que o usuario for bloqueado a sessão sera finalizada
             return redirect()->back()->with('sucess_status_002','Usuario Bloqueado');
-        } 
+        }
     }
 
 }

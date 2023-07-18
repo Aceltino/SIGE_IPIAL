@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Turma;
 use Illuminate\Http\Request;
 
 class HorarioController extends Controller
@@ -11,4 +12,9 @@ class HorarioController extends Controller
     {
         return view('horario/criar-horario');
     }
+
+    // public function pegarDadosHorario()
+    // {
+    //     Turma
+    // }
 }

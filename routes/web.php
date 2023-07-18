@@ -29,7 +29,7 @@ use App\Http\Controllers\{
 */
 
 // Rota apenas de teste... Não apague -> ACELTINO
-    Route::get('validar-aluno', [AnoLectivoController::class, 'AnoLectivoConfig']);
+    Route::get('validar-aluno', [AlunoController::class, 'alunosVinculados']);
 // Route::get('validar-aluno', [AlunoController::class, 'situacaoAluno']);
 
 
@@ -256,7 +256,9 @@ Route::prefix('ano-lectivo')->middleware(['auth','active.session','checkcargo'])
     Route::get('editar-ano-letivo/{id}', [AnoLectivoController::class, 'indexUpdate'])->name('editar.ano.lectivo');
     Route::put('editar-ano-letivo/editar', [AnoLectivoController::class, 'update'])->name('update.ano.lectivo');
 
-    Route::delete('apagar-ano-lectivo/{id}', [AnoLectivoController::class, 'delete'])->name('apagar.ano.lectivo');
+    Route::get('configurar-ano-lectivo/{id}', [AnoLectivoController::class, 'indexConfiguracao'])->name('config.ano.lectivo');
+    Route::post('configurar-ano-lectivo', [AnoLectivoController::class, 'ConfiguracaoAnoLectivo'])->name('configurar.ano.lectivo');
+
 
 });
 
@@ -369,7 +371,7 @@ Route::get('erroassid',  function () {
 
 /* Assiduidade de alunos*/
 Route::get('/assiduidade-aluno', [AssiduidadeAlunoController::class, 'index'])->name('assiduidade');
-Route::post('/assiduidade-aluno/marcar-falta/{aluno_id}/{disciplina_id}/{turma_id}/{professor_disciplina_id}', [AssiduidadeAlunoController::class, 'store'])->name('marcar.falta');
+Route::post('/assiduidade-aluno/marcar-falta', [AssiduidadeAlunoController::class, 'store'])->name('marcar.falta');
 
 /*justificar ou editar assiduidade*/
 Route::get('/editar-assiduidade/{aluno_id}/{disciplina_id}', [AssiduidadeAlunoController::class, 'show'])->name('editar.assiduidade');
@@ -441,10 +443,27 @@ Route::get('/horario-turma', function () {
 Route::get('/editar-horario', function () {
     return view('horario/editar-horario');
 });
+
 /*Ver horário*/
 Route::get('/ver-horarios', function () {
     return view('horario/horarios');
 });
+
+/*Criar tempos*/
+Route::get('/criar-tempos', function () {
+    return view('horario/criar-tempos');
+});
+
+/*Editar tempos*/
+Route::get('/editar-tempos', function () {
+    return view('horario/editar-tempos');
+});
+
+/*Ver tempos*/
+Route::get('/ver-tempos', function () {
+    return view('horario/ver-tempos');
+});
+
 /*Area de formacao*/
 Route::get('/criar-areaformacao', [AreaFormacaoController::class, 'indexCadastro'])->name('criar.area.formacao');
 Route::post('/criar-areaformacao', [AreaFormacaoController::class, 'store'])->name('cadastrar.area.formacao');

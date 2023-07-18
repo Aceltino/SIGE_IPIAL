@@ -4,7 +4,7 @@
 
 @section('conteudo')
   <main id="main" class="main">
-    <div class="d-flex align-items-center bg-blue-principal ms-4 border-radius-right py-2" style="padding-left: 56px;">
+    <div class="d-flex align-items-center justify-content-around bg-blue-principal ms-4 border-radius-right py-2" style="padding-left: 56px;">
       <a class="d-flex align-items-center pe-0" href="#">
         <img src="img/foto.jpg" alt="perfil" class="mini-foto-perf mini-foto-perfil-2">
         <span class="d-flex align-items-center ps-2">
@@ -13,9 +13,6 @@
           </div>
           <div class="col-lg-3">
               <a class="color-white" href={{ route('horarioProfessor', ['id' => $professor->professor_id]) }}>Horário</a>
-          </div>
-          <div class="col-lg-3">
-              <a class="color-white" href={{ route('avaliacao', ['id' => $professor->professor_id]) }}>Avaliação</a>
           </div>
           <div class="col-lg-3">
               <a class="color-white" href={{ route('professor.dados-pessoais', ['id' => $professor->professor_id]) }}>Dados pessoais</a>
@@ -257,5 +254,84 @@
         </div>
       </div>
     </form>
+    <script>
+      if(parseInt(quantidadeDeDisciplinas.value) < 1 || parseInt(quantidadeDeDisciplinas.value) > 4){
+          quantidadeDeDisciplinas.value = "1";
+        }
+
+        if(parseInt(quantidadeDeDisciplinas.value) === 1){
+            // Habilitar todas as opções nos selects
+            habilitarOpcoes(disciplinaALeccionar1);
+
+            if(!divDoSelectSegundaDisciplina.classList.contains("d-none")){
+              divDoSelectSegundaDisciplina.classList.add("d-none");
+            }
+
+            if(!divDoSelectTerceiraDisciplina.classList.contains("d-none")){
+              divDoSelectTerceiraDisciplina.classList.add("d-none");
+            }
+
+            if(!divDoSelectQuartaDisciplina.classList.contains("d-none")){
+              divDoSelectQuartaDisciplina.classList.add("d-none");
+            }
+        }
+
+        if(parseInt(quantidadeDeDisciplinas.value) === 2){
+          // Habilitar todas as opções nos selects
+          habilitarOpcoes(disciplinaALeccionar1);
+          habilitarOpcoes(disciplinaALeccionar2);
+
+          if(divDoSelectSegundaDisciplina.classList.contains("d-none")){
+            divDoSelectSegundaDisciplina.classList.remove("d-none");
+          }
+
+          if(!divDoSelectTerceiraDisciplina.classList.contains("d-none")){
+            divDoSelectTerceiraDisciplina.classList.add("d-none");
+          }
+
+          if(!divDoSelectQuartaDisciplina.classList.contains("d-none")){
+            divDoSelectQuartaDisciplina.classList.add("d-none");
+          }
+        }
+
+        if(parseInt(quantidadeDeDisciplinas.value) === 3){
+          // Habilitar todas as opções nos selects
+          habilitarOpcoes(disciplinaALeccionar1);
+          habilitarOpcoes(disciplinaALeccionar2);
+          habilitarOpcoes(disciplinaALeccionar3);
+          
+          if(divDoSelectSegundaDisciplina.classList.contains("d-none")){
+            divDoSelectSegundaDisciplina.classList.remove("d-none");
+          }
+
+          if(divDoSelectTerceiraDisciplina.classList.contains("d-none")){
+            divDoSelectTerceiraDisciplina.classList.remove("d-none");
+          }
+
+          if(!divDoSelectQuartaDisciplina.classList.contains("d-none")){
+            divDoSelectQuartaDisciplina.classList.add("d-none");
+          }
+        }
+
+        if(parseInt(quantidadeDeDisciplinas.value) === 4){
+          // Habilitar todas as opções nos selects
+          habilitarOpcoes(disciplinaALeccionar1);
+          habilitarOpcoes(disciplinaALeccionar2);
+          habilitarOpcoes(disciplinaALeccionar3);
+          habilitarOpcoes(disciplinaALeccionar4);
+
+          if(divDoSelectSegundaDisciplina.classList.contains("d-none")){
+            divDoSelectSegundaDisciplina.classList.remove("d-none");
+          }
+
+          if(divDoSelectTerceiraDisciplina.classList.contains("d-none")){
+            divDoSelectTerceiraDisciplina.classList.remove("d-none");
+          }
+
+          if(divDoSelectQuartaDisciplina.classList.contains("d-none")){
+            divDoSelectQuartaDisciplina.classList.remove("d-none");
+          }
+        }
+    </script>
   </main>
 @endsection
