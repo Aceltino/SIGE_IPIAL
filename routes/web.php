@@ -221,7 +221,7 @@ Route::prefix('aluno')->middleware(['auth','active.session','checkcargo'])->grou
     });
 
 });
-/**<!--Fim Rotas aluno--> */
+/**<!--Fim Rotas aluno--> */    
 
 
 /******************************************

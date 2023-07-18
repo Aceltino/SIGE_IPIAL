@@ -80,86 +80,105 @@
     </div>
     </div>
   </div>
-  <div class="bortabela" style="box-shadow: 0 5px 15px 0 rgba(82, 63, 105, 0.2); border: 1px solid white; border-radius: 3px; padding: 2px;">
-    <div class="pagetitle">
-        <div class="row">
-            <div class="col" style="padding-left: 25px; padding-top: 15px;">
-                <h1 style="text-align: center; font-size: 25px; ">Data: {{date('d/m/Y')}}</h1>
-            </div>
-        </div>
+  <form method="POST" action="">
+    @csrf
+    <div class="form-group" style="display: flex; justify-content: end; margin-top: 4px;">
+      <button class="btn botaoazul" name="ac"  type="submit" style="margin-right: 3px;">AC</button>
+      <button class="btn botaoazul" name="npp" type="submit" style="margin-right: 3px;">NPP</button>
+      <button class="btn botaoazul" name="npt"  type="submit" style="margin-right: 3px;">NPT</button>
+      <button class="btn botaoazul" name="exame" type="submit" style="margin-right: 3px;">Exame</button>
+      <button class="btn botaoazul"  type="submit" style="margin-right: 3px;">PT</button>
+      <button class="btn botaoazul"  type="submit" style="margin-right: 3px;">PAP</button>
+      <button class="btn botaoazul"  type="submit" style="margin-right: 3px;">Nota do Estágio</button>
+      <button class="btn botaoazul"  type="submit" style="margin-right: 3px;">Nota Administrativa</button>
     </div>
-    <!-- /  Inicio da tabela  -->
-    <table id="avali" class="table table-custom table-escuro display" style="margin-top: 20px; width: 100%;" >
-      <thead style="text-align: center">
-        <tr>
-          <th scope="col">Nº</th>
-          <th scope="col">Nome do Aluno</th>
-          <th scope="col">MAC</th>
-          <th scope="col">NPP</th>
-          <th scope="col">NPT</th>
-          <th scope="col">Exame</th>
-          <th scope="col">Avaliar</th>
-          <th scope="col">Histórico</th>
-          <th scope="col" hidden>curso</th>
-          <th scope="col" hidden>Disciplina</th>
-          <th scope="col" hidden >Turma</th>
-        </tr>
-      </thead>
-      <tbody>
-        @if (!empty($aluno))
-          @foreach ($aluno as $chave1 => $valor1)
 
-            @foreach ($valor1 as $chave2 => $valor2)
+    <div class="bortabela" style="box-shadow: 0 5px 15px 0 rgba(82, 63, 105, 0.2); border: 1px solid white; border-radius: 3px; padding: 2px;">
+      <div class="pagetitle">
+          <div class="row">
+              <div class="col" style="padding-left: 25px; padding-top: 15px;">
+                  <h1 style="text-align: center; font-size: 25px; ">Data: {{date('d/m/Y')}}</h1>
+              </div>
+          </div>
+      </div>
+      <!-- /  Inicio da tabela  -->
+      <table id="avali" class="table table-custom table-escuro display" style="margin-top: 20px; width: 100%;" >
+        <thead style="text-align: center">
+          <tr>
+            <th scope="col">Nº</th>
+            <th scope="col">Nome do Aluno</th>
+            <th scope="col">MAC</th>
+            <th scope="col">NPP</th>
+            <th scope="col">NPT</th>
+            <th scope="col">Exame</th>
+            <th scope="col">Avaliar</th>
+            <th scope="col">Histórico</th>
+            <th scope="col" hidden>curso</th>
+            <th scope="col" hidden>Disciplina</th>
+            <th scope="col" hidden >Turma</th>
+            <th scope="col" hidden >id_Aluno</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (!empty($aluno))
+            @foreach ($aluno as $chave1 => $valor1)
+  
+              @foreach ($valor1 as $chave2 => $valor2)
+  
+                  @foreach ($valor2 as $chave3 => $valor3)
 
-                @foreach ($valor2 as $chave3 => $valor3)
+                  
+  
+                      <tr style="text-align: center;">
+                          <th scope="row">{{$valor3['numero_aluno']}}</th>
+                          <td>{{$valor3['nome']}}</td>
+  
+                          @if ($valor3['mac']<10)
+                          <td style="color: rgb(255, 8, 8)">{{$valor3['mac']}}</td>
+                          @else
+                          <td style="color: rgb(10, 10, 255)">{{$valor3['mac']}}</td>
+                          @endif
+  
+                          @if ($valor3['npp']<10)
+                          <td style="color: rgb(255, 8, 8)">{{$valor3['npp']}}</td>
+                          @else
+                          <td style="color: rgb(10, 10, 255)">{{$valor3['npp']}}</td>
+                          @endif
+  
+                          @if ($valor3['npt']<10)
+                          <td style="color: rgb(255, 8, 8)">{{$valor3['npt']}}</td>
+                          @else
+                          <td style="color: rgb(10, 10, 255)">{{$valor3['npt']}}</td>
+                          @endif
+  
+                          @if ($valor3['exame']<10)
+                          <td style="color: rgb(255, 8, 8)">{{$valor3['exame']}}</td>
+                          @else
+                          <td style="color: rgb(10, 10, 255)">{{$valor3['exame']}}</td>
+                          @endif
+  
+                          <td style="text-align: center">
+                          <input class="form-control innota"  type="text" name="aluno[]" maxlength="4" id="notaimput">
+                          </td>
+                          <td style="text-align: center">
+                          <a href="{{route('editar.avaliacao.aluno', [$valor3['aluno_id'], $valor3['disciplina_id']])}}" class="btn linkeditar">Avaliações Aluno</a>
+                          </td>
+                          <td hidden >{{$valor3['curso']}}</td>
+                          <td hidden>{{$valor3['nome_disciplina']}}</td>
+                          <td hidden>{{$valor3['nome_turma']}}</td>
+                          <td hidden>{{$valor3['aluno_id']}}</td>
 
-                    <tr style="text-align: center;">
-                        <th scope="row">{{$valor3['numero_aluno']}}</th>
-                        <td>{{$valor3['nome']}}</td>
-
-                        @if ($valor3['mac']<10)
-                        <td style="color: rgb(255, 8, 8)">{{$valor3['mac']}}</td>
-                        @else
-                        <td style="color: rgb(10, 10, 255)">{{$valor3['mac']}}</td>
-                        @endif
-
-                        @if ($valor3['npp']<10)
-                        <td style="color: rgb(255, 8, 8)">{{$valor3['npp']}}</td>
-                        @else
-                        <td style="color: rgb(10, 10, 255)">{{$valor3['npp']}}</td>
-                        @endif
-
-                        @if ($valor3['npt']<10)
-                        <td style="color: rgb(255, 8, 8)">{{$valor3['npt']}}</td>
-                        @else
-                        <td style="color: rgb(10, 10, 255)">{{$valor3['npt']}}</td>
-                        @endif
-
-                        @if ($valor3['exame']<10)
-                        <td style="color: rgb(255, 8, 8)">{{$valor3['exame']}}</td>
-                        @else
-                        <td style="color: rgb(10, 10, 255)">{{$valor3['exame']}}</td>
-                        @endif
-
-                        <td style="text-align: center">
-                        <a class="btn botaoazul"data-bs-toggle="modal" data-bs-target="#modal_assiduidade{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}" >Avaliar aluno</a>
-                        </td>
-                        <td style="text-align: center">
-                        <a href="{{route('editar.avaliacao.aluno', [$valor3['aluno_id'], $valor3['disciplina_id']])}}" class="btn linkeditar">Avaliações Aluno</a>
-                        </td>
-                        <td hidden >{{$valor3['curso']}}</td>
-                        <td hidden>{{$valor3['nome_disciplina']}}</td>
-                        <td hidden>{{$valor3['nome_turma']}}</td>
-                    </tr>
-                <!-- Início da Modal -->
-
-          <!-- Fím da modal -->
-                @endforeach
+                      </tr>
+                  <!-- Início da Modal -->
+  
+            <!-- Fím da modal -->
+                  @endforeach
+              @endforeach
             @endforeach
-          @endforeach
-
-        </tbody>
-    </table>
+  
+          </tbody>
+      </table>
+  </form>
     <!-- Cola aqui o código -->
     @foreach ($aluno as $chave1 => $valor1)
 
