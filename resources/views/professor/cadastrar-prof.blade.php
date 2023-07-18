@@ -72,7 +72,7 @@
 
             <div class="col-md-2">
               <div class="form-group">
-                <input type="text" class="form-control" readonly="true" id="idade-do-professor-input" disabled oninput="this.className = ''" value="00">
+                <input type="text" class="form-control" readonly="true" id="idade-do-professor-input" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled oninput="this.className = ''" value="00">
               </div> 
             </div>
           </div>
@@ -84,7 +84,7 @@
                 <label class="me-3">Sexo:</label>
                 <input type="radio" id="masculino" name="genero" value="Masculino" {{ old('genero') == 'Masculino' ? 'checked' : '' }} checked>
                 <label for="masculino" class="me-2"> Masculino</label>
-                <input type="radio" id="feminino" name="genero" value="Feminino" {{ old('genero') == 'Feminino' ? 'checked' : '' }}>
+                <input type="radio" id="feminino" name="genero" value="Femenino" {{ old('genero') == 'Femenino' ? 'checked' : '' }}>
                 <label for="feminino"> Feminino</label>
               </div>
             </div>

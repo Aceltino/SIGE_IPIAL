@@ -109,6 +109,7 @@
   <script src={{{URL::asset("js/paineis/horario/editar-horario.js")}}}></script>
   <script src={{{URL::asset("js/paineis/perfil/perfil.js")}}}></script>
   <script src={{{URL::asset("js/paineis/ano-lectivo/criar-ano-lectivo.js")}}}></script>
+  <script src={{{URL::asset("js/paineis/ano-lectivo/editar-ano-lectivo.js")}}}></script>
   <script src={{{URL::asset("js/paineis/professor/professor.js")}}}></script>
   <script src={{{URL::asset("js/paineis/professor/validacoes-professor.js")}}}></script>
   <script src={{{URL::asset("js/paineis/letrasc.js")}}}></script>

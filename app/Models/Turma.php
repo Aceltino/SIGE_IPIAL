@@ -63,18 +63,6 @@ class Turma extends Model
 
     public function disciplinas()
     {
-        /*
-         * @author Augusto Kussema
-         *
-         * Disciplina::class: O modelo alvo do relacionamento.
-         * ClasseDisciplina::class: A tabela intermediária que conecta Turma e Disciplina.
-         * 'classe_id': O nome da coluna em ClasseDisciplina que referencia a chave estrangeira para Classe.
-         * 'id': O nome da coluna na tabela Classe que é referenciada pela coluna 'classe_id' na tabela intermediária ClasseDisciplina.
-         * 'id': O nome da coluna na tabela Turma que é referenciada pela coluna 'id' em Classe.
-         * 'disciplina_id': O nome da coluna em ClasseDisciplina que referencia a chave estrangeira para Disciplina.
-         */
-        #return $this->hasManyThrough(Disciplina::class, ClasseDisciplina::class, 'classe_id', 'classe_id', 'id', 'disciplina_id');
-        #return $this->hasManyThrough(Disciplina::class, ClasseDisciplina::class, 'disciplina_id', 'disciplina_id');
         return $this->belongsTo(ClasseDisciplina::class, 'classe_id');
     }
 
