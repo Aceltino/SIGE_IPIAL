@@ -26,7 +26,7 @@ class APIController extends Controller
             'AnoLetivoConfiguracoes' => AnoLectivoController::AnoLectivoConfig(),
         ];
 
-     //   dd($dados);
+      //  dd($dados);
         return $dados;
     }
 }
