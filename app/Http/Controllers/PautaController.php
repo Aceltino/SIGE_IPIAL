@@ -75,9 +75,13 @@ class PautaController extends Controller
 
                 //Busca a media final da Disciplina com base ao Ano-Lectivo e o Aluno
                 $ca_cfd[]=MediasController::showClassificaoFinal($value->disciplina_id,$aluno->aluno_id,$anoLectivo);
+
+                $test=MediasController::setResultadoAnualAluno($aluno->aluno_id,$anoLectivo);
             } 
         }   
-      
+        
+
+        // dd($test);
         //Condição para Pauta ser Gerada
         if ( (count($turmaAluno) <= 0) && (empty($notas)) ){
             return redirect()->back()->with('msg_sem_pauta',"Lamentamos! Esta pauta ainda não esta composta... Aguarde o lançamento das notas");

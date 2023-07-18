@@ -79,10 +79,9 @@ class MediasController extends Controller
         $calMedia= ( array_sum($mt1) + array_sum($mt2) + array_sum($mt3) )/3 ;
 
         $tipoDisciplina= ClasseDisciplina::where("disciplina_id",$disciplina_id)->where("classe_id",$classe_id)->get()->toArray(); 
-
         $ca=0;
         $cfd=0;
-        
+
         foreach ($tipoDisciplina as $value) {
 
             if ($value['tipo_disciplina']=="TERMINAL") {
@@ -137,6 +136,42 @@ class MediasController extends Controller
                                     ->where('aluno_id',$aluno_id)
                                     ->get();
                                     // ->toArray();
+    }
+
+
+    //Metodo apresenta o resultado final do aluno duante o ano lectivo
+    public static function setResultadoAnualAluno($aluno_id,$anoLectivo)
+    {
+        /* 
+            CONDIÇÕES DO RESULTADO FINAL DO ALUNO 
+            10ª-11ª-12ª-13ª classe
+ 
+            # Triplo de números de Faltas em relação a carga horaria = Reprova
+            # +3 negativas(7 a 9)->Disciplina Continua(CA) = Reprova
+            # 1 negativa( < 7 )->Disciplina Continua(CA) = Reprova
+            # 1 negativa( 0 a 9 )->Disciplina Terminal(CFD) = Recurso
+            # O contrario de toda condição sitada acima o aluno= Aprova
+        */
+
+        $cadContinua= Classificacaofinal::where('ano_lectivo_id',$anoLectivo)
+                                        ->where('aluno_id',$aluno_id)
+                                        ->where('cfd',-1)
+                                        ->get();
+        
+        $cadTerminal= Classificacaofinal::where('ano_lectivo_id',$anoLectivo)
+                                        ->where('aluno_id',$aluno_id)
+                                        ->where('ca',-1)
+                                        ->get();
+
+        $totalDisciplina=count($cadContinua)+count($cadTerminal);
+
+        $mediaCadContinua= $cadContinua->sum('ca');
+        $mediaCadTerminal= $cadTerminal->sum('cfd');
+
+        $mediaAnual= round( (12+$mediaCadTerminal)/$totalDisciplina );//Medial anual do aluno
+
+
+
     }
     
     
