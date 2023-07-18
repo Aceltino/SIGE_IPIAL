@@ -26,8 +26,8 @@
           </div>
 
           <div class="col-lg-2">
-            <select class="btn-sel form-select" id="filtro10">
-              <option  disabled>Curso</option>
+            <select class="btn-sel form-select" >
+              <option  selected>Curso</option>
               @if (count($dados) > 0)
                 <option value="{{$dados[0]->alunos->anoTurma[count($dados[0]->alunos->anoTurma) -1]->turma->curso->nome_curso}}">{{$dados[0]->alunos->anoTurma[count($dados[0]->alunos->anoTurma) -1]->turma->curso->nome_curso}}</option>
               @endif
@@ -35,8 +35,8 @@
           </div>
 
           <div class="col-lg-2">
-            <select class="btn-sel form-select" id="filtro11">
-              <option disabled >Disciplina</option>
+            <select class="btn-sel form-select" >
+              <option selected>Disciplina</option>
               @for ($i = 0; $i < count($disciplinas); $i++)
                 <option value="">{{$disciplinas[$i]->nome_disciplina}}</option>
               @endfor
@@ -44,8 +44,8 @@
           </div>
 
           <div class="col-lg-2">
-            <select class="btn-sel form-select" id="filtro12">
-              <option disabled >Turma</option>
+            <select class="btn-sel form-select" >
+              <option disabled  selected>Turma</option>
               @if (count($dados) > 0)
                 <option value="{{$dados[0]->alunos->anoTurma[count($dados[0]->alunos->anoTurma) -1]->turma->nome_turma}}">{{$dados[0]->alunos->anoTurma[count($dados[0]->alunos->anoTurma) -1]->turma->nome_turma}}</option>
               @endif
@@ -71,7 +71,7 @@
         </div>
     </div>
     <!-- /  Inicio da tabela  -->
-    <table id="avaliaca" class="table table-custom table-escuro display" style="margin-top: 20px; width: 100%;" >
+    <table  class="table table-custom table-escuro display" style="margin-top: 20px; width: 100%;" >
       <thead style="text-align: center">
         <tr>
           <th scope="col">Nº do Processo</th>
