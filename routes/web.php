@@ -443,10 +443,27 @@ Route::get('/horario-turma', function () {
 Route::get('/editar-horario', function () {
     return view('horario/editar-horario');
 });
+
 /*Ver horário*/
 Route::get('/ver-horarios', function () {
     return view('horario/horarios');
 });
+
+/*Criar tempos*/
+Route::get('/criar-tempos', function () {
+    return view('horario/criar-tempos');
+});
+
+/*Editar tempos*/
+Route::get('/editar-tempos', function () {
+    return view('horario/editar-tempos');
+});
+
+/*Ver tempos*/
+Route::get('/ver-tempos', function () {
+    return view('horario/ver-tempos');
+});
+
 /*Area de formacao*/
 Route::get('/criar-areaformacao', [AreaFormacaoController::class, 'indexCadastro'])->name('criar.area.formacao');
 Route::post('/criar-areaformacao', [AreaFormacaoController::class, 'store'])->name('cadastrar.area.formacao');
