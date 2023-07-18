@@ -32,7 +32,7 @@
             }
             
     ?>
-{{-- {{dd($disciplina )}} --}}
+{{dd($disciplina )}}
   
     
  
