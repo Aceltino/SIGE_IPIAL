@@ -205,45 +205,98 @@ class AnoLectivoController extends Controller
         return $ultimoAno->data_fim_inscricao;
     }
 
-    public static function abrirTrimestre($trimestre){
-
-        $anoLectivo = Ano_lectivo::latest()->where('status_ano_lectivo', 1)->get()->first();
-        $trimestre = Trimestre::where('trimestre', $trimestre)->where('ano_lectivo_id', $anoLectivo->ano_lectivo_id)->get()->first();
-        $trimestre->data_inicio = date('Y-m-d');
-        $trimestre->status = 1;
-        $trimestre->save();
-        return true;
-    }
-    public static function fecharTrimestre($trimestre){
-        $anoLectivo = Ano_lectivo::latest()->where('status_ano_lectivo', 1)->get()->first();
-        $trimestre = Trimestre::where('trimestre', $trimestre)->where('ano_lectivo_id', $anoLectivo->ano_lectivo_id)->get()->first();
-        $trimestre->data_fim = date('Y-m-d');
-        $trimestre->status = 0;
-        $trimestre->save();
-        return true;
-    }
-
-    public function fecharAnoLectivo($ano_lectivo_id){
+    public function indexConfiguracao($ano_lectivo_id){
         $ano_lectivo = Ano_lectivo::find($ano_lectivo_id);
-        if($ano_lectivo->status_ano_lectivo === 0){
-            return redirect()->back()->with('erro', 'Este ano lectivo já se encontra fechado.');
+        if ($ano_lectivo && $ano_lectivo->status_ano_lectivo === 1) {
+            $trimestres = Trimestre::where('ano_lectivo_id', $ano_lectivo->ano_lectivo_id)->get();
+            return view('ano-lectivo.configuracoes-do-ano-lectivo', compact(['ano_lectivo', 'trimestres']));
+        } elseif($ano_lectivo && $ano_lectivo->status_ano_lectivo === 0){
+            return redirect()->route('ano.lectivo')->with('erro', 'Não é possível configurar um ano lectivo fechado.');
+        } else{
+            return redirect()->route('ano.lectivo')->with('erro', 'Ano lectivo não encontrado.');
         }
-        if(!empty($ano_lectivo) && $ano_lectivo->status_ano_lectivo === 1){
-            $trimestre = Trimestre::where('ano_lectivo_id', $ano_lectivo_id)->where('status', 1)->get()->first();
-            if($trimestre){
+    }
+
+    public function configuracaoAnoLectivo(Request $request){
+        if (isset($request->primeiro_trimestre)) {
+            if(!AnoLectivoTrait::validarAberturaTrimestre()){
+                return redirect()->back()->with('erro', 'Não pode haver mais de um trimestre abertos na mesma data.');
+            }
+            if(!AnoLectivoTrait::validarProcessoAberturaTrimestre($request->primeiro_trimestre)){
+                return redirect()->back()->with('erro', 'Não pode abrir o primeiro trimestre sem que o prazo para as matriculas termine.');
+            }
+            if(!AnoLectivoTrait::validarStatusTrimestre()){
+                return redirect()->back()->with('erro', 'Não pode abrir um trimestre sem fechar o anterior.');
+            }
+            if(AnoLectivoTrait::abrirTrimestre($request->primeiro_trimestre)){
+                return redirect()->back()->with('sucesso', 'Trimestre aberto com sucesso.');
+            }
+        }
+        if (isset($request->segundo_trimestre)) {
+            if(!AnoLectivoTrait::validarAberturaTrimestre()){
+                return redirect()->back()->with('erro', 'Não pode haver mais de um trimestre abertos na mesma data.');
+            }
+            if(!AnoLectivoTrait::validarProcessoAberturaTrimestre($request->primeiro_trimestre)){
+                return redirect()->back()->with('erro', 'Não pode abrir o segundo trimestre sem que o primeiro trimestre seja concluído.');
+            }
+            if(!AnoLectivoTrait::validarStatusTrimestre()){
+                return redirect()->back()->with('erro', 'Não pode abrir um trimestre sem fechar o anterior.');
+            }
+            if(AnoLectivoTrait::abrirTrimestre($request->segundo_trimestre)){
+                return redirect()->back()->with('sucesso', 'Trimestre aberto com sucesso.');
+            }
+        }
+        if (isset($request->terceiro_trimestre)) {
+            if(!AnoLectivoTrait::validarAberturaTrimestre()){
+                return redirect()->back()->with('erro', 'Não pode haver mais de um trimestre abertos na mesma data.');
+            }
+            if(!AnoLectivoTrait::validarProcessoAberturaTrimestre($request->primeiro_trimestre)){
+                return redirect()->back()->with('erro', 'Não pode abrir o terceiro trimestre sem que o segundo trimestre seja concluído.');
+            }
+            if(!AnoLectivoTrait::validarStatusTrimestre()){
+                return redirect()->back()->with('erro', 'Não pode abrir um trimestre sem fechar o anterior.');
+            }
+            if(AnoLectivoTrait::abrirTrimestre($request->terceiro_trimestre)){
+                return redirect()->back()->with('sucesso', 'Trimestre aberto com sucesso.');
+            }
+        }
+        if (isset($request->fechar_trimestre)) {
+            if(!AnoLectivoTrait::validarFechamentoTrimestre()){
+                return redirect()->back()->with('erro', 'Não é poossível fechar mais de um trimestre na mesma data.');
+            }
+            // $trimestre = Trimestre::find($request->fechar_trimestre);
+            // if(!AnoLectivoTrait::validateFimTrimestres($trimestre->data_inicio, date('Y-m-d'))){
+            //     return redirect()->back()->with('erro', 'Um trimestre deve durar no mínimo 3 meses.');
+            // }
+            if(AnoLectivoTrait::fecharTrimestre($request->fechar_trimestre)){
+                return redirect()->back()->with('sucesso', 'Trimestre fechado com sucesso.');
+            }
+        }
+        if (isset($request->fechar_ano_lectivo)) {
+            if(!AnoLectivoTrait::verificarStatusAnoLectivo($request->fechar_ano_lectivo)){
+                return redirect()->back()->with('erro', 'Este ano lectivo já se encontra fechado.');
+            }
+            if(!AnoLectivoTrait::verificarTrimestresAnoLectivo($request->fechar_ano_lectivo)){
                 return redirect()->back()->with('erro', 'Ano lectivo não pode ser fechado se existir algum trimestre em curso.');
             }
-            //CandidatoController::eliminarCandidatos(); // Eliminar todos os candidatos não matriculados no ano lectivo
-            AlunoController::alunosVinculados(); //Cortar o acesso de todos os alunos do sistema
+            $trimestre = Trimestre::where('trimestre', "3º")->where('ano_lectivo_id', $request->fechar_ano_lectivo)->get()->first();
+            if(!AnoLectivoTrait::validarDataFimAnoLectivo($trimestre->data_fim, date('Y-m-d'))){
+                return redirect()->back()->with('erro', 'Ano lectivo só pode ser fechado após o fechamento do terceiro trimestre.');
+            }
+
+             //CandidatoController::eliminarCandidatos(); // Eliminar todos os candidatos não matriculados no ano lectivo
+             AlunoController::alunosVinculados(); //Cortar o acesso de todos os alunos do sistema
 
 
-            //Todas as funções devem ser colocadas acima porque depois do ano lectivo estar com o status 0 nenhuma ação é permitida.
-            $ano_lectivo->status_ano_lectivo = 0;
-            $ano_lectivo->data_fim_ano_lectivo = date('Y-m-d');
-            $ano_lectivo->save();
-            return redirect()->route('ano.lectivo')->with('sucesso', 'Ano lectivo fechado com sucesso.');
-        } else{
-            return redirect()->back()->with('erro', 'Ano lectivo não encontrado.');
+             //Todas as funções devem ser colocadas acima porque depois do ano lectivo estar com o status 0 nenhuma ação é permitida.
+             $ano_lectivo = Ano_lectivo::find($request->fechar_ano_lectivo);
+             $ano_lectivo->status_ano_lectivo = 0;
+             $ano_lectivo->data_fim_ano_lectivo = date('Y-m-d');
+             $ano_lectivo->save();
+             return redirect()->route('ano.lectivo')->with('sucesso', 'Ano lectivo fechado com sucesso.');
+
         }
     }
+
+
 }
