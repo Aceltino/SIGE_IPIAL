@@ -6,7 +6,7 @@
 
 <main id="main" class="main">
 
-      <form method="POST" id="regForm" action="{{route('cadastrar.ano.lectivo')}}" class="formulario-layout">
+    <form method="POST" id="regForm" action="{{route('cadastrar.ano.lectivo')}}" class="formulario-layout">
         @csrf
         <div style="text-align:center;margin-top:40px;">
           <span class="step"></span>
@@ -125,6 +125,6 @@
             <button type="submit" class="btn btn-success">Criar ano lectivo</button>
           </div>
         </div>
-      </form>
-    </main>
+    </form>
+</main>
 @endsection
