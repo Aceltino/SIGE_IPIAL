@@ -26,6 +26,16 @@ class Turma extends Model
         return $this->belongsTo(Curso::class, 'curso_id');
     }
 
+    public function dia()
+    {
+        return $this->belongsTo(Dia::class, 'dia_id');
+    } 
+    
+    public function tempo()
+    {
+        return $this->belongsTo(Tempo::class, 'tempo_id');
+    }
+    
     public function beDiscp()
     {
         return $this->belongsTo(DisciplinaCurso::class, 'curso_id');
@@ -51,11 +61,6 @@ class Turma extends Model
         return $this->belongsToMany(Professor_disciplina::class, 'horario', 'turma_id', 'professor_disciplina_id');
     }
 
-    /*
-     * @author Augusto Kussema <dev.kussema@gmail.com>
-     *
-     * @before Não altere em nada
-     */
     public function belongClasse()
     {
         return $this->belongsTo(Classe::class, 'classe_id', 'classe_id');
@@ -63,18 +68,6 @@ class Turma extends Model
 
     public function disciplinas()
     {
-        /*
-         * @author Augusto Kussema
-         *
-         * Disciplina::class: O modelo alvo do relacionamento.
-         * ClasseDisciplina::class: A tabela intermediária que conecta Turma e Disciplina.
-         * 'classe_id': O nome da coluna em ClasseDisciplina que referencia a chave estrangeira para Classe.
-         * 'id': O nome da coluna na tabela Classe que é referenciada pela coluna 'classe_id' na tabela intermediária ClasseDisciplina.
-         * 'id': O nome da coluna na tabela Turma que é referenciada pela coluna 'id' em Classe.
-         * 'disciplina_id': O nome da coluna em ClasseDisciplina que referencia a chave estrangeira para Disciplina.
-         */
-        #return $this->hasManyThrough(Disciplina::class, ClasseDisciplina::class, 'classe_id', 'classe_id', 'id', 'disciplina_id');
-        #return $this->hasManyThrough(Disciplina::class, ClasseDisciplina::class, 'disciplina_id', 'disciplina_id');
         return $this->belongsTo(ClasseDisciplina::class, 'classe_id');
     }
 
@@ -94,6 +87,11 @@ class Turma extends Model
     public function turno()
     {
         return $this->belongsTo(Turno::class, 'turno_id');
+    }
+
+    public function profdisciplina()
+    {
+        return $this->belongsTo(Professor_disciplina::class, 'prof_disc_id');
     }
 
     public function anoturmaCood()

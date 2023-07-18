@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\{
+    ClasseDisciplina,
     Turma, 
     Turno, 
     Curso,
@@ -258,5 +259,89 @@ class TurmaController extends Controller
 
     public function adcoordTurma(){
         return view('turma/ad-coord-turma.blade');
+    }
+
+    public static function turmasViews()
+    {
+        $turmas = Turma::with('classe', 'turno.hora')->get();
+
+        $dadosTurmas = [];
+
+        $anoLectivo = AnoLectivoController::pegarIdAnoLectivo();
+        
+        $classesIds = $turmas->pluck('classe_id')->unique();
+        
+        $disciplinas = ClasseDisciplina::whereIn('classe_id', $classesIds)->get();
+        
+        foreach ($turmas as $turma) {
+            $dadosTurma = [
+                'nome' => $turma->nome_turma,
+                'disciplinas' => [],
+                'professores' => [],
+                'tempo' => []
+            ];
+        
+            foreach ($disciplinas as $disciplina) {
+                if ($disciplina->classe_id == $turma->classe_id && ($disciplina->disciplina->curso_id == $turma->curso_id || $disciplina->disciplina->curso_id == null ) ) 
+                {
+                    $dadosTurma['disciplinas'][] = [
+                        'nomeDisciplina' => $disciplina->disciplina->nome_disciplina,
+                        'disciplina_id' => $disciplina->disciplina_id,
+                        'tipo_disciplina' => $disciplina->tipo_disciplina,
+                        'carga_horaria' => $disciplina->carga_horaria,
+                        'classe' => $turma->classe->classe
+                    ];
+                    
+                   
+                    // dd($disciplina->disciplina->professor->pivot->prof_disc_id);
+
+                    foreach($disciplina->disciplina->professor as $professor)
+                    {
+                        $professorTempo =  HorarioController::professorTempos($professor->pivot->prof_disc_id);
+
+                        if( $professor->pivot->disciplina_id == $disciplina->disciplina_id && $professor->pivot->turno_id == $turma->turno_id && $professor->pivot->ano_lectivo_id == $anoLectivo && $professorTempo < 24)
+                        $professorTempo = 24 - $professorTempo;
+                        {
+                            $dadosTurma['professores'][] = 
+                            [
+                                'nomeProfessor' => $professor->pessoa->nome_completo,
+                                'professor_id' => $professor->professor_id,
+                                'professor_tempos' => $professorTempo,
+                                'disciplina_id' => $professor->pivot->disciplina_id,
+                                'professorDisciplina_id' => $professor->pivot->prof_disc_id,
+                                'nomeDisciplina' => $disciplina->disciplina->nome_disciplina,
+                            ];
+                        }
+                    }
+                        // dd($dadosTurma);
+                    
+                    // if($disciplina->disciplina)
+                    // {
+                   
+                    // $dadosTurma['professores'][] = [
+                    //     'nomeProfessor' => $disciplina->disciplina->professor->pessoa->nome_completo,
+                    //     'Professor_id' => $disciplina->disciplina->professor->professor_id,
+                    //     'disciplina_id' => $disciplina->disciplina_id,
+                    //     'tipo_disciplina' => $disciplina->tipo_disciplina,
+                    //     'carga_horaria' => $disciplina->carga_horaria,
+                    //     'classe' => $turma->classe->classe
+                    // ];
+                    // }
+                }
+            }
+        
+            foreach ($turma->turno->hora as $hora) {
+                $dadosTurma['tempo'][] = [
+                    'tempo' => $hora->tempo->tempo,
+                    'hora' => $hora->hora
+                ];
+            }
+        
+            $dadosTurmas[] = $dadosTurma;
+        }
+
+        dd($dadosTurmas);
+        return $dadosTurmas;
+;
     }
 }

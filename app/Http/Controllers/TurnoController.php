@@ -18,4 +18,10 @@ class TurnoController extends Controller
         return $turno;
     }
 
+    public static function turnos()
+    {
+        $turno = Turno::all();
+        return $turno;
+    }
+
 }

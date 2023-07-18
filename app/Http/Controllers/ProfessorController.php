@@ -283,6 +283,12 @@ class ProfessorController extends Controller
     {
         //
     }
+
+    public static function professores()
+    {
+        $professores = Professor::all();
+        return $professores;
+    }
     /*public function store(Request $request)
     {
         try {

@@ -14,7 +14,12 @@ use App\Http\Controllers\{
     TurmaController, CalendarioController,
     HorarioController,
     CandidatoController,
-    AreaFormacaoController
+    AreaFormacaoController,
+    DiaController,
+    ProfessorDisciplinaController,
+    SalaController,
+    TempoController,
+    TurnoController
 };
 
 /*
@@ -29,7 +34,7 @@ use App\Http\Controllers\{
 */
 
 // Rota apenas de teste... Não apague -> ACELTINO
-    Route::get('validar-aluno', [AlunoController::class, 'alunosVinculados']);
+    Route::get('validar-aluno', [TurmaController::class, 'turmasViews']);
 // Route::get('validar-aluno', [AlunoController::class, 'situacaoAluno']);
 
 
