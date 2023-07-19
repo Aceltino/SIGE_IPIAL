@@ -357,6 +357,7 @@
 
     <div class="row">
 
+      {{--
       <!-- Coluna da esquerda -->
       <div class="col-lg-8">
         <div class="row">
@@ -445,10 +446,10 @@
           </div><!-- Fim Card Turmas -->
 
         </div>
-      </div><!-- Fim Coluna da esquerda -->
+      </div><!-- Fim Coluna da esquerda -->--}}
 
       <!-- Coluna da direita -->
-      <div class="col-lg-4">
+      <div class="col-lg-8">
       @foreach($comunicados as $comunicado)
         <!-- Card comunicado -->
         <div class="card card-comincado-escuro">
@@ -504,101 +505,132 @@
         </div>
       </div>
 	  
-      <section id="counts" class="counts">
+      <section id="counts" class="counts counts-escuro">
         <div class="container">
-
+          
           <div class="row" data-aos="fade-up">
-
+  
             <div class="col-lg-3 col-md-6 mt-4">
             
               <div class="figura-card">
-                <div class="count-box">
+                <div class="count-box count-box-escuro">
                   <i class="bi bi-people"></i>
-                  <span class="total">472</span>
+                  
+                  @if ($data['Inscritos'] == 0)
+                  <span class="total">{{$data['Inscritos']}}</span>
+                  @else
+                  <span class="total">500</span>
+                  @endif
                   <p>INSCRITOS</p>
                 </div>
-
+  
+               
+  
                 <div class="card-legenda">
                   <ul>
-                    <li>T.I: 200</li>
-                    <li>D.P: 100</li>
-                    <li>T.E.I.E: 50</li>
-                    <li>E.T: 122</li>
+                    @if ($data['Inscritos'] == 0)
+                    <li> Sem Alunos inscritos </li>
+                    @else
+                    @foreach ( $data['Inscritos'] as $dados )
+                    <li>{{$dados['sigla']}} : {{$dados['candidatos']}} </li> 
+                    @endforeach
+                    @endif
                   </ul>
                 </div>
               </div>
-
             </div>
-
+  
             <div class="col-lg-3 col-md-6 mt-4">
-
+  
               <div class="figura-card">
-                <div class="count-box">
+                <div class="count-box count-box-escuro">
                   <i class="bi bi-person"></i>
-                  <span class="total">572</span>
+                  @if ($data['Admitidos'] == 0)
+                  <span class="total">{{$data['Admitidos']}}</span>
+                  @else
+                  <span class="total">500</span>
+                  @endif
                   <p>ADMITIDOS</p>
                 </div>
                 
                 <div class="card-legenda">
                   <ul>
-                    <li>T.I: 200</li>
-                    <li>D.P: 200</li>
-                    <li>T.E.I.E: 50</li>
-                    <li>E.T: 122</li>
+                    @if ($data['Admitidos'] == 0)
+                    <li> Sem Alunos Admitidos </li>
+                    @else
+                    @foreach ( $data['Admitidos'] as $dados )
+                    <li>{{$dados['sigla']}} : {{$dados['candidatos']}} </li> 
+                    @endforeach
+                    @endif
                   </ul>
                 </div>
               </div>
-
+  
             </div>
-
+  
             <div class="col-lg-3 col-md-6 mt-4">
-
+  
               <div class="figura-card">
-                <div class="count-box">
+                <div class="count-box count-box-escuro">
                   <i class="bi bi-check2-square"></i>
-                  <span class="total">772</span>
+                  @if ($data['NAdmitidos'] == 0)
+                  <span class="total">{{$data['NAdmitidos']}}</span>
+                  @else
+                  <span class="total">500</span>
+                  @endif
                   <p>NÃO ADMITIDOS</p>
                 </div>
                 
                 <div class="card-legenda">
                   <ul>
-                    <li>T.I: 300</li>
-                    <li>D.P: 200</li>
-                    <li>T.E.I.E: 150</li>
-                    <li>E.T: 122</li>
+                    @if ($data['NAdmitidos'] == 0)
+                    <li> Sem Alunos Não Admitidos </li>
+                    @else
+                    @foreach ( $data['NAdmitidos'] as $dados )
+                    <li>{{$dados['sigla']}} : {{$dados['candidatos']}} </li> 
+                    @endforeach
+                    @endif
                   </ul>
                 </div>
               </div>
-
+  
             </div>
-
+  
             <div class="col-lg-3 col-md-6 mt-4">
-
+  
               <div class="figura-card">
-                <div class="count-box">
+                <div class="count-box count-box-escuro">
                   <i class="bi bi-clipboard"></i>
-                  <span class="total">562</span>
+                  @if ($data['Matriculados'] == 0)
+                  <span class="total">{{$data['Matriculados']}}</span>
+                  @else
+                  <span class="total">500</span>
+                  @endif
                   <p>MATRICULADOS</p>
                 </div>
+  
                 
                 <div class="card-legenda">
                   <ul>
-                    <li>T.I: 200</li>
-                    <li>D.P: 150</li>
-                    <li>T.E.I.E: 100</li>
-                    <li>E.T: 132</li>
+                    @if ($data['Matriculados'] == 0)
+                    <li> Sem Alunos Matriculados </li>
+                    @else
+                    @foreach ( $data['Matriculados'] as $dados )
+                    <li>{{$dados['sigla']}} : {{$dados['alunos']}} </li> 
+                    @endforeach
+                    @endif
                   </ul>
                 </div>
               </div>
-
+  
             </div>
             
             <div class="col-lg-3 col-md-6 mt-5">
-
+  
               <div class="figura-card">
-                <div class="count-box">
+                <div class="count-box count-box-escuro">
                   <i class="bi bi-arrow-90deg-down"></i>
-                  <span class="total">233</span>
+                  <span class="total">500</span>
                   <p>PROFESSORES</p>
                 </div>
                 
@@ -612,65 +644,92 @@
                 </div>
               </div>
             </div>
-
+  
             <div class="col-lg-3 col-md-6 mt-5">
-
+  
               <div class="figura-card">
-                <div class="count-box">
-                  <i class="bi bi-person-check"></i>
-                  <span class="total">66</span>
+                <div class="count-box count-box-escuro">
+                  <i class="bi bi-person"></i>
+                  @if ($data['TotalTurmasCurso'] == 0)
+                  <span class="total">{{$data['TotalTurmasCurso']}}</span>
+                  @else
+                  <span class="total">500</span>
+                  @endif
                   <p>TURMAS</p>
                 </div>
                 
                 <div class="card-legenda">
                   <ul>
-                    <li>T.I: 20</li>
-                    <li>D.P: 20</li>
-                    <li>T.E.I.E: 16</li>
-                    <li>E.T: 10</li>
+                    @if ($data['TotalTurmasCurso'] == 0)
+                    <li> Sem Alunos Matriculados </li>
+                    @else
+                    @foreach ( $data['TotalTurmasCurso'] as $dados )
+                    <li>{{$dados['curso']}} : {{$dados['turmas']}} </li> 
+                    @endforeach
+                    @endif>
                   </ul>
                 </div>
               </div>
             </div>
-
+  
             <div class="col-lg-3 col-md-6 mt-5">
-
+  
               <div class="figura-card">
-                <div class="count-box">
+                <div class="count-box count-box-escuro">
                   <i class="bi bi-people"></i>
-                  <span class="total">800</span>
+                  @if ($data['Vagas'] == 0)
+                  <span class="total">{{$data['Vagas']}}</span>
+                  @else
+                  <span class="total">500</span>
+                  @endif
                   <p>VAGAS</p>
                 </div>
                 
                 <div class="card-legenda">
                   <ul>
-                    <li>T.I: 200</li>
-                    <li>D.P: 100</li>
-                    <li>T.E.I.E: 300</li>
-                    <li>E.T: 200</li>
+                    @if ($data['Vagas'] == 0)
+                    <li> Sem Alunos Matriculados </li>
+                    @else
+                    @foreach ( $data['Vagas'] as $dados)
+                    <li>{{$dados['curso']}} : {{$dados['turno']}}  : {{$dados['totalVagas']}}  </li>
+                    @endforeach
+                    @endif
                   </ul>
                 </div>
               </div>
             </div>
-
+  
             <div class="col-lg-3 col-md-6 mt-5">
-              <div class="count-box">
-                <i class="bi bi-people"></i>
-                <span class="total">4</span>
-                <p>CURSOS</p>
+              <div class="figura-card">
+                <div class="count-box count-box-escuro">
+                  <i class="bi bi-people"></i>
+                  <span class="total">500</span>
+                  <p>CURSOS</p>
+                </div>
+  
+                <div class="card-legenda">
+                  <ul>
+                    <li>T.I</li>
+                    <li>D.P</li>
+                    <li>T.E.I.E</li>
+                    <li>E.T</li>
+                  </ul>
+                </div>
+  
               </div>
             </div>
             
                           
           </div>
-
+  
         </div>
       </section><!-- Termina seccao do dashboard -->
 
       <br><br>
-
+      
       <div class="row">
 
+        {{--
         <!-- Coluna esquerda -->
         <div class="col-lg-8">
           <div class="row">
@@ -774,33 +833,36 @@
             </div><!-- Fim Card Turmas -->
 
           </div>
-        </div><!-- Fim Coluna da esquerda -->
+        </div><!-- Fim Coluna da esquerda -->--}}
 
         <!-- Coluna da direita -->
-        <div class="col-lg-4">
+        <div class="col-lg-8">
         
-          <div class="alert alert-warning bg-warning border-0 alert-dismissible fade show" role="alert">
-                Mensagem importante!
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
+          @foreach($comunicados as $comunicado)
           <!-- Card comunicado -->
-          <div class="card">
+          <div class="card card-comincado-escuro">
             <div class="card-body">
               <h5 class="card-title">Hoje <span>| 13h:02</span></h5>
 
               <div class="activity" style="text-align: justify;">
 
-                <h5 class="card-title" style="text-align: center;">Comunicado</h5>
+                <h5 class="card-title" style="text-align: center;">{{$comunicado->titulo_com}}</h5>
 
-                <p>Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado-nav Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicadoAqui o Texto do comunicado v Aqui o Texto do comunicado Aqui o Texto do comunicado</p> 
+                <p>{{$comunicado->conteudo_com}}</p> 
+                
+                
+                
               </div>
 
             </div>
           </div><!-- Fim Card comunicado -->
+        @endforeach
+        {{$comunicados->links()}}
+
 
         </div><!-- Fim Coluna da direita -->
 
-      </div>    
+      </div>   
       <br><br><br>
     </div><!-- Fim da dashboard Diretor Geral -->
 
@@ -832,56 +894,72 @@
         </div>
       </div>
 	  
-      <section id="counts" class="counts">
+      <section id="counts" class="counts counts-escuro">
         <div class="container">
-
+          
           <div class="row" data-aos="fade-up">
-
+  
             <div class="col-lg-3 col-md-6 mt-4">
-
+  
               <div class="figura-card">
-                <div class="count-box">
+                <div class="count-box count-box-escuro">
                   <i class="bi bi-clipboard"></i>
-                  <span class="total">562</span>
+                  @if ($data['Matriculados'] == 0)
+                  <span class="total">{{$data['Matriculados']}}</span>
+                  @else
+                  <span class="total">500</span>
+                  @endif
                   <p>MATRICULADOS</p>
                 </div>
+  
                 
                 <div class="card-legenda">
                   <ul>
-                    <li>T.I: 200</li>
-                    <li>D.P: 150</li>
-                    <li>T.E.I.E: 100</li>
-                    <li>E.T: 132</li>
+                    @if ($data['Matriculados'] == 0)
+                    <li> Sem Alunos Matriculados </li>
+                    @else
+                    @foreach ( $data['Matriculados'] as $dados )
+                    <li>{{$dados['sigla']}} : {{$dados['alunos']}} </li> 
+                    @endforeach
+                    @endif
                   </ul>
                 </div>
               </div>
-
+  
             </div>
             
-
-            <div class="col-lg-3 col-md-6 mt-4">
-
+  
+            <div class="col-lg-3 col-md-6 mt-5">
+  
               <div class="figura-card">
-                <div class="count-box">
-                  <i class="bi bi-person-check"></i>
-                  <span class="total">66</span>
+                <div class="count-box count-box-escuro">
+                  <i class="bi bi-person"></i>
+                  @if ($data['TotalTurmasCurso'] == 0)
+                  <span class="total">{{$data['TotalTurmasCurso']}}</span>
+                  @else
+                  <span class="total">500</span>
+                  @endif
                   <p>TURMAS</p>
                 </div>
                 
                 <div class="card-legenda">
                   <ul>
-                    <li>T.I: 20</li>
-                    <li>D.P: 20</li>
-                    <li>T.E.I.E: 16</li>
-                    <li>E.T: 10</li>
+                    @if ($data['TotalTurmasCurso'] == 0)
+                    <li> Sem Alunos Matriculados </li>
+                    @else
+                    @foreach ( $data['TotalTurmasCurso'] as $dados )
+                    <li>{{$dados['curso']}} : {{$dados['turmas']}} </li> 
+                    @endforeach
+                    @endif>
                   </ul>
                 </div>
               </div>
             </div>
+  
             
                           
           </div>
-
+  
         </div>
       </section><!-- Termina seccao do dashboard -->
 
@@ -889,6 +967,7 @@
 
       <div class="row">
 
+        {{--
         <!-- Coluna da esquerda -->
         <div class="col-lg-8">
           <div class="row">
@@ -992,29 +1071,31 @@
             </div><!-- Fim Card Turmas -->
 
           </div>
-        </div><!-- Fim Coluna da esquerda -->
+        </div><!-- Fim Coluna da esquerda -->--}}
 
         <!-- Coluna da direita -->
-        <div class="col-lg-4">
-        
-          <div class="alert alert-warning bg-warning border-0 alert-dismissible fade show" role="alert">
-                Mensagem importante!
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
+        <div class="col-lg-8">
+          @foreach($comunicados as $comunicado)
           <!-- Card comunicado -->
-          <div class="card">
+          <div class="card card-comincado-escuro">
             <div class="card-body">
               <h5 class="card-title">Hoje <span>| 13h:02</span></h5>
-
+  
               <div class="activity" style="text-align: justify;">
-
-                <h5 class="card-title" style="text-align: center;">Comunicado</h5>
-
-                <p>Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado-nav Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicadoAqui o Texto do comunicado v Aqui o Texto do comunicado Aqui o Texto do comunicado</p> 
+  
+                <h5 class="card-title" style="text-align: center;">{{$comunicado->titulo_com}}</h5>
+  
+                 <p>{{$comunicado->conteudo_com}}</p> 
+                 
+                 
+                
               </div>
-
+  
             </div>
           </div><!-- Fim Card comunicado -->
+        @endforeach
+        {{$comunicados->links()}}
+  
 
         </div><!-- Fim Coluna da direita -->
 
@@ -1214,25 +1295,27 @@
 
         <!-- Coluna da direita -->
         <div class="col-lg-4">
-        
-          <div class="alert alert-warning bg-warning border-0 alert-dismissible fade show" role="alert">
-                Mensagem importante!
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-          <!-- Card comunicado -->
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Hoje <span>| 13h:02</span></h5>
-
-              <div class="activity" style="text-align: justify;">
-
-                <h5 class="card-title" style="text-align: center;">Comunicado</h5>
-
-                <p>Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado-nav Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicadoAqui o Texto do comunicado v Aqui o Texto do comunicado Aqui o Texto do comunicado</p> 
+          @foreach($comunicados as $comunicado)
+            <!-- Card comunicado -->
+            <div class="card card-comincado-escuro">
+              <div class="card-body">
+                <h5 class="card-title">Hoje <span>| 13h:02</span></h5>
+    
+                <div class="activity" style="text-align: justify;">
+    
+                  <h5 class="card-title" style="text-align: center;">{{$comunicado->titulo_com}}</h5>
+    
+                  <p>{{$comunicado->conteudo_com}}</p> 
+                  
+                  
+                  
+                </div>
+    
               </div>
-
-            </div>
-          </div><!-- Fim Card comunicado -->
+            </div><!-- Fim Card comunicado -->
+          @endforeach
+          {{$comunicados->links()}}
+  
 
         </div><!-- Fim Coluna da direita -->
 
@@ -1362,24 +1445,27 @@
         <!-- Coluna da direita -->
         <div class="col-lg-4">
         
-          <div class="alert alert-warning bg-warning border-0 alert-dismissible fade show" role="alert">
-                Mensagem importante!
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
+          @foreach($comunicados as $comunicado)
           <!-- Card comunicado -->
-          <div class="card">
+          <div class="card card-comincado-escuro">
             <div class="card-body">
               <h5 class="card-title">Hoje <span>| 13h:02</span></h5>
 
               <div class="activity" style="text-align: justify;">
 
-                <h5 class="card-title" style="text-align: center;">Comunicado</h5>
+                <h5 class="card-title" style="text-align: center;">{{$comunicado->titulo_com}}</h5>
 
-                <p>Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado-nav Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicadoAqui o Texto do comunicado v Aqui o Texto do comunicado Aqui o Texto do comunicado</p> 
+                <p>{{$comunicado->conteudo_com}}</p> 
+                
+                
+                
               </div>
 
             </div>
           </div><!-- Fim Card comunicado -->
+        @endforeach
+        {{$comunicados->links()}}
+
 
         </div><!-- Fim Coluna da direita -->
 
@@ -1462,21 +1548,6 @@
 
               </div>
             </div><!-- Termina Anolectivo Trimestre -->
-
-            <!-- Card Calendario de prova-->
-            <div class="col-lg-12">
-
-              <div class="card info-card">
-
-                <div class="card-body">
-                  <h5 class="card-title">Calendário de Provas <span>| I10AM</span></h5>
-
-                  Ainda não esta em fase de provas
-
-                </div>
-              </div>
-
-            </div><!-- Fim do Card Calendario de prova -->
 
             <!-- Card Horaio de aula -->
             <div class="col-lg-12">
@@ -1761,27 +1832,26 @@
 
         <!-- Div do Comunicado /Lado direito -->
         <div class="col-lg-4">
-        
-          <div class="alert alert-warning bg-warning border-0 alert-dismissible fade show" role="alert">
-                Mensagem importante!
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-          <!-- Card do comunicado -->
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Hoje <span>| 13h:02</span></h5>
+          @foreach($comunicados as $comunicado)
+        <!-- Card comunicado -->
+        <div class="card card-comincado-escuro">
+          <div class="card-body">
+            <h5 class="card-title">Hoje <span>| 13h:02</span></h5>
 
-              <div class="activity" style="text-align: justify;">
+            <div class="activity" style="text-align: justify;">
 
-                <h5 class="card-title" style="text-align: center;">Titulo do Comunicado</h5>
+              <h5 class="card-title" style="text-align: center;">{{$comunicado->titulo_com}}</h5>
 
-                 <p>Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado-nav Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicadoAqui o Texto do comunicado v Aqui o Texto do comunicado Aqui o Texto do comunicado</p> 
-              </div>
-
+               <p>{{$comunicado->conteudo_com}}</p> 
+               
+               
+              
             </div>
-          </div><!-- Fim do card do comunicado -->
 
-
+          </div>
+        </div><!-- Fim Card comunicado -->
+      @endforeach
+      {{$comunicados->links()}}
 
         </div><!-- Div do Comunicado /Lado direito -->
 
@@ -1900,25 +1970,27 @@
 
             <!-- Card Alunos -->
             <div class="col-lg-12">
-              <div class="alert alert-warning bg-warning border-0 alert-dismissible fade show" role="alert">
-                  Mensagem importante!
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>
-
+              @foreach($comunicados as $comunicado)
               <!-- Card comunicado -->
-              <div class="card">
+              <div class="card card-comincado-escuro">
                 <div class="card-body">
                   <h5 class="card-title">Hoje <span>| 13h:02</span></h5>
 
                   <div class="activity" style="text-align: justify;">
 
-                    <h5 class="card-title" style="text-align: center;">Comunicado</h5>
+                    <h5 class="card-title" style="text-align: center;">{{$comunicado->titulo_com}}</h5>
 
-                    <p>Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado-nav Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicadoAqui o Texto do comunicado v Aqui o Texto do comunicado Aqui o Texto do comunicado</p> 
+                    <p>{{$comunicado->conteudo_com}}</p> 
+                    
+                    
+                    
                   </div>
 
                 </div>
               </div><!-- Fim Card comunicado -->
+            @endforeach
+            {{$comunicados->links()}}
+
             </div><!-- Fim Card Alunos -->
 
           </div>
@@ -2050,24 +2122,27 @@
         <!-- Coluna da direita -->
         <div class="col-lg-4">
         
-          <div class="alert alert-warning bg-warning border-0 alert-dismissible fade show" role="alert">
-                Mensagem importante!
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
+          @foreach($comunicados as $comunicado)
           <!-- Card comunicado -->
-          <div class="card">
+          <div class="card card-comincado-escuro">
             <div class="card-body">
               <h5 class="card-title">Hoje <span>| 13h:02</span></h5>
 
               <div class="activity" style="text-align: justify;">
 
-                <h5 class="card-title" style="text-align: center;">Comunicado</h5>
+                <h5 class="card-title" style="text-align: center;">{{$comunicado->titulo_com}}</h5>
 
-                <p>Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicado-nav Aqui o Texto do comunicado Aqui o Texto do comunicado Aqui o Texto do comunicadoAqui o Texto do comunicado v Aqui o Texto do comunicado Aqui o Texto do comunicado</p> 
+                <p>{{$comunicado->conteudo_com}}</p> 
+                
+                
+                
               </div>
 
             </div>
           </div><!-- Fim Card comunicado -->
+        @endforeach
+        {{$comunicados->links()}}
+
 
         </div><!-- Fim Coluna da direita -->
 
