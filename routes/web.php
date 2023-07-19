@@ -34,7 +34,7 @@ use App\Http\Controllers\{
 */
 
 // Rota apenas de teste... Não apague -> ACELTINO
-    Route::get('validar-aluno', [TurmaController::class, 'turmasViews']);
+    Route::get('validar-aluno', [HorarioController::class, 'pegarDadosHorario']);
 // Route::get('validar-aluno', [AlunoController::class, 'situacaoAluno']);
 
 

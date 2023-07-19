@@ -28,20 +28,48 @@ class HorarioController extends Controller
         // return count($horario);
     }
 
-    public function pegarDadosHorario()
+    public function pegarDadosHorario() // http://127.0.0.1:8000/api/dados-horario
     {
+        $diasM = [];
         $dias = DiaController::dias();
-        // $salas = SalaController::salas(); 
+
         $dadosHorario = TurmaController::turmasViews();
-        // $profsDiscs = ProfessorDisciplinaController::professoresdiscs+();
+        if(!$dadosHorario)
+        {
+            return 'Todas as turmas criadas já têm horário.';
+        }
+        $labsOcupados = SalaController::salasLabOcupadas();
+        if(!$labsOcupados)
+        {
+            $labsOcupados = 'Nenhum laboratório ainda foi ocupado.';
+        }
+        $laboratorios = SalaController::laboratorios();
+        if(!$laboratorios)
+        {
+            $laboratorios = 'Sem laboratórios cadastrados';
+        }
 
-        $horario = Horario::with('professorDisc')
-        ->get();
-        dd($horario);
+        foreach($dias as $dia)
+        {
+            $diasM[] =
+            [
+                'dia_id' => $dia->dia_id, 
+                'dia_semana' => $dia->nome_dia 
+            ];
+        }
 
-        // $horario = Horario::with('turma', 'professorDisc', 'tempo', 'sala', 'dia')
-        // ->get();
-        // dd($horario);
+        // dd($dias);
+        $horario =
+        [
+            'horarioInfo' => $dadosHorario,
+            'diasSemana' => $diasM,
+            'restricoesLabs' => $labsOcupados,
+            'laboratorios' => $laboratorios
+        ];
+
+        return $horario;
+
 
     }
+
 }
