@@ -238,7 +238,7 @@
                     <td class="coluna-tab-mp">{{ $aluno->numero_aluno }}</td>
 
                     <td class="sm-cor"></td>
-                    <td class="coluna-tab-mp" style="font-size: 11pt;">{{ $aluno->candidato->pessoa->nome_completo }} - {{ $aluno->candidato->pessoa->pessoa_id }}</td>
+                    <td class="coluna-tab-mp" style="font-size: 11pt;">{{ $aluno->candidato->pessoa->nome_completo }} - {{ $aluno->aluno_id }}</td>
 
                     {{-- Idade --}}
                     <td class="coluna-tab-mp">

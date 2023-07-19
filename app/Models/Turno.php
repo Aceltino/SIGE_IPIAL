@@ -18,4 +18,9 @@ class Turno extends Model
     {
         return $this->hasMany(CalendarioProva::class, 'calendario_id');
     }
+
+    public function hora() 
+    {
+        return $this->hasMany(Hora::class, 'turno_id');
+    }
 }

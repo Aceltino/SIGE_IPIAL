@@ -13,26 +13,11 @@
           <span class="step"></span>
           <span class="step"></span>
           <span class="step"></span>
-          <span class="step"></span>
         </div>
 
         <div class="tab">
             <h2 class="text-uppercase text-center my-3 color-blue-principal">Dados do horário</h2>
-            <h6 class="text-uppercase text-center my-4 color-blue-principal">Selecione a área de formação, o curso, a turma,
-            os dias de educação física (turmas da 12ª, 13ª e noite não inclusas), sem esquecer as horas de início e fim.</h6>
-
-            <div class="row mb-3">
-                <div class="col">
-                    <select oninput="this.className = ''"name='curso' class="form-select">
-                        <optgroup label="Curso">
-                        <option value="Desenhador Projectista">Desenhador Projetista</option>
-                        <option value="Técnico de Energia e Instalações Eléctricas">Técnico de Energia e Instalações Eléctricas</option>
-                        <option value="Técnico de Informática ">Técnico de Informática</option>
-                        <option value="Electrônica e Telecomunicação">Electrônica e Telecomunicação</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
+            <h6 class="text-uppercase text-center my-4 color-blue-principal">Selecione a turma e a respectiva sala.</h6>
 
             <div class="row mb-3">
                 <div class="col">
@@ -73,66 +58,15 @@
                 </div>
             </div>
 
-            <div class="row d-flex align-items-center mb-3" id="horario-div-que-pode-desaparecer-1">
-                <div class="col-sm-6">
-                    <select oninput="this.className = ''" name='ed_fisica_dia1' class="form-select" id="criar-horario-select-primeiro-dia-de-educacao-fisica" onchange="verificarSelecoesEducacaoFisica()">
-                        <optgroup label="Primeiro dia de Educação Física"> 
-                            <option value="Segunda-Feira">Segunda-Feira</option>
-                            <option value="Terça-Feira">Terça-Feira</option>
-                            <option value="Quarta-Feira">Quarta-Feira</option>
-                            <option value="Quinta-Feira">Quinta-Feira</option>
-                            <option value="Sexta-Feira">Sexta-Feira</option>
+            <div class="row mb-3">
+                <div class="col">
+                    <select oninput="this.className = ''" name='turma' class="form-select" id="horario-select-turma">
+                        <optgroup label="Salas">
+                            <option value="Sala 7">Sala 1</option>
+                            <option value="Sala 2">Sala 2</option>
+                            <option value="Sala 3">Sala 3</option>
                         </optgroup>
                     </select>
-                </div>
-
-                <div class="col-sm-3">
-                    <select oninput="this.className = ''" name='ed_fisica_dia1' class="form-select" id="criar-horario-select-tempo-de-aula-1">
-                        <optgroup label="Tempos de aula"> 
-                            <option value="1">Primeiro tempo</option>
-                            <option value="2">Segundo tempo</option>
-                            <option value="3">Terceiro tempo</option>
-                            <option value="4">Quarto tempo</option>
-                            <option value="5">Quinto tempo</option>
-                            <option value="6">Sexto tempo</option>
-                        </optgroup>
-                    </select>
-                </div>
-
-                <div class="col-sm-3">
-                    <input type="text" title="Hora de fim da Educação Física" class="form-control" name='ed_fisica_hora1' value="00:00 - 00:00" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" id="criar-horario-hora-de-fim-da-educacao-fisica-no-primeiro-dia" name="" oninput="this.className = ''" disabled required>
-                </div>
-            </div>
-
-            <div class="row d-flex align-items-center" id="horario-div-que-pode-desaparecer-2">
-                <div class="col-sm-6">
-                    <select oninput="this.className = ''" class="form-select" id="criar-horario-select-segundo-dia-de-educacao-fisica">
-                        <optgroup label="Segundo dia de Educação Física">
-                            <option value="Nenhum">Nenhum</option>
-                            <option value="Segunda-Feira">Segunda-Feira</option>
-                            <option value="Terça-Feira">Terça-Feira</option>
-                            <option value="Quarta-Feira">Quarta-Feira</option>
-                            <option value="Quinta-Feira">Quinta-Feira</option>
-                            <option value="Sexta-Feira">Sexta-Feira</option>
-                        </optgroup>
-                    </select>
-                </div>
-
-                <div class="col-sm-3">
-                    <select oninput="this.className = ''" name='ed_fisica_dia1' class="form-select" id="criar-horario-select-tempo-de-aula-2">
-                        <optgroup label="Tempos de aula"> 
-                            <option value="1">Primeiro tempo</option>
-                            <option value="2">Segundo tempo</option>
-                            <option value="3">Terceiro tempo</option>
-                            <option value="4">Quarto tempo</option>
-                            <option value="5">Quinto tempo</option>
-                            <option value="6">Sexto tempo</option>
-                        </optgroup>
-                    </select>
-                </div>
-
-                <div class="col-sm-3">
-                    <input type="text" title="Hora de fim da Educação Física" class="form-control" name='ed_fisica_hora1' value="00:00 - 00:00" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" id="criar-horario-hora-de-fim-da-educacao-fisica-no-segundo-dia" name="" oninput="this.className = ''" disabled required>
                 </div>
             </div>
         </div>
@@ -1731,26 +1665,6 @@
                     </select>
                 </div>
             </div>
-        </div>
-
-        <div class="tab">
-            <h2 class="text-uppercase text-center my-3 color-blue-principal">Finalizando</h2>
-            <h6 class="text-uppercase text-center my-4 color-blue-principal">Selecione o director da turma.</h6>
-          
-            <div class="row" >
-                <div class="col">
-                    <select oninput="this.className = ''" name='coordenador_turma' class="form-select">
-                        <optgroup label="Director de turma">
-                        <option value="Sungo Afonso">Sungo Afonso</option>
-                        <option value="Brigith Barros">Brigith Barros</option>
-                        <option value="Sivi Lando">Sivi Lando</option>
-                        <option value="Anatoli Lussati">Anatoli Lussati</option>
-                        <option value="Rosa António">Rosa António</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-
         </div>
 
         <div style="text-align:center;margin-top:40px;">

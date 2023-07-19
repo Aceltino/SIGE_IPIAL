@@ -21,11 +21,25 @@ class Turma extends Model
         'updated_at',
     ];
 
+    public function horario()
+    {
+        return $this->hasMany(Horario::class, 'turma_id');
+    }
     public function curso()
     {
         return $this->belongsTo(Curso::class, 'curso_id');
     }
 
+    public function dia()
+    {
+        return $this->belongsTo(Dia::class, 'dia_id');
+    } 
+    
+    public function tempo()
+    {
+        return $this->belongsTo(Tempo::class, 'tempo_id');
+    }
+    
     public function beDiscp()
     {
         return $this->belongsTo(DisciplinaCurso::class, 'curso_id');
@@ -51,11 +65,6 @@ class Turma extends Model
         return $this->belongsToMany(Professor_disciplina::class, 'horario', 'turma_id', 'professor_disciplina_id');
     }
 
-    /*
-     * @author Augusto Kussema <dev.kussema@gmail.com>
-     *
-     * @before Não altere em nada
-     */
     public function belongClasse()
     {
         return $this->belongsTo(Classe::class, 'classe_id', 'classe_id');
@@ -82,6 +91,11 @@ class Turma extends Model
     public function turno()
     {
         return $this->belongsTo(Turno::class, 'turno_id');
+    }
+
+    public function profdisciplina()
+    {
+        return $this->belongsTo(Professor_disciplina::class, 'prof_disc_id');
     }
 
     public function anoturmaCood()

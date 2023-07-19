@@ -14,7 +14,12 @@ use App\Http\Controllers\{
     TurmaController, CalendarioController,
     HorarioController,
     CandidatoController,
-    AreaFormacaoController
+    AreaFormacaoController,
+    DiaController,
+    ProfessorDisciplinaController,
+    SalaController,
+    TempoController,
+    TurnoController
 };
 
 /*
@@ -29,7 +34,7 @@ use App\Http\Controllers\{
 */
 
 // Rota apenas de teste... Não apague -> ACELTINO
-    Route::get('validar-aluno', [AlunoController::class, 'alunosVinculados']);
+    Route::get('validar-aluno', [TurmaController::class, 'turmasViews']);
 // Route::get('validar-aluno', [AlunoController::class, 'situacaoAluno']);
 
 
@@ -221,7 +226,7 @@ Route::prefix('aluno')->middleware(['auth','active.session','checkcargo'])->grou
     });
 
 });
-/**<!--Fim Rotas aluno--> */    
+/**<!--Fim Rotas aluno--> */
 
 
 /******************************************
@@ -383,7 +388,7 @@ Route::put('/editar-assiduidade/justificar-falta/{assiduidade_id}', [Assiduidade
 
 /*Avaliação de Aluno*/
 Route::get('/avaliar-aluno', [AvaliacaoAlunoController::class, 'index'])->name('avaliacao.aluno');
-Route::post('/avaliar-aluno/cadastrar{id_disciplina}', [AvaliacaoAlunoController::class, 'store'])->name('avaliar.aluno');
+Route::post('/avaliar-aluno/cadastrar', [AvaliacaoAlunoController::class, 'store'])->name('avaliar.aluno');
 
 
 /*editar Avaliação de Aluno*/
@@ -440,11 +445,6 @@ Route::get('/ver-horarios', function () {
     return view('horario/horarios');
 });
 
-/*Criar tempos*/
-Route::get('/criar-tempos', function () {
-    return view('horario/criar-tempos');
-});
-
 /*Editar tempos*/
 Route::get('/editar-tempos', function () {
     return view('horario/editar-tempos');
@@ -453,6 +453,11 @@ Route::get('/editar-tempos', function () {
 /*Ver tempos*/
 Route::get('/ver-tempos', function () {
     return view('horario/ver-tempos');
+});
+
+/*Visualizar tempos definidos*/
+Route::get('/visualizar-tempos-definidos', function () {
+    return view('horario/visualizar-tempos-definidos');
 });
 
 /*Area de formacao*/
