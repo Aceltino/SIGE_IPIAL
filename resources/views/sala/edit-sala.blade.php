@@ -14,8 +14,9 @@
     {{session('sucesso')}}
 </div>
 @endif
-    <form id="regFormh" action="" class="formulario-layout" method="POST">
+    <form id="regFormh" action="{{ route('update.sala', ['sala_id' => $sala->sala_id ])}}" class="formulario-layout" method="POST">
         @csrf
+        @method('PUT')
         <div style="text-align:center;margin-top:10px;">
             <span class="step"></span>
         </div>
@@ -33,7 +34,7 @@
             </div>
 
             <div class="form-group">
-                <input type="text" style=" text-align: center;" placeholder="Sala" name="nome_sala" id="nome_sala" oninput="this.className = ''" required >
+                <input type="text" style=" text-align: center;" placeholder="Sala" name="nome_sala" id="nome_sala" oninput="this.className = ''" value="{{ $salas->nome_sala }}" required >
                 <span id=" erro_nome"  style="color: red"></span>
             </div>
 
@@ -41,9 +42,9 @@
 
                 <div class=" col form-group">
                     <select name="tipo-sala" id="opcoes" oninput="this.className = ''" class="form-select">
-                        <option selected disabled>Tipo de sala</option>
-                        <option></option>
-
+                        <option selected valeu="{{ $salas->tipo_sala }}" >{{ $salas->tipo_sala }}</option>
+                        <option value="Laboratorio">Laboratorio</option>
+                        <option value="Normal">Normal</option>
                     </select>
                 </div>
 
