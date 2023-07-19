@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Candidato;
 use App\Models\Curso;
 use App\Models\Aluno;
+use App\Models\Classe;
 
 class ProcessoController extends Controller
 {
@@ -44,7 +45,7 @@ class ProcessoController extends Controller
                 }  
             }
         }
-            return view('processo.doc-processo', ['alunos' => $alunos ]) ;
+            return view('processo.doc-processo', ['alunos' => $alunos]);
     }
     public function destroy($aluno_id)
     {

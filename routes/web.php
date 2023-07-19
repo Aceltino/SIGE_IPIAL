@@ -14,12 +14,7 @@ use App\Http\Controllers\{
     TurmaController, CalendarioController,
     HorarioController,
     CandidatoController,
-    AreaFormacaoController,
-    DiaController,
-    ProfessorDisciplinaController,
-    SalaController,
-    TempoController,
-    TurnoController
+    AreaFormacaoController,SalaController,
 };
 
 /*
@@ -480,6 +475,14 @@ Route::get('/cadastrar-sala', function () {
 });
 
 /*Area de formacao*/
+Route::prefix('sala')->middleware(['auth','active.session','checkcargo'])->group(function(){
+    Route::get('ver.sala',[SalaController::class,'index'])->name('consultar.sala');
+    Route::get('cadastrar-sala',[SalaController::class,'create'])->name('criar.sala');
+    Route::post('Store.sala',[SalaController::class,'store'])->name('store.sala');
+    Route::get('edit-sala/{sala_id}',[SalaController::class,'edit'])->where('sala_id', '[0-9]+')->name('edit.sala');
+    Route::put('{sala_id}',[SalaController::class,'update'])->where('sala_id', '[0-9]+')->name('update.sala');
+    Route::delete('{sala_id}',[SalaController::class,'destroy'])->where('sala_id', '[0-9]+')->name('delete.sala');
+});
 Route::get('/sala', function () {
     return view('sala\sala');
 });
