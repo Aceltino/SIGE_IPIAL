@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\{
     Aluno_turma,Aluno,User,AnoTurmaCood,
-    Ano_lectivo,Disciplina,Turma,
+    Ano_lectivo,Disciplina, Media, Turma,
 };
 
 class PautaController extends Controller
@@ -59,6 +59,12 @@ class PautaController extends Controller
         //Combinei as duas coleções de disciplinas(Tecnicas e Gerais) em uma única variável            
         $disciplinasAll= $disciplinaGerais->concat($disciplinaEspecificas)->all();
 
+        $OneMedia=[];
+        $TwoMedia=[];
+        $ThreeMedia=[];
+        $ca_cfd=[];
+        $disciplinas=[];
+
         //Busca todas as diciplinas que existem em uma determinada turma
         foreach($disciplinasAll as $value){
             $disciplinas[]=$value;//As Disciplinas
@@ -76,12 +82,10 @@ class PautaController extends Controller
                 //Busca a media final da Disciplina com base ao Ano-Lectivo e o Aluno
                 $ca_cfd[]=MediasController::showClassificaoFinal($value->disciplina_id,$aluno->aluno_id,$anoLectivo);
 
-                $test=MediasController::setResultadoAnualAluno($aluno->aluno_id,$anoLectivo);
+                MediasController::setResultadoAnualAluno($aluno->aluno_id,$anoLectivo,$value->disciplina_id,$turma->classe->classe_id);
             } 
         }   
         
-
-        // dd($test);
         //Condição para Pauta ser Gerada
         if ( (count($turmaAluno) <= 0) && (empty($notas)) ){
             return redirect()->back()->with('msg_sem_pauta',"Lamentamos! Esta pauta ainda não esta composta... Aguarde o lançamento das notas");

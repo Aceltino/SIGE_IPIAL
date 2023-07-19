@@ -9,12 +9,14 @@
     {{session('erro')}}
 </div>
 @endif
-@if (session()->has('sucesso'))
-<div class="alert alert-success">
-    {{session('sucesso')}}
-</div>
-@endif
-    <form id="regFormh" action="" class="formulario-layout" method="POST">
+@if(session('sucesso'))
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <i class="bi bi-check-circle me-1"></i>
+    {{(session('sucesso'))}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  @endif
+    <form id="regFormh" action="{{ route('store.sala') }}" class="formulario-layout" method="POST">
         @csrf
         <div style="text-align:center;margin-top:10px;">
             <span class="step"></span>
@@ -40,10 +42,10 @@
             <div class="row">
 
                 <div class=" col form-group">
-                    <select name="tipo-sala" id="opcoes" oninput="this.className = ''" class="form-select">
+                    <select name="tipo-sala" id="opcoes" oninput="this.className = ''" class="form-select" name="tipo_sala">
                         <option selected disabled>Tipo de sala</option>
-                        <option></option>
-
+                        <option value="Laboratorio">Laboratorio</option>
+                        <option value="Normal">Normal</option>
                     </select>
                 </div>
 
