@@ -12,6 +12,6 @@ class Tempo extends Model
     protected $primaryKey = 'tempo_id';
 
     public function hora(){
-        return $this->hasOne(Hora::class, 'hora_id');
+        return $this->hasMany(Hora::class, 'hora_id');
     }
 }

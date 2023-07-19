@@ -172,7 +172,7 @@
                 <div class="footer-modal" style="text-align: center;">
 
                   <div class="jnt">
-                      <a href="/editar-ano-letivo" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
+                      <a href="{{route('editar.ano.lectivo', $anoLectivo[$i]['ano_lectivo_id'])}}" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
                   </div>
                 </div>
 

@@ -245,25 +245,24 @@ trait AnoLectivoTrait
         }
     }
     public static function validarProcessoAberturaTrimestre($trimestre_id){
-        $trimestre = Trimestre::find($trimestre_id);
+        $trimestre = Trimestre::with('anoLectivo')->find($trimestre_id);
         if($trimestre->trimestre === "1º"){
-            $ano_lectivo = Ano_lectivo::where('status', 1)->get()->latest()->first();
             $data_corrente = strtotime(date('Y-m-d'));
-            $fim_matricula = strtotime($ano_lectivo->data_fim_matricula);
+            $fim_matricula = strtotime($trimestre->anoLectivo->data_fim_matricula);
             if ($data_corrente <= $fim_matricula) {
                 return false;
             } else{
                 return true;
             }
         } elseif($trimestre->trimestre === "2º"){
-            $tri = Trimestre::where('trimestre', "1º")->get()->latest()->first();
+            $tri = Trimestre::latest()->where('trimestre', "1º")->get()->first();
             if ($tri->data_fim === null) {
                 return false;
             } else{
                 return true;
             }
         } elseif($trimestre->trimestre === "3º"){
-            $tri = Trimestre::where('trimestre', "2º")->get()->latest()->first();
+            $tri = Trimestre::latest()->where('trimestre', "2º")->get()->first();
             if ($tri->data_fim === null) {
                 return false;
             } else{

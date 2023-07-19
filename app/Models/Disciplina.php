@@ -20,7 +20,7 @@ class Disciplina extends Model
      ]; 
  
     public function professor(){
-        return $this->belongsToMany(Professor::class, 'professor_disciplina', 'disciplina_id', 'professor_id');
+        return $this->belongsToMany(Professor::class, 'professor_disciplina', 'disciplina_id', 'professor_id')->withPivot('turno_id', 'ano_lectivo_id', 'prof_disc_id');
     }
 
     public function aluno(){
