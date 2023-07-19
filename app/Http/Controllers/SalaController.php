@@ -2,116 +2,63 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Sala;
 use Illuminate\Http\Request;
+use App\Models\Sala;
 
 class SalaController extends Controller
 {
-
-    public static function salasNormalHorario()
+    public function index(Request $request)
     {
-        $sala = Sala::with('horario.turma')
-        ->where('tipo_sala', 'Normal')
-        ->whereHas('horario', function ($query) {
-            $query->select('sala_id')
-                ->from('horario');
-        })
-        ->get();
-
-        if ($sala->isEmpty()) {
-            return false;
-        }
-
-        foreach($sala as $salaTurno)
+        $pesquisa = $request->pesquisa;
+        if($pequisa)
         {
-            foreach($salaTurno->horario as $turma)
-            {
-                $salasTurno[] =
-                [
-                    'turno_id' => $turma->turma->turno_id,
-                    'turma_id' => $turma->turma->turma_id,
-                    'sala_id' => $salaTurno->sala_id
-                ];                 
-            }
+            $salas = Sala::where([
+                ['titulo_com', 'like',  "%$pesquisa%"]
+            ])->get();  
         }
-
-        return $salasTurno;
+        else
+        {
+            $salas = Sala::all();
+        }
+        return view('sala.sala',['salas',$salas ,'pesquisa',$pesquisa ]; 
     }
-
-    public static function salasNormal()
+    public function create()
     {
-        $salas = Sala::where('tipo_sala', 'Normal')
-        ->get();
-
-        if ($salas->isEmpty()) {
-            return false;
-        }
-
-        foreach($salas as $sala)
-        {
-                $salasTurno[] =
-                [
-                    'sala_id' => $sala->sala_id,
-                    'sala' =>$sala->sala
-                ];                 
-            
-        }
-
-        return $salasTurno;
+        return view('sala.cadastrar-sala');
     }
-
-    public static function salasLabOcupadas()
+    public function store(Request $request)
     {
-        $salas = Sala::with('horario')
-        ->where('tipo_sala', 'Laboratório')
-        ->whereHas('horario', function ($query) {
-            $query->select('sala_id')
-                ->from('horario');
-        })
-        ->get();
-
-        if ($salas->isEmpty()) {
-            return false;
-        }
-
-
-        foreach($salas as $sala)
-        {
-            foreach($sala->horario as $horario)
-            {
-                $salasTurno[] =
-                [
-                    'sala_id' => $sala->sala_id,
-                    'sala' => $sala->tipo_sala.' '.$sala->sala,
-                    'diaSemana' =>$horario->dia_id,
-                    'tempo_id'=> $horario->tempo_id,
-                    'turno_id'=> $horario->turma->turno_id,
-                ];                 
-            }
-        }
-
-        return $salasTurno;
+        $sala = new Sala;
+        $sala->sala = $request->nome_sala,
+        $sala->tipo_sala = $requet->tipo_sala,
+        $sala->save();
+        return view('sala.cadastrar-sala')->with('sucesso','Sala cadastrada com sucesso');
     }
-
-    public static function laboratorios()
+    public function edit($sala_id)
     {
-        $salas = Sala::where('tipo_sala', 'Laboratorio')
-        ->get();
-
-        if ($salas->isEmpty()) {
-            return false;
-        }
-
-        foreach($salas as $sala)
+        $salas = Sala::where('sala_id',$sala_id)->fist();
+        if(!empty($sala))
         {
-                $salaM[] =
-                [
-                    'sala_id' => $sala->sala_id,
-                    'sala' => $sala->tipo_sala.' '.$sala->sala,
-                ];                 
-            
+            return view('sala.edit-sala',compact('salas'));
         }
-        return $salaM;
-    }
+        else
+        {
+            return view('sala.sala')  
+        }
 
+    }
+    public function update(Request $request, $sala_id)
+    {
+        $dados = [
+            'sala'=>$request->nome_sala,
+            'tipo_sala'=>$request->tipo_sala,
+        ];
+        Sala::where('sala_id',$sala_id)->update($dados);
+        return redirect()->route('sala.edit-sala')->->with('edit','Sala editado com sucesso');
+    } 
+    public function destroy()
+    {
+        Sala::where('sala_id',$sala_id)->delete();
+        return redirect()->route('sala.sala')->->with('delete','Sala editado com sucesso');
+    }
 }
