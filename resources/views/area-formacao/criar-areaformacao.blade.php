@@ -51,23 +51,10 @@
             </div>
 
             <div class="form-group">
-                <input type="text" style=" text-align: center;" placeholder="Nome da Area de formação" name="nome_area_formacao" value="{{old('nome_area_formacao')}}" id="nome_curso" oninput="this.className = ''" required >
+                <input type="text"  id="letra" style=" text-align: center;" placeholder="Nome da Area de formação" name="nome_area_formacao" value="{{old('nome_area_formacao')}}" id="nome_curso" oninput="this.className = ''" required >
             </div>
 
-            <div class="row">
-
-                <div class=" col form-group">
-                    <select name="coordenador" id="opcoes" oninput="this.className = ''" class="form-select">
-                        <option selected disabled>Coordenador:</option>
-                        @foreach ($coordenador as $coord)
-                            <option value="{{$coord->professor_id}}">{{$coord->pessoa->nome_completo}}</option>
-                        @endforeach
-
-
-                    </select>
-                </div>
-
-            </div>
+          
 
             <div style="text-align:center;margin-top:10px;">
                 <div>

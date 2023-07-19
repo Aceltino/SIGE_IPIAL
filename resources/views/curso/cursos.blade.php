@@ -29,15 +29,6 @@
            </select>
          </div>
 
-         <div class="col-lg-4">
-           <select class="btn-sel form-select" id="filtro4">
-             <option selected disabled>Coordenador</option>
-             @foreach ($coordenador as $dado)
-                <option value="{{$dado['pessoa']['nome_completo']}}">{{$dado['pessoa']['nome_completo']}}</option>
-             @endforeach
-
-           </select>
-         </div>
 
       </div>
 
@@ -55,7 +46,7 @@
             <th scope="col">Nome do Curso</th>
             <th scope="col">Sigla</th>
             <th scope="col">Area de Formação</th>
-            <th scope="col">Coordenador</th>
+
             <th scope="col"></th>
           </tr>
         </thead>
@@ -66,7 +57,7 @@
                   <th scope="row">{{$coordenador[$i]['curso']['nome_curso']}}</th>
                   <td>{{$coordenador[$i]['curso']['sigla']}}</td>
                   <td>{{$coordenador[$i]['curso']['area_formacao']['nome_area_formacao']}}</td>
-                  <td>{{$coordenador[$i]['pessoa']['nome_completo']}}</td>
+                
                   <td>
                     <section style="display: flex;">
                     <i class="bi bi-eye-fill"  data-bs-toggle="modal" data-bs-target="#ExtralargeModal{{$coordenador[$i]['curso']['curso_id']}}"></i>
