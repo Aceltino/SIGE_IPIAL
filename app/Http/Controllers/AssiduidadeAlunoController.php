@@ -171,18 +171,49 @@ class AssiduidadeAlunoController extends Controller
         $assiduidade = Assiduidade_aluno::find($assiduidade_id);
         $assiduidade->status_falta = "JUSTIFICADA";
         $assiduidade->descricao_falta = $request->conteudo;
-        $assiduidade->save();
-        return redirect()->back()->with('sucesso', "Falta justificada com sucesso!");
+        if($assiduidade->save()){
+            return redirect()->back()->with('sucesso', "Falta justificada com sucesso!");
+        }
+        return redirect()->back()->with('sucesso', "Lamentamos! Erro na Justificação da Falta");
     }
 
     //Função que retorna todas as faltas do aluno para o Carlos Marques
-    public static function assiduidadeAnual($aluno_id, $ano_lectivo_id){
-        $ano_lectivo = Ano_lectivo::with('trimestres')->latest()->where('ano_lectivo_id', $ano_lectivo_id)->first();
-        for ($i = 0; $i < count($ano_lectivo->trimestres); $i++) {
-            $faltas[$i] = Assiduidade_aluno::with('disciplina')->where('aluno_id', $aluno_id)->where('id_trimestre', $ano_lectivo->trimestres[$i]->trimestre_id)->get();
+    public static function assiduidadeAnual($aluno_id, $ano_lectivo_id):mixed
+    {
+        $ano_lectivo= Ano_lectivo::with('trimestres')->latest()
+                                ->where('ano_lectivo_id', $ano_lectivo_id)
+                                ->first();
+
+        for($i = 0; $i < count($ano_lectivo->trimestres); $i++) {
+
+            $faltas[$i] = Assiduidade_aluno::with('disciplina')
+                                            ->where('aluno_id', $aluno_id)
+                                            ->where('id_trimestre', $ano_lectivo->trimestres[$i]->trimestre_id)
+                                            // ->where('status_falta',"N-JUSTIFICADA")
+                                            ->get();
         }
-        dd($faltas);
         return $faltas;
     }
 
-}
+    //Função-2 que retorna todas as faltas do aluno para o Carlos Marques
+    public static function assiduidadeAnual_2($aluno_id, $ano_lectivo_id):mixed
+    {
+
+        $ano_lectivo= Ano_lectivo::with('trimestres')->latest()
+                                ->where('ano_lectivo_id', $ano_lectivo_id)
+                                ->first();
+
+        for($i = 0; $i < count($ano_lectivo->trimestres); $i++) {
+
+            $faltas[$i] = Assiduidade_aluno::with('disciplina')
+                                            ->where('aluno_id', $aluno_id)
+                                            ->where('id_trimestre', $ano_lectivo->trimestres[$i]->trimestre_id)
+                                            ->where('status_falta',"N-JUSTIFICADA")
+                                            ->get();
+        }
+        return $faltas;
+    }
+
+
+
+}//Fim da Classe AssiduidadeAlunoController
