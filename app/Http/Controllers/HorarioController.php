@@ -66,7 +66,7 @@ class HorarioController extends Controller
             'restricoesLabs' => $labsOcupados,
             'laboratorios' => $laboratorios
         ];
-dd($horario);
+
         return $horario;
 
 
