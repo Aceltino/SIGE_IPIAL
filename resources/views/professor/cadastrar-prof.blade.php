@@ -123,7 +123,7 @@
 
           <div class="form-group col-md-6 offset-md-3 mb-3">
             <h6 class="color-blue-principal">Introduza o número de disciplinas que o professor vai lecionar.</h6>
-            <input name="qtd_disciplinas" value="{{ old('qtd_disciplinas') }}" type="number" placeholder="Quantidade de disciplinas" id="quantidade-de-disciplinas" min="1" value="1" max="4" required='false'>
+            <input name="qtd_disciplinas" value="1" type="number" placeholder="Quantidade de disciplinas" id="quantidade-de-disciplinas" min="1" value="1" max="4" required='false'>
           </div>
 
           <section class="row align-items-center ms-5 mb-4" id="div-disciplina-1">
