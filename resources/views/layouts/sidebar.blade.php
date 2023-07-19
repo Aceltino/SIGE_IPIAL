@@ -2,7 +2,7 @@
 <aside id="sidebar" class="sidebar sidebar-escuro">
 
 {{-- Administrador ou Subdirector Pedagogico ----- / Menu do Administrador ou Subdirector Pedagogico --}}
-@if(Auth::user()->cargo_usuario == "Administrador" || Auth::user()->cargo_usuario == "Subdirector")
+{{--@if(Auth::user()->cargo_usuario == "Administrador" || Auth::user()->cargo_usuario == "Subdirector")--}}
 
   <ul class="sidebar-nav" id="sidebar-nav">
 
@@ -15,6 +15,7 @@
     </li>
 
     <!-- /	Nav usuario-->
+    @if(Auth::user()->cargo_usuario == "Administrador" || Auth::user()->cargo_usuario == "Subdirector")
     <li class="nav-item">
       <a class="nav-link collapsed" data-bs-target="#usuario-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-people-fill"></i><span>Usuário</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -51,8 +52,9 @@
         </li>
       </ul>
     </li>
+    @endif
 
-
+    @if(Auth::user()->cargo_usuario == "Administrador" || Auth::user()->cargo_usuario == "Subdirector" || Auth::user()->cargo_usuario == "insc_user")
     <!-- /	Nav Inscricoes-->
     <li class="nav-item">
       <a class="nav-link collapsed" data-bs-target="#inscriacao-nav" data-bs-toggle="collapse" href="#">
@@ -72,7 +74,9 @@
 
       </ul>
     </li>
+    @endif
 
+    @if(Auth::user()->cargo_usuario == "Administrador" || Auth::user()->cargo_usuario == "Subdirector" || Auth::user()->cargo_usuario == "matri_user")
     <!-- /	Nav Matricula-->
     <li class="nav-item">
       <a class="nav-link collapsed" data-bs-target="#matricula-nav" data-bs-toggle="collapse" href="#">
@@ -94,7 +98,10 @@
 
       </ul>
     </li>
+    @endif
 
+
+    @if(Auth::user()->cargo_usuario == "Administrador" || Auth::user()->cargo_usuario == "Subdirector")
     <!-- /	Nav Professor-->
     <li class="nav-item">
       <a class="nav-link collapsed" data-bs-target="#professor-nav" data-bs-toggle="collapse" href="#">
@@ -113,6 +120,9 @@
         </li>
       </ul>
     </li>
+    @endif
+
+    @if(Auth::user()->cargo_usuario == "Administrador" || Auth::user()->cargo_usuario == "Subdirector")
    <!-- /	Nav Sala-->
    <li class="nav-item">
     <a class="nav-link collapsed" data-bs-target="#sala-nav" data-bs-toggle="collapse" href="#">
@@ -206,6 +216,7 @@
           </li>
         </ul>
     </li>
+    @endif
 
     <!-- /	Nav Pauta-->
     <li class="nav-item">
@@ -221,6 +232,8 @@
         </ul>
     </li>
 
+    @if(Auth::user()->cargo_usuario != "Aluno")
+
     <!-- /	Nav Mini-pauta-->
     <li class="nav-item">
       <a class="nav-link collapsed" data-bs-target="#mini-pauta-nav" data-bs-toggle="collapse" href="#">
@@ -234,6 +247,7 @@
         </li>
       </ul>
     </li>
+    @endif
 
     <!-- /	Nav horário-->
     <li class="nav-item">
@@ -249,38 +263,7 @@
       </ul>
     </li>
 
-    <!-- /	Nav Calendário de Prova-->
-    <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#calprova-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-table"></i><span>Calendário de Prova</span><i class="bi bi-chevron-down ms-auto"></i>
-      </a>
-      <ul id="calprova-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-        <li>
-          <a href={{ route('consultar.calendario') }}>
-            <i class="bi bi-circle"></i><span>Calendários de Provas</span>
-          </a>
-        </li>
-        <li>
-          <a href={{ route('criar.calendario') }}>
-            <i class="bi bi-circle"></i><span>Criar Calendário</span>
-          </a>
-        </li>
-      </ul>
-    </li>
-
-    <!-- /	Nav Ficha Biografica-->
-    <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#biografica-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-calendar-event"></i><span>Ficha Biográfica</span><i class="bi bi-chevron-down ms-auto"></i>
-      </a>
-      <ul id="biografica-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        <li>
-          <a href={{ route('fichaBiografica') }}>
-            <i class="bi bi-circle"></i><span>Fichas Biográficas</span>
-          </a>
-        </li>
-      </ul>
-    </li>
+    @if(Auth::user()->cargo_usuario != "Aluno")
 
     <!-- /	Nav Processo-->
     <li class="nav-item">
@@ -300,6 +283,7 @@
 
       </ul>
     </li>
+    
 
     <!-- /	Nav Avaliação Aluno-->
     <li class="nav-item">
@@ -338,25 +322,33 @@
         </li>
       </ul>
     </li>
+    @endif
 
+    
     <!-- /	Nav disciplina-->
-    <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#disciplina-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-book-half"></i></i><span>Disciplina</span><i class="bi bi-chevron-down ms-auto"></i>
-      </a>
-      <ul id="disciplina-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        <li>
-          <a href={{ route('criar.disciplina')}}>
-            <i class="bi bi-circle"></i><span>Cadastrar disciplina</span>
-          </a>
-        </li>
-        <li>
-          <a href={{ route('consultar.disciplina')}}>
-            <i class="bi bi-circle"></i><span>Disciplina</span>
-          </a>
-        </li>
-      </ul>
-    </li>
+    @if(Auth::user()->cargo_usuario != "Aluno")
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#disciplina-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-book-half"></i></i><span>Disciplina</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="disciplina-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          @if(Auth::user()->cargo_usuario == "Administrador" || Auth::user()->cargo_usuario == "Subdirector") 
+            <li>
+              <a href={{ route('criar.disciplina')}}>
+                <i class="bi bi-circle"></i><span>Cadastrar disciplina</span>
+              </a>
+            </li>
+          @endif
+
+          @if(Auth::user()->cargo_usuario != "Aluno")
+          <li>
+            <a href={{ route('consultar.disciplina')}}>
+              <i class="bi bi-circle"></i><span>Disciplina</span>
+            </a>
+          </li>
+          @endif
+        </ul>
+      </li>
 
     <!-- /	Nav Perfil-->
     <li class="nav-item">
@@ -365,10 +357,19 @@
         <span>Perfil</span>
       </a>
     </li>
+    @endif
+    @if(Auth::user()->cargo_usuario == "Aluno")
+      <li class="nav-item">
+        <a class="nav-link collapsed" href={{route('boletim')}}>
+          <i class="bi bi-person"></i>
+          <span>Boletim de Notas</span>
+        </a>
+      </li>
+    @endif
   </ul>
 
   {{-- DIRETOR GERAL ----- / Menu do Diretor Geral --}}
-  @elseif(Auth::user()->cargo_usuario == "Director")
+{{--  @elseif(Auth::user()->cargo_usuario == "Director")
 
     <ul class="sidebar-nav" id="sidebar-nav">
       <!-- /  Nav Pagina inicial-->
@@ -578,132 +579,7 @@
       </li>
     </ul><!--Fim do menu do Diretor Geral-->
 
-  {{-- SECRETARIA PEDAGÓGICA -----   / Menu de secretrio Pedagógico --}}
   @elseif(Auth::user()->cargo_usuario == "Secretaria")
-    <ul class="sidebar-nav" id="sidebar-nav">
-
-      <!-- /  Nav Pagina inicial-->
-      <li class="nav-item">
-        <a class="nav-link " href={{route('inicio')}}>
-          <i class="bi bi-ui-radios"></i>
-          <span>Página inicial</span>
-        </a>
-      </li>
-
-      <!-- /  Nav Matricula-->
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#matricula-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Matrícula</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="matricula-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-
-          <li>
-            <a href="/matricula/matriculas">
-              <i class="bi bi-circle"></i><span>Matriculas</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-
-      <!-- /  Nav Pauta-->
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#pauta-nav" data-bs-toggle="collapse" href=>
-        <i class="bi bi-calendar3"></i><span>Pauta</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="pauta-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href={{route('pauta')}}>
-              <i class="bi bi-circle"></i><span>Pautas</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-
-      <!-- /  Nav Mini-pauta-->
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#mini-pauta-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-calendar-week"></i></i><span>Mini-Pauta</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="mini-pauta-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="mini-pauta/mini-pauta">
-              <i class="bi bi-circle"></i><span>Mini-Pautas</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-
-      <!-- /  Nav horário-->
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#horario-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-clock"></i><span>Horário</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="horario-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="professor/horario-prof">
-              <i class="bi bi-circle"></i><span>Horários</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-
-      <!-- /  Nav Calendário de Prova-->
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#calprova-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-table"></i><span>Calendário de Prova</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="calprova-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="calend-prova/calendario-prova">
-              <i class="bi bi-circle"></i><span>Calendários de Provas</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-
-      <!-- /  Nav Ficha Biografica-->
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#biografica-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-calendar-event"></i><span>Ficha Biográfica</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="biografica-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="aluno/ficha-biog">
-              <i class="bi bi-circle"></i><span>Fichas Biográficas</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-
-      <!-- /  Nav Processo-->
-      <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#processo-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-folder2-open"></i></i><span>Processo</span><i class="bi bi-chevron-down ms-auto"></i>
-          </a>
-          <ul id="processo-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-            <li>
-
-              
-
-              <a href={{route('processo.consultar')}}>
-
-                <i class="bi bi-circle"></i><span>Processos</span>
-              </a>
-            </li>
-
-          </ul>
-      </li>
-
-      <!-- /  Nav Perfil-->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href={{route('perfil')}}>
-          <i class="bi bi-person"></i>
-          <span>Perfil</span>
-        </a>
-      </li>
-    </ul><!--Fim do menu do Secretario Pedagogico-->
-
-  {{-- COORDENADOR -----  /  Menu de Coordenador de curso --}}
   @elseif(Auth::user()->cargo_usuario == "Coordenacao")
     <ul class="sidebar-nav" id="sidebar-nav">
       <!-- /  Nav Pagina inicial-->
@@ -864,7 +740,7 @@
       </li>
     </ul><!--Fim do menu do Coordenador de curso-->
 
-  {{-- PROFESSOR ----- / Menu de Professor --}}
+
   @elseif(Auth::user()->cargo_usuario == "Professor")
     <ul class="sidebar-nav" id="sidebar-nav">
       <!-- /  Nav Pagina inicial-->
@@ -1002,7 +878,6 @@
       </li>
     </ul><!--Fim do menu do Professor-->
 
-  {{-- ALUNO ----- / Menu de Aluno --}}
   @elseif(Auth::user()->cargo_usuario == "Aluno")
     <ul class="sidebar-nav" id="sidebar-nav">
       <!-- /  Nav Pagina inicial-->
@@ -1092,7 +967,6 @@
       </li>
     </ul><!--Fim do menu do Aluno-->
 
-  {{-- Usuario - Inscrição ----- / Menu de Usuario - Inscrição --}}
   @elseif(Auth::user()->cargo_usuario == "insc_user")
     <ul class="sidebar-nav" id="sidebar-nav">
       <!-- /  Nav Pagina inicial-->
@@ -1125,7 +999,6 @@
       </li>
     </ul><!-- Fim do menu de Usuario - Inscrição-->
 
-  {{-- Usuario - Matricula ----- / Menu de Usuario - Matricula --}}
   @elseif(Auth::user()->cargo_usuario == "matri_user")
     <ul class="sidebar-nav" id="sidebar-nav">
       <!-- /  Nav Pagina inicial-->
@@ -1160,6 +1033,6 @@
     </ul><!-- Fim do menu de Usuario - Matricula-->
   @else
 
-  @endif
+  @endif--}}
 
   </aside><!-- Termina Sidebar-->
