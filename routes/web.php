@@ -221,7 +221,7 @@ Route::prefix('aluno')->middleware(['auth','active.session','checkcargo'])->grou
     });
 
 });
-/**<!--Fim Rotas aluno--> */    
+/**<!--Fim Rotas aluno--> */
 
 
 /******************************************
@@ -383,7 +383,7 @@ Route::put('/editar-assiduidade/justificar-falta/{assiduidade_id}', [Assiduidade
 
 /*Avaliação de Aluno*/
 Route::get('/avaliar-aluno', [AvaliacaoAlunoController::class, 'index'])->name('avaliacao.aluno');
-Route::post('/avaliar-aluno/cadastrar{id_disciplina}', [AvaliacaoAlunoController::class, 'store'])->name('avaliar.aluno');
+Route::post('/avaliar-aluno/cadastrar', [AvaliacaoAlunoController::class, 'store'])->name('avaliar.aluno');
 
 
 /*editar Avaliação de Aluno*/
