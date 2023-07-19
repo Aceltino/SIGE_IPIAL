@@ -4,16 +4,14 @@ use App\Http\Controllers\{
     //Classes das Controllers
     inicioController,
     AuthController,InscricaoController,ProfessorController,
-    AlunoController,MatriculaController,CursoController,
+   MatriculaController,CursoController,
     comunicadosController,AssiduidadeAlunoController,
     AvaliacaoAlunoController,AnoLectivoController,
     MiniPautaController,UserController,PautaController,
     PerfilUserController,ProcessoController,
     DisciplinasController, AdmissaoController,
-    AlunoTurmaController,
     TurmaController, CalendarioController,
     HorarioController,
-    CandidatoController,
     AreaFormacaoController,SalaController,
 };
 
