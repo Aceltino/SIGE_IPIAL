@@ -15,11 +15,7 @@ class BoletimNotasController extends Controller
      */
     public function index()
     {
-            return view('boletim/boletim-notas');
-        echo Auth::user()->cargo_usuario; exit;
-        /*if (Auth::user()->cargo_usuario == "Aluno")
-        else
-            abort(404); */
+        
     }
 
     /**
