@@ -254,33 +254,14 @@
         <div class="tab">
           <h2 class="text-uppercase text-center my-3 color-blue-principal">informações importantes para o instituto</h2>
 
-          <h5 class="text-uppercase text-center my-3 color-blue-principal">Sobre o(s) curso(s) que fará parte</h5>
-
-          <div class="form-group col">
-            <div class="d-flex justify-content-around flex-wrap">
-              @foreach ($cursos as $curso)
-                @php
-                  $string = $curso->nome_curso;
-                  $string = str_replace(' ', '', $string);
-                  $replaceChars = array('ç' => 'c', 'é' => 'e', 'ã' => 'a', 'á' => 'a', 'õ' => 'o');
-                  $string = strtr($string, $replaceChars);
-                @endphp
-                <div class="form-check form-switch">
-                  <input name="curso[]" class="form-check-input" type="checkbox" value="{{ $curso->curso_id }}" id="checkboxCurso{{ $string }}">
-                  <label class="form-check-label" for="checkboxCurso{{ $string }}">{{ $curso->nome_curso }}</label>
-                </div>
-              @endforeach
-            </div>
-          </div>
-
           <h5 class="text-uppercase text-center my-3 color-blue-principal">Sobre o cargo</h5>
 
           <div class="form-group col">
             <select name='cargo' oninput="this.className = ''" class="form-select" id="select-cargo-cadastrar-professor">
               <optgroup label="Cargo">
                 <option value="Professor">Professor</option>
-                <option value="Coordenador do curso">Coordenador do curso</option>
-                <option value="Coordenador da área de formação">Coordenador da área de formação</option>
+                <option value="Coordenador Curso">Coordenador do curso</option>
+                <option value="Coordenador Area">Coordenador da área de formação</option>
               </optgroup>
             </select>
           </div>

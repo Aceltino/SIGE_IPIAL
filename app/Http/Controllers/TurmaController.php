@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\{
+    ClasseDisciplina,
     Turma,
     Turno,
     Curso,
@@ -261,4 +262,131 @@ class TurmaController extends Controller
     public function adcoordTurma(){
         return view('turma/ad-coord-turma.blade');
     }
+
+    public static function turmasViews()
+    {
+        $salaNormalOcupada = SalaController::salasNormalHorario();
+        if(!$salaNormalOcupada)
+        {
+            $salaNormalOcupada[] = null;
+        }
+
+        $salasNormal = SalaController::salasNormal();
+        if(!$salasNormal)
+        {
+            $salasNormal[] = null;
+        }
+
+        // dd($salaNormalOcupada, $salasNormal);
+
+        $turmas = Turma::with('classe', 'turno.hora', 'horario')
+        ->whereDoesntHave('horario', function ($query) {
+            $query->select('turma_id')
+                ->from('horario');
+        })
+        ->get();
+
+        if ($turmas->isEmpty()) {
+            return false;
+        }
+
+        $dadosTurmas = [];
+        $salaSelecionada = [];
+
+        $anoLectivo = AnoLectivoController::pegarIdAnoLectivo();
+
+        $classesIds = $turmas->pluck('classe_id')->unique();
+
+        $disciplinas = ClasseDisciplina::whereIn('classe_id', $classesIds)->get();
+
+        foreach ($turmas as $turma)
+        {
+            $dadosTurma = [
+                'nome' => $turma->nome_turma,
+            ];
+
+            foreach ($salasNormal as $sala)
+            {
+                foreach ($salaNormalOcupada as $salaOcupada)
+                {
+
+                    if( $turma->turno_id != $salaOcupada['turno_id'] || $sala['sala_id'] != $salaOcupada['sala_id']  )
+                    {
+                        $dadosTurma['sala'] =
+                        [
+                            'sala' => $sala['sala'],
+                            'sala_id' => $sala['sala_id'],
+                        ];
+
+                        $dadosSala[] =
+                        [
+                            $sala['sala_id'],
+                            $turma->turno_id
+                        ];
+
+                        if (!in_array($dadosSala, $salaSelecionada)) {
+                            $salaSelecionada[] =  $dadosSala;
+                        }
+
+                        goto fim;
+                    }
+                    // break 1;
+                }
+            }
+
+            fim:
+            // dd($dadosTurma);
+            foreach ($disciplinas as $disciplina)
+            {
+                if ($disciplina->classe_id == $turma->classe_id && ($disciplina->disciplina->curso_id == $turma->curso_id || $disciplina->disciplina->curso_id == null ) )
+                {
+                $dadosTurma['disciplinas'][] = [
+                    'nomeDisciplina' => $disciplina->disciplina->nome_disciplina,
+                    'disciplina_id' => $disciplina->disciplina_id,
+                    'tipo_disciplina' => $disciplina->tipo_disciplina,
+                    'carga_horaria' => $disciplina->carga_horaria,
+                    'classe' => $turma->classe->classe,
+                    'classe_id' => $turma->classe->classe_id
+                ];
+
+
+                // dd($disciplina->disciplina->professor->pivot->prof_disc_id);
+
+                    foreach($disciplina->disciplina->professor as $professor)
+                    {
+                        $professorTempo =  HorarioController::professorTempos($professor->pivot->prof_disc_id);
+
+                        if( $professor->pivot->disciplina_id == $disciplina->disciplina_id && $professor->pivot->turno_id == $turma->turno_id && $professor->pivot->ano_lectivo_id == $anoLectivo && $professorTempo < 24)
+                        $professorTempo = 24 - $professorTempo;
+                        {
+                            $dadosTurma['professores'][] =
+                            [
+                                'nomeProfessor' => $professor->pessoa->nome_completo,
+                                'professor_id' => $professor->professor_id,
+                                'professor_tempos' => $professorTempo,
+                                'disciplina_id' => $professor->pivot->disciplina_id,
+                                'professorDisciplina_id' => $professor->pivot->prof_disc_id,
+                                'nomeDisciplina' => $disciplina->disciplina->nome_disciplina,
+                            ];
+                        }
+                    }
+                }
+            }
+
+            foreach ($turma->turno->hora as $hora)
+            {
+                $dadosTurma['tempo'][] = [
+                    'tempo' => $hora->tempo->tempo,
+                    'hora' => $hora->hora,
+                    'hora_id' => $hora->hora_id
+                ];
+            }
+            $dadosTurmas[] = $dadosTurma;
+        }
+
+        return $dadosTurmas;
+;
+    }
+
+
 }

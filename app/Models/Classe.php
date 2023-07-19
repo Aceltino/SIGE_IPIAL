@@ -33,6 +33,6 @@ class Classe extends Model
     }
     public function disciplinas()
     {
-        return $this->belongsToMany(Disciplina::class, 'classe_disciplina' , 'disciplina_id' , 'classe_id');
+        return $this->belongsToMany(Disciplina::class, 'classe_disciplina' , 'disciplina_id' , 'classe_id')->withPivot('tipo_disciplina','carga_horaria');;
     }
 }

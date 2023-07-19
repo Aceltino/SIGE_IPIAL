@@ -14,7 +14,8 @@ use App\Http\Controllers\{
     TurmaController, CalendarioController,
     HorarioController,
     CandidatoController,
-    AreaFormacaoController
+    AreaFormacaoController,SalaController,
+    BoletimNotasController
 };
 
 /*
@@ -29,7 +30,7 @@ use App\Http\Controllers\{
 */
 
 // Rota apenas de teste... Não apague -> ACELTINO
-    Route::get('validar-aluno', [AlunoController::class, 'alunosVinculados']);
+    Route::get('validar-aluno', [HorarioController::class, 'pegarDadosHorario']);
 // Route::get('validar-aluno', [AlunoController::class, 'situacaoAluno']);
 
 
@@ -219,6 +220,7 @@ Route::prefix('aluno')->middleware(['auth','active.session','checkcargo'])->grou
     Route::get('boletim-notas', function () {
         return view('boletim/boletim-notas');
     });
+    #Route::get('boletim-notas', [BoletimNotasController::class, 'index'])->name('boletim');
 
 });
 /**<!--Fim Rotas aluno--> */
@@ -475,6 +477,14 @@ Route::get('/cadastrar-sala', function () {
 });
 
 /*Area de formacao*/
+Route::prefix('sala')->middleware(['auth','active.session','checkcargo'])->group(function(){
+    Route::get('ver.sala',[SalaController::class,'index'])->name('consultar.sala');
+    Route::get('cadastrar-sala',[SalaController::class,'create'])->name('criar.sala');
+    Route::post('Store.sala',[SalaController::class,'store'])->name('store.sala');
+    Route::get('edit-sala/{sala_id}',[SalaController::class,'edit'])->where('sala_id', '[0-9]+')->name('edit.sala');
+    Route::put('{sala_id}',[SalaController::class,'update'])->where('sala_id', '[0-9]+')->name('update.sala');
+    Route::delete('{sala_id}',[SalaController::class,'destroy'])->where('sala_id', '[0-9]+')->name('delete.sala');
+});
 Route::get('/sala', function () {
     return view('sala\sala');
 });
