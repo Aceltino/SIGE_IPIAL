@@ -440,11 +440,6 @@ Route::get('/ver-horarios', function () {
     return view('horario/horarios');
 });
 
-/*Criar tempos*/
-Route::get('/criar-tempos', function () {
-    return view('horario/criar-tempos');
-});
-
 /*Editar tempos*/
 Route::get('/editar-tempos', function () {
     return view('horario/editar-tempos');
@@ -453,6 +448,11 @@ Route::get('/editar-tempos', function () {
 /*Ver tempos*/
 Route::get('/ver-tempos', function () {
     return view('horario/ver-tempos');
+});
+
+/*Visualizar tempos definidos*/
+Route::get('/visualizar-tempos-definidos', function () {
+    return view('horario/visualizar-tempos-definidos');
 });
 
 /*Area de formacao*/
