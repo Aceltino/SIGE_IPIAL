@@ -41,7 +41,6 @@ class Ano_lectivo extends Model
         'duracao_tempo_noite',
         'duracao_int_menor_noite',
         'duracao_int_maior_noite'
-
     ];
 
 

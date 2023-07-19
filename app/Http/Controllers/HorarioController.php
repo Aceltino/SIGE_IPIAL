@@ -30,13 +30,10 @@ class HorarioController extends Controller
 
     public function pegarDadosHorario()
     {
-        $turnos = TurnoController::turnos();
         $dias = DiaController::dias();
-        $tempos = TempoController::tempos();
-        $professores = ProfessorController::professores();
-        $salas = SalaController::salas(); 
+        // $salas = SalaController::salas(); 
+        $dadosHorario = TurmaController::turmasViews();
         // $profsDiscs = ProfessorDisciplinaController::professoresdiscs+();
-
 
         $horario = Horario::with('professorDisc')
         ->get();

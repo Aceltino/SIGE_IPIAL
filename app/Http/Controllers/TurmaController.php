@@ -263,14 +263,24 @@ class TurmaController extends Controller
 
     public static function turmasViews()
     {
-        $turmas = Turma::with('classe', 'turno.hora')->get();
+        $salaNormalOcupada = SalaController::salasNormalHorario();
+        $salasNormal = SalaController::salasNormal();
+
+        // dd($salaNormalOcupada, $salasNormal);
+
+        $turmas = Turma::with('classe', 'turno.hora', 'horario')
+        ->whereDoesntHave('horario', function ($query) {
+            $query->select('turma_id')
+                ->from('horario');
+        })
+        ->get();
 
         $dadosTurmas = [];
 
         $anoLectivo = AnoLectivoController::pegarIdAnoLectivo();
         
         $classesIds = $turmas->pluck('classe_id')->unique();
-        
+
         $disciplinas = ClasseDisciplina::whereIn('classe_id', $classesIds)->get();
         
         foreach ($turmas as $turma) {
@@ -278,22 +288,25 @@ class TurmaController extends Controller
                 'nome' => $turma->nome_turma,
                 'disciplinas' => [],
                 'professores' => [],
-                'tempo' => []
+                'tempo' => [],
+                'salas' => [],
             ];
         
-            foreach ($disciplinas as $disciplina) {
+            foreach ($disciplinas as $disciplina) 
+            {
                 if ($disciplina->classe_id == $turma->classe_id && ($disciplina->disciplina->curso_id == $turma->curso_id || $disciplina->disciplina->curso_id == null ) ) 
                 {
-                    $dadosTurma['disciplinas'][] = [
-                        'nomeDisciplina' => $disciplina->disciplina->nome_disciplina,
-                        'disciplina_id' => $disciplina->disciplina_id,
-                        'tipo_disciplina' => $disciplina->tipo_disciplina,
-                        'carga_horaria' => $disciplina->carga_horaria,
-                        'classe' => $turma->classe->classe
-                    ];
-                    
-                   
-                    // dd($disciplina->disciplina->professor->pivot->prof_disc_id);
+                $dadosTurma['disciplinas'][] = [
+                    'nomeDisciplina' => $disciplina->disciplina->nome_disciplina,
+                    'disciplina_id' => $disciplina->disciplina_id,
+                    'tipo_disciplina' => $disciplina->tipo_disciplina,
+                    'carga_horaria' => $disciplina->carga_horaria,
+                    'classe' => $turma->classe->classe,
+                    'classe_id' => $turma->classe->classe_id
+                ];
+                
+                
+                // dd($disciplina->disciplina->professor->pivot->prof_disc_id);
 
                     foreach($disciplina->disciplina->professor as $professor)
                     {
@@ -313,35 +326,38 @@ class TurmaController extends Controller
                             ];
                         }
                     }
-                        // dd($dadosTurma);
-                    
-                    // if($disciplina->disciplina)
-                    // {
-                   
-                    // $dadosTurma['professores'][] = [
-                    //     'nomeProfessor' => $disciplina->disciplina->professor->pessoa->nome_completo,
-                    //     'Professor_id' => $disciplina->disciplina->professor->professor_id,
-                    //     'disciplina_id' => $disciplina->disciplina_id,
-                    //     'tipo_disciplina' => $disciplina->tipo_disciplina,
-                    //     'carga_horaria' => $disciplina->carga_horaria,
-                    //     'classe' => $turma->classe->classe
-                    // ];
-                    // }
                 }
             }
         
-            foreach ($turma->turno->hora as $hora) {
+            foreach ($turma->turno->hora as $hora) 
+            {
                 $dadosTurma['tempo'][] = [
                     'tempo' => $hora->tempo->tempo,
-                    'hora' => $hora->hora
+                    'hora' => $hora->hora,
+                    'hora_id' => $hora->hora_id
                 ];
             }
-        
+
+            foreach($salasNormal as $sala) 
+            {
+                if(  !in_array($turma->turno_id, $salaNormalOcupada['turno_id']) && !in_array($turma->turma_id, $salaNormalOcupada['turma_id']) ) 
+                {
+                    $dadosTurma['salas'][] = 
+                    [
+                        'sala_normal' => $sala['sala'],
+                        'sala_id' => $sala['sala_id'],
+                    ];
+                    break;
+                }
+            }
+       
             $dadosTurmas[] = $dadosTurma;
         }
 
-        dd($dadosTurmas);
+        // dd($dadosTurmas);          
         return $dadosTurmas;
 ;
     }
+
+
 }

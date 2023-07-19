@@ -12,5 +12,9 @@ class Sala extends Model
     protected $table = 'salas';
     protected $primaryKey = 'sala_id';
 
+    public function horario()
+    {
+        return $this->hasMany(Horario::class, 'sala_id');
+    }
 
 }

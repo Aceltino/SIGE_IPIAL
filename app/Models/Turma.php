@@ -21,6 +21,10 @@ class Turma extends Model
         'updated_at',
     ];
 
+    public function horario()
+    {
+        return $this->hasMany(Horario::class, 'turma_id');
+    }
     public function curso()
     {
         return $this->belongsTo(Curso::class, 'curso_id');
