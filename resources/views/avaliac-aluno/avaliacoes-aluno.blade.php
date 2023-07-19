@@ -88,8 +88,8 @@
       <button class="btn botaoazul" name="tipo_prova" value="Prova Trimestre"  type="submit" style="margin-right: 3px;">NPT</button>
       <button class="btn botaoazul" name="tipo_prova" value="Exame" type="submit" style="margin-right: 3px;">Exame</button>
       <button class="btn botaoazul" name="tipo_prova" value="pap" type="submit" style="margin-right: 3px;">PAP</button>
-      <button class="btn botaoazul" name="tipo_prova" value="nota_estagio" type="submit" style="margin-right: 3px;">Nota do Estágio</button>
-      <button class="btn botaoazul" name="tipo_prova" value="nota_administrativa" type="submit" style="margin-right: 3px;">Nota Administrativa</button>
+      <button class="btn botaoazul" name="tipo_prova" value="nota_estagio" type="submit"  style="margin-right: 3px;">Nota do Estágio</button>
+      <a class="btn botaoazul"  value="nota_administrativa" data-bs-toggle="modal" data-bs-target="#modal_nota_estagio"  style="margin-right: 3px;">Nota Administrativa</a>
     </div>
 
     <div class="bortabela" style="box-shadow: 0 5px 15px 0 rgba(82, 63, 105, 0.2); border: 1px solid white; border-radius: 3px; padding: 2px;">
@@ -181,88 +181,58 @@
           </tbody>
       </table>
   </form>
-    <!-- Cola aqui o código -->
-    @foreach ($aluno as $chave1 => $valor1)
-
-    @foreach ($valor1 as $chave2 => $valor2)
-
-        @foreach ($valor2 as $chave3 => $valor3)
+  
 
     <form method="POST" action="{{route('avaliar.aluno', $valor3['disciplina_id'])}}">
         @csrf
-      <div class="modal" id="modal_assiduidade{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}" tabindex="-1" data-bs-backdrop="false" >
+      <div class="modal" id="modal_nota_estagio00" tabindex="-1" data-bs-backdrop="false" >
           <div class="modal-dialog modal-xl">
           <div class="modal-content">
           <div class="modal-header">
-              <h5 class="modal-title">Avaliar Aluno</h5>
+              <h5 class="modal-title">Adicionar nota de Estágio</h5>
               <button type="button" class="btn-close"data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
 
               <div class="row">
-                <div class="col-lg-10">
-                    <div class="nomenumeroalunoinfo">
-                        <h5 style="margin-left: 3px;"> <b>Nome:</b>{{$valor3['nome']}}</h5>
-                    </div>
-                </div>
-                <div class="col-lg-2">
-                    <div class="nofimnomenumeroaluno">
-                        <h5 class="nomenumeroalunoinfo"> <b>Nº:</b>{{$valor3['numero_aluno']}}</h5>
-                    </div>
-                </div>
-              </div>
-            <div class="bortabelasemscroll">
-              <!-- /  Inicio da tabela  -->
-              <table class="table table-custom table-escuro display" style="margin-top: 20px; width: 100%;" >
-                <thead style="text-align: center">
-                  <tr>
-                    <th scope="col">AC</th>
-                    <th scope="col">NPP</th>
-                    <th scope="col">NPT</th>
-                    <th scope="col">Exame</th>
-                    <th scope="col">E.Recurso</th>
+                <div class="col">
+                  <select  class="btn-sel form-select" >
+                    <option value="#" selected>Tipo De PROVA</option>
+                    <option value="#" >AC</option>
+                    <option value="#" >NPP</option>
+                    <option value="#" >NPT</option>
+                    <option value="#" >EXAME</option>
+                  </select>
+               </div>
 
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><input class="form-control innota" type="text" name="ac" maxlength="5" id="notaimput"></td>
-                    <td><input class="form-control innota" type="text" name="npp" maxlength="5" id="notaimput"></td>
-                    <td><input class="form-control innota" type="text" name="npt" maxlength="5" id="notaimput"></td>
-                    <td><input class="form-control innota" type="text" name="exame" maxlength="5" id="notaimput"></td>
-                    <td><input class="form-control innota" type="text" name="exame_recurso" maxlength="5" id="notaimput"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="row" style="margin-top: 5px;">
-              <div class="col">
-                  <textarea style="border: 1px solid; border-color: rgb(204, 204, 204); border-radius: 5px; outline: none"  class="w-100"  rows="8" name="conteudo" id="area" placeholder="Dê uma Breve descrição sobre a Nota Adicionada(Opcional)"></textarea>
+                <div class="col">
+
+                  <select  class="btn-sel form-select" >
+                          <option value="#" selected>I10AM</option>
+                  </select>
+                    
+
+                </div>
+          
               </div>
+
+              
             </div>
           </div>
           <div class="modal-footer" style="display: flex; justify-content: center; align-items: center;">
               <button type="button" class="btn botaovermelhonota" data-bs-dismiss="modal">Cancelar</button>
-              <button type="subimit" name="aluno_id" class="btn botaoazulnota" value="{{$valor3['aluno_id']}}" >Avaliar Aluno</button>
+              <button type="subimit" name="aluno_id" class="btn botaoazulnota" value="{{$valor3['aluno_id']}}" >Adicionar Nota</button>
           </div>
           </div>
       </div>
       </div>
     </form>
-    @endforeach
-    @endforeach
-  @endforeach
+   
 
-
-  @foreach ($aluno as $chave1 => $valor1)
-
-  @foreach ($valor1 as $chave2 => $valor2)
-
-      @foreach ($valor2 as $chave3 => $valor3)
 
   <form method="POST" action="{{route('avaliar.aluno', $valor3['disciplina_id'])}}">
       @csrf
-    <div class="modal" id="modal_assiduidadee{{$valor3['aluno_id']}}{{$valor3['disciplina_id']}}" tabindex="-1" data-bs-backdrop="false" >
+    <div class="modal"id="modal_nota_estagio" tabindex="-1" data-bs-backdrop="false" >
         <div class="modal-dialog modal-xl">
         <div class="modal-content">
         <div class="modal-header">
@@ -271,53 +241,56 @@
         </div>
         <div class="modal-body">
 
-            <div class="row">
-              <div class="col-lg-10">
-                  <div class="nomenumeroalunoinfo">
-                      <h5 style="margin-left: 3px;"> <b>Nome:</b>{{$valor3['nome']}}</h5>
-                  </div>
-              </div>
-              <div class="col-lg-2">
-                  <div class="nofimnomenumeroaluno">
-                      <h5 class="nomenumeroalunoinfo"> <b>Nº:</b>{{$valor3['numero_aluno']}}</h5>
-                  </div>
-              </div>
+          <div class="row">
+            <div class="col">
+              <select  class="btn-sel form-select" >
+                <option value="#" selected>Tipo De PROVA</option>
+                <option value="#" >AC</option>
+                <option value="#" >NPP</option>
+                <option value="#" >NPT</option>
+                <option value="#" >EXAME</option>
+              </select>
+           </div>
+
+            <div class="col">
+
+              <select  class="btn-sel form-select" >
+                      <option value="#" selected>Turma</option>
+                      <option value="#" s>I10AM</option>
+              </select>
+                
+
             </div>
+      
+          </div>
           <div class="bortabelasemscroll">
             <!-- /  Inicio da tabela  -->
             <table class="table table-custom table-escuro display" style="margin-top: 20px; width: 100%;" >
               <thead style="text-align: center">
                 <tr>
-                  <th scope="col">AC</th>
-                  <th scope="col">Nota de PT</th>
+                  <th scope="col"> Inseri aqui a Nota Administrativa</th>
+                  
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td><input class="form-control innota" type="text" name="ac" maxlength="4" id="notaimput"></td>
-                  <td><input class="form-control innota" type="text" name="npp" maxlength="4" id="notaimput"></td>
+            
                 </tr>
               </tbody>
             </table>
           </div>
-          <div class="row" style="margin-top: 5px;">
-            <div class="col">
-                <textarea style="border: 1px solid; border-color: rgb(204, 204, 204); border-radius: 5px; outline: none"  class="w-100"  rows="8" name="conteudo" id="area" placeholder="Dê uma Breve descrição sobre a Nota Adicionada(Opcional)"></textarea>
-            </div>
-          </div>
+
         </div>
         <div class="modal-footer" style="display: flex; justify-content: center; align-items: center;">
             <button type="button" class="btn botaovermelhonota" data-bs-dismiss="modal">Cancelar</button>
-            <button type="subimit" name="aluno_id" class="btn botaoazulnota" value="{{$valor3['aluno_id']}}" >Avaliar Aluno</button>
+            <button type="subimit" name="aluno_id" class="btn botaoazulnota" value="{{$valor3['aluno_id']}}" >Adicionar Nota</button>
         </div>
         </div>
     </div>
     </div>
   </form>
-  @endforeach
-  @endforeach
-@endforeach
-
+ 
 
 
 @foreach ($aluno as $chave1 => $valor1)
