@@ -4,6 +4,16 @@
 
 @section('conteudo')
 <main id="main" class="main">
+    @if (session()->has('erro'))
+    <div class="alert alert-danger">
+    {{session('erro')}}
+    </div>
+    @endif
+    @if (session()->has('sucesso'))
+    <div class="alert alert-success">
+        {{session('sucesso')}}
+    </div>
+    @endif
     <form id="regFormh" action="{{route('update.ano.lectivo')}}" class="formulario-layout" method="POST">
         @csrf
         @method('put')
@@ -26,11 +36,11 @@
                 </div>
 
                 <div class="col">
-                    <p>Data de início do ano lectivo<input type="date" name="data_inicio_ano_lectivo" 
+                    <p>Data de início do ano lectivo<input type="date" name="data_inicio_ano_lectivo"
                             id="editar-data-de-inicio-do-ano-lectivo"
                             value="{{old('data_inicio_ano_lectivo', $anoLectivo[0]['data_inicio_ano_lectivo'])}}"
-                            oninput="this.className = ''" 
-                            style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" 
+                            oninput="this.className = ''"
+                            style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;"
                             disabled readonly required></p>
                     @error('data_inicio_ano_lectivo')
                     <p class="alert alert-danger d-none mt-2">{{$message}}

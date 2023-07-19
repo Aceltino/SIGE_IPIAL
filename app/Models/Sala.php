@@ -18,4 +18,8 @@ class Sala extends Model
         'created_at',
     ];
     
+    public function horario()
+    {
+        return $this->hasMany(Horario::class, 'sala_id');
+    }
 }

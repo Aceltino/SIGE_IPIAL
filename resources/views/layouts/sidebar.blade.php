@@ -17,7 +17,7 @@
     <!-- /	Nav usuario-->
     <li class="nav-item">
       <a class="nav-link collapsed" data-bs-target="#usuario-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-person-lines-fill"></i><span>Usuário</span><i class="bi bi-chevron-down ms-auto"></i>
+        <i class="bi bi-people-fill"></i><span>Usuário</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
       <ul id="usuario-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
@@ -882,7 +882,7 @@
         </a>
         <ul id="turma-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="turma/turmas">
+            <a href={{route('turmas')}}>
               <i class="bi bi-circle"></i><span>Turmas</span>
             </a>
           </li>
@@ -910,7 +910,7 @@
         </a>
         <ul id="mini-pauta-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="mini-pauta/mini-pauta">
+            <a href={{route('mini-pauta')}}>
               <i class="bi bi-circle"></i><span>Mini-Pautas</span>
             </a>
           </li>
@@ -924,7 +924,7 @@
         </a>
         <ul id="horario-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="/horario/criar-horario">
+            <a href={{route('criar-horario')}}>
               <i class="bi bi-circle"></i><span>Criar horário</span>
             </a>
           </li>

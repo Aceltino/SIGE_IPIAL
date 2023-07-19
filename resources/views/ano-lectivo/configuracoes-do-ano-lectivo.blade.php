@@ -22,54 +22,23 @@
 
             <div class="row mb-5 mt-5">
                 @foreach ($trimestres as $trimestre)
-                    @if ($trimestre->trimestre === "1º")
+
+                    @if ($trimestre->data_fim === null)
                     @if ($trimestre->data_inicio === null)
                         <div class="col-6">
-                            <button type="submit" name="primeiro_trimestre" value="{{$trimestre->trimestre_id}}" class="btn btn-success our-green-bg w-100" ><i class="bi bi-power me-2" ></i>Abrir primeiro trimestre</button>
+                            <button type="submit" name="trimestre{{$trimestre->trimestre}}" value="{{$trimestre->trimestre_id}}" class="btn btn-success our-green-bg w-100" ><i class="bi bi-power me-2" ></i>ABRIR {{$trimestre->trimestre}} TRIMESTRE</button>
                         </div>
+                        @break
                     @else
-                        <div class="col-6">
-                            <button type="submit" name="primeiro_trimestre" value="{{$trimestre->trimestre_id}}" class="btn btn-success our-green-bg w-100" disabled><i class="bi bi-power me-2" ></i>Abrir primeiro trimestre</button>
-                        </div>
+                        @break
                     @endif
-
-                    @endif
+                @endif
                 @endforeach
-                @foreach ($trimestres as $trimestre)
-                    @if ($trimestre->trimestre === "2º")
-                    @if ($trimestre->data_inicio === null)
-                        <div class="col-6">
-                            <button type="submit" name="segundo_trimestre" value="{{$trimestre->trimestre_id}}" class="btn btn-success our-green-bg w-100"><i class="bi bi-power me-2"></i>Abrir segundo trimestre</button>
-                        </div>
-                    @else
-                        <div class="col-6">
-                            <button type="submit" name="segundo_trimestre" value="{{$trimestre->trimestre_id}}" class="btn btn-success our-green-bg w-100" disabled><i class="bi bi-power me-2"></i>Abrir segundo trimestre</button>
-                        </div>
-                    @endif
-
-                    @endif
-                @endforeach
-            </div>
-
-            <div class="row mb-5">
-                @foreach ($trimestres as $trimestre)
-                    @if ($trimestre->trimestre === "3º")
-                    @if ($trimestre->data_inicio === null)
-                        <div class="col-6">
-                            <button type="submit" name="terceiro_trimestre" value="{{$trimestre->trimestre_id}}" class="btn btn-success our-green-bg w-100"><i class="bi bi-power me-2"></i>Abrir terceiro trimestre</button>
-                        </div>
-                    @else
-                        <div class="col-6">
-                            <button type="submit" name="terceiro_trimestre" value="{{$trimestre->trimestre_id}}" class="btn btn-success our-green-bg w-100" disabled><i class="bi bi-power me-2"></i>Abrir terceiro trimestre</button>
-                        </div>
-                    @endif
-
-                    @endif
-                @endforeach
+                
                 @foreach ($trimestres as $trimestre)
                     @if ($trimestre->status === 1)
                         <div class="col-6">
-                            <button type="submit" name="fechar_trimestre" value="{{$trimestre->trimestre_id}}" class="btn btn-danger w-100"><i class="bi bi-power me-2"></i>Fechar trimestre aberto</button>
+                            <button type="submit" name="fechar_trimestre" value="{{$trimestre->trimestre_id}}" class="btn btn-danger w-100"><i class="bi bi-power me-2"></i>FECHAR {{$trimestre->trimestre}} TRIMESTRE</button>
                         </div>
                     @endif
                 @endforeach

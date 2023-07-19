@@ -26,8 +26,8 @@
           </div>
 
           <div class="col-lg-2">
-            <select class="btn-sel form-select" id="filtro10">
-              <option  disabled>Curso</option>
+            <select class="btn-sel form-select" >
+              <option  selected>Curso</option>
               @if (count($dados) > 0)
                 <option value="{{$dados[0]->alunos->anoTurma[count($dados[0]->alunos->anoTurma) -1]->turma->curso->nome_curso}}">{{$dados[0]->alunos->anoTurma[count($dados[0]->alunos->anoTurma) -1]->turma->curso->nome_curso}}</option>
               @endif
@@ -35,8 +35,8 @@
           </div>
 
           <div class="col-lg-2">
-            <select class="btn-sel form-select" id="filtro11">
-              <option disabled >Disciplina</option>
+            <select class="btn-sel form-select" >
+              <option selected>Disciplina</option>
               @for ($i = 0; $i < count($disciplinas); $i++)
                 <option value="">{{$disciplinas[$i]->nome_disciplina}}</option>
               @endfor
@@ -44,8 +44,8 @@
           </div>
 
           <div class="col-lg-2">
-            <select class="btn-sel form-select" id="filtro12">
-              <option disabled >Turma</option>
+            <select class="btn-sel form-select" >
+              <option disabled  selected>Turma</option>
               @if (count($dados) > 0)
                 <option value="{{$dados[0]->alunos->anoTurma[count($dados[0]->alunos->anoTurma) -1]->turma->nome_turma}}">{{$dados[0]->alunos->anoTurma[count($dados[0]->alunos->anoTurma) -1]->turma->nome_turma}}</option>
               @endif
@@ -71,7 +71,7 @@
         </div>
     </div>
     <!-- /  Inicio da tabela  -->
-    <table id="avaliaca" class="table table-custom table-escuro display" style="margin-top: 20px; width: 100%;" >
+    <table  class="table table-custom table-escuro display" style="margin-top: 20px; width: 100%;" >
       <thead style="text-align: center">
         <tr>
           <th scope="col">Nº do Processo</th>
@@ -93,7 +93,7 @@
             <td></td>
             <td>{{$dados[0]->ano_lectivos->ano_lectivo}}</td>
             <td style="text-align: center">
-            <a class="btn botaoazul"data-bs-toggle="modal" value="{{$disciplinas[$i]->disciplina_id}}" data-bs-target="#modal_assiduidade" >Realizar Operação</a>
+            <a class="btn botaoazul"data-bs-toggle="modal" value="{{$disciplinas[$i]->disciplina_id}}" data-bs-target="#modal_assiduidade{{$dados[0]->aluno_id}}" >Realizar Operação</a>
             </td>
             <td style="text-align: center">
             <a href="{{route('historico.recurso', $dados[0]->aluno_id)}}" class="btn linkeditar">Recursos</a>
@@ -111,10 +111,10 @@
     </table>
     <!-- Cola aqui o código -->
 
-
+    @for ($i = 0; $i < count($disciplinas); $i++)
     <form method="POST" action="">
         @csrf
-      <div class="modal" id="modal_assiduidade" tabindex="-1" data-bs-backdrop="false" >
+      <div class="modal" id="modal_assiduidade{{$dados[0]->aluno_id}}" tabindex="-1" data-bs-backdrop="false" >
           <div class="modal-dialog modal-xl">
           <div class="modal-content">
           <div class="modal-header">
@@ -164,6 +164,7 @@
       </div>
       </div>
     </form>
+    @endfor
     </div>
 
   <!-- Termina a tabela -->

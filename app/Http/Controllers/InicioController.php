@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Client;
 use App\Models\{
 Candidato,Professor,Turma,
 Curso,Aluno,User,Comunicado,
@@ -74,11 +76,29 @@ class InicioController extends Controller
             $cargoTotal = "";
         } 
 
-        $comunicados = Comunicado::all();
+        $comunicados = Comunicado::latest()->paginate(2);
         //dd($usCargos);
         //   return view('pagina-inicial', compact('alunoAno', 'alunoTotal'));
 
-        return view('pagina-inicial', compact('comunicados','totalUs', 'titulo', 'alunoAno', 'alunoTotal', 'cargoNome', 'cargoTotal', 'titulografAlunos','titulografAlunos2', 'titulografUsuarios','titulografUsuarios2'));
+         // Criando uma instância do GuzzleHttp\Client
+         $client = new Client();
+
+         // Fazendo a requisição para a API local
+         $response = $client->get('http://sige_ipial.test/api/settings');
+ 
+         // Obtendo o corpo da resposta como uma string JSON
+         $json = $response->getBody()->getContents();
+ 
+         // Convertendo o JSON em um array associativo
+         $data = json_decode($json, true);
+ 
+         // Retornando a view com os dados
+
+    //    dd($dadosapiInicio->json());
+
+        
+
+        return view('pagina-inicial', compact('comunicados','totalUs', 'titulo', 'alunoAno', 'alunoTotal', 'cargoNome', 'cargoTotal', 'titulografAlunos','titulografAlunos2', 'titulografUsuarios','titulografUsuarios2','data'));
         //redirect()->route('inicio');
     }
 

@@ -5,7 +5,16 @@
 @section('conteudo')
 
 <main id="main" class="main">
-
+    @if (session()->has('erro'))
+    <div class="alert alert-danger">
+    {{session('erro')}}
+    </div>
+    @endif
+    @if (session()->has('sucesso'))
+    <div class="alert alert-success">
+        {{session('sucesso')}}
+    </div>
+    @endif
     <form method="POST" id="regForm" action="{{route('cadastrar.ano.lectivo')}}" class="formulario-layout">
         @csrf
         <div style="text-align:center;margin-top:40px;">
