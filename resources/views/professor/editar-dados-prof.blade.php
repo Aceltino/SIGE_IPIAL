@@ -51,7 +51,7 @@
 
           <div class="form-group col-md-6 offset-md-3 mb-3">
             <h6 class="color-blue-principal">Número de disciplinas que o professor vai lecionar.</h6>
-            <input type="number" placeholder="Quantidade de disciplinas" id="quantidade-de-disciplinas" min="1" value="2" max="4" required='false'>
+            <input type="number" placeholder="Quantidade de disciplinas" id="quantidade-de-disciplinas" min="1" value="1" max="4" required='false'>
           </div>
 
           <section class="row align-items-center ms-5 mb-4" id="div-disciplina-1">
@@ -256,33 +256,15 @@
     </form>
     <script>
       if(parseInt(quantidadeDeDisciplinas.value) < 1 || parseInt(quantidadeDeDisciplinas.value) > 4){
-          quantidadeDeDisciplinas.value = "1";
-        }
+        quantidadeDeDisciplinas.value = "1";
+      }
 
-        if(parseInt(quantidadeDeDisciplinas.value) === 1){
-            // Habilitar todas as opções nos selects
-            habilitarOpcoes(disciplinaALeccionar1);
-
-            if(!divDoSelectSegundaDisciplina.classList.contains("d-none")){
-              divDoSelectSegundaDisciplina.classList.add("d-none");
-            }
-
-            if(!divDoSelectTerceiraDisciplina.classList.contains("d-none")){
-              divDoSelectTerceiraDisciplina.classList.add("d-none");
-            }
-
-            if(!divDoSelectQuartaDisciplina.classList.contains("d-none")){
-              divDoSelectQuartaDisciplina.classList.add("d-none");
-            }
-        }
-
-        if(parseInt(quantidadeDeDisciplinas.value) === 2){
+      if(parseInt(quantidadeDeDisciplinas.value) === 1){
           // Habilitar todas as opções nos selects
           habilitarOpcoes(disciplinaALeccionar1);
-          habilitarOpcoes(disciplinaALeccionar2);
 
-          if(divDoSelectSegundaDisciplina.classList.contains("d-none")){
-            divDoSelectSegundaDisciplina.classList.remove("d-none");
+          if(!divDoSelectSegundaDisciplina.classList.contains("d-none")){
+            divDoSelectSegundaDisciplina.classList.add("d-none");
           }
 
           if(!divDoSelectTerceiraDisciplina.classList.contains("d-none")){
@@ -292,46 +274,64 @@
           if(!divDoSelectQuartaDisciplina.classList.contains("d-none")){
             divDoSelectQuartaDisciplina.classList.add("d-none");
           }
+      }
+
+      if(parseInt(quantidadeDeDisciplinas.value) === 2){
+        // Habilitar todas as opções nos selects
+        habilitarOpcoes(disciplinaALeccionar1);
+        habilitarOpcoes(disciplinaALeccionar2);
+
+        if(divDoSelectSegundaDisciplina.classList.contains("d-none")){
+          divDoSelectSegundaDisciplina.classList.remove("d-none");
         }
 
-        if(parseInt(quantidadeDeDisciplinas.value) === 3){
-          // Habilitar todas as opções nos selects
-          habilitarOpcoes(disciplinaALeccionar1);
-          habilitarOpcoes(disciplinaALeccionar2);
-          habilitarOpcoes(disciplinaALeccionar3);
-          
-          if(divDoSelectSegundaDisciplina.classList.contains("d-none")){
-            divDoSelectSegundaDisciplina.classList.remove("d-none");
-          }
-
-          if(divDoSelectTerceiraDisciplina.classList.contains("d-none")){
-            divDoSelectTerceiraDisciplina.classList.remove("d-none");
-          }
-
-          if(!divDoSelectQuartaDisciplina.classList.contains("d-none")){
-            divDoSelectQuartaDisciplina.classList.add("d-none");
-          }
+        if(!divDoSelectTerceiraDisciplina.classList.contains("d-none")){
+          divDoSelectTerceiraDisciplina.classList.add("d-none");
         }
 
-        if(parseInt(quantidadeDeDisciplinas.value) === 4){
-          // Habilitar todas as opções nos selects
-          habilitarOpcoes(disciplinaALeccionar1);
-          habilitarOpcoes(disciplinaALeccionar2);
-          habilitarOpcoes(disciplinaALeccionar3);
-          habilitarOpcoes(disciplinaALeccionar4);
-
-          if(divDoSelectSegundaDisciplina.classList.contains("d-none")){
-            divDoSelectSegundaDisciplina.classList.remove("d-none");
-          }
-
-          if(divDoSelectTerceiraDisciplina.classList.contains("d-none")){
-            divDoSelectTerceiraDisciplina.classList.remove("d-none");
-          }
-
-          if(divDoSelectQuartaDisciplina.classList.contains("d-none")){
-            divDoSelectQuartaDisciplina.classList.remove("d-none");
-          }
+        if(!divDoSelectQuartaDisciplina.classList.contains("d-none")){
+          divDoSelectQuartaDisciplina.classList.add("d-none");
         }
+      }
+
+      if(parseInt(quantidadeDeDisciplinas.value) === 3){
+        // Habilitar todas as opções nos selects
+        habilitarOpcoes(disciplinaALeccionar1);
+        habilitarOpcoes(disciplinaALeccionar2);
+        habilitarOpcoes(disciplinaALeccionar3);
+        
+        if(divDoSelectSegundaDisciplina.classList.contains("d-none")){
+          divDoSelectSegundaDisciplina.classList.remove("d-none");
+        }
+
+        if(divDoSelectTerceiraDisciplina.classList.contains("d-none")){
+          divDoSelectTerceiraDisciplina.classList.remove("d-none");
+        }
+
+        if(!divDoSelectQuartaDisciplina.classList.contains("d-none")){
+          divDoSelectQuartaDisciplina.classList.add("d-none");
+        }
+      }
+
+      if(parseInt(quantidadeDeDisciplinas.value) === 4){
+        // Habilitar todas as opções nos selects
+        habilitarOpcoes(disciplinaALeccionar1);
+        habilitarOpcoes(disciplinaALeccionar2);
+        habilitarOpcoes(disciplinaALeccionar3);
+        habilitarOpcoes(disciplinaALeccionar4);
+
+        if(divDoSelectSegundaDisciplina.classList.contains("d-none")){
+          divDoSelectSegundaDisciplina.classList.remove("d-none");
+        }
+
+        if(divDoSelectTerceiraDisciplina.classList.contains("d-none")){
+          divDoSelectTerceiraDisciplina.classList.remove("d-none");
+        }
+
+        if(divDoSelectQuartaDisciplina.classList.contains("d-none")){
+          divDoSelectQuartaDisciplina.classList.remove("d-none");
+        }
+      }
     </script>
   </main>
 @endsection
