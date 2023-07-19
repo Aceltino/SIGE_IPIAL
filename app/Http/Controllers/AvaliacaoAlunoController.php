@@ -118,6 +118,7 @@ class AvaliacaoAlunoController extends Controller
         $n = 0;
         $inc = 0;
         $falha = 0;
+        $sucesso = 0;
         for ($i = 0; $i < count($request->nota_aluno); $i++) {
             if($request->nota_aluno[$i] === null){
                 $n++;
@@ -144,6 +145,7 @@ class AvaliacaoAlunoController extends Controller
                 'id_trimestre' => $trimestre[0]->trimestre_id
             ];
             Nota::create($dados);
+            $sucesso++;
         }
     } else{
             for ($i = 0; $i <count($notas); $i++) {
@@ -171,108 +173,36 @@ class AvaliacaoAlunoController extends Controller
 
     if($request->tipo_prova === "nota_administrativa"){
         for ($i = 0; $i <count($notas); $i++) {
-        $nota = Nota::where('tipo_prova', $request->tipo_prova)
-        ->where('aluno_id', $aluno[$i])
-        ->where('disciplina_id', $request->disciplina_id[0])
-        ->where('id_trimestre', $trimestre[0]->trimestre_id)
-        ->get();
-        //dd($nota);
-        if(count($nota) > 0){
-            $falha++;
-        } else{
-            $dados = [
-                'nota_aluno' => $notas[$i],
-                'tipo_prova' => $request->tipo_prova,
-                'descricao_nota' => null,
-                'aluno_id' => $aluno[$i],
-                'disciplina_id' => $request->disciplina_id[0],
-                'id_trimestre' => $trimestre[0]->trimestre_id
-            ];
-            Nota::create($dados);
+            $nota = Nota::where('tipo_prova', $request->tipo_prova)
+            ->where('aluno_id', $aluno[$i])
+            ->where('disciplina_id', $request->disciplina_id[0])
+            ->where('id_trimestre', $trimestre[0]->trimestre_id)
+            ->get();
+            //dd($nota);
+            if(count($nota) > 0){
+                $falha++;
+            } else{
+                $dados = [
+                    'nota_aluno' => $notas[$i],
+                    'tipo_prova' => $request->tipo_prova,
+                    'descricao_nota' => null,
+                    'aluno_id' => $aluno[$i],
+                    'disciplina_id' => $request->disciplina_id[0],
+                    'id_trimestre' => $trimestre[0]->trimestre_id
+                ];
+                Nota::create($dados);
+                $sucesso++;
+            }
         }
     }
-}
-        // if(isset($request->npt)){
-        //     $nota = Nota::where('tipo_prova', "Prova Trimestre")
-        //     ->where('aluno_id', $valor)
-        //     ->where('disciplina_id', $request->disciplina_id[0])
-        //     ->where('id_trimestre', $trimestre[0]->trimestre_id)
-        //     ->get();
-        //     if(count($nota) > 0){
-        //         $falha++;
-        //     } else{
-        //         $dados = [
-        //             'nota_aluno' => $nota[$chave],
-        //             'tipo_prova' => "Prova Trimestre",
-        //             'descricao_nota' => null,
-        //             'aluno_id' => $valor,
-        //             'disciplina_id' => $request->disciplina_id[0],
-        //             'id_trimestre' => $trimestre[0]->trimestre_id
-        //         ];
-        //         Nota::create($dados);
-        //     }
-        // }
-        // if(isset($request->exame)){
-        //     $nota = Nota::where('tipo_prova', "Exame")
-        //     ->where('aluno_id', $valor)
-        //     ->where('disciplina_id', $request->disciplina_id[0])
-        //     ->where('id_trimestre', $trimestre[0]->trimestre_id)
-        //     ->get();
-        //     if(count($nota) > 0){
-        //         $falha++;
-        //     } else{
-        //         $dados = [
-        //             'nota_aluno' => $nota[$chave],
-        //             'tipo_prova' => "Exame",
-        //             'descricao_nota' => null,
-        //             'aluno_id' => $valor,
-        //             'disciplina_id' => $request->disciplina_id[0],
-        //             'id_trimestre' => $trimestre[0]->trimestre_id
-        //         ];
-        //         Nota::create($dados);
-        //     }
-        // }
-        // if(isset($request->recurso)){
-        //     $nota = Nota::where('tipo_prova', "Recurso")
-        //     ->where('aluno_id', $valor)
-        //     ->where('disciplina_id', $request->disciplina_id[0])
-        //     ->where('id_trimestre', $trimestre[0]->trimestre_id)
-        //     ->get();
-        //     if(count($nota) > 0){
-        //         $falha;
-        //     } else{
-        //         $dados = [
-        //             'nota_aluno' => $nota[$chave],
-        //             'tipo_prova' => "Recurso",
-        //             'descricao_nota' => null,
-        //             'aluno_id' => $valor,
-        //             'disciplina_id' => $request->disciplina_id[0],
-        //             'id_trimestre' => $trimestre[0]->trimestre_id
-        //         ];
-        //         Nota::create($dados);
-        //     }
-        // }
-        // if(isset($request->exame_especial)){
-        //     $nota = Nota::where('tipo_prova', "Exame Especial")
-        //     ->where('aluno_id', $valor)
-        //     ->where('disciplina_id', $request->disciplina_id[0])
-        //     ->where('id_trimestre', $trimestre[0]->trimestre_id)
-        //     ->get();
-        //     if(count($nota) > 0){
-        //         $falha++;
-        //     } else{
-        //         $dados = [
-        //             'nota_aluno' => $nota[$chave],
-        //             'tipo_prova' => "Exame Especial",
-        //             'descricao_nota' => null,
-        //             'aluno_id' => $valor,
-        //             'disciplina_id' => $request->disciplina_id[0],
-        //             'id_trimestre' => $trimestre[0]->trimestre_id
-        //         ];
-        //         Nota::create($dados);
-        //     }
-        // }
+    if ($sucesso > 0 && $falha > 0) {
+        return redirect()->back()->with('sucesso', "Avaliação realizada com sucesso, mas há " . $falha . " aluno(s) que já possuía(m) uma nota!");
+    } elseif($sucesso > 0 && $falha === 0){
         return redirect()->back()->with('sucesso', "Avaliação realizada com sucesso!");
+    } elseif ($sucesso === 0 && $falha > 0) {
+        return redirect()->back()->with('erro', "Não foi possível realizar a avaliação porque o(s) aluno(s) já possuem uma nota!");
+    }
+    return redirect()->back()->with('sucesso', "Avaliação realizada com sucesso!");
 
     }
 
