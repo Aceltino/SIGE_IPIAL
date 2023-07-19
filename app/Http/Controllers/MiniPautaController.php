@@ -34,6 +34,24 @@ class MiniPautaController extends Controller
             ->get();
         $disciplinas = Disciplina::all();
 
+        if (Auth::user()->cargo_usuario == "Professor") 
+        {
+            $usr = Auth::user();
+            $usr_pessoa = $usr->pessoa->pessoa_id;
+            $prof_id = Professor::where('pessoa_id', $usr_pessoa)->first();
+            $q = Disciplina::with(['professor', 'turmas'])
+                ->whereHas('professor', function ($query) use ($usr_pessoa, $prof_id) {
+                    $query->where('professores.pessoa_id', $usr_pessoa)
+                        ->where('professores.professor_id', $prof_id->professor_id);
+                })->get();
+            if ($q) {
+                $prof_dis = Professor_disciplina::where('professor_id', $prof_id->professor_id)->get();
+                
+                return view('mini-pauta.mini-pauta-discip', ['prof_dis' => $prof_dis, 'usr_prof' => true]);
+            }else{
+                return redirect()->back()->with('Erro', 'Não estás associado a nenhuma disciplina!'); 
+            }
+        }
         $tem = 0;
         $n_tem = 0;
         $qual = [];

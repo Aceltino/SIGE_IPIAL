@@ -80,17 +80,16 @@
     </div>
     </div>
   </div>
-  <form method="POST" action="">
+  <form method="POST" action="{{route('avaliar.aluno')}}">
     @csrf
     <div class="form-group" style="display: flex; justify-content: end; margin-top: 4px;">
-      <button class="btn botaoazul" name="ac"  type="submit" style="margin-right: 3px;">AC</button>
-      <button class="btn botaoazul" name="npp" type="submit" style="margin-right: 3px;">NPP</button>
-      <button class="btn botaoazul" name="npt"  type="submit" style="margin-right: 3px;">NPT</button>
-      <button class="btn botaoazul" name="exame" type="submit" style="margin-right: 3px;">Exame</button>
-      <button class="btn botaoazul"  type="submit" style="margin-right: 3px;">PT</button>
-      <button class="btn botaoazul"  type="submit" style="margin-right: 3px;">PAP</button>
-      <button class="btn botaoazul"  type="submit" style="margin-right: 3px;">Nota do Estágio</button>
-      <button class="btn botaoazul"  type="submit" style="margin-right: 3px;">Nota Administrativa</button>
+      <button class="btn botaoazul" name="tipo_prova" value="ac" type="submit" style="margin-right: 3px;">AC</button>
+      <button class="btn botaoazul" name="tipo_prova" value="Prova Professor" type="submit" style="margin-right: 3px;">NPP</button>
+      <button class="btn botaoazul" name="tipo_prova" value="Prova Trimestre"  type="submit" style="margin-right: 3px;">NPT</button>
+      <button class="btn botaoazul" name="tipo_prova" value="Exame" type="submit" style="margin-right: 3px;">Exame</button>
+      <button class="btn botaoazul" name="tipo_prova" value="pap" type="submit" style="margin-right: 3px;">PAP</button>
+      <button class="btn botaoazul" name="tipo_prova" value="nota_estagio" type="submit" style="margin-right: 3px;">Nota do Estágio</button>
+      <button class="btn botaoazul" name="tipo_prova" value="nota_administrativa" type="submit" style="margin-right: 3px;">Nota Administrativa</button>
     </div>
 
     <div class="bortabela" style="box-shadow: 0 5px 15px 0 rgba(82, 63, 105, 0.2); border: 1px solid white; border-radius: 3px; padding: 2px;">
@@ -122,43 +121,46 @@
         <tbody>
           @if (!empty($aluno))
             @foreach ($aluno as $chave1 => $valor1)
-  
+
               @foreach ($valor1 as $chave2 => $valor2)
-  
+
                   @foreach ($valor2 as $chave3 => $valor3)
 
-                  
-  
+
+
                       <tr style="text-align: center;">
                           <th scope="row">{{$valor3['numero_aluno']}}</th>
                           <td>{{$valor3['nome']}}</td>
-  
+
                           @if ($valor3['mac']<10)
                           <td style="color: rgb(255, 8, 8)">{{$valor3['mac']}}</td>
                           @else
                           <td style="color: rgb(10, 10, 255)">{{$valor3['mac']}}</td>
                           @endif
-  
+
                           @if ($valor3['npp']<10)
                           <td style="color: rgb(255, 8, 8)">{{$valor3['npp']}}</td>
                           @else
                           <td style="color: rgb(10, 10, 255)">{{$valor3['npp']}}</td>
                           @endif
-  
+
                           @if ($valor3['npt']<10)
                           <td style="color: rgb(255, 8, 8)">{{$valor3['npt']}}</td>
                           @else
                           <td style="color: rgb(10, 10, 255)">{{$valor3['npt']}}</td>
                           @endif
-  
+
                           @if ($valor3['exame']<10)
                           <td style="color: rgb(255, 8, 8)">{{$valor3['exame']}}</td>
                           @else
                           <td style="color: rgb(10, 10, 255)">{{$valor3['exame']}}</td>
                           @endif
-  
+
                           <td style="text-align: center">
-                          <input class="form-control innota"  type="text" name="aluno[]" maxlength="4" id="notaimput">
+                          <input class="form-control innota"  type="text" name="nota_aluno[]" maxlength="4" id="notaimput">
+                          <input class="form-control innota"  type="text" name="aluno_id[]" value="{{$valor3['aluno_id']}}" maxlength="4" id="notaimput" hidden>
+                          <input class="form-control innota"  type="text" name="disciplina_id[]" value="{{$valor3['disciplina_id']}}" maxlength="4" id="notaimput" hidden>
+
                           </td>
                           <td style="text-align: center">
                           <a href="{{route('editar.avaliacao.aluno', [$valor3['aluno_id'], $valor3['disciplina_id']])}}" class="btn linkeditar">Avaliações Aluno</a>
@@ -170,12 +172,12 @@
 
                       </tr>
                   <!-- Início da Modal -->
-  
+
             <!-- Fím da modal -->
                   @endforeach
               @endforeach
             @endforeach
-  
+
           </tbody>
       </table>
   </form>

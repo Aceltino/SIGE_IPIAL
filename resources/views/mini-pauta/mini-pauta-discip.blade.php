@@ -6,18 +6,20 @@
     <main id="main" class="main">
         <div class="pagetitle">
             <div class="row">
-                <div class="col">
-                    <h1>Mini-Pauta - {{ $turma->nome_turma }}</h1>      
-                </div>
-            
-                <div class="col-lg-2">
-                    <select class="btn-sel form-select" name="opcoes" id="filtro3" >
-                        <option disabled selected>Disciplinas</option>
-                        @foreach ($disciplinar as $item)
-                            <option value="I10AM">{{ $item['disciplina']->nome_disciplina }}</option>
-                        @endforeach
-                    </select>
-                </div>        
+                @if (!isset($usr_prof))
+                    <div class="col">
+                        <h1>Mini-Pauta - {{ $turma->nome_turma }}</h1>      
+                    </div>
+                
+                    <div class="col-lg-2">
+                        <select class="btn-sel form-select" name="opcoes" id="filtro3" >
+                            <option disabled selected>Disciplinas</option>
+                            @foreach ($disciplinar as $item)
+                                <option value="I10AM">{{ $item['disciplina']->nome_disciplina }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                @endif
             </div>
         </div>
 
@@ -33,21 +35,46 @@
                 <tr>
                     <th scope="col">Curso</th>
                     <th scope="col">Disciplina</th>
-                    <th scope="col">Periodo</th>
+                    @if (isset($usr_prof) and $usr_prof == true)
+                        <th scope="col">Turma</th>
+                    @else
+                        <th scope="col">Periodo</th>
+                    @endif
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($disciplinar as $disciplina)
-                    <tr  style=" text-align: center;">
-                        <td>{{ $curso->nome_curso }}</td>
-                        <td>{{ $disciplina['disciplina']->nome_disciplina }}</td>
-                        <td>{{ $turma->turno->nome_turno }}</td>
-                        <td>
-                            <a href="{{ route('mini-pauta.view', ['turma_id' => $turma->turma_id, 'disciplina_id' => $disciplina['disciplina']->disciplina_id]) }}" class="btn btn-cor-sg-a">Ver Mini-pauta</a>
-                        </td>
-                    </tr>
-                @endforeach
+                @if (!isset($usr_prof))
+                    @foreach($disciplinar as $disciplina)
+                        <tr  style=" text-align: center;">
+                            <td>{{ $curso->nome_curso }}</td>
+                            <td>{{ $disciplina['disciplina']->nome_disciplina }}</td>
+                            <td>{{ $turma->turno->nome_turno }}</td>
+                            <td>
+                                <a href="{{ route('mini-pauta.view', ['turma_id' => $turma->turma_id, 'disciplina_id' => $disciplina['disciplina']->disciplina_id]) }}" class="btn btn-cor-sg-a">Ver Mini-pauta</a>
+                            </td>
+                        </tr>
+                    @endforeach
+
+                @elseif (isset($usr_prof) and $usr_prof == true)
+                    @foreach ($prof_dis as $item)
+                        @php
+                            $turmas = $item->turma;
+                        @endphp
+
+                        @foreach ($turmas as $turma)
+                            <tr  style=" text-align: center;">
+                                <td>{{ $turma->curso->nome_curso }}</td>
+                                <td>{{ $turma->disciplinas->disciplina->nome_disciplina }}</td>
+                                <td>{{ $turma->nome_turma }}</td>
+                                <td>
+                                    <a href="{{ route('mini-pauta.view', ['turma_id' => $turma->turma_id, 'disciplina_id' => $turma->disciplinas->disciplina->disciplina_id]) }}" class="btn btn-cor-sg-a">Ver Mini-pauta</a>
+                                </td>
+                            </tr>
+                        @endforeach
+
+                    @endforeach
+                @endif
             </tbody>
         </table>    
     </main>
