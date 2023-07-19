@@ -13,79 +13,15 @@
 
             <div class="row mb-3">
                 <div class="col">
-                    <input type="text" oninput="this.className = ''" class="form-control" value="Desenhador Projectista" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" oninput="this.className = ''" class="form-control" value="EI10AN" id="input-editar-horario-turma" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled readonly>
                 </div>
             </div>
 
             <div class="row mb-3">
                 <div class="col">
-                    <input type="text" oninput="this.className = ''" class="form-control" value="EI10AN" id="input-editar-horario-turma" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" oninput="this.className = ''" class="form-control" value="Sala 7" id="input-editar-horario-turma" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled readonly>
                 </div>
             </div>
-
-            <div class="row d-flex align-items-center mb-3" id="editar-horario-div-que-pode-desaparecer-1">
-                <div class="col-sm-6">
-                    <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Primeiro dia de Educação Física">
-                            <option value="Segunda-Feira">Segunda-Feira</option>
-                            <option value="Terça-Feira">Terça-Feira</option>
-                            <option value="Quarta-Feira">Quarta-Feira</option>
-                            <option value="Quinta-Feira">Quinta-Feira</option>
-                            <option value="Sexta-Feira">Sexta-Feira</option>
-                        </optgroup>
-                    </select>
-                </div>
-
-                <div class="col-sm-3">
-                    <select oninput="this.className = ''" name='ed_fisica_dia1' class="form-select" id="editar-horario-select-tempo-de-aula-1">
-                        <optgroup label="Tempos de aula"> 
-                            <option value="1">Primeiro tempo</option>
-                            <option value="2">Segundo tempo</option>
-                            <option value="3">Terceiro tempo</option>
-                            <option value="4">Quarto tempo</option>
-                            <option value="5">Quinto tempo</option>
-                            <option value="6">Sexto tempo</option>
-                        </optgroup>
-                    </select>
-                </div>
-
-                <div class="col-sm-3">
-                    <input type="time" title="Hora de fim da Educação Física" class="form-control" id="editar-horario-hora-de-fim-da-educacao-fisica-no-primeiro-dia" name="" oninput="this.className = ''" required>
-                </div>
-            </div>
-
-            <div class="row d-flex align-items-center" id="editar-horario-div-que-pode-desaparecer-2">
-                <div class="col-sm-6">
-                    <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Segundo dia de Educação Física">
-                            <option value="Segunda-Feira">Segunda-Feira</option>
-                            <option value="Terça-Feira">Terça-Feira</option>
-                            <option value="Quarta-Feira">Quarta-Feira</option>
-                            <option value="Quinta-Feira">Quinta-Feira</option>
-                            <option value="Sexta-Feira">Sexta-Feira</option>
-                        </optgroup>
-                    </select>
-                </div>
-
-                <div class="col-sm-3">
-                    <select oninput="this.className = ''" name='ed_fisica_dia1' class="form-select" id="editar-horario-select-tempo-de-aula-2">
-                        <optgroup label="Tempos de aula"> 
-                            <option value="1">Primeiro tempo</option>
-                            <option value="2">Segundo tempo</option>
-                            <option value="3">Terceiro tempo</option>
-                            <option value="4">Quarto tempo</option>
-                            <option value="5">Quinto tempo</option>
-                            <option value="6">Sexto tempo</option>
-                        </optgroup>
-                    </select>
-                </div>
-
-                <div class="col-sm-3">
-                    <input type="time" title="Hora de fim da Educação Física" class="form-control" id="editar-horario-hora-de-fim-da-educacao-fisica-no-segundo-dia" name="" oninput="this.className = ''" required>
-                </div>
-            </div>
-        
-
         
             <h4 class="text-uppercase text-center my-3 color-blue-principal">Disciplinas e Professores</h4>
           
@@ -1668,30 +1604,11 @@
                     </select>
                 </div>
             </div>
-
-
-
-            <h4 class="text-uppercase text-center my-3 color-blue-principal">Director de turma</h4>
-          
-            <div class="row" >
-                <div class="col">
-                    <select oninput="this.className = ''" class="form-select">
-                        <optgroup label="Director de turma">
-                        <option value="Sungo Afonso">Sungo Afonso</option>
-                        <option value="Brigith Barros">Brigith Barros</option>
-                        <option value="Sivi Lando">Sivi Lando</option>
-                        <option value="Anatoli Lussati">Anatoli Lussati</option>
-                        <option value="Rosa António">Rosa António</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-
         </div>
 
         <div style="text-align:center;margin-top:10px;">
             <div class="mt-4">
-                <a href="/ano-letivo" class="btn" style="background-color: #070b17; color: #fff;">Cancelar edição</a>
+                <a href="/ano-letivo" class="btn btn-outline-secondary" style="background-color: #070b17; color: #fff;">Cancelar edição</a>
                 <button type="submit" class="btn btn-success">Atualizar horário</button>
             </div>
         </div>
