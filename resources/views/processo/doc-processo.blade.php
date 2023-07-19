@@ -20,13 +20,11 @@
     <section class="section perfil">
       <div class="processo-al row">
         <div class="col-xl-2">
-
-            <div class="card-bodys">
-
-            <img value ="{{$alunos->candidato->pessoa->user->imagem_usuario,}}">
-            </div>
-            <hr id="borda-nome">
-        </div>
+              <div class="card-bodys">
+                  <img src="/img/foto.jpg" alt="">
+                  </div>
+                  <hr id="borda-nome">
+              </div>
         <div class="col-xl-10">
           <div> 
         
@@ -61,24 +59,12 @@
             <div class="area-turmas">
               <div class="area-dado-pessoal">
                 <h4>Dados da 10a Class, Turma:</h4><h5>{{$anoturm->turma->nome_turma}}</h5><h4>Nº</h4><h5>{{$anoturm->pivot->numero_aluno}}</h5><h4>ano lectivo</h4><h5 value="">{{$anoturm->ano_lectivo->ano_lectivo}}</h5>
-              </div>
-              <div class="area-dado-pessoal">
-                <h4>Dados da 11a Class, Turma:</h4><h5>I11AM</h5><h4>Nº</h4><h5>15</h5><h4>ano lectivo</h4><h5>2021-2022</h5>
-              </div>
-              <div class="area-dado-pessoal">
-                <h4>Dados da 12a Class, Turma:</h4><h5>I12BT</h5><h4>Nº</h4><h5>10</h5><h4>ano lectivo</h4><h5>2022-2023</h5>
-              </div>
-              <div class="area-dado-pessoal">
-                <h4>Dados da 13a Class, Turma:</h4><h5>I13BT</h5><h4>Nº</h4><h5>10</h5><h4>ano lectivo</h4><h5>2023-2024</h5>
-              </div>
-              
+              </div>  
             </div>
           </div>
         </div>
         @endforeach
-  
       </div>
     </section>
-  
 </main>
 @endsection

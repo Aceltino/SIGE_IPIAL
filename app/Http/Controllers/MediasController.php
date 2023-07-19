@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\{
     ClasseDisciplina,
     Classificacaofinal,Media,
+    ResultadoFinalAluno,
     Trimestre
 };
 
@@ -139,19 +140,26 @@ class MediasController extends Controller
     }
 
 
-    //Metodo apresenta o resultado final do aluno duante o ano lectivo
-    public static function setResultadoAnualAluno($aluno_id,$anoLectivo)
+    //Metodo que apresenta o resultado final do aluno duante o ano lectivo
+    public static function setResultadoAnualAluno($aluno_id,$anoLectivo,$disciplina_id,$classe_id)
     {
         /* 
             CONDIÇÕES DO RESULTADO FINAL DO ALUNO 
             10ª-11ª-12ª-13ª classe
  
-            # Triplo de números de Faltas em relação a carga horaria = Reprova
+        ->  # Triplo de números de Faltas não justificadas em relação a carga horaria = Reprova 
             # +3 negativas(7 a 9)->Disciplina Continua(CA) = Reprova
-            # 1 negativa( < 7 )->Disciplina Continua(CA) = Reprova
+        ->  # 1 negativa( < 7 )->Disciplina Continua(CA) = Reprova
             # 1 negativa( 0 a 9 )->Disciplina Terminal(CFD) = Recurso
             # O contrario de toda condição sitada acima o aluno= Aprova
         */
+
+        $faltas= AssiduidadeAlunoController::assiduidadeAnual_2($aluno_id, $anoLectivo);
+        // dd($test);
+        
+        $cargaHoraria= ClasseDisciplina::where('disciplina_id',$disciplina_id)
+                                        ->where('classe_id',$classe_id)
+                                        ->get();      
 
         $cadContinua= Classificacaofinal::where('ano_lectivo_id',$anoLectivo)
                                         ->where('aluno_id',$aluno_id)
@@ -163,16 +171,98 @@ class MediasController extends Controller
                                         ->where('ca',-1)
                                         ->get();
 
-        $totalDisciplina=count($cadContinua)+count($cadTerminal);
 
+        // #Triplo de números de Faltas em relação a carga horaria = Reprova 
+        $limFalta=0;
+        foreach ($cargaHoraria as $value) {
+            $limFalta= $value->carga_horaria*3;
+        }
+        foreach ($faltas as $value) {
+            foreach ($value as $valuee) {
+                $allFaltas[]=$valuee;
+            }
+        }  
+
+        $allFaltas[]=0;
+        $numFaltasNJustificadas= (count($allFaltas)-1);
+
+        if($numFaltasNJustificadas >= $limFalta){
+            
+            // Verifica se já existe um registro para esse aluno e ano letivo
+            $resultadoFinalAluno = ResultadoFinalAluno::where('ano_lectivo_id', $anoLectivo)
+                                                        ->where('aluno_id', $aluno_id)
+                                                        ->first();
+            if($resultadoFinalAluno) {
+                goto conti;
+            }else {
+                // Cria o resultado do aluno com a situação 'Ñ/Transita' e todas as disciplinas deficientes
+                ResultadoFinalAluno::create([
+                    'situacao' => 'Ñ/Transita',
+                    'ano_lectivo_id' => $anoLectivo,
+                    'aluno_id' => $aluno_id,
+                ]);
+            }
+        }
+        
+        conti:
+        
+        // # 1 negativa( < 7 )->Disciplina Continua(CA) = Reprova
+        $totalDisciplina=count($cadContinua)+count($cadTerminal);
         $mediaCadContinua= $cadContinua->sum('ca');
         $mediaCadTerminal= $cadTerminal->sum('cfd');
+        $mediaAnual= round( ($mediaCadTerminal+$mediaCadTerminal)/$totalDisciplina );
 
-        $mediaAnual= round( (12+$mediaCadTerminal)/$totalDisciplina );//Medial anual do aluno
+        // Array para armazenar as disciplinas com notas menores que 7
+        $disciplinaDef=[];
+        $notasAprovadas=0; //Contador
+
+        foreach ($cadContinua as $value){
+            if ($value->ca < 7) {
+
+                // Adiciona a disciplina ao array de disciplinas deficientes
+                $disciplinaDef[]=$value->disciplina_id;
+
+            }elseif($value->ca >= 7 && $value->ca <= 9){
+
+                // Conta quantas notas ca >= 7 e <= 9
+                $notasAprovadas++;
+            }
+            
+        }
+
+        if ($notasAprovadas > 3) {
+            goto cadastrarSituacao;
+        } else {
+           goto conti_1; 
+        }
+
+        // Verifica se já existe um registro para esse aluno e ano letivo
+        $resultadoFinalAluno = ResultadoFinalAluno::where('ano_lectivo_id', $anoLectivo)
+                                                ->where('aluno_id', $aluno_id)
+                                                ->first();
+        if ($resultadoFinalAluno) {
+           goto conti_1;
+        } else {
+            cadastrarSituacao:
+            // Cria o resultado do aluno com a situação 'Ñ/Transita' e todas as disciplinas deficientes
+            ResultadoFinalAluno::create([
+                'situacao' => 'Ñ/Transita',
+                'ano_lectivo_id' => $anoLectivo,
+                'aluno_id' => $aluno_id,
+                'id_cadeiras_def' => json_encode( $disciplinaDef),
+            ]);
+        }
+
+        
+
+        
+
+        conti_1:
+
+        // # +3 negativas(7 a 9)->Disciplina Continua(CA) = Reprova
 
 
+    } 
 
-    }
-    
-    
-} //Fim da classe "MediasController"
+
+}//Fim da classe "MediasController"
