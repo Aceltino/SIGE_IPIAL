@@ -168,7 +168,7 @@ class MediasController extends Controller
         $mediaCadContinua= $cadContinua->sum('ca');
         $mediaCadTerminal= $cadTerminal->sum('cfd');
 
-        $mediaAnual= round( (12+$mediaCadTerminal)/$totalDisciplina );//Medial anual do aluno
+        $mediaAnual= round( ($mediaCadContinua + $mediaCadTerminal)/$totalDisciplina );//Medial anual do aluno
 
 
 

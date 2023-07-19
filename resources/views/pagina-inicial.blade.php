@@ -26,7 +26,7 @@
     </div>
     
     {{--  json  --}}
-      {{dd($dadosapiInicio)}}  
+  
     
     <section id="counts" class="counts counts-escuro">
       <div class="container">
@@ -38,16 +38,26 @@
             <div class="figura-card">
               <div class="count-box count-box-escuro">
                 <i class="bi bi-people"></i>
+                
+                @if ($data['Inscritos'] == 0)
+                <span class="total">{{$data['Inscritos']}}</span>
+                @else
                 <span class="total">500</span>
+                @endif
                 <p>INSCRITOS</p>
               </div>
 
+             
+
               <div class="card-legenda">
                 <ul>
-                  <li>T.I: 23</li>
-                  <li>D.P: 100</li>
-                  <li>T.E.I.E: 50</li>
-                  <li>E.T: 122</li>
+                  @if ($data['Inscritos'] == 0)
+                  <li> Sem Alunos inscritos </li>
+                  @else
+                  @foreach ( $data['Inscritos'] as $dados )
+                  <li>{{$dados['sigla']}} : {{$dados['candidatos']}} </li> 
+                  @endforeach
+                  @endif
                 </ul>
               </div>
             </div>
@@ -58,16 +68,23 @@
             <div class="figura-card">
               <div class="count-box count-box-escuro">
                 <i class="bi bi-person"></i>
+                @if ($data['Admitidos'] == 0)
+                <span class="total">{{$data['Admitidos']}}</span>
+                @else
                 <span class="total">500</span>
+                @endif
                 <p>ADMITIDOS</p>
               </div>
               
               <div class="card-legenda">
                 <ul>
-                  <li>T.I: 200</li>
-                  <li>D.P: 200</li>
-                  <li>T.E.I.E: 50</li>
-                  <li>E.T: 122</li>
+                  @if ($data['Admitidos'] == 0)
+                  <li> Sem Alunos Admitidos </li>
+                  @else
+                  @foreach ( $data['Admitidos'] as $dados )
+                  <li>{{$dados['sigla']}} : {{$dados['candidatos']}} </li> 
+                  @endforeach
+                  @endif
                 </ul>
               </div>
             </div>
@@ -79,16 +96,23 @@
             <div class="figura-card">
               <div class="count-box count-box-escuro">
                 <i class="bi bi-check2-square"></i>
+                @if ($data['NAdmitidos'] == 0)
+                <span class="total">{{$data['NAdmitidos']}}</span>
+                @else
                 <span class="total">500</span>
+                @endif
                 <p>NÃO ADMITIDOS</p>
               </div>
               
               <div class="card-legenda">
                 <ul>
-                  <li>T.I: 300</li>
-                  <li>D.P: 200</li>
-                  <li>T.E.I.E: 150</li>
-                  <li>E.T: 122</li>
+                  @if ($data['NAdmitidos'] == 0)
+                  <li> Sem Alunos Não Admitidos </li>
+                  @else
+                  @foreach ( $data['NAdmitidos'] as $dados )
+                  <li>{{$dados['sigla']}} : {{$dados['candidatos']}} </li> 
+                  @endforeach
+                  @endif
                 </ul>
               </div>
             </div>
@@ -100,16 +124,24 @@
             <div class="figura-card">
               <div class="count-box count-box-escuro">
                 <i class="bi bi-clipboard"></i>
+                @if ($data['Matriculados'] == 0)
+                <span class="total">{{$data['Matriculados']}}</span>
+                @else
                 <span class="total">500</span>
+                @endif
                 <p>MATRICULADOS</p>
               </div>
+
               
               <div class="card-legenda">
                 <ul>
-                  <li>T.I: 200</li>
-                  <li>D.P: 150</li>
-                  <li>T.E.I.E: 100</li>
-                  <li>E.T: 132</li>
+                  @if ($data['Matriculados'] == 0)
+                  <li> Sem Alunos Matriculados </li>
+                  @else
+                  @foreach ( $data['Matriculados'] as $dados )
+                  <li>{{$dados['sigla']}} : {{$dados['alunos']}} </li> 
+                  @endforeach
+                  @endif
                 </ul>
               </div>
             </div>
@@ -140,17 +172,24 @@
 
             <div class="figura-card">
               <div class="count-box count-box-escuro">
-                <i class="bi bi-person-check"></i>
+                <i class="bi bi-person"></i>
+                @if ($data['TotalTurmasCurso'] == 0)
+                <span class="total">{{$data['TotalTurmasCurso']}}</span>
+                @else
                 <span class="total">500</span>
+                @endif
                 <p>TURMAS</p>
               </div>
               
               <div class="card-legenda">
                 <ul>
-                  <li>T.I: 20</li>
-                  <li>D.P: 20</li>
-                  <li>T.E.I.E: 16</li>
-                  <li>E.T: 10</li>
+                  @if ($data['TotalTurmasCurso'] == 0)
+                  <li> Sem Alunos Matriculados </li>
+                  @else
+                  @foreach ( $data['TotalTurmasCurso'] as $dados )
+                  <li>{{$dados['curso']}} : {{$dados['turmas']}} </li> 
+                  @endforeach
+                  @endif>
                 </ul>
               </div>
             </div>
@@ -161,16 +200,23 @@
             <div class="figura-card">
               <div class="count-box count-box-escuro">
                 <i class="bi bi-people"></i>
+                @if ($data['Vagas'] == 0)
+                <span class="total">{{$data['Vagas']}}</span>
+                @else
                 <span class="total">500</span>
+                @endif
                 <p>VAGAS</p>
               </div>
               
               <div class="card-legenda">
                 <ul>
-                  <li>T.I: 200</li>
-                  <li>D.P: 100</li>
-                  <li>T.E.I.E: 300</li>
-                  <li>E.T: 200</li>
+                  @if ($data['Vagas'] == 0)
+                  <li> Sem Alunos Matriculados </li>
+                  @else
+                  @foreach ( $data['Vagas'] as $dados)
+                  <li>{{$dados['curso']}} : {{$dados['turno']}}  : {{$dados['totalVagas']}}  </li>
+                  @endforeach
+                  @endif
                 </ul>
               </div>
             </div>
@@ -381,30 +427,15 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td><span>Técnico de Informática</span></td>
+                    @foreach ( $data['TotalTurmasCurso'] as $turmas )
+                    <tr>  
+                      <td><span>{{$turmas['curso']}}</span></td>
                       <td>8</td>
                       <td>6</td>
                       <td>6</td>
                     </tr>
-                    <tr>
-                      <td><span>Desenhador Projetista</span></td>
-                      <td>6</td>
-                      <td>8</td>
-                      <td>6</td>
-                    </tr>
-                    <tr>
-                      <td><span>Técnico de Energia e Instalações Electricas</span></td>
-                      <td>6</td>
-                      <td>5</td>
-                      <td>5</td>
-                    </tr>
-                    <tr>
-                      <td><span>Electronica e Telecomunicação</span></td>
-                      <td>3</td>
-                      <td>4</td>
-                      <td>3</td>
-                    </tr>
+                    @endforeach
+       
                   </tbody>
                 </table>
 
