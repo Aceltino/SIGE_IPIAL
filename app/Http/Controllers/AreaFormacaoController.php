@@ -44,9 +44,6 @@ class AreaFormacaoController extends Controller
     {
         $nome = CursoTrait::letrasMaiusculas($request->nome_area_formacao);
         $area_formacao = Area_formacao::create(['nome_area_formacao' => $nome['nome']]);
-        $professor = Professor::find($request->coordenador);
-        $professor->area_formacao_id = $area_formacao->area_formacao_id;
-        $professor->save();
         return redirect()->back()->with("sucesso", "Curso criado com sucesso!");
     }
 
@@ -56,20 +53,9 @@ class AreaFormacaoController extends Controller
         $dado = [
             'nome_area_formacao' => $nome['nome'],
         ];
-        $coordenador_actual = Professor::where('area_formacao_id', $request->id)->get();
-        if($coordenador_actual[0]->professor_id != $request->coordenador){
-            $professor1 = ['area_formacao_id' => null];
-            $professor2 = ['area_formacao_id' => $request->id];
-            Professor::where('professor_id', $coordenador_actual[0]->professor_id)->update($professor1);
-            Professor::where('professor_id', $request->coordenador)->update($professor2);
-            Area_formacao::where('area_formacao_id', $request->id)->update($dado);
-            return redirect()->route('area.formacao')->with('sucesso', "Área de formação actualizada com sucesso!");
-        } else{
             Area_formacao::where('area_formacao_id', $request->id)->update($dado);
             return redirect()->route('area.formacao')->with('sucesso', "Área de formação actualizada com sucesso!");
         }
-    }
-
 
     public function delete($id)
     {

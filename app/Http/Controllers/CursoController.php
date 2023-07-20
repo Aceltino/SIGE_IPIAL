@@ -60,7 +60,7 @@ class CursoController extends Controller
 
     public function store(Request $request){
 
-        if(isset($request->nome_curso) && isset($request->area_formacao) && isset($request->coordenador) && isset($request->sigla_curso)){
+        if(isset($request->nome_curso) && isset($request->area_formacao) && isset($request->sigla_curso)){
             if(!empty($request->nome_curso) && !empty($request->nome_curso) && !empty($request->nome_curso) && !empty($request->nome_curso)){
                 $curso = CursoTrait::checkName($request->nome_curso);
                 if(isset($curso['erro'])){
@@ -81,26 +81,19 @@ class CursoController extends Controller
                         }elseif(count($sigla) > 0){
                             return redirect()->back()->with("erro", "Esta sigla já se encontra cadastrada!");
                         } else{
-                            $dados = Professor::where('professor_id', $request->coordenador)->get()->toArray();
-                            if(count($dados) > 0 && ($dados[0]['curso_id'] > 0 || ($dados[0]['area_formacao_id'] > 0))){
-                                return redirect()->back()->with("erro", "Este coordenador já coordena um departamento!");
-                            } else{
                                 $dados = [
                                     'nome_curso' => $cr['nome'],
                                     'sigla' => $sg['sigla'],
                                     'area_formacao_id' => $request->area_formacao,
                                 ];
                                 $curso = Curso::create($dados);
-                                $professor = Professor::find($request->coordenador);
-                                $professor->curso_id = $curso->curso_id;
-                                $professor->save();
+                                
                                 return redirect()->back()->with("sucesso", "Curso criado com sucesso!");
                             }
                         }
                         
                     }
                 }
-            }
 
         } else{
             return redirect()->back()->with("erro", "Preencha todos os campos!");
@@ -108,13 +101,14 @@ class CursoController extends Controller
     }
 
     public function index(){
+        $cursos = Curso::with('coordenador.pessoa')->get();
         $coordenador = Professor::with('pessoa', 'curso.areaFormacao')
         ->where('cargo', "Coordenador Curso")
         ->get()->toArray();
         $areaFormacao = Area_formacao::all();
         $curso = Curso::all();
 
-        return view('curso/cursos', compact(['curso', 'areaFormacao', 'coordenador']));
+        return view('curso/cursos', compact(['curso', 'areaFormacao', 'coordenador', 'cursos']));
     }
 
     public function indexEditar($id){
@@ -131,8 +125,8 @@ class CursoController extends Controller
     }
 
     public function update(Request $request){
-        if(isset($request->nome_curso) && isset($request->area_formacao) && isset($request->coordenador) && isset($request->sigla_curso)){
-            if(!empty($request->nome_curso) && !empty($request->nome_curso) && !empty($request->nome_curso) && !empty($request->nome_curso)){
+        if(isset($request->nome_curso) && isset($request->area_formacao) && isset($request->sigla_curso)){
+            if(!empty($request->nome_curso) && !empty($request->sigla_curso) && !empty($request->area_formacao)){
                 $curso = CursoTrait::checkName($request->nome_curso);
                 if(isset($curso['erro'])){
                     return CursoTrait::erro($curso['erro']);
@@ -157,16 +151,6 @@ class CursoController extends Controller
                                     'sigla' => $sg['sigla'],
                                     'area_formacao_id' => $request->area_formacao,
                                 ];
-                                $coordenador_actual = Professor::where('curso_id', $request->id)->get();
-                                //dd($request->coordenador);
-                                if($coordenador_actual[0]->professor_id != $request->coordenador){
-                                    $professor1 = ['curso_id' => null];
-                                    $professor2 = ['curso_id' => $request->id];
-                                    Professor::where('professor_id', $coordenador_actual[0]->professor_id)->update($professor1);
-                                    Professor::where('professor_id', $request->coordenador)->update($professor2);
-                                    Curso::where('curso_id', $request->id)->update($dados);
-                                    return redirect()->route('consultar.cursos')->with('sucesso', "Curso actualizado com sucesso!");
-                                } else{
                                     Curso::where('curso_id', $request->id)->update($dados);
                                     return redirect()->route('consultar.cursos')->with('sucesso', "Curso actualizado com sucesso!");
                                 }
@@ -174,7 +158,6 @@ class CursoController extends Controller
 
                     }
                 }
-            }
 
         } else{
             return redirect()->back()->with("erro", "Preencha todos os campos!");

@@ -5,11 +5,11 @@ $(document).ready(function () {
   $('#selectComponente').change(function () {
     var selectedOption = $(this).val();
 
-    if (selectedOption === 'Técnicas') {
+    if (selectedOption === 'Componente Técnica, Tecnológica e Prática') {
       handleTecnicas();
-    } else if (selectedOption === 'Cientificas') {
+    } else if (selectedOption === 'Componente Científica') {
       handleCientificas();
-    } else if (selectedOption === 'Socio-culturais') {
+    } else if (selectedOption === 'Componente Socio-Cultural') {
       handleSocioCulturais();
     } else {
       disableCheckboxes();
@@ -24,30 +24,8 @@ $(document).ready(function () {
 
     // Desmarcar todas as checkboxes selecionadas
     $('input[name="curso"]:checked').prop('checked', false);
-
-    // Habilitar todas as checkboxes
     $('input[name="curso"]').prop('disabled', false);
 
-    // Verificar se pelo menos uma checkbox está selecionada
-    var numSelecionados = $('input[name="curso"]:checked').length;
-    if (numSelecionados === 0) {
-      // Marcar o primeiro checkbox por padrão
-      $('input[name="curso"]').first().prop('checked', true);
-    }
-
-    // Ao selecionar uma checkbox
-    $('input[name="curso"]').change(function () {
-      // Verificar o número de checkboxes selecionadas
-      var numSelecionados = $('input[name="curso"]:checked').length;
-
-      // Se nenhuma checkbox estiver selecionada, marcar o primeiro checkbox
-      if (numSelecionados === 0) {
-        $('input[name="curso"]').first().prop('checked', true);
-      } else if (numSelecionados > 1) {
-        // Se mais de uma checkbox estiver selecionada, desmarcar todas exceto a atual
-        $('input[name="curso"]').not(this).prop('checked', false);
-      }
-    });
   }
 
   // Função para lidar com a opção "Socio-culturais"
@@ -76,47 +54,14 @@ $(document).ready(function () {
 
   // Função para lidar com a opção "Cientificas"
   function handleCientificas() {
-    // Remover manipuladores de eventos de change associados às checkboxes
-    $('input[name="curso"]').off('change');
+   
 
     // Desmarcar todas as checkboxes
     $('input[name="curso"]').prop('checked', false);
 
-    // Habilitar todas as checkboxes
-    $('input[name="curso"]').prop('disabled', false);
-
-    // Contar o número de checkboxes
-    var numTotalCheckboxes = $('input[name="curso"]').length;
-
-    // Definir os limites mínimo e máximo de seleção
-    var minSelecionar = 2;
-    var maxSelecionar = numTotalCheckboxes - 1;
-
-    // Selecionar as duas primeiras checkboxes por padrão
-    $('input[name="curso"]').slice(0, 2).prop('checked', true);
-
-    // Ao selecionar uma checkbox
-    $('input[name="curso"]').change(function () {
-      var numSelecionados = $('input[name="curso"]:checked').length;
-
-      if (numSelecionados > maxSelecionar) {
-        // Desmarcar a checkbox se o número máximo for excedido
-        $(this).prop('checked', false);
-      } else if (numSelecionados < minSelecionar) {
-        // Impedir a desmarcação se o número mínimo não for atingido
-        $(this).prop('checked', true);
-      }
-    });
+   
   }
 
-  // Função para desabilitar todas as checkboxes
-  function disableCheckboxes() {
-    // Remover manipuladores de eventos de change associados às checkboxes
-    $('input[name="curso"]').off('change');
-
-    // Desabilitar todas as checkboxes
-    $('input[name="curso"]').prop('disabled', true);
-  }
 });
 
 if (document.children.length <= 3)
@@ -166,7 +111,7 @@ function montarInput(id) {
   <div class="form-group col-4">
       <select oninput="this.className = ''" class="form-select" name="classe"
           id="selectclasse">
-          <option selected disabled>Classe</option>
+
           ${Options()}
       </select>
     
