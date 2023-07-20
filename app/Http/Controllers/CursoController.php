@@ -91,7 +91,7 @@ class CursoController extends Controller
                                 return redirect()->back()->with("sucesso", "Curso criado com sucesso!");
                             }
                         }
-                        dd($dados);
+                        
                     }
                 }
 

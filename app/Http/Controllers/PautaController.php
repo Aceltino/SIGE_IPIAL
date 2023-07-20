@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\{
     Aluno_turma,Aluno,User,AnoTurmaCood,
-    Ano_lectivo,Disciplina, Media, Turma,
+    Ano_lectivo, ClasseDisciplina, Disciplina, Media, Turma,
 };
 
 class PautaController extends Controller
@@ -36,7 +36,6 @@ class PautaController extends Controller
     public static function show($id,$anoLectivo):mixed
     {
         
-
         
         $turma= Turma::find($id); //Busca na turma
         $ano= Ano_lectivo::find($anoLectivo);//Buscar Ano Lectivo
@@ -46,9 +45,56 @@ class PautaController extends Controller
 
         $dadosAssinantes=self::entidadesAssinantes(); //Dados das Assinantes da Pauta
         $alunos = Aluno::find($turmaAluno);//Buscar os alunos pertecente a turma buscada acima. 
+
+        $disciplinas = ClasseDisciplina::where('classe_id', $turma->classe_id)->get();
         
+       
+        // foreach($turma->classe->classe_disciplina as $classe)
+        // {
+        //     // foreach ($classe as $disciplina)
+        //     // {
+        //         $disciplinas[] = $classe;
+        //     // }
+
+        // }
+        dd($disciplinas);
+
+        // dd($disciplinas);
+        foreach($disciplinas as $disciplina)
+        {
+            // dd($disciplina->disciplina->nome_disciplina, $disciplina);
+            if ($disciplina->classe_id == $turma->classe_id && ($disciplina->disciplina->curso_id == $turma->curso_id || $disciplina->disciplina->curso_id == null ) ) 
+            {
+                $disci[]= [
+                    'disciplina'=>$disciplina->disciplina_id,
+                    'nomeDisciplina' => $disciplina->disciplina->nome_disciplina,
+                    'componente' => $disciplina->disciplina->componente,
+                    'classe' => $turma->classe->classe,
+                    'sigla'=> $disciplina->disciplina->sigla
+                ];
+            }
+
+             //As Medias com base ao numero de alunos
+             foreach($alunos as $aluno){
+                //Busca da Media dos alunos com base a Disciplina
+                $OneMedia[]= MediasController::getMediaOneTrimestre($disciplina->disciplina_id,$aluno->aluno_id, $anoLectivo); 
+                $TwoMedia[]= MediasController::getMediaTwoTrimestre($disciplina->disciplina_id,$aluno->aluno_id, $anoLectivo); 
+                $ThreeMedia[]= MediasController::getMediaThreeTrimestre($disciplinae->disciplina_id,$aluno->aluno_id, $anoLectivo); 
+
+                //Guardar as Classificação final das disciplinas 
+                MediasController::classificacaoAnual($value->disciplina_id,$aluno->aluno_id,$anoLectivo,$turma->classe->classe_id);
+
+                //Busca a media final da Disciplina com base ao Ano-Lectivo e o Aluno
+                $ca_cfd[]=MediasController::showClassificaoFinal($value->disciplina_id,$aluno->aluno_id,$anoLectivo);
+                
+                //Guarda a Situação Final do Aluno
+                MediasController::setResultadoAnualAluno($aluno->aluno_id,$anoLectivo,$value->disciplina_id,$turma->classe->classe_id);
+            } 
+        }
+        dd( $disci);
         //Buscar as Disciplinas de uma Turma pelos seu Curso
-        $disciplinaGerais= Disciplina::where('componente','Componente Científica')
+        $disciplinaGerais= Disciplina::with('classes')
+                                        ->where('componente','Componente Científica')
                                         ->Orwhere('componente','Componente Socio-Cultural')
                                         ->get();
       
@@ -67,6 +113,7 @@ class PautaController extends Controller
 
         //Busca todas as diciplinas que existem em uma determinada turma
         foreach($disciplinasAll as $value){
+
             $disciplinas[]=$value;//As Disciplinas
 
             //As Medias com base ao numero de alunos
@@ -81,11 +128,17 @@ class PautaController extends Controller
 
                 //Busca a media final da Disciplina com base ao Ano-Lectivo e o Aluno
                 $ca_cfd[]=MediasController::showClassificaoFinal($value->disciplina_id,$aluno->aluno_id,$anoLectivo);
-
+                
+                //Guarda a Situação Final do Aluno
                 MediasController::setResultadoAnualAluno($aluno->aluno_id,$anoLectivo,$value->disciplina_id,$turma->classe->classe_id);
             } 
         }   
         
+        foreach ($alunos as $aluno) {
+            //Busca a situação final do aluno no ano lectivo 
+           $situacaoAluno[]= MediasController::showResultadoAnualAluno($aluno->aluno_id,$anoLectivo);
+        }
+
         //Condição para Pauta ser Gerada
         if ( (count($turmaAluno) <= 0) && (empty($notas)) ){
             return redirect()->back()->with('msg_sem_pauta',"Lamentamos! Esta pauta ainda não esta composta... Aguarde o lançamento das notas");
@@ -103,8 +156,8 @@ class PautaController extends Controller
             'TwoMedia'=>$TwoMedia,
             'ThreeMedia'=>$ThreeMedia,
             'ca_cdf'=>$ca_cfd,
+            'situacaoAluno'=>$situacaoAluno,
             'colspanDisciplina'=>(count($disciplinas)*6),
-
         ];  
         
         //Condições da apresentação da Pauta com base a class
