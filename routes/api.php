@@ -27,7 +27,7 @@ Route::get('turmas', [AlunoTurmaController::class, 'pegarTurmas']);
 
 Route::get('dados-horario', [HorarioController::class, 'pegarDadosHorario']); // http://127.0.0.1:8000/api/dados-horario
 
-Route::get('z', [APIController::class, 'index']); //127.0.0.1:8000/api/settings
+Route::get('settings', [APIController::class, 'index']); //127.0.0.1:8000/api/settings
 
 // Route::middleware('auth:sanctum')vagas->get('/user', function (Request $request) {
 //     return $request->user();
