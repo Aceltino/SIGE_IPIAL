@@ -31,10 +31,7 @@ class SalaController extends Controller
     {
         $sala = new Sala;
         $sala->sala = $request->nome_sala;
-
         $sala->tipo_sala = $requet->tipo_sala;
-
-        $sala->tipo_sala = $request->tipo_sala;
 
         $sala->save();
         return view('sala.cadastrar-sala')->with('sucesso','Sala cadastrada com sucesso');
@@ -59,11 +56,11 @@ class SalaController extends Controller
             'tipo_sala'=>$request->tipo_sala,
         ];
         Sala::where('sala_id',$sala_id)->update($dados);
-        return redirect()->route('sala.edit-sala')->with('edit','Sala editado com sucesso');
+        return redirect()->route('sala.edit-sala')->with('edit','Sala editada com sucesso');
     } 
     public function destroy($sala_id)
     {
         Sala::where('sala_id',$sala_id)->delete();
-        return redirect()->route('sala.sala')->with('delete','Sala editado com sucesso');
+        return redirect()->route('sala.sala')->with('delete','Sala apagada com sucesso');
     }
 }

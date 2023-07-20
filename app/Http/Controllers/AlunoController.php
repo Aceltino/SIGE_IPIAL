@@ -128,6 +128,7 @@ class AlunoController extends Controller
                     break;
                 }
             }
+            // dd($aluno->anoturma);
                 $Alunos[] = [
                     'N_processo' => $aluno->aluno_id,
                     'estado' => $aluno->status,
