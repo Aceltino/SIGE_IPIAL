@@ -426,6 +426,9 @@
                 ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
                 ->get();
 
+                if (!$turmas) {
+                    return 0;
+                }
                 if ($turmas->isEmpty()) {
                     return 0;
                 }
@@ -669,6 +672,9 @@
             ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
             ->get();
 
+            if (!$turmas) {
+                return 0;
+            }
             if ($turmas->isEmpty()) {
                 return 0;
             }
@@ -700,6 +706,9 @@
             ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
             ->get();
 
+            if (!$turmas) {
+                return 0;
+            }
             if ($turmas->isEmpty()) {
                 return 0;
             }
@@ -734,7 +743,9 @@
             $turmas = AnoTurmaCood::with('turma', 'ano_lectivo')
                 ->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
                 ->get();
-
+                if (!$turmas) {
+                    return 0;
+                }
                 if ($turmas->isEmpty()) {
                     return 0;
                 }
