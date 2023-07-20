@@ -22,38 +22,9 @@
             <div class="row mb-3">
                 <div class="col">
                     <select oninput="this.className = ''" name='turma' class="form-select" id="horario-select-turma">
-                        <optgroup label="Turma">
-                            <option value="I10AM">I10AM</option>
-                            <option value="I11BM">I11BM</option>
-                            <option value="I12CM">I12CM</option>
-                            <option value="I13DM">I13DM</option>
-                            <option value="I10AM">I10AT</option>
-                            <option value="I11BM">I11BT</option>
-                            <option value="I12CM">I12CT</option>
-                            <option value="I13DM">I13DT</option>
-                            <option value="I11AN">I11AN</option>
-                            <option value="I13DN">I13DN</option>
-                            <option value="EI10AM">EI10AM</option>
-                            <option value="EI11BM">EI11BM</option>
-                            <option value="EI12CM">EI12CM</option>
-                            <option value="EI13DM">EI13DM</option>
-                            <option value="EI10AM">EI10AT</option>
-                            <option value="EI11BM">EI11BT</option>
-                            <option value="EI12CM">EI12CT</option>
-                            <option value="EI13DM">EI13DT</option>
-                            <option value="EI11AN">EI11AN</option>
-                            <option value="EI13DM">EI13AN</option>
-                            <option value="CP10AM">CP10AM</option>
-                            <option value="CP11BM">CP11BM</option>
-                            <option value="CP12CM">CP12CM</option>
-                            <option value="CP13DM">CP13DM</option>
-                            <option value="CP10AM">CP10AT</option>
-                            <option value="CP11BM">CP11BT</option>
-                            <option value="CP12CM">CP12CT</option>
-                            <option value="CP13DM">CP13DT</option>
-                            <option value="CP11AN">CP11AN</option>
-                            <option value="CP13DN">CP13DN</option>
-                        </optgroup>
+                        <optgroup id="optgroup-turma" label="Turma">
+                            
+                        </optgroupb>
                     </select>
                 </div>
             </div>
@@ -1675,4 +1646,9 @@
         </div>
       </form>
     </main>
+    <script>
+        
+
+        
+    </script>
 @endsection
