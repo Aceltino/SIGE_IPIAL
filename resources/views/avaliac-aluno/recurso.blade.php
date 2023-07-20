@@ -28,27 +28,33 @@
           <div class="col-lg-2">
             <select class="btn-sel form-select" >
               <option  selected>Curso</option>
-              @if (count($dados) > 0)
-                <option value="{{$dados[0]->alunos->anoTurma[count($dados[0]->alunos->anoTurma) -1]->turma->curso->nome_curso}}">{{$dados[0]->alunos->anoTurma[count($dados[0]->alunos->anoTurma) -1]->turma->curso->nome_curso}}</option>
-              @endif
+                @for ($i = 0; $i < count($dados); $i++)
+                    @for ($j = 0; $j < count($dados[$i]); $j++)
+                        <option value="{{$dados[$i][$j]['nome_curso']}}">{{$dados[$i][$j]['nome_curso']}}</option>
+                    @endfor
+                @endfor
             </select>
           </div>
 
           <div class="col-lg-2">
             <select class="btn-sel form-select" >
               <option selected>Disciplina</option>
-              @for ($i = 0; $i < count($disciplinas); $i++)
-                <option value="">{{$disciplinas[$i]->nome_disciplina}}</option>
-              @endfor
+              @for ($i = 0; $i < count($dados); $i++)
+                    @for ($j = 0; $j < count($dados[$i]); $j++)
+                        <option value="{{$dados[$i][$j]['nome_disciplina']}}">{{$dados[$i][$j]['nome_disciplina']}}</option>
+                    @endfor
+                @endfor
             </select>
           </div>
 
           <div class="col-lg-2">
             <select class="btn-sel form-select" >
               <option disabled  selected>Turma</option>
-              @if (count($dados) > 0)
-                <option value="{{$dados[0]->alunos->anoTurma[count($dados[0]->alunos->anoTurma) -1]->turma->nome_turma}}">{{$dados[0]->alunos->anoTurma[count($dados[0]->alunos->anoTurma) -1]->turma->nome_turma}}</option>
-              @endif
+              @for ($i = 0; $i < count($dados); $i++)
+                    @for ($j = 0; $j < count($dados[$i]); $j++)
+                        <option value="{{$dados[$i][$j]['nome_turma']}}">{{$dados[$i][$j]['nome_turma']}}</option>
+                    @endfor
+                @endfor
             </select>
           </div>
     </div>
@@ -86,22 +92,24 @@
         </tr>
       </thead>
       <tbody>
-        @for ($i = 0; $i < count($disciplinas); $i++)
+        @for ($i = 0; $i < count($dados); $i++)
+        @for ($j = 0; $j < count($dados[$i]); $j++)
         <tr style="text-align: center;">
-            <th scope="row">{{$dados[0]->aluno_id}}</th>
-            <td>{{$dados[0]->alunos->candidato->pessoa->nome_completo}}</td>
+            <th scope="row">{{$dados[$i][$j]['aluno_id']}}</th>
+            <td>{{$dados[$i][$j]['nome_completo']}}</td>
             <td></td>
-            <td>{{$dados[0]->ano_lectivos->ano_lectivo}}</td>
+            <td>{{$dados[$i][$j]['ano_lectivo']}}</td>
             <td style="text-align: center">
-            <a class="btn botaoazul"data-bs-toggle="modal" value="{{$disciplinas[$i]->disciplina_id}}" data-bs-target="#modal_assiduidade{{$dados[0]->aluno_id}}" >Realizar Operação</a>
+            <a class="btn botaoazul"data-bs-toggle="modal" value="{{$dados[$i][$j]['disciplina_id']}}" data-bs-target="#modal_assiduidade{{$dados[$i][$j]['aluno_id']}}" >Realizar Operação</a>
             </td>
             <td style="text-align: center">
-            <a href="{{route('historico.recurso', $dados[0]->aluno_id)}}" class="btn linkeditar">Recursos</a>
+            <a href="{{route('historico.recurso', $dados[$i][$j]['aluno_id'])}}" class="btn linkeditar">Recursos</a>
             </td>
-            <td hidden>{{$dados[0]->alunos->anoTurma[count($dados[0]->alunos->anoTurma) -1]->turma->curso->nome_curso}}</td>
-            <td hidden>{{$disciplinas[$i]->nome_disciplina}}</td>
-            <td hidden>{{$dados[0]->alunos->anoTurma[count($dados[0]->alunos->anoTurma) -1]->turma->nome_turma}}</td>
+            <td hidden>{{$dados[$i][$j]['nome_curso']}}</td>
+            <td hidden>{{$dados[$i][$j]['disciplina_id']}}</td>
+            <td hidden>{{$dados[$i][$j]['nome_turma']}}</td>
         </tr>
+        @endfor
         @endfor
                 <!-- Início da Modal -->
 
@@ -111,10 +119,11 @@
     </table>
     <!-- Cola aqui o código -->
 
-    @for ($i = 0; $i < count($disciplinas); $i++)
-    <form method="POST" action="">
+    @for ($i = 0; $i < count($dados); $i++)
+    @for ($j = 0; $j < count($dados[$i]); $j++)
+    <form method="POST" action="{{route('avaliacao.aluno')}}">
         @csrf
-      <div class="modal" id="modal_assiduidade{{$dados[0]->aluno_id}}" tabindex="-1" data-bs-backdrop="false" >
+      <div class="modal" id="modal_assiduidade{{$dados[$i][$j]['aluno_id']}}" tabindex="-1" data-bs-backdrop="false" >
           <div class="modal-dialog modal-xl">
           <div class="modal-content">
           <div class="modal-header">
@@ -142,6 +151,8 @@
                   <tr>
                     <th scope="col">Disciplina</th>
                     <th scope="col">Recurso Nota</th>
+                    <th scope="col" hidden>Disciplina</th>
+                    <th scope="col" hidden>Aluno</th>
 
                   </tr>
                 </thead>
@@ -149,6 +160,8 @@
                   <tr>
                     <td></td>
                     <td><input class="form-control innota" type="text" name="npp" maxlength="5" id="notaimput"></td>
+                    <td hidden><input class="form-control innota" type="text" name="npp" maxlength="5" id="notaimput"></td>
+                    <td hidden><input class="form-control innota" type="text" name="npp" maxlength="5" id="notaimput"></td>
 
                   </tr>
                 </tbody>
@@ -158,12 +171,13 @@
           </div>
           <div class="modal-footer" style="display: flex; justify-content: center; align-items: center;">
               <button type="button" class="btn botaovermelhonota" data-bs-dismiss="modal">Cancelar</button>
-              <button type="subimit" name="aluno_id" class="btn botaoazulnota" value="" >Realizar Recurso</button>
+              <button type="subimit" name="tipo_prova" value="Recurso" class="btn botaoazulnota" value="" >Realizar Recurso</button>
           </div>
           </div>
       </div>
       </div>
     </form>
+    @endfor
     @endfor
     </div>
 

@@ -34,6 +34,7 @@ class UserController extends Controller
     //Metodo que cadastra usuario no banco de dados
     public static function store($dados)
     {
+        dd($dados);
         return User::create($dados);
     }
 

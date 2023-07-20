@@ -125,6 +125,7 @@ class AnoLectivoController extends Controller
 
     public function index(){
         $anoLectivo = Ano_lectivo::all()->toArray();
+        
         return view('ano-lectivo/ano-lect', compact('anoLectivo'));
     }
 
