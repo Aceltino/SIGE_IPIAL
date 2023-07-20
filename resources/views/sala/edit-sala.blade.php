@@ -12,9 +12,9 @@
 @if (session()->has('sucesso'))
 <div class="alert alert-success">
     {{session('sucesso')}}
-</div>
+</div> 
 @endif
-    <form id="regFormh" action="{{ route('update.sala', ['sala_id' => $sala->sala_id ])}}" class="formulario-layout" method="POST">
+    <form id="regFormh" action="{{ route('update.sala', ['sala_id' => $salas->sala_id ])}}" class="formulario-layout" method="POST">
         @csrf
         @method('PUT')
         <div style="text-align:center;margin-top:10px;">
@@ -34,20 +34,19 @@
             </div>
 
             <div class="form-group">
-                <input type="text" style=" text-align: center;" placeholder="Sala" name="nome_sala" id="nome_sala" oninput="this.className = ''" value="{{ $salas->nome_sala }}" required >
+                <input type="text" style=" text-align: center;" placeholder="Sala" name="sala" value="{{ $salas->sala }}" id="nome_sala" oninput="this.className = ''" required >
                 <span id=" erro_nome"  style="color: red"></span>
             </div>
 
             <div class="row">
 
                 <div class=" col form-group">
-                    <select name="tipo-sala" id="opcoes" oninput="this.className = ''" class="form-select">
-                        <option selected valeu="{{ $salas->tipo_sala }}" >{{ $salas->tipo_sala }}</option>
+                    <select name="tipo_sala" id="opcoes"  oninput="this.className = ''" value="{{ $salas->tipo_sala }}" class="form-select" >
+                        <option selected disabled>Tipo de sala</option>
                         <option value="Laboratorio">Laboratorio</option>
                         <option value="Normal">Normal</option>
                     </select>
                 </div>
-
             </div>
 
             <div style="text-align:center;margin-top:10px;">

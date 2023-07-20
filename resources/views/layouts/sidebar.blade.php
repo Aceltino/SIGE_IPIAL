@@ -130,12 +130,12 @@
     </a>
     <ul id="sala-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
       <li>
-        <a href="/cadastrar-sala">
+        <a href="{{ route('criar.sala') }}">
           <i class="bi bi-circle"></i><span>Cadastrar sala</span>
         </a>
       </li>
       <li>
-        <a href="/sala">
+        <a href="{{ route('consultar.sala') }}">
           <i class="bi bi-circle"></i><span>Salas</span>
         </a>
       </li>

@@ -7,20 +7,10 @@ use App\Models\Sala;
 
 class SalaController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $pesquisa = $request->pesquisa;
-        if($pesquisa)
-        {
-            $salas = Sala::where([
-                ['titulo_com', 'like',  "%$pesquisa%"]
-            ])->get();  
-        }
-        else
-        {
-            $salas = Sala::all();
-        }
-        return view('sala.sala',['salas',$salas ,'pesquisa',$pesquisa ]); 
+        $salas = Sala::all();
+        return view('sala.sala', ['salas' => $salas]);
     }
     public function create()
     {
@@ -28,42 +18,38 @@ class SalaController extends Controller
     }
     public function store(Request $request)
     {
-        $sala = new Sala;
-        $sala->sala = $request->nome_sala;
-        $sala->tipo_sala = $request->tipo_sala;
-        $sala->save();
-        return view('sala.cadastrar-sala')->with('sucesso','Sala cadastrada com sucesso');
+        $salas = new Sala;
+        $salas->sala = $request->sala;
+        $salas->tipo_sala = $request->tipo_sala;
+        $salas->save();
+        return redirect()->route('criar.sala')->with('sucesso','Sala cadatrada com sucesso');
     }
     public function edit($sala_id)
     {
-        $salas = Sala::where('sala_id',$sala_id)->fist();
-        if(!empty($sala))
-        {
-            return view('sala.edit-sala',compact('salas'));
-        }
-        else
-        {
-            return view('sala.sala'); 
-        }
-
+        $salas = Sala::where('sala_id',$sala_id)->first();
+       if(!empty($salas))
+       {
+            return view('sala.edit-sala', ['salas' => $salas]);
+       }
+       else
+       {
+        return redirect()->route('consultar.sala');
+       }
     }
     public function update(Request $request, $sala_id)
     {
         $dados = [
-            'sala'=>$request->nome_sala,
-            'tipo_sala'=>$request->tipo_sala,
+        'sala' => $request->sala,
+        'tipo_sala' => $request->tipo_sala,
         ];
         Sala::where('sala_id',$sala_id)->update($dados);
-        return redirect()->route('sala.edit-sala')->with('edit','Sala editado com sucesso');
-    } 
+        return redirect()->route('consultar.sala')->with('edit','Sala Atualizada com sucesso');
+    }
     public function destroy($sala_id)
     {
         Sala::where('sala_id',$sala_id)->delete();
-        return redirect()->route('sala.sala')->with('delete','Sala editado com sucesso');
+        return redirect()->route('consultar.sala')->with('delete','Sala deletada com sucesso');
     }
-
-
-
     public static function salasNormalHorario()
     {
         $sala = Sala::with('horario.turma')

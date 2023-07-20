@@ -54,15 +54,15 @@
           </tr>
         </thead>
         <tbody>
-          @foreach ($salas as $sala)
+          @foreach($salas as $sala)
               <tr style=" text-align: center;">
                   <th scope="row">{{ $sala->sala }}</th>
                   <td>{{ $sala->tipo_sala }}</td>
                   <td>
                     <section style="display: flex;">
                     <i class="bi bi-eye-fill"  data-bs-toggle="modal" data-bs-target="#ExtralargeModal{{ $sala['sala_id'] }}"></i>
-                    <a href="{{ route('edit.sala',['sala_id' => $sala->sala_id]) }}"><i class="bi bi-pencil"></i></a>
-                    <form  method="POST"action="{{ route('delete.sala', ['sala_id' => $salas->sala_id ])}}">
+                    <a href="{{ route('edit.sala', [ 'sala_id'  => $sala->sala_id ]) }}"><i class="bi bi-pencil"></i></a>
+                    <form  method="POST"action="{{ route('delete.sala', [ 'sala_id' => $sala->sala_id ])}}">
                         @csrf
                         @method('delete')
                         <button type="submit" class="bi bi-trash-fill" style="border: none; background: none;"></button>
@@ -70,8 +70,9 @@
                     </section>
                   </td>
               </tr>
-
-              <div class="modal fade" id="ExtralargeModal{{ $sala['sala_id'] }}" tabindex="-1" data-bs-backdrop="false">
+              @endforeach
+          @foreach($salas as $sala)
+            <div class="modal fade" id="ExtralargeModal{{ $sala['sala_id'] }}" tabindex="-1" data-bs-backdrop="false">
                 <div class="modal-dialog modal-xl">
                   <div class="modal-content">
 
@@ -113,7 +114,7 @@
                   </div>
                 </div>
               </div>
-              @endforeach
+          @endforeach   
         </tbody>
       </table>
     
