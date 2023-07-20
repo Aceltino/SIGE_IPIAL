@@ -1,36 +1,89 @@
 //Criar horário
     //Pegar os elementos para a validação da educação física 
-    const divQuePodeDesaparecer1 = document.querySelector("#horario-div-que-pode-desaparecer-1");
-    const divQuePodeDesaparecer2 = document.querySelector("#horario-div-que-pode-desaparecer-2");
-    const selectTurma = document.querySelector("#horario-select-turma");
-    const selectPrimeiroDiaDeEducacaoFisica = document.querySelector("#criar-horario-select-primeiro-dia-de-educacao-fisica");
-    const selectSegundoDiaDeEducacaoFisica = document.querySelector("#criar-horario-select-segundo-dia-de-educacao-fisica");
-    const horaDeInicioDaEducacaoFisicaNoPrimeiroDiaDeEducacaoFisicaDoCriarHorario = document.querySelector("#criar-horario-hora-de-inicio-da-educacao-fisica-no-primeiro-dia");
-    const horaDeFimDaEducacaoFisicaNoPrimeiroDiaDeEducacaoFisicaDoCriarHorario = document.querySelector("#criar-horario-hora-de-fim-da-educacao-fisica-no-primeiro-dia");
-    const horaDeInicioDaEducacaoFisicaNoSegundoDiaDeEducacaoFisicaDoCriarHorario = document.querySelector("#criar-horario-hora-de-inicio-da-educacao-fisica-no-segundo-dia");
-    const horaDeFimDaEducacaoFisicaNoSegundoDiaDeEducacaoFisicaDoCriarHorario = document.querySelector("#criar-horario-hora-de-fim-da-educacao-fisica-no-segundo-dia");
+        const selectTurma = document.querySelector("#horario-select-turma");
+        const optgroupDoSelectTurma = document.querySelector("#optgroup-turma");
 
-    //Ao mudar a opção selecionada no select...
-    selectTurma.addEventListener("change", ()=>{
-        //Pegar o valor selecionado
-        var turmaSelecionada = selectTurma.value;
-        var vetorTurmaSelecionada = turmaSelecionada.split('');
+        const divDisciplinasNoHorario = document.querySelector("#div-disciplinas-no-horario");
+        const divProfessoresNoHorario = document.querySelector("#div-professores-no-horario");
 
-        //Independente da inicial, se o antepenúltimo caracter for 2 ou 3, ou se a turma for do turno da noite esconde as divs
-        if(vetorTurmaSelecionada[vetorTurmaSelecionada.length - 3] === "2" || vetorTurmaSelecionada[vetorTurmaSelecionada.length - 3] === "3" || vetorTurmaSelecionada[vetorTurmaSelecionada.length - 1] === "N"){
-            divQuePodeDesaparecer1.classList.add("d-none");
-            divQuePodeDesaparecer2.classList.add("d-none");
-            //Resetar os valores
-            selectPrimeiroDiaDeEducacaoFisica.value = "Nenhum";
-            selectSegundoDiaDeEducacaoFisica.value = "Nenhum";
-            horaDeInicioDaEducacaoFisicaNoPrimeiroDiaDeEducacaoFisicaDoCriarHorario.value = "00:00";
-            horaDeFimDaEducacaoFisicaNoPrimeiroDiaDeEducacaoFisicaDoCriarHorario.value = "00:00";
-            horaDeInicioDaEducacaoFisicaNoSegundoDiaDeEducacaoFisicaDoCriarHorario.value = "00:00";
-            horaDeFimDaEducacaoFisicaNoSegundoDiaDeEducacaoFisicaDoCriarHorario.value = "00:00";
-        }
-        else{
-            divQuePodeDesaparecer1.classList.remove("d-none");
-            divQuePodeDesaparecer2.classList.remove("d-none");
-        }
-    });
+        const selectSala = document.querySelector("#horario-select-sala");
+        const optgroupDoSelectSala = document.querySelector("#optgroup-sala");
+        
+    //Consumo
+        const urlDaApiDoHorario = "http://sige_ipial.test/api/dados-horario";
+        
+        fetch(urlDaApiDoHorario).then((dadoHorario)=>{
+            return dadoHorario.json();
+        }).then((dadoHorario)=>{
+            //console.log(dadoHorario);
+            console.log(dadoHorario.horarioInfo);
+            console.log(dadoHorario.horarioInfo[0]);
+            console.log(dadoHorario.horarioInfo[0].disciplinas);
+            console.log(dadoHorario.horarioInfo[0].disciplinas[0]);
+            console.log(dadoHorario.horarioInfo[0].disciplinas[0].disciplina_id
+                );
+            //console.log(dadoHorario.horarioInfo.length);
+
+            //Primeiro step
+            var qtdDeTurmas = dadoHorario.horarioInfo.length;
+
+            if (qtdDeTurmas !== 0 && qtdDeTurmas !== null){
+                var opcao = new Array();
+                
+                for(let indice = 0; indice < qtdDeTurmas; indice++){
+                    opcao[indice] = document.createElement("option");
+                    opcao[indice].value = indice;
+                    opcao[indice].innerText = dadoHorario.horarioInfo[indice].nome;
+                    optgroupDoSelectTurma.appendChild(opcao[indice]);
+                } 
+            }
+
+            //Segundo step
+
+                //Disciplinas
+                var inputDisciplina = new Array();
+                var selectProfessor = new Array();
+                var selectOptgroup = new Array();
+                var optionProfessor = new Array();
+                var idTurmaSelecionada = selectTurma.value;
+
+                if (idTurmaSelecionada !== null){
+                    var disciplina = new Array();
+                
+                    for(let indice = 0; indice < dadoHorario.horarioInfo[idTurmaSelecionada].disciplinas.length; indice++){
+                            var nameInputDisciplina = "disciplina"+ indice;
+                            var nameSelectProfessor = "professor"+ indice;
+
+                            inputDisciplina[indice] = document.createElement("input");
+                            inputDisciplina[indice].value = dadoHorario.horarioInfo[indice].nome;
+                            inputDisciplina[indice].classList.add("mb-2");
+                            inputDisciplina[indice].disabled = true;
+                            inputDisciplina[indice].setAttribute("name", nameInputDisciplina);
+
+                            selectProfessor[indice] = document.createElement("select");
+                            selectProfessor[indice].classList.add("mb-2");
+                            inputDisciplina[indice].setAttribute("name", nameSelectProfessor);
+
+                            selectOptgroup[indice] = document.createElement("optgroup");
+                            selectOptgroup[indice].setAttribute("label", "Professor");
+                            
+                            for(let indice = 0; indice < dadoHorario.horarioInfo[idTurmaSelecionada].disciplinas.length; indice++){
+                                optionProfessor[indice] = document.createElement("option");
+
+
+                                optionProfessor[indice].value = dadoHorario.horarioInfo[indice].nome;
+                                
+                                
+                                divProfessoresNoHorario.appendChild(selectProfessor[indice])
+                            ;
+                            } 
+
+                            divDisciplinasNoHorario.appendChild(inputDisciplina[indice])
+                            ;
+                            divProfessoresNoHorario.appendChild(selectProfessor[indice])
+                            ;
+                    } 
+                }
+        });
+
 //Fim do criar horário

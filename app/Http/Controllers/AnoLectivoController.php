@@ -28,6 +28,12 @@ class AnoLectivoController extends Controller
         public static function AnoLectivoConfig()
     {
         $anoLectivo = AnoLectivoController::pegarAnoLectivo(AnoLectivoController::pegarIdAnoLectivo());
+        if (!$anoLectivo) {
+            return 0;
+        }
+        if ($anoLectivo->isEmpty()) {
+            return 0;
+        }
 
         $datasRestricao = [
             'InicioAnoLectivo' => $anoLectivo->data_inicio_ano_lectivo,

@@ -11,6 +11,7 @@ class Professor extends Model
     use HasFactory, UuidTrait;
 
     protected $table = 'professores';
+    protected $primaryKey = 'professor_id';
     protected $fillable = [
         'formacao',
         'pessoa_id',
@@ -34,9 +35,7 @@ class Professor extends Model
     public function curso(){
         return $this->belongsTo(Curso::class, 'curso_id');
     }
-    protected $primaryKey = 'professor_id';
-
-
+    
     /*protected static function boot()
     {
         parent::boot();

@@ -128,6 +128,7 @@ class AlunoController extends Controller
                     break;
                 }
             }
+            // dd($aluno->anoturma);
                 $Alunos[] = [
                     'N_processo' => $aluno->aluno_id,
                     'estado' => $aluno->status,
@@ -357,7 +358,9 @@ class AlunoController extends Controller
             $query->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo());
         })
         ->get();
-
+        if (!$alunos) {
+            return 0;
+        }
         if ($alunos->isEmpty()) {
             return 0;
         }
@@ -388,6 +391,9 @@ class AlunoController extends Controller
 
             $alunos = AlunoController::alunosTurmaTotal();
 
+            if (empty($alunos)) {
+                return 0;
+            }
             if(!$alunos)
             {
                 return 0;
