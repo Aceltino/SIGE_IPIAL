@@ -264,7 +264,16 @@ class TurmaController extends Controller
     public static function turmasViews()
     {
         $salaNormalOcupada = SalaController::salasNormalHorario();
+        if(!$salaNormalOcupada)
+        {
+            $salaNormalOcupada[] = null;
+        }
+
         $salasNormal = SalaController::salasNormal();
+        if(!$salasNormal)
+        {
+            $salasNormal[] = null;
+        }
 
         // dd($salaNormalOcupada, $salasNormal);
 
@@ -275,7 +284,12 @@ class TurmaController extends Controller
         })
         ->get();
 
+        if ($turmas->isEmpty()) {
+            return false;
+        }
+
         $dadosTurmas = [];
+        $salaSelecionada = [];
 
         $anoLectivo = AnoLectivoController::pegarIdAnoLectivo();
         
@@ -283,15 +297,43 @@ class TurmaController extends Controller
 
         $disciplinas = ClasseDisciplina::whereIn('classe_id', $classesIds)->get();
         
-        foreach ($turmas as $turma) {
+        foreach ($turmas as $turma) 
+        {
             $dadosTurma = [
                 'nome' => $turma->nome_turma,
-                'disciplinas' => [],
-                'professores' => [],
-                'tempo' => [],
-                'salas' => [],
             ];
+
+            foreach ($salasNormal as $sala) 
+            {
+                foreach ($salaNormalOcupada as $salaOcupada) 
+                {
+
+                    if( $turma->turno_id != $salaOcupada['turno_id'] || $sala['sala_id'] != $salaOcupada['sala_id']  )
+                    {
+                        $dadosTurma['sala'] = 
+                        [
+                            'sala' => $sala['sala'],
+                            'sala_id' => $sala['sala_id'],
+                        ];
+
+                        $dadosSala[] = 
+                        [
+                            $sala['sala_id'],
+                            $turma->turno_id
+                        ];
+
+                        if (!in_array($dadosSala, $salaSelecionada)) {
+                            $salaSelecionada[] =  $dadosSala;
+                        }
         
+                        goto fim;
+                    }
+                    // break 1;
+                }  
+            }
+
+            fim:
+            // dd($dadosTurma);
             foreach ($disciplinas as $disciplina) 
             {
                 if ($disciplina->classe_id == $turma->classe_id && ($disciplina->disciplina->curso_id == $turma->curso_id || $disciplina->disciplina->curso_id == null ) ) 
@@ -337,24 +379,9 @@ class TurmaController extends Controller
                     'hora_id' => $hora->hora_id
                 ];
             }
-
-            foreach($salasNormal as $sala) 
-            {
-                if(  !in_array($turma->turno_id, $salaNormalOcupada['turno_id']) && !in_array($turma->turma_id, $salaNormalOcupada['turma_id']) ) 
-                {
-                    $dadosTurma['salas'][] = 
-                    [
-                        'sala_normal' => $sala['sala'],
-                        'sala_id' => $sala['sala_id'],
-                    ];
-                    break;
-                }
-            }
-       
             $dadosTurmas[] = $dadosTurma;
         }
-
-        // dd($dadosTurmas);          
+         
         return $dadosTurmas;
 ;
     }
