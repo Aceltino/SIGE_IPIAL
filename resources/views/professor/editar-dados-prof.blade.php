@@ -252,7 +252,7 @@
             divDoSelectQuartaDisciplina.classList.add("d-none");
           }
       }
-
+      
       if(parseInt(quantidadeDeDisciplinas.value) === 2){
         // Habilitar todas as opções nos selects
         habilitarOpcoes(disciplinaALeccionar1);

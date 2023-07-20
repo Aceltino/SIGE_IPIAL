@@ -9,11 +9,9 @@ use App\Models\{
     Curso,
     Endereco,
     Professor,
-    Telefone,
     Disciplina,
     Professor_disciplina,
     Ano_lectivo,
-    Turno,
     Area_formacao
 };
 use Illuminate\Support\Facades\{
@@ -29,8 +27,8 @@ class ProfessorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(Request $request)
+    {   
         $professores = Professor::with('pessoa', 'professorDisciplina')
             ->whereIn('professor_id', function ($query) {
                 $query->selectRaw('MIN(professor_id)')
@@ -57,6 +55,7 @@ class ProfessorController extends Controller
         return view('professor.cadastrar-prof', ['area_formacao' => $area_formacao, 'disciplinas' => $disciplinas, 'cursos' => $cursos]);
     }
 
+    //Metodo Armazerna Dados Pessoais 
     public function profEditar($uuid)
     {
         $professor = Professor::findByUuid($uuid);
@@ -65,14 +64,15 @@ class ProfessorController extends Controller
 
     public function horarioProf($id)
     {
-        $professor = Professor::with('pessoa')->findOrFail($id);
+        $professor = Professor::with('pessoa')->find($id);
         if ( !$professor ) return false;
         return view('professor/horario-prof', compact('professor'));
     }
 
+    //Metodo Armazerna Dados Pessoais 
     public function profDadosPessoais($id)
     {
-        $professor = Professor::with('pessoa')->findOrFail($id);
+        $professor = Professor::with('pessoa')->find($id);
         if ( !$professor ) return false;
         return view('professor.editar-dados-pessoais-prof', compact('professor'));
     }
@@ -98,7 +98,7 @@ class ProfessorController extends Controller
                 'num_bi' => 'required|regex:/^\d{9}[A-Z]{2}\d{3}$/',
                 'genero' => 'required|in:Masculino,Feminino,Femenino',
                 'num_tel' => ['required', 'regex:/^\d{9}$/'],
-                'data_nascimento' => 'required|date',
+                'data_nascimento' => 'required|date|',
 
                 'qtd_disciplinas' => 'required|integer|min:1|max:4',
                 'disciplina' => 'required|array|min:1',
@@ -242,9 +242,9 @@ class ProfessorController extends Controller
             ]); */
 
             return redirect()->route('professor')->with('success', 'Registro criado com sucesso!');
-        } catch (ValidationException $e) {
+        } catch (\Exception $e) {
             // Captura a exceção de validação e trata os erros
-            return redirect()->back()->withErrors($e->errors())->withInput();
+            return redirect()->back()->withErrors($e->getMessage())->withInput();
         }
     }
 
