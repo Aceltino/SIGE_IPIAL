@@ -184,29 +184,6 @@
 
           <h3 class="text-uppercase text-center my-3 color-blue-principal">informações importantes para o instituto</h3>
 
-          <h5 class="text-uppercase text-center my-3 color-blue-principal">Sobre o(s) curso(s) que faz parte</h5>
-
-          <div class="form-group col">
-            <div class="d-flex justify-content-around flex-wrap">
-              <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" value="Desenhador Projectista">
-                <label class="form-check-label" for="checkboxCursoDeDesenhadorProjectista">Desenhador Projectista</label>
-              </div>
-              <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" value="Técnico de Energia e Instalações Eléctricas">
-                <label class="form-check-label" for="checkboxCursoTecnicoDeEnergiaEInstalacoesElectricas">Técnico de Energia e Instalações Eléctricas</label>
-              </div>
-              <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" value="Técnico de Informática">
-                <label class="form-check-label" for="checkboxCursoTecnicoDeInformatica">Técnico de Informática</label>
-              </div>
-              <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" value="Electrônica e Telecomunicação">
-                <label class="form-check-label" for="checkboxCursoElectronicaETelecomunicacao">Electrônica e Telecomunicação</label>
-              </div>
-            </div>
-          </div>
-
           <h5 class="text-uppercase text-center my-3 color-blue-principal">Sobre o cargo</h5>
 
           <div class="form-group col">

@@ -11,7 +11,7 @@ class SalaController extends Controller
     public function index(Request $request)
     {
         $pesquisa = $request->pesquisa;
-        if($pequisa)
+        if($pesquisa)
         {
             $salas = Sala::where([
                 ['titulo_com', 'like',  "%$pesquisa%"]
@@ -31,7 +31,11 @@ class SalaController extends Controller
     {
         $sala = new Sala;
         $sala->sala = $request->nome_sala;
+
         $sala->tipo_sala = $requet->tipo_sala;
+
+        $sala->tipo_sala = $request->tipo_sala;
+
         $sala->save();
         return view('sala.cadastrar-sala')->with('sucesso','Sala cadastrada com sucesso');
     }
@@ -57,7 +61,7 @@ class SalaController extends Controller
         Sala::where('sala_id',$sala_id)->update($dados);
         return redirect()->route('sala.edit-sala')->with('edit','Sala editado com sucesso');
     } 
-    public function destroy()
+    public function destroy($sala_id)
     {
         Sala::where('sala_id',$sala_id)->delete();
         return redirect()->route('sala.sala')->with('delete','Sala editado com sucesso');
