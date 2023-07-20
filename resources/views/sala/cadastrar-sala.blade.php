@@ -35,8 +35,14 @@
             </div>
 
             <div class="form-group">
-                <input type="text" style=" text-align: center;" placeholder="Sala" name="sala" id="nome_sala" oninput="this.className = ''" required >
-                <span id=" erro_nome"  style="color: red"></span>
+                <input type="text" style=" text-align: center;" placeholder="Sala" name="sala" id="nome_sala" oninput="this.className = ''" >
+                @error('sala')
+                    <div class="alert alert-danger">{{$message}}
+                        <button class="botaofecharerro">
+                            <i class="bi bi-x"></i>
+                        </button>
+                    </div>
+                    @enderror
             </div>
 
             <div class="row">
@@ -47,6 +53,13 @@
                         <option value="Laboratorio">Laboratorio</option>
                         <option value="Normal">Normal</option>
                     </select>
+                    @error('tipo_sala')
+                    <div class="alert alert-danger">{{$message}}
+                        <button class="botaofecharerro">
+                            <i class="bi bi-x"></i>
+                        </button>
+                    </div>
+                    @enderror
                 </div>
 
             </div>

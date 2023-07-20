@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\SalaStoreRequest;
+use App\Http\Requests\SalaUpdateRequest;
 use App\Models\Sala;
 
 class SalaController extends Controller
@@ -16,7 +18,7 @@ class SalaController extends Controller
     {
         return view('sala.cadastrar-sala');
     }
-    public function store(Request $request)
+    public function store(SalaStoreRequest $request)
     {
         $salas = new Sala;
         $salas->sala = $request->sala;
@@ -36,7 +38,7 @@ class SalaController extends Controller
         return redirect()->route('consultar.sala');
        }
     }
-    public function update(Request $request, $sala_id)
+    public function update(SalaUpdateRequest $request, $sala_id)
     {
         $dados = [
         'sala' => $request->sala,
