@@ -20,7 +20,8 @@
             console.log(dadoHorario.horarioInfo[0]);
             console.log(dadoHorario.horarioInfo[0].disciplinas);
             console.log(dadoHorario.horarioInfo[0].disciplinas[0]);
-            console.log(dadoHorario.horarioInfo[0].disciplinas[0].nomeDisciplina);
+            console.log(dadoHorario.horarioInfo[0].disciplinas[0].disciplina_id
+                );
             //console.log(dadoHorario.horarioInfo.length);
 
             //Primeiro step
@@ -69,7 +70,7 @@
                             for(let indice = 0; indice < dadoHorario.horarioInfo[idTurmaSelecionada].disciplinas.length; indice++){
                                 optionProfessor[indice] = document.createElement("option");
 
-                                
+
                                 optionProfessor[indice].value = dadoHorario.horarioInfo[indice].nome;
                                 
                                 
