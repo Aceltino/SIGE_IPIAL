@@ -4,7 +4,7 @@ axios.get('/api/candidatos')
 
             const tabelaRegistros = document.getElementById('inscricao');
             const tbody = tabelaRegistros.getElementsByTagName('tbody')[0];
-            
+
             registros.forEach(function(registro) {
               const curso =registro.Curso;
 
@@ -41,7 +41,7 @@ axios.get('/api/candidatos')
 
 
                 const botaoVisualizar = `class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal${registro.Id_inscricao}"`;
-                
+
                 row.innerHTML = `
                     <td>${registro.NumeroBI}</td>
                     <td>${registro.Nome}</td>
@@ -55,39 +55,39 @@ axios.get('/api/candidatos')
                     <a href="/inscricao/editar-candidato/${registro.Id_inscricao}/editar"><i class="bi bi-pencil"></i></a>
                     <a href="recibo-candidato/${registro.Id_inscricao}"><i class="bi bi-file-earmark-break-fill"></i></a>
                     </td>
-                    
-                    
-                    
-                `; 
+
+
+
+                `;
 
                 const modal = `
 
                 <div class="modal fade" id="ExtralargeModal${registro.Id_inscricao}" tabindex="-1" data-bs-backdrop="false">
                 <div class="modal-dialog modal-xl">
                   <div class="modal-content">
-        
+
                     <div class="provisorio">
                       <div class="card-icon-modal rounded-circle d-flex align-items-center justify-content-flex-end">
-        
+
                         <i class="bi bi-x-lg" data-bs-toggle="modal" aria-label="Close" data-bs-dismiss="modal"></i>
                       </div>
                     </div>
-        
+
                     <div class="cabecalho-modal">
                       <div class="row">
                         <div class="col" style="display: flex; justify-content: flex-start; align-items: center;">
-                          <h1>Dados pessoais</h1>      
+                          <h1>Dados pessoais</h1>
                         </div>
-                      
+
                         <div class="col" style="display: flex; justify-content: flex-end; align-items: center;">
                             <button class="btn-imprimir">Imprimir <i class="bi bi-file-earmark-pdf"></i></button>
                         </div>
                       </div>
                     </div>
-        
+
                     <div class="corpo-modal">
                       <form class="form-inativo">
-                        <div class="dados-pessoais">        
+                        <div class="dados-pessoais">
                         <div class="area-input form-group">
                         <label>Nome Completo: </label><input type="text" name="" value="${registro.Nome}" disabled>
                     </div>
@@ -97,22 +97,22 @@ axios.get('/api/candidatos')
                     <div class="area-input form-group">
                         <label>Nome da Mãe: </label><input type="text" name="" value="${registro.Mae}"disabled>
                     </div>
-        
+
                     <div class="container">
                         <div class="row">
                             <div class="col area-input form-group">
                                 <label>Data de nascimento: </label><input type="text" name="" value="${registro.Data_Nascimento}"disabled>
-                        
+
                             </div>
-                            
+
                             <div class="col area-input form-group" style="margin-left: 10px;">
                                 <label>Idade: </label><input type="text" class="form-control" readonly="true" disabled name="" value="${registro.Idade}"disabled>
-                        
+
                             </div>
-                            
+
                             <div class="col area-input form-group" style="margin-left: 10px;">
                                 <label>Gênero: </label><input type="text" name="" value="${registro.Genero}"disabled>
-                        
+
                             </div>
                         </div>
                     </div>
@@ -121,14 +121,14 @@ axios.get('/api/candidatos')
                             <div class=" col area-input form-group" >
                                 <label>Número do BI: </label><input type="text" class="form-control" readonly="true" disabled name="" value="${registro.NumeroBI}">
                             </div>
-        
+
                             <div class="col area-input form-group" style="margin-left: 10px;">
                                 <label>Naturalidade: </label><input type="text" name="" value="${registro.Naturalidade}"disabled>
-                            
+
                             </div>
                         </div>
                     </div>
-        
+
                     <div class="container">
                         <div class="row">
                             <div class="col area-input form-group">
@@ -139,42 +139,42 @@ axios.get('/api/candidatos')
                                     Informações do Instituto: <i class="bi bi-arrow-down"></i>
                                   </button>
                           </div>
-                            
-                        </div>              
+
+                        </div>
                     </div>
-                              
+
                               <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                             <div class="dados-academicos">
                               <div class="row">
                               <div class="col" style="display: flex; justify-content: flex-start; align-items: center;">
-                                    <h1>Dados Da Escola De Proveniência</h1>      
+                                    <h1>Dados Da Escola De Proveniência</h1>
                                 </div>
-        
+
                             </div>
-        
+
                             <br>
-        
+
                             <div class="area-input form-group">
                                 <label>Escola de proveniência: </label><input type="text" name="" value="${registro.Escola}"disabled>
                             </div>
-        
+
                             <div class="container">
                                 <div class="row">
                                 <div class="col area-input form-group">
                             <label>Turno: </label><input type="text" name="" value="${registro.Turno}"disabled>
-                            
+
                             </div>
                             <div class="col area-input form-group" style="margin-left: 10px;">
                             <label>Turma: </label><input type="text" name="" value="${registro.Turma}"disabled>
-                            
+
                             </div>
                             <div class="col area-input form-group" style="margin-left: 10px;">
                             <label>Nº aluno: </label>
                             <input type="text" name="" value="${registro.Numero_Aluno}"disabled>
                         </div>
-                        </div>              
                         </div>
-        
+                        </div>
+
                         <div class="container">
                     <div class="row">
                             <div class="col area-input form-group" >
@@ -182,11 +182,11 @@ axios.get('/api/candidatos')
                             </div>
                         </div>
                     </div>
-        
+
                     <div class="col area-input form-group">
                             <label>Número de processo: </label><input type="text" class="form-control" readonly="true" disabled name="" value="${registro.Numero_Processo}">
                     </div>
-                    
+
                 <div class="container">
                     <div class="row">
                       <div class="col area-input form-group">
@@ -196,7 +196,7 @@ axios.get('/api/candidatos')
                       <div class="col area-input form-group" style="margin-left:10px;">
                       <label>Física: </label><input type="text" name="" readonly="true" disabled value="${registro.Fisica}">
                       </div>
-                      
+
                     </div>
                 </div>
 
@@ -204,12 +204,12 @@ axios.get('/api/candidatos')
                     <div class="row">
                         <div class="col area-input form-group">
                         <label>Matemática: </label><input type="text" name="" readonly="true" disabled value="${registro.Matematica}">
-                        </div>    
-                        
+                        </div>
+
                         <div class="col area-input form-group" style="margin-left:10px;">
                         <label>Química: </label><input type="text" name="" readonly="true" disabled value="${registro.Quimica}">
                         </div>
-                
+
                     </div>
                 </div>
 
@@ -218,7 +218,7 @@ axios.get('/api/candidatos')
                     ${registro.cursosEscolhidos.map((cursoEscolhido) => `<div class="col-6 area-input form-group">
                     <label>Opção Curso: </label><input type="text" name="" readonly="true" disabled value="${cursoEscolhido}">
                     </div>`).join('')}
-                        
+
                     </div>
                 </div>
 
@@ -232,35 +232,35 @@ axios.get('/api/candidatos')
 
                 </div>
                   </div>
-                              
+
                     <div class="footer-modal" style="text-align: center;">
                     <a href="/inscricao/editar-candidato/${registro.Id_inscricao}/editar" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
                     <div class="jnt">
                         <a href="/inscricao/inscricoes" class="btn" style="background-color: #070b17; color: #fff;">Retrocer aos inscritos</a>
-    
+
                         <a href="#ExtralargeModal${registro.Id_inscricao}" class="btn" style="background-color: #070b17; color: #fff;">Dados pessoais <i class="bi bi-arrow-up"></i></a>
                     </div>
                     </div>
-                    
-                      </form> 
+
+                      </form>
                     </div>
-                    
+
                   </div>
                 </div>
-              </div> 
-                
+              </div>
+
                 `;
                 document.body.insertAdjacentHTML('beforeend', modal);
 
             });
             var $T= $("#inscricao").DataTable({
-               
+
                     pageLength: 6,
                     "dom": '<"top"i>rt<"bottom"lp><"clear">',
                     lengthChange: false,
                     ordering: false,
                     language:{
-                        
+
                             "sEmptyTable": "Nenhum registro encontrado",
                             "sInfo": "",
                             "sInfoEmpty": "",
@@ -280,25 +280,25 @@ axios.get('/api/candidatos')
                             }
                     },
                     select: true
-                    
+
                 });
-                
+
                 $('#Imprimir').click(function() {
                   // Desabilitar o DataTables
                   $T.destroy();
-                
+
                   // Ocultar elementos indesejados antes de imprimir
                   $('#conteudo .no-print').hide();
-                
+
 
                   // Iniciar a impressão
                   window.print();
                 });
-                
+
                 $(window).on('afterprint', function() {
                   // Restaurar a visibilidade dos elementos ocultos após a impressão
                   $('#conteudo .no-print').show();
-                
+
                   // Reativar o DataTables e aplicar as configurações
                   $T = $("#inscricao").DataTable({
                     initComplete: function(settings, json) {
@@ -314,7 +314,7 @@ axios.get('/api/candidatos')
                     lengthChange: false,
                     ordering: false,
                     language:{
-                        
+
                             "sEmptyTable": "Nenhum registro encontrado",
                             "sInfo": "",
                             "sInfoEmpty": "",
@@ -334,12 +334,12 @@ axios.get('/api/candidatos')
                             }
                     },
                     select: true,
-                    
+
                   });
                 });
-                 
-               
-        
+
+
+
                 $("#filtro").on("change", function() {
                   var filtro = $(this).val();
                   if (filtro === 'Todos') {
@@ -365,7 +365,7 @@ axios.get('/api/candidatos')
                   }
                 });
                 $("#filtro3").on("change", function() {
-                  var filtro3 = $(this).val(); 
+                  var filtro3 = $(this).val();
                   if (filtro3 === 'Todos') {
                     $T.column(2).search('').draw(); // Remove a filtragem da terceira coluna
                   } else {
@@ -411,7 +411,7 @@ axios.get('/api/candidatos')
                   } else {
                     $T.column(8).search(filtro9).draw(); // Filtra a tabela pela Nona coluna com o valor selecionado
                   }
-                 
+
                 });
                 $("#filtro10").on("change", function() {
                   var filtro10 = $(this).val();
@@ -452,7 +452,7 @@ axios.get('/api/candidatos')
                   } else {
                     $T.column(13).search(filtro14).draw(); // Filtra a tabela pela Décima-quarta coluna com o valor selecionado
                   }
-                 
+
                 });
                 $("#filtro15").on("change", function() {
                   var filtro15 = $(this).val();
@@ -461,16 +461,16 @@ axios.get('/api/candidatos')
                   } else {
                     $T.column(14).search(filtro15).draw(); // Filtra a tabela pela Décima-quinta coluna com o valor selecionado
                   }
-                 
+
                 });
                  $("#filtro16").on("change", function() {
                   var filtro16 = $(this).val();
                   if (filtro16 === 'Todos') {
-                    $T.column(15).search('').draw(); // Remove a filtragem da  Décima-Sexta 
+                    $T.column(15).search('').draw(); // Remove a filtragem da  Décima-Sexta
                   } else {
                     $T.column(15).search(filtro16).draw(); // Filtra a tabela pela Décima-Sexta coluna com o valor selecionado
                   }
-                 
+
                 });
                  $("#filtro17").on("change", function() {
                   var filtro17 = $(this).val();
@@ -479,20 +479,21 @@ axios.get('/api/candidatos')
                   } else {
                     $T.column(16).search(filtro17).draw(); // Filtra a tabela pela Décima-Sétima coluna com o valor selecionado
                   }
-                 
+
                 });
-          
-              
+
+
           $(".paginate_button").addClass("paginate_button");
           $(".paginate").addClass("float-end");
-          
-          
+
+
           $("#pesquisa").on("keyup", function () {
              $T.search(this.value).draw();
-             
+
           });
-            
+
         })
         .catch(function(error) {
             console.error(error);
         });
+

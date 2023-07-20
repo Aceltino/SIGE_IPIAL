@@ -4,17 +4,17 @@ use App\Http\Controllers\{
     //Classes das Controllers
     inicioController,
     AuthController,InscricaoController,ProfessorController,
-    AlunoController,MatriculaController,CursoController,
+   MatriculaController,CursoController,
     comunicadosController,AssiduidadeAlunoController,
     AvaliacaoAlunoController,AnoLectivoController,
     MiniPautaController,UserController,PautaController,
     PerfilUserController,ProcessoController,
     DisciplinasController, AdmissaoController,
-    AlunoTurmaController,
     TurmaController, CalendarioController,
     HorarioController,
-    CandidatoController,
-    AreaFormacaoController
+    AreaFormacaoController,SalaController,
+    BoletimNotasController,
+    ExameController
 };
 
 /*
@@ -29,7 +29,7 @@ use App\Http\Controllers\{
 */
 
 // Rota apenas de teste... Não apague -> ACELTINO
-    Route::get('validar-aluno', [AlunoController::class, 'alunosVinculados']);
+    Route::get('validar-aluno', [HorarioController::class, 'pegarDadosHorario']);
 // Route::get('validar-aluno', [AlunoController::class, 'situacaoAluno']);
 
 
@@ -219,9 +219,10 @@ Route::prefix('aluno')->middleware(['auth','active.session','checkcargo'])->grou
     Route::get('boletim-notas', function () {
         return view('boletim/boletim-notas');
     });
+    #Route::get('boletim-notas', [BoletimNotasController::class, 'index'])->name('boletim');
 
 });
-/**<!--Fim Rotas aluno--> */    
+/**<!--Fim Rotas aluno--> */
 
 
 /******************************************
@@ -383,7 +384,7 @@ Route::put('/editar-assiduidade/justificar-falta/{assiduidade_id}', [Assiduidade
 
 /*Avaliação de Aluno*/
 Route::get('/avaliar-aluno', [AvaliacaoAlunoController::class, 'index'])->name('avaliacao.aluno');
-Route::post('/avaliar-aluno/cadastrar{id_disciplina}', [AvaliacaoAlunoController::class, 'store'])->name('avaliar.aluno');
+Route::post('/avaliar-aluno/cadastrar', [AvaliacaoAlunoController::class, 'store'])->name('avaliar.aluno');
 
 
 /*editar Avaliação de Aluno*/
@@ -391,11 +392,11 @@ Route::get('/editar-avaliacao-aluno/{id_aluno}/{id_disciplina}', [AvaliacaoAluno
 Route::put('/editar-avaliacao-aluno/update/{id_nota}', [AvaliacaoAlunoController::class, 'update'])->name('update.nota.aluno');
 
 /*Exame de aluno de Aluno*/
-Route::get('exame_aluno',  [AvaliacaoAlunoController::class, 'indexExameEspecial'])->name('exame.especial');
+Route::get('exame_aluno',  [ExameController::class, 'indexExameEspecial'])->name('exame.especial');
 
-Route::get('exames_histo/{aluno_id}',  [AvaliacaoAlunoController::class, 'indexUpdateExameEspecial'])->name('historico.exame.especial');
+Route::get('exames_histo/{aluno_id}',  [ExameController::class, 'indexUpdateExameEspecial'])->name('historico.exame.especial');
 
-Route::put('edit_exame/{nota_id}',  [AvaliacaoAlunoController::class, 'update'])->name('editar.nota.exame.especial');
+Route::put('edit_exame/{nota_id}',  [ExameController::class, 'update'])->name('editar.nota.exame.especial');
 
 /*ERRO Avaliação de Aluno*/
 Route::get('erroavaliar',  function () {
@@ -403,11 +404,11 @@ Route::get('erroavaliar',  function () {
 })->name('erroavaliar');
 
 /*Recurso de Aluno*/
-Route::get('recurso_aluno',  [AvaliacaoAlunoController::class, 'indexRecurso'])->name('recurso');
+Route::get('recurso_aluno',  [ExameController::class, 'indexRecurso'])->name('recurso');
 
-Route::get('recurso_histo/{aluno_id}',  [AvaliacaoAlunoController::class, 'indexUpdateRecurso'])->name('historico.recurso');
+Route::get('recurso_histo/{aluno_id}',  [ExameController::class, 'indexUpdateRecurso'])->name('historico.recurso');
 
-Route::get('edit_recurso/{nota_id}',  [AvaliacaoAlunoController::class, 'update'])->name('editar.nota.recurso');
+Route::get('edit_recurso/{nota_id}',  [ExameController::class, 'update'])->name('editar.nota.recurso');
 
 /******************************************
  * Rotas do horário
@@ -440,11 +441,6 @@ Route::get('/ver-horarios', function () {
     return view('horario/horarios');
 });
 
-/*Criar tempos*/
-Route::get('/criar-tempos', function () {
-    return view('horario/criar-tempos');
-});
-
 /*Editar tempos*/
 Route::get('/editar-tempos', function () {
     return view('horario/editar-tempos');
@@ -453,6 +449,11 @@ Route::get('/editar-tempos', function () {
 /*Ver tempos*/
 Route::get('/ver-tempos', function () {
     return view('horario/ver-tempos');
+});
+
+/*Visualizar tempos definidos*/
+Route::get('/visualizar-tempos-definidos', function () {
+    return view('horario/visualizar-tempos-definidos');
 });
 
 /*Area de formacao*/
@@ -475,6 +476,14 @@ Route::get('/cadastrar-sala', function () {
 });
 
 /*Area de formacao*/
+Route::prefix('sala')->middleware(['auth','active.session','checkcargo'])->group(function(){
+    Route::get('ver.sala',[SalaController::class,'index'])->name('consultar.sala');
+    Route::get('cadastrar-sala',[SalaController::class,'create'])->name('criar.sala');
+    Route::post('Store.sala',[SalaController::class,'store'])->name('store.sala');
+    Route::get('edit-sala/{sala_id}',[SalaController::class,'edit'])->where('sala_id', '[0-9]+')->name('edit.sala');
+    Route::put('{sala_id}',[SalaController::class,'update'])->where('sala_id', '[0-9]+')->name('update.sala');
+    Route::delete('{sala_id}',[SalaController::class,'destroy'])->where('sala_id', '[0-9]+')->name('delete.sala');
+});
 Route::get('/sala', function () {
     return view('sala\sala');
 });

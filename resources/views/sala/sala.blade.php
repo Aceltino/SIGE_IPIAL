@@ -9,11 +9,20 @@
     {{session('erro')}}
     </div>
     @endif
-    @if (session()->has('sucesso'))
-    <div class="alert alert-success">
-        {{session('sucesso')}}
+  @if(session('edit'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <i class="bi bi-check-circle me-1"></i>
+      {{(session('edit'))}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    @endif
+  @endif
+  @if(session('delete'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <i class="bi bi-exclamation-octagon me-1"></i>
+      {{(session('delete'))}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  @endif
       <div class="row">
         <div class="col">
           <h2>Salas</h2>
@@ -22,7 +31,8 @@
          <div class="col-lg-4">
             <select class="btn-sel form-select" id="filtro3">
                 <option selected disabled>Tipo de sala</option>
-                <option value="e"></option>
+                <option value="Laboratorio">Laboratorio</option>
+                <option value="Normal">Normal</option>
            </select>
          </div>
 
@@ -30,7 +40,7 @@
 
       <div class="procurar">
         <form class="proc-form d-flex align-items-center">
-          <input id="pesquisa" type="text" name="" class="campo-pesq" placeholder="Digite a sala que pretendes">
+          <input id="pesquisa" type="text" name="pesquisa" class="campo-pesq" placeholder="Digite a sala que pretendes">
           <button type="submit" title="Search"><i class="bi bi-search"></i></button>
         </form>
       </div>
@@ -44,22 +54,24 @@
           </tr>
         </thead>
         <tbody>
+          @foreach ($salas as $sala)
               <tr style=" text-align: center;">
-                  <th scope="row">12</th>
-                  <td>asdsfgdhjkr</td>
+                  <th scope="row">{{ $sala->sala }}</th>
+                  <td>{{ $sala->tipo_sala }}</td>
                   <td>
                     <section style="display: flex;">
-                    <i class="bi bi-eye-fill"  data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
-                    <form  method="POST"action="">
+                    <i class="bi bi-eye-fill"  data-bs-toggle="modal" data-bs-target="#ExtralargeModal{{ $sala['sala_id'] }}"></i>
+                    <a href="{{ route('edit.sala',['sala_id' => $sala->sala_id]) }}"><i class="bi bi-pencil"></i></a>
+                    <form  method="POST"action="{{ route('delete.sala', ['sala_id' => $salas->sala_id ])}}">
                         @csrf
-
+                        @method('delete')
                         <button type="submit" class="bi bi-trash-fill" style="border: none; background: none;"></button>
                     </form>
                     </section>
                   </td>
               </tr>
 
-              <div class="modal fade" id="ExtralargeModal" tabindex="-1" data-bs-backdrop="false">
+              <div class="modal fade" id="ExtralargeModal{{ $sala['sala_id'] }}" tabindex="-1" data-bs-backdrop="false">
                 <div class="modal-dialog modal-xl">
                   <div class="modal-content">
 
@@ -83,23 +95,17 @@
                       <form class="form-inativo">
                         <div class="dados-pessoais">
                         <div class="area-input form-group" disabled>
-                        <label>Sala: </label><input type="text" name="" disabled>
+                        <label>Sala:</label><input type="text" name="nome_sala" value="{{ $sala->nome_sala }}" >
                         </div>
-
-
                     <div class="form-group">
-                        <label for="">:</label>
-                        <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select" disabled>
-                            <option  disabled>Tipo de sala</option>
-                           <option value="e"></option>
+                        <label>Tipo_sala:</label><input type="text" name="tipo_sala" value="{{ $sala->tipo_sala }}" >
                         </select>
                     </div>
-
                     <div class="footer-modal" style="text-align: center;">
 
                         <div class="jnt">
-                            <a href="#" class="btn" style="background-color: #070b17; color: #fff;">Retrocer as salas</a>
-                        <a href="edit-sala" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
+                            <a href="{{ route('consultar.sala') }}" class="btn" style="background-color: #070b17; color: #fff;">Retrocer as salas</a>
+                        <a href="{{ route('edit.sala',['sala_id' => $sala->sala_id]) }}" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
                         </div>
                     </div>
                     </div>
@@ -107,7 +113,7 @@
                   </div>
                 </div>
               </div>
-
+              @endforeach
         </tbody>
       </table>
     

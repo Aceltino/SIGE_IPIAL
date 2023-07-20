@@ -124,6 +124,11 @@ class CandidatoController extends Controller
                 ->orWhere('status', 'admitido');
         })->get();
 
+        // if(!$candidatos) {
+        //     return 'Sem candidatos inscritos';
+        // }
+
+
         foreach ($candidatos as &$candidato)
         {
             $dataNascimento = Carbon::parse($candidato->pessoa->data_nascimento);
@@ -142,6 +147,11 @@ class CandidatoController extends Controller
             $cursoCandidato = CandidatoCursoController::cursoEscolhido($candidato->candidato_id);
         }
 
+        if( !isset($candidato[0]) ) 
+        {
+            return 'Sem candidatos inscritos';
+        }
+// dd($candidatos);
         $cursoEscolhido = [];
         if($cursoCandidato)
         {
@@ -274,6 +284,9 @@ class CandidatoController extends Controller
         ->where('status', 'Admitido')
         ->get();
 
+        if (!$candidatos) {
+            return 0;
+        }
         if ($candidatos->isEmpty()) {
             return 0;
         }
@@ -309,6 +322,9 @@ class CandidatoController extends Controller
         ->where('status', 'Não admitido')
         ->get();
 
+        if (!$candidatos) {
+            return 0;
+        }
         if ($candidatos->isEmpty()) {
             return 0;
         }
@@ -342,7 +358,9 @@ class CandidatoController extends Controller
     {
         $candidatos = Candidato::where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
         ->get();
-
+        if (!$candidatos) {
+            return 0;
+        }
         if ($candidatos->isEmpty()) {
             return 0;
         }

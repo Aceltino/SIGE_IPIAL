@@ -31,8 +31,16 @@ class Classe extends Model
     {
         return $this->hasMany(CalendarioProva::class, 'calendario_id');
     }
-    public function disciplinas()
+
+   public function classe_disciplina()
     {
-        return $this->belongsToMany(Disciplina::class, 'classe_disciplina' , 'disciplina_id' , 'classe_id');
+        return $this->belongsToMany(Disciplina::class, 'classe_disciplina' ,'disciplina_id','classe')->withPivot('tipo_disciplina','carga_horaria');;
+    }
+ 
+    public function disciplina() 
+    {
+        return $this->belongsToMany(Disciplina::class, 'classe_disciplina' ,'disciplina_id','classe_id')->withPivot('tipo_disciplina','carga_horaria');;
+
+        // return $this->hasMany(Calendario::class, 'calendario_id');
     }
 }

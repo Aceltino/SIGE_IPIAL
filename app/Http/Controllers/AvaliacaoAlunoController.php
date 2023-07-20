@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Exame;
 use Illuminate\Http\Request;
 use App\Models\Nota;
 use App\Traits\AvaliacaoTrait;
@@ -10,14 +11,13 @@ use App\Models\Trimestre;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Professor;
 use App\Models\ResultadoFinalAluno;
-use App\Models\Disciplina;
 
 class AvaliacaoAlunoController extends Controller
 {
     public function index()
     {
         $user = Auth::user();
-        if($user->cargo_usuario === "Administrador" || $user->cargo_usuario === "Subdirector"){
+        if($user->cargo_usuario === "Subdirector"){
             $professor = AvaliacaoTrait::pegarAdmin();
             $erro = AvaliacaoTrait::erros($professor);
             if($erro !== true){
@@ -52,6 +52,9 @@ class AvaliacaoAlunoController extends Controller
             }
         }
         $inc = 0;
+        if (!isset($professor)) {
+            return redirect()->route('inicio');
+        }
         for ($i = 0; $i < count($professor); $i++) {
             $disciplina_id[$i] = $professor[$i]['disciplina_id'];
             $nome_disciplina[$i] = $professor[$i]['nome_disciplina'];
@@ -113,130 +116,96 @@ class AvaliacaoAlunoController extends Controller
         return view('avaliac-aluno/edit-valiac-aluno', compact('notas'));
     }
 
-    public function store(Request $request, $disciplina_id)
+    public function store(Request $request)
     {
-        if($request->ac == null && $request->npp == null && $request->npt == null
-        && $request->exame == null && $request->exame_recurso == null){
-            return redirect()->back()->with('erro', "Os campos dos formulários não podem estar vazios!");
+        $n = 0;
+        $inc = 0;
+        $falha = 0;
+        $sucesso = 0;
+        for ($i = 0; $i < count($request->nota_aluno); $i++) {
+            if($request->nota_aluno[$i] === null){
+                $n++;
+            } else{
+                $aluno[$inc] = (int) $request->aluno_id[$i];
+                $notas[$inc] = (int) $request->nota_aluno[$i];
+                $inc++;
+            }
+        }
+        //dd($nota);
+        if($n === count($request->nota_aluno)){
+            return redirect()->back()->with('erro', "Nenhuma nota foi inserida!");
         }
         $trimestre = Trimestre::where('status', 1)->get();
-        $nota = Nota::where('aluno_id', $request->aluno_id)
-        ->where('disciplina_id', $disciplina_id)
-        ->where('id_trimestre', $trimestre[0]->trimestre_id)
-        ->get();
 
-        if($request->ac != null){
+        if($request->tipo_prova === "ac"){
+            foreach ($aluno as $chave => $valor) {
             $dados = [
-                'nota_aluno' => $request->ac,
+                'nota_aluno' => $notas[$chave],
                 'tipo_prova' => "Avaliação Contínua",
-                'descricao_nota' => $request->conteudo,
-                'aluno_id' => $request->aluno_id,
-                'disciplina_id' => $disciplina_id,
+                'descricao_nota' => null,
+                'aluno_id' => $valor,
+                'disciplina_id' => $request->disciplina_id[0],
                 'id_trimestre' => $trimestre[0]->trimestre_id
             ];
             Nota::create($dados);
+            $sucesso++;
         }
-        if($request->npp != null){
-            $nota = Nota::where('tipo_prova', "Prova Professor")
-            ->where('aluno_id', $request->aluno_id)
-            ->where('disciplina_id', $disciplina_id)
+    } else{
+            for ($i = 0; $i <count($notas); $i++) {
+            $nota = Nota::where('tipo_prova', $request->tipo_prova)
+            ->where('aluno_id', $aluno[$i])
+            ->where('disciplina_id', $request->disciplina_id[0])
             ->where('id_trimestre', $trimestre[0]->trimestre_id)
             ->get();
+            //dd($nota);
             if(count($nota) > 0){
-                return redirect()->back()->with('erro', "O aluno já tem uma NPP!");
+                $falha++;
             } else{
                 $dados = [
-                    'nota_aluno' => $request->npp,
-                    'tipo_prova' => "Prova Professor",
-                    'descricao_nota' => $request->conteudo,
-                    'aluno_id' => $request->aluno_id,
-                    'disciplina_id' => $disciplina_id,
-                    'id_trimestre' => $trimestre[0]->trimestre_id
-                ];
-                Nota::create($dados);
-            }
-        }
-        if($request->npt != null){
-            $nota = Nota::where('tipo_prova', "Prova Trimestre")
-            ->where('aluno_id', $request->aluno_id)
-            ->where('disciplina_id', $disciplina_id)
-            ->where('id_trimestre', $trimestre[0]->trimestre_id)
-            ->get();
-            if(count($nota) > 0){
-                return redirect()->back()->with('erro', "O aluno já tem uma NPT!");
-            } else{
-                $dados = [
-                    'nota_aluno' => $request->npt,
-                    'tipo_prova' => "Prova Trimestre",
-                    'descricao_nota' => $request->conteudo,
-                    'aluno_id' => $request->aluno_id,
-                    'disciplina_id' => $disciplina_id,
-                    'id_trimestre' => $trimestre[0]->trimestre_id
-                ];
-                Nota::create($dados);
-            }
-        }
-        if($request->exame != null){
-            $nota = Nota::where('tipo_prova', "Exame")
-            ->where('aluno_id', $request->aluno_id)
-            ->where('disciplina_id', $disciplina_id)
-            ->where('id_trimestre', $trimestre[0]->trimestre_id)
-            ->get();
-            if(count($nota) > 0){
-                return redirect()->back()->with('erro', "O aluno já tem uma nota de Exame!");
-            } else{
-                $dados = [
-                    'nota_aluno' => $request->exame,
-                    'tipo_prova' => "Exame",
-                    'descricao_nota' => $request->conteudo,
-                    'aluno_id' => $request->aluno_id,
-                    'disciplina_id' => $disciplina_id,
-                    'id_trimestre' => $trimestre[0]->trimestre_id
-                ];
-                Nota::create($dados);
-            }
-        }
-        if($request->exame_recurso != null){
-            $nota = Nota::where('tipo_prova', "Recurso")
-            ->where('aluno_id', $request->aluno_id)
-            ->where('disciplina_id', $disciplina_id)
-            ->where('id_trimestre', $trimestre[0]->trimestre_id)
-            ->get();
-            if(count($nota) > 0){
-                return redirect()->back()->with('erro', "O aluno já tem uma nota de Recurso!");
-            } else{
-                $dados = [
-                    'nota_aluno' => $request->exame_recurso,
-                    'tipo_prova' => "Recurso",
+                    'nota_aluno' => $notas[$i],
+                    'tipo_prova' => $request->tipo_prova,
                     'descricao_nota' => null,
-                    'aluno_id' => $request->aluno_id,
-                    'disciplina_id' => $disciplina_id,
+                    'aluno_id' => $aluno[$i],
+                    'disciplina_id' => $request->disciplina_id[0],
                     'id_trimestre' => $trimestre[0]->trimestre_id
                 ];
                 Nota::create($dados);
             }
         }
-        if($request->exame_especial != null){
-            $nota = Nota::where('tipo_prova', "Exame Especial")
-            ->where('aluno_id', $request->aluno_id)
-            ->where('disciplina_id', $disciplina_id)
+    }
+
+    if($request->tipo_prova === "nota_administrativa"){
+        for ($i = 0; $i <count($notas); $i++) {
+            $nota = Nota::where('tipo_prova', $request->tipo_prova)
+            ->where('aluno_id', $aluno[$i])
+            ->where('disciplina_id', $request->disciplina_id[0])
             ->where('id_trimestre', $trimestre[0]->trimestre_id)
             ->get();
+            //dd($nota);
             if(count($nota) > 0){
-                return redirect()->back()->with('erro', "O aluno já tem uma nota de Exame Especial!");
+                $falha++;
             } else{
                 $dados = [
-                    'nota_aluno' => $request->exame_especial,
-                    'tipo_prova' => "Exame Especial",
+                    'nota_aluno' => $notas[$i],
+                    'tipo_prova' => $request->tipo_prova,
                     'descricao_nota' => null,
-                    'aluno_id' => $request->aluno_id,
-                    'disciplina_id' => $disciplina_id,
+                    'aluno_id' => $aluno[$i],
+                    'disciplina_id' => $request->disciplina_id[0],
                     'id_trimestre' => $trimestre[0]->trimestre_id
                 ];
                 Nota::create($dados);
+                $sucesso++;
             }
         }
+    }
+    if ($sucesso > 0 && $falha > 0) {
+        return redirect()->back()->with('sucesso', "Avaliação realizada com sucesso, mas há " . $falha . " aluno(s) que já possuía(m) uma nota!");
+    } elseif($sucesso > 0 && $falha === 0){
         return redirect()->back()->with('sucesso', "Avaliação realizada com sucesso!");
+    } elseif ($sucesso === 0 && $falha > 0) {
+        return redirect()->back()->with('erro', "Não foi possível realizar a avaliação porque o(s) aluno(s) já possuem uma nota!");
+    }
+    return redirect()->back()->with('sucesso', "Avaliação realizada com sucesso!");
 
     }
 
@@ -254,75 +223,4 @@ class AvaliacaoAlunoController extends Controller
         return redirect()->back()->with('sucesso', "Nota alterada com sucesso!");
     }
 
-    public function indexRecurso(){
-        $busca = (int) request('busca');
-        if ($busca) {
-            $ano_lectivo = AvaliacaoTrait::pegarAnoLectivo();
-            $dados = ResultadoFinalAluno::with('alunos.candidato.pessoa', 'alunos.anoTurma.turma.curso', 'ano_lectivos')
-            ->where('aluno_id', $busca)
-            ->where('ano_lectivo_id', $ano_lectivo[0]->ano_lectivo_id)
-            ->where('situacao', "Exame")
-            ->get();
-            if(count($dados) < 1){
-                return redirect()->back()->with('erro', "Nenhum registro encontrado!");
-            }
-            $id_cadeiras = json_decode($dados[0]->id_cadeiras_def, true);
-            foreach ($id_cadeiras as $chave => $valor) {
-                $disciplinas[$chave - 1] = Disciplina::find($id_cadeiras[$chave]);
-            }
-            return view('avaliac-aluno/recurso', compact(['dados', 'disciplinas']));
-        }
-        $dados = array();
-        $disciplinas = array();
-        return view('avaliac-aluno/recurso', compact('dados', 'disciplinas'));
     }
-
-    public function indexUpdateRecurso($aluno_id){
-        $trimestre = Trimestre::where('status', 1)->get();
-        $dados = Nota::with('aluno.candidato.pessoa', 'aluno.turmaAno', 'disciplina')
-        ->where('aluno_id', $aluno_id)
-        ->where('id_trimestre', $trimestre[0]->trimestre_id)
-        ->where('tipo_prova', "Recurso")
-        ->get();
-        if(count($dados) < 1){
-            return redirect()->back()->with('erro', "Nenhum registro de recurso encontrado!");
-        }
-        return view('avaliac-aluno/edit-recurso', compact('dados'));
-    }
-
-    public function indexExameEspecial(){
-        $busca = (int) request('busca');
-        if ($busca) {
-            $ano_lectivo = AvaliacaoTrait::pegarAnoLectivo();
-            $dados = ResultadoFinalAluno::with('alunos.candidato.pessoa', 'alunos.anoTurma.turma.curso', 'ano_lectivos')
-            ->where('aluno_id', $busca)
-            ->where('ano_lectivo_id', $ano_lectivo[0]->ano_lectivo_id)
-            ->where('situacao', "Ñ/Transita")
-            ->get();
-            if(count($dados) < 1){
-                return redirect()->back()->with('erro', "Nenhum registro encontrado!");
-            }
-            $id_cadeiras = json_decode($dados[0]->id_cadeiras_def, true);
-            foreach ($id_cadeiras as $chave => $valor) {
-                $disciplinas[$chave - 1] = Disciplina::find($id_cadeiras[$chave]);
-            }
-            return view('avaliac-aluno/exame', compact(['dados', 'disciplinas']));
-        }
-        $dados = array();
-        $disciplinas = array();
-        return view('avaliac-aluno/exame', compact('dados', 'disciplinas'));
-    }
-
-    public function indexUpdateExameEspecial($aluno_id){
-        $trimestre = Trimestre::where('status', 1)->get();
-        $dados = Nota::with('aluno.candidato.pessoa', 'aluno.turmaAno', 'disciplina')
-        ->where('aluno_id', $aluno_id)
-        ->where('id_trimestre', $trimestre[0]->trimestre_id)
-        ->where('tipo_prova', "Exame Especial")
-        ->get();
-        if(count($dados) < 1){
-            return redirect()->back()->with('erro', "Nenhum registro de exame especial encontrado!");
-        }
-        return view('avaliac-aluno/edit-exame', compact('dados'));
-    }
-}

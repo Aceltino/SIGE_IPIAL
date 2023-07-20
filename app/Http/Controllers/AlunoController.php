@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Aluno;
 use Carbon\Carbon;
 
-use Illuminate\Http\Request;
-
 class AlunoController extends Controller
 {
     public static function store($dadosAluno)
@@ -90,8 +88,7 @@ class AlunoController extends Controller
                 $aluno->save()
             ];
         }
-        dd($Alunos);
-        return $Alunos;
+         return $Alunos;
     }
 
     public static function pegarIdUser($idAluno)
@@ -99,9 +96,7 @@ class AlunoController extends Controller
         $aluno = Aluno::with('candidato.pessoa.user')
         ->where('aluno_id', $idAluno)
         ->get()
-        ->first();
-
-        
+        ->first();        
         $userId = $aluno->candidato->pessoa->user[0]->usuario_id;
 
         return $userId;
@@ -133,6 +128,7 @@ class AlunoController extends Controller
                     break;
                 }
             }
+            // dd($aluno->anoturma);
                 $Alunos[] = [
                     'N_processo' => $aluno->aluno_id,
                     'estado' => $aluno->status,
@@ -362,7 +358,9 @@ class AlunoController extends Controller
             $query->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo());
         })
         ->get();
-
+        if (!$alunos) {
+            return 0;
+        }
         if ($alunos->isEmpty()) {
             return 0;
         }
@@ -388,11 +386,14 @@ class AlunoController extends Controller
         return array_values($alun);
     }
 
-        public static function situacaoAluno() // Função a ser chamada na reabertura do ano lectivo 11ª >
-        {
+    public static function situacaoAluno() // Função a ser chamada na reabertura do ano lectivo 11ª >
+    {
 
             $alunos = AlunoController::alunosTurmaTotal();
 
+            if (empty($alunos)) {
+                return 0;
+            }
             if(!$alunos)
             {
                 return 0;

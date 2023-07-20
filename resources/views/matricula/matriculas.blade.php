@@ -22,7 +22,7 @@
     {{session('success')}}
     </div>
     @endif
-    
+
     @if(session()->has('Sucesso'))
     <div class="alert alert-success no-print">
     {{session('Sucesso')}}
@@ -66,7 +66,7 @@
           @foreach($cursos as $curso)
           <option class="no-print" value="{{$curso['nome_curso']}}">{{$curso['nome_curso']}}</option>
           @endforeach
-  
+
         </select>
     </div>
   </div>

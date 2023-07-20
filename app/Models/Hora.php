@@ -21,4 +21,9 @@ class Hora extends Model
     public function tempo(){
         return $this->belongsTo(Tempo::class, 'tempo_id');
     }
+
+    public function turno()
+    {
+        return $this->belongsTo(Turno::class, 'turno_id');
+    }
 }

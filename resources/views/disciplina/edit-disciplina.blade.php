@@ -21,7 +21,7 @@
                     <div class="col" style=" margin-top: 5px; margin-bottom: 5px;">
 
                         <div style="  text-align: center;">
-                            <h2>CADASTRAR DISCIPLINA</h2>
+                            <h2>EDITAR DISCIPLINA</h2>
                         </div>
 
                     </div>
@@ -54,9 +54,9 @@
                             <select oninput="this.className = ''" class="form-select" name="componente"
                                 id="selectComponente" value="{{ old('componente') }}">
                                 <option selected disabled> Componetes</option>
-                                <option value="Técnicas">Técnicas</option>
-                                <option value="Socio-culturais">Socio-culturais</option>
-                                <option value="Cientificas">Cientificas</option>
+                                <option value="Componente Técnica, Tecnológica e Prática">Componente Técnica, Tecnológica e Prática</option>
+                                <option value="Componente Socio-Cultural">Componente Socio-Cultural</option>
+                                <option value="Componente Científica">Componente Científica</option>
                             </select>
                             @error('componente')
                                 <div class="alert alert-danger">{{ $message }}
@@ -149,7 +149,7 @@
                         </div>
                         <div style="text-align:center;margin-top:10px;">
                             <div>
-                                <button type="submit" id="botao" class="btn btn-success">Cadastrar</button>
+                                <button type="submit" id="botao" class="btn btn-success">Actualizar</button>
 
                             </div>
 

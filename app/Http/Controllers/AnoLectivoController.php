@@ -26,22 +26,28 @@ class AnoLectivoController extends Controller
     }
 
         public static function AnoLectivoConfig()
-    {
-        $anoLectivo = AnoLectivoController::pegarAnoLectivo(AnoLectivoController::pegarIdAnoLectivo());
-
-        $datasRestricao = [
-            'InicioAnoLectivo' => $anoLectivo->data_inicio_ano_lectivo,
-            'FimAnoLectivo' => $anoLectivo->data_fim_ano_lectivo,
-            'InicioInscricao' => $anoLectivo->data_inicio_inscricao,
-            'FimInscricao' => $anoLectivo->data_fim_inscricao,
-            'InicioMatricula' => $anoLectivo->data_inicio_matricula,
-            'FimMatricula' => $anoLectivo->data_fim_matricula,
-            'Num_turma_turno' => $anoLectivo->num_sala_escola,
-            'Num_aluno_turma' => $anoLectivo->num_aluno_na_turma,
-        ];
-
-        return $datasRestricao;
-    }
+        {
+            $anoLectivo = AnoLectivoController::pegarAnoLectivo(AnoLectivoController::pegarIdAnoLectivo());
+            if(!$anoLectivo) {
+                return 0;
+            }
+        
+            if (!empty($anoLectivo)) 
+            {
+                $datasRestricao = [
+                    'InicioAnoLectivo' => $anoLectivo->data_inicio_ano_lectivo,
+                    'FimAnoLectivo' => $anoLectivo->data_fim_ano_lectivo,
+                    'InicioInscricao' => $anoLectivo->data_inicio_inscricao,
+                    'FimInscricao' => $anoLectivo->data_fim_inscricao,
+                    'InicioMatricula' => $anoLectivo->data_inicio_matricula,
+                    'FimMatricula' => $anoLectivo->data_fim_matricula,
+                    'Num_turma_turno' => $anoLectivo->num_sala_escola,
+                    'Num_aluno_turma' => $anoLectivo->num_aluno_na_turma,
+                ];
+                        return $datasRestricao;
+            }
+                    return 0;
+        }
 
     public static function pegarAnoLectivo($id)
     {
@@ -63,30 +69,15 @@ class AnoLectivoController extends Controller
         $request = $req->validated();
         //dd(date('Y', strtotime($request['data_inicio_ano_lectivo'])) . "-" . date('Y', strtotime($request['data_fim_ano_lectivo'])));
         $anoLectivo = [
-            'ano_lectivo' => date('Y', strtotime($request['data_inicio_ano_lectivo'])) . "-" . date('Y', strtotime($request['data_fim_ano_lectivo'])),
+            'ano_lectivo' => $request['ano_lectivo'],
             'status_ano_lectivo' => 1,
-            'data_inicio_ano_lectivo' => $request['data_inicio_ano_lectivo'],
+            'data_inicio_ano_lectivo' => date('Y-m-d'),
             'num_aluno_na_turma' => $request['num_aluno_na_turma'],
             'num_sala_escola' => $request['num_sala_escola'],
             'data_inicio_inscricao' => $request['data_inicio_inscricao'],
             'data_fim_inscricao' => $request['data_fim_inscricao'],
             'data_inicio_matricula' => $request['data_inicio_matricula'],
             'data_fim_matricula' => $request['data_fim_matricula'],
-            'hora_inicio_manha' => $request['hora_inicio_manha'],
-            'hora_fim_manha' => $request['hora_fim_manha'],
-            'duracao_tempo_manha' => $request['duracao_tempo_manha'],
-            'duracao_int_menor_manha' => $request['duracao_int_menor_manha'],
-            'duracao_int_maior_manha' => $request['duracao_int_maior_manha'],
-            'hora_inicio_tarde' => $request['hora_inicio_tarde'],
-            'hora_fim_tarde' => $request['hora_fim_tarde'],
-            'duracao_tempo_tarde' => $request['duracao_tempo_tarde'],
-            'duracao_int_menor_tarde' => $request['duracao_int_menor_tarde'],
-            'duracao_int_maior_tarde' => $request['duracao_int_maior_tarde'],
-            'hora_inicio_noite' => $request['hora_inicio_noite'],
-            'hora_fim_noite' => $request['hora_fim_noite'],
-            'duracao_tempo_noite' => $request['duracao_tempo_noite'],
-            'duracao_int_menor_noite' => $request['duracao_int_menor_noite'],
-            'duracao_int_maior_noite' => $request['duracao_int_maior_noite'],
         ];
 
         $al = Ano_lectivo::where('status_ano_lectivo', 1)->first();
@@ -132,14 +123,15 @@ class AnoLectivoController extends Controller
         //dd($trimestre);
 
         //Todas as funções que devem acontecer no inicio do ano lectivo devem estar abaixo deste comentário
-        AlunoTurmaController::alunoAnolectivo(); // Criar turma automaticamente
-        AlunoTurmaController::situacaoAluno(); // Atribuir turmas aos alunos da 11ª em diante.
+        //AlunoTurmaController::alunoAnolectivo(); // Criar turma automaticamente
+       // AlunoTurmaController::situacaoAluno(); // Atribuir turmas aos alunos da 11ª em diante.
 
         return redirect()->route('ano.lectivo')->with('sucesso', "Ano lectivo criado com sucesso.");
     }
 
     public function index(){
         $anoLectivo = Ano_lectivo::all()->toArray();
+        
         return view('ano-lectivo/ano-lect', compact('anoLectivo'));
     }
 
@@ -156,35 +148,20 @@ class AnoLectivoController extends Controller
     public function update(AnoLectivoRequest $req){
         $request = $req->validated();
         //dd($request);
-        $verif = Ano_lectivo::where('data_inicio_ano_lectivo', $request['data_inicio_ano_lectivo'])->get()->first()->toArray();
-        if(count($verif) > 0 && $verif[0]['ano_lectivo_id'] =! $request['id']){
+        $verif = Ano_lectivo::where('ano_lectivo', $request['ano_lectivo'])->get()->first();
+        //dd($verif);
+        if(!empty($verif) && $verif->ano_lectivo_id != $request['id']){
             return redirect()->back()->with('erro', 'Este ano lectivo já existe.');
         } else{
             $anoLectivo = [
                 'ano_lectivo' => $request['ano_lectivo'],
                 'status_ano_lectivo' => 1,
-                'data_inicio_ano_lectivo' => $request['data_inicio_ano_lectivo'],
                 'num_aluno_na_turma' => $request['num_aluno_na_turma'],
                 'num_sala_escola' => $request['num_sala_escola'],
                 'data_inicio_inscricao' => $request['data_inicio_inscricao'],
                 'data_fim_inscricao' => $request['data_fim_inscricao'],
                 'data_inicio_matricula' => $request['data_inicio_matricula'],
                 'data_fim_matricula' => $request['data_fim_matricula'],
-                'hora_inicio_manha' => $request['hora_inicio_manha'],
-                'hora_fim_manha' => $request['hora_fim_manha'],
-                'duracao_tempo_manha' => $request['duracao_tempo_manha'],
-                'duracao_int_menor_manha' => $request['duracao_int_menor_manha'],
-                'duracao_int_maior_manha' => $request['duracao_int_maior_manha'],
-                'hora_inicio_tarde' => $request['hora_inicio_tarde'],
-                'hora_fim_tarde' => $request['hora_fim_tarde'],
-                'duracao_tempo_tarde' => $request['duracao_tempo_tarde'],
-                'duracao_int_menor_tarde' => $request['duracao_int_menor_tarde'],
-                'duracao_int_maior_tarde' => $request['duracao_int_maior_tarde'],
-                'hora_inicio_noite' => $request['hora_inicio_noite'],
-                'hora_fim_noite' => $request['hora_fim_noite'],
-                'duracao_tempo_noite' => $request['duracao_tempo_noite'],
-                'duracao_int_menor_noite' => $request['duracao_int_menor_noite'],
-                'duracao_int_maior_noite' => $request['duracao_int_maior_noite'],
             ];
 
             Ano_Lectivo::where('ano_lectivo_id', $request['id'])->update($anoLectivo);
@@ -218,45 +195,47 @@ class AnoLectivoController extends Controller
     }
 
     public function configuracaoAnoLectivo(Request $request){
-        if (isset($request->primeiro_trimestre)) {
+
+        if (isset($request->trimestre1º)) {
+
             if(!AnoLectivoTrait::validarAberturaTrimestre()){
                 return redirect()->back()->with('erro', 'Não pode haver mais de um trimestre abertos na mesma data.');
             }
-            if(!AnoLectivoTrait::validarProcessoAberturaTrimestre($request->primeiro_trimestre)){
+            if(!AnoLectivoTrait::validarProcessoAberturaTrimestre($request->trimestre1º)){
                 return redirect()->back()->with('erro', 'Não pode abrir o primeiro trimestre sem que o prazo para as matriculas termine.');
             }
             if(!AnoLectivoTrait::validarStatusTrimestre()){
                 return redirect()->back()->with('erro', 'Não pode abrir um trimestre sem fechar o anterior.');
             }
-            if(AnoLectivoTrait::abrirTrimestre($request->primeiro_trimestre)){
+            if(AnoLectivoTrait::abrirTrimestre($request->trimestre1º)){
                 return redirect()->back()->with('sucesso', 'Trimestre aberto com sucesso.');
             }
         }
-        if (isset($request->segundo_trimestre)) {
+        if (isset($request->trimestre2º)) {
             if(!AnoLectivoTrait::validarAberturaTrimestre()){
                 return redirect()->back()->with('erro', 'Não pode haver mais de um trimestre abertos na mesma data.');
             }
-            if(!AnoLectivoTrait::validarProcessoAberturaTrimestre($request->primeiro_trimestre)){
+            if(!AnoLectivoTrait::validarProcessoAberturaTrimestre($request->trimestre2º)){
                 return redirect()->back()->with('erro', 'Não pode abrir o segundo trimestre sem que o primeiro trimestre seja concluído.');
             }
             if(!AnoLectivoTrait::validarStatusTrimestre()){
                 return redirect()->back()->with('erro', 'Não pode abrir um trimestre sem fechar o anterior.');
             }
-            if(AnoLectivoTrait::abrirTrimestre($request->segundo_trimestre)){
+            if(AnoLectivoTrait::abrirTrimestre($request->trimestre2º)){
                 return redirect()->back()->with('sucesso', 'Trimestre aberto com sucesso.');
             }
         }
-        if (isset($request->terceiro_trimestre)) {
+        if (isset($request->trimestre3º)) {
             if(!AnoLectivoTrait::validarAberturaTrimestre()){
                 return redirect()->back()->with('erro', 'Não pode haver mais de um trimestre abertos na mesma data.');
             }
-            if(!AnoLectivoTrait::validarProcessoAberturaTrimestre($request->primeiro_trimestre)){
+            if(!AnoLectivoTrait::validarProcessoAberturaTrimestre($request->trimestre3º)){
                 return redirect()->back()->with('erro', 'Não pode abrir o terceiro trimestre sem que o segundo trimestre seja concluído.');
             }
             if(!AnoLectivoTrait::validarStatusTrimestre()){
                 return redirect()->back()->with('erro', 'Não pode abrir um trimestre sem fechar o anterior.');
             }
-            if(AnoLectivoTrait::abrirTrimestre($request->terceiro_trimestre)){
+            if(AnoLectivoTrait::abrirTrimestre($request->trimestre3º)){
                 return redirect()->back()->with('sucesso', 'Trimestre aberto com sucesso.');
             }
         }
@@ -284,7 +263,7 @@ class AnoLectivoController extends Controller
                 return redirect()->back()->with('erro', 'Ano lectivo só pode ser fechado após o fechamento do terceiro trimestre.');
             }
 
-             //CandidatoController::eliminarCandidatos(); // Eliminar todos os candidatos não matriculados no ano lectivo
+             CandidatoController::eliminarCandidatos(); // Eliminar todos os candidatos não matriculados no ano lectivo
              AlunoController::alunosVinculados(); //Cortar o acesso de todos os alunos do sistema
 
 

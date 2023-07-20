@@ -51,7 +51,7 @@
 
           <div class="form-group col-md-6 offset-md-3 mb-3">
             <h6 class="color-blue-principal">Número de disciplinas que o professor vai lecionar.</h6>
-            <input type="number" placeholder="Quantidade de disciplinas" id="quantidade-de-disciplinas" min="1" value="2" max="4" required='false'>
+            <input type="number" placeholder="Quantidade de disciplinas" id="quantidade-de-disciplinas" min="1" value="1" max="4" required='false'>
           </div>
 
           <section class="row align-items-center ms-5 mb-4" id="div-disciplina-1">
@@ -184,37 +184,14 @@
 
           <h3 class="text-uppercase text-center my-3 color-blue-principal">informações importantes para o instituto</h3>
 
-          <h5 class="text-uppercase text-center my-3 color-blue-principal">Sobre o(s) curso(s) que faz parte</h5>
-
-          <div class="form-group col">
-            <div class="d-flex justify-content-around flex-wrap">
-              <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" value="Desenhador Projectista">
-                <label class="form-check-label" for="checkboxCursoDeDesenhadorProjectista">Desenhador Projectista</label>
-              </div>
-              <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" value="Técnico de Energia e Instalações Eléctricas">
-                <label class="form-check-label" for="checkboxCursoTecnicoDeEnergiaEInstalacoesElectricas">Técnico de Energia e Instalações Eléctricas</label>
-              </div>
-              <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" value="Técnico de Informática">
-                <label class="form-check-label" for="checkboxCursoTecnicoDeInformatica">Técnico de Informática</label>
-              </div>
-              <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" value="Electrônica e Telecomunicação">
-                <label class="form-check-label" for="checkboxCursoElectronicaETelecomunicacao">Electrônica e Telecomunicação</label>
-              </div>
-            </div>
-          </div>
-
           <h5 class="text-uppercase text-center my-3 color-blue-principal">Sobre o cargo</h5>
 
           <div class="form-group col">
             <select oninput="this.className = ''" class="form-select" id="select-cargo-cadastrar-professor">
               <optgroup label="Cargo">
-                <option>Professor</option>
-                <option>Coordenador do curso</option>
-                <option>Coordenador da área de formação</option>
+                <option value="Professor">Professor</option>
+                <option value="Coordenador do curso">Coordenador do curso</option>
+                <option value="Coordenador da área de formação">Coordenador da área de formação</option>
               </optgroup>
             </select>
           </div>
@@ -256,33 +233,15 @@
     </form>
     <script>
       if(parseInt(quantidadeDeDisciplinas.value) < 1 || parseInt(quantidadeDeDisciplinas.value) > 4){
-          quantidadeDeDisciplinas.value = "1";
-        }
+        quantidadeDeDisciplinas.value = "1";
+      }
 
-        if(parseInt(quantidadeDeDisciplinas.value) === 1){
-            // Habilitar todas as opções nos selects
-            habilitarOpcoes(disciplinaALeccionar1);
-
-            if(!divDoSelectSegundaDisciplina.classList.contains("d-none")){
-              divDoSelectSegundaDisciplina.classList.add("d-none");
-            }
-
-            if(!divDoSelectTerceiraDisciplina.classList.contains("d-none")){
-              divDoSelectTerceiraDisciplina.classList.add("d-none");
-            }
-
-            if(!divDoSelectQuartaDisciplina.classList.contains("d-none")){
-              divDoSelectQuartaDisciplina.classList.add("d-none");
-            }
-        }
-
-        if(parseInt(quantidadeDeDisciplinas.value) === 2){
+      if(parseInt(quantidadeDeDisciplinas.value) === 1){
           // Habilitar todas as opções nos selects
           habilitarOpcoes(disciplinaALeccionar1);
-          habilitarOpcoes(disciplinaALeccionar2);
 
-          if(divDoSelectSegundaDisciplina.classList.contains("d-none")){
-            divDoSelectSegundaDisciplina.classList.remove("d-none");
+          if(!divDoSelectSegundaDisciplina.classList.contains("d-none")){
+            divDoSelectSegundaDisciplina.classList.add("d-none");
           }
 
           if(!divDoSelectTerceiraDisciplina.classList.contains("d-none")){
@@ -292,46 +251,64 @@
           if(!divDoSelectQuartaDisciplina.classList.contains("d-none")){
             divDoSelectQuartaDisciplina.classList.add("d-none");
           }
+      }
+      
+      if(parseInt(quantidadeDeDisciplinas.value) === 2){
+        // Habilitar todas as opções nos selects
+        habilitarOpcoes(disciplinaALeccionar1);
+        habilitarOpcoes(disciplinaALeccionar2);
+
+        if(divDoSelectSegundaDisciplina.classList.contains("d-none")){
+          divDoSelectSegundaDisciplina.classList.remove("d-none");
         }
 
-        if(parseInt(quantidadeDeDisciplinas.value) === 3){
-          // Habilitar todas as opções nos selects
-          habilitarOpcoes(disciplinaALeccionar1);
-          habilitarOpcoes(disciplinaALeccionar2);
-          habilitarOpcoes(disciplinaALeccionar3);
-          
-          if(divDoSelectSegundaDisciplina.classList.contains("d-none")){
-            divDoSelectSegundaDisciplina.classList.remove("d-none");
-          }
-
-          if(divDoSelectTerceiraDisciplina.classList.contains("d-none")){
-            divDoSelectTerceiraDisciplina.classList.remove("d-none");
-          }
-
-          if(!divDoSelectQuartaDisciplina.classList.contains("d-none")){
-            divDoSelectQuartaDisciplina.classList.add("d-none");
-          }
+        if(!divDoSelectTerceiraDisciplina.classList.contains("d-none")){
+          divDoSelectTerceiraDisciplina.classList.add("d-none");
         }
 
-        if(parseInt(quantidadeDeDisciplinas.value) === 4){
-          // Habilitar todas as opções nos selects
-          habilitarOpcoes(disciplinaALeccionar1);
-          habilitarOpcoes(disciplinaALeccionar2);
-          habilitarOpcoes(disciplinaALeccionar3);
-          habilitarOpcoes(disciplinaALeccionar4);
-
-          if(divDoSelectSegundaDisciplina.classList.contains("d-none")){
-            divDoSelectSegundaDisciplina.classList.remove("d-none");
-          }
-
-          if(divDoSelectTerceiraDisciplina.classList.contains("d-none")){
-            divDoSelectTerceiraDisciplina.classList.remove("d-none");
-          }
-
-          if(divDoSelectQuartaDisciplina.classList.contains("d-none")){
-            divDoSelectQuartaDisciplina.classList.remove("d-none");
-          }
+        if(!divDoSelectQuartaDisciplina.classList.contains("d-none")){
+          divDoSelectQuartaDisciplina.classList.add("d-none");
         }
+      }
+
+      if(parseInt(quantidadeDeDisciplinas.value) === 3){
+        // Habilitar todas as opções nos selects
+        habilitarOpcoes(disciplinaALeccionar1);
+        habilitarOpcoes(disciplinaALeccionar2);
+        habilitarOpcoes(disciplinaALeccionar3);
+        
+        if(divDoSelectSegundaDisciplina.classList.contains("d-none")){
+          divDoSelectSegundaDisciplina.classList.remove("d-none");
+        }
+
+        if(divDoSelectTerceiraDisciplina.classList.contains("d-none")){
+          divDoSelectTerceiraDisciplina.classList.remove("d-none");
+        }
+
+        if(!divDoSelectQuartaDisciplina.classList.contains("d-none")){
+          divDoSelectQuartaDisciplina.classList.add("d-none");
+        }
+      }
+
+      if(parseInt(quantidadeDeDisciplinas.value) === 4){
+        // Habilitar todas as opções nos selects
+        habilitarOpcoes(disciplinaALeccionar1);
+        habilitarOpcoes(disciplinaALeccionar2);
+        habilitarOpcoes(disciplinaALeccionar3);
+        habilitarOpcoes(disciplinaALeccionar4);
+
+        if(divDoSelectSegundaDisciplina.classList.contains("d-none")){
+          divDoSelectSegundaDisciplina.classList.remove("d-none");
+        }
+
+        if(divDoSelectTerceiraDisciplina.classList.contains("d-none")){
+          divDoSelectTerceiraDisciplina.classList.remove("d-none");
+        }
+
+        if(divDoSelectQuartaDisciplina.classList.contains("d-none")){
+          divDoSelectQuartaDisciplina.classList.remove("d-none");
+        }
+      }
     </script>
   </main>
 @endsection

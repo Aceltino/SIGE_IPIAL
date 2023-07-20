@@ -32,4 +32,13 @@ class Horario extends Model
     public function tempo(){
         return $this->belongsTo(Tempo::class, 'tempo_id');
     }
+
+    public function sala(){
+        return $this->belongsTo(Sala::class, 'sala_id');
+    }
+
+    public function dia()
+    {
+        return $this->belongsTo(Dia::class, 'dia_id');
+    } 
 }

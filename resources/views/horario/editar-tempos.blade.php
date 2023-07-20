@@ -16,7 +16,7 @@
 
             <div class="row mb-4">
                 <div class="col">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select oninput="this.className = ''" class="form-select" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled readonly>
                         <optgroup label="Turno">
                             <option value="Manhã">Manhã</option>
                             <option value="Tarde">Tarde</option>
