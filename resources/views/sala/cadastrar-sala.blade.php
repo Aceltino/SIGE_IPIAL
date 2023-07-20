@@ -42,7 +42,7 @@
             <div class="row">
 
                 <div class=" col form-group">
-                    <select name="tipo-sala" id="opcoes" oninput="this.className = ''" class="form-select" name="tipo_sala">
+                    <select name="tipo_sala" id="opcoes" oninput="this.className = ''" class="form-select">
                         <option selected disabled>Tipo de sala</option>
                         <option value="Laboratorio">Laboratorio</option>
                         <option value="Normal">Normal</option>

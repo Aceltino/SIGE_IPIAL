@@ -10,7 +10,7 @@
     </div>
 
       <div class="col-lg-2">
-        <select class="btn-sel form-select " id="filtro3">
+        <select class="btn-sel form-select " id="filtro5">
           <option selected disabled>Curso</option>
           <option value="Desenhador projetista">Desenhador projetista</option>
           <option value="Técnico de Energia e Instalações Electricas">Técnico de Energia e Instalações Electricas</option>
@@ -19,7 +19,7 @@
         </select>
       </div>
       <div class="col-lg-2">
-        <select class="btn-sel form-select" id="filtro2">
+        <select class="btn-sel form-select" id="filtro3">
           <option selected disabled>Componetes</option>
           <option value="Técnicas">Técnicas</option>
           <option value="Socio-culturais">Socio-culturais</option>
@@ -62,7 +62,7 @@
   @endif
 
   <!-- /  Inicio da tabela de disciplina -->
-  <table class="table table-striped display table table-custom table-escuro " style="margin-top: 10px;" id="Inscricoes-tab">
+  <table class="table table-striped display table table-custom table-escuro " style="margin-top: 10px;" id="Inscricoes-tab" id="matricula-tab" >
     <thead>
     <tr style=" text-align: center;">
         <th scope="col">Nome da disciplina</th>

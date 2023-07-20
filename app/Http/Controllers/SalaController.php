@@ -7,20 +7,10 @@ use App\Models\Sala;
 
 class SalaController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $pesquisa = $request->pesquisa;
-        if($pesquisa)
-        {
-            $salas = Sala::where([
-                ['titulo_com', 'like',  "%$pesquisa%"]
-            ])->get();  
-        }
-        else
-        {
-            $salas = Sala::all();
-        }
-        return view('sala.sala',['salas',$salas ,'pesquisa',$pesquisa ]); 
+        $salas = Sala::all();
+        return view('sala.sala',['salas',$salas ]); 
     }
     public function create()
     {
