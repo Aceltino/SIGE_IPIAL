@@ -124,6 +124,11 @@ class CandidatoController extends Controller
                 ->orWhere('status', 'admitido');
         })->get();
 
+        // if(!$candidatos) {
+        //     return 'Sem candidatos inscritos';
+        // }
+
+
         foreach ($candidatos as &$candidato)
         {
             $dataNascimento = Carbon::parse($candidato->pessoa->data_nascimento);
@@ -142,6 +147,11 @@ class CandidatoController extends Controller
             $cursoCandidato = CandidatoCursoController::cursoEscolhido($candidato->candidato_id);
         }
 
+        if( !isset($candidato[0]) ) 
+        {
+            return 'Sem candidatos inscritos';
+        }
+// dd($candidatos);
         $cursoEscolhido = [];
         if($cursoCandidato)
         {
