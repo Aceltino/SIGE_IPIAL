@@ -26,28 +26,28 @@ class AnoLectivoController extends Controller
     }
 
         public static function AnoLectivoConfig()
-    {
-        $anoLectivo = AnoLectivoController::pegarAnoLectivo(AnoLectivoController::pegarIdAnoLectivo());
-        if (!$anoLectivo) {
-            return 0;
+        {
+            $anoLectivo = AnoLectivoController::pegarAnoLectivo(AnoLectivoController::pegarIdAnoLectivo());
+            if(!$anoLectivo) {
+                return 0;
+            }
+        
+            if (!empty($anoLectivo)) 
+            {
+                $datasRestricao = [
+                    'InicioAnoLectivo' => $anoLectivo->data_inicio_ano_lectivo,
+                    'FimAnoLectivo' => $anoLectivo->data_fim_ano_lectivo,
+                    'InicioInscricao' => $anoLectivo->data_inicio_inscricao,
+                    'FimInscricao' => $anoLectivo->data_fim_inscricao,
+                    'InicioMatricula' => $anoLectivo->data_inicio_matricula,
+                    'FimMatricula' => $anoLectivo->data_fim_matricula,
+                    'Num_turma_turno' => $anoLectivo->num_sala_escola,
+                    'Num_aluno_turma' => $anoLectivo->num_aluno_na_turma,
+                ];
+                        return $datasRestricao;
+            }
+                    return 0;
         }
-        if ($anoLectivo->isEmpty()) {
-            return 0;
-        }
-
-        $datasRestricao = [
-            'InicioAnoLectivo' => $anoLectivo->data_inicio_ano_lectivo,
-            'FimAnoLectivo' => $anoLectivo->data_fim_ano_lectivo,
-            'InicioInscricao' => $anoLectivo->data_inicio_inscricao,
-            'FimInscricao' => $anoLectivo->data_fim_inscricao,
-            'InicioMatricula' => $anoLectivo->data_inicio_matricula,
-            'FimMatricula' => $anoLectivo->data_fim_matricula,
-            'Num_turma_turno' => $anoLectivo->num_sala_escola,
-            'Num_aluno_turma' => $anoLectivo->num_aluno_na_turma,
-        ];
-
-        return $datasRestricao;
-    }
 
     public static function pegarAnoLectivo($id)
     {
@@ -131,6 +131,7 @@ class AnoLectivoController extends Controller
 
     public function index(){
         $anoLectivo = Ano_lectivo::all()->toArray();
+        
         return view('ano-lectivo/ano-lect', compact('anoLectivo'));
     }
 
@@ -262,8 +263,8 @@ class AnoLectivoController extends Controller
                 return redirect()->back()->with('erro', 'Ano lectivo só pode ser fechado após o fechamento do terceiro trimestre.');
             }
 
-             //CandidatoController::eliminarCandidatos(); // Eliminar todos os candidatos não matriculados no ano lectivo
-             //AlunoController::alunosVinculados(); //Cortar o acesso de todos os alunos do sistema
+             CandidatoController::eliminarCandidatos(); // Eliminar todos os candidatos não matriculados no ano lectivo
+             AlunoController::alunosVinculados(); //Cortar o acesso de todos os alunos do sistema
 
 
              //Todas as funções devem ser colocadas acima porque depois do ano lectivo estar com o status 0 nenhuma ação é permitida.

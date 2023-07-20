@@ -43,18 +43,15 @@ class AreaFormacaoRequest extends FormRequest
                         return $fail(CursoTrait::erroAreaFormacao($area_formacao['erro']));
                     }
                 }
-            ],
-
-            'coordenador' => [
-                'required',
             ]
-        ];
+            ];
+
+        
     }
 
     public function messages(){
         return [
             'nome_area_formacao.required' => 'Preencha o nome da área de formação.',
-            'coordenador.required' => 'Seleccione um coordenador para esta área de formação.',
         ];
     }
 }

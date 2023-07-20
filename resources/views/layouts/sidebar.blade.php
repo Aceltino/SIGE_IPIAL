@@ -130,12 +130,12 @@
     </a>
     <ul id="sala-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
       <li>
-        <a href="/cadastrar-sala">
+        <a href="{{route('criar.sala')}}">
           <i class="bi bi-circle"></i><span>Cadastrar sala</span>
         </a>
       </li>
       <li>
-        <a href="/sala">
+        <a href="{{ route('consultar.sala') }}">
           <i class="bi bi-circle"></i><span>Salas</span>
         </a>
       </li>
@@ -363,6 +363,21 @@
         <a class="nav-link collapsed" href={{route('boletim')}}>
           <i class="bi bi-person"></i>
           <span>Boletim de Notas</span>
+        </a>
+      </li>
+    <!-- /	Nav backup-->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href={{route('backup')}}>
+        <i class="bi bi-person"></i>
+        <span>Backup</span>
+      </a>
+    </li>
+    @endif
+    @if(Auth::user()->Administrador == "Administrador")
+      <li class="nav-item">
+        <a class="nav-link collapsed" href={{route('')}}>
+          <i class="bi bi-person"></i>
+          <span>Backup</span>
         </a>
       </li>
     @endif

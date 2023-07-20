@@ -29,15 +29,6 @@
            </select>
          </div>
 
-         <div class="col-lg-4">
-           <select class="btn-sel form-select" id="filtro4">
-             <option selected disabled>Coordenador</option>
-             @foreach ($coordenador as $dado)
-                <option value="{{$dado['pessoa']['nome_completo']}}">{{$dado['pessoa']['nome_completo']}}</option>
-             @endforeach
-
-           </select>
-         </div>
 
       </div>
 
@@ -55,23 +46,22 @@
             <th scope="col">Nome do Curso</th>
             <th scope="col">Sigla</th>
             <th scope="col">Area de Formação</th>
-            <th scope="col">Coordenador</th>
+
             <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
-        @for ($i = 0; $i < count($coordenador); $i++)
-            @if ($coordenador[$i]['curso'])
+        @for ($i = 0; $i < count($cursos); $i++)
               <tr style=" text-align: center;">
-                  <th scope="row">{{$coordenador[$i]['curso']['nome_curso']}}</th>
-                  <td>{{$coordenador[$i]['curso']['sigla']}}</td>
-                  <td>{{$coordenador[$i]['curso']['area_formacao']['nome_area_formacao']}}</td>
-                  <td>{{$coordenador[$i]['pessoa']['nome_completo']}}</td>
+                  <th scope="row">{{$cursos[$i]->nome_curso}}</th>
+                  <td>{{$cursos[$i]->sigla}}</td>
+                  <td>{{0}}</td>
+                
                   <td>
                     <section style="display: flex;">
-                    <i class="bi bi-eye-fill"  data-bs-toggle="modal" data-bs-target="#ExtralargeModal{{$coordenador[$i]['curso']['curso_id']}}"></i>
-                    <a style="margin-left: 6px;"  href="{{route('editar.curso', $coordenador[$i]['curso']['curso_id'])}}" class="bi bi-pencil"></a>
-                    <form  method="POST"action="{{route('apagar.curso', $coordenador[$i]['curso']['curso_id'])}}">
+                    <i class="bi bi-eye-fill"  data-bs-toggle="modal" data-bs-target="#ExtralargeModal{{$cursos[$i]->curso_id}}"></i>
+                    <a style="margin-left: 6px;"  href="{{route('editar.curso', $cursos[$i]->curso_id)}}" class="bi bi-pencil"></a>
+                    <form  method="POST"action="{{route('apagar.curso', $cursos[$i]->curso_id)}}">
                         @csrf
                         @method('delete')
                         <button type="submit" class="bi bi-trash-fill" style="border: none; background: none;"></button>
@@ -80,7 +70,7 @@
                   </td>
               </tr>
 
-              <div class="modal fade" id="ExtralargeModal{{$coordenador[$i]['curso']['curso_id']}}" tabindex="-1" data-bs-backdrop="false">
+              <div class="modal fade" id="ExtralargeModal{{$cursos[$i]->curso_id}}" tabindex="-1" data-bs-backdrop="false">
                 <div class="modal-dialog modal-xl">
                   <div class="modal-content">
 
@@ -104,10 +94,10 @@
                       <form class="form-inativo">
                         <div class="dados-pessoais">
                         <div class="area-input form-group" disabled>
-                        <label>Nome do Curso: </label><input type="text" name="" value="{{$coordenador[$i]['curso']['nome_curso']}}" disabled>
+                        <label>Nome do Curso: </label><input type="text" name="" value="{{$cursos[$i]->nome_curso}}" disabled>
                         </div>
                         <div class="area-input form-group" disabled>
-                        <label>Sigla do Curso: </label><input type="text" name="" value="{{$coordenador[$i]['curso']['sigla']}}" disabled>
+                        <label>Sigla do Curso: </label><input type="text" name="" value="{{$cursos[$i]->sigla_curso}}" disabled>
                         </div>
 
 
@@ -116,7 +106,7 @@
                        <label for="">Area de Formação:</label>
                        <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select" disabled>
                             <option disabled>Area de Formação:</option>
-                            <option value="{{$coordenador[$i]['curso']['area_formacao']['nome_area_formacao']}}" selected>{{$coordenador[$i]['curso']['area_formacao']['nome_area_formacao']}}</option>
+                            <option value="{{$cursos[$i]->curso_id}}" selected>{{$cursos[$i]->curso_id}}</option>
                         </select>
                     </div>
 
@@ -124,7 +114,7 @@
                         <label for="">Coordenador:</label>
                         <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select" disabled>
                             <option  disabled>Coordenador:</option>
-                            <option value="{{$coordenador[$i]['pessoa']['nome_completo']}}" selected>{{$coordenador[$i]['pessoa']['nome_completo']}}</option>
+                            <option value="{{$cursos[$i]->pessoa->nome_completo}}" selected>{{$cursos[$i]->pessoa->nome_completo}}</option>
                         </select>
                     </div>
 
@@ -132,7 +122,7 @@
 
                           <div class="jnt">
                               <a href="/curso/cursos" class="btn" style="background-color: #070b17; color: #fff;">Retrocer aos Cursos</a>
-                            <a href="{{route('editar.curso', $coordenador[$i]['curso']['curso_id'])}}" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
+                            <a href="{{route('editar.curso', $cursos[$i]->curso_id)}}" class="btn" style="background-color: #d0ff00; color: #fff;">Editar dados</a>
                           </div>
                         </div>
                     </div>
@@ -140,7 +130,7 @@
                   </div>
                 </div>
               </div>
-              @endif
+
             @endfor
 
         </tbody>
