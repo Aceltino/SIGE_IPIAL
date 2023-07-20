@@ -4,18 +4,17 @@ use App\Http\Controllers\{
     //Classes das Controllers
     inicioController,
     AuthController,InscricaoController,ProfessorController,
-    AlunoController,MatriculaController,CursoController,
+   MatriculaController,CursoController,
     comunicadosController,AssiduidadeAlunoController,
     AvaliacaoAlunoController,AnoLectivoController,
     MiniPautaController,UserController,PautaController,
     PerfilUserController,ProcessoController,
     DisciplinasController, AdmissaoController,
-    AlunoTurmaController,
     TurmaController, CalendarioController,
     HorarioController,
-    CandidatoController,
     AreaFormacaoController,SalaController,
-    BoletimNotasController
+    BoletimNotasController,
+    ExameController
 };
 
 /*
@@ -393,11 +392,11 @@ Route::get('/editar-avaliacao-aluno/{id_aluno}/{id_disciplina}', [AvaliacaoAluno
 Route::put('/editar-avaliacao-aluno/update/{id_nota}', [AvaliacaoAlunoController::class, 'update'])->name('update.nota.aluno');
 
 /*Exame de aluno de Aluno*/
-Route::get('exame_aluno',  [AvaliacaoAlunoController::class, 'indexExameEspecial'])->name('exame.especial');
+Route::get('exame_aluno',  [ExameController::class, 'indexExameEspecial'])->name('exame.especial');
 
-Route::get('exames_histo/{aluno_id}',  [AvaliacaoAlunoController::class, 'indexUpdateExameEspecial'])->name('historico.exame.especial');
+Route::get('exames_histo/{aluno_id}',  [ExameController::class, 'indexUpdateExameEspecial'])->name('historico.exame.especial');
 
-Route::put('edit_exame/{nota_id}',  [AvaliacaoAlunoController::class, 'update'])->name('editar.nota.exame.especial');
+Route::put('edit_exame/{nota_id}',  [ExameController::class, 'update'])->name('editar.nota.exame.especial');
 
 /*ERRO Avaliação de Aluno*/
 Route::get('erroavaliar',  function () {
@@ -405,11 +404,11 @@ Route::get('erroavaliar',  function () {
 })->name('erroavaliar');
 
 /*Recurso de Aluno*/
-Route::get('recurso_aluno',  [AvaliacaoAlunoController::class, 'indexRecurso'])->name('recurso');
+Route::get('recurso_aluno',  [ExameController::class, 'indexRecurso'])->name('recurso');
 
-Route::get('recurso_histo/{aluno_id}',  [AvaliacaoAlunoController::class, 'indexUpdateRecurso'])->name('historico.recurso');
+Route::get('recurso_histo/{aluno_id}',  [ExameController::class, 'indexUpdateRecurso'])->name('historico.recurso');
 
-Route::get('edit_recurso/{nota_id}',  [AvaliacaoAlunoController::class, 'update'])->name('editar.nota.recurso');
+Route::get('edit_recurso/{nota_id}',  [ExameController::class, 'update'])->name('editar.nota.recurso');
 
 /******************************************
  * Rotas do horário

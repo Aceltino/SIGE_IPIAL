@@ -50,9 +50,9 @@
                             <select oninput="this.className = ''" class="form-select" name="componente"
                                 id="selectComponente" value="{{ old('componente') }}">
                                 <option selected disabled> Componetes</option>
+                                <option value="Componente Técnica, Tecnológica e Prática">Componente Técnica, Tecnológica e Prática</option>
                                 <option value="Componente Socio-Cultural">Componente Socio-Cultural</option>
                                 <option value="Componente Científica">Componente Científica</option>
-                                <option value="Componente Técnica, Tecnológica e Prática">Componente Técnica, Tecnológica e Prática</option>
                             </select>
                             @error('componente')
                                 <div class="alert alert-danger">{{ $message }}

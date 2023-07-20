@@ -35,14 +35,14 @@
             </div>
 
             <div class="form-group">
-                <input type="text" style=" text-align: center;" placeholder="Sala" name="nome_sala" id="nome_sala" oninput="this.className = ''" required >
+                <input type="text" style=" text-align: center;" placeholder="Sala" name="nome_sala" id="nome_sala" id="letra2" oninput="this.className = ''" required >
                 <span id=" erro_nome"  style="color: red"></span>
             </div>
 
             <div class="row">
 
                 <div class=" col form-group">
-                    <select name="tipo-sala" id="opcoes" oninput="this.className = ''" class="form-select" name="tipo_sala">
+                    <select name="tipo_sala" id="opcoes" oninput="this.className = ''" class="form-select">
                         <option selected disabled>Tipo de sala</option>
                         <option value="Laboratorio">Laboratorio</option>
                         <option value="Normal">Normal</option>

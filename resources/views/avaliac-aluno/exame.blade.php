@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Exames-Aluno')
+@section('title', 'Recurso-Aluno')
 @section('conteudo')
 <main id="main" class="main">
     @if (session()->has('erro'))
@@ -19,46 +19,51 @@
         </button>
     </div>
     @endif
-
   <div class="pagetitle">
     <div class="row">
           <div class="col">
-              <h1>Exames Especiais</h1>
+              <h1>Exame Especial</h1>
           </div>
 
           <div class="col-lg-2">
-            <select class="btn-sel form-select" id="filtro10">
-              <option  disabled>Curso</option>
-              @if (count($dados) > 0)
-                <option value="{{$dados[0]->alunos->anoTurma[count($dados[0]->alunos->anoTurma) -1]->turma->curso->nome_curso}}">{{$dados[0]->alunos->anoTurma[count($dados[0]->alunos->anoTurma) -1]->turma->curso->nome_curso}}</option>
-              @endif
-            </select>
-          </div>
-
-          <div class="col-lg-2">
-            <select class="btn-sel form-select" id="filtro11">
-              <option disabled >Disciplina</option>
-                @for ($i = 0; $i < count($disciplinas); $i++)
-                    <option value="">{{$disciplinas[$i]->nome_disciplina}}</option>
+            <select class="btn-sel form-select" >
+              <option  selected>Curso</option>
+                @for ($i = 0; $i < count($dados); $i++)
+                    @for ($j = 0; $j < count($dados[$i]); $j++)
+                        <option value="{{$dados[$i][$j]['nome_curso']}}">{{$dados[$i][$j]['nome_curso']}}</option>
+                    @endfor
                 @endfor
             </select>
           </div>
 
           <div class="col-lg-2">
-            <select class="btn-sel form-select" id="filtro12">
-              <option disabled >Turma</option>
-                @if (count($dados) > 0)
-                    <option value="{{$dados[0]->alunos->anoTurma[count($dados[0]->alunos->anoTurma) -1]->turma->nome_turma}}">{{$dados[0]->alunos->anoTurma[count($dados[0]->alunos->anoTurma) -1]->turma->nome_turma}}</option>
-                @endif
+            <select class="btn-sel form-select" >
+              <option selected>Disciplina</option>
+              @for ($i = 0; $i < count($dados); $i++)
+                    @for ($j = 0; $j < count($dados[$i]); $j++)
+                        <option value="{{$dados[$i][$j]['nome_disciplina']}}">{{$dados[$i][$j]['nome_disciplina']}}</option>
+                    @endfor
+                @endfor
+            </select>
+          </div>
+
+          <div class="col-lg-2">
+            <select class="btn-sel form-select" >
+              <option disabled  selected>Turma</option>
+              @for ($i = 0; $i < count($dados); $i++)
+                    @for ($j = 0; $j < count($dados[$i]); $j++)
+                        <option value="{{$dados[$i][$j]['nome_turma']}}">{{$dados[$i][$j]['nome_turma']}}</option>
+                    @endfor
+                @endfor
             </select>
           </div>
     </div>
-    <form action="{{route('exame.especial')}}">
+    <form action="{{route('recurso')}}">
         @csrf
     <div class="procurar">
     <div class="proc-form d-flex align-items-center">
         <input id="pesquisa" type="text" placeholder="Digite o Número ou o Nome do Aluno que Procuras" name="busca" class="campo-pesq">
-        <button  title="Search"><i class="bi bi-search"></i></button>
+        <button type="submit"  title="Search"><i class="bi bi-search"></i></button>
     </div>
     </div>
     </form>
@@ -72,14 +77,14 @@
         </div>
     </div>
     <!-- /  Inicio da tabela  -->
-    <table id="avaliaca" class="table table-custom table-escuro display" style="margin-top: 20px; width: 100%;" >
+    <table  class="table table-custom table-escuro display" style="margin-top: 20px; width: 100%;" >
       <thead style="text-align: center">
         <tr>
           <th scope="col">Nº do Processo</th>
           <th scope="col">Nome do Aluno</th>
           <th scope="col">Nota</th>
-          <th scope="col">ANO</th>
-          <th scope="col">Examinar</th>
+          <th scope="col">Ano</th>
+          <th scope="col">Recurso</th>
           <th scope="col">Histórico</th>
           <th scope="col" hidden>curso</th>
           <th scope="col" hidden>Disciplina</th>
@@ -87,23 +92,24 @@
         </tr>
       </thead>
       <tbody>
-
-        @for ($i = 0; $i < count($disciplinas); $i++)
+        @for ($i = 0; $i < count($dados); $i++)
+        @for ($j = 0; $j < count($dados[$i]); $j++)
         <tr style="text-align: center;">
-            <th scope="row">{{$dados[0]->aluno_id}}</th>
-            <td>{{$dados[0]->alunos->candidato->pessoa->nome_completo}}</td>
+            <th scope="row">{{$dados[$i][$j]['aluno_id']}}</th>
+            <td>{{$dados[$i][$j]['nome_completo']}}</td>
             <td></td>
-            <td>{{$dados[0]->ano_lectivos->ano_lectivo}}</td>
+            <td>{{$dados[$i][$j]['ano_lectivo']}}</td>
             <td style="text-align: center">
-            <a class="btn botaoazul"data-bs-toggle="modal" value="{{$disciplinas[$i]->disciplina_id}}" data-bs-target="#modal_assiduidade" >Realizar Exame</a>
+            <a class="btn botaoazul"data-bs-toggle="modal" value="{{$dados[$i][$j]['disciplina_id']}}" data-bs-target="#modal_assiduidade{{$dados[$i][$j]['aluno_id']}}" >Realizar Operação</a>
             </td>
             <td style="text-align: center">
-            <a href="{{route('historico.exame.especial', $dados[0]->aluno_id)}}" class="btn linkeditar">Exames do Aluno</a>
+            <a href="{{route('historico.recurso', $dados[$i][$j]['aluno_id'])}}" class="btn linkeditar">Recursos</a>
             </td>
-            <td hidden>{{$dados[0]->alunos->anoTurma[count($dados[0]->alunos->anoTurma) -1]->turma->curso->nome_curso}}</td>
-            <td hidden>{{$disciplinas[$i]->nome_disciplina}}</td>
-            <td hidden>{{$dados[0]->alunos->anoTurma[count($dados[0]->alunos->anoTurma) -1]->turma->nome_turma}}</td>
+            <td hidden>{{$dados[$i][$j]['nome_curso']}}</td>
+            <td hidden>{{$dados[$i][$j]['disciplina_id']}}</td>
+            <td hidden>{{$dados[$i][$j]['nome_turma']}}</td>
         </tr>
+        @endfor
         @endfor
                 <!-- Início da Modal -->
 
@@ -113,14 +119,15 @@
     </table>
     <!-- Cola aqui o código -->
 
-
+    @for ($i = 0; $i < count($dados); $i++)
+    @for ($j = 0; $j < count($dados[$i]); $j++)
     <form method="POST" action="">
         @csrf
-      <div class="modal" id="modal_assiduidade" tabindex="-1" data-bs-backdrop="false" >
+      <div class="modal" id="modal_assiduidade{{$dados[$i][$j]['aluno_id']}}" tabindex="-1" data-bs-backdrop="false" >
           <div class="modal-dialog modal-xl">
           <div class="modal-content">
           <div class="modal-header">
-              <h5 class="modal-title">Exame-Aluno</h5>
+              <h5 class="modal-title">Recurso-Aluno</h5>
               <button type="button" class="btn-close"data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -143,7 +150,7 @@
                 <thead style="text-align: center">
                   <tr>
                     <th scope="col">Disciplina</th>
-                    <th scope="col">Exame Nota</th>
+                    <th scope="col">Recurso Nota</th>
 
                   </tr>
                 </thead>
@@ -160,12 +167,14 @@
           </div>
           <div class="modal-footer" style="display: flex; justify-content: center; align-items: center;">
               <button type="button" class="btn botaovermelhonota" data-bs-dismiss="modal">Cancelar</button>
-              <button type="subimit" name="aluno_id" class="btn botaoazulnota" value="" >Realizar Exame</button>
+              <button type="subimit" name="aluno_id" class="btn botaoazulnota" value="" >Realizar Recurso</button>
           </div>
           </div>
       </div>
       </div>
     </form>
+    @endfor
+    @endfor
     </div>
 
   <!-- Termina a tabela -->
