@@ -274,6 +274,9 @@ class CandidatoController extends Controller
         ->where('status', 'Admitido')
         ->get();
 
+        if (!$candidatos) {
+            return 0;
+        }
         if ($candidatos->isEmpty()) {
             return 0;
         }
@@ -309,6 +312,9 @@ class CandidatoController extends Controller
         ->where('status', 'Não admitido')
         ->get();
 
+        if (!$candidatos) {
+            return 0;
+        }
         if ($candidatos->isEmpty()) {
             return 0;
         }
@@ -342,7 +348,9 @@ class CandidatoController extends Controller
     {
         $candidatos = Candidato::where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
         ->get();
-
+        if (!$candidatos) {
+            return 0;
+        }
         if ($candidatos->isEmpty()) {
             return 0;
         }
