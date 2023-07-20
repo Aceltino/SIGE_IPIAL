@@ -26,28 +26,28 @@ class AnoLectivoController extends Controller
     }
 
         public static function AnoLectivoConfig()
-    {
-        $anoLectivo = AnoLectivoController::pegarAnoLectivo(AnoLectivoController::pegarIdAnoLectivo());
-        if (!$anoLectivo) {
-            return 0;
+        {
+            $anoLectivo = AnoLectivoController::pegarAnoLectivo(AnoLectivoController::pegarIdAnoLectivo());
+            if(!$anoLectivo) {
+                return 0;
+            }
+        
+            if (!empty($anoLectivo)) 
+            {
+                $datasRestricao = [
+                    'InicioAnoLectivo' => $anoLectivo->data_inicio_ano_lectivo,
+                    'FimAnoLectivo' => $anoLectivo->data_fim_ano_lectivo,
+                    'InicioInscricao' => $anoLectivo->data_inicio_inscricao,
+                    'FimInscricao' => $anoLectivo->data_fim_inscricao,
+                    'InicioMatricula' => $anoLectivo->data_inicio_matricula,
+                    'FimMatricula' => $anoLectivo->data_fim_matricula,
+                    'Num_turma_turno' => $anoLectivo->num_sala_escola,
+                    'Num_aluno_turma' => $anoLectivo->num_aluno_na_turma,
+                ];
+                        return $datasRestricao;
+            }
+                    return 0;
         }
-        if ($anoLectivo->isEmpty()) {
-            return 0;
-        }
-
-        $datasRestricao = [
-            'InicioAnoLectivo' => $anoLectivo->data_inicio_ano_lectivo,
-            'FimAnoLectivo' => $anoLectivo->data_fim_ano_lectivo,
-            'InicioInscricao' => $anoLectivo->data_inicio_inscricao,
-            'FimInscricao' => $anoLectivo->data_fim_inscricao,
-            'InicioMatricula' => $anoLectivo->data_inicio_matricula,
-            'FimMatricula' => $anoLectivo->data_fim_matricula,
-            'Num_turma_turno' => $anoLectivo->num_sala_escola,
-            'Num_aluno_turma' => $anoLectivo->num_aluno_na_turma,
-        ];
-
-        return $datasRestricao;
-    }
 
     public static function pegarAnoLectivo($id)
     {
