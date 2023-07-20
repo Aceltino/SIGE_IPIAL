@@ -131,6 +131,7 @@ class AnoLectivoController extends Controller
 
     public function index(){
         $anoLectivo = Ano_lectivo::all()->toArray();
+        
         return view('ano-lectivo/ano-lect', compact('anoLectivo'));
     }
 
@@ -262,8 +263,8 @@ class AnoLectivoController extends Controller
                 return redirect()->back()->with('erro', 'Ano lectivo só pode ser fechado após o fechamento do terceiro trimestre.');
             }
 
-             //CandidatoController::eliminarCandidatos(); // Eliminar todos os candidatos não matriculados no ano lectivo
-             //AlunoController::alunosVinculados(); //Cortar o acesso de todos os alunos do sistema
+             CandidatoController::eliminarCandidatos(); // Eliminar todos os candidatos não matriculados no ano lectivo
+             AlunoController::alunosVinculados(); //Cortar o acesso de todos os alunos do sistema
 
 
              //Todas as funções devem ser colocadas acima porque depois do ano lectivo estar com o status 0 nenhuma ação é permitida.

@@ -18,7 +18,7 @@ class AssiduidadeAlunoController extends Controller
     public function index()
     {
         $user = Auth::user();
-        if($user->cargo_usuario === "Administrador" || $user->cargo_usuario === "Subdirector"){
+        if($user->cargo_usuario === "Subdirector"){
             $professor = AvaliacaoTrait::pegarAdmin();
             $erro = AvaliacaoTrait::erros($professor);
             if($erro !== true){
@@ -51,6 +51,9 @@ class AssiduidadeAlunoController extends Controller
             if($erro !== true){
                 return redirect()->route('erro.assiduidade')->with('erro', $erro);
             }
+        }
+        if (!isset($professor)) {
+            return redirect()->route('inicio');
         }
         $inc = 0;
         for ($i = 0; $i < count($professor); $i++) {

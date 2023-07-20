@@ -110,7 +110,7 @@ class ProfessorController extends Controller
                 'curso' => 'required|array|min:1',
                 'curso.*' => 'required|integer',
 
-                'course' => 'required|integer|min:1|max:7',
+                //'course' => 'required|integer|min:1|max:7',
             ], [
                 'nome_completo.required' => 'O campo nome completo é obrigatório.',
                 'nome_completo.string' => 'O campo nome completo deve ser uma string.',
@@ -130,7 +130,7 @@ class ProfessorController extends Controller
                 'qtd_disciplinas.max' => 'O campo quantidade de disciplinas deve ser no máximo :max.',
                 'disciplina.*.required' => 'O campo disciplina é obrigatório.',
             ]);
-        
+
             if ($validator->fails()) {
                 return redirect()->back()->withErrors($validator)->withInput();
             }
@@ -214,7 +214,7 @@ class ProfessorController extends Controller
                         'prioridade' => 1,
                         'turno_id' => $dadosDisciplina[$i]['turno'],
                     ]);
-                }                    
+                }
             }
             //var_dump($dadosDisciplina); exit;
             //dd($request);
@@ -224,7 +224,7 @@ class ProfessorController extends Controller
                 'genero' => $request->input('genero'),
                 'telefone' => $request->input('num_tel'),
                 'data_nascimento' => $request->input('data_nascimento'),
-            ]); 
+            ]);
 
             #$endereco = Endereco::create($validatedEndereco);
 

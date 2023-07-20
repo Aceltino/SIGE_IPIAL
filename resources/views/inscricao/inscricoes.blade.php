@@ -14,7 +14,7 @@
     </button>
     </div>
     @endif
-  
+
     @if(session()->has('Sucesso'))
     <div class="alert alert-success no-print">
     {{session('Sucesso')}}
@@ -52,7 +52,7 @@
       <button class="btn-imprimir no-print" id="Imprimir">Imprimir</button>
     </div>
     <!-- / Adicionar a condição se a data atual for menor a da final de matricula aparece o botão -->
-   
+
     <!-- / Adicionar a condição se a data atual for menor a da final de matricula aparece o botão fin do coment+ario -->
 
   </div>
@@ -67,7 +67,7 @@
         <th scope="col">Nome do Candidato</th>
         <th scope="col">Média</th>
         <th scope="col">Idade</th>
-        <th scope="col">Curso</th>  
+        <th scope="col">Curso</th>
         <th scope="col">Situação</th>
         <th class="no-print" scope="col">Matricular</th>
         <th class="no-print" scope="col">Ações</th>

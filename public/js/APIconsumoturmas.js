@@ -4,7 +4,7 @@ axios.get('/api/turmas')
 
             const tabelaRegistros = document.getElementById('Tabturmas');
             const tbody = tabelaRegistros.getElementsByTagName('tbody')[0];
-            
+
             registros.forEach(function(tregistro) {
 
                 const row = tbody.insertRow();
@@ -16,10 +16,10 @@ axios.get('/api/turmas')
                 }else{
                     corBotao = 'style="Color:green;"';
 
-                }   
+                }
 
                 const botaoVisualizarTurma = `class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal${tregistro.IdTurma}"`;
-                
+
                 row.innerHTML = `
                     <td>${tregistro.nomeTurma}</td>
                     <td>${tregistro.classeTurma}</td>
@@ -31,14 +31,14 @@ axios.get('/api/turmas')
                     <i ${botaoVisualizarTurma}></i>
                     <a href="#" class="btn btn-success">Ad coordenador</a>
                     </td>
-                    
-                `; 
+
+                `;
 
                 const modal = `
                 <div class="modal fade" id="ExtralargeModal${tregistro.IdTurma}" tabindex="-1" data-bs-backdrop="false">
                     <div class="modal-dialog modal-xl">
                     <div class="modal-content">
-                        
+
                         <div class="provisorio">
                             <div class="card-icon-modal rounded-circle d-flex align-items-center justify-content-flex-end">
                                 <i class="bi bi-x-lg" data-bs-toggle="modal" aria-label="Close" data-bs-dismiss="modal"></i>
@@ -48,14 +48,14 @@ axios.get('/api/turmas')
                         <div class="cabecalho-modal">
                             <div class="row">
                                 <div class="col" style="display: flex; justify-content: flex-start; align-items: center;">
-                                <h1>Dados Da Turma</h1>      
+                                <h1>Dados Da Turma</h1>
                                 </div>
                             </div>
                         </div>
 
                         <div class="corpo-modal">
                         <form class="form-inativo">
-                            <div class="dados-pessoais">        
+                            <div class="dados-pessoais">
                             <div class="area-input form-group">
                                 <label>Nome Da Turma: </label><input class="form-control" type="text" name="" value="${tregistro.nomeTurma}"  disabled style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;">
                             </div>
@@ -67,7 +67,7 @@ axios.get('/api/turmas')
                                     <option value="${tregistro.classeTurma}" selected>${tregistro.classeTurma}</option>
                                 </select>
                                 </div>
-                                        
+
                                 <div class="col form-group gap-1 ">
                                 <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select"  disabled style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;">
                                     <option disabled>Turno:</option>
@@ -99,23 +99,23 @@ axios.get('/api/turmas')
                                 <a href="#" class="btn btn-success">Adicionar um coordenador</a>
                             </div>
                         </div>
-                    
-                    </div>        
+
+                    </div>
                     </div>
                 </div>
-                
+
                 `;
                 document.body.insertAdjacentHTML('beforeend', modal);
 
             });
             var $T= $("#Tabturmas").DataTable({
-             
+
                     pageLength: 6,
                     "dom": '<"top"i>rt<"bottom"lp><"clear">',
                     lengthChange: false,
                     ordering: false,
                     language:{
-                        
+
                             "sEmptyTable": "Nenhum registro encontrado",
                             "sInfo": "",
                             "sInfoEmpty": "",
@@ -135,24 +135,24 @@ axios.get('/api/turmas')
                             }
                     },
                     select: true
-                    
+
                 });
                 $('#Imprimir').click(function() {
                   // Desabilitar o DataTables
                   $T.destroy();
-                
+
                   // Ocultar elementos indesejados antes de imprimir
                   $('#turma-conteudo .no-print').hide();
-                
+
 
                   // Iniciar a impressão
                   window.print();
                 });
-                
+
                 $(window).on('afterprint', function() {
                   // Restaurar a visibilidade dos elementos ocultos após a impressão
                   $('#turma-conteudo .no-print').show();
-                
+
                   // Reativar o DataTables e aplicar as configurações
                   $T = $("#Tabturmas").DataTable({
                     initComplete: function(settings, json) {
@@ -168,7 +168,7 @@ axios.get('/api/turmas')
                     lengthChange: false,
                     ordering: false,
                     language:{
-                        
+
                             "sEmptyTable": "Nenhum registro encontrado",
                             "sInfo": "",
                             "sInfoEmpty": "",
@@ -190,9 +190,9 @@ axios.get('/api/turmas')
                     select: true
                   });
                 });
-                 
-               
-        
+
+
+
                 $("#filtro").on("change", function() {
                   var filtro = $(this).val();
                   if (filtro === 'Todos') {
@@ -218,7 +218,7 @@ axios.get('/api/turmas')
                   }
                 });
                 $("#filtro3").on("change", function() {
-                  var filtro3 = $(this).val(); 
+                  var filtro3 = $(this).val();
                   if (filtro3 === 'Todos') {
                     $T.column(2).search('').draw(); // Remove a filtragem da terceira coluna
                   } else {
@@ -264,7 +264,7 @@ axios.get('/api/turmas')
                   } else {
                     $T.column(8).search(filtro9).draw(); // Filtra a tabela pela Nona coluna com o valor selecionado
                   }
-                 
+
                 });
                 $("#filtro10").on("change", function() {
                   var filtro10 = $(this).val();
@@ -305,7 +305,7 @@ axios.get('/api/turmas')
                   } else {
                     $T.column(13).search(filtro14).draw(); // Filtra a tabela pela Décima-quarta coluna com o valor selecionado
                   }
-                 
+
                 });
                 $("#filtro15").on("change", function() {
                   var filtro15 = $(this).val();
@@ -314,16 +314,16 @@ axios.get('/api/turmas')
                   } else {
                     $T.column(14).search(filtro15).draw(); // Filtra a tabela pela Décima-quinta coluna com o valor selecionado
                   }
-                 
+
                 });
                  $("#filtro16").on("change", function() {
                   var filtro16 = $(this).val();
                   if (filtro16 === 'Todos') {
-                    $T.column(15).search('').draw(); // Remove a filtragem da  Décima-Sexta 
+                    $T.column(15).search('').draw(); // Remove a filtragem da  Décima-Sexta
                   } else {
                     $T.column(15).search(filtro16).draw(); // Filtra a tabela pela Décima-Sexta coluna com o valor selecionado
                   }
-                 
+
                 });
                  $("#filtro17").on("change", function() {
                   var filtro17 = $(this).val();
@@ -332,18 +332,18 @@ axios.get('/api/turmas')
                   } else {
                     $T.column(16).search(filtro17).draw(); // Filtra a tabela pela Décima-Sétima coluna com o valor selecionado
                   }
-                 
+
                 });
-                
+
             $(".paginate_button").addClass("paginate_button");
             $(".paginate").addClass("float-end");
-            
-            
+
+
             $("#pesquisa").on("keyup", function () {
                $T.search(this.value).draw();
-               
+
             });
-            
+
         })
         .catch(function(error) {
             console.error(error);
