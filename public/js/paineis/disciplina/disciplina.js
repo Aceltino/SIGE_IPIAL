@@ -5,11 +5,11 @@ $(document).ready(function () {
   $('#selectComponente').change(function () {
     var selectedOption = $(this).val();
 
-    if (selectedOption === 'Técnicas') {
+    if (selectedOption === 'Componente Técnica, Tecnológica e Prática') {
       handleTecnicas();
-    } else if (selectedOption === 'Cientificas') {
+    } else if (selectedOption === 'Componente Científica') {
       handleCientificas();
-    } else if (selectedOption === 'Socio-culturais') {
+    } else if (selectedOption === 'Componente Socio-Cultural') {
       handleSocioCulturais();
     } else {
       disableCheckboxes();
@@ -24,7 +24,7 @@ $(document).ready(function () {
 
     // Desmarcar todas as checkboxes selecionadas
     $('input[name="curso"]:checked').prop('checked', false);
-
+    $('input[name="curso"]').prop('disabled', false);
 
   }
 
