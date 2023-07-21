@@ -46,20 +46,25 @@
                     <th scope="col">Area de Formação</th>
                     <th scope="col">Coordenador</th>
                     <th scope="col"></th>
-                
+
                 </tr>
             </thead>
             <tbody>
-               
+
 
                 @foreach ($area_formacao as $af)
                     <tr style=" text-align: center;">
 
-                        <th scope="row">{{ $af->nome_area_formacao }}</th>
-                        <th>Paulo André</th>
+                        <th scope="row">{{$af->nome_area_formacao }}</th>
+                        @if ($af->coordenador)
+                            <th>{{$af->coordenador->pessoa->nome_completo}}</th>
+                        @else
+                            <th>Sem Coordenador</th>
+                        @endif
+
 
                         <td  style="display: flex; justify-content: center; align-items: center; gap:5px;">
-                            
+
                               <i class="bi bi-eye-fill" data-bs-toggle="modal"
                                     data-bs-target="#ExtralargeModal{{ $af->area_formacao_id }}"></i>
                                 <a style="margin-left: 6px;"
@@ -74,7 +79,7 @@
                         </td>
                     </tr>
                 @endforeach
-               
+
             </tbody>
         </table>
 
