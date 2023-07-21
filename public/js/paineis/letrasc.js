@@ -30,7 +30,7 @@ $(document).ready(function() {
 
     inputlt.addEventListener("paste", function(){
 
-      const regex = new RegExp("^[A-Z a-z\b]+$");
+      const regex = new RegExp("^[A-Z a-z Á-á Ã-ã À-à Ç ç\b]+$");
 
       const self = this;
 
@@ -46,7 +46,7 @@ $(document).ready(function() {
 
     inputlt2.addEventListener("paste", function(){
 
-      const regex = new RegExp("^[A-Z a-z\b]+$");
+      const regex = new RegExp("^[A-Z a-z Á-á Ã-ã À-à Ç ç\b]+$");
 
       const self = this;
 
