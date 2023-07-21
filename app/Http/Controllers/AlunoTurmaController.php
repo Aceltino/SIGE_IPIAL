@@ -438,6 +438,7 @@
             foreach ($turmas as $turmaA) 
             {
                 $curso = $turmaA->turma->curso->nome_curso;
+                $sigla = $turmaA->turma->curso->sigla;
                 $cursoId = $turmaA->turma->curso->curso_id;
                 $classe = $turmaA->turma->classe->classe;
                 $classeId = $turmaA->turma->classe->classe_id;
@@ -453,6 +454,7 @@
                 {
                     $vagas[$chave] = [
                         'curso' => $curso,
+                        'sigla' => $sigla,
                         'cursoId' => $cursoId,
                         'classe' => $classe,
                         'classeId' => $classeId,
