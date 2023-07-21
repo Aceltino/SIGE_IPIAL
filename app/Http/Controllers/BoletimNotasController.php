@@ -2,6 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\{
+    AlunoTurma,
+    Turma,
+    AnoTurmaCood
+};
+use App\Models\Candidato;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{
     Auth
@@ -15,7 +21,23 @@ class BoletimNotasController extends Controller
      */
     public function index()
     {
+        $user= Auth::user();
+        // dd($user);
+        $candidato= Candidato::findOrFail($user->pessoa_id);
+        // dd($candidato);
+        $aluno = \App\Models\Aluno::findOrFail($candidato->candidato_id);
+        $alunoTurma = AlunoTurma::where('aluno_id', $aluno->aluno_id)->first();
+        $anoTurmaCoord = AnoTurmaCood::where('turmaAno_id', $alunoTurma->turmaAno_id)
+            ->whereHas('ano_lectivo', function ($query) {
+                $query->where('status_ano_lectivo', 1);
+            })
+            ->first();
+        $disciplinaNota = \App\Models\Nota::where('aluno_id', $aluno->aluno_id)->get();
+        $discips = $disciplinaNota->pluck('disciplina_id');
         
+        $disciplinas = \App\Models\Disciplina::whereIn('disciplina_id', $discips)->get();
+
+        return view('boletim/boletim-notas',compact('user','candidato','aluno', 'anoTurmaCoord', 'disciplinas') );
     }
 
     /**

@@ -6,7 +6,7 @@
 <main id="main" class="main">
       <div class="row header-ficha">
         <div class="col">
-          <img src="img/foto.jpg"><span>Dados académicos</span>      
+          <span>Dados académicos</span>      
         </div>
       
          <div class="col-lg-2">
@@ -17,24 +17,16 @@
            </select>
          </div>
          
-         <div class="col-lg-2">
-           Dados pessoais
-         </div> 
-
-         <div class="col-lg-2">
-           Encarregado
-         </div>
-      
       </div>
 
       <div class="container" style="padding-top: 10px; margin-bottom: 20px">
         <div class="row">
           <div class="bordado col">
-            <span class="t-negrito">Nome: </span><span class="t-normal">Bruno dos Santos Manuel</span>
+            <span class="t-negrito">Nome: </span><span class="t-normal">{{ $user->pessoa->nome_completo }} - {{ $disciplinas[0]->nome_disciplina }} </span>
           </div>
 
           <div class="bordado col-lg-2" style="display: flex; justify-content: flex-start; align-items: center;">
-            <span class="t-negrito">Processo: </span><span class="t-normal">2339</span>
+            <span class="t-negrito">Processo: </span><span class="t-normal">{{$aluno->aluno_id}}</span>
           </div>
         </div>
         
@@ -45,7 +37,6 @@
         <div class="col-lg-2">
           <select class="btn-sel form-select">
             <option selected>2022 - 2023</option>
-            <option value="2021-2022">2021 - 2022</option>
           </select>
         </div>
 
@@ -53,11 +44,12 @@
           <select class="btn-sel form-select">
             <option selected>1º Trimestre</option>
             <option value="2021-2022">2º Trimestre</option>
+            <option value="2021-2022">3º Trimestre</option>
           </select>
         </div>
 
         <div class="col-lg-8" style="display: flex; justify-content: flex-end; align-items: center;">
-          <span class="btn" style="background-color: #070b17; color: #fff; margin-right: 10px;">I10AM</span>
+          <span class="btn" style="background-color: #070b17; color: #fff; margin-right: 10px;"></span>
           <span class="btn" style="background-color: #070b17; color: #fff;">10ª Classe</span>
         </div>
       </div>
