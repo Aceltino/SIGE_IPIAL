@@ -34,8 +34,8 @@ class ProfessorController extends Controller
                 $query->selectRaw('MIN(professor_id)')
                     ->from('professores')
                     ->groupBy('pessoa_id');
-            })
-            ->get();
+            })->get();
+
         $cursos = Curso::all(['nome_curso', 'sigla', 'curso_id']);
         $prof_disc = Professor_disciplina::with('disciplina')->get();
 
@@ -47,7 +47,7 @@ class ProfessorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create():mixed
     {
         $cursos = Curso::all(['nome_curso', 'sigla', 'curso_id']);
         $disciplinas = Disciplina::all();
@@ -168,7 +168,6 @@ class ProfessorController extends Controller
                 $request->input('course'),
                 $request->input('cargo'),
             ];
-
             $validatedEndereco = [
                 'municipio' => $request->input('municipio'),
                 'bairro' => $request->input('bairro'),
@@ -176,7 +175,7 @@ class ProfessorController extends Controller
                 'numero_casa' => $request->input('numero_casa')
             ];
 
-            $endereco = Endereco::create($validatedEndereco);
+            $endereco = Endereco::create($validatedEndereco); //Validar
 
             $pessoa = Pessoa::create([
                 'nome_completo' => $request->input('nome_completo'),
@@ -185,7 +184,7 @@ class ProfessorController extends Controller
                 'endereco_id' => $endereco->endereco_id,
                 'telefone' => $request->input('num_tel'),
                 'data_nascimento' => $request->input('data_nascimento'),
-            ]);
+            ]); // Pessoa Validar
 
             for ($i = 0; $i < count($curso); $i++) {
                 $cr = Curso::where('curso_id', $curso[$i])->first();
@@ -216,6 +215,7 @@ class ProfessorController extends Controller
                     ]);
                 }
             }
+
             //var_dump($dadosDisciplina); exit;
             //dd($request);
             /*$pessoa = Pessoa::create([
@@ -241,7 +241,7 @@ class ProfessorController extends Controller
                 'prioridade'    => 1
             ]); */
 
-            return redirect()->route('professor')->with('success', 'Registro criado com sucesso!');
+            return redirect()->route('professor')->with('success', 'Professor Registrado com sucesso!');
         } catch (\Exception $e) {
             // Captura a exceção de validação e trata os erros
             return redirect()->back()->withErrors($e->getMessage())->withInput();
