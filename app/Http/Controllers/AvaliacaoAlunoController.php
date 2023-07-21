@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\Exame;
 use Illuminate\Http\Request;
 use App\Models\Nota;
 use App\Traits\AvaliacaoTrait;
 use App\Models\Trimestre;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Professor;
-use App\Models\ResultadoFinalAluno;
 
 class AvaliacaoAlunoController extends Controller
 {

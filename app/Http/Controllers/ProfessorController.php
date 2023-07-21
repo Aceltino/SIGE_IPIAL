@@ -28,7 +28,7 @@ class ProfessorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {   
+    {
         $professores = Professor::with('pessoa', 'professorDisciplina')
             ->whereIn('professor_id', function ($query) {
                 $query->selectRaw('MIN(professor_id)')
@@ -55,7 +55,7 @@ class ProfessorController extends Controller
         return view('professor.cadastrar-prof', ['area_formacao' => $area_formacao, 'disciplinas' => $disciplinas, 'cursos' => $cursos]);
     }
 
-    //Metodo Armazerna Dados Pessoais 
+    //Metodo Armazerna Dados Pessoais
     public function profEditar($uuid)
     {
         $professor = Professor::findByUuid($uuid);
@@ -69,7 +69,7 @@ class ProfessorController extends Controller
         return view('professor/horario-prof', compact('professor'));
     }
 
-    //Metodo Armazerna Dados Pessoais 
+    //Metodo Armazerna Dados Pessoais
     public function profDadosPessoais($id)
     {
         $professor = Professor::with('pessoa')->find($id);
@@ -341,4 +341,46 @@ class ProfessorController extends Controller
             return redirect()->back()->withErrors($e->errors())->withInput();
         }
     }*/
+    public static function recadastroProfDiscAnoLectivo($ano_lectivo_id){
+        $ano_lec_anterior = Ano_lectivo::latest()->first();
+        $prof_disc = Professor_disciplina::where('ano_lectivo_id',  $ano_lec_anterior->ano_lectivo_id)->get();
+        if (count($prof_disc) < 1) {
+            return false;
+        }
+        foreach ($prof_disc as $chave => $valor) {
+            $array[$chave] = [
+                'professor_id' => $valor->professor_id,
+                'disciplina_id' => $valor->disciplina_id,
+                'ano_lectivo_id' => $ano_lectivo_id,
+                'prioridade' => $valor->prioridade,
+                'turno_id' => $valor->turno_id
+
+            ];
+        }
+        foreach ($array as $chave => $valor) {
+            $res = Professor_disciplina::create($array[0]);
+        }
+        return true;
+    }
+
+    public static function actualizacaoProfDiscAnoLectivo($ano_lectivo_id){
+        $ano_lec_anterior = Ano_lectivo::latest()->first();
+        $prof_disc = Professor_disciplina::where('ano_lectivo_id',  $ano_lec_anterior->ano_lectivo_id)->get();
+        if (count($prof_disc) < 1) {
+            return false;
+        }
+        foreach ($prof_disc as $chave => $valor) {
+            $array[$chave] = [
+                'professor_id' => $valor->professor_id,
+                'disciplina_id' => $valor->disciplina_id,
+                'ano_lectivo_id' => $ano_lectivo_id,
+                'prioridade' => $valor->prioridade,
+                'turno_id' => $valor->turno_id
+            ];
+        }
+        foreach ($array as $chave => $valor) {
+            $res = Professor_disciplina::find($prof_disc[$chave]->prof_disc_id)->update($array[$chave]);
+        }
+        return true;
+    }
 }
