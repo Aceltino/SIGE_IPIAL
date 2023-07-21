@@ -29,7 +29,7 @@
              
 
             <div class="form-group">
-                <input class="form-control" id="vagas-input" type="number" name="turmaRestante" style=" text-align: center;" placeholder="Vagas Disóniveis" readonly=true>
+                <input class="form-control" id="vagas-input" type="number" name="turmaRestante" style=" text-align: center;" placeholder="Vagas Disóniveis" disabled readonly=true style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;">
                 @error('turmaRestante')
                 <div class="alert alert-danger">{{$message}}</div>
             @enderror
@@ -46,21 +46,21 @@
                         @endforeach
                     </select>
                     @error('curso')
-                <div class="alert alert-danger">{{$message}}</div>
-            @enderror
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
                 </div>
                 
                 <div class="col form-group gap-1">
-    <select name="turno" id="turnoSelect" oninput="this.className = ''" class="form-select">
-        <option selected disabled>Turno:</option>
-        <option value="1">Manhã</option>
-        <option value="2">Tarde</option>
-        <option value="3">Noite</option>
-    </select>
-    @error('turno')
-    <div class="alert alert-danger">{{$message}}</div>
-    @enderror
-</div>
+                    <select name="turno" id="turnoSelect" oninput="this.className = ''" class="form-select">
+                        <option selected disabled>Turno:</option>
+                        <option value="1">Manhã</option>
+                        <option value="2">Tarde</option>
+                        <option value="3">Noite</option>
+                    </select>
+                    @error('turno')
+                        <div class="alert alert-danger">{{$message}}</div>
+                    @enderror
+                </div>
             </div>
 
             <div style="text-align:center;margin-top:10px;">

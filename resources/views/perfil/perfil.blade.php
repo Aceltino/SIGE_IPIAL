@@ -25,7 +25,13 @@
          <div class="card">
            <div class="card-body perfil-card pt-4 d-flex flex-column align-items-center">
             
-             <img src= {{ URL::asset( isset(Auth::user()->imagem_usuario) ? Auth::user()->imagem_usuario : '' ) }} alt="perfil" class="l">
+             <!--<img src= {{ URL::asset( isset(Auth::user()->imagem_usuario) ? Auth::user()->imagem_usuario : '' ) }} alt="perfil" class="l">-->
+
+            @if(Auth::user()->imagem_usuario!="")
+            	<img src={{ URL::asset(Auth::user()->imagem_usuario) }} alt="perfil" class="l">
+            @else
+              <img src={{URL::asset("img/foto.jpg")}} alt="perfil" class="l">
+            @endif
 
              <h2>{{ Auth::user()->belongPessoa->nome_completo }}</h2>
              <h3>{{ Auth::user()->cargo_usuario }}</h3>
@@ -186,8 +192,13 @@
                  <div class="row mb-3">
                    <label for="foto-perfil" class="col-md-4 col-lg-4 col-form-label">Foto</label>
                    <div class="col-md-8 col-lg-8">
-                      <img src={{ URL::asset( isset(Auth::user()->imagem_usuario) ? Auth::user()->imagem_usuario : "" ) }} id="img-escolhida">
+                      <!--<img src={{ URL::asset( isset(Auth::user()->imagem_usuario) ? Auth::user()->imagem_usuario : "" ) }} id="img-escolhida">-->
                     
+                      @if(Auth::user()->imagem_usuario != "")
+                        <img src={{ URL::asset(Auth::user()->imagem_usuario) }} alt="perfil" id="img-escolhida">
+                      @else
+                        <img src={{URL::asset("img/foto.jpg")}} alt="perfil" id="img-escolhida">
+                      @endif
                      <div class="pt-2">
                         <label for="btn-upload"><span class="btn btn-warning btn-sm" title="Atualizar foto de perfil"><i class="bi bi-upload"></i></span></label>
                          <input type="file" id="btn-upload" value="{{old('imagem_update')}}" name="imagem_update" accept="image/*" style="display: none;">
