@@ -403,7 +403,7 @@ trait AvaliacaoTrait
         }
     }
 
-    public static function atribuirNota(){
+    public static function atribuirNotaFimTrimestre(){
         $ano_lectivo = self::pegarAnoLectivo();
         $trimestre = self::pegarTrimestre();
         $turmas = AnoTurmaCood::with('turma.belongClasse', 'alunoAno')->where('ano_lectivo_id',  $ano_lectivo[0]->ano_lectivo_id)->get();
