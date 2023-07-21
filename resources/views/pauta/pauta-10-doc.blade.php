@@ -15,6 +15,7 @@
             for ($i = 0; $i < count($OneMedia); $i++) {
                 $ca = isset($ca_cdf[$i][0]->ca) ? $ca_cdf[$i][0]->ca: '0';
                 $cfd = isset($ca_cdf[$i][0]->cfd) ? $ca_cdf[$i][0]->cfd : '0';
+                $situacao = isset($situacaoAluno[$i]->situacao) ? $situacaoAluno[$i]->situacao : 'Não Apto';
                 $mt1 = isset($OneMedia[$i][0]->nota) ? $OneMedia[$i][0]->nota : '0';
                 $mt2 = isset($TwoMedia[$i][0]->nota) ? $TwoMedia[$i][0]->nota : '0';
                 $mt3 = isset($ThreeMedia[$i][0]->nota) ? $ThreeMedia[$i][0]->nota : '0';
@@ -33,14 +34,14 @@
                     'media_trimestre2' => $mt2,
                     'media_trimestre3' => $mt3,
                     'ca' => $ca,
-                    'cfd' => $cfd
+                    'cfd' => $cfd,
+                    'situacao' => $situacao 
                 ];
             }
             
     ?>
   
-    
- 
+
     <div class="container no-print">
     <div class="row">
         <div class="col" style="display: flex; justify-content: flex-start; align-items: center;">
@@ -205,7 +206,7 @@
                 $mediaTrimestre3 = $media['media_trimestre3'];
                 $caa = $media['ca'];
                 $cfdd = $media['cfd'];
-                
+                $situacao = $media['situacao'];
                 
                 if ($mediaDisciplinaId === $disciplinaId ) {
         @endphp
@@ -258,6 +259,7 @@
                 $mediaTrimestre3 = $media['media_trimestre3'];
                 $caa = $media['ca'];
                 $cfdd = $media['cfd'];
+                $situacao = $media['situacao'];
                 
                 
                 if ($mediaAlunoId === $alunoId) {
@@ -346,12 +348,17 @@
         @endphp
         
         <!-- Aqui você pode adicionar os elementos afetados pelo foreach do aluno -->
+        
     
         <td class="nota coluna-tab-p">
-            <span class="nota-neg maisculo-p">RPF</span>
+            @if ($situacao =="Não Apto")
+            <span class="nota-neg maisculo-p"></span>
+            @else
+            <span class="nota-neg maisculo-p">RPF</span> 
+            @endif
         </td>
         <td class="nota coluna-tab-p">
-            <span class="nota-neg maisculo-p">NÃO TRANSITA</span>
+            <span class="nota-neg maisculo-p">{{$situacao}}</span>
         </td>
         <td class="nota coluna-tab-p">{{$loop+1}}</td>
     </tr>
