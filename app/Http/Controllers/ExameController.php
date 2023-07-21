@@ -27,7 +27,7 @@ class ExameController extends Controller
             $turma = array();
             $disciplina = array();
             $curso = array();
-            return view('avaliac-aluno/recurso')->with('erro', "Nenhum registro encontrado!");
+            return view('avaliac-aluno/recurso', compact(['dados', 'disciplina', 'turma', 'curso']))->with('erro', "Nenhum registro encontrado!");
         }
         for ($i = 0; $i < count($dado); $i++) {
             $id_cadeiras = json_decode($dado[$i]->id_cadeiras_def, true);
@@ -79,7 +79,7 @@ class ExameController extends Controller
             $turma = array();
             $disciplina = array();
             $curso = array();
-            return view('avaliac-aluno/recurso')->with('erro', "Nenhum registro encontrado!");
+            return view('avaliac-aluno/exame', compact(['dados', 'disciplina', 'turma', 'curso']))->with('erro', "Nenhum registro encontrado!");
         }
         for ($i = 0; $i < count($dado); $i++) {
             $id_cadeiras = json_decode($dado[$i]->id_cadeiras_def, true);
