@@ -161,42 +161,6 @@ trait AnoLectivoTrait
         }
     }
 
-    public static function horaInicioAula($inicio, $fim){
-        $ini = strtotime($inicio);
-        $fn = strtotime($fim);
-        if($ini > $fn){
-            return true;
-        } else{
-            return false;
-        }
-    }
-
-    public static function horaFimAula($inicio, $fim){
-        $ini = strtotime($inicio);
-        $fn = strtotime($fim);
-        if($fn > $ini){
-            return true;
-        } else{
-            return false;
-        }
-    }
-
-    public static function calcularHoraTempos($hora_inicio, $intervalo, $hora_fim){
-        $h_inicio = (int) substr($hora_inicio, 0, 2);
-        $minutos_inicio = (int) substr($hora_inicio, 3, 2);
-        $h_fim = (int) substr($hora_fim, 0, 2);
-        $minutos_fim = (int) substr($hora_fim, 3, 2);
-        $itervalo = (int) $intervalo;
-        $duracao = (6 * 60) + $intervalo;
-        $x = 0;
-        for ($i=$h_inicio; $i < $h_fim; $i++) {
-            $x++;
-        }
-        // $diff = new DateTime($hora_inicio);
-        // $df = $diff->diff();
-        // dd($df);
-    }
-
     public static function abrirTrimestreAuto(){
 
         $anoLectivo = Ano_lectivo::with('trimestres')->latest()->where('status_ano_lectivo', 1)->get()->first();
@@ -272,6 +236,10 @@ trait AnoLectivoTrait
     }
     public static function fecharTrimestre($trimestre_id){
         $trimestre = Trimestre::find($trimestre_id);
+        if(!$trimestre){
+            return false;
+        }
+        AvaliacaoTrait::atribuirNotaFimTrimestre();
         $trimestre->data_fim = date('Y-m-d');
         $trimestre->status = 0;
         $trimestre->save();

@@ -22,7 +22,7 @@ class Curso extends Model
     ];
 
     public function coordenador(){
-        return $this->hasOne(Professor::class, 'professor_id');
+        return $this->hasOne(Professor::class, 'curso_id');
     }
 
     public function areaFormacao(){

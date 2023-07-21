@@ -56,6 +56,7 @@
                     <tr style=" text-align: center;">
 
                         <th scope="row">{{$af->nome_area_formacao }}</th>
+                        
                         @if ($af->coordenador)
                             <th>{{$af->coordenador->pessoa->nome_completo}}</th>
                         @else

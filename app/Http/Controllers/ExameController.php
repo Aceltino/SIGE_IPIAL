@@ -27,7 +27,7 @@ class ExameController extends Controller
             $turma = array();
             $disciplina = array();
             $curso = array();
-            return view('avaliac-aluno/recurso')->with('erro', "Nenhum registro encontrado!");
+            return view('avaliac-aluno/recurso', compact(['dados', 'disciplina', 'turma', 'curso']))->with('erro', "Nenhum registro encontrado!");
         }
         for ($i = 0; $i < count($dado); $i++) {
             $id_cadeiras = json_decode($dado[$i]->id_cadeiras_def, true);
@@ -72,14 +72,14 @@ class ExameController extends Controller
         $ano_lectivo = AvaliacaoTrait::pegarAnoLectivo();
         $dado = ResultadoFinalAluno::with('alunos.candidato.pessoa', 'alunos.anoTurma.turma.curso', 'ano_lectivos')
         ->where('ano_lectivo_id', $ano_lectivo[0]->ano_lectivo_id)
-        ->where('situacao', "Ñ/Transita")
+        ->where('situacao', "Exame")
         ->get();
         if(count($dado) < 1){
             $dados = array();
             $turma = array();
             $disciplina = array();
             $curso = array();
-            return view('avaliac-aluno/recurso')->with('erro', "Nenhum registro encontrado!");
+            return view('avaliac-aluno/exame', compact(['dados', 'disciplina', 'turma', 'curso']))->with('erro', "Nenhum registro encontrado!");
         }
         for ($i = 0; $i < count($dado); $i++) {
             $id_cadeiras = json_decode($dado[$i]->id_cadeiras_def, true);
@@ -109,10 +109,10 @@ class ExameController extends Controller
         $dados = Nota::with('aluno.candidato.pessoa', 'aluno.turmaAno', 'disciplina')
         ->where('aluno_id', $aluno_id)
         ->where('id_trimestre', $trimestre[0]->trimestre_id)
-        ->where('tipo_prova', "Exame Especial")
+        ->where('tipo_prova', "Recurso")
         ->get();
         if(count($dados) < 1){
-            return redirect()->back()->with('erro', "Nenhum registro de exame especial encontrado!");
+            return redirect()->back()->with('erro', "Nenhum registro de recurso encontrado!");
         }
         return view('avaliac-aluno/edit-exame', compact('dados'));
     }

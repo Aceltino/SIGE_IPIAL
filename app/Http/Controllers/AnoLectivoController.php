@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Traits\AnoLectivoTrait;
 use App\Http\Requests\AnoLectivoRequest;
 use App\Models\Trimestre;
+use App\Traits\AvaliacaoTrait;
 
 
 class AnoLectivoController extends Controller
@@ -31,8 +32,8 @@ class AnoLectivoController extends Controller
             if(!$anoLectivo) {
                 return 0;
             }
-        
-            if (!empty($anoLectivo)) 
+
+            if (!empty($anoLectivo))
             {
                 $datasRestricao = [
                     'InicioAnoLectivo' => $anoLectivo->data_inicio_ano_lectivo,
@@ -131,7 +132,7 @@ class AnoLectivoController extends Controller
 
     public function index(){
         $anoLectivo = Ano_lectivo::all()->toArray();
-        
+
         return view('ano-lectivo/ano-lect', compact('anoLectivo'));
     }
 

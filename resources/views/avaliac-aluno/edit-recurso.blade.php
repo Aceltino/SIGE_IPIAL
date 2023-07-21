@@ -68,6 +68,7 @@
     </table>
     <form method="POST" action="">
         @csrf
+        @method('put')
       <div class="modal" id="modal_assiduidade" tabindex="-1" data-bs-backdrop="false" >
           <div class="modal-dialog modal-xl">
           <div class="modal-content">

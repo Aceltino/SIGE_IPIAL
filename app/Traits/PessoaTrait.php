@@ -33,7 +33,8 @@ trait PessoaTrait
         $pessoa= Pessoa::find($id);
         return $pessoa;
     }
-   
+
+    //Update dos dados da Pessoa e Endereço 
     public static function updatePessoa_ACTUALIZADO($dadosPessoa,$dadosEndereco=null)
     {      
 
