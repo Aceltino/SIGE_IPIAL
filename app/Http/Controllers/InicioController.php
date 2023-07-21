@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
 use App\Models\{
 Candidato,Professor,Turma,
-Curso,Aluno,User,Comunicado,
+Curso,Aluno,User,Comunicado,Ano_lectivo,Trimestre, AnoTurmaCood,
 };
 use App\Traits\AnoLectivoTrait;
 
@@ -16,7 +16,21 @@ class InicioController extends Controller
 {
     public function inicio()
     {
-        //      #Alunos por ano
+        //  #API GERAL DO SISTEMA   
+        // Criando uma instância do GuzzleHttp\Client
+        $client = new Client();
+
+        // Fazendo a requisição para a API local
+        $response = $client->get('http://sige_ipial.test/api/settings');
+
+        // Obtendo o corpo da resposta como uma string JSON
+        $json = $response->getBody()->getContents();
+
+        // Convertendo o JSON em um array associativo
+        $data = json_decode($json, true);
+
+        //  #Buscas  para limentar o grafico
+        //      Buscand os alunos por ano
         if(count(Aluno::all())!=0){
             $dadosAlunos = Aluno::select([
                 DB::raw('YEAR(created_at) as ano'),
@@ -46,6 +60,7 @@ class InicioController extends Controller
             $alunoTotal = "";
         }
 
+        //      Buscand os usuarios
         if(count(User::all())!=0){
             $totalUs = User::all()->count();
 
@@ -76,30 +91,95 @@ class InicioController extends Controller
             $cargoTotal = "";
         } 
 
-        $comunicados = Comunicado::latest()->paginate(2);
-        //dd($usCargos);
-        //   return view('pagina-inicial', compact('alunoAno', 'alunoTotal'));
-
-         // Criando uma instância do GuzzleHttp\Client
-         $client = new Client();
-
-         // Fazendo a requisição para a API local
-         $response = $client->get('http://sige_ipial.test/api/settings');
- 
-         // Obtendo o corpo da resposta como uma string JSON
-         $json = $response->getBody()->getContents();
- 
-         // Convertendo o JSON em um array associativo
-         $data = json_decode($json, true);
- 
-         // Retornando a view com os dados
-
-    //    dd($dadosapiInicio->json());
+        //Busca pelos comunicados
+        $comunicados = Comunicado::latest()->paginate(1);
 
         
+        $anolectivoatual = Ano_lectivo::where('status_ano_lectivo', 1)->get();
+        $trimestres = Trimestre::where('status', 1)->get();
 
-        return view('pagina-inicial', compact('comunicados','totalUs', 'titulo', 'alunoAno', 'alunoTotal', 'cargoNome', 'cargoTotal', 'titulografAlunos','titulografAlunos2', 'titulografUsuarios','titulografUsuarios2','data'));
-        //redirect()->route('inicio');
+        if(count(Ano_lectivo::all())!=0){
+            foreach($anolectivoatual as $anolectivoald)
+                if($anolectivoald->status_ano_lectivo == 1)                
+                    $anolectivoInicio = $anolectivoald->ano_lectivo;
+
+            foreach($trimestres as $trimestre)
+            if($trimestre->status == 1)                
+                $trimestreInicio = $trimestre->trimestre;
+                
+            $totalCursos = Curso::all()->count();
+            $cusosInicio =  Curso::all();
+            
+        }else{
+            $totalCursos = 0;
+            $cusosInicio = [];
+            $anolectivoInicio = 0;
+            $trimestreInicio= 0;
+        }
+
+        //  #Fazendo a consulta das estatisticas total do sistema
+
+        if(count(Ano_lectivo::all())!=0){
+            //Pegando o ano lectivo ativo no sistema
+            $anoLectivo_Activo = Ano_lectivo::where('status_ano_lectivo', 1)->first();
+            $ano_lectivo_id = $anoLectivo_Activo->ano_lectivo_id;
+            
+            if($ano_lectivo_id!=""){
+
+                //Pegando os candidatos
+                $candiAnoLecticvo = Candidato::where('ano_lectivo_id', $ano_lectivo_id)->get();
+
+                $TotalCandidatos = count($candiAnoLecticvo);
+
+                //Pegando o total de alunos admitidos, nao admitidos e matriculados
+                $candiadmitAno = Candidato::where('ano_lectivo_id', $ano_lectivo_id)->get();
+                $TotalAdmitidos = 0;
+                $TotalMatriculados = 0;
+                $TotalNAdmitidos=0;
+
+                foreach($candiadmitAno as $candiadmit){
+                    if($candiadmit->status == "Admitido"){
+                        $TotalAdmitidos += 1;
+
+                    }elseif($candiadmit->status == "Matriculado"){
+                        $TotalMatriculados += 1;
+                    }elseif($candiadmit->status == "Não admitido"){
+                        $TotalNAdmitidos += 1;
+                    }
+
+
+                    //Pegando as turmas
+                    $turmainicios = AnoTurmaCood::where('ano_lectivo_id', $ano_lectivo_id)->get();
+                    $TotalTurmas = 0;
+    
+                    foreach($turmainicios as $turmainicio){
+                            $TotalTurmas += 1;
+                    }
+
+                    //Pegando os Profs
+                    $professores = AnoTurmaCood::where('ano_lectivo_id', $ano_lectivo_id)->get();
+                    $TotalProfs = 0;
+    
+                    foreach($professores as $prof){
+                            $TotalProfs += 1;
+                    }
+                }
+
+
+
+                
+            }else {
+                $candiCount = 0;
+                $TotalNAdmitidos = 0;
+                $TotalAdmitidos= 0;
+                $TotalMatriculados =0;
+            }
+
+        }
+
+        return view('pagina-inicial', compact('TotalCandidatos', 'TotalAdmitidos','TotalNAdmitidos','TotalMatriculados','TotalTurmas','TotalProfs','anolectivoInicio','trimestreInicio','cusosInicio','comunicados', 'totalCursos','totalUs', 'titulo', 'alunoAno', 'alunoTotal', 'cargoNome', 'cargoTotal', 'titulografAlunos','titulografAlunos2', 'titulografUsuarios','titulografUsuarios2','data'));
+
     }
+
 
 }

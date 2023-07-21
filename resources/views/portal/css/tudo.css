@@ -1,0 +1,632 @@
+/*#regForm {
+  background-color: #ffffff;
+  margin: 100px auto;
+  padding: 40px;
+  width: 70%;
+  min-width: 300px;
+}
+*/
+
+/*--------------------------------------------------------------
+# Preloader
+--------------------------------------------------------------*/
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  overflow: hidden;
+  background: #070b17;
+}
+
+#preloader:before {
+  content: "";
+  position: fixed;
+  top: calc(50% - 0px);
+  left: calc(50% - 30px);
+  border: 6px solid #174183;
+  border-top-color: #151515;
+  border-bottom-color: #151515;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: animate-preloader 1s linear infinite;
+  animation: animate-preloader 1s linear infinite;
+}
+
+@-webkit-keyframes animate-preloader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animate-preloader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.btn-cor-sg-a, .btn-cor-sg-a:hover{
+  background-color: var(--bs-cor-principal); 
+  color: #fff; 
+  padding: 1px;
+}
+
+.btn-cor-sg-b, .btn-cor-sg-b:hover{
+  background-color: #fff; 
+  color: var(--bs-cor-principal); 
+  padding: 1px;
+}
+
+
+
+.form-nscricao{
+  margin-top: 0px;
+}
+
+.form-group{
+  margin-bottom: 15px;
+}
+
+/* Style the input fields */
+ .form-nscricao input[type="text"], input[type="date"], input[type="time"], select {
+/*  padding: 10px;
+  width: 100%;
+  font-size: 17px;
+  font-family: Raleway;
+  border: 1px solid #aaaaaa;
+*/
+  display: block;
+  width: 100%;
+  padding: 10px 10px;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-nscricao input:focus, select:focus {
+  color: #212529;
+  background-color: #fff;
+  border-color: #86b7fe;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Mark input boxes that gets an error on validation: */
+input.invalid {
+  background-color: #ffdddd;
+}
+
+/* Hide all steps by default: */
+.tab {
+  display: none;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 15px;
+  width: 100px;
+  margin: 0 2px;
+  background-color: var(--bs-cor-principal);
+  border: none;
+  border-radius: 15px;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+/* Mark the active step: */
+.step.active {
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: green;
+}
+
+h2 {
+  font-size: 35px;
+  margin-bottom: 0;
+  font-weight: 600;
+  color: #012970;
+  text-transform: uppercase;
+}
+
+.btn-sel{
+  background-color: var(--bs-cor-principal);
+  color: #fff;
+  border: none;
+}
+
+.btn-sel:focus {
+  background-color: var(--bs-cor-principal);
+  color: #fff;
+  border-color: #86b7fe;
+  outline: none;
+  box-shadow: none;
+}
+
+.procurar{
+  min-width: 360px;
+  padding: 0px;
+  margin-top: 20px;
+}
+
+.proc-form{
+  width: 100%;
+}
+
+.proc-form input {
+  border: 0;
+  height: 40px;
+  font-size: 24px;
+  color: #012970;
+  border: 1px solid rgba(1, 41, 112, 0.2);
+  padding: 7px 38px 7px 8px;
+  border-radius: 3px;
+  transition: 0.3s;
+  width: 100%;
+}
+
+.proc-form input:focus,
+.proc-form input:hover {
+  outline: none;
+  box-shadow: 0 0 10px 0 rgba(1, 41, 112, 0.15);
+  border: 1px solid rgba(1, 41, 112, 0.3);
+}
+
+.proc-form button {
+  height: 40px;
+  border: 0;
+  padding: 7px;
+  padding-left: 15px;
+  border-radius: 0px 10px 10px 0px;
+  margin-left: 0px;
+  background-color: var(--bs-cor-principal);
+}
+
+.proc-form button i {
+  color: #fff;
+}
+
+/*********************************************************
+Da pagina inscricoes
+*********************************************************/
+.btn-imprimir{
+  margin-top: 10px;
+  width: 160px;
+  display: block;
+  padding: 10px 10px;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  background-color: var(--bs-cor-principal);
+  color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 10px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.table i{
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.bi-eye-fill{
+  color: var(--bs-cor-principal);
+}
+
+.bi-pencil{
+  color: #a7a706;
+}
+
+.bi-trash-fill{
+  color: red;
+}
+
+.bi-check-square-fill{
+  color: green;
+}
+
+/*********************************************************
+Da página confirmar inscricao 
+**********************************************************/
+
+i.voltar{
+ font-size: 45px; 
+ color: var(--bs-cor-principal);
+ cursor: pointer;
+}
+
+.area-info-insc-conf{
+  background-color: #e9e6e6;
+  padding: 20px;
+  border-radius: 7px;
+}
+
+.decidir-insc ul{
+  padding: 0;
+  list-style: none;
+}
+
+.decidir-insc li{
+  margin-top: 7px;
+}
+
+.decidir-insc span.titulo{
+  color: #000;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.decidir-insc span.conteudo{
+  color: #777;
+  font-size: 18px;
+}
+
+.decidir-insc img{
+  width: 100%;
+  border-radius: 15px;
+}
+
+
+/*-(((((((Area de rejeitar as inscricoes)))))))*/
+.info-rej-insc{
+  background-color: #bebee9;
+  padding: 20px;
+  border-radius: 7px;
+}
+
+
+/******************************************************
+Confirmar inscricao
+******************************************************/
+.bi-select{
+  background-color: var(--bs-cor-principal);
+  color: #fff;
+  width: 250px;
+}
+
+.bi-select:focus {
+  background-color: var(--bs-cor-principal);
+  color: #fff;
+  border-color: #86b7fe;
+  outline: none;
+  box-shadow: none;
+}
+
+.area-mini-info1{
+  display: flex; 
+  justify-content: flex-start; 
+  align-items: center;
+  gap: 10px;
+}
+
+.area-mini-info2{
+  display: flex; 
+  justify-content: flex-end; 
+  align-items: center;
+  gap: 10px;
+}
+.mini-info, .mini-info:hover{
+  background-color: var(--bs-cor-principal);
+  color: #fff;
+} 
+
+
+/*******************************************
+Estilizando a pagina do inativo
+*****************************************/
+.form-inativo{
+  margin-top: 20px;
+}
+
+.form-inativo .area-input{
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  display: flex;
+  font-size: 15px;
+  background-color: #fff;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.area-input-l{
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 15px;
+  background-color: #fff;
+ }
+
+.form-inativo label{
+  color: #000;
+  font-weight: 600;
+}
+
+.form-inativo input{
+  border: none;
+  width: 65%;
+  font-size: 17px;
+  outline: none;
+  color: #777;
+  margin-left: 5px;
+}
+
+
+/*****************************
+Header da pag ficha biografica
+***********************************/
+.header-ficha{
+  background-color: var(--bs-cor-principal);
+  margin-bottom: 15px;
+  border-radius: 15px;
+  padding-left: 50px;
+  color: #fff;
+  font-size: 17px;
+  align-items: center;
+}
+
+.header-ficha img{
+  width: 50px;
+  height: 50px;
+  margin-top: -14px;
+  border-radius: 100%;
+  position: absolute;
+  left: 316px;
+}
+
+.select-fch-bio{
+  border: none;
+}
+
+/**********************************
+Area das divs com bordas a esquerda 
+***********************************/
+.bordado{
+  padding: 0px;
+  padding-left: 5px;
+  border-radius: 5px;
+  border: none;
+  font-size: 17px;
+  border-left: 5px solid var(--bs-cor-principal);
+}
+
+.bordado .t-negrito{
+  color: #000;
+  font-weight: 700;
+}
+
+.bordado .t-normal{
+  color: #777;
+}
+
+
+/********************************
+Estilo da tabela colorida ###01
+*********************************/
+.tabela-c {
+  color: #fff;
+  --bs-table-color: var(--bs-body-color);
+  --bs-table-bg: #174183;
+  --bs-table-border-color: var(--bs-border-color);
+  --bs-table-accent-bg: #174183;
+  --bs-table-striped-color: var(--bs-body-color);
+  --bs-table-striped-bg: rgb(7, 11, 23);
+  --bs-table-active-color: var(--bs-body-color);
+  --bs-table-active-bg: rgba(7, 11, 23, 0.1);
+  --bs-table-hover-color: var(--bs-body-color);
+  --bs-table-hover-bg: rgba(7, 11, 23, 0.075);
+  width: 100%;
+  margin-bottom: 1rem;
+  vertical-align: top;
+  border-color: var(--bs-table-border-color);
+  text-align: center;
+}
+
+
+.tabela-c > :not(caption) > * > * {
+  padding: 0.5rem 0.5rem;
+  background-color: var(--bs-table-bg);
+  border-bottom-width: 4px;
+  border-collapse: collapse;
+  box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+}
+.tabela-c > tbody {
+  vertical-align: inherit;
+}
+.tabela-c > thead {
+  vertical-align: bottom;
+}
+
+
+
+.tabela-c-striped > tbody > tr:nth-of-type(odd) > * {
+  --bs-table-accent-bg: var(--bs-table-striped-bg);
+  color: #fff;
+}
+
+
+
+/********************************
+Estilo da tabela colorida
+*********************************/
+.tabelassd {
+  color: #070b17;
+  width: 100%;
+  margin-bottom: 1rem;
+  vertical-align: top;
+  border-color: var(--bs-cor-principal);
+  text-align: center;
+}
+
+.tabelassd th, tr, td{
+  background-color: #fff;
+
+}
+
+
+.tabelassd > :not(caption) > * > * {
+  padding: 0.5rem 0.5rem;
+  background-color: var(--bs-table-bg);
+  border-bottom-width: 5px;
+  border-collapse: collapse;
+  box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+}
+.tabelassd > tbody {
+  vertical-align: inherit;
+}
+.tabelassd > thead {
+  vertical-align: bottom;
+}
+
+span.sim{
+  color: red;
+}
+
+span.nao{
+  color: #00ff22;
+  font-weight: bolder;
+}
+
+span.f-normal{
+  color: #919b01;
+}
+
+.titulo-dassd{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.bt-acord{
+  background-color: transparent;
+}
+
+.assidd-diciplina{
+  background-color: var(--bs-cor-principal);
+  padding: 0px;
+  padding-right: 3px;
+  padding-left: 3px;
+  margin-top: 5px;
+}
+
+
+.tb-negrito{
+  color: #000;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.tb-vermelho{
+  color: #b90707;
+}
+
+.tb-verde{
+  color: #11ad2b;
+  font-weight: bold;
+}
+
+.tb-azul{
+  color: #4b3ae4;
+  font-weight: bold;
+}
+
+.form-ficha{
+  padding-top: 5px;
+}
+
+.form-ficha .area-input-fb{
+  width: 100%;
+  padding: 2px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  display: flex;
+  font-size: 15px;
+  background-color: #fff;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.form-ficha label{
+  color: #000;
+  font-weight: 600;
+}
+
+.form-ficha .area-input-fb input{
+  border: none;
+  width: 100%;
+  background-color: #fff;
+  font-size: 17px;
+  outline: none;
+  color: #777;
+  margin-left: 5px;
+}
+
+.form-ficha .tabelassd input{
+  width: 30px;
+  outline: none;
+  outline: none;
+  border: 1px solid #bbb9b9;
+  border-radius: 8px;
+}
+
+.form-ficha .tabelassd input:is(:focus,:hover){
+  outline: none;
+  box-shadow: 0 0 10px 0 rgba(1, 41, 112, 0.15);
+  border: 1px solid #777;
+}
+
+.accordion-button:is(:focus,:hover){
+  outline-color: red;
+  border: none;
+  transition: none;
+}
+/*
+.disc-falta{
+  font-size: 19px;
+  margin: 10px;
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
