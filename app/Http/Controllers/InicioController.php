@@ -12,11 +12,14 @@ Curso,Aluno,User,Comunicado,Ano_lectivo,Trimestre, AnoTurmaCood,
 };
 use App\Traits\AnoLectivoTrait;
 
+use function PHPUnit\Framework\isEmpty;
+use function PHPUnit\Framework\isNull;
+
 class InicioController extends Controller
 {
     public function inicio()
     {
-        //  #API GERAL DO SISTEMA   
+        //  #API GERAL DO SISTEMA
         // Criando uma instância do GuzzleHttp\Client
         $client = new Client();
 
@@ -50,13 +53,13 @@ class InicioController extends Controller
             $titulografAlunos= "ALUNOS POR ANO";
             $titulografAlunos2 = "";
             $titulo = "Alunos no Alda";
-            $alunoAno = implode(',', $ano); 
+            $alunoAno = implode(',', $ano);
             $alunoTotal = implode(',', $total);
         }else{
             $titulografAlunos= "";
             $titulografAlunos2 = "Gráfico indisponivel";
             $titulo = "";
-            $alunoAno = ""; 
+            $alunoAno = "";
             $alunoTotal = "";
         }
 
@@ -72,7 +75,7 @@ class InicioController extends Controller
             ->orderBy('cargo', 'asc')
             ->get();
 
-            //Percorrendo cada posicao 
+            //Percorrendo cada posicao
             foreach($usCargos as $usCargo){
                 $nomeCargo[] = "'".$usCargo->cargo."'";
                 $totalCargo[] = $usCargo->totalc;
@@ -82,39 +85,47 @@ class InicioController extends Controller
             $titulografUsuarios= "Cargos de usuarios";
             $titulografUsuarios2= "";
             $cargoNome = implode(',', $nomeCargo);
-            $cargoTotal = implode(',', $totalCargo); 
+            $cargoTotal = implode(',', $totalCargo);
         }else{
             $titulografUsuarios= "";
             $titulografUsuarios2 = "Gráfico indisponível";
             $totalUs = 0;
             $cargoNome = "";
             $cargoTotal = "";
-        } 
+        }
 
         //Busca pelos comunicados
         $comunicados = Comunicado::latest()->paginate(1);
 
-        
+
         $anolectivoatual = Ano_lectivo::where('status_ano_lectivo', 1)->get();
         $trimestres = Trimestre::where('status', 1)->get();
+        if(count($trimestres) < 1){
+            $totalCursos = 0;
+            $cusosInicio = [];
+            $anolectivoInicio = 0;
+            $trimestreInicio= 'Sem trimestre';
+        }
 
         if(count(Ano_lectivo::all())!=0){
             foreach($anolectivoatual as $anolectivoald)
-                if($anolectivoald->status_ano_lectivo == 1)                
+                if($anolectivoald->status_ano_lectivo == 1)
                     $anolectivoInicio = $anolectivoald->ano_lectivo;
 
             foreach($trimestres as $trimestre)
-            if($trimestre->status == 1)                
+            if($trimestre->status == 1)
                 $trimestreInicio = $trimestre->trimestre;
-                
+                // dd($trimestre->trimestre);
             $totalCursos = Curso::all()->count();
             $cusosInicio =  Curso::all();
-            
+// dd($trimestreInicio);
+
+
         }else{
             $totalCursos = 0;
             $cusosInicio = [];
             $anolectivoInicio = 0;
-            $trimestreInicio= 0;
+            $trimestreInicio= 'Sem trimestre';
         }
 
         //  #Fazendo a consulta das estatisticas total do sistema
@@ -122,9 +133,31 @@ class InicioController extends Controller
         if(count(Ano_lectivo::all())!=0){
             //Pegando o ano lectivo ativo no sistema
             $anoLectivo_Activo = Ano_lectivo::where('status_ano_lectivo', 1)->first();
+            // dd($anoLectivo_Activo);
+            // dd($anoLectivo_Activo);
+            if(!$anoLectivo_Activo)
+            {
+                return redirect()->route('cadastro.ano.lectivo')->with('Erro','Precisa criar um novo ano lectivo!');
+            }
             $ano_lectivo_id = $anoLectivo_Activo->ano_lectivo_id;
-            
+
             if($ano_lectivo_id!=""){
+
+                                    //Pegando as turmas
+                $turmainicios = AnoTurmaCood::where('ano_lectivo_id', $ano_lectivo_id)->get();
+                $TotalTurmas = 0;
+                foreach($turmainicios as $turmainicio){
+                        $TotalTurmas += 1;
+                }
+
+                //Pegando os Profs
+                $professores = AnoTurmaCood::where('ano_lectivo_id', $ano_lectivo_id)->get();
+                $TotalProfs = 0;
+
+                foreach($professores as $prof){
+                        $TotalProfs += 1;
+                }
+
 
                 //Pegando os candidatos
                 $candiAnoLecticvo = Candidato::where('ano_lectivo_id', $ano_lectivo_id)->get();
@@ -146,28 +179,8 @@ class InicioController extends Controller
                     }elseif($candiadmit->status == "Não admitido"){
                         $TotalNAdmitidos += 1;
                     }
-
-
-                    //Pegando as turmas
-                    $turmainicios = AnoTurmaCood::where('ano_lectivo_id', $ano_lectivo_id)->get();
-                    $TotalTurmas = 0;
-    
-                    foreach($turmainicios as $turmainicio){
-                            $TotalTurmas += 1;
-                    }
-
-                    //Pegando os Profs
-                    $professores = AnoTurmaCood::where('ano_lectivo_id', $ano_lectivo_id)->get();
-                    $TotalProfs = 0;
-    
-                    foreach($professores as $prof){
-                            $TotalProfs += 1;
-                    }
                 }
 
-
-
-                
             }else {
                 $candiCount = 0;
                 $TotalNAdmitidos = 0;
@@ -176,6 +189,7 @@ class InicioController extends Controller
             }
 
         }
+
 
         return view('pagina-inicial', compact('TotalCandidatos', 'TotalAdmitidos','TotalNAdmitidos','TotalMatriculados','TotalTurmas','TotalProfs','anolectivoInicio','trimestreInicio','cusosInicio','comunicados', 'totalCursos','totalUs', 'titulo', 'alunoAno', 'alunoTotal', 'cargoNome', 'cargoTotal', 'titulografAlunos','titulografAlunos2', 'titulografUsuarios','titulografUsuarios2','data'));
 

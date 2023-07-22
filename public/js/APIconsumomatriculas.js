@@ -7,15 +7,21 @@ axios.get('/api/matriculados')
 
             registros.forEach(function(registro) {
                 const row = tbody.insertRow();
-                const turma = registro.nomeTurma;
-                const situacao = registro.situacao
+                let turma = registro.nomeTurma;
+                let situacao = registro.situacao;
+                let anoLectivo = registro.anoLectivo;
+                let turno = registro.turno;
+                let classe = registro.classe;
+                let n_aluno = registro.n_aluno;
 
-                
                 if($.isEmptyObject(turma)){
-
-                  turma = "Aguarde";
-
-                  Botao = `<a href="/matricula/readmitir-aluno/${registro.N_processo}/readmitir" name="" id="" class="btn btn-success"  role="button">Ativar</a>`;
+                    turma = "Aguarde";
+                    anoLectivo = "Aguarde";
+                    turno = "Aguarde";
+                    classe = "Aguarde";
+                    n_aluno = "Aguarde";
+                    situacao = "Aguarde";
+                    Botao = `<a href="/matricula/readmitir-aluno/${registro.N_processo}/readmitir" name="" id="" class="btn btn-success"  role="button">Ativar</a>`;
                 } else if(turma && situacao == 'Anulou a Matricula'){
                   Botao = `<a name="" id="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target=" #basicModalll${registro.N_processo}"  role="button">Eliminar</a>`;
 
@@ -39,7 +45,7 @@ axios.get('/api/matriculados')
                     <td>${registro.nome}</td>
                     <td>${turma}</td>
                     <td>${registro.idade}</td>
-                    <td class="no-print">${registro.situacao}</td>
+                    <td class="no-print">${situacao}</td>
                     <td>${registro.curso} </td>
                     <td class="no-print">${Botao}</td>
                     <td class="no-print">
@@ -306,7 +312,7 @@ axios.get('/api/matriculados')
                       <div class="modal-footer" style="border: none;">
                         <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancelar</button>
                         <a class="btn btn-danger" href="/matricula/inativar/${registro.N_processo}">Inativar</a>
-                        
+
                       </div>
 
                     </div>
@@ -334,20 +340,20 @@ axios.get('/api/matriculados')
                      <div class="modal-footer" style="border: none;">
                        <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Cancelar</button>
                        <a class="btn btn-danger"href="/matricula/eliminar/${registro.N_processo}"">Eliminar</a>
-                       
+
                      </div>
 
                    </div>
                  </div>
                </div>
 
-                
+
                  `;
                   document.body.insertAdjacentHTML('beforeend', modall3);
 
             });
             var $T= $("#matriculas").DataTable({
-               
+
                     pageLength: 6,
                     "dom": '<"top"i>rt<"bottom"lp><"clear">',
                     lengthChange: false,
@@ -379,19 +385,19 @@ axios.get('/api/matriculados')
                 $('#ImprimirMatricula').click(function() {
                   // Desabilitar o DataTables
                   $T.destroy();
-                
+
                   // Ocultar elementos indesejados antes de imprimir
                   $('#conteudo .no-print').hide();
-                
+
 
                   // Iniciar a impressão
                   window.print();
                 });
-                
+
                 $(window).on('afterprint', function() {
                   // Restaurar a visibilidade dos elementos ocultos após a impressão
                   $('#conteudo .no-print').show();
-                
+
                   // Reativar o DataTables e aplicar as configurações
                   $T = $("#matriculas").DataTable({
                     initComplete: function(settings, json) {
@@ -407,7 +413,7 @@ axios.get('/api/matriculados')
                     lengthChange: false,
                     ordering: false,
                     language:{
-                        
+
                             "sEmptyTable": "Nenhum registro encontrado",
                             "sInfo": "",
                             "sInfoEmpty": "",
@@ -456,7 +462,7 @@ axios.get('/api/matriculados')
                   }
                 });
                 $("#filtro3").on("change", function() {
-                  var filtro3 = $(this).val(); 
+                  var filtro3 = $(this).val();
                   if (filtro3 === 'Todos') {
                     $T.column(2).search('').draw(); // Remove a filtragem da terceira coluna
                   } else {
@@ -502,7 +508,7 @@ axios.get('/api/matriculados')
                   } else {
                     $T.column(8).search(filtro9).draw(); // Filtra a tabela pela Nona coluna com o valor selecionado
                   }
-                 
+
                 });
                 $("#filtro10").on("change", function() {
                   var filtro10 = $(this).val();
@@ -543,7 +549,7 @@ axios.get('/api/matriculados')
                   } else {
                     $T.column(13).search(filtro14).draw(); // Filtra a tabela pela Décima-quarta coluna com o valor selecionado
                   }
-                 
+
                 });
                 $("#filtro15").on("change", function() {
                   var filtro15 = $(this).val();
@@ -552,16 +558,16 @@ axios.get('/api/matriculados')
                   } else {
                     $T.column(14).search(filtro15).draw(); // Filtra a tabela pela Décima-quinta coluna com o valor selecionado
                   }
-                 
+
                 });
                  $("#filtro16").on("change", function() {
                   var filtro16 = $(this).val();
                   if (filtro16 === 'Todos') {
-                    $T.column(15).search('').draw(); // Remove a filtragem da  Décima-Sexta 
+                    $T.column(15).search('').draw(); // Remove a filtragem da  Décima-Sexta
                   } else {
                     $T.column(15).search(filtro16).draw(); // Filtra a tabela pela Décima-Sexta coluna com o valor selecionado
                   }
-                 
+
                 });
                  $("#filtro17").on("change", function() {
                   var filtro17 = $(this).val();
@@ -570,20 +576,20 @@ axios.get('/api/matriculados')
                   } else {
                     $T.column(16).search(filtro17).draw(); // Filtra a tabela pela Décima-Sétima coluna com o valor selecionado
                   }
-                 
+
                 });
-          
-              
+
+
           $(".paginate_button").addClass("paginate_button");
           $(".paginate").addClass("float-end");
-          
-          
+
+
           $("#pesquisa").on("keyup", function () {
              $T.search(this.value).draw();
-             
+
           });
 
         })
         .catch(function(error) {
-            console.error(error);
+            console.log(error);
         });

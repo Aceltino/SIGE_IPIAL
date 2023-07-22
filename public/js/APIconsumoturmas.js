@@ -29,7 +29,7 @@ axios.get('/api/turmas')
                     <td>${tregistro.anolectivoTurma}</td>
                     <td class="no-print">
                     <i ${botaoVisualizarTurma}></i>
-                    <a href="#" class="btn btn-success">Ad coordenador</a>
+                    <a href="#" class="btn btn-success d-none">Ad coordenador</a>
                     </td>
 
                 `;
