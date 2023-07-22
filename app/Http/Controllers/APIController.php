@@ -17,7 +17,7 @@ class APIController extends Controller
           'Inscritos'  =>CandidatoController::Inscritos(),   //Ano lectivo activo
           'Matriculados'  =>AlunoController::matriculados(), //Retorna apenas os matriculados do ano lectivo activo
           'TurmasActivas'  =>AlunoTurmaController::turmas(), //Retorna apenas as turmas deste ano lectivo
-          'VagasCurso'  =>AlunoTurmaController::vagas(),     //Retorna as turmas deste ano lectivo Página Inicial 
+          'VagasCurso'  =>AlunoTurmaController::vagas(),     //Retorna as turmas deste ano lectivo Página Inicial
           'TotalTurmasCurso'  =>AlunoTurmaController::turmasCursoTurno(),     //Retorna Total de turmas com base o turno e curso deste ano lectivo Página Inicial
 
           'SituacaoAlunos'  =>AlunoController::situacaoAluno(), //Retorna apenas a situação de alunos do ano lectivo activo

@@ -10,6 +10,7 @@ use App\Http\Controllers\{
     MiniPautaController,UserController,PautaController,
     PerfilUserController,ProcessoController,
     DisciplinasController, AdmissaoController,
+    AlunoTurmaController,
     TurmaController, CalendarioController,
     HorarioController,
     AreaFormacaoController,SalaController,
@@ -29,7 +30,7 @@ use App\Http\Controllers\{
 */
 
 // Rota apenas de teste... Não apague -> ACELTINO
-    Route::get('validar-aluno', [HorarioController::class, 'pegarDadosHorario']);
+    Route::get('validar-aluno', [AlunoTurmaController::class, 'alunoAdmtido']);
 // Route::get('validar-aluno', [AlunoController::class, 'situacaoAluno']);
 
 

@@ -107,8 +107,8 @@ class ProfessorController extends Controller
                 'turno' => 'required|array|min:1',
                 'turno.*' => 'array',
 
-                'curso' => 'required|array|min:1',
-                'curso.*' => 'required|integer',
+                'curso' => 'nullable|array|min:1',
+                'curso.*' => 'nullable|integer',
 
                 //'course' => 'required|integer|min:1|max:7',
             ], [
