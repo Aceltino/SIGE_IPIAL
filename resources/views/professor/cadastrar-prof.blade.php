@@ -19,7 +19,11 @@
             <div class="alert alert-danger">
               <ul>
                   @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
+                    <li>{{ $error }}
+                      <button class="botaofecharerro">
+                        <i class="bi bi-x"></i>
+                      </button>
+                    </li>
                   @endforeach
               </ul>
             </div>
