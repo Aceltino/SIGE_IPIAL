@@ -26,7 +26,7 @@ class Candidato extends Model
     //Relacionamento 1 para 1... 1 Candidato 'tem' 1 escola (Chave estrangeira está em candidato)
     public function escola()
     {
-        return $this->belongsTo(Escola_proveniencia::class, 'escola_proveniencia_id');
+        return $this->belongsTO(Escola_proveniencia::class, 'escola_proveniencia_id');
     }
 
     //Relacionamento 1 para N... 1 Candidato 'candidata-se' 1 anoLectivo (Chave estrangeira está em candidato)

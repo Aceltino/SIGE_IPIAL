@@ -28,14 +28,14 @@ class ProfessorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {   
+    {
         $professores = Professor::with('pessoa', 'professorDisciplina')
             ->whereIn('professor_id', function ($query) {
                 $query->selectRaw('MIN(professor_id)')
                     ->from('professores')
                     ->groupBy('pessoa_id');
-            })
-            ->get();
+            })->get();
+
         $cursos = Curso::all(['nome_curso', 'sigla', 'curso_id']);
         $prof_disc = Professor_disciplina::with('disciplina')->get();
 
@@ -47,7 +47,7 @@ class ProfessorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create():mixed
     {
         $cursos = Curso::all(['nome_curso', 'sigla', 'curso_id']);
         $disciplinas = Disciplina::all();
@@ -55,7 +55,7 @@ class ProfessorController extends Controller
         return view('professor.cadastrar-prof', ['area_formacao' => $area_formacao, 'disciplinas' => $disciplinas, 'cursos' => $cursos]);
     }
 
-    //Metodo Armazerna Dados Pessoais 
+    //Metodo Armazerna Dados Pessoais
     public function profEditar($uuid)
     {
         $professor = Professor::findByUuid($uuid);
@@ -69,7 +69,7 @@ class ProfessorController extends Controller
         return view('professor/horario-prof', compact('professor'));
     }
 
-    //Metodo Armazerna Dados Pessoais 
+    //Metodo Armazerna Dados Pessoais
     public function profDadosPessoais($id)
     {
         $professor = Professor::with('pessoa')->find($id);
@@ -107,8 +107,8 @@ class ProfessorController extends Controller
                 'turno' => 'required|array|min:1',
                 'turno.*' => 'array',
 
-                'curso' => 'required|array|min:1',
-                'curso.*' => 'required|integer',
+                'curso' => 'nullable|array|min:1',
+                'curso.*' => 'nullable|integer',
 
                 //'course' => 'required|integer|min:1|max:7',
             ], [
@@ -168,7 +168,6 @@ class ProfessorController extends Controller
                 $request->input('course'),
                 $request->input('cargo'),
             ];
-
             $validatedEndereco = [
                 'municipio' => $request->input('municipio'),
                 'bairro' => $request->input('bairro'),
@@ -176,7 +175,7 @@ class ProfessorController extends Controller
                 'numero_casa' => $request->input('numero_casa')
             ];
 
-            $endereco = Endereco::create($validatedEndereco);
+            $endereco = Endereco::create($validatedEndereco); //Validar
 
             $pessoa = Pessoa::create([
                 'nome_completo' => $request->input('nome_completo'),
@@ -185,7 +184,7 @@ class ProfessorController extends Controller
                 'endereco_id' => $endereco->endereco_id,
                 'telefone' => $request->input('num_tel'),
                 'data_nascimento' => $request->input('data_nascimento'),
-            ]);
+            ]); // Pessoa Validar
 
             for ($i = 0; $i < count($curso); $i++) {
                 $cr = Curso::where('curso_id', $curso[$i])->first();
@@ -216,6 +215,7 @@ class ProfessorController extends Controller
                     ]);
                 }
             }
+
             //var_dump($dadosDisciplina); exit;
             //dd($request);
             /*$pessoa = Pessoa::create([
@@ -241,7 +241,7 @@ class ProfessorController extends Controller
                 'prioridade'    => 1
             ]); */
 
-            return redirect()->route('professor')->with('success', 'Registro criado com sucesso!');
+            return redirect()->route('professor')->with('success', 'Professor Registrado com sucesso!');
         } catch (\Exception $e) {
             // Captura a exceção de validação e trata os erros
             return redirect()->back()->withErrors($e->getMessage())->withInput();
@@ -341,4 +341,46 @@ class ProfessorController extends Controller
             return redirect()->back()->withErrors($e->errors())->withInput();
         }
     }*/
+    public static function recadastroProfDiscAnoLectivo($ano_lectivo_id){
+        $ano_lec_anterior = Ano_lectivo::latest()->first();
+        $prof_disc = Professor_disciplina::where('ano_lectivo_id',  $ano_lec_anterior->ano_lectivo_id)->get();
+        if (count($prof_disc) < 1) {
+            return false;
+        }
+        foreach ($prof_disc as $chave => $valor) {
+            $array[$chave] = [
+                'professor_id' => $valor->professor_id,
+                'disciplina_id' => $valor->disciplina_id,
+                'ano_lectivo_id' => $ano_lectivo_id,
+                'prioridade' => $valor->prioridade,
+                'turno_id' => $valor->turno_id
+
+            ];
+        }
+        foreach ($array as $chave => $valor) {
+            $res = Professor_disciplina::create($array[0]);
+        }
+        return true;
+    }
+
+    public static function actualizacaoProfDiscAnoLectivo($ano_lectivo_id){
+        $ano_lec_anterior = Ano_lectivo::latest()->first();
+        $prof_disc = Professor_disciplina::where('ano_lectivo_id',  $ano_lec_anterior->ano_lectivo_id)->get();
+        if (count($prof_disc) < 1) {
+            return false;
+        }
+        foreach ($prof_disc as $chave => $valor) {
+            $array[$chave] = [
+                'professor_id' => $valor->professor_id,
+                'disciplina_id' => $valor->disciplina_id,
+                'ano_lectivo_id' => $ano_lectivo_id,
+                'prioridade' => $valor->prioridade,
+                'turno_id' => $valor->turno_id
+            ];
+        }
+        foreach ($array as $chave => $valor) {
+            $res = Professor_disciplina::find($prof_disc[$chave]->prof_disc_id)->update($array[$chave]);
+        }
+        return true;
+    }
 }

@@ -19,7 +19,12 @@
         <div class="d-flex align-items-center" style="padding-left: 56px;">
 
     	   <a class="nav-link nav-perfil d-flex align-items-center pe-0" href={{route('perfil')}}>
-            <img src={{ URL::asset( isset(Auth::user()->imagem_usuario) ? Auth::user()->imagem_usuario : "" ) }} alt="perfil" class="mini-foto-perf">
+			@if(Auth::user()->imagem_usuario!="")
+            	<img src={{ URL::asset(Auth::user()->imagem_usuario) }} alt="perfil" class="mini-foto-perf">
+			@else
+				<img src={{URL::asset("img/foto.jpg")}} alt="perfil" class="mini-foto-perf">
+			@endif
+
             <span class="d-none d-md-block ps-2">{{ isset(Auth::user()->pessoa->nome_completo) ? Auth::user()->pessoa->nome_completo: "" }} <br> <small>{{ isset(Auth::user()->cargo_usuario) ? Auth::user()->cargo_usuario: "Sem Cargo"}}</small></span>
           </a>
 

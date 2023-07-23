@@ -76,6 +76,11 @@
             </div>
         </div>
     </div>
+    <form action="{{route('avaliar.aluno')}}" method="POST">
+        @csrf
+    <div class="form-group" style="display: flex; justify-content: end; margin-top: 4px;">
+        <button class="btn botaoazul" name="tipo_prova" value="Recurso" type="submit" style="margin-right: 3px;">Avaliar Aluno(s)</button>
+      </div>
     <!-- /  Inicio da tabela  -->
     <table  class="table table-custom table-escuro display" style="margin-top: 20px; width: 100%;" >
       <thead style="text-align: center">
@@ -83,8 +88,8 @@
           <th scope="col">Nº do Processo</th>
           <th scope="col">Nome do Aluno</th>
           <th scope="col">Nota</th>
-          <th scope="col">Ano</th>
-          <th scope="col">Recurso</th>
+          <th scope="col">Ano Lectivo</th>
+          <th scope="col">Nota</th>
           <th scope="col">Histórico</th>
           <th scope="col" hidden>curso</th>
           <th scope="col" hidden>Disciplina</th>
@@ -100,8 +105,11 @@
             <td></td>
             <td>{{$dados[$i][$j]['ano_lectivo']}}</td>
             <td style="text-align: center">
-            <a class="btn botaoazul"data-bs-toggle="modal" value="{{$dados[$i][$j]['disciplina_id']}}" data-bs-target="#modal_assiduidade{{$dados[$i][$j]['aluno_id']}}" >Realizar Operação</a>
-            </td>
+                <input class="form-control innota"  type="text" name="nota_aluno[]" maxlength="4" id="notaimput">
+                <input class="form-control innota"  type="text" name="aluno_id[]" value="{{$dados[$i][$j]['aluno_id']}}" maxlength="4" id="notaimput" hidden>
+                <input class="form-control innota"  type="text" name="disciplina_id[]" value="{{$dados[$i][$j]['disciplina_id']}}" maxlength="4" id="notaimput" hidden>
+
+                </td>
             <td style="text-align: center">
             <a href="{{route('historico.recurso', $dados[$i][$j]['aluno_id'])}}" class="btn linkeditar">Recursos</a>
             </td>
@@ -117,6 +125,7 @@
 
         </tbody>
     </table>
+</form>
     <!-- Cola aqui o código -->
 
     @for ($i = 0; $i < count($dados); $i++)

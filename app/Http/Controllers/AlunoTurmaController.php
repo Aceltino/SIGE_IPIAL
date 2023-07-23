@@ -27,7 +27,7 @@
 
             if( $dataFormated != $dataFimIncricao )
             {
-                return 'O processo de atribuição de turma é feito apenas um dia após o fim da matricula: '. $dataFimIncricao;      
+                return 'O processo de atribuição de turma é feito apenas um dia após o fim da matricula: '. $dataFimIncricao;
             }
         $alunos = AlunoController::alunosSemturma();
     // dd($alunos);
@@ -92,7 +92,7 @@
                     }
                 }
             }
-            
+
             usort($alunoTurma, function($a, $b) {
                 return strcmp($a['nome'], $b['nome']);
             });
@@ -176,7 +176,7 @@
         ];
         return $turmaEncontrada;
         }
-            
+
         }
 
         public static function pegarTurmaId($turmaId) //Pegar turma para integrar aluno transferido
@@ -184,7 +184,7 @@
             $turma = AnoTurmaCood::where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
             ->where('turma_id', $turmaId)
             ->first();
-            
+
             if(!$turma)
             {
                 return false;
@@ -248,6 +248,7 @@
         public static function alunoAdmtido($alunos) // Passagem de ano lectivo APROVADOS
         {
             $alunoTurma = [];
+            // dd($alunos);
 
             usort($alunos, function ($a, $b)
                 {
@@ -270,8 +271,8 @@
                 }
                 $classe = intval($alunos[$i]['classeId']);
                 $classed = $classe + 1;
-
-                $turmas = AlunoTurmaController::pegarTurmasCurso($alunos[$i]['idCurso'], $classed);
+// dd($alunos);
+                $turmas = AlunoTurmaController::pegarTurmasCurso($alunos[$i]['cursoId'], $classed);
                 if($alunos[$i]['turnoId'] === 3)
                 {
                     usort($turmas, function ($a, $b)
@@ -378,7 +379,7 @@
 
                     return strcmp($identificadorA, $identificadorB);
                 });
-                
+
                 $alunoTurma = [];
                 foreach ($turmas as $turma)
                 {
@@ -435,9 +436,10 @@
 
             $vagas = [];
 
-            foreach ($turmas as $turmaA) 
+            foreach ($turmas as $turmaA)
             {
                 $curso = $turmaA->turma->curso->nome_curso;
+                $sigla = $turmaA->turma->curso->sigla;
                 $cursoId = $turmaA->turma->curso->curso_id;
                 $classe = $turmaA->turma->classe->classe;
                 $classeId = $turmaA->turma->classe->classe_id;
@@ -449,10 +451,11 @@
 
                 $chave = $curso . '-' . $classe . '-' . $turno . '-' . $anoLectivo;
 
-                if (!isset($vagas[$chave])) 
+                if (!isset($vagas[$chave]))
                 {
                     $vagas[$chave] = [
                         'curso' => $curso,
+                        'sigla' => $sigla,
                         'cursoId' => $cursoId,
                         'classe' => $classe,
                         'classeId' => $classeId,
@@ -463,7 +466,7 @@
                         'totalVagas' => 0
                     ];
                 }
-        
+
                 $vagas[$chave]['totalVagas'] += $numVagas;
             }
             return array_values($vagas);
@@ -477,7 +480,7 @@
 
             $vagas = [];
 
-            foreach ($turmas as $turmaA) 
+            foreach ($turmas as $turmaA)
             {
                 $turno = $turmaA->turma->turno->nome_turno;
                 $turnoId = $turmaA->turma->turno->turno_id;
@@ -487,7 +490,7 @@
 
                 $chave = $turno . '-' . $anoLectivo;
 
-                if (!isset($vagas[$chave])) 
+                if (!isset($vagas[$chave]))
                 {
                     $vagas[$chave] = [
                         'turno' => $turno,
@@ -497,7 +500,7 @@
                         'turmasRestantes' => $ano_numSala
                     ];
                 }
-        
+
                 $vagas[$chave]['turmasRestantes']--;
             }
             return array_values($vagas);
@@ -506,10 +509,10 @@
         public static function AnulouMatricula($Aluno) // Função de anular a matricula
         {
             $aluno = Aluno::find($Aluno['aluno']);
-            $aluno->Anoturma()->updateExistingPivot($Aluno['turma'], 
+            $aluno->Anoturma()->updateExistingPivot($Aluno['turma'],
             [
                 'situacao' => 'Anulou a Matricula',
-                'numero_aluno' => 0,    
+                'numero_aluno' => 0,
             ]);
             return $aluno;
         }
@@ -555,7 +558,7 @@
                 {
                     $alunosAdmitidos[] = $aluno;
                     continue;
-                }   
+                }
             }
             if(!$alunosAdmitidos)
             {
@@ -574,10 +577,10 @@
                             'ano'=> $aluno['anoLectivo'],
 
                         ];
-    
+
             $chave = $aluno['cursoId'] . '-' .$aluno['classeId'] . '-' . $aluno['turnoId'];
 
-            if (!isset($vagas[$chave])) 
+            if (!isset($vagas[$chave]))
             {
                 $vagas[$chave] = [
                     'cursoId' =>  intval($aluno['cursoId']),
@@ -599,42 +602,42 @@
     $numMaxTurmaT = $anoLectivo->num_sala_escola;
 
     foreach ($turmas as &$turma) {
-        if ($turma['turnoId'] === 3) 
+        if ($turma['turnoId'] === 3)
         {
-            while ($turma['num_alunos'] > 0) 
+            while ($turma['num_alunos'] > 0)
             {
                 repite:
                 $turmaVagas = AlunoTurmaController::pegarTurma(intval($turma['cursoId']), intval($turma['classeId']) + 1, intval($turma['turnoId']));
-    
-                if (!$turmaVagas) 
+
+                if (!$turmaVagas)
                 {
                     TurmaController::storeTurmas(intval($turma['classeId']) + 1, intval($turma['cursoId']), intval($turma['turnoId']));
                     goto repite;
                 }
-    
+
                 $turma['num_alunos'] -= $turmaVagas['num_vaga'];
                 $turma['num_alunos'] = max(0, $turma['num_alunos']);
             }
-        } 
-        elseif ($turma['turnoId'] === 2 || $turma['turnoId'] === 1) 
+        }
+        elseif ($turma['turnoId'] === 2 || $turma['turnoId'] === 1)
         {
-            while ($turma['num_alunos'] > 0) 
+            while ($turma['num_alunos'] > 0)
             {
                 $turnoId = $numMaxTurmaT > 0 ? 2 : 1;
                 back:
                 $turmaVagas = AlunoTurmaController::pegarTurma(intval($turma['cursoId']), intval($turma['classeId']) + 1, $turnoId);
-    
-                if (!$turmaVagas) 
+
+                if (!$turmaVagas)
                 {
                     TurmaController::storeTurmas(intval($turma['classeId']) + 1, intval($turma['cursoId']), $turnoId);
-    
+
                     if ($numMaxTurmaT > 0) {
                         --$numMaxTurmaT;
                     }
-                    
+
                     goto back;
                 }
-    
+
                 $turma['num_alunos'] -= $turmaVagas['num_vaga'];
                 $turma['num_alunos'] = max(0, $turma['num_alunos']);
             }
@@ -651,7 +654,7 @@
             ->get();
 
             $dadosTurma = [];
-            foreach ($turmas as $turmaA) 
+            foreach ($turmas as $turmaA)
             {
                 $dadosTurma[] = [
                     'IdTurma' => $turmaA->turma->turma_id,
@@ -680,20 +683,20 @@
             }
 
             $dadosTurma = [];
-            foreach ($turmas as $turmaA) 
+            foreach ($turmas as $turmaA)
             {
             $curso = $turmaA->turma->curso->curso_id;
             $sigla = $turmaA->turma->curso->sigla;
 
             $chave = $curso;
-            if (!isset($turm[$chave])) 
+            if (!isset($turm[$chave]))
             {
                 $turm[$chave] = [
                         'sigla' => $sigla,
                         'turmas' => 0
                 ];
             }
-    
+
             $turm[$chave]['turmas']++;
             }
 
@@ -714,7 +717,7 @@
             }
 
             $dadosTurma = [];
-            foreach ($turmas as $turmaA) 
+            foreach ($turmas as $turmaA)
             {
             $curso = $turmaA->turma->curso->curso_id;
             $cursoNome = $turmaA->turma->curso->nome_curso;
@@ -723,7 +726,7 @@
 
             $chave = $curso . $turno;
 
-            if (!isset($turm[$chave])) 
+            if (!isset($turm[$chave]))
             {
                 $turm[$chave] = [
                         'curso' => $cursoNome,
@@ -731,7 +734,7 @@
                         'turmas' => 0
                 ];
             }
-    
+
             $turm[$chave]['turmas']++;
             }
 
@@ -752,7 +755,7 @@
 
             $vagas = [];
 
-            foreach ($turmas as $turmaA) 
+            foreach ($turmas as $turmaA)
             {
                 $curso = $turmaA->turma->curso->curso_id;
                 $cursoSigla = $turmaA->turma->curso->sigla;
@@ -761,7 +764,7 @@
 
                 $chave = $curso;
 
-                if (!isset($vagas[$chave])) 
+                if (!isset($vagas[$chave]))
                 {
                     $vagas[$chave] = [
                         'cursoId' => $cursoSigla,

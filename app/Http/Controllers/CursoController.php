@@ -87,11 +87,11 @@ class CursoController extends Controller
                                     'area_formacao_id' => $request->area_formacao,
                                 ];
                                 $curso = Curso::create($dados);
-                                
+
                                 return redirect()->back()->with("sucesso", "Curso criado com sucesso!");
                             }
                         }
-                        
+
                     }
                 }
 
@@ -101,14 +101,13 @@ class CursoController extends Controller
     }
 
     public function index(){
-        $cursos = Curso::with('coordenador.pessoa')->get();
-        $coordenador = Professor::with('pessoa', 'curso.areaFormacao')
-        ->where('cargo', "Coordenador Curso")
-        ->get()->toArray();
+        $cursos = Curso::with('coordenador.pessoa', 'areaFormacao')->get();
+        if (count($cursos) < 1) {
+            $cursos = array();
+        }
         $areaFormacao = Area_formacao::all();
-        $curso = Curso::all();
 
-        return view('curso/cursos', compact(['curso', 'areaFormacao', 'coordenador', 'cursos']));
+        return view('curso/cursos', compact(['areaFormacao', 'cursos']));
     }
 
     public function indexEditar($id){

@@ -91,12 +91,12 @@ class CandidatoController extends Controller
     public static function eliminarAdmitidos() //Função chamada na atribuição da turma - MatriculaController
     {
         $candidatos = Candidato::where('status', 'Admitido')->get();
-        
+
         foreach ($candidatos as $candidato)
         {
-            PessoaTrait::deletePessoa($candidato->pessoa_id);  
+            PessoaTrait::deletePessoa($candidato->pessoa_id);
         }
-     
+
     }
 
     public static function eliminarCandidatos() //Função chamada no final do ano lectivo
@@ -124,6 +124,11 @@ class CandidatoController extends Controller
                 ->orWhere('status', 'admitido');
         })->get();
 
+        // if(!$candidatos) {
+        //     return 'Sem candidatos inscritos';
+        // }
+
+
         foreach ($candidatos as &$candidato)
         {
             $dataNascimento = Carbon::parse($candidato->pessoa->data_nascimento);
@@ -141,7 +146,12 @@ class CandidatoController extends Controller
             $candidato['media'] = $media;
             $cursoCandidato = CandidatoCursoController::cursoEscolhido($candidato->candidato_id);
         }
-
+// dd($candidato[0]);
+        if( !isset($candidato) )
+        {
+            return 'Sem candidatos inscritos';
+        }
+// dd($candidatos);
         $cursoEscolhido = [];
         if($cursoCandidato)
         {
@@ -190,7 +200,7 @@ class CandidatoController extends Controller
                 'Data_inscricao' => $candidato->created_at
             ];
         }
-        
+
         return $dadosCandidatos;
     }
 
@@ -293,14 +303,14 @@ class CandidatoController extends Controller
 
             $chave = $curso;
 
-            if (!isset($cand[$chave])) 
+            if (!isset($cand[$chave]))
             {
                 $cand[$chave] = [
                         'sigla' => $sigla,
                         'candidatos' => 0
                 ];
             }
-    
+
             $cand[$chave]['candidatos']++;
         }
         return array_values($cand);
@@ -331,14 +341,14 @@ class CandidatoController extends Controller
 
             $chave = $curso;
 
-            if (!isset($cand[$chave])) 
+            if (!isset($cand[$chave]))
             {
                 $cand[$chave] = [
                         'sigla' => $sigla,
                         'candidatos' => 0
                 ];
             }
-    
+
             $cand[$chave]['candidatos']++;
         }
         return array_values($cand);
@@ -364,14 +374,14 @@ class CandidatoController extends Controller
 
             $chave = $curso;
 
-            if (!isset($cand[$chave])) 
+            if (!isset($cand[$chave]))
             {
                 $cand[$chave] = [
                         'sigla' => $sigla,
                         'candidatos' => 0
                 ];
             }
-    
+
             $cand[$chave]['candidatos']++;
         }
 
