@@ -167,6 +167,32 @@ class AlunoController extends Controller
         return $Alunos;
     }
 
+    public static function alunosTurmaTotal() // Função chamada no AlunoTurmacontroller para saber a situação doa aluno no ano anterior
+    {
+        $anoRestrict = AnoLectivoController::pegarIdAnoLectivo();
+
+        $alunos = Aluno::with('candidato', 'anoturma')
+            ->whereHas('anoturma', function ($query) use ($anoRestrict) {
+                $query->where('ano_lectivo_id', '=', $anoRestrict);
+            })
+            ->get();
+
+        $Alunos = [];
+
+        foreach ($alunos as $aluno) {
+            foreach ($aluno->anoturma as $anoturma) {
+                if($anoturma->ano_lectivo_id === $anoRestrict)
+                {
+                $Alunos[] = [
+                    'aluno_id' => $aluno->aluno_id,
+                    'situacao' =>  $anoturma->pivot->situacao,
+                ];
+                }
+            }
+        }
+        return $Alunos;
+    }
+
     public static function alunosTurma() // Função chamada no AlunoTurmacontroller para saber a situação doa aluno no ano anterior
     {
         $anoRestrict = AnoLectivoController::pegarPenultimoAnoLectivo();
@@ -324,6 +350,80 @@ class AlunoController extends Controller
         $turmaAnoId = $aluno->anoturma[$ultimaPosicao]->turmaAno_id;
 
         return $turmaAnoId;
+    }
+
+    public static function matriculados()
+    {
+        $alunos = Aluno::with('anoturma')
+        ->whereHas('anoturma', function ($query) {
+            $query->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo());
+        })
+        ->get();
+
+        if ($alunos->isEmpty()) {
+            return 0;
+        }
+
+        foreach ($alunos as $aluno)
+        {
+            $curso = $aluno->curso_id;
+            $cursoDados = CursoController::pegarCurso($aluno->curso_id);
+            $sigla = $cursoDados->sigla;
+
+            $chave = $curso;
+
+            if (!isset($alun[$chave])) 
+            {
+                $alun[$chave] = [
+                        'sigla' => $sigla,
+                        'alunos' => 0
+                ];
+            }
+    
+            $alun[$chave]['alunos']++;
+        }
+        return array_values($alun);
+    }
+
+        public static function situacaoAluno() // Função a ser chamada na reabertura do ano lectivo 11ª >
+        {
+           
+            $alunos = AlunoController::alunosTurmaTotal();
+
+            if(!$alunos)
+            {
+                return 0;
+            }
+            $alunosAdmitidos = [];
+            $alunosNAdmitidos = [];
+            $alunosRecurso = [];
+
+            foreach( $alunos as $aluno )
+            {
+                if($aluno['situacao'] === "Transita")
+                {
+                    $alunosAdmitidos[] = $aluno;
+                    continue;
+                }
+                if($aluno['situacao'] === "Não Transita" || $aluno['situacao'] === "RPF")
+                {
+                    $alunosNAdmitidos[] = $aluno;
+                    continue;
+                }
+                if($aluno['situacao'] === "Recurso")
+                {
+                    $alunosRecurso[] = $aluno;
+                    continue;
+                }
+            }
+
+            $alunosStatus = [
+                'Aprovados' => count($alunosAdmitidos),
+                'Reprovados' => count($alunosNAdmitidos),
+                'Recurso' => count($alunosRecurso),
+            ];
+
+            return $alunosStatus;
     }
 //
 }

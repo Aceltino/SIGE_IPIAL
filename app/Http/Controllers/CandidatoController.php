@@ -268,4 +268,106 @@ class CandidatoController extends Controller
         $candidato->save();
     }
 
+    public static function Admitidos() //Detalhes
+    {
+        $candidatos = Candidato::where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
+        ->where('status', 'Admitido')
+        ->get();
+
+        if ($candidatos->isEmpty()) {
+            return 0;
+        }
+
+        foreach ($candidatos as &$candidato)
+        {
+            $candidato['cursoAdmitido'] = CandidatoCursoController::cursoEscolhidoPreferencia($candidato->candidato_id);
+        }
+
+        foreach ($candidatos as $candidato)
+        {
+            $curso = $candidato->cursoAdmitido['idCurso'];
+            $sigla = $candidato->cursoAdmitido['siglaCurso'];
+
+            $chave = $curso;
+
+            if (!isset($cand[$chave])) 
+            {
+                $cand[$chave] = [
+                        'sigla' => $sigla,
+                        'candidatos' => 0
+                ];
+            }
+    
+            $cand[$chave]['candidatos']++;
+        }
+        return array_values($cand);
+    }
+
+    public static function NAdmitidos() //Detalhes
+    {
+        $candidatos = Candidato::where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
+        ->where('status', 'Não admitido')
+        ->get();
+
+        if ($candidatos->isEmpty()) {
+            return 0;
+        }
+
+        foreach ($candidatos as &$candidato)
+        {
+            $candidato['cursoAdmitido'] = CandidatoCursoController::cursoEscolhidoPreferencia($candidato->candidato_id);
+        }
+
+        foreach ($candidatos as $candidato)
+        {
+            $curso = $candidato->cursoAdmitido['idCurso'];
+            $sigla = $candidato->cursoAdmitido['siglaCurso'];
+
+            $chave = $curso;
+
+            if (!isset($cand[$chave])) 
+            {
+                $cand[$chave] = [
+                        'sigla' => $sigla,
+                        'candidatos' => 0
+                ];
+            }
+    
+            $cand[$chave]['candidatos']++;
+        }
+        return array_values($cand);
+    }
+
+    public static function Inscritos() //Detalhes
+    {
+        $candidatos = Candidato::where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo())
+        ->get();
+
+        if ($candidatos->isEmpty()) {
+            return 0;
+        }
+
+        foreach ($candidatos as $candidato)
+        {
+            $candidato['cursoAdmitido'] = CandidatoCursoController::cursoEscolhidoPreferencia($candidato->candidato_id);
+
+            $curso = $candidato->cursoAdmitido['idCurso'];
+            $sigla = $candidato->cursoAdmitido['siglaCurso'];
+
+            $chave = $curso;
+
+            if (!isset($cand[$chave])) 
+            {
+                $cand[$chave] = [
+                        'sigla' => $sigla,
+                        'candidatos' => 0
+                ];
+            }
+    
+            $cand[$chave]['candidatos']++;
+        }
+
+        return array_values($cand);
+    }
+
 }
