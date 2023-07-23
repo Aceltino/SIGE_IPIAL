@@ -11,7 +11,7 @@ class SalaController extends Controller
     public function index()
     {
         $salas = Sala::all();
-        return view('sala.sala',['salas',$salas ]); 
+        return view('sala.sala', compact('salas')); 
     }
     public function create()
     {
@@ -20,7 +20,7 @@ class SalaController extends Controller
     public function store(Request $request)
     {
         $sala = new Sala;
-        $sala->sala = $request->nome_sala;
+        $sala->sala = $request->sala;
         $sala->tipo_sala = $request->tipo_sala;
 
         $sala->save();
@@ -28,10 +28,10 @@ class SalaController extends Controller
     }
     public function edit($sala_id)
     {
-        $salas = Sala::where('sala_id',$sala_id)->fist();
-        if(!empty($sala))
+        $salas = Sala::where('sala_id',$sala_id)->first();
+        if(!empty($salas))
         {
-            return view('sala.edit-sala',compact('salas'));
+            return view('sala.edit-sala', compact('salas'));
         }
         else
         {
@@ -42,7 +42,7 @@ class SalaController extends Controller
     public function update(Request $request, $sala_id)
     {
         $dados = [
-            'sala'=>$request->nome_sala,
+            'sala'=>$request->sala,
             'tipo_sala'=>$request->tipo_sala,
         ];
         Sala::where('sala_id',$sala_id)->update($dados);

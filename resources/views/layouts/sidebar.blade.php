@@ -346,7 +346,29 @@
       </ul>
     </li>
 
-    @if(Auth::user()->cargo_usuario != "Professor")
+    @if (Auth::user()->cargo_usuario == "Aluno")
+      
+    <!-- /	Nav Boletim-->
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#boletim-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-folder2-open"></i></i><span>Boletim de notas</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="boletim-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          
+          
+          
+           <a href={{route('boletim')}}> 
+
+            <i class="bi bi-circle"></i><span>Boletim de notas</span>
+          </a>
+        </li>
+        
+      </ul>
+    </li>
+    @endif
+    
+    @if(Auth::user()->cargo_usuario != "Professor" && Auth::user()->cargo_usuario != "Aluno")
     <!-- /	Nav Processo-->
     <li class="nav-item">
       <a class="nav-link collapsed" data-bs-target="#processo-nav" data-bs-toggle="collapse" href="#">

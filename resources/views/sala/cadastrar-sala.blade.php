@@ -35,7 +35,7 @@
             </div>
 
             <div class="form-group">
-                <input type="text" style=" text-align: center;" placeholder="Sala" name="nome_sala" id="nome_sala" id="letra2" oninput="this.className = ''" required >
+                <input type="text" style=" text-align: center;" placeholder="Sala" name="sala" id="nome_sala" id="letra2" oninput="this.className = ''" required >
                 <span id=" erro_nome"  style="color: red"></span>
             </div>
 
