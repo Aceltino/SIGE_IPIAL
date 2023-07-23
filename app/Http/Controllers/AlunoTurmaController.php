@@ -640,8 +640,8 @@
     public static function pegarTurmas() // http://127.0.0.1:8000/api/turmas
         {
             $turmas = AnoTurmaCood::with('turma', 'ano_lectivo')
+            ->orderBy('ano_lectivo_id', 'desc')
             ->get();
-            // dd($turmas);
 
             $dadosTurma = [];
             foreach ($turmas as $turmaA) 
@@ -656,7 +656,6 @@
                     'anolectivoTurma' => $turmaA->ano_lectivo->ano_lectivo
                 ];
             }
-            // dd($dadosTurma);
             return $dadosTurma;
         }
 }

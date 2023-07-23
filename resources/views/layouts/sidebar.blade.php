@@ -218,7 +218,7 @@
       <a class="nav-link collapsed" data-bs-target="#calprova-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-table"></i><span>Calendário de Prova</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
-      <ul id="calprova-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+      <ul id="calprova-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
         <li>
           <a href={{ route('consultar.calendario') }}>
             <i class="bi bi-circle"></i><span>Calendários de Provas</span>
