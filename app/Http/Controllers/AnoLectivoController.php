@@ -124,8 +124,8 @@ class AnoLectivoController extends Controller
         //dd($trimestre);
 
         //Todas as funções que devem acontecer no inicio do ano lectivo devem estar abaixo deste comentário
-        //AlunoTurmaController::alunoAnolectivo(); // Criar turma automaticamente
-       // AlunoTurmaController::situacaoAluno(); // Atribuir turmas aos alunos da 11ª em diante.
+        AlunoTurmaController::alunoAnolectivo(); // Criar turma automaticamente
+        AlunoTurmaController::situacaoAluno(); // Atribuir turmas aos alunos da 11ª em diante.
 
         return redirect()->route('ano.lectivo')->with('sucesso', "Ano lectivo criado com sucesso.");
     }

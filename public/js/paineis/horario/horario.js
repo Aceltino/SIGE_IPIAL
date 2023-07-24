@@ -22,6 +22,8 @@
             console.log(dadoHorario.horarioInfo[0].disciplinas[0]);
             console.log(dadoHorario.horarioInfo[0].disciplinas[0].disciplina_id
                 );
+                console.log(dadoHorario.horarioInfo[0].professores[0].disciplina_id
+                    );
             //console.log(dadoHorario.horarioInfo.length);
 
             //Primeiro step
@@ -48,9 +50,8 @@
                 var idTurmaSelecionada = selectTurma.value;
 
                 if (idTurmaSelecionada !== null){
-                    var disciplina = new Array();
                 
-                    for(let indice = 0; indice < dadoHorario.horarioInfo[idTurmaSelecionada].disciplinas.length; indice++){
+                    for(let indice = 0; indice < dadoHorario.horarioInfo[idTurmaSelecionada].disciplinas[indice].length; indice++){
                             var nameInputDisciplina = "disciplina"+ indice;
                             var nameSelectProfessor = "professor"+ indice;
 
@@ -67,19 +68,21 @@
                             selectOptgroup[indice] = document.createElement("optgroup");
                             selectOptgroup[indice].setAttribute("label", "Professor");
                             
-                            for(let indice = 0; indice < dadoHorario.horarioInfo[idTurmaSelecionada].disciplinas.length; indice++){
-                                optionProfessor[indice] = document.createElement("option");
-
-
-                                optionProfessor[indice].value = dadoHorario.horarioInfo[indice].nome;
-                                
-                                
-                                divProfessoresNoHorario.appendChild(selectProfessor[indice])
+                            for(let indice2 = 0; indice2 < dadoHorario.horarioInfo[idTurmaSelecionada].disciplinas.length; indice2++){
+                                if(dadoHorario.horarioInfo[indice].disciplinas[indice].disciplina_id === dadoHorario.horarioInfo[indice2].professores[indice2].disciplina_id){
+                                    optionProfessor[indice2] = document.createElement("option");
+                                    optionProfessor[indice2].value = dadoHorario.horarioInfo[indice].professores[indice].nomeProfessor;
+                                    
+                                    selectOptgroup[indice].appendChild(optionProfessor[indice2])
                             ;
+                                }
                             } 
+
+                            selectProfessor[indice].appendChild(selectOptgroup[indice]);
 
                             divDisciplinasNoHorario.appendChild(inputDisciplina[indice])
                             ;
+
                             divProfessoresNoHorario.appendChild(selectProfessor[indice])
                             ;
                     } 
