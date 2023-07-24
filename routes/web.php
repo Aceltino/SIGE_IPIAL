@@ -215,12 +215,12 @@ Route::prefix('turma')->middleware(['auth','active.session','checkcargo'])->grou
 /******************************************
  * Rotas de aluno
  */
-Route::prefix('aluno')->middleware(['auth','active.session','checkcargo'])->group(function(){
+Route::prefix('aluno')->middleware(['auth','active.session'])->group(function(){
 
-    Route::get('boletim-notas', function () {
+    /*Route::get('boletim-notas', function () {
         return view('boletim/boletim-notas');
-    });
-    #Route::get('boletim-notas', [BoletimNotasController::class, 'index'])->name('boletim');
+    })->name('boletim'); */
+    Route::get('boletim-notas', [BoletimNotasController::class, 'index'])->name('boletim');
 
 });
 /**<!--Fim Rotas aluno--> */

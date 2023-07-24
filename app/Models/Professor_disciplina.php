@@ -42,4 +42,8 @@ class Professor_disciplina extends Model
         return $this->belongsToMany(Turma::class, 'horario', 'prof_disc_id', 'turma_id');
     }
 
+    public function turno() {
+        return $this->belongsTo(Turno::class, "turno_id");
+    }
+
 }

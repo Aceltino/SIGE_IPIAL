@@ -72,7 +72,7 @@
 
               <div class="col-md-5">
                 <div class="form-group">
-                  <input name='data_nascimento' type="date" id="data-de-nascimento-do-professor-input" oninput="this.className = ''">
+                  <input name='data_nascimento' type="date" value="{{ $professor->pessoa->data_nascimento }}" id="data-de-nascimento-do-professor-input" oninput="this.className = ''">
                   <p class="alert alert-danger d-none mt-2" role="alert" id="paragrafo-de-validacao-da-idade-do-professor"></p>
                 </div> 
               </div>
@@ -89,9 +89,9 @@
               <div class="col-md-9">
                 <div class="form-group">
                   <label class="me-3">Sexo:</label>
-                  <input type="radio" id="masculino" name="genero" value="Masculino" {{ old('genero') == 'Masculino' ? 'checked' : '' }} checked>
+                  <input type="radio" id="masculino" name="genero" value="Masculino" {{ $professor->pessoa->genero == 'Masculino' ? 'checked' : '' }} checked>
                   <label for="masculino" class="me-2"> Masculino</label>
-                  <input type="radio" id="feminino" name="genero" value="Femenino" {{ old('genero') == 'Femenino' ? 'checked' : '' }}>
+                  <input type="radio" id="feminino" name="genero" value="Femenino" {{ $professor->pessoa->genero == 'Femenino' ? 'checked' : '' }}>
                   <label for="feminino"> Feminino</label>
                 </div>
               </div>
@@ -110,17 +110,17 @@
             <div class="row">
               <h5>Endereço</h5>
               <div class="form-group col-md-3">
-                <input name='municipio' type="text" placeholder="Municipio" id="municipio-do-professor-input">
+                <input name='municipio' value="{{ $professor->pessoa->endereco->municipio }}" type="text" placeholder="Municipio" id="municipio-do-professor-input">
               </div>
               
               <div class="form-group col-md-3">
-                <input name='bairro' type="text" placeholder="Bairro" id="bairro-do-professor-input">
+                <input name='bairro' value="{{ $professor->pessoa->endereco->bairro }}" type="text" placeholder="Bairro" id="bairro-do-professor-input">
               </div> 
               <div class="form-group col-md-3">
-                <input name='zona' type="text" placeholder="Zona">
+                <input name='zona' value="{{ $professor->pessoa->endereco->zona }}" type="text" placeholder="Zona">
               </div> 
               <div class="form-group col-md-3">
-                <input name='numero_casa' type="number" placeholder="Nº Casa" min="0" max="800">
+                <input name='numero_casa' value="{{ $professor->pessoa->endereco->numero_casa }}" type="number" placeholder="Nº Casa" min="0" max="800">
               </div> 
             </div>
 

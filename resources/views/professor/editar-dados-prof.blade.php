@@ -50,18 +50,19 @@
         <h3 class="text-uppercase text-center my-3 color-blue-principal">Disciplina(s) e turno(s)</h3>
 
           <div class="form-group col-md-6 offset-md-3 mb-3">
-            <h6 class="color-blue-principal">Número de disciplinas que o professor vai lecionar.</h6>
-            <input type="number" placeholder="Quantidade de disciplinas" id="quantidade-de-disciplinas" min="1" value="1" max="4" required='false'>
+            <h6 class="color-blue-principal">Número de disciplinas que o professor vai lecionar.</h6> 
+            <input type="number" placeholder="Quantidade de disciplinas" id="quantidade-de-disciplinas" min="1" value="{{ count($professor->disciplina) }}" max="4" required='false'>
+            
           </div>
 
           <section class="row align-items-center ms-5 mb-4" id="div-disciplina-1">
             <div class="form-group col-7 mb-0">
-              <select name='disciplina' oninput="this.className = ''" class="form-select" id="displina-a-leccionar-1" onchange="verificarSelecoes()">
+              <select name='disciplina[]' oninput="this.className = ''" class="form-select" id="displina-a-leccionar-1" onchange="verificarSelecoes()">
                 <optgroup label="Disciplinas">
-                    <option value="Inglês">Inglês</option>
-                    <option value="Matemática">Matemática</option>
-                    <option value="Química">Química</option>
-                    <option value="Física">Física</option>
+                    <option value="{{ $professor->disciplina[0]->disciplina_id }}" selected>{{ $professor->disciplina[0]->nome_disciplina }}</option>
+                    @foreach($cursos as $curso)
+                      <option value="{{ $curso->curso_id }}">{{ $curso->nome_curso }}</option>{{ $professor->professorDisciplina[0]->turno }}
+                    @endforeach
                 </optgroup>
               </select>
             </div>
@@ -70,15 +71,15 @@
               <div class="col-8 offset-2">
                 <div class="row justify-content-between">
                   <div class="form-check form-switch w-25">
-                    <input class="form-check-input" type="checkbox" value="Manhã">
+                    <input class="form-check-input" type="checkbox" value="Manhã" name="turno[1][]" {{ @$professor->professorDisciplina[0]->turno->nome_turno == "Manhã" ? 'checked' : '' }}>
                     <label class="form-check-label" for="checkboxTurnoManha">Manhã</label>
                   </div>
                   <div class="form-check form-switch w-25">
-                    <input class="form-check-input" type="checkbox" value="Tarde">
+                    <input class="form-check-input" type="checkbox" value="Tarde" name="turno[1][]" {{ @$professor->professorDisciplina[0]->turno->nome_turno == 'Tarde' ? 'checked' : '' }}>
                     <label class="form-check-label" for="checkboxTurnoTarde">Tarde</label>
                   </div>
                   <div class="form-check form-switch w-25">
-                    <input class="form-check-input" type="checkbox" value="Noite">
+                    <input class="form-check-input" type="checkbox" value="Noite" name="turno[1][]" {{ @$professor->professorDisciplina[0]->turno->nome_turno == 'Noite' ? 'checked' : '' }}>
                     <label class="form-check-label" for="checkboxTurnoNoite">Noite</label>
                   </div>
                 </div>
@@ -90,10 +91,10 @@
             <div class="form-group col-7 mb-0">
               <select name='disciplina' oninput="this.className = ''" class="form-select" id="displina-a-leccionar-2" onchange="verificarSelecoes()">
                 <optgroup label="Disciplinas">
-                    <option value="Inglês">Inglês</option>
-                    <option value="Matemática">Matemática</option>
-                    <option value="Química">Química</option>
-                    <option value="Física">Física</option>
+                  <option value="{{ $professor->disciplina[1]->disciplina_id }}" selected>{{ $professor->disciplina[1]->nome_disciplina }}</option>
+                  @foreach($cursos as $curso)
+                    <option value="{{ $curso->curso_id }}">{{ $curso->nome_curso }}</option>
+                  @endforeach
                 </optgroup>
               </select>
             </div>
@@ -102,15 +103,15 @@
               <div class="col-8 offset-2">
                 <div class="row justify-content-between">
                   <div class="form-check form-switch w-25">
-                    <input class="form-check-input" type="checkbox" value="Manhã">
+                    <input class="form-check-input" type="checkbox" value="Manhã" name="turno[2][]" {{ @$professor->professorDisciplina[1]->turno->nome_turno == "Manhã" ? 'checked' : '' }}>
                     <label class="form-check-label" for="checkboxTurnoManha">Manhã</label>
                   </div>
                   <div class="form-check form-switch w-25">
-                    <input class="form-check-input" type="checkbox" value="Tarde">
+                    <input class="form-check-input" type="checkbox" value="Tarde" name="turno[2][]" {{ @$professor->professorDisciplina[1]->turno->nome_turno == "Tarde" ? 'checked' : '' }}>
                     <label class="form-check-label" for="checkboxTurnoTarde">Tarde</label>
                   </div>
                   <div class="form-check form-switch w-25">
-                    <input class="form-check-input" type="checkbox" value="Noite">
+                    <input class="form-check-input" type="checkbox" value="Noite" name="turno[2][]" {{ @$professor->professorDisciplina[1]->turno->nome_turno == "Noite" ? 'checked' : '' }}>
                     <label class="form-check-label" for="checkboxTurnoNoite">Noite</label>
                   </div>
                 </div>
@@ -122,10 +123,10 @@
             <div class="form-group col-7 mb-0">
               <select name='disciplina' oninput="this.className = ''" class="form-select" id="displina-a-leccionar-3" onchange="verificarSelecoes()">
                 <optgroup label="Disciplinas">
-                    <option value="Inglês">Inglês</option>
-                    <option value="Matemática">Matemática</option>
-                    <option value="Química">Química</option>
-                    <option value="Física">Física</option>
+                  <option value="{{ $professor->disciplina[2]->disciplina_id }}" selected>{{ $professor->disciplina[2]->nome_disciplina }}</option>
+                  @foreach($cursos as $curso)
+                    <option value="{{ $curso->curso_id }}">{{ $curso->nome_curso }}</option>
+                  @endforeach
                 </optgroup>
               </select>
             </div>
@@ -134,15 +135,15 @@
               <div class="col-8 offset-2">
                 <div class="row justify-content-between">
                   <div class="form-check form-switch w-25">
-                    <input class="form-check-input" type="checkbox" value="Manhã">
+                    <input class="form-check-input" type="checkbox" value="Manhã" name="turno[3][]" {{ @$professor->professorDisciplina[2]->turno->nome_turno == "Manhã" ? 'checked' : '' }}>
                     <label class="form-check-label" for="checkboxTurnoManha">Manhã</label>
                   </div>
                   <div class="form-check form-switch w-25">
-                    <input class="form-check-input" type="checkbox" value="Tarde">
+                    <input class="form-check-input" type="checkbox" value="Tarde" name="turno[3][]" {{ @$professor->professorDisciplina[2]->turno->nome_turno == "Tarde" ? 'checked' : '' }}>
                     <label class="form-check-label" for="checkboxTurnoTarde">Tarde</label>
                   </div>
                   <div class="form-check form-switch w-25">
-                    <input class="form-check-input" type="checkbox" value="Noite">
+                    <input class="form-check-input" type="checkbox" value="Noite" name="turno[3][]" {{ @$professor->professorDisciplina[2]->turno->nome_turno == "Noite" ? 'checked' : '' }}>
                     <label class="form-check-label" for="checkboxTurnoNoite">Noite</label>
                   </div>
                 </div>
@@ -154,10 +155,10 @@
             <div class="form-group col-7 mb-0">
               <select name='disciplina' oninput="this.className = ''" class="form-select" id="displina-a-leccionar-4" onchange="verificarSelecoes()">
                 <optgroup label="Disciplinas">
-                    <option value="Inglês">Inglês</option>
-                    <option value="Matemática">Matemática</option>
-                    <option value="Química">Química</option>
-                    <option value="Física">Física</option>
+                  <option value="{{ @$professor->disciplina[3]->disciplina_id }}" selected>{{ @$professor->disciplina[3]->nome_disciplina }}</option>
+                  @foreach($cursos as $curso)
+                    <option value="{{ $curso->curso_id }}">{{ $curso->nome_curso }}</option>
+                  @endforeach
                 </optgroup>
               </select>
             </div>
@@ -166,15 +167,15 @@
               <div class="col-8 offset-2">
                 <div class="row justify-content-between">
                   <div class="form-check form-switch w-25">
-                    <input class="form-check-input" type="checkbox" value="Manhã">
+                    <input class="form-check-input" type="checkbox" value="Manhã" name="turno[4][]" {{ @$professor->professorDisciplina[3]->turno->nome_turno == "Manhã" ? 'checked' : '' }}>
                     <label class="form-check-label" for="checkboxTurnoManha">Manhã</label>
                   </div>
                   <div class="form-check form-switch w-25">
-                    <input class="form-check-input" type="checkbox" value="Tarde">
+                    <input class="form-check-input" type="checkbox" value="Tarde" name="turno[4][]" {{ @$professor->professorDisciplina[3]->turno->nome_turno == "Tarde" ? 'checked' : '' }}>
                     <label class="form-check-label" for="checkboxTurnoTarde">Tarde</label>
                   </div>
                   <div class="form-check form-switch w-25">
-                    <input class="form-check-input" type="checkbox" value="Noite">
+                    <input class="form-check-input" type="checkbox" value="Noite" name="turno[4][]" {{ @$professor->professorDisciplina[3]->turno->nome_turno == "Noite" ? 'checked' : '' }}>
                     <label class="form-check-label" for="checkboxTurnoNoite">Noite</label>
                   </div>
                 </div>
@@ -189,9 +190,9 @@
           <div class="form-group col">
             <select oninput="this.className = ''" class="form-select" id="select-cargo-cadastrar-professor">
               <optgroup label="Cargo">
-                <option value="Professor">Professor</option>
-                <option value="Coordenador do curso">Coordenador do curso</option>
-                <option value="Coordenador da área de formação">Coordenador da área de formação</option>
+                <option value="Professor" {{ $professor->cargo == "Professor" ? "checked" : "" }}>Professor</option>
+                <option value="Coordenador Curso" {{ $professor->cargo == "Coordenador Curso" ? "checked" : "" }}>Coordenador do curso</option>
+                <option value="Coordenador Area" {{ $professor->cargo == "Coordenador Area" ? "checked" : "" }}>Coordenador da área de formação</option>
               </optgroup>
             </select>
           </div>
@@ -219,7 +220,8 @@
           </div>
 
           <div class="form-group">
-            <input type="email" placeholder="E-mail do professor" id="email-do-professor-input" oninput="this.className = ''" minlength="10" maxlength="40">
+            
+            <input value="{{ $profAtual->email }}" type="email" placeholder="E-mail do professor" id="email-do-professor-input" oninput="this.className = ''" minlength="10" maxlength="40">
             <p class="alert alert-danger d-none mt-2" role="alert" id="paragrafo-de-validacao-do-email-do-professor"></p>
           </div>
 

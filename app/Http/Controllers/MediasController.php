@@ -79,6 +79,7 @@ class MediasController extends Controller
         }
         $calMedia= ( array_sum($mt1) + array_sum($mt2) + array_sum($mt3) )/3 ;
 
+    
         $tipoDisciplina= ClasseDisciplina::where("disciplina_id",$disciplina_id)->where("classe_id",$classe_id)->get()->toArray(); 
         $ca=0;
         $cfd=0;
@@ -114,7 +115,6 @@ class MediasController extends Controller
     //Metodo que Armazena a Classificação Final da Disciplina no Banco de Dados(Metodo Sensivel)
     private static function storeClassificao($dadosClassificao):bool
     {   
-
         $buscaClassificacao=Classificacaofinal::where('disciplina_id',$dadosClassificao['disciplina_id'])
                                                 ->where('ano_lectivo_id',$dadosClassificao['ano_lectivo_id'])
                                                 ->where('aluno_id',$dadosClassificao['aluno_id'])
@@ -266,8 +266,7 @@ class MediasController extends Controller
         }
 
          # O contrario de toda condição sitada acima o aluno= Aprova
-        self::setResultadoAnualAlunoDB_Apto($anoLectivo, $aluno_id);
-       
+        self::setResultadoAnualAlunoDB_Transita($anoLectivo, $aluno_id);
         return true;
     } 
 
@@ -289,20 +288,18 @@ class MediasController extends Controller
             'aluno_id' => $aluno_id,
             'id_cadeiras_def' => json_encode($disciplinaDef),
         ]);
-    
     }   
 
-    // Metoddo para Cadastro por Recurso Exame por Nota -> # 1 negativa( < 9 )->Disciplina Terminal(CFD) = Recurso
+    // Metodo para Cadastro por Recurso Exame por Nota -> # 1 negativa( < 9 )->Disciplina Terminal(CFD) = Recurso
     private static function setResultadoAnualAlunoDB_Exame($anoLectivo, $aluno_id, $disciplinaDef){
 
         // Verifica se já existe um registro para esse aluno e ano letivo
         $resultadoFinalAluno= ResultadoFinalAluno::where('ano_lectivo_id', $anoLectivo)
                                                   ->where('aluno_id', $aluno_id)
                                                   ->first();
-        if ($resultadoFinalAluno) {
+        if($resultadoFinalAluno){
             return false;
         }
-    
         // Cria o resultado do aluno com a situação 'Ñ/Transita' e todas as disciplinas deficientes
         ResultadoFinalAluno::create([
             'situacao' => 'Exame',
@@ -311,9 +308,11 @@ class MediasController extends Controller
             'id_cadeiras_def' => json_encode($disciplinaDef),
         ]);
         return true;
-    }   
-    private static function setResultadoAnualAlunoDB_Apto($anoLectivo, $aluno_id){
-
+    } 
+    
+    // Metodo que cadastr Transita pela nota e ano lectivo do aluno
+    private static function setResultadoAnualAlunoDB_Transita($anoLectivo, $aluno_id):bool
+    {
         // Verifica se já existe um registro para esse aluno e ano letivo
         $resultadoFinalAluno= ResultadoFinalAluno::where('ano_lectivo_id', $anoLectivo)
                                                   ->where('aluno_id', $aluno_id)
@@ -321,7 +320,6 @@ class MediasController extends Controller
         if ($resultadoFinalAluno) {
             return false;
         }
-    
         // Cria o resultado do aluno com a situação 'Ñ/Transita' e todas as disciplinas deficientes
         ResultadoFinalAluno::create([
             'situacao' => 'Transita',
