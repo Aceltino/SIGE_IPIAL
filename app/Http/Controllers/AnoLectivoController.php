@@ -233,7 +233,7 @@ class AnoLectivoController extends Controller
             if($trimestre){
                 return redirect()->back()->with('erro', 'Ano lectivo não pode ser fechado se existir algum trimestre em curso.');
             }
-            //CandidatoController::eliminarCandidatos(); // Eliminar todos os candidatos não matriculados no ano lectivo
+            CandidatoController::eliminarCandidatos(); // Eliminar todos os candidatos não matriculados no ano lectivo
             AlunoController::alunosVinculados(); //Cortar o acesso de todos os alunos do sistema
 
 
