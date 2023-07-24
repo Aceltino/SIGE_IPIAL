@@ -29,7 +29,7 @@ use App\Http\Controllers\{
 */
 
 // Rota apenas de teste... Não apague -> ACELTINO
-    Route::get('validar-aluno', [AnoLectivoController::class, 'AnoLectivoConfig']);
+    Route::get('validar-aluno/{candidato}', [AlunoController::class, 'pegarIdUser']);
 // Route::get('validar-aluno', [AlunoController::class, 'situacaoAluno']);
 
 
