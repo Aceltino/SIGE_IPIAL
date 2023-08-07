@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.APIinscricao')
 
 @section('title', 'Alunos inscritos')
 

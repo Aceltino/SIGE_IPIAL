@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.APIturma')
 
 @section('title', 'Turmas')
 

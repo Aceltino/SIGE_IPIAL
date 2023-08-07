@@ -21,10 +21,6 @@
     <link href={{{URL::asset("css/apitabelainscricao.css")}}} rel="stylesheet">
     <link href={{{URL::asset("css/estilo.css")}}} rel="stylesheet">
     <link href={{{URL::asset("css/tudo.css")}}} rel="stylesheet">
-    <link href={{{URL::asset("css/perfil.css")}}} rel="stylesheet">
-    <link href={{{URL::asset("css/calendario.css")}}} rel="stylesheet">
-    <link href={{{URL::asset("css/ficha-biografica-doc.css")}}} rel="stylesheet">
-    <link href={{{URL::asset("css/processo.css")}}} rel="stylesheet">
 
     <link href={{{URL::asset("css/fonts/fontawesome-all.min.css")}}} rel="stylesheet">
 
@@ -91,48 +87,18 @@
     @include('layouts.footer')
 
     <!-- /	Link dos js do bootstrap-->
-  <script src={{{URL::asset("vendor/apexcharts/apexcharts.min.js")}}}></script>
   <script src={{{URL::asset("vendor/bootstrap/js/bootstrap.bundle.min.js")}}}></script>
-  <script src={{{URL::asset("vendor/quill/quill.min.js")}}}></script>
-  <script src={{{URL::asset("vendor/tinymce/tinymce.min.js")}}}></script>
 
   <!-- /	Link do js Validações do projeto -->
-  <script src={{{URL::asset("js/paineis/inputnumero.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/inscricacao/Inputbi.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/inscricacao/selectcurso.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/inscricacao/inputidade.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/inscricacao/inputnome.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/telefone.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/disciplina/disciplina.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/horario/horario.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/horario/validacao_horario.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/horario/editar-horario.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/perfil/perfil.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/ano-lectivo/criar-ano-lectivo.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/ano-lectivo/editar-ano-lectivo.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/professor/professor.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/professor/validacoes-professor.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/letrasc.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/registrar-aluno/registrar-aluno.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/curso/curso.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/avalicao/inputnota.js")}}}></script>
-
-
-
-
 
    <!-- /	Link do js main do projeto -->
-  <script src={{{URL::asset("js/axios.min.js")}}}></script>
+   <script src={{{URL::asset("js/axios.min.js")}}}></script>
   <script src={{{URL::asset("js/script.js")}}}></script>
-  <script src={{{URL::asset("js/fecharerro.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/avalicao/inputnota.js")}}}></script>
-  <script src={{{URL::asset("js/APIconsumoInicio.js")}}}></script>
   <script src={{{URL::asset("Datatables/datatables.min.js")}}}></script>
   <script src={{{URL::asset("js/form.js")}}}></script>
-  <script src={{{URL::asset("js/clone-contato.js")}}}></script>
   <script src={{{URL::asset("tooltipster/dist/js/tooltipster.bundle.min.js")}}}></script>
   <script src={{{URL::asset("js/tab.js")}}}></script>
-  <script src={{{URL::asset("js/gerarpdf.js")}}}></script>
+  <script src={{{URL::asset("js/APIconsumomatriculas.js")}}}></script>
 
 
 

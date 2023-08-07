@@ -508,3 +508,12 @@ Route::prefix('disciplina')->middleware(['auth','active.session','checkcargo'])-
         Route::put('{disciplina_id}', [DisciplinasController::class, 'update'])->where('disciplina_id', '[0-9]+')->name('disciplina.update');
         Route::delete('{disciplina_id}', [DisciplinasController::class, 'destroy'])->where('disciplina_id', '[0-9]+')->name('disciplina.delete');
 });
+
+
+/************************** 
+ * Rotas provisorias par acessar a pagina de configurções
+*/
+Route::get('/configuracoes', function () {
+    return view('configuracao\instituicao');
+    //return view('configuracao/instituicao');
+});
