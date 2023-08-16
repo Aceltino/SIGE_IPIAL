@@ -147,7 +147,7 @@ class CandidatoController extends Controller
             $cursoCandidato = CandidatoCursoController::cursoEscolhido($candidato->candidato_id);
         }
 
-        if( !isset($candidato[0]) ) 
+        if( !isset($candidato) ) 
         {
             return 'Sem candidatos inscritos';
         }
