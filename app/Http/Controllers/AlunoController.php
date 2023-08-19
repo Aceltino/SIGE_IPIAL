@@ -81,7 +81,7 @@ class AlunoController extends Controller
             ];
 
             UserController::updateAluno($dadosUser);
-            
+
             $Alunos =
             [
                 $aluno->status = 0,
@@ -96,7 +96,7 @@ class AlunoController extends Controller
         $aluno = Aluno::with('candidato.pessoa.user')
         ->where('aluno_id', $idAluno)
         ->get()
-        ->first();        
+        ->first();
         $userId = $aluno->candidato->pessoa->user[0]->usuario_id;
 
         return $userId;
@@ -122,12 +122,23 @@ class AlunoController extends Controller
 
         foreach ($alunos as $aluno) {
             $turmaAtual = null;
+            $anoLectivo = null;
+            $turno = null;
+            $classe = null;
+            $n_aluno = null;
+            $situacao = null;
             foreach ($aluno->anoturma as $anoturma) {
                 if ($anoturma->ano_lectivo_id === AnoLectivoController::pegarIdAnoLectivo()) {
                     $turmaAtual = $anoturma->turma->nome_turma;
+                    $anoLectivo = $anoturma->ano_lectivo->ano_lectivo;
+                    $turno = $anoturma->turma->turno->nome_turno;
+                    $classe = $anoturma->turma->classe->classe;
+                    $n_aluno = $anoturma->pivot->numero_aluno;
+                    $situacao = $anoturma->pivot->situacao;
                     break;
                 }
             }
+
             // dd($aluno->anoturma);
                 $Alunos[] = [
                     'N_processo' => $aluno->aluno_id,
@@ -149,10 +160,10 @@ class AlunoController extends Controller
                     'processo_prov' => $aluno->candidato->escola->num_processo,
                     'N_aluno_prov' => $aluno->candidato->escola->num_aluno,
                     'cod_inscr' => $aluno->candidato->candidato_id,
-                    'anoLectivo' => $anoturma->ano_lectivo->ano_lectivo,
-                    'turno' => $anoturma->turma->turno->nome_turno,
-                    'classe' => $anoturma->turma->classe->classe,
-                    'N_aluno' => $anoturma->pivot->numero_aluno,
+                    'anoLectivo' => $anoLectivo,
+                    'turno' => $turno,
+                    'classe' => $classe,
+                    'N_aluno' => $n_aluno,
                     'curso' => $aluno->candidato->cursoAdmitido,
                     'enc_grau_1'=>$aluno->encarregado[0]->grau_parentensco_enc,
                     'tel_grau_1'=>$aluno->encarregado[0]->pessoa->telefone,
@@ -160,7 +171,7 @@ class AlunoController extends Controller
                     'tel_grau_2'=>$aluno->encarregado[1]->pessoa->telefone,
                     'enc_grau_3'=>$aluno->encarregado[2]->grau_parentensco_enc,
                     'tel_grau_3'=>$aluno->encarregado[2]->pessoa->telefone,
-                    'situacao'=>$anoturma->pivot->situacao,
+                    'situacao'=>$situacao,
                 ];
             }
         return $Alunos;
@@ -338,12 +349,15 @@ class AlunoController extends Controller
 
     public static function alunoTurma($Aluno) // Função a ser chamada na reabertura do ano lectivo 11ª >
     {
+
         $aluno = Aluno::with('anoturma')
         ->whereHas('anoturma', function ($query) {
             $query->where('ano_lectivo_id', AnoLectivoController::pegarIdAnoLectivo());
         })
         ->where('aluno_id', $Aluno)
         ->first();
+
+        dd($aluno);
 
         $ultimaPosicao = count($aluno->anoturma) - 1;
         $turmaAnoId = $aluno->anoturma[$ultimaPosicao]->turmaAno_id;

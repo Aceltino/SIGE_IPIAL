@@ -7,6 +7,7 @@ use App\Models\{
 use App\Http\Controllers\{
     Controller
 };
+use Carbon\Carbon;
 use Illuminate\Support\Facades\{
     Validator,Auth,
 };
@@ -27,6 +28,7 @@ class UserController extends Controller
     //Metodo que retorna os dados do Usuario
     public static function index()
     {
+        self::deleteBlockedUsers();
         $users= User::all();
         return view('usuario/usuarios',compact('users'));
     }
@@ -34,7 +36,6 @@ class UserController extends Controller
     //Metodo que cadastra usuario no banco de dados
     public static function store($dados)
     {
-        dd($dados);
         return User::create($dados);
     }
 
@@ -212,4 +213,24 @@ class UserController extends Controller
         }
     }
 
-}
+    private static function deleteBlockedUsers()
+    {   
+        try {
+            $oneYearAgo = Carbon::now()->subYear();
+
+            $blockedUsers = User::where('status_usuario', 0)
+                                ->where('updated_at', '<=', $oneYearAgo)
+                                ->get();
+         
+            foreach ($blockedUsers as $user) {
+                $user->delete();
+            }
+            return count($blockedUsers);
+
+        }catch (\Exception $e) {
+           return false;
+        }
+    
+    }
+
+} //Fim da Classe UserController

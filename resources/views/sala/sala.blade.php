@@ -62,7 +62,7 @@
                     <section style="display: flex;">
                     <i class="bi bi-eye-fill"  data-bs-toggle="modal" data-bs-target="#ExtralargeModal{{ $sala['sala_id'] }}"></i>
                     <a href="{{ route('edit.sala',['sala_id' => $sala->sala_id]) }}"><i class="bi bi-pencil"></i></a>
-                    <form  method="POST"action="{{ route('delete.sala', ['sala_id' => $salas->sala_id ])}}">
+                    <form  method="POST"action="{{ route('delete.sala', ['sala_id' => $sala->sala_id ])}}">
                         @csrf
                         @method('delete')
                         <button type="submit" class="bi bi-trash-fill" style="border: none; background: none;"></button>
@@ -95,7 +95,7 @@
                       <form class="form-inativo">
                         <div class="dados-pessoais">
                         <div class="area-input form-group" disabled>
-                        <label>Sala:</label><input type="text" name="nome_sala" value="{{ $sala->nome_sala }}" >
+                        <label>Sala:</label><input type="text" name="nome_sala" value="{{ $sala->sala }}" >
                         </div>
                     <div class="form-group">
                         <label>Tipo_sala:</label><input type="text" name="tipo_sala" value="{{ $sala->tipo_sala }}" >

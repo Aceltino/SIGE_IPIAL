@@ -33,7 +33,7 @@ if (!function_exists('getMAC1')) {
                             ->where('tipo_prova', "Avaliação Contínua")
                             ->where('disciplina_id', $disciplina)
                             ->whereHas('trimestre', function ($query) {
-                                $query->where('trimestre', 1);
+                                $query->where('trimestre', '1º');
                             })
                             ->get();
 

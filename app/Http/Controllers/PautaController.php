@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\{
     Aluno_turma,Aluno,User,AnoTurmaCood,
-    Ano_lectivo, ClasseDisciplina, Disciplina, Media, Turma,
+    Ano_lectivo, ClasseDisciplina, Disciplina, Media, Trimestre, Turma,
 };
 
 class PautaController extends Controller
@@ -35,10 +35,13 @@ class PautaController extends Controller
 
     //Metodo que mostra Pauta anual 
     public static function show($id,$anoLectivo):mixed
-    {
+    {   
+        
+
         
         $turma= Turma::find($id); //Busca na turma
         $ano= Ano_lectivo::find($anoLectivo);//Buscar Ano Lectivo
+
 
         $anoTurmaCoord = AnoTurmaCood::where('turma_id', $turma->turma_id)->first();
         $turmaAluno = Aluno_turma::where('turmaAno_id', $anoTurmaCoord->turmaAno_id)->get();
@@ -78,11 +81,11 @@ class PautaController extends Controller
         $disciplinasAll= $disciplinaGerais->concat($disciplinaEspecificas)->all();
         
         // dd($disciplinasAll);
-        $OneMedia=[];
-        $TwoMedia=[];
-        $ThreeMedia=[];
-        $ca_cfd=[];
-        $disciplinas=[];
+        // $OneMedia=[];
+        // $TwoMedia=[];
+        // $ThreeMedia=[];
+        // $ca_cfd=[];
+        // $disciplinas=[];
 
         //Busca todas as diciplinas que existem em uma determinada turma
         foreach($disciplinasAll as $value){

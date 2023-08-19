@@ -1,13 +1,13 @@
 @extends('layouts.main')
 
-@section('title', 'Histórico de Exames')
+@section('title', 'Histórico Recurso')
 @section('conteudo')
 <main id="main" class="main">
 
   <div class="pagetitle">
     <div class="row">
           <div class="col">
-              <h1>Histórico Exames Especiais</h1>
+              <h1>Histórico Recurso</h1>
           </div>
     </div>
 
@@ -44,7 +44,7 @@
         </div>
     </div>
     <!-- /  Inicio da tabela  -->
-    <table id="avaliacaotab" class="table table-custom table-escuro display" style="margin-top: 20px; width: 100%;" >
+    <table id="avaliacaotab" class="table table-striped" style="margin-top: 20px; width: 100%;" >
       <thead style="text-align: center">
         <tr>
           <th scope="col">Data</th>
@@ -68,11 +68,12 @@
     </table>
     <form method="POST" action="">
         @csrf
+        @method('put')
       <div class="modal" id="modal_assiduidade" tabindex="-1" data-bs-backdrop="false" >
           <div class="modal-dialog modal-xl">
           <div class="modal-content">
           <div class="modal-header">
-              <h5 class="modal-title">Editar Exame Aluno</h5>
+              <h5 class="modal-title">Editar Recurso Aluno</h5>
               <button type="button" class="btn-close"data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -91,11 +92,11 @@
               </div>
             <div class="bortabelasemscroll">
               <!-- /  Inicio da tabela  -->
-              <table class="table table-striped" style="margin-top: 20px; width: 100%;" >
+              <table class="table table-custom table-escuro display" style="margin-top: 20px; width: 100%;" >
                 <thead style="text-align: center">
                   <tr>
                     <th scope="col">Disciplina</th>
-                    <th scope="col">Exame Nota</th>
+                    <th scope="col">Recurso Nota</th>
 
                   </tr>
                 </thead>
@@ -112,7 +113,7 @@
           </div>
           <div class="modal-footer" style="display: flex; justify-content: center; align-items: center;">
               <button type="button" class="btn botaovermelhonota" data-bs-dismiss="modal">Cancelar</button>
-              <button type="subimit" name="aluno_id" class="btn botaoazulnota" value="" >Realizar Exame</button>
+              <button type="subimit" name="aluno_id" class="btn botaoazulnota" value="" >Confirmar Recurso</button>
           </div>
           </div>
       </div>

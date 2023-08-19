@@ -10,6 +10,7 @@ use App\Http\Controllers\{
     MiniPautaController,UserController,PautaController,
     PerfilUserController,ProcessoController,
     DisciplinasController, AdmissaoController,
+    AlunoTurmaController,
     TurmaController, CalendarioController,
     HorarioController,
     AreaFormacaoController,SalaController,
@@ -29,7 +30,7 @@ use App\Http\Controllers\{
 */
 
 // Rota apenas de teste... Não apague -> ACELTINO
-    Route::get('validar-aluno', [HorarioController::class, 'pegarDadosHorario']);
+    Route::get('validar-aluno', [AlunoTurmaController::class, 'alunoAdmtido']);
 // Route::get('validar-aluno', [AlunoController::class, 'situacaoAluno']);
 
 
@@ -214,12 +215,12 @@ Route::prefix('turma')->middleware(['auth','active.session','checkcargo'])->grou
 /******************************************
  * Rotas de aluno
  */
-Route::prefix('aluno')->middleware(['auth','active.session','checkcargo'])->group(function(){
+Route::prefix('aluno')->middleware(['auth','active.session'])->group(function(){
 
-    Route::get('boletim-notas', function () {
+    /*Route::get('boletim-notas', function () {
         return view('boletim/boletim-notas');
-    });
-    #Route::get('boletim-notas', [BoletimNotasController::class, 'index'])->name('boletim');
+    })->name('boletim'); */
+    Route::get('boletim-notas', [BoletimNotasController::class, 'index'])->name('boletim');
 
 });
 /**<!--Fim Rotas aluno--> */

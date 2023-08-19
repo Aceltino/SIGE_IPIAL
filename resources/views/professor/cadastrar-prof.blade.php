@@ -42,9 +42,15 @@
           @endif
 
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-3">
               <div class="form-group">
-                  <input name='nome_completo' value="{{ old('nome_completo') }}" type="text" class="input-sm" placeholder="Nome Completo do professor" id="letra" oninput="this.className = ''" minlength="3" maxlength="70">
+                  <input name='nome' value="{{ old('nome') }}" type="text" class="input-sm" placeholder="Nome do professor" id="letra" oninput="this.className = ''" minlength="3" maxlength="70">
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                  <input name='sobrenome' value="{{ old('sobrenome') }}" type="text" class="input-sm" placeholder="Sobrenome do professor" id="letra" oninput="this.className = ''" minlength="3" maxlength="70">
               </div>
             </div>
 
@@ -260,8 +266,8 @@
             <select name='cargo' oninput="this.className = ''" class="form-select" id="select-cargo-cadastrar-professor">
               <optgroup label="Cargo">
                 <option value="Professor">Professor</option>
-                <option value="Coordenador do curso">Coordenador do curso</option>
-                <option value="Coordenador da área de formação">Coordenador da área de formação</option>
+                <option value="Coordenador Curso">Coordenador do curso</option>
+                <option value="Coordenador Area">Coordenador da área de formação</option>
               </optgroup>
             </select>
           </div>

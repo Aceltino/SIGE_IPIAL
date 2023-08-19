@@ -46,6 +46,7 @@
             <th scope="col">Nome do Curso</th>
             <th scope="col">Sigla</th>
             <th scope="col">Area de Formação</th>
+            <th scope="col">Coordenador do Curso</th>
 
             <th scope="col"></th>
           </tr>
@@ -55,8 +56,14 @@
               <tr style=" text-align: center;">
                   <th scope="row">{{$cursos[$i]->nome_curso}}</th>
                   <td>{{$cursos[$i]->sigla}}</td>
-                  <td>{{0}}</td>
-                
+                  <td>{{$cursos[$i]->areaFormacao->nome_area_formacao}}</td>
+                  @if ($cursos[$i]->coordenador)
+                    <td>{{$cursos[$i]->coordenador->pessoa->nome_completo}}</td>
+                    @else
+                    <td>Sem Coordenador</td>
+                  @endif
+
+
                   <td>
                     <section style="display: flex;">
                     <i class="bi bi-eye-fill"  data-bs-toggle="modal" data-bs-target="#ExtralargeModal{{$cursos[$i]->curso_id}}"></i>
@@ -97,7 +104,7 @@
                         <label>Nome do Curso: </label><input type="text" name="" value="{{$cursos[$i]->nome_curso}}" disabled>
                         </div>
                         <div class="area-input form-group" disabled>
-                        <label>Sigla do Curso: </label><input type="text" name="" value="{{$cursos[$i]->sigla_curso}}" disabled>
+                        <label>Sigla do Curso: </label><input type="text" name="" value="{{$cursos[$i]->sigla}}" disabled>
                         </div>
 
 
@@ -106,7 +113,7 @@
                        <label for="">Area de Formação:</label>
                        <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select" disabled>
                             <option disabled>Area de Formação:</option>
-                            <option value="{{$cursos[$i]->curso_id}}" selected>{{$cursos[$i]->curso_id}}</option>
+                            <option value="{{$cursos[$i]->areaFormacao->nome_area_formacao}}" selected>{{$cursos[$i]->areaFormacao->nome_area_formacao}}</option>
                         </select>
                     </div>
 
@@ -114,7 +121,12 @@
                         <label for="">Coordenador:</label>
                         <select name="opcoes" id="opcoes" oninput="this.className = ''" class="form-select" disabled>
                             <option  disabled>Coordenador:</option>
-                            <option value="{{$cursos[$i]->pessoa->nome_completo}}" selected>{{$cursos[$i]->pessoa->nome_completo}}</option>
+
+                            @if ($cursos[$i]->coordenador)
+                                <option value="{{$cursos[$i]->coordenador->pessoa->nome_completo}}" selected>{{$cursos[$i]->coordenador->pessoa->nome_completo}}</option>
+                                @else
+                                <option value="" selected>Sem Coordenador</option>
+                            @endif
                         </select>
                     </div>
 

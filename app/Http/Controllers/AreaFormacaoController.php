@@ -44,7 +44,7 @@ class AreaFormacaoController extends Controller
     {
         $nome = CursoTrait::letrasMaiusculas($request->nome_area_formacao);
         $area_formacao = Area_formacao::create(['nome_area_formacao' => $nome['nome']]);
-        return redirect()->back()->with("sucesso", "Curso criado com sucesso!");
+        return redirect()->back()->with("sucesso", "Área de formação criada com sucesso!");
     }
 
     public function update(AreaFormacaoRequest $request)

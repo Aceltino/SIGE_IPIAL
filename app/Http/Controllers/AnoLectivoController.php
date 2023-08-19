@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Traits\AnoLectivoTrait;
 use App\Http\Requests\AnoLectivoRequest;
 use App\Models\Trimestre;
+use App\Traits\AvaliacaoTrait;
 
 
 class AnoLectivoController extends Controller
@@ -31,8 +32,8 @@ class AnoLectivoController extends Controller
             if(!$anoLectivo) {
                 return 0;
             }
-        
-            if (!empty($anoLectivo)) 
+
+            if (!empty($anoLectivo))
             {
                 $datasRestricao = [
                     'InicioAnoLectivo' => $anoLectivo->data_inicio_ano_lectivo,
@@ -123,15 +124,15 @@ class AnoLectivoController extends Controller
         //dd($trimestre);
 
         //Todas as funções que devem acontecer no inicio do ano lectivo devem estar abaixo deste comentário
-        //AlunoTurmaController::alunoAnolectivo(); // Criar turma automaticamente
-       // AlunoTurmaController::situacaoAluno(); // Atribuir turmas aos alunos da 11ª em diante.
+        AlunoTurmaController::alunoAnolectivo(); // Criar turma automaticamente
+        AlunoTurmaController::situacaoAluno(); // Atribuir turmas aos alunos da 11ª em diante.
 
         return redirect()->route('ano.lectivo')->with('sucesso', "Ano lectivo criado com sucesso.");
     }
 
     public function index(){
         $anoLectivo = Ano_lectivo::all()->toArray();
-        
+
         return view('ano-lectivo/ano-lect', compact('anoLectivo'));
     }
 
