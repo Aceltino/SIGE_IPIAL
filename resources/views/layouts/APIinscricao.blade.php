@@ -87,32 +87,18 @@
     @include('layouts.footer')
 
     <!-- /	Link dos js do bootstrap-->
-  <script src={{{URL::asset("vendor/apexcharts/apexcharts.min.js")}}}></script>
   <script src={{{URL::asset("vendor/bootstrap/js/bootstrap.bundle.min.js")}}}></script>
-  <script src={{{URL::asset("vendor/quill/quill.min.js")}}}></script>
-  <script src={{{URL::asset("vendor/tinymce/tinymce.min.js")}}}></script>
 
   <!-- /	Link do js Validações do projeto -->
-  <script src={{{URL::asset("js/paineis/inputnumero.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/inscricacao/Inputbi.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/inscricacao/selectcurso.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/inscricacao/inputidade.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/inscricacao/inputnome.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/telefone.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/letrasc.js")}}}></script>
-  <script src={{{URL::asset("js/paineis/registrar-aluno/registrar-aluno.js")}}}></script>
-
 
    <!-- /	Link do js main do projeto -->
-  <script src={{{URL::asset("js/axios.min.js")}}}></script>
+   <script src={{{URL::asset("js/axios.min.js")}}}></script>
   <script src={{{URL::asset("js/script.js")}}}></script>
-  <script src={{{URL::asset("js/fecharerro.js")}}}></script>
-  <script src={{{URL::asset("js/APIconsumo.js")}}}></script>
   <script src={{{URL::asset("Datatables/datatables.min.js")}}}></script>
   <script src={{{URL::asset("js/form.js")}}}></script>
   <script src={{{URL::asset("tooltipster/dist/js/tooltipster.bundle.min.js")}}}></script>
   <script src={{{URL::asset("js/tab.js")}}}></script>
-  <script src={{{URL::asset("js/gerarpdf.js")}}}></script>
+  <script src={{{URL::asset("js/APIconsumo.js")}}}></script>
 
 
 
