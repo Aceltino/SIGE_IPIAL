@@ -23,7 +23,7 @@
                 <div class="col">
                     <select oninput="this.className = ''" name='turma' class="form-select" id="horario-select-turma">
                         <optgroup id="optgroup-turma" label="Turma">
-                            
+                            <option value="Turma">Escolha uma turma</option>
                         </optgroup>
                     </select>
                 </div>
@@ -34,21 +34,13 @@
           <h2 class="text-uppercase text-center my-3 color-blue-principal">Disciplinas e Professores</h2>
           <h6 class="text-uppercase text-center my-4 color-blue-principal">Selecione os professores para as disciplinas apresentadas.</h6>
           
-          <div class="row d-flex align-items-center mb-3">
-                <div class="col" id="div-disciplinas-no-horario">
-                    <input type="text" value="Língua Portuguesa" name="disciplina1" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+          <div class="row d-flex mb-3">
+                <div class="col row" id="div-disciplinas-no-horario">
+                    
                 </div>
 
                 <div class="col" id="div-professores-no-horario">
-                    <select oninput="this.className = ''" name='professor1' class="form-select">
-                        <optgroup label="Professores">
-                        <option value="Sungo Afonso">Sungo Afonso</option>
-                        <option value="Brigith Barros">Brigith Barros</option>
-                        <option value="Sivi Lando">Sivi Lando</option>
-                        <option value="Anatoli Lussati">Anatoli Lussati</option>
-                        <option value="Rosa António">Rosa António</option>
-                        </optgroup>
-                    </select>
+
                 </div>
             </div>
         </div>
@@ -63,40 +55,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="hora_segunda1" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" name="hora_segunda1" id="segunda-feira-primeiro-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="segunda-feira-disciplina-do-primeiro-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+                            
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="segunda-feira-sala-do-primeiro-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-segunda-feira-sala-do-primeiro-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -108,40 +80,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="" id="segunda-feira-segundo-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="segunda-feira-disciplina-do-segundo-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+                            
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="segunda-feira-sala-do-segundo-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-segunda-feira-sala-do-segundo-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -153,40 +105,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="" id="segunda-feira-terceiro-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="segunda-feira-disciplina-do-terceiro-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="segunda-feira-sala-do-primeiro-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-segunda-feira-sala-do-terceiro-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -198,40 +130,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="" id="segunda-feira-quarto-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="segunda-feira-disciplina-do-quarto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="segunda-feira-sala-do-quarto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-segunda-feira-sala-do-quarto-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -243,40 +155,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="" id="segunda-feira-quinto-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="segunda-feira-disciplina-do-quinto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="segunda-feira-sala-do-quinto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-segunda-feira-sala-do-quinto-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -288,40 +180,19 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="" id="segunda-feira-sexto-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="segunda-feira-disciplina-do-sexto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="segunda-feira-sala-do-sexto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-segunda-feira-sala-do-sexto-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -338,40 +209,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="hora_terça1" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="hora_terça1" id="terca-feira-primeiro-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="terca-feira-disciplina-do-primeiro-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="terca-feira-sala-do-primeiro-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-terca-feira-sala-do-primeiro-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -383,40 +234,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="" id="terca-feira-segundo-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="terca-feira-disciplina-do-segundo-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="terca-feira-sala-do-segundo-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-terca-feira-sala-do-segundo-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -428,40 +259,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="" id="terca-feira-terceiro-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="terca-feira-disciplina-do-terceiro-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="terca-feira-sala-do-terceiro-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-terca-feira-sala-do-terceiro-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -473,40 +284,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="" id="terca-feira-quarto-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="terca-feira-disciplina-do-quarto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="terca-feira-sala-do-quarto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-terca-feira-sala-do-quarto-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -518,40 +309,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="" id="terca-feira-quinto-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="terca-feira-disciplina-do-quinto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="terca-feira-sala-do-quinto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-terca-feira-sala-do-quinto-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -563,40 +334,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="" id="terca-feira-sexto-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="terca-feira-disciplina-do-sexto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="terca-feira-sala-do-sexto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-terca-feira-sala-do-sexto-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -613,40 +364,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="" id="quarta-feira-primeiro-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="quarta-feira-disciplina-do-primeiro-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="quarta-feira-sala-do-primeiro-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-quarta-feira-sala-do-primeiro-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -658,40 +389,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="" id="quarta-feira-segundo-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="quarta-feira-disciplina-do-segundo-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="quarta-feira-sala-do-segundo-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-quarta-feira-sala-do-segundo-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -703,40 +414,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="" id="quarta-feira-terceiro-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="quarta-feira-disciplina-do-terceiro-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="quarta-feira-disciplina-do-terceiro-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-quarta-feira-sala-do-terceiro-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -748,40 +439,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="" id="quarta-feira-quarto-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="quarta-feira-disciplina-do-quarto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="quarta-feira-sala-do-quarto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-quarta-feira-sala-do-quarto-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -793,40 +464,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="" id="quarta-feira-quinto-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="quarta-feira-disciplina-do-quinto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="quarta-feira-sala-do-quinto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-quarta-feira-sala-do-quinto-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -838,40 +489,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="" id="quarta-feira-sexto-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="quarta-feira-disciplina-do-sexto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="quarta-feira-sala-do-sexto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-quarta-feira-sala-do-sexto-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -888,40 +519,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="" id="quinta-feira-primeiro-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="quinta-feira-disciplina-do-primeiro-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="quinta-feira-sala-do-primeiro-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-quinta-feira-sala-do-primeiro-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -933,40 +544,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="" id="quinta-feira-segundo-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="quinta-feira-disciplina-do-segundo-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="quinta-feira-sala-do-segundo-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-quinta-feira-sala-do-segundo-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -978,40 +569,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="" id="quinta-feira-terceiro-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="quinta-feira-disciplina-do-terceiro-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="quinta-feira-sala-do-terceiro-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-quinta-feira-sala-do-terceiro-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -1023,40 +594,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="" id="quinta-feira-quarto-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="quinta-feira-disciplina-do-quarto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="quinta-feira-sala-do-quarto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-quinta-feira-sala-do-quarto-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -1068,40 +619,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="" id="quinta-feira-quinto-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="quinta-feira-disciplina-do-quinto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+                            
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="quinta-feira-sala-do-quinto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-quinta-feira-sala-do-quinto-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -1113,40 +644,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="" id="quinta-feira-sexto-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="quinta-feira-disciplina-do-sexto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="quinta-feira-sala-do-sexto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-quinta-feira-sala-do-sexto-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -1163,40 +674,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="" id="sexta-feira-primeiro-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="sexta-feira-disciplina-do-primeiro-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="sexta-feira-sala-do-primeiro-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-sexta-feira-sala-do-primeiro-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -1208,40 +699,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="" id="sexta-feira-segundo-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="sexta-feira-disciplina-do-segundo-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="sexta-feira-sala-do-segundo-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-sexta-feira-sala-do-segundo-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -1253,40 +724,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="" id="sexta-feira-terceiro-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="sexta-feira-disciplina-do-terceiro-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="sexta-feira-sala-do-terceiro-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-sexta-feira-sala-do-terceiro-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -1298,40 +749,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="" id="sexta-feira-quarto-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="sexta-feira-disciplina-do-quarto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="sexta-feira-sala-do-quarto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-sexta-feira-sala-do-quarto-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -1343,40 +774,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="" id="sexta-feira-quinto-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="sexta-feira-disciplina-do-quinto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="sexta-feira-sala-do-quinto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-sexta-feira-sala-do-quinto-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -1388,40 +799,20 @@
                 </div>
 
                 <div class="col-sm-3">
-                    <input type="text" value="7h00 - 7h50" name="" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
+                    <input type="text" value="" name="" id="sexta-feira-sexto-tempo" oninput="this.className = ''" style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;" disabled>
                 </div>
 
                 <div class="col-sm-5">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="sexta-feira-disciplina-do-sexto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Disciplina">
-                            <option>Educação Física</option>
-                            <option>Electrotecnia</option>
-                            <option>Empreendedorismo</option>
-                            <option>Física</option>
-                            <option>Formação de Atitudes Integradoras</option>
-                            <option>Língua Portuguesa</option>
-                            <option>Língua Estrangeira</option>
-                            <option>Geometria Descritiva</option>
-                            <option>Matemática</option>
-                            <option>Máquinas Eléctricas</option>
-                            <option>Organização e Gestão Industrial</option>
-                            <option>Práticas Oficinais</option>
-                            <option>Projecto Tecnológico</option>
-                            <option>Química</option>
-                            <option>Sistemas de Exploração e Arquitectura de Computadores</option>
-                            <option>Técnicas e Linguagens de Programação</option>
-                            <option>Técnicas de Reparação de Equipamentos Informáticos</option>
-                            <option>Tecnologias de Informação e Comunicação</option>
+
                         </optgroup>
                     </select>
                 </div>
                 <div class="col-sm-2">
-                    <select oninput="this.className = ''" class="form-select">
+                    <select id="sexta-feira-sala-do-sexto-tempo" oninput="this.className = ''" class="form-select">
                         <optgroup label="Sala">
-                            <option>Sala 7</option>
-                            <option>LAB 01</option>
-                            <option>LAB 02</option>
-                            <option>LAB 03</option>
+                            <option id="option-sala-sexta-feira-sala-do-sexto-tempo"></option>
                         </optgroup>
                     </select>
                 </div>
