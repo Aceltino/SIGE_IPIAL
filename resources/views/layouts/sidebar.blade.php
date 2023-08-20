@@ -398,14 +398,22 @@
       </a>
     </li>
 
-    <!-- /	Nav Boletim-->
     @if(Auth::user()->cargo_usuario == "Administrador")
+    <!-- /	Nav Backup-->
       <li class="nav-item" style="text-align: center;">
         <a class="nav-link" data-bs-toggle="modal" data-bs-target="#modalResgBackup" style="cursor: pointer;">
-          <i class="bi bi-gear"></i>
+          <i class="bi bi-back"></i>
           <span>Backup</span>
         </a>
       </li>
+
+    <!-- /	Nav Configuracoes-->
+    <li class="nav-item" style="text-align: center;">
+      <a class="nav-link" style="cursor: pointer;" href="/configuracoes">
+        <i class="bi bi-gear"></i>
+        <span>Configurações</span>
+      </a>
+    </li>
     @endif
   </ul>
 @elseif(Auth::user()->cargo_usuario == "insc_user")
