@@ -400,7 +400,6 @@ class ProfessorController extends Controller
                 'ano_lectivo_id' => $ano_lectivo_id,
                 'prioridade' => $valor->prioridade,
                 'turno_id' => $valor->turno_id
-
             ];
         }
         foreach ($array as $chave => $valor) {
@@ -429,4 +428,12 @@ class ProfessorController extends Controller
         }
         return true;
     }
+
+    // public function restricoesProfs() -- QUIANVO --
+    // {
+    //     $cursos = Curso::all(['nome_curso', 'sigla', 'curso_id']);
+    //     $disciplinas = Disciplina::all();
+    //     $area_formacao = Area_formacao::all();
+    //     return view('professor.cadastrar-prof', ['area_formacao' => $area_formacao, 'disciplinas' => $disciplinas, 'cursos' => $cursos]);
+    // }
 }

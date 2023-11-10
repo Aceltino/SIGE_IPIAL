@@ -19,13 +19,33 @@ class HorarioController extends Controller
     {
         $horario = Horario::where('prof_disc_id', $profDisc_id)
         ->get();
-// dd();
+// dd(count($horario), $profDisc_id);
         if (count($horario) > 0) 
         {
             return count($horario);  
         }
         return $horario = 0;
         // return count($horario);
+    }
+
+    public static function professorTemposOcupados()
+    {
+        $horarios = Horario::all();
+
+        if ($horarios->isEmpty() || !$horarios) {
+            return null;
+        }
+
+        foreach ($horarios as $horario) 
+        {
+            $restriProfs[] = [
+                'professorDisciplina_id' => $horario->prof_disc_id,
+                'tempo_id' => $horario->tempo_id,
+                'turno_id' => TurmaController::pegarTurno($horario->turma_id)
+            ];
+        }
+
+        return $restriProfs;
     }
 
     public function pegarDadosHorario() // http://127.0.0.1:8000/api/dados-horario
@@ -38,6 +58,9 @@ class HorarioController extends Controller
         {
             return 'Todas as turmas criadas já têm horário.';
         }
+
+        $restriProfs = HorarioController::professorTemposOcupados();
+
         $labsOcupados = SalaController::salasLabOcupadas();
         if(!$labsOcupados)
         {
@@ -64,12 +87,11 @@ class HorarioController extends Controller
             'horarioInfo' => $dadosHorario,
             'diasSemana' => $diasM,
             'restricoesLabs' => $labsOcupados,
-            'laboratorios' => $laboratorios
+            'laboratorios' => $laboratorios,
+            'restricoesProfs' => $restriProfs
         ];
-
+        dd($horario);
         return $horario;
-
-
     }
 
 }

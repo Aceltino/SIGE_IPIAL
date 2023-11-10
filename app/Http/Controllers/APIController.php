@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class APIController extends Controller
 {
-    public static function index() //http://127.0.0.1:8000/api/settings   ND Home
+    public static function index() //http://127.0.0.1:8000/api/settings 
     {
         $dados = [
           'Vagas'  => AlunoTurmaController::pegarVagas(),    //Ano lectivo activo --- Portal

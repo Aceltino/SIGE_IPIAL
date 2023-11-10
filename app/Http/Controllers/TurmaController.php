@@ -277,8 +277,6 @@ class TurmaController extends Controller
             $salasNormal[] = null;
         }
 
-        // dd($salaNormalOcupada, $salasNormal);
-
         $turmas = Turma::with('classe', 'turno.hora', 'horario')
         ->whereDoesntHave('horario', function ($query) {
             $query->select('turma_id')
@@ -349,7 +347,6 @@ class TurmaController extends Controller
                     'classe_id' => $turma->classe->classe_id
                 ];
 
-
                 // dd($disciplina->disciplina->professor->pivot->prof_disc_id);
 
                     foreach($disciplina->disciplina->professor as $professor)
@@ -383,10 +380,16 @@ class TurmaController extends Controller
             }
             $dadosTurmas[] = $dadosTurma;
         }
-
+// dd($dadosTurma);
         return $dadosTurmas;
-;
+
     }
 
+    public static function pegarTurno($turma) //Pegar turno
+    {
+        $Turma = Turma::where('turma_id', $turma)
+        ->get();
+        return $Turma[0]->turno_id;
+    }
 
 }

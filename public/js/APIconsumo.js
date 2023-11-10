@@ -5,6 +5,7 @@ axios.get('/api/candidatos')
             const tabelaRegistros = document.getElementById('inscricao');
             const tbody = tabelaRegistros.getElementsByTagName('tbody')[0];
 
+            // alert(registros);
             registros.forEach(function(registro) {
               const curso =registro.Curso;
 
@@ -36,7 +37,6 @@ axios.get('/api/candidatos')
 
                 }else{
                   nomecurso = curso
-
                 }
 
 
