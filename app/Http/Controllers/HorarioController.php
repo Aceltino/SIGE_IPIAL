@@ -90,7 +90,7 @@ class HorarioController extends Controller
             'laboratorios' => $laboratorios,
             'restricoesProfs' => $restriProfs
         ];
-        dd($horario);
+
         return $horario;
     }
 
