@@ -18,6 +18,7 @@ class CursoController extends Controller
     public static function pegarIdCurso($nomeCurso):int
     {
         $idCurso = Curso::where('nome_curso', $nomeCurso)->pluck('curso_id')->first();
+        // dd($nomeCurso);
         return $idCurso;
     }
 

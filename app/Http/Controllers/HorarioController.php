@@ -90,7 +90,6 @@ class HorarioController extends Controller
             'laboratorios' => $laboratorios,
             'restricoesProfs' => $restriProfs
         ];
-
         return $horario;
     }
 
