@@ -338,32 +338,91 @@
         <i class="bi bi-clock"></i><span>Horário</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
       <ul id="horario-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        @if(Auth::user()->cargo_usuario == "Aluno")
+          <li>
+            <a href="horario-turma">
+              <i class="bi bi-circle"></i><span>Ver horário</span>
+            </a>
+          </li>
+        @endif
+        @if(Auth::user()->cargo_usuario != "Aluno")
         <li>
-          <a href="criar-horario">
-            <i class="bi bi-circle"></i><span>Horários</span>
+          <a href="horario/criar-horario">
+            <i class="bi bi-circle"></i><span>Criar horário</span>
           </a>
         </li>
+        <li>
+          <a href="ver-horarios">
+            <i class="bi bi-circle"></i><span>Ver horários</span>
+          </a>
+        </li>
+        @endif
       </ul>
     </li>
 
     @if (Auth::user()->cargo_usuario == "Aluno")
-      
+    <!-- /	Nav Assiduidade-->
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#assiduidade-aluno-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-calendar-x"></i></i><span>Assiduidade</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="assiduidade-aluno-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          
+          
+          
+           <a href="#"> 
+
+            <i class="bi bi-circle"></i><span>Controle de faltas</span>
+          </a>
+        </li>
+        
+      </ul>
+    </li>
+
     <!-- /	Nav Boletim-->
     <li class="nav-item">
       <a class="nav-link collapsed" data-bs-target="#boletim-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-folder2-open"></i></i><span>Boletim de notas</span><i class="bi bi-chevron-down ms-auto"></i>
+        <i class="bi bi-clipboard-data"></i></i><span>Boletim de notas</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
       <ul id="boletim-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
           
           
           
-           <a href={{route('boletim')}}> 
+           <a href="#"> 
 
             <i class="bi bi-circle"></i><span>Boletim de notas</span>
           </a>
         </li>
         
+      </ul>
+    </li>
+
+    <!-- /	Documentos -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#documentos-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-file-earmark-plus"></i></i><span>Documentos</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="documentos-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+           <a href="#"> 
+
+            <i class="bi bi-circle"></i><span>Justificativo de faltas</span>
+          </a>
+        </li>
+        <li>
+           <a href="#"> 
+
+            <i class="bi bi-circle"></i><span>Declarações</span>
+          </a>
+        </li>
+        <li>
+           <a href="#"> 
+
+            <i class="bi bi-circle"></i><span>Certificado</span>
+          </a>
+        </li>
       </ul>
     </li>
     @endif

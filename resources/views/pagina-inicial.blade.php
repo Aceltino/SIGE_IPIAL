@@ -495,36 +495,125 @@
 
     @elseif(Auth::user()->cargo_usuario == "Aluno")
     <div class="row">
-      {{--<!-- Assiduidade -->
-      <div class="col-xxl-4 col-md-6">
+      <!-- Coluna da esquerda -->
+      <!-- Anolectivo Trimestre -->
+      <div class="col-lg-4">
         <div class="card info-card" style="box-shadow: none; border-top: 1px solid #ccc;">
 
           <div class="card-body">
-            <h5 class="card-title">Assiduidades</h5>
+            <h5 class="card-title text-center">Ano lectivo <span>| Trimestre</span></h5>
 
-            <div class="row">
-              <div class="col-lg-3">
-                <h6>5</h6>
-                <span class="text-muted small pt-2 ps-1" style="font-size: 12px;">Normais</span>
+            <div class="d-flex justify-content-center align-items-center">
+              <div class="ps-3" style="border-right: 1px solid #ccc; padding-right: 7px;">
+                <h6 style="font-size: 37px;">{{$anolectivoInicio}}</h6>
+
               </div>
-
-              <div class="col-lg-4">
-                <h6>0</h6>
-                <span class="text-danger small pt-2 ps-1" style="font-size: 12px;">Vermelhas</span>
-              </div>
-
-              <div class="col-lg-5">
-                <h6>2</h6>
-                <span class="text-muted small pt-2 ps-1" style="font-size: 12px;">Por materias</span>
+              <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+              {{$trimestreInicio}}
               </div>
             </div>
           </div>
 
         </div>
-      </div><!-- Termina Assiduidade-->--}}
+      </div><!-- Termina Anolectivo Trimestre -->
+    
+      
+      <!-- Coluna do meio -->
+      <!-- Assiduidade -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card info-card" style="box-shadow: none; border-top: 1px solid #ccc;">
 
-      <!-- Coluna da direita -->
-      <div class="col-lg-8">
+          <div class="card-body">
+            <h5 class="card-title text-center">Controle de faltas</h5>
+
+            <div class="row">
+              <div class="col-lg-3 text-center">
+                <h6>5</h6>
+                <span class="text-muted small pt-2" style="font-size: 12px;">Normais</span>
+              </div>
+
+              <div class="col-lg-4 text-center">
+                <h6 class="text-danger">0</h6>
+                <span class="text-danger small pt-2" style="font-size: 12px;">Vermelhas</span>
+              </div>
+
+              <div class="col-lg-5 text-center">
+                <h6>2</h6>
+                <span class="text-muted small pt-2" style="font-size: 12px;">Por materiais</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- Termina Assiduidade-->
+
+      <!-- Média -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card info-card" style="box-shadow: none; border-top: 1px solid #ccc;">
+
+          <div class="card-body">
+            <h5 class="card-title text-center">Média</h5>
+
+            <div class="row justify-content-center ">
+              <div class="col-lg-3 text-center">
+                <h6>17</h6>
+                <span class="text-muted small pt-2" style="font-size: 12px;">Valores</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- Termina Média-->
+
+      <!-- Informações básicas -->
+      <div class="col-lg-4 col-md-4">
+        <div class="card info-card" style="box-shadow: none; border-top: 1px solid #ccc;">
+
+          <div class="card-body">
+            <h5 class="card-title text-center">Informações pessoais</h5>
+
+            <div class="row justify-content-center ">
+              <div class="w-100 text-center">
+                <p class="color-blue-principal fw-bold">Aceltino Kiaku Mateus Quianvo</p>
+
+                <div class="d-flex justify-content-center">
+                  <p class="color-blue-principal me-4">Nº Proc: <span class="fw-bold">35337</span></p>
+                  <p class="color-blue-principal">Turma: <span class="fw-bold">I10BM</span></p>
+                </div>
+                <div class="d-flex justify-content-center">
+                  <p class="color-blue-principal me-5">Sala: <span class="fw-bold">2</span></p>
+                  <p class="color-blue-principal ms-5">Número: <span class="fw-bold">1</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- Termina Informações básicas-->
+
+      <!-- Informações básicas -->
+      <div class="col-lg-4 col-md-4">
+        <div class="card info-card" style="box-shadow: none; border-top: 1px solid #ccc;">
+
+          <div class="card-body">
+            <h5 class="card-title text-center">Informações do curso</h5>
+
+            <div class="row justify-content-center ">
+              <div class="w-100 text-center">
+                <p class="color-blue-principal">Área de formação: <span class="fw-bold">Informática</span></p>
+                <p class="color-blue-principal">Cordenador: <span class="fw-bold">Sivi Lando</span></p>
+                <p class="color-blue-principal">Curso: <span class="fw-bold">Técnico de Informática</span></p>
+                <p class="color-blue-principal">Cordenador: <span class="fw-bold">Anatoli Lussaty</span></p>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- Termina Informações básicas-->
+      
+
+      <div class="col-lg-4">
           @if($comunicados == "")
           <div class="card card-comincado-escuro">
               <div class="card-body">
@@ -556,31 +645,6 @@
           @endif
 
         </div><!-- Fim Coluna da direita -->
-
-      <!-- Anolectivo Trimestre -->
-      <div class="col-lg-4">
-        <div class="card info-card" style="box-shadow: none; border-top: 1px solid #ccc;">
-
-          <div class="card-body">
-            <h5 class="card-title">Ano lectivo <span>| Trimestre</span></h5>
-
-            <div class="d-flex align-items-center">
-              <div class="ps-3" style="border-right: 1px solid #ccc; padding-right: 7px;">
-                <h6 style="font-size: 37px;">{{$anolectivoInicio}}</h6>
-
-              </div>
-              <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-              {{$trimestreInicio}}
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div><!-- Termina Anolectivo Trimestre -->
-      
-        
-      
-
     </div>
     
     
