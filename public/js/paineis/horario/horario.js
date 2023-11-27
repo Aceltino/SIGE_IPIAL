@@ -1,19 +1,4 @@
 //Criar horário
-    //Botão
-    const btnLastShot = document.querySelector("button.last-shot");
-
-    //
-  //           Início da  Validação
-//
-
-    /*btnLastShot.addEventListener("mouseover", function() {
-        alert("Mouse passou por cima do botão!");
-    });*/
-
-                                                            //
-            /*Início da  Validação                        //
-                                                        //*/
-
     const selectTurma = document.querySelector("#horario-select-turma");
     const optgroupDoSelectTurma = document.querySelector("#optgroup-turma");
 
@@ -27,167 +12,169 @@
         const segundaFeiraPrimeiroTempo = document.querySelector("#segunda-feira-primeiro-tempo");
         const selectSegundaFeiraDisciplinaDoPrimeiroTempo = document.querySelector("#segunda-feira-disciplina-do-primeiro-tempo");
         const optionSalaSegundaFeiraPrimeiroTempo = document.querySelector("#option-sala-segunda-feira-sala-do-primeiro-tempo");
-        const optionLabSegundaFeiraPrimeiroTempo = document.querySelector("#option-lab-select-1");
+        const optgroupSalaSegundaFeiraPrimeiroTempo = document.querySelector("#optgroup-segunda-feira-sala-do-primeiro-tempo");
 
         const segundaFeiraSegundoTempo = document.querySelector("#segunda-feira-segundo-tempo");
         const selectSegundaFeiraDisciplinaDoSegundoTempo = document.querySelector("#segunda-feira-disciplina-do-segundo-tempo");
         const optionSalaSegundaFeiraSegundoTempo = document.querySelector("#option-sala-segunda-feira-sala-do-segundo-tempo");
-        const optionLabSegundaFeiraSegundoTempo = document.querySelector("#option-lab-select-2");
+        const optgroupSalaSegundaFeiraSegundoTempo = document.querySelector("#optgroup-segunda-feira-sala-do-segundo-tempo");
 
         const segundaFeiraTerceiroTempo = document.querySelector("#segunda-feira-terceiro-tempo");
         const selectSegundaFeiraDisciplinaDoTerceiroTempo = document.querySelector("#segunda-feira-disciplina-do-terceiro-tempo");
         const optionSalaSegundaFeiraTerceiroTempo = document.querySelector("#option-sala-segunda-feira-sala-do-terceiro-tempo");
-        const optionLabSegundaFeiraTerceiroTempo = document.querySelector("#option-lab-select-3");
+        const optgroupSalaSegundaFeiraTerceiroTempo = document.querySelector("#optgroup-segunda-feira-sala-do-terceiro-tempo");
 
         const segundaFeiraQuartoTempo = document.querySelector("#segunda-feira-quarto-tempo");
         const selectSegundaFeiraDisciplinaDoQuartoTempo = document.querySelector("#segunda-feira-disciplina-do-quarto-tempo");
         const optionSalaSegundaFeiraQuartoTempo = document.querySelector("#option-sala-segunda-feira-sala-do-quarto-tempo");
-        const optionLabSegundaFeiraQuartoTempo = document.querySelector("#option-lab-select-4");
+        const optgroupSalaSegundaFeiraQuartoTempo = document.querySelector("#optgroup-segunda-feira-sala-do-quarto-tempo");
 
         const segundaFeiraQuintoTempo = document.querySelector("#segunda-feira-quinto-tempo");
         const selectSegundaFeiraDisciplinaDoQuintoTempo = document.querySelector("#segunda-feira-disciplina-do-quinto-tempo");
         const optionSalaSegundaFeiraQuintoTempo = document.querySelector("#option-sala-segunda-feira-sala-do-quinto-tempo");
-        const optionLabSegundaFeiraQuintoTempo = document.querySelector("#option-lab-select-5");
+        const optgroupSalaSegundaFeiraQuintoTempo = document.querySelector("#optgroup-segunda-feira-sala-do-quinto-tempo");
 
         const segundaFeiraSextoTempo = document.querySelector("#segunda-feira-sexto-tempo");
         const selectSegundaFeiraDisciplinaDoSextoTempo = document.querySelector("#segunda-feira-disciplina-do-sexto-tempo");
         const optionSalaSegundaFeiraSextoTempo = document.querySelector("#option-sala-segunda-feira-sala-do-sexto-tempo");
-        const optionLabSegundaFeiraSextoTempo = document.querySelector("#option-lab-select-6");
+        const optgroupSalaSegundaFeiraSextoTempo = document.querySelector("#optgroup-segunda-feira-sala-do-sexto-tempo");
 
         //-----------------------------------------------------------------------------------------------------------
 
         const tercaFeiraPrimeiroTempo = document.querySelector("#terca-feira-primeiro-tempo");
         const selectTercaFeiraDisciplinaDoPrimeiroTempo = document.querySelector("#terca-feira-disciplina-do-primeiro-tempo");
         const optionSalaTercaFeiraPrimeiroTempo = document.querySelector("#option-sala-terca-feira-sala-do-primeiro-tempo");
-        const optionLabTercaFeiraPrimeiroTempo = document.querySelector("#option-lab-select-7");
+        const optgroupSalaTercaFeiraPrimeiroTempo = document.querySelector("#optgroup-sala-terca-feira-sala-do-primeiro-tempo");
 
         const tercaFeiraSegundoTempo = document.querySelector("#terca-feira-segundo-tempo");
         const selectTercaFeiraDisciplinaDoSegundoTempo = document.querySelector("#terca-feira-disciplina-do-segundo-tempo");
         const optionSalaTercaFeiraSegundoTempo = document.querySelector("#option-sala-terca-feira-sala-do-segundo-tempo");
-        const optionLabTercaFeiraSegundoTempo = document.querySelector("#option-lab-select-8");
+        const optgroupSalaTercaFeiraSegundoTempo = document.querySelector("#optgroup-sala-terca-feira-sala-do-segundo-tempo");
 
         const tercaFeiraTerceiroTempo = document.querySelector("#terca-feira-terceiro-tempo");
         const selectTercaFeiraDisciplinaDoTerceiroTempo = document.querySelector("#terca-feira-disciplina-do-terceiro-tempo");
         const optionSalaTercaFeiraTerceiroTempo = document.querySelector("#option-sala-terca-feira-sala-do-terceiro-tempo");
-        const optionLabTercaFeiraTerceiroTempo = document.querySelector("#option-lab-select-9");
+        const optgroupSalaTercaFeiraTerceiroTempo = document.querySelector("#optgroup-sala-terca-feira-sala-do-terceiro-tempo");
 
         const tercaFeiraQuartoTempo = document.querySelector("#terca-feira-quarto-tempo");
         const selectTercaFeiraDisciplinaDoQuartoTempo = document.querySelector("#terca-feira-disciplina-do-quarto-tempo");
         const optionSalaTercaFeiraQuartoTempo = document.querySelector("#option-sala-terca-feira-sala-do-quarto-tempo");
-        const optionLabTercaFeiraQuartoTempo = document.querySelector("#option-lab-select-10");
+        const optgroupSalaTercaFeiraQuartoTempo = document.querySelector("#optgroup-sala-terca-feira-sala-do-quarto-tempo");
 
         const tercaFeiraQuintoTempo = document.querySelector("#terca-feira-quinto-tempo");
         const selectTercaFeiraDisciplinaDoQuintoTempo = document.querySelector("#terca-feira-disciplina-do-quinto-tempo");
         const optionSalaTercaFeiraQuintoTempo = document.querySelector("#option-sala-terca-feira-sala-do-quinto-tempo");
-        const optionLabTercaFeiraQuintoTempo = document.querySelector("#option-lab-select-11");
+        const optgroupSalaTercaFeiraQuintoTempo = document.querySelector("#optgroup-sala-terca-feira-sala-do-quinto-tempo");
 
         const tercaFeiraSextoTempo = document.querySelector("#terca-feira-sexto-tempo");
         const selectTercaFeiraDisciplinaDoSextoTempo = document.querySelector("#terca-feira-disciplina-do-sexto-tempo");
         const optionSalaTercaFeiraSextoTempo = document.querySelector("#option-sala-terca-feira-sala-do-sexto-tempo");
-        const optionLabTercaFeiraSextoTempo = document.querySelector("#option-lab-select-12");
+        const optgroupSalaTercaFeiraSextoTempo = document.querySelector("#optgroup-sala-terca-feira-sala-do-sexto-tempo");
 
         //-----------------------------------------------------------------------------------------------------------
 
         const quartaFeiraPrimeiroTempo = document.querySelector("#quarta-feira-primeiro-tempo");
         const selectQuartaFeiraDisciplinaDoPrimeiroTempo = document.querySelector("#quarta-feira-disciplina-do-primeiro-tempo");
         const optionSalaQuartaFeiraPrimeiroTempo = document.querySelector("#option-sala-quarta-feira-sala-do-primeiro-tempo");
-        const optionLabQuartaFeiraPrimeiroTempo = document.querySelector("#option-lab-select-13");
+        const optgroupSalaQuartaFeiraPrimeiroTempo = document.querySelector("#optgroup-sala-quarta-feira-sala-do-primeiro-tempo");
 
         const quartaFeiraSegundoTempo = document.querySelector("#quarta-feira-segundo-tempo");
         const selectQuartaFeiraDisciplinaDoSegundoTempo = document.querySelector("#quarta-feira-disciplina-do-segundo-tempo");
         const optionSalaQuartaFeiraSegundoTempo = document.querySelector("#option-sala-quarta-feira-sala-do-segundo-tempo");
-        const optionLabQuartaFeiraSegundoTempo = document.querySelector("#option-lab-select-14");
+        const optgroupSalaQuartaFeiraSegundoTempo = document.querySelector("#optgroup-sala-quarta-feira-sala-do-segundo-tempo");
 
         const quartaFeiraTerceiroTempo = document.querySelector("#quarta-feira-terceiro-tempo");
         const selectQuartaFeiraDisciplinaDoTerceiroTempo = document.querySelector("#quarta-feira-disciplina-do-terceiro-tempo");
         const optionSalaQuartaFeiraTerceiroTempo = document.querySelector("#option-sala-quarta-feira-sala-do-terceiro-tempo");
-        const optionLabQuartaFeiraTerceiroTempo = document.querySelector("#option-lab-select-15");
+        const optgroupSalaQuartaFeiraTerceiroTempo = document.querySelector("#optgroup-sala-quarta-feira-sala-do-terceiro-tempo");
 
         const quartaFeiraQuartoTempo = document.querySelector("#quarta-feira-quarto-tempo");
         const selectQuartaFeiraDisciplinaDoQuartoTempo = document.querySelector("#quarta-feira-disciplina-do-quarto-tempo");
         const optionSalaQuartaFeiraQuartoTempo = document.querySelector("#option-sala-quarta-feira-sala-do-quarto-tempo");
-        const optionLabQuartaFeiraQuartoTempo = document.querySelector("#option-lab-select-16");
+        const optgroupSalaQuartaFeiraQuartoTempo = document.querySelector("#optgroup-sala-quarta-feira-sala-do-quarto-tempo");
 
         const quartaFeiraQuintoTempo = document.querySelector("#quarta-feira-quinto-tempo");
         const selectQuartaFeiraDisciplinaDoQuintoTempo = document.querySelector("#quarta-feira-disciplina-do-quinto-tempo");
         const optionSalaQuartaFeiraQuintoTempo = document.querySelector("#option-sala-quarta-feira-sala-do-quinto-tempo");
-        const optionLabQuartaFeiraQuintoTempo = document.querySelector("#option-lab-select-17");
+        const optgroupSalaQuartaFeiraQuintoTempo = document.querySelector("#optgroup-sala-quarta-feira-sala-do-quinto-tempo");
 
         const quartaFeiraSextoTempo = document.querySelector("#quarta-feira-sexto-tempo");
         const selectQuartaFeiraDisciplinaDoSextoTempo = document.querySelector("#quarta-feira-disciplina-do-sexto-tempo");
         const optionSalaQuartaFeiraSextoTempo = document.querySelector("#option-sala-quarta-feira-sala-do-sexto-tempo");
-        const optionLabQuartaFeiraSextoTempo = document.querySelector("#option-lab-select-18");
+        const optgroupSalaQuartaFeiraSextoTempo = document.querySelector("#optgroup-sala-quarta-feira-sala-do-sexto-tempo");
 
         //-----------------------------------------------------------------------------------------------------------
 
         const quintaFeiraPrimeiroTempo = document.querySelector("#quinta-feira-primeiro-tempo");
         const selectQuintaFeiraDisciplinaDoPrimeiroTempo = document.querySelector("#quinta-feira-disciplina-do-primeiro-tempo");
         const optionSalaQuintaFeiraPrimeiroTempo = document.querySelector("#option-sala-quinta-feira-sala-do-primeiro-tempo");
-        const optionLabQuintaFeiraPrimeiroTempo = document.querySelector("#option-lab-select-19");
+        const optgroupSalaQuintaFeiraPrimeiroTempo = document.querySelector("#optgroup-sala-quinta-feira-sala-do-primeiro-tempo");
 
         const quintaFeiraSegundoTempo = document.querySelector("#quinta-feira-segundo-tempo");
         const selectQuintaFeiraDisciplinaDoSegundoTempo = document.querySelector("#quinta-feira-disciplina-do-segundo-tempo");
         const optionSalaQuintaFeiraSegundoTempo = document.querySelector("#option-sala-quinta-feira-sala-do-segundo-tempo");
-        const optionLabQuintaFeiraSegundoTempo = document.querySelector("#option-lab-select-20");
+        const optgroupSalaQuintaFeiraSegundoTempo = document.querySelector("#optgroup-sala-quinta-feira-sala-do-segundo-tempo");
 
         const quintaFeiraTerceiroTempo = document.querySelector("#quinta-feira-terceiro-tempo");
         const selectQuintaFeiraDisciplinaDoTerceiroTempo = document.querySelector("#quinta-feira-disciplina-do-terceiro-tempo");
         const optionSalaQuintaFeiraTerceiroTempo = document.querySelector("#option-sala-quinta-feira-sala-do-terceiro-tempo");
-        const optionLabQuintaFeiraTerceiroTempo = document.querySelector("#option-lab-select-21");
+        const optgroupSalaQuintaFeiraTerceiroTempo = document.querySelector("#optgroup-sala-quinta-feira-sala-do-terceiro-tempo");
 
         const quintaFeiraQuartoTempo = document.querySelector("#quinta-feira-quarto-tempo");
         const selectQuintaFeiraDisciplinaDoQuartoTempo = document.querySelector("#quinta-feira-disciplina-do-quarto-tempo");
         const optionSalaQuintaFeiraQuartoTempo = document.querySelector("#option-sala-quinta-feira-sala-do-quarto-tempo");
-        const optionLabQuintaFeiraQuartoTempo = document.querySelector("#option-lab-select-22");
+        const optgroupSalaQuintaFeiraQuartoTempo = document.querySelector("#optgroup-sala-quinta-feira-sala-do-quarto-tempo");
 
         const quintaFeiraQuintoTempo = document.querySelector("#quinta-feira-quinto-tempo");
         const selectQuintaFeiraDisciplinaDoQuintoTempo = document.querySelector("#quinta-feira-disciplina-do-quinto-tempo");
         const optionSalaQuintaFeiraQuintoTempo = document.querySelector("#option-sala-quinta-feira-sala-do-quinto-tempo");
-        const optionLabQuintaFeiraQuintoTempo = document.querySelector("#option-lab-select-23");
+        const optgroupSalaQuintaFeiraQuintoTempo = document.querySelector("#optgroup-sala-quinta-feira-sala-do-quinto-tempo");
 
         const quintaFeiraSextoTempo = document.querySelector("#quinta-feira-sexto-tempo");
         const selectQuintaFeiraDisciplinaDoSextoTempo = document.querySelector("#quinta-feira-disciplina-do-sexto-tempo");
         const optionSalaQuintaFeiraSextoTempo = document.querySelector("#option-sala-quinta-feira-sala-do-sexto-tempo");
-        const optionLabQuintaFeiraSextoTempo = document.querySelector("#option-lab-select-24");
+        const optgroupSalaQuintaFeiraSextoTempo = document.querySelector("#optgroup-sala-quinta-feira-sala-do-sexto-tempo");
 
         //-----------------------------------------------------------------------------------------------------------
 
         const sextaFeiraPrimeiroTempo = document.querySelector("#sexta-feira-primeiro-tempo");
         const selectSextaFeiraDisciplinaDoPrimeiroTempo = document.querySelector("#sexta-feira-disciplina-do-primeiro-tempo");
         const optionSalaSextaFeiraPrimeiroTempo = document.querySelector("#option-sala-sexta-feira-sala-do-primeiro-tempo");
-        const optionLabSextaFeiraPrimeiroTempo = document.querySelector("#option-lab-select-25");
+        const optgroupSalaSextaFeiraPrimeiroTempo = document.querySelector("#optgroup-sala-sexta-feira-sala-do-primeiro-tempo");
 
         const sextaFeiraSegundoTempo = document.querySelector("#sexta-feira-segundo-tempo");
         const selectSextaFeiraDisciplinaDoSegundoTempo = document.querySelector("#sexta-feira-disciplina-do-segundo-tempo");
         const optionSalaSextaFeiraSegundoTempo = document.querySelector("#option-sala-sexta-feira-sala-do-segundo-tempo");
-        const optionLabSextaFeiraSegundoTempo = document.querySelector("#option-lab-select-26");
+        const optgroupSalaSextaFeiraSegundoTempo = document.querySelector("#optgroup-sala-sexta-feira-sala-do-segundo-tempo");
 
         const sextaFeiraTerceiroTempo = document.querySelector("#sexta-feira-terceiro-tempo");
         const selectSextaFeiraDisciplinaDoTerceiroTempo = document.querySelector("#sexta-feira-disciplina-do-terceiro-tempo");
         const optionSalaSextaFeiraTerceiroTempo = document.querySelector("#option-sala-sexta-feira-sala-do-terceiro-tempo");
-        const optionLabSextaFeiraTerceiroTempo = document.querySelector("#option-lab-select-27");
+        const optgroupSalaSextaFeiraTerceiroTempo = document.querySelector("#optgroup-sala-sexta-feira-sala-do-terceiro-tempo");
 
         const sextaFeiraQuartoTempo = document.querySelector("#sexta-feira-quarto-tempo");
         const selectSextaFeiraDisciplinaDoQuartoTempo = document.querySelector("#sexta-feira-disciplina-do-quarto-tempo");
         const optionSalaSextaFeiraQuartoTempo = document.querySelector("#option-sala-sexta-feira-sala-do-quarto-tempo");
-        const optionLabSextaFeiraQuartoTempo = document.querySelector("#option-lab-select-28");
+        const optgroupSalaSextaFeiraQuartoTempo = document.querySelector("#optgroup-sala-sexta-feira-sala-do-quarto-tempo");
 
         const sextaFeiraQuintoTempo = document.querySelector("#sexta-feira-quinto-tempo");
         const selectSextaFeiraDisciplinaDoQuintoTempo = document.querySelector("#sexta-feira-disciplina-do-quinto-tempo");
         const optionSalaSextaFeiraQuintoTempo = document.querySelector("#option-sala-sexta-feira-sala-do-quinto-tempo");
-        const optionLabSextaFeiraQuintoTempo = document.querySelector("#option-lab-select-29");
+        const optgroupSalaSextaFeiraQuintoTempo = document.querySelector("#optgroup-sala-sexta-feira-sala-do-quinto-tempo");
 
         const sextaFeiraSextoTempo = document.querySelector("#sexta-feira-sexto-tempo");
         const selectSextaFeiraDisciplinaDoSextoTempo = document.querySelector("#sexta-feira-disciplina-do-sexto-tempo");
         const optionSalaSextaFeiraSextoTempo = document.querySelector("#option-sala-sexta-feira-sala-do-sexto-tempo");
-        const optionLabSextaFeiraSextoTempo = document.querySelector("#option-lab-select-30");
+        const optgroupSalaSextaFeiraSextoTempo = document.querySelector("#optgroup-sala-sexta-feira-sala-do-sexto-tempo");
         //Consumo
     const urlDaApiDoHorario = "http://sige_ipial.test/api/dados-horario";
     
     fetch(urlDaApiDoHorario).then((dadoHorario)=>{
         return dadoHorario.json();
     }).then((dadoHorario)=>{
-        console.log(dadoHorario);
+        //console.log(dadoHorario);
+        //console.log(dadoHorario.laboratorios);
+        //console.log(dadoHorario.laboratorios.length);
         //console.log(dadoHorario.horarioInfo[0].disciplinas);
         //console.log(dadoHorario.horarioInfo[0].disciplinas[0]);
         //console.log(dadoHorario.horarioInfo[0].professores[0]);
@@ -260,15 +247,6 @@
                         divProfessoresNoHorario.appendChild(selectProfessor[indice]);
 
                     } 
-                    //Tentativa mal sucedida
-                    /*for(let indice = 0; indice < dadoHorario.horarioInfo[idTurmaSelecionada].disciplinas.length; indice++){
-                        if(selectProfessor[indice].value == ''){
-                            document.alert("Há uma ou mais disciplinas com professor(es) em falta! Será direcionado/a à página de cadastro de professores.");
-      
-                            // Redirecionar para a outra página após clicar em "OK" no alerta
-                            window.location.href = "http://sige_ipial.test/professor/cadastrar-professor";
-                        }
-                    }*/
                 }
 
                 function atribuirHorarioDoTempoAoInput(input, posicaoDoElemento){
@@ -291,163 +269,171 @@
                     option.innerText = "Sala "+ dadoHorario.horarioInfo[idTurmaSelecionada].sala.sala;
                 }
 
-                //Gerar o número aleatório
-                const numeroAleatorio = Math.floor(Math.random() * (dadoHorario.laboratorios.length-1));
-                function atribuirLaboratorioAoOption(option){
-                    option.value = dadoHorario.laboratorios[numeroAleatorio].sala_id;
-                    option.innerText = dadoHorario.laboratorios[numeroAleatorio].sala;
+                function atribuirLaboratoriosAoOptgroup(optgroup){
+                    var optionLaboratorio = new Array();
+                    var indiceDoVetor = 0;
+
+                    if(dadoHorario.laboratorios.length > 0){
+                        while(indiceDoVetor < dadoHorario.laboratorios.length){
+                            optionLaboratorio[indiceDoVetor] = document.createElement("option");
+                            optionLaboratorio[indiceDoVetor].value = dadoHorario.laboratorios[indiceDoVetor].sala_id;
+                            optionLaboratorio[indiceDoVetor].innerText = dadoHorario.laboratorios[indiceDoVetor].sala;
+                            optgroup.appendChild(optionLaboratorio[indiceDoVetor]);
+                            indiceDoVetor++;
+                        }
+                    }
                 }
 
                 //Terceiro step
                     atribuirHorarioDoTempoAoInput(segundaFeiraPrimeiroTempo, 0);
                     atribuirDisciplinasAoSelect(selectSegundaFeiraDisciplinaDoPrimeiroTempo);
                     atribuirSalaAoOption(optionSalaSegundaFeiraPrimeiroTempo);
-                    atribuirLaboratorioAoOption(optionLabSegundaFeiraPrimeiroTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaSegundaFeiraPrimeiroTempo);
                     
                     atribuirHorarioDoTempoAoInput(segundaFeiraSegundoTempo, 1);
                     atribuirDisciplinasAoSelect(selectSegundaFeiraDisciplinaDoSegundoTempo);
                     atribuirSalaAoOption(optionSalaSegundaFeiraSegundoTempo);
-                    atribuirLaboratorioAoOption(optionLabSegundaFeiraSegundoTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaSegundaFeiraSegundoTempo);
 
                     atribuirHorarioDoTempoAoInput(segundaFeiraTerceiroTempo, 2);
                     atribuirDisciplinasAoSelect(selectSegundaFeiraDisciplinaDoTerceiroTempo);
                     atribuirSalaAoOption(optionSalaSegundaFeiraTerceiroTempo);
-                    atribuirLaboratorioAoOption(optionLabSegundaFeiraTerceiroTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaSegundaFeiraTerceiroTempo);
 
                     atribuirHorarioDoTempoAoInput(segundaFeiraQuartoTempo, 3);
                     atribuirDisciplinasAoSelect(selectSegundaFeiraDisciplinaDoQuartoTempo);
                     atribuirSalaAoOption(optionSalaSegundaFeiraQuartoTempo);
-                    atribuirLaboratorioAoOption(optionLabSegundaFeiraQuartoTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaSegundaFeiraQuartoTempo);
 
                     atribuirHorarioDoTempoAoInput(segundaFeiraQuintoTempo, 4);
                     atribuirDisciplinasAoSelect(selectSegundaFeiraDisciplinaDoQuintoTempo);
                     atribuirSalaAoOption(optionSalaSegundaFeiraQuintoTempo);
-                    atribuirLaboratorioAoOption(optionLabSegundaFeiraQuintoTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaSegundaFeiraQuintoTempo);
 
                     atribuirHorarioDoTempoAoInput(segundaFeiraSextoTempo, 5);
                     atribuirDisciplinasAoSelect(selectSegundaFeiraDisciplinaDoSextoTempo);
                     atribuirSalaAoOption(optionSalaSegundaFeiraSextoTempo);
-                    atribuirLaboratorioAoOption(optionLabSegundaFeiraSextoTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaSegundaFeiraSextoTempo);
                 //Quarto step
                     atribuirHorarioDoTempoAoInput(tercaFeiraPrimeiroTempo, 0);
                     atribuirDisciplinasAoSelect(selectTercaFeiraDisciplinaDoPrimeiroTempo);
                     atribuirSalaAoOption(optionSalaTercaFeiraPrimeiroTempo);
-                    atribuirLaboratorioAoOption(optionLabTercaFeiraPrimeiroTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaTercaFeiraPrimeiroTempo);
                     
                     atribuirHorarioDoTempoAoInput(tercaFeiraSegundoTempo, 1);
                     atribuirDisciplinasAoSelect(selectTercaFeiraDisciplinaDoSegundoTempo);
                     atribuirSalaAoOption(optionSalaTercaFeiraSegundoTempo);
-                    atribuirLaboratorioAoOption(optionLabTercaFeiraSegundoTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaTercaFeiraSegundoTempo);
 
                     atribuirHorarioDoTempoAoInput(tercaFeiraTerceiroTempo, 2);
                     atribuirDisciplinasAoSelect(selectTercaFeiraDisciplinaDoTerceiroTempo);
                     atribuirSalaAoOption(optionSalaTercaFeiraTerceiroTempo);
-                    atribuirLaboratorioAoOption(optionLabTercaFeiraTerceiroTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaTercaFeiraTerceiroTempo);
 
                     atribuirHorarioDoTempoAoInput(tercaFeiraQuartoTempo, 3);
                     atribuirDisciplinasAoSelect(selectTercaFeiraDisciplinaDoQuartoTempo);
                     atribuirSalaAoOption(optionSalaTercaFeiraQuartoTempo);
-                    atribuirLaboratorioAoOption(optionLabTercaFeiraQuartoTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaTercaFeiraQuartoTempo);
 
                     atribuirHorarioDoTempoAoInput(tercaFeiraQuintoTempo, 4);
                     atribuirDisciplinasAoSelect(selectTercaFeiraDisciplinaDoQuintoTempo);
                     atribuirSalaAoOption(optionSalaTercaFeiraQuintoTempo);
-                    atribuirLaboratorioAoOption(optionLabTercaFeiraQuintoTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaTercaFeiraQuintoTempo);
 
                     atribuirHorarioDoTempoAoInput(tercaFeiraSextoTempo, 5);
                     atribuirDisciplinasAoSelect(selectTercaFeiraDisciplinaDoSextoTempo);
                     atribuirSalaAoOption(optionSalaTercaFeiraSextoTempo);
-                    atribuirLaboratorioAoOption(optionLabTercaFeiraSextoTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaTercaFeiraSextoTempo);
                 //Quinto step
                     atribuirHorarioDoTempoAoInput(quartaFeiraPrimeiroTempo, 0);
                     atribuirDisciplinasAoSelect(selectQuartaFeiraDisciplinaDoPrimeiroTempo);
                     atribuirSalaAoOption(optionSalaQuartaFeiraPrimeiroTempo);
-                    atribuirLaboratorioAoOption(optionLabQuartaFeiraPrimeiroTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaQuartaFeiraPrimeiroTempo);
                     
                     atribuirHorarioDoTempoAoInput(quartaFeiraSegundoTempo, 1);
                     atribuirDisciplinasAoSelect(selectQuartaFeiraDisciplinaDoSegundoTempo);
                     atribuirSalaAoOption(optionSalaQuartaFeiraSegundoTempo);
-                    atribuirLaboratorioAoOption(optionLabQuartaFeiraSegundoTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaQuartaFeiraSegundoTempo);
 
                     atribuirHorarioDoTempoAoInput(quartaFeiraTerceiroTempo, 2);
                     atribuirDisciplinasAoSelect(selectQuartaFeiraDisciplinaDoTerceiroTempo);
                     atribuirSalaAoOption(optionSalaQuartaFeiraTerceiroTempo);
-                    atribuirLaboratorioAoOption(optionLabQuartaFeiraTerceiroTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaQuartaFeiraTerceiroTempo);
 
                     atribuirHorarioDoTempoAoInput(quartaFeiraQuartoTempo, 3);
                     atribuirDisciplinasAoSelect(selectQuartaFeiraDisciplinaDoQuartoTempo);
                     atribuirSalaAoOption(optionSalaQuartaFeiraQuartoTempo);
-                    atribuirLaboratorioAoOption(optionLabQuartaFeiraQuartoTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaQuartaFeiraQuartoTempo);
 
                     atribuirHorarioDoTempoAoInput(quartaFeiraQuintoTempo, 4);
                     atribuirDisciplinasAoSelect(selectQuartaFeiraDisciplinaDoQuintoTempo);
                     atribuirSalaAoOption(optionSalaQuartaFeiraQuintoTempo);
-                    atribuirLaboratorioAoOption(optionLabQuartaFeiraQuintoTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaQuartaFeiraQuintoTempo);
 
                     atribuirHorarioDoTempoAoInput(quartaFeiraSextoTempo, 5);
                     atribuirDisciplinasAoSelect(selectQuartaFeiraDisciplinaDoSextoTempo);
                     atribuirSalaAoOption(optionSalaQuartaFeiraSextoTempo);
-                    atribuirLaboratorioAoOption(optionLabQuartaFeiraSextoTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaQuartaFeiraSextoTempo);
                 //Sexto step
                     atribuirHorarioDoTempoAoInput(quintaFeiraPrimeiroTempo, 0);
                     atribuirDisciplinasAoSelect(selectQuintaFeiraDisciplinaDoPrimeiroTempo);
                     atribuirSalaAoOption(optionSalaQuintaFeiraPrimeiroTempo);
-                    atribuirLaboratorioAoOption(optionLabQuintaFeiraPrimeiroTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaQuintaFeiraPrimeiroTempo);
                     
                     atribuirHorarioDoTempoAoInput(quintaFeiraSegundoTempo, 1);
                     atribuirDisciplinasAoSelect(selectQuintaFeiraDisciplinaDoSegundoTempo);
                     atribuirSalaAoOption(optionSalaQuintaFeiraSegundoTempo);
-                    atribuirLaboratorioAoOption(optionLabQuintaFeiraSegundoTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaQuintaFeiraSegundoTempo);
 
                     atribuirHorarioDoTempoAoInput(quintaFeiraTerceiroTempo, 2);
                     atribuirDisciplinasAoSelect(selectQuintaFeiraDisciplinaDoTerceiroTempo);
                     atribuirSalaAoOption(optionSalaQuintaFeiraTerceiroTempo);
-                    atribuirLaboratorioAoOption(optionLabQuintaFeiraTerceiroTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaQuintaFeiraTerceiroTempo);
 
                     atribuirHorarioDoTempoAoInput(quintaFeiraQuartoTempo, 3);
                     atribuirDisciplinasAoSelect(selectQuintaFeiraDisciplinaDoQuartoTempo);
                     atribuirSalaAoOption(optionSalaQuintaFeiraQuartoTempo);
-                    atribuirLaboratorioAoOption(optionLabQuintaFeiraQuartoTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaQuintaFeiraQuartoTempo);
 
                     atribuirHorarioDoTempoAoInput(quintaFeiraQuintoTempo, 4);
                     atribuirDisciplinasAoSelect(selectQuintaFeiraDisciplinaDoQuintoTempo);
                     atribuirSalaAoOption(optionSalaQuintaFeiraQuintoTempo);
-                    atribuirLaboratorioAoOption(optionLabQuintaFeiraQuintoTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaQuintaFeiraQuintoTempo);
 
                     atribuirHorarioDoTempoAoInput(quintaFeiraSextoTempo, 5);
                     atribuirDisciplinasAoSelect(selectQuintaFeiraDisciplinaDoSextoTempo);
                     atribuirSalaAoOption(optionSalaQuintaFeiraSextoTempo);
-                    atribuirLaboratorioAoOption(optionLabQuintaFeiraSextoTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaQuintaFeiraSextoTempo);
                 //Sétimo step
                     atribuirHorarioDoTempoAoInput(sextaFeiraPrimeiroTempo, 0);
                     atribuirDisciplinasAoSelect(selectSextaFeiraDisciplinaDoPrimeiroTempo);
                     atribuirSalaAoOption(optionSalaSextaFeiraPrimeiroTempo);
-                    atribuirLaboratorioAoOption(optionLabSextaFeiraPrimeiroTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaSextaFeiraPrimeiroTempo);
                     
                     atribuirHorarioDoTempoAoInput(sextaFeiraSegundoTempo, 1);
                     atribuirDisciplinasAoSelect(selectSextaFeiraDisciplinaDoSegundoTempo);
                     atribuirSalaAoOption(optionSalaSextaFeiraSegundoTempo);
-                    atribuirLaboratorioAoOption(optionLabSextaFeiraSegundoTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaSextaFeiraSegundoTempo);
 
                     atribuirHorarioDoTempoAoInput(sextaFeiraTerceiroTempo, 2);
                     atribuirDisciplinasAoSelect(selectSextaFeiraDisciplinaDoTerceiroTempo);
                     atribuirSalaAoOption(optionSalaSextaFeiraTerceiroTempo);
-                    atribuirLaboratorioAoOption(optionLabSextaFeiraTerceiroTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaSextaFeiraTerceiroTempo);
 
                     atribuirHorarioDoTempoAoInput(sextaFeiraQuartoTempo, 3);
                     atribuirDisciplinasAoSelect(selectSextaFeiraDisciplinaDoQuartoTempo);
                     atribuirSalaAoOption(optionSalaSextaFeiraQuartoTempo);
-                    atribuirLaboratorioAoOption(optionLabSextaFeiraQuartoTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaSextaFeiraQuartoTempo);
 
                     atribuirHorarioDoTempoAoInput(sextaFeiraQuintoTempo, 4);
                     atribuirDisciplinasAoSelect(selectSextaFeiraDisciplinaDoQuintoTempo);
                     atribuirSalaAoOption(optionSalaSextaFeiraQuintoTempo);
-                    atribuirLaboratorioAoOption(optionLabSextaFeiraQuintoTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaSextaFeiraQuintoTempo);
 
                     atribuirHorarioDoTempoAoInput(sextaFeiraSextoTempo, 5);
                     atribuirDisciplinasAoSelect(selectSextaFeiraDisciplinaDoSextoTempo);
                     atribuirSalaAoOption(optionSalaSextaFeiraSextoTempo);
-                    atribuirLaboratorioAoOption(optionLabSextaFeiraSextoTempo);
+                    atribuirLaboratoriosAoOptgroup(optgroupSalaSextaFeiraSextoTempo);
             });
     });
 

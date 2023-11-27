@@ -4,7 +4,7 @@
 
 @section('conteudo')
 <main id="main" class="main">
-      <form method="POST" action="" id="regForm" action="" class="formulario-layout">
+      <form method="POST" action="" id="regForm" action="" class="formulario-layout formulario-horario">
         <div style="text-align:center;margin-top:40px;">
           <span class="step"></span>
           <span class="step"></span>
@@ -67,9 +67,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="segunda-feira-sala-do-primeiro-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-segunda-feira-sala-do-primeiro-tempo">
                             <option id="option-sala-segunda-feira-sala-do-primeiro-tempo"></option>
-                            <option id="option-lab-select-1"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -93,9 +92,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="segunda-feira-sala-do-segundo-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-segunda-feira-sala-do-segundo-tempo">
                             <option id="option-sala-segunda-feira-sala-do-segundo-tempo"></option>
-                            <option id="option-lab-select-2"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -119,9 +117,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="segunda-feira-sala-do-primeiro-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-segunda-feira-sala-do-terceiro-tempo">
                             <option id="option-sala-segunda-feira-sala-do-terceiro-tempo"></option>
-                            <option id="option-lab-select-3"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -145,9 +142,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="segunda-feira-sala-do-quarto-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-segunda-feira-sala-do-quarto-tempo">
                             <option id="option-sala-segunda-feira-sala-do-quarto-tempo"></option>
-                            <option id="option-lab-select-4"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -171,9 +167,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="segunda-feira-sala-do-quinto-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-segunda-feira-sala-do-quinto-tempo">
                             <option id="option-sala-segunda-feira-sala-do-quinto-tempo"></option>
-                            <option id="option-lab-select-5"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -196,9 +191,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="segunda-feira-sala-do-sexto-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-segunda-feira-sala-do-sexto-tempo">
                             <option id="option-sala-segunda-feira-sala-do-sexto-tempo"></option>
-                            <option id="option-lab-select-6"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -227,9 +221,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="terca-feira-sala-do-primeiro-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-sala-terca-feira-sala-do-primeiro-tempo">
                             <option id="option-sala-terca-feira-sala-do-primeiro-tempo"></option>
-                            <option id="option-lab-select-7"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -253,9 +246,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="terca-feira-sala-do-segundo-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-sala-terca-feira-sala-do-segundo-tempo">
                             <option id="option-sala-terca-feira-sala-do-segundo-tempo"></option>
-                            <option id="option-lab-select-8"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -279,9 +271,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="terca-feira-sala-do-terceiro-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-sala-terca-feira-sala-do-terceiro-tempo">
                             <option id="option-sala-terca-feira-sala-do-terceiro-tempo"></option>
-                            <option id="option-lab-select-9"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -305,9 +296,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="terca-feira-sala-do-quarto-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-sala-terca-feira-sala-do-quarto-tempo">
                             <option id="option-sala-terca-feira-sala-do-quarto-tempo"></option>
-                            <option id="option-lab-select-10"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -331,9 +321,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="terca-feira-sala-do-quinto-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-sala-terca-feira-sala-do-quinto-tempo">
                             <option id="option-sala-terca-feira-sala-do-quinto-tempo"></option>
-                            <option id="option-lab-select-11"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -357,9 +346,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="terca-feira-sala-do-sexto-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-sala-terca-feira-sala-do-sexto-tempo">
                             <option id="option-sala-terca-feira-sala-do-sexto-tempo"></option>
-                            <option id="option-lab-select-12"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -388,9 +376,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="quarta-feira-sala-do-primeiro-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-sala-quarta-feira-sala-do-primeiro-tempo">
                             <option id="option-sala-quarta-feira-sala-do-primeiro-tempo"></option>
-                            <option id="option-lab-select-13"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -414,9 +401,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="quarta-feira-sala-do-segundo-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-sala-quarta-feira-sala-do-segundo-tempo">
                             <option id="option-sala-quarta-feira-sala-do-segundo-tempo"></option>
-                            <option id="option-lab-select-14"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -440,9 +426,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="quarta-feira-disciplina-do-terceiro-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-sala-quarta-feira-sala-do-terceiro-tempo">
                             <option id="option-sala-quarta-feira-sala-do-terceiro-tempo"></option>
-                            <option id="option-lab-select-15"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -466,9 +451,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="quarta-feira-sala-do-quarto-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-sala-quarta-feira-sala-do-quarto-tempo">
                             <option id="option-sala-quarta-feira-sala-do-quarto-tempo"></option>
-                            <option id="option-lab-select-16"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -492,9 +476,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="quarta-feira-sala-do-quinto-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-sala-quarta-feira-sala-do-quinto-tempo">
                             <option id="option-sala-quarta-feira-sala-do-quinto-tempo"></option>
-                            <option id="option-lab-select-17"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -518,9 +501,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="quarta-feira-sala-do-sexto-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-sala-quarta-feira-sala-do-sexto-tempo">
                             <option id="option-sala-quarta-feira-sala-do-sexto-tempo"></option>
-                            <option id="option-lab-select-18"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -549,9 +531,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="quinta-feira-sala-do-primeiro-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-sala-quinta-feira-sala-do-primeiro-tempo">
                             <option id="option-sala-quinta-feira-sala-do-primeiro-tempo"></option>
-                            <option id="option-lab-select-19"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -575,9 +556,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="quinta-feira-sala-do-segundo-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-sala-quinta-feira-sala-do-segundo-tempo">
                             <option id="option-sala-quinta-feira-sala-do-segundo-tempo"></option>
-                            <option id="option-lab-select-20"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -601,9 +581,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="quinta-feira-sala-do-terceiro-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-sala-quinta-feira-sala-do-terceiro-tempo">
                             <option id="option-sala-quinta-feira-sala-do-terceiro-tempo"></option>
-                            <option id="option-lab-select-21"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -627,9 +606,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="quinta-feira-sala-do-quarto-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-sala-quinta-feira-sala-do-quarto-tempo">
                             <option id="option-sala-quinta-feira-sala-do-quarto-tempo"></option>
-                            <option id="option-lab-select-22"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -653,9 +631,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="quinta-feira-sala-do-quinto-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-sala-quinta-feira-sala-do-quinto-tempo">
                             <option id="option-sala-quinta-feira-sala-do-quinto-tempo"></option>
-                            <option id="option-lab-select-23"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -679,9 +656,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="quinta-feira-sala-do-sexto-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-sala-quinta-feira-sala-do-sexto-tempo">
                             <option id="option-sala-quinta-feira-sala-do-sexto-tempo"></option>
-                            <option id="option-lab-select-24"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -710,9 +686,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="sexta-feira-sala-do-primeiro-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-sala-sexta-feira-sala-do-primeiro-tempo">
                             <option id="option-sala-sexta-feira-sala-do-primeiro-tempo"></option>
-                            <option id="option-lab-select-25"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -736,9 +711,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="sexta-feira-sala-do-segundo-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-sala-sexta-feira-sala-do-segundo-tempo">
                             <option id="option-sala-sexta-feira-sala-do-segundo-tempo"></option>
-                            <option id="option-lab-select-26"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -762,9 +736,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="sexta-feira-sala-do-terceiro-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-sala-sexta-feira-sala-do-terceiro-tempo">
                             <option id="option-sala-sexta-feira-sala-do-terceiro-tempo"></option>
-                            <option id="option-lab-select-27"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -788,9 +761,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="sexta-feira-sala-do-quarto-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-sala-sexta-feira-sala-do-quarto-tempo">
                             <option id="option-sala-sexta-feira-sala-do-quarto-tempo"></option>
-                            <option id="option-lab-select-28"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -814,9 +786,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="sexta-feira-sala-do-quinto-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-sala-sexta-feira-sala-do-quinto-tempo">
                             <option id="option-sala-sexta-feira-sala-do-quinto-tempo"></option>
-                            <option id="option-lab-select-29"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -840,9 +811,8 @@
                 </div>
                 <div class="col-sm-2">
                     <select id="sexta-feira-sala-do-sexto-tempo" oninput="this.className = ''" class="form-select">
-                        <optgroup label="Sala">
+                        <optgroup label="Sala" id="optgroup-sala-sexta-feira-sala-do-sexto-tempo">
                             <option id="option-sala-sexta-feira-sala-do-sexto-tempo"></option>
-                            <option id="option-lab-select-30"></option>
                         </optgroup>
                     </select>
                 </div>
@@ -852,7 +822,7 @@
         <div style="text-align:center;margin-top:40px;">
           <div>
             <button type="button" class="btn btn-danger" id="prevBtn" onclick="nextPrev(-1)">Retroceder</button>
-            <button type="button" class="btn btn-success our-green-bg last-shot" id="nextBtn" onclick="nextPrev(1)">Avançar</button>
+            <button type="button" class="btn btn-success our-green-bg" id="nextBtn" onclick="nextPrev(1)">Avançar</button>
           </div>
         </div>
       </form>
