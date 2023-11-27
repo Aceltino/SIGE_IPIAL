@@ -117,11 +117,16 @@ class CursoController extends Controller
         ->where('area_formacao_id', null)
         //->where('curso_id', $id)
         ->get()->toArray();
-        $coordenador_actual = Professor::with('pessoa', 'curso.areaFormacao')->where('curso_id', $id)->get()->toArray();
+        // $coordenador_actual = Professor::with('pessoa', 'curso.areaFormacao')->where('curso_id', $id)->get()->toArray();
+        // if (!$coordenador_actual) {
+        //     $coordenador_actual[0]['curso_id'] = null;
+        // }
+        $curso = Curso::with('coordenador.pessoa')->find($id)->toArray();
+        //dd($curso['coordenador']['professor_id']);
         //dd($coordenador_actual);
         $areaFormacao = Area_formacao::all();
 
-        return view('curso/edit-curso', compact(['coordenador_disponivel', 'areaFormacao', 'coordenador_actual']));
+        return view('curso/edit-curso', compact(['coordenador_disponivel', 'areaFormacao', 'curso']));
     }
 
     public function update(Request $request){

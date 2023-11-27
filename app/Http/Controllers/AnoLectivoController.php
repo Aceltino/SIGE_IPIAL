@@ -58,6 +58,7 @@ class AnoLectivoController extends Controller
         return $ultimoAno;
     }
 
+
     public function indexCadastroAnoLectivo(){
         $ano_lectivo = Ano_lectivo::where('status_ano_lectivo', 1)->get();
         if (count($ano_lectivo) > 0) {
