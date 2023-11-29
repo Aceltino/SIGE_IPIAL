@@ -85,12 +85,23 @@ axios.get('/api/turmas')
 
                             <div class="container">
                                 <div class="row">
-                                    <div class=" col area-input form-group " style="margin-left: 10px;" >
+                                    <div class="col-3 form-group" style="margin-left: 10px;">
                                         <label for=""> Ano Lectivo:</label><input class="form-control" type="text" name="" value="${tregistro.anolectivoTurma}"  disabled style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;">
                                     </div>
 
-                                    <div class=" col area-input form-group " style="margin-left: 10px;" >
+                                    <div class="col-4 form-group" style="margin-left: 10px;">
                                         <label for=""> Vagas:</label><input class="form-control" type="text" name="" value="${tregistro.vagasTurma}" disabled style="color: var(--cor-label-inativa);background-color: var(--cor-fundo-disable); text-align: center;">
+                                    </div>
+
+                                    <div class="col-4 form-group" style="margin-left: 10px;">
+                                        <label for=""> Coordenador:</label>
+                                        <select class="form-control" name=""  style="text-align: center;">
+                                          <optgroup label="Selecione um coordenador">
+                                            <option value="Professor Sivi">Professor Sivi</option>
+                                            <option value="Professor Sivi">Professor Sivi</option>
+                                            <option value="Professor Sivi">Professor Sivi</option>
+                                          </optgroup>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
