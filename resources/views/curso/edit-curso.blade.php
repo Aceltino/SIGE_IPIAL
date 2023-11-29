@@ -58,6 +58,11 @@
                     @foreach ($coordenador_disponivel as $coord)
                         <option value="{{$coord['professor_id']}}">{{$coord['pessoa']['nome_completo']}}</option>
                     @endforeach
+                    @if (!$curso['coordenador'])
+                        <option value="Nenhum" selected>Nenhum</option>
+                    @else
+                        <option value="Nenhum">Nenhum</option>
+                    @endif
 
                 </select>
             </div>

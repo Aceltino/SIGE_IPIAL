@@ -130,6 +130,7 @@ class CursoController extends Controller
     }
 
     public function update(Request $request){
+        //dd($request->coordenador);
         if(isset($request->nome_curso) && isset($request->area_formacao) && isset($request->sigla_curso)){
             if(!empty($request->nome_curso) && !empty($request->sigla_curso) && !empty($request->area_formacao)){
                 $curso = CursoTrait::checkName($request->nome_curso);
@@ -156,6 +157,19 @@ class CursoController extends Controller
                                     'sigla' => $sg['sigla'],
                                     'area_formacao_id' => $request->area_formacao,
                                 ];
+                                if($request->coordenador == "Nenhum"){
+                                    $professor = ['curso_id' => null];
+                                    Professor::where('curso_id', $request->id)->update($professor);
+                                } else{
+                                    $coordenador = Professor::Where('curso_id', $request->id)->Where('cargo', 'Coordenador Curso')->get()->first();
+                                    //dd($coordenador);
+                                    if ($coordenador && $coordenador->curso_id !== $request->coordenador) {
+                                        $professor = ['curso_id' => null];
+                                        Professor::find($coordenador->professor_id)->update($professor);
+                                    }
+                                    $professor = ['curso_id' => $request->id];
+                                    Professor::find($request->coordenador)->update($professor);
+                                }
                                     Curso::where('curso_id', $request->id)->update($dados);
                                     return redirect()->route('consultar.cursos')->with('sucesso', "Curso actualizado com sucesso!");
                                 }
