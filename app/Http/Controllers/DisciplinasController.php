@@ -18,7 +18,9 @@ class DisciplinasController extends Controller
     {
         $disciplinas = Disciplina ::has('curso')->with(['classes' => function ($query) {
             $query->withPivot('carga_horaria','tipo_disciplina');
-        }])->get();        
+        }])->get();   
+        
+        
         return view('disciplina.disciplinas', compact('disciplinas'));
     }
     public function create()
