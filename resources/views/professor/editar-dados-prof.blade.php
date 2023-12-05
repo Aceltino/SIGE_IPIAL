@@ -59,7 +59,11 @@
             <div class="form-group col-7 mb-0">
               <select name='disciplina[]' oninput="this.className = ''" class="form-select" id="displina-a-leccionar-1" onchange="verificarSelecoes()">
                 <optgroup label="Disciplinas">
-                    <option value="{{ $professor->disciplina[0]->disciplina_id }}" selected>{{ $professor->disciplina[0]->nome_disciplina }}</option>
+                    <option 
+                      value="{{ !empty($professor->disciplina[0]->disciplina_id) ? $professor->disciplina[0]->disciplina_id : " " }}" 
+                      selected>
+                      {{ !empty($professor->disciplina[0]->disciplina_id) ? $professor->disciplina[0]->disciplina_id : " " }}
+                    </option>
                     @foreach($cursos as $curso)
                       <option value="{{ $curso->curso_id }}">{{ $curso->nome_curso }}</option>{{ $professor->professorDisciplina[0]->turno }}
                     @endforeach
@@ -91,7 +95,11 @@
             <div class="form-group col-7 mb-0">
               <select name='disciplina' oninput="this.className = ''" class="form-select" id="displina-a-leccionar-2" onchange="verificarSelecoes()">
                 <optgroup label="Disciplinas">
-                  <option value="{{ $professor->disciplina[1]->disciplina_id }}" selected>{{ $professor->disciplina[1]->nome_disciplina }}</option>
+                  <option 
+                      value="{{ !empty($professor->disciplina[1]->disciplina_id) ? $professor->disciplina[1]->disciplina_id : " " }}" 
+                      selected>
+                      {{ !empty($professor->disciplina[1]->disciplina_id) ? $professor->disciplina[1]->disciplina_id : " " }}
+                  </option>
                   @foreach($cursos as $curso)
                     <option value="{{ $curso->curso_id }}">{{ $curso->nome_curso }}</option>
                   @endforeach
@@ -123,7 +131,11 @@
             <div class="form-group col-7 mb-0">
               <select name='disciplina' oninput="this.className = ''" class="form-select" id="displina-a-leccionar-3" onchange="verificarSelecoes()">
                 <optgroup label="Disciplinas">
-                  <option value="{{ $professor->disciplina[2]->disciplina_id }}" selected>{{ $professor->disciplina[2]->nome_disciplina }}</option>
+                  <option 
+                      value="{{ !empty($professor->disciplina[2]->disciplina_id) ? $professor->disciplina[2]->disciplina_id : " " }}" 
+                      selected>
+                      {{ !empty($professor->disciplina[2]->disciplina_id) ? $professor->disciplina[2]->disciplina_id : " " }}
+                  </option>
                   @foreach($cursos as $curso)
                     <option value="{{ $curso->curso_id }}">{{ $curso->nome_curso }}</option>
                   @endforeach
@@ -155,7 +167,11 @@
             <div class="form-group col-7 mb-0">
               <select name='disciplina' oninput="this.className = ''" class="form-select" id="displina-a-leccionar-4" onchange="verificarSelecoes()">
                 <optgroup label="Disciplinas">
-                  <option value="{{ @$professor->disciplina[3]->disciplina_id }}" selected>{{ @$professor->disciplina[3]->nome_disciplina }}</option>
+                  <option 
+                      value="{{ !empty($professor->disciplina[3]->disciplina_id) ? $professor->disciplina[3]->disciplina_id : " " }}" 
+                      selected>
+                      {{ !empty($professor->disciplina[3]->disciplina_id) ? $professor->disciplina[3]->disciplina_id : " " }}
+                  </option>
                   @foreach($cursos as $curso)
                     <option value="{{ $curso->curso_id }}">{{ $curso->nome_curso }}</option>
                   @endforeach
@@ -221,7 +237,7 @@
 
           <div class="form-group">
             
-            <input value="{{ $profAtual->email }}" type="email" placeholder="E-mail do professor" id="email-do-professor-input" oninput="this.className = ''" minlength="10" maxlength="40">
+            <input value=" {{!empty($profAtual->email) ? $profAtual->email: "" }} " type="email" placeholder="E-mail do professor" id="email-do-professor-input" oninput="this.className = ''" minlength="10" maxlength="40">
             <p class="alert alert-danger d-none mt-2" role="alert" id="paragrafo-de-validacao-do-email-do-professor"></p>
           </div>
 
