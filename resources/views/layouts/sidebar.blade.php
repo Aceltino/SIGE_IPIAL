@@ -362,70 +362,47 @@
     </li>
 
     @if (Auth::user()->cargo_usuario == "Aluno")
-    <!-- /	Nav Assiduidade-->
+    <!-- /	Controle de faltas-->
     <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#assiduidade-aluno-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-calendar-x"></i></i><span>Assiduidade</span><i class="bi bi-chevron-down ms-auto"></i>
+      <a class="nav-link collapsed" href="#">
+        <i class="bi bi-calendar-x"></i>
+        <span>Controle de faltas</span>
       </a>
-      <ul id="assiduidade-aluno-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        <li>
-          
-          
-          
-           <a href="#"> 
-
-            <i class="bi bi-circle"></i><span>Controle de faltas</span>
-          </a>
-        </li>
-        
-      </ul>
     </li>
 
-    <!-- /	Nav Boletim-->
+    <!-- /	Boletim de notas-->
     <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#boletim-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-clipboard-data"></i></i><span>Boletim de notas</span><i class="bi bi-chevron-down ms-auto"></i>
+      <a class="nav-link collapsed" href="#">
+        <i class="bi bi-clipboard-data"></i>
+        <span>Boletim de notas</span>
       </a>
-      <ul id="boletim-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        <li>
-          
-          
-          
-           <a href="#"> 
-
-            <i class="bi bi-circle"></i><span>Boletim de notas</span>
-          </a>
-        </li>
-        
-      </ul>
     </li>
 
-    <!-- /	Documentos -->
+    <!-- / Solicitação de	Documentos -->
+    <!-- /	Justificativo de faltas-->
     <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#documentos-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-file-earmark-plus"></i></i><span>Documentos</span><i class="bi bi-chevron-down ms-auto"></i>
+      <a class="nav-link collapsed" href="#">
+        <i class="bi bi-file-medical"></i>
+        <span>Justificativo de faltas</span>
       </a>
-      <ul id="documentos-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        <li>
-           <a href="#"> 
-
-            <i class="bi bi-circle"></i><span>Justificativo de faltas</span>
-          </a>
-        </li>
-        <li>
-           <a href="#"> 
-
-            <i class="bi bi-circle"></i><span>Declarações</span>
-          </a>
-        </li>
-        <li>
-           <a href="#"> 
-
-            <i class="bi bi-circle"></i><span>Certificado</span>
-          </a>
-        </li>
-      </ul>
     </li>
+
+    <!-- /	Declarações-->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#">
+        <i class="bi bi-files"></i>
+        <span>Declarações</span>
+      </a>
+    </li>
+
+    <!-- /	Certificado-->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#">
+        <i class="bi bi-file-pdf"></i>
+        <span>Certificado</span>
+      </a>
+    </li>
+
     @endif
     
     @if(Auth::user()->cargo_usuario != "Professor" && Auth::user()->cargo_usuario != "Aluno")

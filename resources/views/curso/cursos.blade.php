@@ -63,7 +63,6 @@
                     <td>Sem Coordenador</td>
                   @endif
 
-
                   <td>
                     <section style="display: flex;">
                     <i class="bi bi-eye-fill"  data-bs-toggle="modal" data-bs-target="#ExtralargeModal{{$cursos[$i]->curso_id}}"></i>
@@ -77,6 +76,10 @@
                   </td>
               </tr>
 
+              @endfor
+
+              
+              @for ($i = 0; $i < count($cursos); $i++)
               <div class="modal fade" id="ExtralargeModal{{$cursos[$i]->curso_id}}" tabindex="-1" data-bs-backdrop="false">
                 <div class="modal-dialog modal-xl">
                   <div class="modal-content">
