@@ -19,15 +19,13 @@
 
     <section class="section perfil">
       <div class="processo-al row">
-        <div class="col-xl-2">
-              <div class="card-bodys">
-                  <img src="/img/foto.jpg" alt="">
-                  </div>
-                  <hr id="borda-nome">
-              </div>
-        <div class="col-xl-10">
-          <div> 
-        
+        <div class="row justify-content-center mb-4">
+          <div class="card-bodys col-lg-3 col-sm-10">
+            <img src="/img/foto.jpg" alt="">
+          </div>
+        </div>
+        <div class="row">
+          <div class="py-3"> 
             <h3>Dados pessoais:</h3>
             <div class="area-dado-pessoal">
               <h4>Nome: </h4> <h5 value="">{{ $alunos->candidato->pessoa->nome_completo }}</h5>

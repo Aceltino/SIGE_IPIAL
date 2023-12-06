@@ -73,23 +73,20 @@
                     <th scope="col">Compoente</th>
                     <th scope="col">Tempo de Prova</th>
                     <th scope="col">Curso</th>
-                    <th scope="col">Classe</th>
-                    <th scope="col">Carga Horária</th>
-                    <th scope="col">Tipo de disciplina</th>
                     <th scope="col"></th>
 
                 </tr>
             </thead>
             <tbody style="text-align: center;">
+
+            @foreach ($disciplinas as $item)
+                    
               <tr>
-                <td>Matématica</td>
-                <td>MT</td>
-                <td>Técnicas</td>
-                <td>120</td>
-                <td>Técnico de Informática</td>
-                <td>10</td>
-                <td>50</td>
-                <td>Continua</td>
+                <td>{{$item->nome_disciplina}}</td>
+                <td>{{$item->sigla}}</td>
+                <td>{{$item->componente}}</td>
+                <td>{{$item->tempo_prova}}</td>
+                <td>{{$item->curso->nome_curso}}</td>    
 
                 <td style="display: flex; justify-content: center; align-items: center; gap:5px;">
                     <i class="bi bi-eye-fill" data-bs-toggle="modal" data-bs-target="#ExtralargeModal"></i>
@@ -99,6 +96,9 @@
                     </form>
                 </td>
               </tr>
+
+            @endforeach 
+            
                 <div class="modal fade" id="ExtralargeModal" tabindex="-1" data-bs-backdrop="false">
                     <div class="modal-dialog modal-xl">
                         <div class="modal-content">
