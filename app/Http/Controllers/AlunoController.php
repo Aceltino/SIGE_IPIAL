@@ -317,6 +317,16 @@ class AlunoController extends Controller
             ->where('aluno_id', $id)
             ->first();
 
+            if($aluno->anoturma->first() == null)
+            {
+                $classeId = 1;
+                $nome_turma = null;
+            }
+            else {
+                $classeId = $aluno->anoturma->first()->turma->classe->classe_id;
+                $nome_turma = $aluno->anoturma->first()->turma->nome_turma;
+            }
+
             $alunoReprovado = [
                 'aluno_id' => $aluno->aluno_id,
                 'aluno_status' => $aluno->status,
@@ -324,8 +334,8 @@ class AlunoController extends Controller
                 'data_nasc' => $aluno->candidato->pessoa->data_nascimento,
                 'nome' => $aluno->candidato->pessoa->nome_completo,
                 'idCurso' => CursoController::pegarIdCurso($aluno->candidato->cursoAdmitido),
-                'classeId' => $aluno->anoturma->first()->turma->classe->classe_id,
-                'nomeTurma' => $aluno->anoturma->first()->turma->nome_turma
+                'classeId' => $classeId,
+                'nomeTurma' => $nome_turma
             ];
 
         return $alunoReprovado;
@@ -356,8 +366,6 @@ class AlunoController extends Controller
         })
         ->where('aluno_id', $Aluno)
         ->first();
-
-        dd($aluno);
 
         $ultimaPosicao = count($aluno->anoturma) - 1;
         $turmaAnoId = $aluno->anoturma[$ultimaPosicao]->turmaAno_id;

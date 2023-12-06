@@ -347,11 +347,12 @@
         @endif
         @if(Auth::user()->cargo_usuario != "Aluno")
         <li>
-          <a href="horario/criar-horario">
+        <a href={{ route('criar-horario') }}>
             <i class="bi bi-circle"></i><span>Criar horário</span>
           </a>
         </li>
         <li>
+        
           <a href="ver-horarios">
             <i class="bi bi-circle"></i><span>Ver horários</span>
           </a>

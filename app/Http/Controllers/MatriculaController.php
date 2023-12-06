@@ -291,7 +291,7 @@ class MatriculaController extends Controller
         }
         CandidatoController::eliminarAdmitidos();
 
-        $msg = "Os alunos foram atribuidas as suas turmas com sucesso!";
+        $msg = "Os alunos foram/estão atribuidos nas suas devidas turmas!";
         return Redirect::route('Matriculas')->with("Sucesso", $msg);
     }
 

@@ -305,30 +305,34 @@ class TurmaController extends Controller
 
             foreach ($salasNormal as $sala)
             {
-                foreach ($salaNormalOcupada as $salaOcupada)
+
+                if($salaNormalOcupada[0] != null)
                 {
-
-                    if( $turma->turno_id != $salaOcupada['turno_id'] || $sala['sala_id'] != $salaOcupada['sala_id']  )
+                    foreach ($salaNormalOcupada as $salaOcupada)
                     {
-                        $dadosTurma['sala'] =
-                        [
-                            'sala' => $sala['sala'],
-                            'sala_id' => $sala['sala_id'],
-                        ];
 
-                        $dadosSala[] =
-                        [
-                            $sala['sala_id'],
-                            $turma->turno_id
-                        ];
+                        if( $turma->turno_id != $salaOcupada['turno_id'] || $sala['sala_id'] != $salaOcupada['sala_id']  )
+                        {
+                            $dadosTurma['sala'] =
+                            [
+                                'sala' => $sala['sala'],
+                                'sala_id' => $sala['sala_id'],
+                            ];
 
-                        if (!in_array($dadosSala, $salaSelecionada)) {
-                            $salaSelecionada[] =  $dadosSala;
+                            $dadosSala[] =
+                            [
+                                $sala['sala_id'],
+                                $turma->turno_id
+                            ];
+
+                            if (!in_array($dadosSala, $salaSelecionada)) {
+                                $salaSelecionada[] =  $dadosSala;
+                            }
+
+                            goto fim;
                         }
-
-                        goto fim;
+                        // break 1;
                     }
-                    // break 1;
                 }
             }
 
