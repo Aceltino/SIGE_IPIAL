@@ -11,102 +11,102 @@
 
     //Terceiro step
         const segundaFeiraPrimeiroTempo = document.querySelector("#segunda-feira-primeiro-tempo");
-        const selectSegundaFeiraDisciplinaDoPrimeiroTempo = document.querySelector("#segunda-feira-disciplina-do-primeiro-tempo");
+        const inputSegundaFeiraDisciplinaDoPrimeiroTempo = document.querySelector("#segunda-feira-disciplina-do-primeiro-tempo");
 
         const segundaFeiraSegundoTempo = document.querySelector("#segunda-feira-segundo-tempo");
-        const selectSegundaFeiraDisciplinaDoSegundoTempo = document.querySelector("#segunda-feira-disciplina-do-segundo-tempo");
+        const inputSegundaFeiraDisciplinaDoSegundoTempo = document.querySelector("#segunda-feira-disciplina-do-segundo-tempo");
 
         const segundaFeiraTerceiroTempo = document.querySelector("#segunda-feira-terceiro-tempo");
-        const selectSegundaFeiraDisciplinaDoTerceiroTempo = document.querySelector("#segunda-feira-disciplina-do-terceiro-tempo");
+        const inputSegundaFeiraDisciplinaDoTerceiroTempo = document.querySelector("#segunda-feira-disciplina-do-terceiro-tempo");
 
         const segundaFeiraQuartoTempo = document.querySelector("#segunda-feira-quarto-tempo");
-        const selectSegundaFeiraDisciplinaDoQuartoTempo = document.querySelector("#segunda-feira-disciplina-do-quarto-tempo");
+        const inputSegundaFeiraDisciplinaDoQuartoTempo = document.querySelector("#segunda-feira-disciplina-do-quarto-tempo");
 
         const segundaFeiraQuintoTempo = document.querySelector("#segunda-feira-quinto-tempo");
-        const selectSegundaFeiraDisciplinaDoQuintoTempo = document.querySelector("#segunda-feira-disciplina-do-quinto-tempo");
+        const inputSegundaFeiraDisciplinaDoQuintoTempo = document.querySelector("#segunda-feira-disciplina-do-quinto-tempo");
 
         const segundaFeiraSextoTempo = document.querySelector("#segunda-feira-sexto-tempo");
-        const selectSegundaFeiraDisciplinaDoSextoTempo = document.querySelector("#segunda-feira-disciplina-do-sexto-tempo");
+        const inputSegundaFeiraDisciplinaDoSextoTempo = document.querySelector("#segunda-feira-disciplina-do-sexto-tempo");
 
         //-----------------------------------------------------------------------------------------------------------
 
         const tercaFeiraPrimeiroTempo = document.querySelector("#terca-feira-primeiro-tempo");
-        const selectTercaFeiraDisciplinaDoPrimeiroTempo = document.querySelector("#terca-feira-disciplina-do-primeiro-tempo");
+        const inputTercaFeiraDisciplinaDoPrimeiroTempo = document.querySelector("#terca-feira-disciplina-do-primeiro-tempo");
 
         const tercaFeiraSegundoTempo = document.querySelector("#terca-feira-segundo-tempo");
-        const selectTercaFeiraDisciplinaDoSegundoTempo = document.querySelector("#terca-feira-disciplina-do-segundo-tempo");
+        const inputTercaFeiraDisciplinaDoSegundoTempo = document.querySelector("#terca-feira-disciplina-do-segundo-tempo");
 
         const tercaFeiraTerceiroTempo = document.querySelector("#terca-feira-terceiro-tempo");
-        const selectTercaFeiraDisciplinaDoTerceiroTempo = document.querySelector("#terca-feira-disciplina-do-terceiro-tempo");
+        const inputTercaFeiraDisciplinaDoTerceiroTempo = document.querySelector("#terca-feira-disciplina-do-terceiro-tempo");
 
         const tercaFeiraQuartoTempo = document.querySelector("#terca-feira-quarto-tempo");
-        const selectTercaFeiraDisciplinaDoQuartoTempo = document.querySelector("#terca-feira-disciplina-do-quarto-tempo");
+        const inputTercaFeiraDisciplinaDoQuartoTempo = document.querySelector("#terca-feira-disciplina-do-quarto-tempo");
 
         const tercaFeiraQuintoTempo = document.querySelector("#terca-feira-quinto-tempo");
-        const selectTercaFeiraDisciplinaDoQuintoTempo = document.querySelector("#terca-feira-disciplina-do-quinto-tempo");
+        const inputTercaFeiraDisciplinaDoQuintoTempo = document.querySelector("#terca-feira-disciplina-do-quinto-tempo");
 
         const tercaFeiraSextoTempo = document.querySelector("#terca-feira-sexto-tempo");
-        const selectTercaFeiraDisciplinaDoSextoTempo = document.querySelector("#terca-feira-disciplina-do-sexto-tempo");
+        const inputTercaFeiraDisciplinaDoSextoTempo = document.querySelector("#terca-feira-disciplina-do-sexto-tempo");
 
         //-----------------------------------------------------------------------------------------------------------
 
         const quartaFeiraPrimeiroTempo = document.querySelector("#quarta-feira-primeiro-tempo");
-        const selectQuartaFeiraDisciplinaDoPrimeiroTempo = document.querySelector("#quarta-feira-disciplina-do-primeiro-tempo");
+        const inputQuartaFeiraDisciplinaDoPrimeiroTempo = document.querySelector("#quarta-feira-disciplina-do-primeiro-tempo");
 
         const quartaFeiraSegundoTempo = document.querySelector("#quarta-feira-segundo-tempo");
-        const selectQuartaFeiraDisciplinaDoSegundoTempo = document.querySelector("#quarta-feira-disciplina-do-segundo-tempo");
+        const inputQuartaFeiraDisciplinaDoSegundoTempo = document.querySelector("#quarta-feira-disciplina-do-segundo-tempo");
 
         const quartaFeiraTerceiroTempo = document.querySelector("#quarta-feira-terceiro-tempo");
-        const selectQuartaFeiraDisciplinaDoTerceiroTempo = document.querySelector("#quarta-feira-disciplina-do-terceiro-tempo");
+        const inputQuartaFeiraDisciplinaDoTerceiroTempo = document.querySelector("#quarta-feira-disciplina-do-terceiro-tempo");
 
         const quartaFeiraQuartoTempo = document.querySelector("#quarta-feira-quarto-tempo");
-        const selectQuartaFeiraDisciplinaDoQuartoTempo = document.querySelector("#quarta-feira-disciplina-do-quarto-tempo");
+        const inputQuartaFeiraDisciplinaDoQuartoTempo = document.querySelector("#quarta-feira-disciplina-do-quarto-tempo");
 
         const quartaFeiraQuintoTempo = document.querySelector("#quarta-feira-quinto-tempo");
-        const selectQuartaFeiraDisciplinaDoQuintoTempo = document.querySelector("#quarta-feira-disciplina-do-quinto-tempo");
+        const inputQuartaFeiraDisciplinaDoQuintoTempo = document.querySelector("#quarta-feira-disciplina-do-quinto-tempo");
 
         const quartaFeiraSextoTempo = document.querySelector("#quarta-feira-sexto-tempo");
-        const selectQuartaFeiraDisciplinaDoSextoTempo = document.querySelector("#quarta-feira-disciplina-do-sexto-tempo");
+        const inputQuartaFeiraDisciplinaDoSextoTempo = document.querySelector("#quarta-feira-disciplina-do-sexto-tempo");
 
         //-----------------------------------------------------------------------------------------------------------
 
         const quintaFeiraPrimeiroTempo = document.querySelector("#quinta-feira-primeiro-tempo");
-        const selectQuintaFeiraDisciplinaDoPrimeiroTempo = document.querySelector("#quinta-feira-disciplina-do-primeiro-tempo");
+        const inputQuintaFeiraDisciplinaDoPrimeiroTempo = document.querySelector("#quinta-feira-disciplina-do-primeiro-tempo");
 
         const quintaFeiraSegundoTempo = document.querySelector("#quinta-feira-segundo-tempo");
-        const selectQuintaFeiraDisciplinaDoSegundoTempo = document.querySelector("#quinta-feira-disciplina-do-segundo-tempo");
+        const inputQuintaFeiraDisciplinaDoSegundoTempo = document.querySelector("#quinta-feira-disciplina-do-segundo-tempo");
 
         const quintaFeiraTerceiroTempo = document.querySelector("#quinta-feira-terceiro-tempo");
-        const selectQuintaFeiraDisciplinaDoTerceiroTempo = document.querySelector("#quinta-feira-disciplina-do-terceiro-tempo");
+        const inputQuintaFeiraDisciplinaDoTerceiroTempo = document.querySelector("#quinta-feira-disciplina-do-terceiro-tempo");
 
         const quintaFeiraQuartoTempo = document.querySelector("#quinta-feira-quarto-tempo");
-        const selectQuintaFeiraDisciplinaDoQuartoTempo = document.querySelector("#quinta-feira-disciplina-do-quarto-tempo");
+        const inputQuintaFeiraDisciplinaDoQuartoTempo = document.querySelector("#quinta-feira-disciplina-do-quarto-tempo");
 
         const quintaFeiraQuintoTempo = document.querySelector("#quinta-feira-quinto-tempo");
-        const selectQuintaFeiraDisciplinaDoQuintoTempo = document.querySelector("#quinta-feira-disciplina-do-quinto-tempo");
+        const inputQuintaFeiraDisciplinaDoQuintoTempo = document.querySelector("#quinta-feira-disciplina-do-quinto-tempo");
 
         const quintaFeiraSextoTempo = document.querySelector("#quinta-feira-sexto-tempo");
-        const selectQuintaFeiraDisciplinaDoSextoTempo = document.querySelector("#quinta-feira-disciplina-do-sexto-tempo");
+        const inputQuintaFeiraDisciplinaDoSextoTempo = document.querySelector("#quinta-feira-disciplina-do-sexto-tempo");
 
         //-----------------------------------------------------------------------------------------------------------
 
         const sextaFeiraPrimeiroTempo = document.querySelector("#sexta-feira-primeiro-tempo");
-        const selectSextaFeiraDisciplinaDoPrimeiroTempo = document.querySelector("#sexta-feira-disciplina-do-primeiro-tempo");
+        const inputSextaFeiraDisciplinaDoPrimeiroTempo = document.querySelector("#sexta-feira-disciplina-do-primeiro-tempo");
 
         const sextaFeiraSegundoTempo = document.querySelector("#sexta-feira-segundo-tempo");
-        const selectSextaFeiraDisciplinaDoSegundoTempo = document.querySelector("#sexta-feira-disciplina-do-segundo-tempo");
+        const inputSextaFeiraDisciplinaDoSegundoTempo = document.querySelector("#sexta-feira-disciplina-do-segundo-tempo");
 
         const sextaFeiraTerceiroTempo = document.querySelector("#sexta-feira-terceiro-tempo");
-        const selectSextaFeiraDisciplinaDoTerceiroTempo = document.querySelector("#sexta-feira-disciplina-do-terceiro-tempo");
+        const inputSextaFeiraDisciplinaDoTerceiroTempo = document.querySelector("#sexta-feira-disciplina-do-terceiro-tempo");
 
         const sextaFeiraQuartoTempo = document.querySelector("#sexta-feira-quarto-tempo");
-        const selectSextaFeiraDisciplinaDoQuartoTempo = document.querySelector("#sexta-feira-disciplina-do-quarto-tempo");
+        const inputSextaFeiraDisciplinaDoQuartoTempo = document.querySelector("#sexta-feira-disciplina-do-quarto-tempo");
 
         const sextaFeiraQuintoTempo = document.querySelector("#sexta-feira-quinto-tempo");
-        const selectSextaFeiraDisciplinaDoQuintoTempo = document.querySelector("#sexta-feira-disciplina-do-quinto-tempo");
+        const inputSextaFeiraDisciplinaDoQuintoTempo = document.querySelector("#sexta-feira-disciplina-do-quinto-tempo");
 
         const sextaFeiraSextoTempo = document.querySelector("#sexta-feira-sexto-tempo");
-        const selectSextaFeiraDisciplinaDoSextoTempo = document.querySelector("#sexta-feira-disciplina-do-sexto-tempo");
+        const inputSextaFeiraDisciplinaDoSextoTempo = document.querySelector("#sexta-feira-disciplina-do-sexto-tempo");
         //Consumo
     const urlDaApiDoHorario = "http://sige_ipial.test/api/dados-horario";
     
@@ -114,14 +114,13 @@
         return dadoHorario.json();
     }).then((dadoHorario)=>{
         console.log(dadoHorario);
-        console.log(dadoHorario.laboratorios);
-        console.log(dadoHorario.laboratorios.length);
-        //console.log(dadoHorario.horarioInfo[0].disciplinas);
-        //console.log(dadoHorario.horarioInfo[0].disciplinas[0]);
+        //console.log(dadoHorario.laboratorios);
+        //console.log(dadoHorario.laboratorios.length);
+        console.log(dadoHorario.horarioInfo[0].disciplinas);
+        console.log(dadoHorario.horarioInfo[0].disciplinas[0]);
         //console.log(dadoHorario.horarioInfo[0].professores[0]);
         //console.log(dadoHorario.horarioInfo[0].disciplinas[0].disciplina_id);1
         //console.log(dadoHorario.horarioInfo[0].professores[0].disciplina_id);1
-        
 
         //Primeiro step
         var qtdDeTurmas = dadoHorario.horarioInfo.length;
@@ -138,9 +137,15 @@
                 optgroupDoSelectTurma.appendChild(opcao[indice]);
             } 
         }
+        else{
+            window.alert("Sem turmas disponíveis");
+            window.location.replace("http://sige_ipial.test/");
+        }
 
         //Segundo step
             selectTurma.addEventListener("change", ()=>{
+                var selProf = window.document.getElementsByTagName("select")
+
                 selectTurma.disabled = true;
                 //Disciplinas
                 var inputDisciplina = new Array();
@@ -223,127 +228,141 @@
                     input.value = dadoHorario.horarioInfo[selectTurma.value].tempo[posicaoDoElemento].hora;
                 }
 
-                function atribuirDisciplinasAoSelect(select){
-                    var optionDisciplina = new Array();
-
-                    for(let id = 0; id < dadoHorario.horarioInfo[selectTurma.value].disciplinas.length; id++){
-                        optionDisciplina[id] = document.createElement("option");
-                        optionDisciplina[id].value = dadoHorario.horarioInfo[idTurmaSelecionada].disciplinas[id].disciplina_id;
-                        optionDisciplina[id].innerText = dadoHorario.horarioInfo[idTurmaSelecionada].disciplinas[id].nomeDisciplina;
-                        select.appendChild(optionDisciplina[id]);
+                ////Validação
+                for(var cont = 1; cont <= dadoHorario.horarioInfo[idTurmaSelecionada].disciplinas.length || selProf[cont].value === ''; cont++){
+                    if(selProf[cont].value === ''){
+                        window.alert(`Não é possível criar o horário da turma ${dadoHorario.horarioInfo[idTurmaSelecionada].nome}!\nHá uma ou mais disciplinas sem professor.`);
+                        window.location.replace("http://sige_ipial.test/professor/cadastrar-professor");
+                        break;
                     }
                 }
 
-                function atribuirSalaAoOption(option){
-                    option.value = dadoHorario.horarioInfo[idTurmaSelecionada].sala.sala;
-                    option.innerText = "Sala "+ dadoHorario.horarioInfo[idTurmaSelecionada].sala.sala;
-                }
-
-                function atribuirLaboratoriosAoOptgroup(optgroup){
-                    var optionLaboratorio = new Array();
-                    var indiceDoVetor = 0;
-
-                    if(dadoHorario.laboratorios.length > 0){
-                        while(indiceDoVetor < dadoHorario.laboratorios.length){
-                            optionLaboratorio[indiceDoVetor] = document.createElement("option");
-                            optionLaboratorio[indiceDoVetor].value = dadoHorario.laboratorios[indiceDoVetor].sala_id;
-                            optionLaboratorio[indiceDoVetor].innerText = dadoHorario.laboratorios[indiceDoVetor].sala;
-                            optgroup.appendChild(optionLaboratorio[indiceDoVetor]);
-                            indiceDoVetor++;
+                //Gerando o horário
+                    //Botão gerar horário
+                    const botaoGerarHorario = document.querySelector("#btn-gerar-horario");
+                    botaoGerarHorario.onclick = GerarHorario;
+                    //Função
+                    function GerarHorario(){
+                        var disciplina = [];
+                        for(let contador = 0; contador < dadoHorario.horarioInfo[selectTurma.value].disciplinas.length; contador++){
+                            for (let contador2 = 0; contador2 < dadoHorario.horarioInfo[selectTurma.value].disciplinas[contador].carga_horaria; contador2++) {
+                                disciplina.push(dadoHorario.horarioInfo[selectTurma.value].disciplinas[contador].nomeDisciplina);
+                            }
                         }
+
+                        //Função para embaralhar
+                        function shuffleArray(array) {
+                            for (let i = array.length - 1; i > 0; i--) {
+                              const j = Math.floor(Math.random() * (i + 1));
+                              [array[i], array[j]] = [array[j], array[i]];
+                            }
+                        }
+
+                        // Embaralhar o vetor:
+                        shuffleArray(disciplina);
+
+                        window.alert("Horário gerado!\n"+ disciplina.length +" tempos de aula.");
+                          
+                        //Segunda-Feira Disciplinas
+                        inputSegundaFeiraDisciplinaDoPrimeiroTempo.value = disciplina[0];
+                        inputSegundaFeiraDisciplinaDoSegundoTempo.value = disciplina[1];
+                        inputSegundaFeiraDisciplinaDoTerceiroTempo.value = disciplina[2];
+                        inputSegundaFeiraDisciplinaDoQuartoTempo.value = disciplina[3];
+                        inputSegundaFeiraDisciplinaDoQuintoTempo.value = disciplina[4];
+                        inputSegundaFeiraDisciplinaDoSextoTempo.value = disciplina[5];
+                        //Terça-Feira Disciplinas
+                        inputTercaFeiraDisciplinaDoPrimeiroTempo.value = disciplina[6];
+                        inputTercaFeiraDisciplinaDoSegundoTempo.value = disciplina[7];
+                        inputTercaFeiraDisciplinaDoTerceiroTempo.value = disciplina[8];
+                        inputTercaFeiraDisciplinaDoQuartoTempo.value = disciplina[9];
+                        inputTercaFeiraDisciplinaDoQuintoTempo.value = disciplina[10];
+                        inputTercaFeiraDisciplinaDoSextoTempo.value = disciplina[11];
+                        //Quarta-Feira Disciplinas
+                        inputQuartaFeiraDisciplinaDoPrimeiroTempo.value = disciplina[12];
+                        inputQuartaFeiraDisciplinaDoSegundoTempo.value = disciplina[13];
+                        inputQuartaFeiraDisciplinaDoTerceiroTempo.value = disciplina[14];
+                        inputQuartaFeiraDisciplinaDoQuartoTempo.value = disciplina[15];
+                        inputQuartaFeiraDisciplinaDoQuintoTempo.value = disciplina[16];
+                        inputQuartaFeiraDisciplinaDoSextoTempo.value = disciplina[17];
+                        //Quinta-Feira Disciplinas
+                        inputQuintaFeiraDisciplinaDoPrimeiroTempo.value = disciplina[18];
+                        inputQuintaFeiraDisciplinaDoSegundoTempo.value = disciplina[19];
+                        inputQuintaFeiraDisciplinaDoTerceiroTempo.value = disciplina[20];
+                        inputQuintaFeiraDisciplinaDoQuartoTempo.value = disciplina[21];
+                        inputQuintaFeiraDisciplinaDoQuintoTempo.value = disciplina[22];
+                        inputQuintaFeiraDisciplinaDoSextoTempo.value = disciplina[23];
+                        //Sexta-Feira Disciplinas
+                        inputSextaFeiraDisciplinaDoPrimeiroTempo.value = disciplina[24];
+                        inputSextaFeiraDisciplinaDoSegundoTempo.value = disciplina[25];
+                        inputSextaFeiraDisciplinaDoTerceiroTempo.value = disciplina[26];
+                        inputSextaFeiraDisciplinaDoQuartoTempo.value = disciplina[27];
+                        inputSextaFeiraDisciplinaDoQuintoTempo.value = disciplina[28];
+                        inputSextaFeiraDisciplinaDoSextoTempo.value = disciplina[29];
+
+                        console.log(disciplina);
                     }
-                }
 
                 //Terceiro step
                     atribuirHorarioDoTempoAoInput(segundaFeiraPrimeiroTempo, 0);
-                    atribuirDisciplinasAoSelect(selectSegundaFeiraDisciplinaDoPrimeiroTempo);
                     
                     atribuirHorarioDoTempoAoInput(segundaFeiraSegundoTempo, 1);
-                    atribuirDisciplinasAoSelect(selectSegundaFeiraDisciplinaDoSegundoTempo);
 
                     atribuirHorarioDoTempoAoInput(segundaFeiraTerceiroTempo, 2);
-                    atribuirDisciplinasAoSelect(selectSegundaFeiraDisciplinaDoTerceiroTempo);
 
                     atribuirHorarioDoTempoAoInput(segundaFeiraQuartoTempo, 3);
-                    atribuirDisciplinasAoSelect(selectSegundaFeiraDisciplinaDoQuartoTempo);
 
                     atribuirHorarioDoTempoAoInput(segundaFeiraQuintoTempo, 4);
-                    atribuirDisciplinasAoSelect(selectSegundaFeiraDisciplinaDoQuintoTempo);
 
                     atribuirHorarioDoTempoAoInput(segundaFeiraSextoTempo, 5);
-                    atribuirDisciplinasAoSelect(selectSegundaFeiraDisciplinaDoSextoTempo);
+
                 //Quarto step
                     atribuirHorarioDoTempoAoInput(tercaFeiraPrimeiroTempo, 0);
-                    atribuirDisciplinasAoSelect(selectTercaFeiraDisciplinaDoPrimeiroTempo);
                     
                     atribuirHorarioDoTempoAoInput(tercaFeiraSegundoTempo, 1);
-                    atribuirDisciplinasAoSelect(selectTercaFeiraDisciplinaDoSegundoTempo);
 
                     atribuirHorarioDoTempoAoInput(tercaFeiraTerceiroTempo, 2);
-                    atribuirDisciplinasAoSelect(selectTercaFeiraDisciplinaDoTerceiroTempo);
 
                     atribuirHorarioDoTempoAoInput(tercaFeiraQuartoTempo, 3);
-                    atribuirDisciplinasAoSelect(selectTercaFeiraDisciplinaDoQuartoTempo);
 
                     atribuirHorarioDoTempoAoInput(tercaFeiraQuintoTempo, 4);
-                    atribuirDisciplinasAoSelect(selectTercaFeiraDisciplinaDoQuintoTempo);
 
                     atribuirHorarioDoTempoAoInput(tercaFeiraSextoTempo, 5);
-                    atribuirDisciplinasAoSelect(selectTercaFeiraDisciplinaDoSextoTempo);
                 //Quinto step
                     atribuirHorarioDoTempoAoInput(quartaFeiraPrimeiroTempo, 0);
-                    atribuirDisciplinasAoSelect(selectQuartaFeiraDisciplinaDoPrimeiroTempo);
                     
                     atribuirHorarioDoTempoAoInput(quartaFeiraSegundoTempo, 1);
-                    atribuirDisciplinasAoSelect(selectQuartaFeiraDisciplinaDoSegundoTempo);
 
                     atribuirHorarioDoTempoAoInput(quartaFeiraTerceiroTempo, 2);
-                    atribuirDisciplinasAoSelect(selectQuartaFeiraDisciplinaDoTerceiroTempo);
 
                     atribuirHorarioDoTempoAoInput(quartaFeiraQuartoTempo, 3);
-                    atribuirDisciplinasAoSelect(selectQuartaFeiraDisciplinaDoQuartoTempo);
 
                     atribuirHorarioDoTempoAoInput(quartaFeiraQuintoTempo, 4);
-                    atribuirDisciplinasAoSelect(selectQuartaFeiraDisciplinaDoQuintoTempo);
 
                     atribuirHorarioDoTempoAoInput(quartaFeiraSextoTempo, 5);
-                    atribuirDisciplinasAoSelect(selectQuartaFeiraDisciplinaDoSextoTempo);
                 //Sexto step
                     atribuirHorarioDoTempoAoInput(quintaFeiraPrimeiroTempo, 0);
-                    atribuirDisciplinasAoSelect(selectQuintaFeiraDisciplinaDoPrimeiroTempo);
                     
                     atribuirHorarioDoTempoAoInput(quintaFeiraSegundoTempo, 1);
-                    atribuirDisciplinasAoSelect(selectQuintaFeiraDisciplinaDoSegundoTempo);
 
                     atribuirHorarioDoTempoAoInput(quintaFeiraTerceiroTempo, 2);
-                    atribuirDisciplinasAoSelect(selectQuintaFeiraDisciplinaDoTerceiroTempo);
 
                     atribuirHorarioDoTempoAoInput(quintaFeiraQuartoTempo, 3);
-                    atribuirDisciplinasAoSelect(selectQuintaFeiraDisciplinaDoQuartoTempo);
 
                     atribuirHorarioDoTempoAoInput(quintaFeiraQuintoTempo, 4);
-                    atribuirDisciplinasAoSelect(selectQuintaFeiraDisciplinaDoQuintoTempo);
 
                     atribuirHorarioDoTempoAoInput(quintaFeiraSextoTempo, 5);
-                    atribuirDisciplinasAoSelect(selectQuintaFeiraDisciplinaDoSextoTempo);
                 //Sétimo step
                     atribuirHorarioDoTempoAoInput(sextaFeiraPrimeiroTempo, 0);
-                    atribuirDisciplinasAoSelect(selectSextaFeiraDisciplinaDoPrimeiroTempo);
                     
                     atribuirHorarioDoTempoAoInput(sextaFeiraSegundoTempo, 1);
-                    atribuirDisciplinasAoSelect(selectSextaFeiraDisciplinaDoSegundoTempo);
 
                     atribuirHorarioDoTempoAoInput(sextaFeiraTerceiroTempo, 2);
-                    atribuirDisciplinasAoSelect(selectSextaFeiraDisciplinaDoTerceiroTempo);
 
                     atribuirHorarioDoTempoAoInput(sextaFeiraQuartoTempo, 3);
-                    atribuirDisciplinasAoSelect(selectSextaFeiraDisciplinaDoQuartoTempo);
 
                     atribuirHorarioDoTempoAoInput(sextaFeiraQuintoTempo, 4);
-                    atribuirDisciplinasAoSelect(selectSextaFeiraDisciplinaDoQuintoTempo);
 
                     atribuirHorarioDoTempoAoInput(sextaFeiraSextoTempo, 5);
-                    atribuirDisciplinasAoSelect(selectSextaFeiraDisciplinaDoSextoTempo);
             });
     });
 
